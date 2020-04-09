@@ -109,35 +109,35 @@
 								<ul>
 									<li>
 										<label>
-											<input type="checkbox"><span class="rating">
+											<input type="checkbox" id="rating5"><span class="rating">
 											<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i>
 											</span>
 										</label>
 									</li>
 									<li>
 										<label>
-											<input type="checkbox"><span class="rating">
+											<input type="checkbox" id="rating4"><span class="rating">
 											<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i>
 											</span>
 										</label>
 									</li>
 									<li>
 										<label>
-											<input type="checkbox"><span class="rating">
+											<input type="checkbox" id="rating3"><span class="rating">
 											<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
 											</span>
 										</label>
 									</li>
 									<li>
 										<label>
-											<input type="checkbox"><span class="rating">
+											<input type="checkbox" id="rating2"><span class="rating">
 											<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i><i class="icon-smile"></i>
 											</span>
 										</label>
 									</li>
 									<li>
 										<label>
-											<input type="checkbox"><span class="rating">
+											<input type="checkbox" id="rating1"><span class="rating">
 											<i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i><i class="icon-smile"></i><i class="icon-smile"></i>
 											</span>
 										</label>

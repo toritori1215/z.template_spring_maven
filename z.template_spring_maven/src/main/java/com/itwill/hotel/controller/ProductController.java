@@ -23,7 +23,11 @@ public class ProductController {
 	private ProductService productService;
 	
 	@RequestMapping(value = "/tour_list")
-	public String tourList() {
+	public String tourList(Model model) {
+		HashMap parameterMap = new HashMap();
+		parameterMap.put("pType", "tour");
+		List<Product> productList = productService.selectByType(parameterMap);
+		model.addAttribute(productList);
 		return "tour_all_list";
 	}
 	
