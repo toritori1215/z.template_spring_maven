@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itwill.hotel.mapper.WishlistMapper">
+
+	<select id="selectWishlist"
+			parameterType="java.lang.Integer"
+			resultType="Product">
+		select pNo, pName, pPrice, pType, pAvailable, pImg, pCapacity, pRate, pDesc
+		from product
+		where pNo in (select pNo from wish_list where mNo = #{mNo})
+	</select>
+
+	<insert  id="insertWishlist" parameterType="Wishlist">
+		insert into wish_list (mNo, pNo)
+		values (#{mNo}, #{pNo})
+	</insert>
+	
+	<delete id="deleteWishlist" parameterType="Wishlist">
+		delete from wish_list
+		where mNo=#{mNo} and pNo=#{pNo}
+	</delete>
+	
+</mapper>
