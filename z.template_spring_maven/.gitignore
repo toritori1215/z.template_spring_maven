@@ -5,3 +5,8 @@
 /.springBeans
 /.DS_Store
 /test/
+
+# STS
+pom.properties
+MANIFEST.MF
+/z.final_test_maven/
