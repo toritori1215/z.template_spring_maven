@@ -42,28 +42,44 @@
             	<div class="col-xl-4 col-lg-5 col-md-6 col-sm-8">
                 	<div id="login">
                     		<div class="text-center"><img src="${pageContext.request.contextPath}/resources/img/logo_sticky.png" alt="Image" data-retina="true" ></div>
-                            <hr>
-                           <form>
+							<hr>
+                           	<form id="f" action="member_insert" method="post">
                                 <div class="form-group">
                                 	<label>Username</label>
-                                    <input type="text" class=" form-control"  placeholder="Username">
-                                </div>
-                                <div class="form-group">
-                                	<label>Email</label>
-                                    <input type="email" class=" form-control" placeholder="Email">
+                                    <input type="text" class="form-control"  placeholder="Username" name="mId" value="${member.mId}">
                                 </div>
                                 <div class="form-group">
                                 	<label>Password</label>
-                                    <input type="password" class=" form-control" id="password1" placeholder="Password">
+                                    <input type="password" class="form-control" id="password1" placeholder="Password" name="mPassword">
                                 </div>
                                 <div class="form-group">
                                 	<label>Confirm password</label>
-                                    <input type="password" class=" form-control" id="password2" placeholder="Confirm password">
+                                    <input type="password" class="form-control" id="password2" placeholder="Confirm password" name="mPassword2">
+                                </div>
+                                <div class="form-group">
+                                	<label>First Name</label>
+                                    <input type="text" class="form-control"  placeholder="First Name" name="mFirstName" value="${member.mFirstName}">
+                                </div>
+                                <div class="form-group">
+                                	<label>Last Name</label>
+                                    <input type="text" class="form-control"  placeholder="Last Name" name="mLastName" value="${member.mLastName}">
+                                </div>
+                                <div class="form-group">
+                                	<label>Phone</label>
+                                    <input type="tel" maxlength="11" class="form-control" placeholder="01023456789" name="mTel" value="${member.mTel}">
+                                </div>
+                                <div class="form-group">
+                                	<label>Email</label>
+                                    <input type="email" class="form-control" placeholder="xxx@gmail.com" name="mEmail" value="${member.mEmail}">
+                                </div>
+                                <div class="form-group">
+                                	<label>Birth</label>
+                                    <input type="text" maxlength="8" class="form-control" placeholder="19940927" name="mBirth" value="${member.mBirth}">
                                 </div>
                                 <div id="pass-info" class="clearfix"></div>
-                                <button class="btn_full">Create an account</button>
+                                <input class="btn_full" type="submit" value="Create an account">
+                                <button class="btn_full" onclick="insertMember()">Create an account</button>
                             </form>
-                        </div>
                 </div>
             </div>
         </div>
@@ -76,6 +92,7 @@
 
 	<!-- Specific scripts -->
 	<script src="${pageContext.request.contextPath}/resources/js/pw_strenght.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/z.SiliconVillage/js/member.js"></script>
 	
 
   </body>

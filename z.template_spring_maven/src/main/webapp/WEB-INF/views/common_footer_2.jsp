@@ -29,7 +29,7 @@
 				<p>Join our newsletter to keep be informed about offers and
 					news.</p>
 				<div id="message-newsletter_2"></div>
-				<form method="post" action="assets/newsletter.php"
+				<form method="post" action="${pageContext.request.contextPath}/resources/assets/newsletter.php"
 					name="newsletter_2" id="newsletter_2">
 					<div class="form-group">
 						<input name="email_newsletter_2" id="email_newsletter_2"
@@ -103,26 +103,22 @@
 	<div class="small-dialog-header">
 		<h3>Sign In</h3>
 	</div>
-	<form>
+	<form method="post" action="member_login_action">
 		<div class="sign-in-wrapper">
-			<a href="#0" class="social_bt facebook">Login with Facebook</a> <a
-				href="#0" class="social_bt google">Login with Google</a>
-			<div class="divider">
-				<span>Or</span>
+			<div class="form-group">
+				<label>Username</label>
+				<input type="text" class="form-control" name="id" id="id" value="" placeholder="Username">
+				<i class="icon-user-1"></i>
 			</div>
 			<div class="form-group">
-				<label>Email</label> <input type="email" class="form-control"
-					name="email" id="email"> <i class="icon_mail_alt"></i>
-			</div>
-			<div class="form-group">
-				<label>Password</label> <input type="password" class="form-control"
-					name="password" id="password" value=""> <i
-					class="icon_lock_alt"></i>
+				<label>Password</label>
+				<input type="password" class="form-control" name="password" id="password" value="" placeholder="Password">
+				<i class="icon_lock_alt"></i>
 			</div>
 			<div class="clearfix add_bottom_15">
 				<div class="checkboxes float-left">
-					<input id="remember-me" type="checkbox" name="check"> <label
-						for="remember-me">Remember Me</label>
+					<input id="remember-me" type="checkbox" name="check">
+					<label for="remember-me">Remember Me</label>
 				</div>
 				<div class="float-right">
 					<a id="forgot" href="javascript:void(0);">Forgot Password?</a>
@@ -132,12 +128,12 @@
 				<input type="submit" value="Log In" class="btn_login">
 			</div>
 			<div class="text-center">
-				Don’t have an account? <a href="javascript:void(0);">Sign up</a>
+				Don't have an account? <a href="member_register.jsp">Sign up</a>
 			</div>
 			<div id="forgot_pw">
 				<div class="form-group">
-					<label>Please confirm login email below</label> <input type="email"
-						class="form-control" name="email_forgot" id="email_forgot">
+					<label>Please confirm login email below</label>
+					<input type="email" class="form-control" name="email_forgot" id="email_forgot">
 					<i class="icon_mail_alt"></i>
 				</div>
 				<p>You will receive an email containing a link allowing you to

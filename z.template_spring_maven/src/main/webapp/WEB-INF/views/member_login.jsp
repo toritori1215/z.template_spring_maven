@@ -59,7 +59,7 @@
                                     <a href="#">Forgot Password?</a>
                                 </p>
                                 <a href="#" class="btn_full">Sign in</a>
-                                <a href="register.html " class="btn_full_outline">Register</a>
+                                <a href="member_register.jsp" class="btn_full_outline">Register</a>
                             </form>
                         </div>
                 </div>
