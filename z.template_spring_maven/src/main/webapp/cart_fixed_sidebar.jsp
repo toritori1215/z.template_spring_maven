@@ -28,13 +28,13 @@
 	
 	<!-- CUSTOM CSS -->
 	<link href="${pageContext.request.contextPath}/resources/css/custom.css" rel="stylesheet">
-	
+
 </head>
 
 <body>
 
 	<!-- Header================================================== -->
-	<jsp:include page="common_header_6.jsp"/>
+	<jsp:include page="z.references/common_header_6.jsp"/>
 	<!-- End Header -->
 
 	<section id="hero_2">
@@ -47,7 +47,7 @@
 					<div class="progress">
 						<div class="progress-bar"></div>
 					</div>
-					<a href="cart.html" class="bs-wizard-dot"></a>
+					<a href="#0" class="bs-wizard-dot"></a>
 				</div>
 
 				<div class="col-4 bs-wizard-step disabled">
@@ -55,7 +55,7 @@
 					<div class="progress">
 						<div class="progress-bar"></div>
 					</div>
-					<a href="payment.html" class="bs-wizard-dot"></a>
+					<a href="payment_fixed_sidebar.html" class="bs-wizard-dot"></a>
 				</div>
 
 				<div class="col-4 bs-wizard-step disabled">
@@ -319,64 +319,67 @@
 					<div class="add_bottom_15"><small>* Prices for person.</small>
 					</div>
 				</div>
-				<!-- End col -->
+				<!-- End col-md-8 -->
 
-				<aside class="col-lg-4">
-					<div class="box_style_1">
-						<h3 class="inner">- Summary -</h3>
-						<table class="table table_summary">
-							<tbody>
-								<tr>
-									<td>
-										Adults
-									</td>
-									<td class="text-right">
-										2
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Children
-									</td>
-									<td class="text-right">
-										0
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Dedicated tour guide
-									</td>
-									<td class="text-right">
-										$34
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Insurance
-									</td>
-									<td class="text-right">
-										$34
-									</td>
-								</tr>
-								<tr class="total">
-									<td>
-										Total cost
-									</td>
-									<td class="text-right">
-										$154
-									</td>
-								</tr>
-							</tbody>
-						</table>
-						<a class="btn_full" href="payment.html">Check out</a>
-						<a class="btn_full_outline" href="#"><i class="icon-right"></i> Continue shopping</a>
+				<aside class="col-lg-4" id="sidebar">
+					<div class="theiaStickySidebar">
+						<div class="box_style_1">
+							<h3 class="inner">- Summary -</h3>
+							<table class="table table_summary">
+								<tbody>
+									<tr>
+										<td>
+											Adults
+										</td>
+										<td class="text-right">
+											2
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Children
+										</td>
+										<td class="text-right">
+											0
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Dedicated tour guide
+										</td>
+										<td class="text-right">
+											$34
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Insurance
+										</td>
+										<td class="text-right">
+											$34
+										</td>
+									</tr>
+									<tr class="total">
+										<td>
+											Total cost
+										</td>
+										<td class="text-right">
+											$154
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<a class="btn_full" href="payment_fixed_sidebar.html">Check out</a>
+							<a class="btn_full_outline" href="#"><i class="icon-right"></i> Continue shopping</a>
+						</div>
+						<div class="box_style_4">
+							<i class="icon_set_1_icon-57"></i>
+							<h4>Need <span>Help?</span></h4>
+							<a href="tel://004542344599" class="phone">+45 423 445 99</a>
+							<small>Monday to Friday 9.00am - 7.30pm</small>
+						</div>
 					</div>
-					<div class="box_style_4">
-						<i class="icon_set_1_icon-57"></i>
-						<h4>Need <span>Help?</span></h4>
-						<a href="tel://004542344599" class="phone">+45 423 445 99</a>
-						<small>Monday to Friday 9.00am - 7.30pm</small>
-					</div>
+					<!-- End sitcky -->
 				</aside>
 				<!-- End aside -->
 
@@ -388,8 +391,17 @@
 	<!-- End main -->
 
 	<!-- Footer================================================== -->
-	<jsp:include page="common_footer_2.jsp"/>
+	<jsp:include page="z.references/common_footer_2.jsp"/>
 	<!-- End Footer -->
+
+	<!-- Fixed sidebar -->
+	<script src="${pageContext.request.contextPath}/resources/js/theia-sticky-sidebar.js"></script>
+	<script>
+		jQuery('#sidebar').theiaStickySidebar({
+			additionalMarginTop: 80
+		});
+	</script>
+		
 
 </body>
 
