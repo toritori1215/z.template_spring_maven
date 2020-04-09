@@ -43,23 +43,24 @@
                 	<div id="login">
                     		<div class="text-center"><img src="${pageContext.request.contextPath}/resources/img/logo_sticky.png" alt="Image" data-retina="true" ></div>
                             <hr>
-                            <form>
+                            <form id="login_form" method="post" action="member_login_action">
                             <a href="#0" class="social_bt facebook">Login with Facebook</a>
 							<a href="#0" class="social_bt google">Login with Google</a>
 							<div class="divider"><span>Or</span></div>
                                 <div class="form-group">
                                     <label>Username</label>
-                                    <input type="text" class=" form-control " placeholder="Username">
+                                    <input type="text" class=" form-control " placeholder="Username" name="mId" value="${fMember.mId}">
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input type="password" class=" form-control" placeholder="Password">
+                                    <input type="password" class=" form-control" placeholder="Password" name="mPassword" value="${fMember.mPassword}">
                                 </div>
                                 <p class="small">
                                     <a href="#">Forgot Password?</a>
                                 </p>
-                                <a href="#" class="btn_full">Sign in</a>
-                                <a href="member_register.jsp" class="btn_full_outline">Register</a>
+                                <!-- <a href="#" class="btn_full">Sign in</a>  -->
+                                <input class="btn_full_outline" type="submit" value="Sign in">
+                                <a href="member_insert_form" class="btn_full_outline">Register</a>
                             </form>
                         </div>
                 </div>

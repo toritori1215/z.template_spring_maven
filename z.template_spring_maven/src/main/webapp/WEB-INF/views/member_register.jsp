@@ -43,6 +43,7 @@
                 	<div id="login">
                     		<div class="text-center"><img src="${pageContext.request.contextPath}/resources/img/logo_sticky.png" alt="Image" data-retina="true" ></div>
 							<hr>
+							<div align="center"><font color = "red">${msg1}</font></div><br>
                            	<form id="f" action="member_insert" method="post">
                                 <div class="form-group">
                                 	<label>Username</label>

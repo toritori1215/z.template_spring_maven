@@ -22,9 +22,9 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
-	@RequestMapping(value = "/product")
+	@RequestMapping(value = "/tour_list")
 	public String product() {
-		return "product/product";
+		return "tour_all_list";
 	}
 	
 	@RequestMapping(value = "/product_list_condition")

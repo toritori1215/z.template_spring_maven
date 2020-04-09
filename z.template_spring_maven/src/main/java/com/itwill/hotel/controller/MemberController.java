@@ -4,11 +4,13 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,16 +49,23 @@ public class MemberController {
 		return "member_login";
 	}
 	
-	@RequestMapping(value = "/member_login_action")
-	public String memberLoginAction(@RequestParam(value = "id") String mId,
-									@RequestParam(value = "password") String mPassword) {
-		
+	@RequestMapping(value = "/member_login_action", method=RequestMethod.POST)
+	public String memberLoginAction(@ModelAttribute(name="fMember") Member member,
+									//@RequestParam(value = "mId") String mId,
+									//@RequestParam(value = "mPassword") String mPassword,
+									HttpSession httpSession,
+									Model model) {
+		String mId = member.getmId();
+		memberService.deleteInactiveMember(mId);
+		if (memberService.checkIdExist(mId) != 1) {
+			model.addAttribute("msg1", "아이디가 존재하지 않습니다.");
+		}
 		return "";
 	}
 	
 	@RequestMapping (value = "/member_insert_form")
 	public String memberInsertForm() {
-		return "";
+		return "member_register";
 	}
 	
 	@RequestMapping (value = "/member_insert")

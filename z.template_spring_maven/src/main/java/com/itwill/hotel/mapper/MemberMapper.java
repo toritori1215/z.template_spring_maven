@@ -12,6 +12,10 @@ public interface MemberMapper {
 	
 	public Member selectById(String mId);
 	
+	public int checkIdExist(String mId);
+	
 	public int insertMember(Member member);
+	
+	public int deleteInactiveMember(String mId);
 	
 }

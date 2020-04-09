@@ -16,11 +16,26 @@
 		where mId=#{mId}
 	</select>
 	
+	<select id="checkIdExist" parameterType="String" resultType="_int">
+		select count(mNo)
+		from member
+		where mId=#{mId}
+	</select>
+	
 	<insert id="insertMember" parameterType="Member">
 		insert into Member (mNo, mId, mFirstName, mLastName, mPassword, mTel, mEmail, mBirth, mImg, 
 		 					mCountry, mCity, mAddress, mZipCode, mIfActive)
 		values (member_SEQ.nextval, #{mId}, #{mFirstName}, #{mLastName}, #{mPassword}, #{mTel}, #{mEmail}, 
 				#{mBirth}, null, null, null, null, null, 1)
 	</insert>
+	
+	<delete id="deleteInactiveMember" parameterType="String">
+		delete from member 
+		where mId=#{mId} 
+		and mIfActive=0 
+		and (select m.mRemoveDate - SYSDATE
+			 from member m 
+			 where m.mId=#{mId} ) &lt; -30
+	</delete>
 	
 </mapper>

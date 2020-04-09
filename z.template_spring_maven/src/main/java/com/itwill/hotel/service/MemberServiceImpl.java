@@ -33,8 +33,18 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
+	public int checkIdExist(String mId) {
+		return memberDao.checkIdExist(mId);
+	}
+	
+	@Override
 	public int insertMember(Member member) {
 		return memberDao.insertMember(member);
+	}
+
+	@Override
+	public int deleteInactiveMember(String mId) {
+		return memberDao.deleteInactiveMember(mId);
 	}
 
 }

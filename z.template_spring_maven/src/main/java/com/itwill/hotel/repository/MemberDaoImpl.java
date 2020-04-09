@@ -33,8 +33,18 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
+	public int checkIdExist(String mId) {
+		return memberMapper.checkIdExist(mId);
+	}
+	
+	@Override
 	public int insertMember(Member member) {
 		return memberMapper.insertMember(member);
+	}
+
+	@Override
+	public int deleteInactiveMember(String mId) {
+		return memberMapper.deleteInactiveMember(mId);
 	}
 
 }
