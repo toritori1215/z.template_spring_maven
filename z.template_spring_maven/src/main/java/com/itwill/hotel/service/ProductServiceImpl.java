@@ -26,11 +26,6 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> selectWishlist(Integer mNo) {
-		return productDao.selectWishlist(mNo);
-	}
-
-	@Override
 	public Integer countBookedRoomQty(HashMap parameterMap) {
 		return productDao.countBookedRoomQty(parameterMap);
 	}

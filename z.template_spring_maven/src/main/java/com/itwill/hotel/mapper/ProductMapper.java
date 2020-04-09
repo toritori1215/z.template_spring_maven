@@ -11,8 +11,6 @@ public interface ProductMapper {
 
 	public List<Product> selectByType(HashMap parameterMap);
 
-	public List<Product> selectWishlist(Integer mNo);
-
 	public Integer countBookedRoomQty(HashMap parameterMap);
 	
 	public Integer countBookedTourQty(HashMap parameterMap);

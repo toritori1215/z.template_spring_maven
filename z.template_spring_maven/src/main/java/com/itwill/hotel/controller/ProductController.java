@@ -61,14 +61,6 @@ public class ProductController {
 	public String productWishListCondition() {
 		return "product/list_wishlist_condition";
 	}
-	 
-	@RequestMapping(value = "/product_wishlist")
-	public String productWishList(@RequestParam(value="mNo", required=true) String mNo, Model model) {
-		List<Product> productList = productService.selectWishlist(Integer.parseInt(mNo));
-		model.addAttribute("mNo", mNo);
-		model.addAttribute("productList", productList);
-		return "product/list_wishlist";
-	}
 	
 	@RequestMapping(value = "/count_room_condition")
 	public String countRoomCondition() {

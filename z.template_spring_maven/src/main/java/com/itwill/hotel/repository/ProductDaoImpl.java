@@ -25,13 +25,7 @@ public class ProductDaoImpl implements ProductDao {
 	public List<Product> selectByType(HashMap parameterMap) {
 		List<Product> productList = productMapper.selectByType(parameterMap);
 		return productList;
-	};
-
-	@Override
-	public List<Product> selectWishlist(Integer mNo) {
-		List<Product> productList = productMapper.selectWishlist(mNo);
-		return productList;
-	};
+	}
 
 	@Override
 	public Integer countBookedRoomQty(HashMap parameterMap) {
