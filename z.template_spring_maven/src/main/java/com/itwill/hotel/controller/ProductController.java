@@ -27,9 +27,19 @@ public class ProductController {
 		return "tour_all_list";
 	}
 	
+	@RequestMapping(value = "/room_list")
+	public String roomList() {
+		return "room_all_list";
+	}
+	
 	@RequestMapping(value = "/tour_grid")
 	public String tourListGrid() {
 		return "tour_all_grid";
+	}
+	
+	@RequestMapping(value = "/room_grid")
+	public String roomListGrid() {
+		return "room_all_grid";
 	}
 	
 	@RequestMapping(value = "/product_list_condition")
@@ -114,5 +124,5 @@ public class ProductController {
 		model.addAttribute("remain", remain);
 		return "product/count_tour";
 	}
-	
+		
 }
