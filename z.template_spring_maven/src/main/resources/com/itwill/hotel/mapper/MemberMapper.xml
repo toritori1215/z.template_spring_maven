@@ -20,7 +20,7 @@
 		insert into Member (mNo, mId, mFirstName, mLastName, mPassword, mTel, mEmail, mBirth, mImg, 
 		 					mCountry, mCity, mAddress, mZipCode, mIfActive)
 		values (member_SEQ.nextval, #{mId}, #{mFirstName}, #{mLastName}, #{mPassword}, #{mTel}, #{mEmail}, 
-				#{mBirth}, #{mImg}, #{mCountry}, #{mCity}, #{mAddress}, #{mZipCode}, #{mIfActive})
+				#{mBirth}, null, null, null, null, null, 1)
 	</insert>
 	
 </mapper>

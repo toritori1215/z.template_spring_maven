@@ -43,14 +43,14 @@
                 	<div id="login">
                     		<div class="text-center"><img src="${pageContext.request.contextPath}/resources/img/logo_sticky.png" alt="Image" data-retina="true" ></div>
 							<hr>
-                           	<form id="f">
+                           	<form id="f" action="member_insert" method="post">
                                 <div class="form-group">
                                 	<label>Username</label>
                                     <input type="text" class="form-control"  placeholder="Username" name="mId">
                                 </div>
                                 <div class="form-group">
                                 	<label>Password</label>
-                                    <input type="password" class="form-control" id="password1" placeholder="Password" name="mPassword1">
+                                    <input type="password" class="form-control" id="password1" placeholder="Password" name="mPassword">
                                 </div>
                                 <div class="form-group">
                                 	<label>Confirm password</label>
@@ -66,17 +66,18 @@
                                 </div>
                                 <div class="form-group">
                                 	<label>Phone</label>
-                                    <input type="tel" maxlength="11" class="form-control" placeholder="Phone" name="mTel">
+                                    <input type="tel" maxlength="11" class="form-control" placeholder="01023456789" name="mTel">
                                 </div>
                                 <div class="form-group">
                                 	<label>Email</label>
-                                    <input type="email" class="form-control" placeholder="Email" name="mEmail">
+                                    <input type="email" class="form-control" placeholder="xxx@gmail.com" name="mEmail">
                                 </div>
                                 <div class="form-group">
                                 	<label>Birth</label>
-                                    <input type="date" maxlength="8" class="form-control" placeholder="Birth" name="mBirth">
+                                    <input type="text" maxlength="8" class="form-control" placeholder="19940927" name="mBirth">
                                 </div>
                                 <div id="pass-info" class="clearfix"></div>
+                                <input class="btn_full" type="submit" value="Create an account">
                                 <button class="btn_full" onclick="insertMember()">Create an account</button>
                             </form>
                 </div>

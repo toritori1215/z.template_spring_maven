@@ -83,25 +83,13 @@ public class MemberController {
 							   Model model) {
 		
 		if (mId == "" || mPassword == "" || mPassword2 == "" || mFirstName == "" || 
-			mLastName == "" || mEmail == "" || mTel == "" || mBirth == "") {
+			mLastName == "" || mEmail == "" || mTel == "" || mBirth == "" || 
+			mId == null || mPassword == null || mPassword2 == null || mFirstName == null || 
+			mLastName == null || mEmail == null || mTel == null || mBirth == null) {
 			model.addAttribute("msg1", "빈 칸에 값을 입력하십시오.");
-			return "member_register.jsp"; 
-		} else if (mPassword.equals(mPassword2)) {
-			Member member = new Member(0, mId, mFirstName, mLastName, mPassword, mTel, mEmail, Integer.parseInt(mBirth), null, 
-									   null, null, null, null, null, null, 1);
-			int insertRowCount = memberService.insertMember(member);
-			if (insertRowCount == 1) {
-				return "main_page";				
-			} else {
-				return "common_404";
-			}
-		} else {
-			Member member = new Member(0, mId, mFirstName, mLastName, mPassword, mTel, mEmail, Integer.parseInt(mBirth), null, 
-					   				   null, null, null, null, null, null, 1);
-			model.addAttribute(member);
-			model.addAttribute("msg2", "비밀번호와 확인 비밀번호가 일치하지 않습니다");
-			return "member_register.jsp";
-		}
+			return "redirect:member_register.jsp"; 
+		} 
+		return "common_404";
 		// 아이디, 이메일, 연락처 중복체크
 	}
 
