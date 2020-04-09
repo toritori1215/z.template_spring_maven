@@ -8,9 +8,7 @@ public interface MemberMapper {
 	
 	public List<Member> selectAll();
 	
-	public Member selectByNo(Integer mNo);
-	
-	public Member selectById(String mId);
+	public Member selectOne(String mId);
 	
 	public int checkIdExist(String mId);
 	

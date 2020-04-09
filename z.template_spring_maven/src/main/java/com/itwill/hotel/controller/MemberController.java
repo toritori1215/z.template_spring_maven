@@ -25,25 +25,6 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
-	@RequestMapping(value = "/member")
-	public String member() {
-		return "";
-	}
-
-	@RequestMapping(value = "/member_list")
-	public String memberList(Model model) {
-		List<Member> memberList = memberService.selectAll();
-		model.addAttribute("memberList", memberList);
-		return "";
-	}
-	
-	@RequestMapping(value = "/member_view")
-	public String memberView(@Param(value = "mNo") String mNo, Model model) {
-		Member member = memberService.selectByNo(Integer.parseInt(mNo));
-		model.addAttribute("member", member);
-		return "";
-	}
-	
 	@RequestMapping(value = "/member_login_form")
 	public String memberLogin() {
 		return "member_login";
@@ -59,8 +40,31 @@ public class MemberController {
 		memberService.deleteInactiveMember(mId);
 		if (memberService.checkIdExist(mId) != 1) {
 			model.addAttribute("msg1", "아이디가 존재하지 않습니다.");
+			return "member_login_form";
 		}
-		return "";
+		Member tempMember = memberService.selectOne(mId);
+		if (member.getmPassword().equals(tempMember.getmPassword())) {
+			if (tempMember.getmIfactive() == 0) {
+				model.addAttribute("msg3", "아이디 휴면상태야");
+				return "member_login_form";
+			} else {
+				// 로그인
+				return "common_404";
+			}
+		} else if (tempMember.getmTempPassword() != null && 
+				   tempMember.getmTempPassword() != "" && 
+				   member.getmPassword().equals(tempMember.getmTempPassword())) {
+			if (tempMember.getmIfactive() == 0) {
+				model.addAttribute("msg3", "아이디 휴면상태야");
+				return "member_login_form";
+			} else {
+				// 로그인
+				return "common_404";
+			}
+		} else {
+			model.addAttribute("msg2", "비밀번호 아니잖아");
+			return "member_login_form";
+		}
 	}
 	
 	@RequestMapping (value = "/member_insert_form")

@@ -21,14 +21,8 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public Member selectByNo(Integer mNo) {
-		Member member = memberMapper.selectByNo(mNo);
-		return member;
-	}
-
-	@Override
-	public Member selectById(String mId) {
-		Member member = memberMapper.selectById(mId);
+	public Member selectOne(String mId) {
+		Member member = memberMapper.selectOne(mId);
 		return member;
 	}
 	

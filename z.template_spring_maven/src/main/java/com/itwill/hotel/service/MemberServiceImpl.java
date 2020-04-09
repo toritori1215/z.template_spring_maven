@@ -21,15 +21,10 @@ public class MemberServiceImpl implements MemberService {
 	public List<Member> selectAll() {
 		return memberDao.selectAll();
 	}
-
+	
 	@Override
-	public Member selectByNo(Integer mNo) {
-		return memberDao.selectByNo(mNo);
-	}
-
-	@Override
-	public Member selectById(String mId) {
-		return memberDao.selectById(mId);
+	public Member selectOne(String mId) {
+		return memberDao.selectOne(mId);
 	}
 	
 	@Override
