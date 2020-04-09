@@ -31,5 +31,10 @@ public class MemberDaoImpl implements MemberDao {
 		Member member = memberMapper.selectById(mId);
 		return member;
 	}
+	
+	@Override
+	public void insertMember(Member member) {
+		memberMapper.insertMember(member);
+	}
 
 }

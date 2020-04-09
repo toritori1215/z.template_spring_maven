@@ -11,5 +11,7 @@ public interface MemberDao {
 	public Member selectByNo(Integer mNo);
 
 	public Member selectById(String mId);
+	
+	public void insertMember(Member member);
 
 }

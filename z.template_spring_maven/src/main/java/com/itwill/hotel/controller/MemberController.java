@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwill.hotel.domain.Member;
 import com.itwill.hotel.service.MemberService;
@@ -63,6 +64,47 @@ public class MemberController {
 			return "";
 		}
 		return "";
+	}
+	
+	@RequestMapping (value = "/member_insert_form")
+	public String memberInsertForm() {
+		return "";
+	}
+	
+	@RequestMapping (value = "/member_insert")
+	public String memberInsert(@RequestParam(value = "mId") String mId,
+							   @RequestParam(value = "mPassword") String mPassword,
+							   @RequestParam(value = "mPassword2") String mPassword2,
+							   @RequestParam(value = "mFirstName") String mFirstName,
+							   @RequestParam(value = "mLastName") String mLastName,
+							   @RequestParam(value = "mEmail") String mEmail,
+							   @RequestParam(value = "mTel") String mTel,
+							   @RequestParam(value = "mCountry") String mCountry,
+							   @RequestParam(value = "mCity") String mCity,
+							   @RequestParam(value = "mAddress") String mAddress,
+							   @RequestParam(value = "mZipCode") String mZipCode,
+							   @RequestParam(value = "mBirth") String mBirth,
+							   @RequestParam(value = "mImg") String mImg,
+							   Model model) {
+		
+		if (mId == "" || mPassword == "" || mPassword2 == "" || mFirstName == "" || 
+			mLastName == "" || mEmail == "" || mTel == "" || mBirth == "") {
+			model.addAttribute("msg1", "빈 칸에 값을 입력하십시오.");
+			return ""; 
+		} else if (mPassword.equals(mPassword2)) {
+			Member member = new Member(0, mId, mFirstName, mLastName, mPassword, mTel, mEmail, Integer.parseInt(mBirth), mImg, 
+									   mCountry, mCity, mAddress, mZipCode, null, null, 1);
+			model.addAttribute(member);
+			memberService.insertMember(member);
+			return "";
+		} else {
+			Member member = new Member(0, mId, mFirstName, mLastName, mPassword, mTel, mEmail, Integer.parseInt(mBirth), mImg,
+					   				   mCountry, mCity, mAddress, mZipCode, null, null, 1);
+			model.addAttribute(member);
+			model.addAttribute("msg2", "비밀번호와 확인 비밀번호가 일치하지 않습니다");
+			return "";
+		}
+		// 아이디, 이메일, 연락처 중복체크
 	}
 
 }

@@ -16,4 +16,11 @@
 		where mId=#{mId}
 	</select>
 	
+	<insert id="insertMember" parameterType="Member">
+		insert into Member (mNo, mId, mFirstName, mLastName, mPassword, mTel, mEmail, mBirth, mImg, 
+		 					mCountry, mCity, mAddress, mZipCode, mIfActive)
+		values (member_SEQ.nextval, #{mId}, #{mFirstName}, #{mLastName}, #{mPassword}, #{mTel}, #{mEmail}, 
+				#{mBirth}, #{mImg}, #{mCountry}, #{mCity}, #{mAddress}, #{mZipCode}, #{mIfActive})
+	</insert>
+	
 </mapper>

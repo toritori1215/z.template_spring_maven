@@ -12,4 +12,6 @@ public interface MemberMapper {
 	
 	public Member selectById(String mId);
 	
+	public void insertMember(Member member);
+	
 }
