@@ -117,15 +117,11 @@
 						<li class="submenu"><a href="javascript:void(0);"
 							class="show-submenu">Tours <i class="icon-down-open-mini"></i></a>
 							<ul>
-								<li><a href="all_tours_list.html">All tours list</a></li>
-								<li><a href="all_tours_grid.html">All tours grid</a></li>
-								<li><a href="all_tours_grid_masonry.html">All tours
-										Sort Masonry</a></li>
-								<li><a href="all_tours_map_listing.html">All tours map
-										listing</a></li>
+								<li><a href="tour_all_list">Tour list</a></li>
 								<li><a href="single_tour.html">Single tour page</a></li>
 								<li><a href="single_tour_with_gallery.html">Single tour
 										with gallery</a></li>
+								<!-- 
 								<li class="third-level"><a href="javascript:void(0);">Single
 										tour fixed sidebar</a>
 									<ul>
@@ -140,12 +136,14 @@
 										<li><a href="confirmation_fixed_sidebar.html">Confirmation
 												Fixed Sidebar</a></li>
 									</ul></li>
-								<li><a href="single_tour_working_booking.php">Single
+								 
+								 <li><a href="single_tour_working_booking.php">Single
 										tour working booking</a></li>
-								<li><a href="single_tour_datepicker_v2.html">Date and
+								 <li><a href="single_tour_datepicker_v2.html">Date and
 										time picker V2</a></li>
-								<li><a href="cart.html">Single tour cart</a></li>
-								<li><a href="payment.html">Single tour booking</a></li>
+								 <li><a href="cart.html">Single tour cart</a></li>
+								 <li><a href="payment.html">Single tour booking</a></li>
+								 -->
 							</ul></li>
 						<li class="submenu"><a href="javascript:void(0);"
 							class="show-submenu">Hotels <i class="icon-down-open-mini"></i></a>
