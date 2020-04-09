@@ -53,7 +53,7 @@
                               <div class="form-group">
                                   <label>Password</label>
                                   <input type="password" class=" form-control" placeholder="Password" name="mPassword" value="">
-								  <i class="icon_lock_alt"></i>
+								  <i class="icon-lock"></i>
                               </div>
                               <p class="small">
                                   <a href="#forgot-password" id="access_link2">Forgot Password?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -178,7 +178,7 @@
 	<!-- Sign In Popup -->
 	
 	<!-- Footer================================================== -->
-	<jsp:include page="z.references/common_footer_22.jsp"/>
+	<jsp:include page="z.references/common_footer_2.jsp"/>
 	<!-- End Footer -->
 	
 	<script src="${pageContext.request.contextPath}/resources/z.SiliconVillage/js/member.js"></script>
