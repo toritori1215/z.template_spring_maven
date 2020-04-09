@@ -67,7 +67,7 @@
 			<div class="col-3">
 				<div id="logo_home">
 					<h1>
-						<a href="index.html" title="City tours travel template">City
+						<a href="main" title="City tours travel template">City
 							Tours travel template</a>
 					</h1>
 				</div>
