@@ -1,0 +1,15 @@
+package com.itwill.hotel.mapper;
+
+import java.util.List;
+
+import com.itwill.hotel.domain.Member;
+
+public interface MemberMapper {
+	
+	public List<Member> selectAll();
+	
+	public Member selectByNo(Integer mNo);
+	
+	public Member selectById(String mId);
+	
+}

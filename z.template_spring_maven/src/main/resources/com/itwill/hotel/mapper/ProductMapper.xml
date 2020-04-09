@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itwill.hotel.mapper.ProductMapper">
+
+	<select id="selectByNo"
+			parameterType="java.lang.Integer"
+			resultType="Product">
+		select pNo, pName, pPrice, pType, pAvailable, pImg, pCapacity, pRate, pDesc
+		from product
+		where pNo = #{pNo}
+	</select>
+	
+	
+	<select id="selectByType"
+			parameterType="java.util.HashMap"
+			resultType="Product">
+		select pNo, pName, pPrice, pType, pAvailable, pImg, pCapacity, pRate, pDesc
+		from product
+		<where>
+			<if test="pType != null">
+				pType = #{pType}
+			</if>
+			<if test="pPrice_lb != null and pPrice_ub != null">
+				and pPrice &lt;= #{pPrice_ub} and pPrice &gt;= #{pPrice_lb}
+			</if>
+			<if test="pRateStar != null">
+				and ROUND(pRate) = #{pRateStar}
+			</if>
+		</where>
+		<trim prefix="order by">
+			<if test="orderBy == 'pPrice'"> pPrice </if>
+			<if test="orderBy == 'pPriceDesc'"> pPrice DESC </if>
+			<if test="orderBy == 'pRate'"> pRate </if>
+			<if test="orderBy == 'pRateDesc'"> pRate DESC </if>
+		</trim>
+	</select>
+	
+	
+	<select id="selectWishlist"
+			parameterType="java.lang.Integer"
+			resultType="Product">
+		select pNo, pName, pPrice, pType, pAvailable, pImg, pCapacity, pRate, pDesc
+		from product
+		where pNo in (select pNo from wish_list where mNo = #{mNo})
+	</select>
+	
+	
+	<select id="countBookedRoomQty"
+			parameterType="java.util.HashMap"
+			resultType="java.lang.Integer">
+		select SUM(jdProductQty)
+		from jumun_detail
+		where pNo = #{pNo}
+		and jdOrderDate &lt; ANY(TO_DATE(#{jdCheckOut}))
+		and jdCheckOut &gt; ANY(TO_DATE(#{jdOrderDate}))
+	</select>
+	
+	
+	<select id="countBookedTourQty"
+			parameterType="java.util.HashMap"
+			resultType="java.lang.Integer">
+		select SUM(jdProductQty)
+		from jumun_detail
+		where pNo = #{pNo}
+		and jdCheckOut = ANY(TO_DATE(#{jdOrderDate}))
+		and jdOrderTime = #{jdOrderTime}
+	</select>
+	
+</mapper>

@@ -1,0 +1,90 @@
+	
+	${pageContext.request.contextPath}/resources/
+	
+	
+	
+	<!-- Header================================================== -->
+	<jsp:include page="common_header_6.jsp"/>
+	<!-- End Header -->
+
+
+
+	<!-- Footer================================================== -->
+	<jsp:include page="common_footer_2.jsp"/>
+	<!-- End Footer -->
+	
+
+
+0. xxx.html을 xxx.jsp로 바꾼다!!!
+	ex) index.html --> index.jsp
+	
+1. 파일 위 부분
+	
+	<!DOCTYPE html>
+	<html lang="en">
+	
+	를
+	 
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
+    	pageEncoding="UTF-8"%>
+	<!DOCTYPE html>
+	<html>
+	
+	로 바꾼다!!!!!
+
+2. css, js, img 등 경로를 바꾼다:
+	src="" 혹은 href="" 경로안에 ${pageContext.request.contextPath}/resources/ 붙인다.
+	
+			!!!!!!!!!!!!!!!! ${pageContext.request.contextPath}/resources/ !!!!!!!!!!!!!!!!
+	
+	ex1) IMG파일!!!
+		 <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+		 를
+		 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico" type="image/x-icon">
+		 로 바꾼다.
+	
+	
+	ex2) CSS파일!!!
+		 <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+	
+	
+	ex3) CSS파일!!!
+		 <link rel="stylesheet" type="text/css" 
+		 	   href="${pageContext.request.contextPath}/resources/rev-slider-files/fonts/
+			   font-awesome/css/font-awesome.css">
+	
+	
+	ex4) JS파일!!!
+		 <script src="${pageContext.request.contextPath}/resources/js/notify_func.js"></script>
+	
+	
+	ex5) 자바스크립트 function에도 포함할 수 있다!!!!!
+		 <script>
+		 	var tpj = jQuery;
+			var revapi54;
+			tpj(document).ready(function () {
+				......
+				sliderType: "standard",
+				jsFileLocation: "${pageContext.request.contextPath}/resources/rev-slider-files/js/",
+				sliderLayout: "fullwidth",
+				......
+			}); 
+		 </script>
+	
+	ex6) data-thumb에도 있다!!!!!
+		 data-thumb="${pageContext.request.contextPath}/resources/rev-slider-files/assets/100x50_notgeneric_bg5.jpg"
+		 
+	ex7) src에 이렇게도 있을 수 있다!!!!!
+		src="data:${pageContext.request.contextPath}/resources/image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+		
+	ex8) form에도 있다!!!!!!!!!!
+		<form method="post" action="${pageContext.request.contextPath}/resources/assets/review_tour.php" name="review_tour" id="review_tour">
+	
+	ex9) 여러 data에도 있다!!!!!!!
+		<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/css/images/blank.gif"
+		 data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/9_medium.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_tour/9_small.jpg"
+		 data-medium="${pageContext.request.contextPath}/resources/img/slider_single_tour/9_medium.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/9_large.jpg"
+		 data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/9_large.jpg">
+		 
+	ex10) 
+		data-lazyload="${pageContext.request.contextPath}/resources/img/slides_bg/slide_1.jpg"
