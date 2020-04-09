@@ -13,7 +13,7 @@
 	<ul>
 		<li><a href="index.jsp">메인화면</a></li>
 		<br><br><br>
-		<li><a href="member_insert_form">회원</a></li>
+		<li><a href="member_login_form">회원</a></li>
 		<li><a href="">상품관리</a></li>
 		<li><a href="product">상품리스트</a></li>
 		<li><a href="">찜</a></li>

@@ -20,7 +20,7 @@ public class Member {
 	private String mZipCode;
 	private String mTempPassword;
 	private String mRemoveDate;
-	private Integer mIfactive;
+	private Integer mIfActive;
 	
 	public Member() {
 		
@@ -28,7 +28,7 @@ public class Member {
 
 	public Member(Integer mNo, String mId, String mFirstName, String mLastName, String mPassword, String mTel,
 			String mEmail, Integer mBirth, String mImg, String mCountry, String mCity, String mAddress, String mZipCode,
-			String mTempPassword, String mRemoveDate, Integer mIfactive) {
+			String mTempPassword, String mRemoveDate, Integer mIfActive) {
 		this.mNo = mNo;
 		this.mId = mId;
 		this.mFirstName = mFirstName;
@@ -44,7 +44,7 @@ public class Member {
 		this.mZipCode = mZipCode;
 		this.mTempPassword = mTempPassword;
 		this.mRemoveDate = mRemoveDate;
-		this.mIfactive = mIfactive;
+		this.mIfActive = mIfActive;
 	}
 
 	public Integer getmNo() {
@@ -167,12 +167,12 @@ public class Member {
 		this.mRemoveDate = mRemoveDate;
 	}
 
-	public Integer getmIfactive() {
-		return mIfactive;
+	public Integer getmIfActive() {
+		return mIfActive;
 	}
 
-	public void setmIfactive(Integer mIfactive) {
-		this.mIfactive = mIfactive;
+	public void setmIfActive(Integer mIfActive) {
+		this.mIfActive = mIfActive;
 	}
 	
 }

@@ -41,7 +41,7 @@ public class MemberController {
 		} else {
 			Member tempMember = memberService.selectOne(mId);
 			if (mPassword.equals(tempMember.getmPassword())) {
-				if (tempMember.getmIfactive() == 1) {
+				if (tempMember.getmIfActive() == 1) {
 					// 로그인
 					return "common_404";
 				} else {
@@ -51,12 +51,12 @@ public class MemberController {
 			} else if (tempMember.getmTempPassword() != null && 
 						tempMember.getmTempPassword() != "" && 
 						mPassword.equals(tempMember.getmTempPassword())) {
-				if (tempMember.getmIfactive() == 0) {
-					model.addAttribute("msg", "아이디 휴면상태야");
-					return "forward:member_login_form";
-				} else {
+				if (tempMember.getmIfActive() == 1) {
 					// 로그인
 					return "common_about";
+				} else {
+					model.addAttribute("msg", "아이디 휴면상태야");
+					return "forward:member_login_form";
 				}
 			} else {
 				model.addAttribute("msg", "비밀번호 아니잖아");

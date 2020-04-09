@@ -4,14 +4,14 @@
 	<select id="selectAll" resultType="Member">
 		select mNo, mId, mFirstName, mLastName, mPassword, mTel, 
 				mEmail, mBirth, mImg, mCountry, mCity, mAddress, 
-				mZipcode, mTempPassword, mRemoveDate, mIfActive 
+				mZipCode, mTempPassword, mRemoveDate, mIfActive 
 		from member
 	</select>
 	
 	<select id="selectOne" parameterType="string" resultType="Member">
 		select mNo, mId, mFirstName, mLastName, mPassword, mTel, 
 				mEmail, mBirth, mImg, mCountry, mCity, mAddress, 
-				mZipcode, mTempPassword, mRemoveDate, mIfActive
+				mZipCode, mTempPassword, mRemoveDate, mIfActive
 		from member
 		where mId=#{mId}
 	</select>

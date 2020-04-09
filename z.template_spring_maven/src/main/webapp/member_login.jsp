@@ -32,7 +32,7 @@
 <body>
 
 	<!-- Header================================================== -->
-	<jsp:include page="common_header_6.jsp"/>
+	<jsp:include page="z.references/common_header_6.jsp"/>
 	<!-- End Header -->
     
 	<main>
@@ -41,28 +41,28 @@
         	<div class="row justify-content-center">
             	<div class="col-xl-4 col-lg-5 col-md-6 col-sm-8">
                 	<div id="login">
-                    		<div class="text-center">
-                    			<img src="${pageContext.request.contextPath}/resources/img/logo_sticky.png" alt="Image" data-retina="true" >
-                    		</div>
-                            <form id="login_form" method="post" action="member_login_action">
-								<div class="divider"><span><font style="font-style: normal; font-size: 15px; color: red;">${msg}</font></span></div>
-                                <div class="form-group">
-                                    <label>Username</label>
-                                    <input type="text" class=" form-control " placeholder="Username" name="mId" value="">
-                                </div>
-                                <div class="form-group">
-                                    <label>Password</label>
-                                    <input type="password" class=" form-control" placeholder="Password" name="mPassword" value="">
-                                </div>
-                                <p class="small">
-                                    <a href="#">Forgot Password?</a>
-                                    <a href="#">ReActivate Account</a>
-                                </p>
-                                <!-- <a href="#" class="btn_full">Sign in</a>  -->
-                                <input class="btn_full" type="submit" value="Sign in">
-                                <a href="member_insert_form" class="btn_full_outline">Register</a>
-                            </form>
-                        </div>
+                   		<div class="text-center">
+                   			<img src="${pageContext.request.contextPath}/resources/img/logo_sticky.png" alt="Image" data-retina="true" >
+                   		</div>
+                        <form id="login_form" method="post" action="member_login_action">
+						<div class="divider"><span><font style="font-style: normal; font-size: 15px; color: red;">${msg}</font></span></div>
+                              <div class="form-group">
+                                  <label>Username</label>
+                                  <input type="text" class=" form-control " placeholder="Username" name="mId" value="">
+                              </div>
+                              <div class="form-group">
+                                  <label>Password</label>
+                                  <input type="password" class=" form-control" placeholder="Password" name="mPassword" value="">
+                              </div>
+                              <p class="small">
+                                  <a href="#">Forgot Password?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                  <a href="#">Re-activate Your Account</a>
+                              </p>
+                              <!-- <a href="#" class="btn_full">Sign in</a>  -->
+                              <input class="btn_full" type="submit" value="Sign in">
+                              <a href="member_insert_form" class="btn_full_outline">Register</a>
+                        </form>
+             		</div>
                 </div>
             </div>
         </div>
@@ -70,7 +70,7 @@
 	</main><!-- End main -->
 	
 	<!-- Footer================================================== -->
-	<jsp:include page="common_footer_2.jsp"/>
+	<jsp:include page="z.references/common_footer_2.jsp"/>
 	<!-- End Footer -->
 
   </body>
