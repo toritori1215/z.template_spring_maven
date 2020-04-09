@@ -213,6 +213,12 @@
 							<hr>
 							<a class="btn_full_outline" href="invoice.html" target="_blank">View your invoice</a>
 						</div>
+						<div class="box_style_4">
+							<i class="icon_set_1_icon-89"></i>
+							<h4>Have <span>questions?</span></h4>
+							<a href="tel://004542344599" class="phone">+45 423 445 99</a>
+							<small>Monday to Friday 9.00am - 7.30pm</small>
+						</div>
 					</div>
 					<!--End sticky -->
 				</aside>
