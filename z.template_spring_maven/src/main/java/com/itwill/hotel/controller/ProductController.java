@@ -23,8 +23,13 @@ public class ProductController {
 	private ProductService productService;
 	
 	@RequestMapping(value = "/tour_list")
-	public String product() {
+	public String tourList() {
 		return "tour_all_list";
+	}
+	
+	@RequestMapping(value = "/tour_grid")
+	public String tourListGrid() {
+		return "tour_all_grid";
 	}
 	
 	@RequestMapping(value = "/product_list_condition")
