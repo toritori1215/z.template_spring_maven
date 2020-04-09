@@ -25,6 +25,11 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	@RequestMapping(value = "/main")
+	public String mainPage() {
+		return "main_page";
+	}
+	
 	@RequestMapping(value = "/member_login_form")
 	public String memberLogin() {
 		return "member_login";
