@@ -7,7 +7,8 @@ public class Member {
 	
 	private Integer mNo;
 	private String mId;
-	private String mName;
+	private String mFirstName;
+	private String mLastName;
 	private String mPassword;
 	private String mTel;
 	private String mEmail;
@@ -22,7 +23,28 @@ public class Member {
 	private Integer mIfactive;
 	
 	public Member() {
-		// TODO Auto-generated constructor stub
+		
+	}
+
+	public Member(Integer mNo, String mId, String mFirstName, String mLastName, String mPassword, String mTel,
+			String mEmail, Integer mBirth, String mImg, String mCountry, String mCity, String mAddress, String mZipCode,
+			String mTempPassword, String mRemoveDate, Integer mIfactive) {
+		this.mNo = mNo;
+		this.mId = mId;
+		this.mFirstName = mFirstName;
+		this.mLastName = mLastName;
+		this.mPassword = mPassword;
+		this.mTel = mTel;
+		this.mEmail = mEmail;
+		this.mBirth = mBirth;
+		this.mImg = mImg;
+		this.mCountry = mCountry;
+		this.mCity = mCity;
+		this.mAddress = mAddress;
+		this.mZipCode = mZipCode;
+		this.mTempPassword = mTempPassword;
+		this.mRemoveDate = mRemoveDate;
+		this.mIfactive = mIfactive;
 	}
 
 	public Integer getmNo() {
@@ -41,12 +63,20 @@ public class Member {
 		this.mId = mId;
 	}
 
-	public String getmName() {
-		return mName;
+	public String getmFirstName() {
+		return mFirstName;
 	}
 
-	public void setmName(String mName) {
-		this.mName = mName;
+	public void setmFirstName(String mFirstName) {
+		this.mFirstName = mFirstName;
+	}
+
+	public String getmLastName() {
+		return mLastName;
+	}
+
+	public void setmLastName(String mLastName) {
+		this.mLastName = mLastName;
 	}
 
 	public String getmPassword() {
