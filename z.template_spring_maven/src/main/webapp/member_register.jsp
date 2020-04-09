@@ -26,13 +26,13 @@
 	<link href="${pageContext.request.contextPath}/resources/css/vendors.css" rel="stylesheet">
 	
 	<!-- CUSTOM CSS -->
-	<link href="${pageContext.request.contextPath}/resources/css/custom.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/resources/z.SiliconVillag/css/member.css" rel="stylesheet">
         
 </head>
 <body>
 
 	<!-- Header================================================== -->
-	<jsp:include page="common_header_6.jsp"/>
+	<jsp:include page="z.references/common_header_6.jsp"/>
 	<!-- End Header -->
     
 	<main>
@@ -47,6 +47,7 @@
                                 <div class="form-group">
                                 	<label>Username</label>
                                     <input type="text" class="form-control"  placeholder="Username" name="mId" value="${member.mId}">
+                                	<i ></i>
                                 </div>
                                 <div class="form-group">
                                 	<label>Password</label>
@@ -88,7 +89,7 @@
 	<!-- End main -->
 
 	<!-- Footer================================================== -->
-	<jsp:include page="common_footer_2.jsp"/>
+	<jsp:include page="z.references/common_footer_2.jsp"/>
 	<!-- End Footer -->
 
 	<!-- Specific scripts -->

@@ -100,15 +100,11 @@
 
 <!-- Sign In Popup -->
 <div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide">
-	<div class="small-dialog-header">
-		<h3>Sign In</h3>
-	</div>
-	<div class="text-center">
-    	<img src="${pageContext.request.contextPath}/resources/img/logo_sticky.png" alt="Image" data-retina="true" >
-    </div>
+	
 	<form method="post" action="member_login_action">
-		<div class="divider"><span><font style="font-style: normal; font-size: 15px; color: red;">${msg}</font></span></div>
+		
 		<div class="sign-in-wrapper">
+		
 			<div class="form-group">
 				<label>Username</label>
 				<input type="text" class="form-control" name="id" id="id" value="" placeholder="Username">
@@ -119,33 +115,7 @@
 				<input type="password" class="form-control" name="password" id="password" value="" placeholder="Password">
 				<i class="icon_lock_alt"></i>
 			</div>
-			<div class="clearfix add_bottom_15">
-				<div class="checkboxes float-left">
-					<input id="remember-me" type="checkbox" name="check">
-					<label for="remember-me">Remember Me</label>
-				</div>
-				<div class="float-right">
-					<a id="forgot" href="javascript:void(0);">Forgot Password?</a>
-				</div>
-			</div>
-			<div class="text-center">
-				<input type="submit" value="Log In" class="btn_login">
-			</div>
-			<div class="text-center">
-				Don't have an account? <a href="member_register.jsp">Sign up</a>
-			</div>
-			<div id="forgot_pw">
-				<div class="form-group">
-					<label>Please confirm login email below</label>
-					<input type="email" class="form-control" name="email_forgot" id="email_forgot">
-					<i class="icon_mail_alt"></i>
-				</div>
-				<p>You will receive an email containing a link allowing you to
-					reset your password to a new preferred one.</p>
-				<div class="text-center">
-					<input type="submit" value="Reset Password" class="btn_1">
-				</div>
-			</div>
+			
 		</div>
 	</form>
 	<!--form -->

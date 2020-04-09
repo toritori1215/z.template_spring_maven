@@ -1,3 +1,224 @@
 @charset "UTF-8";
 /* CSS Document */
 
+/*--------- forgot-password ---------*/
+/*-------- 7.5 Sing In Modal --------*/
+#forgot-password {
+  background: #fff;
+  padding: 30px;
+  padding-top: 0;
+  text-align: left;
+  max-width: 400px;
+  margin: 40px auto;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+/* Popup close button*/
+#forgot-password .mfp-close,
+#small-dialog .mfp-close {
+  color: #666;
+  background-color: #e4e4e4;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  top: 12px;
+  right: 20px;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+}
+#forgot-password .mfp-close:hover,
+#small-dialog .mfp-close:hover {
+  color: #fff;
+  background-color: #66676b;
+}
+
+#forgot-password .mfp-close:before {
+  font-size: 24px;
+  font-family: 'ElegantIcons';
+  content: "\4d";
+}
+
+.small-dialog-header {
+  font-size: 18px;
+  width: calc(100% + 60px);
+  position: relative;
+  left: -30px;
+  top: 0;
+  -webkit-border-radius: 4px 4px 0 0;
+  -moz-border-radius: 4px 4px 0 0;
+  border-radius: 4px 4px 0 0;
+  display: inline-block;
+  background-color: #f6f6f6;
+  padding: 15px 20px;
+  margin-bottom: 30px;
+}
+.small-dialog-header h3 {
+  padding: 0;
+  margin: 0;
+  font-size: 21px;
+  font-weight: 400;
+}
+
+#forgot-password .mfp-close:hover,
+#small-dialog .mfp-close:hover {
+  color: #fff;
+  background-color: #66676b;
+}
+
+#forgot-password .form-group {
+  position: relative;
+}
+
+#forgot-password .form-group input.form-control {
+  padding-left: 40px;
+}
+
+#forgot-password .form-group i {
+  font-size: 21px;
+  font-size: 1.3125rem;
+  position: absolute;
+  left: 12px;
+  top: 35px;
+  color: #ccc;
+  width: 25px;
+  height: 25px;
+  display: block;
+  font-weight: 400 !important;
+}
+
+
+/*--------- reActive-Account ---------*/
+/*-------- 7.5 Sing In Modal --------*/
+#reActive-Account {
+  background: #fff;
+  padding: 30px;
+  padding-top: 0;
+  text-align: left;
+  max-width: 400px;
+  margin: 40px auto;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+/* Popup close button*/
+#reActive-Account .mfp-close,
+#small-dialog .mfp-close {
+  color: #666;
+  background-color: #e4e4e4;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  top: 12px;
+  right: 20px;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+}
+#reActive-Account .mfp-close:hover,
+#small-dialog .mfp-close:hover {
+  color: #fff;
+  background-color: #66676b;
+}
+
+#reActive-Account .mfp-close:before {
+  font-size: 24px;
+  font-family: 'ElegantIcons';
+  content: "\4d";
+}
+
+.small-dialog-header {
+  font-size: 18px;
+  width: calc(100% + 60px);
+  position: relative;
+  left: -30px;
+  top: 0;
+  -webkit-border-radius: 4px 4px 0 0;
+  -moz-border-radius: 4px 4px 0 0;
+  border-radius: 4px 4px 0 0;
+  display: inline-block;
+  background-color: #f6f6f6;
+  padding: 15px 20px;
+  margin-bottom: 30px;
+}
+.small-dialog-header h3 {
+  padding: 0;
+  margin: 0;
+  font-size: 21px;
+  font-weight: 400;
+}
+
+#reActive-Account .mfp-close:hover,
+#small-dialog .mfp-close:hover {
+  color: #fff;
+  background-color: #66676b;
+}
+
+#reActive-Account .form-group {
+  position: relative;
+}
+
+#reActive-Account .form-group input.form-control {
+  padding-left: 40px;
+}
+
+#reActive-Account .form-group i {
+  font-size: 21px;
+  font-size: 1.3125rem;
+  position: absolute;
+  left: 12px;
+  top: 35px;
+  color: #ccc;
+  width: 25px;
+  height: 25px;
+  display: block;
+  font-weight: 400 !important;
+}
+
+
+/*--------- login-form ---------*/
+#login-form .form-group {
+  position: relative;
+}
+#login-form .form-group input.form-control {
+  padding-left: 40px;
+}
+#login-form .form-group i {
+  font-size: 21px;
+  font-size: 1.3125rem;
+  position: absolute;
+  left: 8px;
+  top: 35px;
+  color: #ccc;
+  width: 25px;
+  height: 25px;
+  display: block;
+  font-weight: 400 !important;
+}
+
+/*--------- insert-member ---------*/
+#insert-member .form-group {
+  position: relative;
+}
+#insert-member .form-group input.form-control {
+  padding-left: 40px;
+}
+#insert-member .form-group i {
+  font-size: 21px;
+  font-size: 1.3125rem;
+  position: absolute;
+  left: 8px;
+  top: 35px;
+  color: #ccc;
+  width: 25px;
+  height: 25px;
+  display: block;
+  font-weight: 400 !important;
+}
