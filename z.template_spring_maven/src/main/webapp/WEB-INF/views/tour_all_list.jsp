@@ -54,9 +54,9 @@
 				<ul>
 					<li><a href="main">Home</a>
 					</li>
-					<li><a href="#">Category</a>
+					<li><a href="tour_list">Tours</a>
 					</li>
-					<li>Page active</li>
+					<li>Tour List</li>
 				</ul>
 			</div>
 		</div>
