@@ -79,12 +79,7 @@ public class MemberController {
 							   @RequestParam(value = "mLastName") String mLastName,
 							   @RequestParam(value = "mEmail") String mEmail,
 							   @RequestParam(value = "mTel") String mTel,
-							   @RequestParam(value = "mCountry") String mCountry,
-							   @RequestParam(value = "mCity") String mCity,
-							   @RequestParam(value = "mAddress") String mAddress,
-							   @RequestParam(value = "mZipCode") String mZipCode,
 							   @RequestParam(value = "mBirth") String mBirth,
-							   @RequestParam(value = "mImg") String mImg,
 							   Model model) {
 		
 		if (mId == "" || mPassword == "" || mPassword2 == "" || mFirstName == "" || 
@@ -92,14 +87,14 @@ public class MemberController {
 			model.addAttribute("msg1", "빈 칸에 값을 입력하십시오.");
 			return ""; 
 		} else if (mPassword.equals(mPassword2)) {
-			Member member = new Member(0, mId, mFirstName, mLastName, mPassword, mTel, mEmail, Integer.parseInt(mBirth), mImg, 
-									   mCountry, mCity, mAddress, mZipCode, null, null, 1);
+			Member member = new Member(0, mId, mFirstName, mLastName, mPassword, mTel, mEmail, Integer.parseInt(mBirth), null, 
+									   null, null, null, null, null, null, 1);
 			model.addAttribute(member);
 			memberService.insertMember(member);
 			return "";
 		} else {
-			Member member = new Member(0, mId, mFirstName, mLastName, mPassword, mTel, mEmail, Integer.parseInt(mBirth), mImg,
-					   				   mCountry, mCity, mAddress, mZipCode, null, null, 1);
+			Member member = new Member(0, mId, mFirstName, mLastName, mPassword, mTel, mEmail, Integer.parseInt(mBirth), null, 
+					   				   null, null, null, null, null, null, 1);
 			model.addAttribute(member);
 			model.addAttribute("msg2", "비밀번호와 확인 비밀번호가 일치하지 않습니다");
 			return "";
