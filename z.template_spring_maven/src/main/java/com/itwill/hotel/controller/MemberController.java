@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.itwill.hotel.domain.Member;
 import com.itwill.hotel.service.MemberService;
@@ -46,23 +47,9 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/member_login_action")
-	public String memberLoginAction(HttpServletRequest request, HttpServletResponse response) {
-		String mId = request.getParameter("id");
-		String mPassword = request.getParameter("password");
-		Member member = memberService.selectById(mId);
-		String password = member.getmPassword();
-		if (mId == "" || mId == null) {
-			String msg = "empty id";
-			return "";
-		}
-		if (mPassword == "" || mPassword == null) {
-			String msg = "empty password";
-			return "";
-		}
-		if (!mPassword.equals(password)) {
-			String msg = "mass password";
-			return "";
-		}
+	public String memberLoginAction(@RequestParam(value = "id") String mId,
+									@RequestParam(value = "password") String mPassword) {
+		
 		return "";
 	}
 	

@@ -103,7 +103,7 @@
 	<div class="small-dialog-header">
 		<h3>Sign In</h3>
 	</div>
-	<form>
+	<form method="post" action="member_login_action">
 		<div class="sign-in-wrapper">
 			<div class="form-group">
 				<label>Username</label>
