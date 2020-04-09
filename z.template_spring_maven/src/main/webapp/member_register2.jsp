@@ -53,12 +53,12 @@
 	                                <div class="form-group">
 	                                	<label>Password</label>
 	                                    <input type="password" class="form-control" id="password1" placeholder="Password" name="mPassword">
-	                                	<i class="icon_lock_alt"></i>
+	                                	<i class="icon-lock"></i>
 	                                </div>
 	                                <div class="form-group">
 	                                	<label>Confirm password</label>
 	                                    <input type="password" class="form-control" id="password2" placeholder="Confirm password" name="mPassword2">
-	                                	<i class="icon_lock-open_alt"></i>
+	                                	<i class="icon-lock-open-alt"></i>
 	                                </div>
 	                                <div class="form-group">
 	                                	<label>First Name</label>
@@ -73,21 +73,20 @@
 	                                <div class="form-group">
 	                                	<label>Phone</label>
 	                                    <input type="tel" maxlength="11" class="form-control" placeholder="01023456789" name="mTel" value="${member.mTel}">
-	                                	<i class="icon-phone"></i>
+	                                	<i class="icon-phone-3"></i>
 	                                </div>
 	                                <div class="form-group">
 	                                	<label>Email</label>
 	                                    <input type="email" class="form-control" placeholder="xxx@gmail.com" name="mEmail" value="${member.mEmail}">
-	                                	<i class="icon-mail-alt"></i>
+	                                	<i class="icon-mail"></i>
 	                                </div>
 	                                <div class="form-group">
 	                                	<label>Birth</label>
 	                                    <input type="text" maxlength="8" class="form-control" placeholder="19940927" name="mBirth" value="${member.mBirth}">
-	                                	<i class="icon-calendar-3"></i>
+	                                	<i class="icon-calendar-5"></i>
 	                                </div>
-	                                <div id="pass-info" class="clearfix"></div>
+	                                <div id="pass-info" class="clearfix"></div><br>
 	                                <input class="btn_full" type="submit" value="Create an account">
-	                                <button class="btn_full" onclick="insertMember()">Create an account</button>
                                 </div>
                             </form>
                 	</div>
