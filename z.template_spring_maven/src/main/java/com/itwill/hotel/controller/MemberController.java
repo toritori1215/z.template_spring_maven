@@ -41,6 +41,7 @@ public class MemberController {
 									HttpSession httpSession,
 									Model model) {
 		if (memberService.checkIdExist(mId) == 0) {
+			// 아이디 없음
 			model.addAttribute("msg", "아이디가 존재하지 않습니다.");
 			return "forward:member_login_form";
 		} else {
@@ -48,8 +49,10 @@ public class MemberController {
 			if (mPassword.equals(tempMember.getmPassword())) {
 				if (tempMember.getmIfActive() == 1) {
 					// 로그인
-					return "common_404";
+					httpSession.setAttribute("sUser", tempMember);
+					return "main_page";
 				} else {
+					// 아이디 휴면
 					model.addAttribute("msg", "아이디 휴면상태야");
 					return "forward:member_login_form";
 				}
@@ -58,12 +61,15 @@ public class MemberController {
 						mPassword.equals(tempMember.getmTempPassword())) {
 				if (tempMember.getmIfActive() == 1) {
 					// 로그인
-					return "common_about";
+					httpSession.setAttribute("sUser", tempMember);
+					return "main_page";
 				} else {
+					// 아이디 휴면
 					model.addAttribute("msg", "아이디 휴면상태야");
 					return "forward:member_login_form";
 				}
 			} else {
+				// 비밀번호 불일치
 				model.addAttribute("msg", "비밀번호 아니잖아");
 				return "forward:member_login_form";
 			}
@@ -85,12 +91,11 @@ public class MemberController {
 							   @RequestParam(value = "mTel") String mTel,
 							   @RequestParam(value = "mBirth") String mBirth,
 							   Model model) {
-		
 		if (mId == "" || mPassword == "" || mPassword2 == "" || mFirstName == "" || 
 			mLastName == "" || mEmail == "" || mTel == "" || mBirth == "" || 
 			mId == null || mPassword == null || mPassword2 == null || mFirstName == null || 
 			mLastName == null || mEmail == null || mTel == null || mBirth == null) {
-			model.addAttribute("msg1", "빈 칸에 값을 입력하십시오.");
+			model.addAttribute("msg", "빈 칸에 값을 입력하십시오.");
 			return "member_register"; 
 		} else if (mPassword.equals(mPassword2)) {
 			Member member = new Member(0, mId, mFirstName, mLastName, mPassword, mTel, mEmail, Integer.parseInt(mBirth),
@@ -105,10 +110,9 @@ public class MemberController {
 			Member member = new Member(0, mId, mFirstName, mLastName, mPassword, mTel, mEmail, Integer.parseInt(mBirth),
 										null, null, null, null, null, null, null, 1);
 			model.addAttribute(member);
-			model.addAttribute("msg2", "비밀번호와 확인 비밀번호가 일치하지 않습니다");
+			model.addAttribute("msg", "비밀번호와 확인 비밀번호가 일치하지 않습니다");
 			return "member_register";
 		}
-		// 아이디, 이메일, 연락처 중복체크
 	}
 
 }
