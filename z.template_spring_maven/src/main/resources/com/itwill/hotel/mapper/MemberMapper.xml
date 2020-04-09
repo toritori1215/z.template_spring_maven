@@ -8,7 +8,7 @@
 		from member
 	</select>
 	
-	<select id="selectOne" parameterType="_int" resultType="Member">
+	<select id="selectOne" parameterType="string" resultType="Member">
 		select mNo, mId, mFirstName, mLastName, mPassword, mTel, 
 				mEmail, mBirth, mImg, mCountry, mCity, mAddress, 
 				mZipcode, mTempPassword, mRemoveDate, mIfActive
@@ -16,7 +16,7 @@
 		where mId=#{mId}
 	</select>
 	
-	<select id="checkIdExist" parameterType="String" resultType="_int">
+	<select id="checkIdExist" parameterType="string" resultType="_int">
 		select count(mNo)
 		from member
 		where mId=#{mId}
@@ -29,7 +29,7 @@
 				#{mBirth}, null, null, null, null, null, 1)
 	</insert>
 	
-	<delete id="deleteInactiveMember" parameterType="String">
+	<delete id="deleteInactiveMember" parameterType="string">
 		delete from member 
 		where mId=#{mId} 
 		and mIfActive=0 

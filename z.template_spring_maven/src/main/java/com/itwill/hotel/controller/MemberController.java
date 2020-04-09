@@ -31,39 +31,37 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/member_login_action", method=RequestMethod.POST)
-	public String memberLoginAction(@ModelAttribute(name="fMember") Member member,
-									//@RequestParam(value = "mId") String mId,
-									//@RequestParam(value = "mPassword") String mPassword,
+	public String memberLoginAction(@RequestParam(value = "mId") String mId,
+									@RequestParam(value = "mPassword") String mPassword,
 									HttpSession httpSession,
 									Model model) {
-		String mId = member.getmId();
-		memberService.deleteInactiveMember(mId);
-		if (memberService.checkIdExist(mId) != 1) {
-			model.addAttribute("msg1", "아이디가 존재하지 않습니다.");
-			return "member_login_form";
-		}
-		Member tempMember = memberService.selectOne(mId);
-		if (member.getmPassword().equals(tempMember.getmPassword())) {
-			if (tempMember.getmIfactive() == 0) {
-				model.addAttribute("msg3", "아이디 휴면상태야");
-				return "member_login_form";
-			} else {
-				// 로그인
-				return "common_404";
-			}
-		} else if (tempMember.getmTempPassword() != null && 
-				   tempMember.getmTempPassword() != "" && 
-				   member.getmPassword().equals(tempMember.getmTempPassword())) {
-			if (tempMember.getmIfactive() == 0) {
-				model.addAttribute("msg3", "아이디 휴면상태야");
-				return "member_login_form";
-			} else {
-				// 로그인
-				return "common_404";
-			}
+		if (memberService.checkIdExist(mId) == 0) {
+			model.addAttribute("msg", "아이디가 존재하지 않습니다.");
+			return "forward:member_login_form";
 		} else {
-			model.addAttribute("msg2", "비밀번호 아니잖아");
-			return "member_login_form";
+			Member tempMember = memberService.selectOne(mId);
+			if (mPassword.equals(tempMember.getmPassword())) {
+				if (tempMember.getmIfactive() == 1) {
+					// 로그인
+					return "common_404";
+				} else {
+					model.addAttribute("msg", "아이디 휴면상태야");
+					return "forward:member_login_form";
+				}
+			} else if (tempMember.getmTempPassword() != null && 
+						tempMember.getmTempPassword() != "" && 
+						mPassword.equals(tempMember.getmTempPassword())) {
+				if (tempMember.getmIfactive() == 0) {
+					model.addAttribute("msg", "아이디 휴면상태야");
+					return "forward:member_login_form";
+				} else {
+					// 로그인
+					return "common_about";
+				}
+			} else {
+				model.addAttribute("msg", "비밀번호 아니잖아");
+				return "forward:member_login_form";
+			}
 		}
 	}
 	
@@ -94,7 +92,7 @@ public class MemberController {
 										null, null, null, null, null, null, null, 1);
 			int insertRowCount = memberService.insertMember(member);
 			if (insertRowCount == 1) {
-				return "member_login_form";
+				return "member_login";
 			} else {
 				return "common_404";
 			}
