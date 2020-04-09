@@ -84,7 +84,7 @@
 						class="icon_set_1_icon-77"></i></a>
 					<ul>
 						<li class="submenu"><a href="javascript:void(0);"
-							class="show-submenu">Home <i class="icon-down-open-mini"></i></a>
+							class="show-submenu">About <i class="icon-down-open-mini"></i></a>
 							<ul>
 								<li><a href="index.html">Owl Carousel Slider</a></li>
 								<li><a href="index_22.html">Home items with Carousel</a></li>

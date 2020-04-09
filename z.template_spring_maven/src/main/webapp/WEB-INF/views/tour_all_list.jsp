@@ -9,7 +9,7 @@
 
 	<meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
 	<meta name="author" content="Ansonika">
-	<title>CITY TOURS - City tours and travel site template by Ansonika</title>
+	<title>Silicon Village｜Tours</title>
 
 	<!-- Favicons-->
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico" type="image/x-icon">
@@ -52,7 +52,7 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="#">Home</a>
+					<li><a href="main">Home</a>
 					</li>
 					<li><a href="#">Category</a>
 					</li>
@@ -204,7 +204,7 @@
 								</div>
 							</div>
 							<div class="col-md-6 col-sm-4 d-none d-sm-block text-right">
-								<a href="tour_all_grid" class="bt_filters"><i class="icon-th"></i></a> <a href="#" class="bt_filters"><i class=" icon-list"></i></a>
+								<a href="tour_grid" class="bt_filters"><i class="icon-th"></i></a> <a href="#" class="bt_filters"><i class=" icon-list"></i></a>
 							</div>
 
 						</div>
