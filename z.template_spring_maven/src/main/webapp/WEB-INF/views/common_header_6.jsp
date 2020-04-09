@@ -117,10 +117,9 @@
 						<li class="submenu"><a href="javascript:void(0);"
 							class="show-submenu">Tours <i class="icon-down-open-mini"></i></a>
 							<ul>
-								<li><a href="tour_all_list">Tour list</a></li>
-								<li><a href="single_tour.html">Single tour page</a></li>
-								<li><a href="single_tour_with_gallery.html">Single tour
-										with gallery</a></li>
+								<li><a href="tour_list">Tour List</a></li>
+								<li><a href="">Timeline</a></li>
+								<li><a href="">Guide Info</a></li>
 								<!-- 
 								<li class="third-level"><a href="javascript:void(0);">Single
 										tour fixed sidebar</a>
