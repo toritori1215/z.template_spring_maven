@@ -33,8 +33,8 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
-	public void insertMember(Member member) {
-		memberMapper.insertMember(member);
+	public int insertMember(Member member) {
+		return memberMapper.insertMember(member);
 	}
 
 }

@@ -33,8 +33,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public void insertMember(Member member) {
-		memberDao.insertMember(member);
+	public int insertMember(Member member) {
+		return memberDao.insertMember(member);
 	}
 
 }

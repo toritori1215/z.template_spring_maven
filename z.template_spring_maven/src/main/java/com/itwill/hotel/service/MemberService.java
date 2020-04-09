@@ -12,6 +12,6 @@ public interface MemberService {
 
 	public Member selectById(String mId);
 	
-	public void insertMember(Member member);
+	public int insertMember(Member member);
 
 }
