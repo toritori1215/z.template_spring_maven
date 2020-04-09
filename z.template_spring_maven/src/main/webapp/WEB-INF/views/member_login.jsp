@@ -50,6 +50,7 @@
                                 <div class="form-group">
                                     <label>Username</label>
                                     <input type="text" class=" form-control " placeholder="Username" name="mId" value="${fMember.mId}">
+                                    <font color="red">${msg1}</font>
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
