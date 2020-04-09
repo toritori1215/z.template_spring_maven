@@ -10,7 +10,6 @@
 		where pNo = #{pNo}
 	</select>
 	
-	
 	<select id="selectByType"
 			parameterType="java.util.HashMap"
 			resultType="Product">
@@ -35,16 +34,6 @@
 		</trim>
 	</select>
 	
-	
-	<select id="selectWishlist"
-			parameterType="java.lang.Integer"
-			resultType="Product">
-		select pNo, pName, pPrice, pType, pAvailable, pImg, pCapacity, pRate, pDesc
-		from product
-		where pNo in (select pNo from wish_list where mNo = #{mNo})
-	</select>
-	
-	
 	<select id="countBookedRoomQty"
 			parameterType="java.util.HashMap"
 			resultType="java.lang.Integer">
@@ -54,7 +43,6 @@
 		and jdOrderDate &lt; ANY(TO_DATE(#{jdCheckOut}))
 		and jdCheckOut &gt; ANY(TO_DATE(#{jdOrderDate}))
 	</select>
-	
 	
 	<select id="countBookedTourQty"
 			parameterType="java.util.HashMap"
