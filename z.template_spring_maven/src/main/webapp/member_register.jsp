@@ -26,7 +26,7 @@
 	<link href="${pageContext.request.contextPath}/resources/css/vendors.css" rel="stylesheet">
 	
 	<!-- CUSTOM CSS -->
-	<link href="${pageContext.request.contextPath}/resources/z.SiliconVillag/css/member.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/resources/z.SiliconVillage/css/member.css" rel="stylesheet">
         
 </head>
 <body>
@@ -44,46 +44,58 @@
                     		<div class="text-center"><img src="${pageContext.request.contextPath}/resources/img/logo_sticky.png" alt="Image" data-retina="true" ></div>
 							<div class="divider"><span><font style="font-style: normal; font-size: 15px; color: red;">${msg}</font></span></div>
                            	<form id="f" action="member_insert" method="post">
-                                <div class="form-group">
-                                	<label>Username</label>
-                                    <input type="text" class="form-control"  placeholder="Username" name="mId" value="${member.mId}">
-                                	<i ></i>
+                           		<div id="insert-member">
+	                                <div class="form-group">
+	                                	<label>Username</label>
+	                                    <input type="text" class="form-control"  placeholder="Username" name="mId" value="${member.mId}">
+	                                	<i class="icon-user-1"></i>
+	                                </div>
+	                                <div class="form-group">
+	                                	<label>Password</label>
+	                                    <input type="password" class="form-control" id="password1" placeholder="Password" name="mPassword">
+	                                	<i class="icon-lock"></i>
+	                                </div>
+	                                <div class="form-group">
+	                                	<label>Confirm password</label>
+	                                    <input type="password" class="form-control" id="password2" placeholder="Confirm password" name="mPassword2">
+	                                	<i class="icon-lock-open-alt"></i>
+	                                </div>
+	                                <div class="form-group">
+	                                	<label>First Name</label>
+	                                    <input type="text" class="form-control"  placeholder="First Name" name="mFirstName" value="${member.mFirstName}">
+	                                	<i class="icon-doc-text-1"></i>
+	                                </div>
+	                                <div class="form-group">
+	                                	<label>Last Name</label>
+	                                    <input type="text" class="form-control"  placeholder="Last Name" name="mLastName" value="${member.mLastName}">
+		                                <i class="icon-doc-text-inv-1"></i>
+	                                </div>                                
+	                                <div class="form-group">
+	                                	<label>Phone</label>
+	                                    <input type="tel" maxlength="11" class="form-control" placeholder="01023456789" name="mTel" value="${member.mTel}">
+	                                	<i class="icon-phone-3"></i>
+	                                </div>
+	                                <div class="form-group">
+	                                	<label>Email</label>
+	                                    <input type="email" class="form-control" placeholder="xxx@gmail.com" name="mEmail" value="${member.mEmail}">
+	                                	<i class="icon-mail"></i>
+	                                </div>
+	                                <div class="form-group">
+	                                	<label>Birth</label>
+	                                    <input type="text" maxlength="8" class="form-control" placeholder="19940927" name="mBirth" value="${member.mBirth}">
+	                                	<i class="icon-calendar-5"></i>
+	                                </div>
+	                                <div id="pass-info" class="clearfix"></div><br>
+	                                <input class="btn_full" type="submit" value="Create an account">
+	                 				<div class="text-center">
+										I Already Have an Account <a href="member_login_form">Login</a>
+									</div>
                                 </div>
-                                <div class="form-group">
-                                	<label>Password</label>
-                                    <input type="password" class="form-control" id="password1" placeholder="Password" name="mPassword">
-                                </div>
-                                <div class="form-group">
-                                	<label>Confirm password</label>
-                                    <input type="password" class="form-control" id="password2" placeholder="Confirm password" name="mPassword2">
-                                </div>
-                                <div class="form-group">
-                                	<label>First Name</label>
-                                    <input type="text" class="form-control"  placeholder="First Name" name="mFirstName" value="${member.mFirstName}">
-                                </div>
-                                <div class="form-group">
-                                	<label>Last Name</label>
-                                    <input type="text" class="form-control"  placeholder="Last Name" name="mLastName" value="${member.mLastName}">
-                                </div>
-                                <div class="form-group">
-                                	<label>Phone</label>
-                                    <input type="tel" maxlength="11" class="form-control" placeholder="01023456789" name="mTel" value="${member.mTel}">
-                                </div>
-                                <div class="form-group">
-                                	<label>Email</label>
-                                    <input type="email" class="form-control" placeholder="xxx@gmail.com" name="mEmail" value="${member.mEmail}">
-                                </div>
-                                <div class="form-group">
-                                	<label>Birth</label>
-                                    <input type="text" maxlength="8" class="form-control" placeholder="19940927" name="mBirth" value="${member.mBirth}">
-                                </div>
-                                <div id="pass-info" class="clearfix"></div>
-                                <input class="btn_full" type="submit" value="Create an account">
-                                <button class="btn_full" onclick="insertMember()">Create an account</button>
                             </form>
-                </div>
-            </div>
-        </div>
+                	</div>
+            	</div>
+        	</div>
+		</div>
     </section>
 	</main>
 	<!-- End main -->

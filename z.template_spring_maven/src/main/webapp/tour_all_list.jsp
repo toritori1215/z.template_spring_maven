@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,7 +49,6 @@
 	<!-- End section -->
 
 	<main>
-
 		<div id="position">
 			<div class="container">
 				<ul>
@@ -211,6 +211,7 @@
 					</div>
 					<!--/tools -->
 
+					<c:forEach var="product" items="${productList}">
 					<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
 						<div class="row">
 							<div class="col-lg-4 col-md-4">
@@ -229,8 +230,8 @@
 								<div class="tour_list_desc">
 									<div class="rating"><i class="icon-smile voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile"></i><small>(75)</small>
 									</div>
-									<h3><strong>Arch Triomphe</strong> tour</h3>
-									<p>Lorem ipsum dolor sit amet, quem convenire interesset ut vix, ad dicat sanctus detracto vis. Eos modus dolorum ex, qui adipisci maiestatis inciderint no, eos in elit dicat.....</p>
+									<h3><strong>${product.pName}</strong> tour</h3>
+									<p>${product.pDesc}</p>
 									<ul class="add_info">
 										<li>
 											<div class="tooltip_styled tooltip-effect-4">
@@ -299,6 +300,7 @@
 							</div>
 						</div>
 					</div>
+					</c:forEach>
 					<!--End strip -->
 
 					<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.2s">

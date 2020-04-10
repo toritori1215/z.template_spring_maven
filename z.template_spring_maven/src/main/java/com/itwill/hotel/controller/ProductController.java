@@ -26,8 +26,7 @@ public class ProductController {
 	public String tourList(Model model) {
 		HashMap parameterMap = new HashMap();
 		parameterMap.put("pType", "tour");
-		List<Product> productList = productService.selectByType(parameterMap);
-		model.addAttribute(productList);
+		model.addAttribute("productList", productService.selectByType(parameterMap));
 		return "tour_all_list";
 	}
 	

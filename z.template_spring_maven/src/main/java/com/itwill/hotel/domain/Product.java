@@ -104,4 +104,11 @@ public class Product {
 		this.pDesc = pDesc;
 	}
 
+	@Override
+	public String toString() {
+		return "Product [pNo=" + pNo + ", pName=" + pName + ", pPrice=" + pPrice + ", pType=" + pType + ", pAvailable="
+				+ pAvailable + ", pImg=" + pImg + ", pCapacity=" + pCapacity + ", pRate=" + pRate + ", pDesc=" + pDesc
+				+ "]";
+	}
+
 }
