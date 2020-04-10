@@ -102,7 +102,7 @@
 						<div class="collapse show" id="collapseFilters">
 							<div class="filter_type">
 								<h6>Price</h6>
-								<input type="text" id="range" name="range" value="">
+								<input type="text" id="price-range" name="range" value="">
 							</div>
 							<div class="filter_type">
 								<h6>Rating</h6>
@@ -809,6 +809,8 @@
 		   radioClass: 'iradio_square-grey'
 		 });
 	</script>
+	
+	<script src="${pageContext.request.contextPath}/resources/z.SiliconVillage/js/product.js"></script>
 	
 </body>
 
