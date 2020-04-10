@@ -1,4 +1,15 @@
+		
+	<!-- COMMON CSS -->
+	<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/resources/css/vendors.css" rel="stylesheet">
+	
+	<!-- CUSTOM CSS -->
+	<link href="${pageContext.request.contextPath}/resources/z.SiliconVillage/css/member.css" rel="stylesheet">
+	
+</head>
 
+<body>
 <div id="preloader">
 	<div class="sk-spinner sk-spinner-wave">
 		<div class="sk-rect1"></div>
@@ -67,7 +78,7 @@
 			<div class="col-3">
 				<div id="logo_home">
 					<h1>
-						<a href="main" title="City tours travel template">City
+						<a href="index.html" title="City tours travel template">City
 							Tours travel template</a>
 					</h1>
 				</div>
@@ -77,14 +88,15 @@
 					href="javascript:void(0);"><span>Menu mobile</span></a>
 				<div class="main-menu">
 					<div id="header_menu">
-						<img src="${pageContext.request.contextPath}/resources/img/logo_sticky.png" width="160"
-							height="34" alt="City tours" data-retina="true">
+						<img
+							src="${pageContext.request.contextPath}/resources/img/logo_sticky.png"
+							width="160" height="34" alt="City tours" data-retina="true">
 					</div>
 					<a href="#" class="open_close" id="close_in"><i
 						class="icon_set_1_icon-77"></i></a>
 					<ul>
 						<li class="submenu"><a href="javascript:void(0);"
-							class="show-submenu">About <i class="icon-down-open-mini"></i></a>
+							class="show-submenu">Home <i class="icon-down-open-mini"></i></a>
 							<ul>
 								<li><a href="index.html">Owl Carousel Slider</a></li>
 								<li><a href="index_22.html">Home items with Carousel</a></li>
@@ -117,10 +129,15 @@
 						<li class="submenu"><a href="javascript:void(0);"
 							class="show-submenu">Tours <i class="icon-down-open-mini"></i></a>
 							<ul>
-								<li><a href="tour_list">Tour List</a></li>
-								<li><a href="">Timeline</a></li>
-								<li><a href="">Guide Info</a></li>
-								<!-- 
+								<li><a href="all_tours_list.html">All tours list</a></li>
+								<li><a href="all_tours_grid.html">All tours grid</a></li>
+								<li><a href="all_tours_grid_masonry.html">All tours
+										Sort Masonry</a></li>
+								<li><a href="all_tours_map_listing.html">All tours map
+										listing</a></li>
+								<li><a href="single_tour.html">Single tour page</a></li>
+								<li><a href="single_tour_with_gallery.html">Single tour
+										with gallery</a></li>
 								<li class="third-level"><a href="javascript:void(0);">Single
 										tour fixed sidebar</a>
 									<ul>
@@ -135,14 +152,12 @@
 										<li><a href="confirmation_fixed_sidebar.html">Confirmation
 												Fixed Sidebar</a></li>
 									</ul></li>
-								 
-								 <li><a href="single_tour_working_booking.php">Single
+								<li><a href="single_tour_working_booking.php">Single
 										tour working booking</a></li>
-								 <li><a href="single_tour_datepicker_v2.html">Date and
+								<li><a href="single_tour_datepicker_v2.html">Date and
 										time picker V2</a></li>
-								 <li><a href="cart.html">Single tour cart</a></li>
-								 <li><a href="payment.html">Single tour booking</a></li>
-								 -->
+								<li><a href="cart.html">Single tour cart</a></li>
+								<li><a href="payment.html">Single tour booking</a></li>
 							</ul></li>
 						<li class="submenu"><a href="javascript:void(0);"
 							class="show-submenu">Hotels <i class="icon-down-open-mini"></i></a>
@@ -327,19 +342,25 @@
 							<ul class="dropdown-menu" id="cart_items">
 								<li>
 									<div class="image">
-										<img src="${pageContext.request.contextPath}/resources/img/thumb_cart_1.jpg" alt="image">
+										<img
+											src="${pageContext.request.contextPath}/resources/img/thumb_cart_1.jpg"
+											alt="image">
 									</div> <strong><a href="#">Louvre museum</a>1x $36.00 </strong> <a
 									href="#" class="action"><i class="icon-trash"></i></a>
 								</li>
 								<li>
 									<div class="image">
-										<img src="${pageContext.request.contextPath}/resources/img/thumb_cart_2.jpg" alt="image">
+										<img
+											src="${pageContext.request.contextPath}/resources/img/thumb_cart_2.jpg"
+											alt="image">
 									</div> <strong><a href="#">Versailles tour</a>2x $36.00 </strong> <a
 									href="#" class="action"><i class="icon-trash"></i></a>
 								</li>
 								<li>
 									<div class="image">
-										<img src="${pageContext.request.contextPath}/resources/img/thumb_cart_3.jpg" alt="image">
+										<img
+											src="${pageContext.request.contextPath}/resources/img/thumb_cart_3.jpg"
+											alt="image">
 									</div> <strong><a href="#">Versailles tour</a>1x $36.00 </strong> <a
 									href="#" class="action"><i class="icon-trash"></i></a>
 								</li>
