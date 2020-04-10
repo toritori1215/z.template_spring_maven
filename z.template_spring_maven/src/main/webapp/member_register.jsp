@@ -87,6 +87,9 @@
 	                                </div>
 	                                <div id="pass-info" class="clearfix"></div><br>
 	                                <input class="btn_full" type="submit" value="Create an account">
+	                 				<div class="text-center">
+										I Already Have an Account <a href="member_login_form">Login</a>
+									</div>
                                 </div>
                             </form>
                 	</div>
