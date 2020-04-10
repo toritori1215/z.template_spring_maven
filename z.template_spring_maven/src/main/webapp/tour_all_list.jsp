@@ -49,7 +49,6 @@
 	<!-- End section -->
 
 	<main>
-
 		<div id="position">
 			<div class="container">
 				<ul>

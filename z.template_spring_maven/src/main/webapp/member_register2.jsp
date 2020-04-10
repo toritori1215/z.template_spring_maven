@@ -98,7 +98,7 @@
 	<!-- End main -->
 
 	<!-- Footer================================================== -->
-	<jsp:include page="z.references/common_footer_22.jsp"/>
+	<jsp:include page="z.references/common_footer_2.jsp"/>
 	<!-- End Footer -->
 
 	<!-- Specific scripts -->

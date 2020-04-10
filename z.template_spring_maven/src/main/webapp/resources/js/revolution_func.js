@@ -69,7 +69,7 @@
                 hideCaptionAtLimit: 480,
                 hideAllCaptionAtLilmit: 480,
                 startWithSlide: 0,
-                videoJsPath: "${pageContext.request.contextPath}/resources/rs-plugin/videojs/",
+                videoJsPath: "rs-plugin/videojs/",
                 fullScreenOffsetContainer: ""
             });
 
