@@ -13,8 +13,9 @@
 	<select id="selectByType"
 			parameterType="java.util.HashMap"
 			resultType="Product">
-		select pNo, pName, pPrice, pType, pAvailable, pImg, pCapacity, pRate, pDesc
-		from product
+		select p.pNo, pName, pPrice, pType, pAvailable, pImg, pCapacity, pRate, pDesc,
+			   (select count(rNo) from review r where r.pNo = p.pNo) as rCount
+		from product p
 		<where>
 			<if test="pType != null">
 				pType = #{pType}

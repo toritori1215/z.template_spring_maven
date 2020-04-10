@@ -14,6 +14,7 @@ public class Product {
 	private int pCapacity;
 	private double pRate;
 	private String pDesc;
+	private int rCount;
 	
 	public Product() {
 		
@@ -104,11 +105,19 @@ public class Product {
 		this.pDesc = pDesc;
 	}
 
+	public int getrCount() {
+		return rCount;
+	}
+
+	public void setrCount(int rCount) {
+		this.rCount = rCount;
+	}
+
 	@Override
 	public String toString() {
 		return "Product [pNo=" + pNo + ", pName=" + pName + ", pPrice=" + pPrice + ", pType=" + pType + ", pAvailable="
 				+ pAvailable + ", pImg=" + pImg + ", pCapacity=" + pCapacity + ", pRate=" + pRate + ", pDesc=" + pDesc
-				+ "]";
+				+ ", rCount=" + rCount + "]";
 	}
 
 }
