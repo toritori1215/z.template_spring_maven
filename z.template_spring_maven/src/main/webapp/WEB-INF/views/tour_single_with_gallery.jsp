@@ -20,17 +20,7 @@
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css?family=Gochi+Hand|Montserrat:300,400,700" rel="stylesheet">
 
-    <!-- COMMON CSS -->
-	<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet">
-	<link href="${pageContext.request.contextPath}/resources/css/vendors.css" rel="stylesheet">
-	
-	<!-- CUSTOM CSS -->
-	<link href="${pageContext.request.contextPath}/resources/css/custom.css" rel="stylesheet">
-
-</head>
-
-<body>
+    
 	
 	<!-- Header================================================== -->
 	<jsp:include page="common_header_6.jsp"/>

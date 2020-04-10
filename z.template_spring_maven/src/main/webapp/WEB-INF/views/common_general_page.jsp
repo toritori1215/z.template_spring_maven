@@ -21,17 +21,7 @@
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css?family=Gochi+Hand|Montserrat:300,400,700" rel="stylesheet">
 	
-	<!-- COMMON CSS -->
-	<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet">
-	<link href="${pageContext.request.contextPath}/resources/css/vendors.css" rel="stylesheet">
 	
-	<!-- CUSTOM CSS -->
-	<link href="${pageContext.request.contextPath}/resources/css/custom.css" rel="stylesheet">
-
-</head>
-
-<body>
 
 	<!--[if lte IE 8]>
     <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>.</p>

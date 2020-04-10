@@ -22,18 +22,7 @@
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css?family=Gochi+Hand|Montserrat:300,400,700" rel="stylesheet">
 	
-	<!-- COMMON CSS -->
-	<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet">
-	<link href="${pageContext.request.contextPath}/resources/css/vendors.css" rel="stylesheet">
 	
-	<!-- CUSTOM CSS -->
-	<link href="${pageContext.request.contextPath}/resources/css/custom.css" rel="stylesheet">
-	
-</head>
-
-<body>
-
 	<!-- Header================================================== -->
 	<jsp:include page="z.references/common_header_6.jsp"/>
 	<!-- End Header -->
@@ -221,7 +210,7 @@
 									<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 								</div>
 								<div class="img_list">
-									<a href="single_tour.html"><img src="${pageContext.request.contextPath}/resources/img/tour_box_1.jpg" alt="Image">
+									<a href="single_tour.html"><img src="${pageContext.request.contextPath}/resources/img/${product.pName}1.jpg" alt="Image">
 										<div class="short_info"><i class="icon_set_1_icon-4"></i>Museums </div>
 									</a>
 								</div>

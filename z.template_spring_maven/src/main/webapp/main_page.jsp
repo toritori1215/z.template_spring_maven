@@ -20,7 +20,7 @@
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css?family=Gochi+Hand|Montserrat:300,400,700" rel="stylesheet">
 
-   <!-- REVOLUTION SLIDER CSS -->
+	<!-- REVOLUTION SLIDER CSS -->
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/rev-slider-files/fonts/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/rev-slider-files/css/settings.css">
     
@@ -101,11 +101,10 @@
 			cursor: pointer
 		}
 	</style>
-
-
-
-    <!-- Header================================================== -->
-	<jsp:include page="common_header_6.jsp"/>
+	
+	
+	<!-- Header================================================== -->
+	<jsp:include page="z.references/common_header_6.jsp"/>
 	<!-- End Header -->
 	
 	<!-- Main================================================== -->
@@ -827,7 +826,7 @@
 	<!-- End main -->
     
 	<!-- Footer================================================== -->
-	<jsp:include page="common_footer_2.jsp"/>
+	<jsp:include page="z.references/common_footer_2.jsp"/>
 	<!-- End Footer -->
 
     <!-- SLIDER REVOLUTION SCRIPTS  -->

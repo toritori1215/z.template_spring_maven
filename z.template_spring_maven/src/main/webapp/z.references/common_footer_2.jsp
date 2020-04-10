@@ -124,10 +124,12 @@
 					<input id="remember-me" type="checkbox" name="check">
 					<label for="remember-me">Remember Me</label>
 				</div>
-				<div class="float-right">
-					<a id="forgot" href="javascript:void(0);">Forgot Password?</a>
-				</div>
 			</div>
+			<p>
+                <a href="#forgot-password" id="access_link2" style="text-align: left;">Forgot Password?</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="#reactivate-account" id="access_link3" style="text-align: right;">Reactivate Account</a>
+            </p>
 			<div class="text-center">
 				<input type="submit" value="Log In" class="btn_login">
 			</div>
@@ -152,6 +154,111 @@
 </div>
 <!-- /Sign In Popup -->
 
+<!-- Sign In Popup -->
+<div id="forgot-password" class="zoom-anim-dialog mfp-hide">
+	<div class="small-dialog-header">
+		<h3>Get A Temporary Password</h3>
+	</div>
+	<div class="text-center">
+    	<img src="${pageContext.request.contextPath}/resources/img/logo_sticky.png" alt="Image" data-retina="true" >
+    </div>
+	<form method="post" action="member_get_temppassword">
+		<div class="divider"><span><font style="font-style: normal; font-size: 15px; color: red;">${msg}</font></span></div>
+		<div class="sign-in-wrapper">
+			<div class="form-group">
+				<label>Username</label>
+				<input type="text" class="form-control" name="id" id="id" value="" placeholder="Username">
+				<i class="icon-user"></i>
+			</div>
+			<div class="form-group">
+				<label>First Name</label>
+				<input type="password" class="form-control" name="firstname" id="firstname" value="" placeholder="First Name">
+				<i class="icon_set_1_icon-68"></i>
+			</div>
+			<div class="form-group">
+				<label>Last Name</label>
+				<input type="password" class="form-control" name="lastname" id="lastname" value="" placeholder="Last Name">
+				<i class="icon_set_1_icon-68"></i>
+			</div>
+			<div class="form-group">
+				<label>Tel</label>
+				<input type="password" class="form-control" name="tel" id="tel" value="" placeholder="Phone">
+				<i class="icon-phone"></i>
+			</div>
+			<div class="form-group">
+				<label>Email</label>
+				<input type="password" class="form-control" name="email" id="email" value="" placeholder="Email">
+				<i class="icon-mail"></i>
+			</div>
+			<div class="form-group">
+				<label>Birth</label>
+				<input type="password" class="form-control" name="birth" id="birth" value="" placeholder="Birth">
+				<i class="icon-calendar"></i>
+			</div>
+			<div class="text-center">
+				<input type="submit" value="Submit" class="btn_login">
+			</div>
+			<div class="text-center">
+				I Remember my Password <a href="member_login_form">Login</a>
+			</div>
+		</div>
+	</form>
+<!--form -->
+</div>
+
+<!-- Sign In Popup -->
+<div id="reactivate-account" class="zoom-anim-dialog mfp-hide">
+	<div class="small-dialog-header">
+		<h3>Account Reactivation</h3>
+	</div>
+	<div class="text-center">
+    	<img src="${pageContext.request.contextPath}/resources/img/logo_sticky.png" alt="Image" data-retina="true" >
+    </div>
+	<form method="post" action="member_get_temppassword">
+		<div class="divider"><span><font style="font-style: normal; font-size: 15px; color: red;">${msg}</font></span></div>
+		<div class="sign-in-wrapper">
+			<div class="form-group">
+				<label>Username</label>
+				<input type="text" class="form-control" name="id" id="id" value="" placeholder="Username">
+				<i class="icon-user"></i>
+			</div>
+			<div class="form-group">
+				<label>First Name</label>
+				<input type="text" class="form-control" name="password" id="password" value="" placeholder="Password">
+				<i class="icon_set_1_icon-68"></i>
+			</div>
+			<div class="form-group">
+				<label>Last Name</label>
+				<input type="password" class="form-control" name="password" id="password" value="" placeholder="Password">
+				<i class="icon_set_1_icon-68"></i>
+			</div>
+			<div class="form-group">
+				<label>Tel</label>
+				<input type="password" class="form-control" name="password" id="password" value="" placeholder="Password">
+				<i class="icon-phone"></i>
+			</div>
+			<div class="form-group">
+				<label>Email</label>
+				<input type="password" class="form-control" name="password" id="password" value="" placeholder="Password">
+				<i class="icon-mail"></i>
+			</div>
+			<div class="form-group">
+				<label>Birth</label>
+				<input type="password" class="form-control" name="password" id="password" value="" placeholder="Password">
+				<i class="icon-calendar"></i>
+			</div>
+			<div class="text-center">
+				<input type="submit" value="Submit" class="btn_login">
+			</div>
+			<div class="text-center">
+				I Remember my Password <a href="member_login_form">Login</a>
+			</div>
+		</div>
+	</form>
+<!--form -->
+</div>
+<!-- Sign In Popup -->
+
 <!-- Common scripts -->
 <script src="${pageContext.request.contextPath}/resources/js/jquery-2.2.4.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/common_scripts_min.js"></script>
@@ -164,3 +271,5 @@
 <script src="${pageContext.request.contextPath}/resources/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/revolution_func.js"></script>
+
+<script src="${pageContext.request.contextPath}/resources/z.SiliconVillage/js/member.js"></script>
