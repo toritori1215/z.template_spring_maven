@@ -60,7 +60,7 @@
 	
 					<div class="col-sm-6 col-7">
 						<ul id="top_links">
-							<li><a href="#sign-in-dialog" id="sign-out-link">Sign Out</a></li>
+							<li><a href="#" id="sign-out-link">Sign Out</a></li>
 							<li><a href="wishlist.html" id="wishlist_link">Wishlist</a></li>
 							<li>
 								<div class="dropdown dropdown-mini">

@@ -1,4 +1,5 @@
-		
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
+	
 	<!-- COMMON CSS -->
 	<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet">
@@ -31,10 +32,17 @@
 				<div class="col-sm-6 col-5">
 					<i class="icon-phone"></i><strong>0045 043204434</strong>
 				</div>
-
 				<div class="col-sm-6 col-7">
 					<ul id="top_links">
-						<li><a href="#sign-in-dialog" id="access_link">Sign in</a></li>
+						<c:if test="${sUser.mId == null or sUser.mId == ''}">
+							<li><a href="#sign-in-dialog" id="access_link">Sign in</a></li>
+						</c:if>
+						<c:if test="${sUser.mId != null and sUser.mId != ''}">
+							<li><a href="#" id="sign-out-link">Sign out</a></li>
+						</c:if>
+						<c:if test="${sUser.mId != null and sUser.mId != ''}">
+							<li><a href="wishlist.html" id="wishlist_link">Wishlist</a></li>
+						</c:if>
 						<li><a href="wishlist.html" id="wishlist_link">Wishlist</a></li>
 						<li>
 							<div class="dropdown dropdown-mini">

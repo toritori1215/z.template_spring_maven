@@ -56,8 +56,6 @@
 
 				<div class="col-sm-6 col-7">
 					<ul id="top_links">
-						<li><a href="#sign-in-dialog" id="access_link">Sign in</a></li>
-						<li><a href="wishlist.html" id="wishlist_link">Wishlist</a></li>
 						<li>
 							<div class="dropdown dropdown-mini">
 								<a href="#" data-toggle="dropdown" id="lang_link">English</a>
