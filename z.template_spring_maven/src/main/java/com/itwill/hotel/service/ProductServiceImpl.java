@@ -24,7 +24,7 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> selectByType(HashMap parameterMap) {
 		return productDao.selectByType(parameterMap);
 	}
-
+	
 	@Override
 	public Integer countBookedRoomQty(HashMap parameterMap) {
 		return productDao.countBookedRoomQty(parameterMap);
@@ -34,5 +34,5 @@ public class ProductServiceImpl implements ProductService {
 	public Integer countBookedTourQty(HashMap parameterMap) {
 		return productDao.countBookedTourQty(parameterMap);
 	}
-
+	
 }

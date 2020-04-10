@@ -23,10 +23,11 @@ public class ProductController {
 	private ProductService productService;
 	
 	@RequestMapping(value = "/tour_list")
-	public String tourList(HttpServletRequest request, Model model) {
+	public String tourList(Model model) {
 		HashMap parameterMap = new HashMap();
 		parameterMap.put("pType", "tour");
 		model.addAttribute("productList", productService.selectByType(parameterMap));
+		System.out.println(productService.selectByType(parameterMap));
 		return "forward:tour_all_list.jsp";
 	}
 	
