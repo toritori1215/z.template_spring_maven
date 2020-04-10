@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="com.itwill.hotel.domain.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -49,6 +51,7 @@
 	<!-- End section -->
 
 	<main>
+	
 		<div id="position">
 			<div class="container">
 				<ul>
@@ -210,7 +213,7 @@
 						</div>
 					</div>
 					<!--/tools -->
-
+					
 					<c:forEach var="product" items="${productList}">
 					<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
 						<div class="row">
