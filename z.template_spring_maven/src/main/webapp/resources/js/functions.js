@@ -204,7 +204,6 @@ $(function () {
 		prefix: "$",
 		grid: true
 	});
-
 });
 
 /* Footer reveal */
