@@ -1,4 +1,15 @@
+		
+	<!-- COMMON CSS -->
+	<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/resources/css/vendors.css" rel="stylesheet">
+	
+	<!-- CUSTOM CSS -->
+	<link href="${pageContext.request.contextPath}/resources/z.SiliconVillage/css/member.css" rel="stylesheet">
+	
+</head>
 
+<body>
 <div id="preloader">
 	<div class="sk-spinner sk-spinner-wave">
 		<div class="sk-rect1"></div>

@@ -1,6 +1,7 @@
 @charset "UTF-8";
 /* CSS Document */
 
+
 /*--------- forgot-password ---------*/
 /*-------- 7.5 Sing In Modal --------*/
 #forgot-password {
@@ -226,3 +227,22 @@
   display: block;
   font-weight: 400 !important;
 }
+
+/*--------- access_link ---------*/
+a#sign-out-link {
+	position:relative;
+	display:inline-block;
+	padding-left:16px;
+}
+
+#sign-out-link:before {
+	font-style: normal;
+ 	font-weight: normal;
+ 	font-family: "fontello";
+    font-size:14px;
+	position:absolute;
+	left:0;
+	top:0;
+}
+
+#sign-out-link:before{content: "\e87c";}
