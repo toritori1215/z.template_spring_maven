@@ -231,8 +231,8 @@
 								<div class="tour_list_desc">
 									<div class="rating"><i class="icon-smile voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile"></i><small>(75)</small>
 									</div>
-									<h3><strong>Arch Triomphe</strong> tour</h3>
-									<p>Lorem ipsum dolor sit amet, quem convenire interesset ut vix, ad dicat sanctus detracto vis. Eos modus dolorum ex, qui adipisci maiestatis inciderint no, eos in elit dicat.....</p>
+									<h3><strong>${product.pName}</strong> tour</h3>
+									<p>${product.pDesc}</p>
 									<ul class="add_info">
 										<li>
 											<div class="tooltip_styled tooltip-effect-4">
