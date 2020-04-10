@@ -1,5 +1,6 @@
 package com.itwill.hotel.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -49,6 +50,7 @@ public class MemberController {
 			if (mPassword.equals(tempMember.getmPassword())) {
 				if (tempMember.getmIfActive() == 1) {
 					// 로그인
+					memberService.setTempPasswordNull(mId);
 					httpSession.setAttribute("sUser", tempMember);
 					return "main_page";
 				} else {
@@ -60,9 +62,9 @@ public class MemberController {
 						tempMember.getmTempPassword() != "" && 
 						mPassword.equals(tempMember.getmTempPassword())) {
 				if (tempMember.getmIfActive() == 1) {
-					// 로그인
-					httpSession.setAttribute("sUser", tempMember);
-					return "main_page";
+					// password-change로 이동
+					model.addAttribute("sUser", tempMember);
+					return "forward:member_change_password_form";
 				} else {
 					// 아이디 휴면
 					model.addAttribute("msg", "아이디 휴면상태야");
@@ -76,12 +78,12 @@ public class MemberController {
 		}
 	}
 	
-	@RequestMapping (value = "/member_insert_form")
+	@RequestMapping(value = "/member_insert_form")
 	public String memberInsertForm() {
 		return "member_register";
 	}
 	
-	@RequestMapping (value = "/member_insert")
+	@RequestMapping(value = "/member_insert")
 	public String memberInsert(@RequestParam(value = "mId") String mId,
 							   @RequestParam(value = "mPassword") String mPassword,
 							   @RequestParam(value = "mPassword2") String mPassword2,
@@ -114,5 +116,68 @@ public class MemberController {
 			return "member_register";
 		}
 	}
-
+	
+	@RequestMapping(value = "/member_change_password_form")
+	public String memberPasswordChangeForm() {
+		return "member_change_password";
+	}
+	
+	@RequestMapping(value = "/member_change_password_action")
+	public String memberPasswordChangeAction(@RequestParam(value = "mId") String mId, 
+											 @RequestParam(value = "mPassword") String mPassword, 
+											 @RequestParam(value = "mPassword2") String mPassword2, 
+											 Model model) {
+		if (mPassword.equals(mPassword2)) {
+			HashMap hashMap = new HashMap();
+			hashMap.put("mId", mId);
+			hashMap.put("mPassword", mPassword);
+			memberService.updatePassword(hashMap);
+			return "forward:member_login_form";			
+		} else {
+			model.addAttribute("msg", "비밀번호 불일치");
+			return "forward:member_change_password_form";
+		}
+	}
+	
+	@RequestMapping(value = "/member_get_temppassword")
+	public String memberGetTemppassword(@RequestParam(value = "mId") String mId, 
+										@RequestParam(value = "mFirstName") String mFirstName, 
+										@RequestParam(value = "mLastName") String mLastName, 
+										@RequestParam(value = "mTel") String mTel, 
+										@RequestParam(value = "mEmail") String mEmail, 
+										@RequestParam(value = "mBirth") String mBirth, 
+										Model model) {
+		model.addAttribute("mId", mId);
+		model.addAttribute("mFirstName", mFirstName);
+		model.addAttribute("mLastName", mLastName);
+		model.addAttribute("mTel", mTel);
+		model.addAttribute("mEmail", mEmail);
+		model.addAttribute("mBirth", mBirth);
+		if (mId == "" || mFirstName == "" || mLastName == "" || mTel == "" || 
+				mEmail == "" || mBirth == "" || mId == null || mFirstName == null || 
+				mLastName == null || mTel == null || mEmail == null || mBirth == null) {
+			model.addAttribute("msg2", "빈 칸에 값을 입력하십시오");
+			return "forward:member_login_form";
+		}
+		HashMap hashMap = new HashMap();
+		hashMap.put("mId", mId);
+		hashMap.put("mFirstName", mFirstName);
+		hashMap.put("mLastName", mLastName);
+		hashMap.put("mTel", mTel);
+		hashMap.put("mEmail", mEmail);
+		hashMap.put("mBirth", mBirth);
+		if (memberService.checkExist(hashMap) == 1) {
+			HashMap hashMap1 = new HashMap();
+			hashMap1.put("mId", mId);
+			hashMap1.put("mTempPassword", memberService.getTempPassword());
+			memberService.updateTempPassword(hashMap1);
+			Member member = memberService.selectOne(mId);
+			model.addAttribute("msg1", member.getmTempPassword());
+			return "forward:member_login_form";
+		} else {
+			model.addAttribute("msg2", "존재하지 않은 아이디입니다");
+			return "forward:member_login_form";
+		}
+	}
+	
 }
