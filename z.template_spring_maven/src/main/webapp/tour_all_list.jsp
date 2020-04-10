@@ -208,8 +208,20 @@
 									<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 								</div>
 								<div class="img_list">
-									<a href="tour${product.pNo}"><img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg" alt="Image">
-										<div class="short_info"><i class="icon_set_1_icon-4"></i>Museums </div>
+									<a href="tour_detail?pNo=${product.pNo}"><img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg" alt="Image">
+										<div class="short_info">
+										<c:choose>
+										    <c:when test="${product.foodCategory eq 'water'}">
+										       	<i class="pe-7s-drop"></i>WATER
+										    </c:when>
+										    <c:when test="${product.foodCategory eq 'ice'}">
+										       	<i class="icon-snow"></i>ICE
+										    </c:when>
+										    <c:otherwise>
+										       	<i class="pe-7s-leaf"></i>FIELD
+										    </c:otherwise>
+										</c:choose>
+										</div>
 									</a>
 								</div>
 							</div>
@@ -286,7 +298,7 @@
 							<div class="col-lg-2 col-md-2">
 								<div class="price_list">
 									<div><sup>￦</sup>${product.pPrice/10000}*<small><br><b>Per person</b></small><small><br>*가격 단위: 1만원</small>
-										<p><a href="single_tour.html" class="btn_1">Details</a>
+										<p><a href="tour_detail?pNo=${product.pNo}" class="btn_1">Details</a>
 										</p>
 									</div>
 

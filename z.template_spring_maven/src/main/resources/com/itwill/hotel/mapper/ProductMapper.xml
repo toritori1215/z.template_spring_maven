@@ -5,7 +5,7 @@
 	<select id="selectByNo"
 			parameterType="java.lang.Integer"
 			resultType="Product">
-		select pNo, pName, pPrice, pType, pAvailable, pImg, pCapacity, pRate, pDesc
+		select pNo, pName, pPrice, pType, pAvailable, pImg, pCapacity, pRate, pDesc, foodCategory 
 		from product
 		where pNo = #{pNo}
 	</select>
@@ -13,7 +13,7 @@
 	<select id="selectByType"
 			parameterType="java.util.HashMap"
 			resultType="Product">
-		select p.pNo, pName, pPrice, pType, pAvailable, pImg, pCapacity, pRate, pDesc,
+		select p.pNo, pName, pPrice, pType, pAvailable, pImg, pCapacity, pRate, pDesc, foodCategory, 
 			   (select count(rNo) from review r where r.pNo = p.pNo) as rCount
 		from product p
 		<where>
