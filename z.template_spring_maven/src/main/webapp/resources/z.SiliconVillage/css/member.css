@@ -31,6 +31,7 @@
   height: 32px;
   line-height: 32px;
 }
+
 #forgot-password .mfp-close:hover,
 #small-dialog .mfp-close:hover {
   color: #fff;
@@ -57,6 +58,7 @@
   padding: 15px 20px;
   margin-bottom: 30px;
 }
+
 .small-dialog-header h3 {
   padding: 0;
   margin: 0;
@@ -94,7 +96,7 @@
 
 /*--------- reActive-Account ---------*/
 /*-------- 7.5 Sing In Modal --------*/
-#reActive-Account {
+#reactivate-account {
   background: #fff;
   padding: 30px;
   padding-top: 0;
@@ -109,7 +111,7 @@
 }
 
 /* Popup close button*/
-#reActive-Account .mfp-close,
+#reactivate-account .mfp-close,
 #small-dialog .mfp-close {
   color: #666;
   background-color: #e4e4e4;
@@ -122,7 +124,8 @@
   height: 32px;
   line-height: 32px;
 }
-#reActive-Account .mfp-close:hover,
+
+#reactivate-account .mfp-close:hover,
 #small-dialog .mfp-close:hover {
   color: #fff;
   background-color: #66676b;
@@ -148,6 +151,7 @@
   padding: 15px 20px;
   margin-bottom: 30px;
 }
+
 .small-dialog-header h3 {
   padding: 0;
   margin: 0;
@@ -155,21 +159,21 @@
   font-weight: 400;
 }
 
-#reActive-Account .mfp-close:hover,
+#reactivate-account .mfp-close:hover,
 #small-dialog .mfp-close:hover {
   color: #fff;
   background-color: #66676b;
 }
 
-#reActive-Account .form-group {
+#reactivate-account .form-group {
   position: relative;
 }
 
-#reActive-Account .form-group input.form-control {
+#reactivate-account .form-group input.form-control {
   padding-left: 40px;
 }
 
-#reActive-Account .form-group i {
+#reactivate-account .form-group i {
   font-size: 21px;
   font-size: 1.3125rem;
   position: absolute;

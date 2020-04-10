@@ -56,8 +56,8 @@
 								  <i class="icon-lock"></i>
                               </div>
                               <p class="small">
-                                  <a href="#forgot-password" id="access_link2">Forgot Password?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                  <a href="#">Re-activate Your Account</a>
+                                  <a href="#forgot-password" id="access_link2">Forgot Password?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                  <a href="#reactivate-account" id="access_link3">Reactivate Your Account</a>
                               </p>
                               <!-- <a href="#" class="btn_full">Sign in</a>  -->
                               <input class="btn_full" type="submit" value="Sign in">
@@ -74,7 +74,7 @@
 	<!-- Sign In Popup -->
 	<div id="forgot-password" class="zoom-anim-dialog mfp-hide">
 		<div class="small-dialog-header">
-			<h3>Get TempPassword</h3>
+			<h3>Get A Temporary Password</h3>
 		</div>
 		<div class="text-center">
 	    	<img src="${pageContext.request.contextPath}/resources/img/logo_sticky.png" alt="Image" data-retina="true" >
@@ -113,7 +113,7 @@
 					<i class="icon-calendar"></i>
 				</div>
 				<div class="text-center">
-					<input type="submit" value="Get TempPassword" class="btn_login">
+					<input type="submit" value="Submit" class="btn_login">
 				</div>
 				<div class="text-center">
 					I Remember my Password <a href="member_login_form">Login</a>
@@ -122,12 +122,11 @@
 		</form>
 	<!--form -->
 	</div>
-	<!-- Sign In Popup -->
 	
 	<!-- Sign In Popup -->
-	<div id="reActive-Account" class="zoom-anim-dialog mfp-hide">
+	<div id="reactivate-account" class="zoom-anim-dialog mfp-hide">
 		<div class="small-dialog-header">
-			<h3>Get TempPassword</h3>
+			<h3>Account Reactivation</h3>
 		</div>
 		<div class="text-center">
 	    	<img src="${pageContext.request.contextPath}/resources/img/logo_sticky.png" alt="Image" data-retina="true" >
@@ -166,7 +165,7 @@
 					<i class="icon-calendar"></i>
 				</div>
 				<div class="text-center">
-					<input type="submit" value="Get TempPassword" class="btn_login">
+					<input type="submit" value="Submit" class="btn_login">
 				</div>
 				<div class="text-center">
 					I Remember my Password <a href="member_login_form">Login</a>
