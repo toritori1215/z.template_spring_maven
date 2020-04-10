@@ -167,32 +167,32 @@
 		<div class="sign-in-wrapper">
 			<div class="form-group">
 				<label>Username</label>
-				<input type="text" class="form-control" name="mId" value="${mId}" placeholder="Username">
+				<input type="text" class="form-control" name="mId" value="" placeholder="Username">
 				<i class="icon-user"></i>
 			</div>
 			<div class="form-group">
 				<label>First Name</label>
-				<input type="text" class="form-control" name="mFirstName" value="${mFirstName}" placeholder="First Name">
+				<input type="text" class="form-control" name="mFirstName" value="" placeholder="First Name">
 				<i class="icon_set_1_icon-68"></i>
 			</div>
 			<div class="form-group">
 				<label>Last Name</label>
-				<input type="text" class="form-control" name="mLastName" value="${mLastName}" placeholder="Last Name">
+				<input type="text" class="form-control" name="mLastName" value="" placeholder="Last Name">
 				<i class="icon_set_1_icon-68"></i>
 			</div>
 			<div class="form-group">
 				<label>Tel</label>
-				<input type="text" class="form-control" name="mTel" value="${mTel}" placeholder="Phone">
+				<input type="text" class="form-control" name="mTel" value="" placeholder="Phone">
 				<i class="icon-phone"></i>
 			</div>
 			<div class="form-group">
 				<label>Email</label>
-				<input type="text" class="form-control" name="mEmail" value="${mEmail}" placeholder="Email">
+				<input type="text" class="form-control" name="mEmail" value="" placeholder="Email">
 				<i class="icon-mail"></i>
 			</div>
 			<div class="form-group">
 				<label>Birth</label>
-				<input type="text" class="form-control" name="mBirth" value="${mBirth}" placeholder="Birth">
+				<input type="text" class="form-control" name="mBirth" value="" placeholder="Birth">
 				<i class="icon-calendar"></i>
 			</div>
 			<div class="text-center">
