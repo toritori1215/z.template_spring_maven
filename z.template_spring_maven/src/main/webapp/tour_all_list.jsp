@@ -210,7 +210,7 @@
 									<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 								</div>
 								<div class="img_list">
-									<a href="single_tour.html"><img src="${pageContext.request.contextPath}/resources/img/tour_box_1.jpg" alt="Image">
+									<a href="single_tour.html"><img src="${pageContext.request.contextPath}/resources/img/${product.pName}1.jpg" alt="Image">
 										<div class="short_info"><i class="icon_set_1_icon-4"></i>Museums </div>
 									</a>
 								</div>
