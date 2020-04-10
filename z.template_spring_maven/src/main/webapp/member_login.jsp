@@ -141,7 +141,7 @@
 				</div>
 				<div class="form-group">
 					<label>First Name</label>
-					<input type="password" class="form-control" name="password" id="password" value="" placeholder="Password">
+					<input type="text" class="form-control" name="password" id="password" value="" placeholder="Password">
 					<i class="icon_set_1_icon-68"></i>
 				</div>
 				<div class="form-group">
