@@ -38,4 +38,34 @@
 			 where m.mId=#{mId} ) &lt; -30
 	</delete>
 	
+	<update id="setTempPasswordNull" parameterType="string">
+		update member
+		set mTempPassword=#{mTempPassword}
+		where mId=#{mId}
+	</update>
+	
+	<update id="updatePassword" parameterType="java.util.HashMap">
+		update member
+		set mPassword=#{mPassword}, mTempPassword=null
+		where mId=#{mId}
+	</update>
+	
+	<select id="getTempPassword" resultType="string">
+		select DBMS_RANDOM.STRING('P', 20) rand 
+		FROM DUAL
+	</select>
+	
+	<update id="updateTempPassword" parameterType="java.util.HashMap">
+		update member
+		set mTempPassword=#{mTempPassword}
+		where mId=#{mId}
+	</update>
+	
+	<select id="checkExist" parameterType="string" resultType="_int">
+		select count(mNo)
+		from member
+		where mId=#{mId} and mFirstName=#{mFirstName} and mLastName=#{mLastName} 
+			  and mTel=#{mTel} and mEmail=#{mEmail} and mBirth=#{mBirth}
+	</select>
+	
 </mapper>
