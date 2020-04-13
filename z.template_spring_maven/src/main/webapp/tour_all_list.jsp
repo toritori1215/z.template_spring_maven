@@ -218,7 +218,7 @@
 										       	<i class="icon-snow"></i>ICE
 										    </c:when>
 										    <c:otherwise>
-										       	<i class="pe-7s-leaf"></i>&nbsp;FIELD
+										       	<i class="icon-tree"></i>FIELD
 										    </c:otherwise>
 										</c:choose>
 										</div>
