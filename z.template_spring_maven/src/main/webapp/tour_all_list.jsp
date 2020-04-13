@@ -388,7 +388,8 @@
 		$.ajax({
 			type:"POST",
 			data:{data:data},
-			url:"tour_list",
+			url:"tour_all_list.jsp",
+			async:true,
 			contentType:"application/x-www-form-urlencoded;charset=utf-8",
 			success:function(d) {
 				$('#productList').html(d);
