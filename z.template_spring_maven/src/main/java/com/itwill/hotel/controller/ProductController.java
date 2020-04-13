@@ -36,6 +36,12 @@ public class ProductController {
 		return "tour_all_grid";
 	}
 	
+	@RequestMapping(value = "/tour_detail")
+	public String tourDetail(@RequestParam(value="pNo") String pNo, Model model) {
+		model.addAttribute("product", productService.selectByNo(Integer.parseInt(pNo)));
+		return "forward:tour_single_with_gallery.jsp";
+	}
+	
 	@RequestMapping(value = "/product_list_condition")
 	public String productListCondition() {
 		return "product/list_condition";
