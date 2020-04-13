@@ -55,12 +55,6 @@
 		FROM DUAL
 	</select>
 	
-	<update id="updateTempPassword" parameterType="java.util.HashMap">
-		update member
-		set mTempPassword=#{mTempPassword}
-		where mId=#{mId}
-	</update>
-	
 	<select id="checkExist" parameterType="string" resultType="_int">
 		select count(mNo)
 		from member
@@ -68,4 +62,22 @@
 			  and mTel=#{mTel} and mEmail=#{mEmail} and mBirth=#{mBirth}
 	</select>
 	
+	<update id="updateTempPassword" parameterType="java.util.HashMap">
+		update member
+		set mTempPassword=#{mTempPassword}
+		where mId=#{mId}
+	</update>
+	
+	<select id="checkExist2" parameterType="string" resultType="_int">
+		select count(mNo)
+		from member
+		where mId=#{mId} and mPassword=#{mPassword} and mFirstName=#{mFirstName} and 
+			  mLastName=#{mLastName} and mTel=#{mTel} and mEmail=#{mEmail} and mBirth=#{mBirth}
+	</select>
+	
+	<update id="reActivateAccount" parameterType="string">
+		update member
+		set mIfActive=1
+		where mId=#{mId}
+	</update>
 </mapper>
