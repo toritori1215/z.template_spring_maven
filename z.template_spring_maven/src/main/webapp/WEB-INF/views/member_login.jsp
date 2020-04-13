@@ -409,7 +409,7 @@
             	<div class="col-xl-4 col-lg-5 col-md-6 col-sm-8">
                 	<div id="login">
                    		<div class="text-center"><img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/youngae.jpg" width="120px" height="150px" alt="Image" data-retina="true" ></div>
-                        <c:if test="${(msg1 == null || msg1 eq '') && (msg2 == null || msg2 eq '')}">
+                        <c:if test="${(msg1 == null || msg1 eq '') && (msg2 == null || msg2 eq '') && (msg3 == null || msg3 eq '') && (msg4 == null || msg4 eq '')}">
 							<div class="divider"><span><font style="font-style: normal; font-size: 15px; color: red;">${msg}</font></span></div>
                         	<form id="login_form" method="post" action="member_login_action">
 	                        	<div id="login-form">
@@ -439,6 +439,18 @@
 	                              <a href="member_insert_form" class="btn_full_outline">Register</a>
 	                        	</div>
 	                        </form>
+                        </c:if>
+                        <c:if test="${msg1 != null and msg1 ne ''}">
+                        	<div class="divider"></div>
+	                        <h5 align="center">
+	                        	당신의 임시비밀번호는:<br>
+		                        <font style="font-style: normal; font-size: 15px; color: red;">
+		                        ${msg1}
+		                        </font><br>
+		                        입니다!
+	                        </h5>
+	                        <br><br><br>
+	                        <a href="member_login.jsp" class="btn_full">Go to Sign up</a>
                         </c:if>
                         <c:if test="${msg2 != null and msg2 ne ''}">
 	                        <div class="divider"><span><font style="font-style: normal; font-size: 15px; color: red;">${msg2}</font></span></div>
@@ -483,16 +495,56 @@
 	                        	</div>
 	                        </form>
                         </c:if>
-                        <c:if test="${msg1 != null and msg1 ne ''}">
-                        	<div class="divider"></div>
-	                        <h5 align="center">
-	                        	당신의 임시비밀번호는:<br>
-		                        <font style="font-style: normal; font-size: 15px; color: red;">
-		                        ${msg1}
-		                        </font><br>
-		                        입니다!
-	                        </h5>
-	                        <br><br><br>
+                        <c:if test="${msg3 != null and msg3 ne ''}">
+	                        <div class="divider"><span><font style="font-style: normal; font-size: 15px; color: red;">${msg3}</font></span></div>
+	                        <form id="login_form" method="post" action="reactive_account">
+	                        	<div id="login-form">
+	                            	<div class="form-group">
+										<label>Username</label>
+										<input type="text" class="form-control" name="mId" value="${mId}" placeholder="Username">
+										<i class="icon-user"></i>
+									</div>
+									<div class="form-group">
+	                                  <label>Password</label>
+	                                  <input type="password" class=" form-control" placeholder="Password" name="mPassword" value="">
+									  <i class="icon-lock"></i>
+	                          		</div>
+									<div class="form-group">
+										<label>First Name</label>
+										<input type="text" class="form-control" name="mFirstName" value="${mFirstName}" placeholder="First Name">
+										<i class="icon_set_1_icon-68"></i>
+									</div>
+									<div class="form-group">
+										<label>Last Name</label>
+										<input type="text" class="form-control" name="mLastName" value="${mLastName}" placeholder="Last Name">
+										<i class="icon_set_1_icon-68"></i>
+									</div>
+									<div class="form-group">
+										<label>Tel</label>
+										<input type="text" class="form-control" name="mTel" value="${mTel}" placeholder="Phone">
+										<i class="icon-phone"></i>
+									</div>
+									<div class="form-group">
+										<label>Email</label>
+										<input type="text" class="form-control" name="mEmail" value="${mEmail}" placeholder="Email">
+										<i class="icon-mail"></i>
+									</div>
+									<div class="form-group">
+										<label>Birth</label>
+										<input type="text" class="form-control" name="mBirth" value="${mBirth}" placeholder="Birth">
+										<i class="icon-calendar"></i>
+									</div>
+									<div class="text-center">
+										<input type="submit" value="Re-active Account" class="btn_login">
+									</div>
+									<div class="text-center">
+										Remember Your Password?&nbsp;&nbsp;&nbsp;<a href="member_login_form">Sign in</a>
+									</div>
+	                        	</div>
+	                        </form>
+                        </c:if>
+                        <c:if test="${msg4 != null and msg4 ne ''}">
+                        	<div class="divider"><span><font style="font-style: normal; font-size: 15px; color: red;">${msg4}</font></span></div>
 	                        <a href="member_login.jsp" class="btn_full">Go to Sign up</a>
                         </c:if>
              		</div>

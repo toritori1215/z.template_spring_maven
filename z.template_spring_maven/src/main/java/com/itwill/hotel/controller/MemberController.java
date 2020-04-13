@@ -180,4 +180,44 @@ public class MemberController {
 		}
 	}
 	
+	@RequestMapping(value = "/reactive_account")
+	public String reactive_account_action(@RequestParam(value = "mId") String mId, 
+										  @RequestParam(value = "mPassword") String mPassword,
+										  @RequestParam(value = "mFirstName") String mFirstName, 
+										  @RequestParam(value = "mLastName") String mLastName, 
+										  @RequestParam(value = "mTel") String mTel, 
+										  @RequestParam(value = "mEmail") String mEmail, 
+										  @RequestParam(value = "mBirth") String mBirth, 
+										  Model model) {
+		model.addAttribute("mId", mId);
+		model.addAttribute("mFirstName", mFirstName);
+		model.addAttribute("mLastName", mLastName);
+		model.addAttribute("mTel", mTel);
+		model.addAttribute("mEmail", mEmail);
+		model.addAttribute("mBirth", mBirth);
+		if (mId == "" || mPassword == "" || mFirstName == "" || mLastName == "" || mTel == "" || 
+				mEmail == "" || mBirth == "" || mId == null || mPassword == null || mFirstName == null || 
+				mLastName == null || mTel == null || mEmail == null || mBirth == null) {
+			model.addAttribute("msg3", "빈 칸에 값을 입력하십시오");
+			return "forward:member_login_form";
+		}
+		HashMap hashMap = new HashMap();
+		hashMap.put("mId", mId);
+		hashMap.put("mPassword", mPassword);
+		hashMap.put("mFirstName", mFirstName);
+		hashMap.put("mLastName", mLastName);
+		hashMap.put("mTel", mTel);
+		hashMap.put("mEmail", mEmail);
+		hashMap.put("mBirth", mBirth);
+		if (memberService.checkExist2(hashMap) == 1) {
+			HashMap hashMap1 = new HashMap();
+			memberService.reActivateAccount(mId);
+			model.addAttribute("msg4", "당신의 계정을 재활성화 했습니다");
+			return "forward:member_login_form";
+		} else {
+			model.addAttribute("msg3", "존재하지 않은 아이디입니다");
+			return "forward:member_login_form";
+		}
+	}
+	
 }
