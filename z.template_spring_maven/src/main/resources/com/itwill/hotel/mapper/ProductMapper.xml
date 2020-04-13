@@ -23,8 +23,12 @@
 			<if test="pPrice_lb != null and pPrice_ub != null">
 				and pPrice &lt;= #{pPrice_ub} and pPrice &gt;= #{pPrice_lb}
 			</if>
-			<if test="pRateStar != null">
-				and ROUND(pRate) = #{pRateStar}
+			<if test="pRate1 != null or pRate2 != null or pRate3 != null or pRate4 != null or pRate5 != null">
+				and ROUND(pRate/2) = #{pRate1}
+				 or ROUND(pRate/2) = #{pRate2}
+				 or ROUND(pRate/2) = #{pRate3}
+				 or ROUND(pRate/2) = #{pRate4}
+				 or ROUND(pRate/2) = #{pRate5}
 			</if>
 		</where>
 		<trim prefix="order by">

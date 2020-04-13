@@ -98,35 +98,35 @@
 								<ul>
 									<li>
 										<label>
-											<input type="checkbox" id="rating5"><span class="rating">
+											<input type="checkbox" id="rating5" value="5"><span class="rating">
 											<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i>
 											</span>
 										</label>
 									</li>
 									<li>
 										<label>
-											<input type="checkbox" id="rating4"><span class="rating">
+											<input type="checkbox" id="rating4" value="4"><span class="rating">
 											<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i>
 											</span>
 										</label>
 									</li>
 									<li>
 										<label>
-											<input type="checkbox" id="rating3"><span class="rating">
+											<input type="checkbox" id="rating3" value="3"><span class="rating">
 											<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
 											</span>
 										</label>
 									</li>
 									<li>
 										<label>
-											<input type="checkbox" id="rating2"><span class="rating">
+											<input type="checkbox" id="rating2" value="2"><span class="rating">
 											<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i><i class="icon-smile"></i>
 											</span>
 										</label>
 									</li>
 									<li>
 										<label>
-											<input type="checkbox" id="rating1"><span class="rating">
+											<input type="checkbox" id="rating1" value="1"><span class="rating">
 											<i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i><i class="icon-smile"></i><i class="icon-smile"></i>
 											</span>
 										</label>
@@ -201,7 +201,7 @@
 					<!--/tools -->
 
 					<c:forEach var="product" items="${productList}">
-					<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
+					<div id="productList" class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
 						<div class="row">
 							<div class="col-lg-4 col-md-4">
 								<div class="wishlist">
@@ -367,6 +367,39 @@
 	</script>
 	
 	<script src="${pageContext.request.contextPath}/resources/z.SiliconVillage/js/product.js"></script>
+	
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	
+	<script>
+	var data = [];
+	$('input:checkbox').click(function() {
+		if (data.includes($(this).val())) {
+			for (var i = 0; i < data.length; i++) {
+				if (data[i] == $(this).val()) {
+					data.splice(i, 1)
+				}
+			}
+		} else {
+			data.push($(this).val());
+			data.sort();
+		}
+		
+
+		$.ajax({
+			type:"POST",
+			data:{data:data},
+			url:"tour_list",
+			contentType:"application/x-www-form-urlencoded;charset=utf-8",
+			success:function(d) {
+				$('#productList').html(d);
+			}
+		});
+		//$("input:checkbox:checked").each(function() {
+		//	 data.push($(this).val());
+		//});
+		//var length = $('input:checkbox:checked').length;
+	});
+	</script>
 	
 </body>
 
