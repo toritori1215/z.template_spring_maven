@@ -57,17 +57,17 @@ public class MemberServiceImpl implements MemberService {
 	public String getTempPassword() {
 		return memberDao.getTempPassword();
 	}
-
+	
 	@Override
 	public int checkExist(HashMap hashMap) {
 		return memberDao.checkExist(hashMap);
 	}
-	
+
 	@Override
 	public int updateTempPassword(HashMap hashMap) {
 		return memberDao.updateTempPassword(hashMap);
 	}
-	
+
 	@Override
 	public int checkExist2(HashMap hashMap) {
 		return memberDao.checkExist2(hashMap);

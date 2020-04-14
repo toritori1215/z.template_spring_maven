@@ -31,15 +31,19 @@ public class ProductController {
 		return "forward:tour_all_list.jsp";
 	}
 	
+	@RequestMapping(value = "/room_list")
+	public String roomList() {
+		return "room_all_list";
+	}
+	
 	@RequestMapping(value = "/tour_grid")
 	public String tourListGrid() {
 		return "tour_all_grid";
 	}
 	
-	@RequestMapping(value = "/tour_detail")
-	public String tourDetail(@RequestParam(value="pNo") String pNo, Model model) {
-		model.addAttribute("product", productService.selectByNo(Integer.parseInt(pNo)));
-		return "forward:tour_single_with_gallery.jsp";
+	@RequestMapping(value = "/room_grid")
+	public String roomListGrid() {
+		return "room_all_grid";
 	}
 	
 	@RequestMapping(value = "/product_list_condition")
@@ -124,5 +128,5 @@ public class ProductController {
 		model.addAttribute("remain", remain);
 		return "product/count_tour";
 	}
-	
+		
 }

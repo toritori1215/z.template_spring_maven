@@ -203,7 +203,7 @@
 	<div class="text-center">
     	<img src="${pageContext.request.contextPath}/resources/img/logo_sticky.png" alt="Image" data-retina="true" >
     </div>
-	<form method="post" action="reactive_account">
+	<form method="post" action="member_get_temppassword">
 		<div class="divider"></div>
 		<div class="sign-in-wrapper">
 			<div class="form-group">

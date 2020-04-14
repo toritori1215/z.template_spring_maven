@@ -52,7 +52,7 @@ public class MemberController {
 					// 로그인
 					memberService.setTempPasswordNull(mId);
 					httpSession.setAttribute("sUser", tempMember);
-					return "forward:main";
+					return "main_page";
 				} else {
 					// 아이디 휴면
 					model.addAttribute("msg", "아이디가 휴면상태입니다");
@@ -219,5 +219,5 @@ public class MemberController {
 			return "forward:member_login_form";
 		}
 	}
-	
+
 }

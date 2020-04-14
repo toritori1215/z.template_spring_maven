@@ -355,40 +355,41 @@
 				</div>
 				<!-- End main-menu -->
 				<ul id="top_tools">
-					<li><a href="javascript:void(0);" class="search-overlay-menu-btn"><i class="icon_search"></i></a></li>
+					<li><a href="javascript:void(0);"
+						class="search-overlay-menu-btn"><i class="icon_search"></i></a></li>
 					<li>
 						<div class="dropdown dropdown-cart">
-							<a href="#" data-toggle="dropdown" class="cart_bt">
-							<i class="icon_bag_alt"></i><strong>3</strong></a>
+							<a href="#" data-toggle="dropdown" class="cart_bt"><i
+								class="icon_bag_alt"></i><strong>3</strong></a>
 							<ul class="dropdown-menu" id="cart_items">
 								<li>
 									<div class="image">
 										<img src="${pageContext.request.contextPath}/resources/img/thumb_cart_1.jpg"
 											alt="image">
-									</div><strong><a href="#">Louvre museum</a>1x $36.00 </strong>
-									<a href="#" class="action"><i class="icon-trash"></i></a>
+									</div> <strong><a href="#">Louvre museum</a>1x $36.00 </strong> <a
+									href="#" class="action"><i class="icon-trash"></i></a>
 								</li>
 								<li>
 									<div class="image">
-										<img src="${pageContext.request.contextPath}/resources/img/thumb_cart_2.jpg"
+										<img
+											src="${pageContext.request.contextPath}/resources/img/thumb_cart_2.jpg"
 											alt="image">
-									</div> <strong><a href="#">Versailles tour</a>2x $36.00 </strong>
-									<a href="#" class="action"><i class="icon-trash"></i></a>
+									</div> <strong><a href="#">Versailles tour</a>2x $36.00 </strong> <a
+									href="#" class="action"><i class="icon-trash"></i></a>
 								</li>
 								<li>
 									<div class="image">
-										<img src="${pageContext.request.contextPath}/resources/img/thumb_cart_3.jpg"
+										<img
+											src="${pageContext.request.contextPath}/resources/img/thumb_cart_3.jpg"
 											alt="image">
-									</div><strong>
-									<a href="#">Versailles tour</a>1x $36.00 </strong>
-									<a href="#" class="action"><i class="icon-trash"></i></a>
+									</div> <strong><a href="#">Versailles tour</a>1x $36.00 </strong> <a
+									href="#" class="action"><i class="icon-trash"></i></a>
 								</li>
 								<li>
 									<div>
 										Total: <span>$120.00</span>
-									</div>
-									<a href="cart.html" class="button_drop">Go to cart</a>
-									<a href="payment.html" class="button_drop outline">Check out</a>
+									</div> <a href="cart.html" class="button_drop">Go to cart</a> <a
+									href="payment.html" class="button_drop outline">Check out</a>
 								</li>
 							</ul>
 						</div> <!-- End dropdown-cart-->
@@ -408,40 +409,38 @@
             	<div class="col-xl-4 col-lg-5 col-md-6 col-sm-8">
                 	<div id="login">
                    		<div class="text-center"><img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/youngae.jpg" width="120px" height="150px" alt="Image" data-retina="true" ></div>
+						<div class="divider"><span><font style="font-style: normal; font-size: 15px; color: red;">${msg}</font></span></div>
                         <c:if test="${(msg1 == null || msg1 eq '') && (msg2 == null || msg2 eq '')}">
-							<div class="divider"><span><font style="font-style: normal; font-size: 15px; color: red;">${msg}</font></span></div>
-                        	<form id="login_form" method="post" action="member_login_action">
-	                        	<div id="login-form">
-	                              <div class="form-group">
-	                                  <label>Username</label>
-	                                  <input type="text" class=" form-control " placeholder="Username" name="mId" value="">
-	                              	  <i class="icon-user-1"></i>
-	                              </div>
-	                              <div class="form-group">
-	                                  <label>Password</label>
-	                                  <input type="password" class=" form-control" placeholder="Password" name="mPassword" value="">
-									  <i class="icon-lock"></i>
-	                              </div>
-	                              <div class="clearfix add_bottom_15">
-									  <div class="checkboxes float-left">
-										  <input id="remember-me" type="checkbox" name="check">
-										  <label for="remember-me">Remember Me</label>
-									  </div>
+                        <form id="login_form" method="post" action="member_login_action">
+                        	<div id="login-form">
+                              <div class="form-group">
+                                  <label>Username</label>
+                                  <input type="text" class=" form-control " placeholder="Username" name="mId" value="">
+                              	  <i class="icon-user-1"></i>
+                              </div>
+                              <div class="form-group">
+                                  <label>Password</label>
+                                  <input type="password" class=" form-control" placeholder="Password" name="mPassword" value="">
+								  <i class="icon-lock"></i>
+                              </div>
+                              <div class="clearfix add_bottom_15">
+								  <div class="checkboxes float-left">
+									  <input id="remember-me" type="checkbox" name="check">
+									  <label for="remember-me">Remember Me</label>
 								  </div>
-	                              <p>
-	                                  <a href="#forgot-password" id="access_link2" style="text-align: left;">Forgot Password?</a>
-	                                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	                                  <a href="#reactivate-account" id="access_link3" style="text-align: right;">Reactivate Account</a>
-	                              </p>
-	                              <!-- <a href="#" class="btn_full">Sign in</a>  -->
-	                              <input class="btn_full" type="submit" value="Sign in">
-	                              <a href="member_insert_form" class="btn_full_outline">Register</a>
-	                        	</div>
-	                        </form>
+							  </div>
+                              <p>
+                                  <a href="#forgot-password" id="access_link2" style="text-align: left;">Forgot Password?</a>
+                                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                  <a href="#reactivate-account" id="access_link3" style="text-align: right;">Reactivate Account</a>
+                              </p>
+                              <!-- <a href="#" class="btn_full">Sign in</a>  -->
+                              <input class="btn_full" type="submit" value="Sign in">
+                              <a href="member_insert_form" class="btn_full_outline">Sign up</a>
+                        	</div>
+                        </form>
                         </c:if>
-<<<<<<< HEAD
                         <c:if test="${msg1 != null and msg1 ne ''}">
-                        	<div class="divider"></div>
 	                        <h5 align="center">
 	                        	당신의 임시비밀번호는:<br>
 		                        <font style="font-style: normal; font-size: 15px; color: red;">
@@ -450,118 +449,13 @@
 		                        입니다!
 	                        </h5>
 	                        <br><br><br>
-	                        <a href="member_login_form" class="btn_full">Go to Sign in</a>
+	                        <a href="member_login.jsp" class="btn_full">Go to Sign up</a>
                         </c:if>
-=======
->>>>>>> branch 'master' of https://github.com/toritori1215/z.template_spring_maven.git
                         <c:if test="${msg2 != null and msg2 ne ''}">
 	                        <div class="divider"><span><font style="font-style: normal; font-size: 15px; color: red;">${msg2}</font></span></div>
-	                        <form id="login_form" method="post" action="member_get_temppassword">
-	                        	<div id="login-form">
-	                              <div class="form-group">
-										<label>Username</label>
-										<input type="text" class="form-control" name="mId" value="${mId}" placeholder="Username">
-										<i class="icon-user"></i>
-									</div>
-									<div class="form-group">
-										<label>First Name</label>
-										<input type="text" class="form-control" name="mFirstName" value="${mFirstName}" placeholder="First Name">
-										<i class="icon_set_1_icon-68"></i>
-									</div>
-									<div class="form-group">
-										<label>Last Name</label>
-										<input type="text" class="form-control" name="mLastName" value="${mLastName}" placeholder="Last Name">
-										<i class="icon_set_1_icon-68"></i>
-									</div>
-									<div class="form-group">
-										<label>Tel</label>
-										<input type="text" class="form-control" name="mTel" value="${mTel}" placeholder="Phone">
-										<i class="icon-phone"></i>
-									</div>
-									<div class="form-group">
-										<label>Email</label>
-										<input type="text" class="form-control" name="mEmail" value="${mEmail}" placeholder="Email">
-										<i class="icon-mail"></i>
-									</div>
-									<div class="form-group">
-										<label>Birth</label>
-										<input type="text" class="form-control" name="mBirth" value="${mBirth}" placeholder="Birth">
-										<i class="icon-calendar"></i>
-									</div>
-									<div class="text-center">
-										<input type="submit" value="Get Password" class="btn_login">
-									</div>
-									<div class="text-center">
-										Remember Your Password?&nbsp;&nbsp;&nbsp;<a href="member_login_form">Sign in</a>
-									</div>
-	                        	</div>
-	                        </form>
-                        </c:if>
-                        <c:if test="${msg3 != null and msg3 ne ''}">
-	                        <div class="divider"><span><font style="font-style: normal; font-size: 15px; color: red;">${msg3}</font></span></div>
-	                        <form id="login_form" method="post" action="reactive_account">
-	                        	<div id="login-form">
-	                            	<div class="form-group">
-										<label>Username</label>
-										<input type="text" class="form-control" name="mId" value="${mId}" placeholder="Username">
-										<i class="icon-user"></i>
-									</div>
-									<div class="form-group">
-	                                  <label>Password</label>
-	                                  <input type="password" class=" form-control" placeholder="Password" name="mPassword" value="">
-									  <i class="icon-lock"></i>
-	                          		</div>
-									<div class="form-group">
-										<label>First Name</label>
-										<input type="text" class="form-control" name="mFirstName" value="${mFirstName}" placeholder="First Name">
-										<i class="icon_set_1_icon-68"></i>
-									</div>
-									<div class="form-group">
-										<label>Last Name</label>
-										<input type="text" class="form-control" name="mLastName" value="${mLastName}" placeholder="Last Name">
-										<i class="icon_set_1_icon-68"></i>
-									</div>
-									<div class="form-group">
-										<label>Tel</label>
-										<input type="text" class="form-control" name="mTel" value="${mTel}" placeholder="Phone">
-										<i class="icon-phone"></i>
-									</div>
-									<div class="form-group">
-										<label>Email</label>
-										<input type="text" class="form-control" name="mEmail" value="${mEmail}" placeholder="Email">
-										<i class="icon-mail"></i>
-									</div>
-									<div class="form-group">
-										<label>Birth</label>
-										<input type="text" class="form-control" name="mBirth" value="${mBirth}" placeholder="Birth">
-										<i class="icon-calendar"></i>
-									</div>
-									<div class="text-center">
-										<input type="submit" value="Re-active Account" class="btn_login">
-									</div>
-									<div class="text-center">
-										Remember Your Password?&nbsp;&nbsp;&nbsp;<a href="member_login_form">Sign in</a>
-									</div>
-	                        	</div>
-	                        </form>
-                        </c:if>
-                        <c:if test="${msg4 != null and msg4 ne ''}">
-                        	<br>
-                        	<div class="divider"><span><font style="font-style: normal; font-size: 15px; color: red;">${msg4}</font></span></div>
-	                        <br><br><br>
-	                        <a href="member_login_form" class="btn_full">Go to Sign in</a>
-	                    </c:if>
-                        <c:if test="${msg1 != null and msg1 ne ''}">
-                        	<div class="divider"></div>
-	                        <h5 align="center">
-	                        	당신의 임시비밀번호는:<br>
-		                        <font style="font-style: normal; font-size: 15px; color: red;">
-		                        ${msg1}
-		                        </font><br>
-		                        입니다!
-	                        </h5>
-	                        <br><br><br>
-	                        <a href="member_login.jsp" class="btn_full">Go to Sign in</a>
+	                        <h6 align="center"><a href="#forgot-password" id="access_link2">Get Password Again</a></h6><br>
+	                        <h6 align="center"><a href="member_login.jsp">Sign in</a></h6><br>
+	                        <h6 align="center"><a href="member_insert_form">Sign up</a></h6>
                         </c:if>
              		</div>
                 </div>
@@ -571,7 +465,7 @@
 	</main><!-- End main -->
 	
 	<!-- Footer================================================== -->
-	<jsp:include page="common_footer_2.jsp"/>
+	<jsp:include page="z.references/common_footer_2.jsp"/>
 	<!-- End Footer -->
 	
   </body>
