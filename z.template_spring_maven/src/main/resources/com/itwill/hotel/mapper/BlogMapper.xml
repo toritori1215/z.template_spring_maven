@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itwill.hotel.mapper.BlogMapper">
+	<select id="selectAll" resultType="Blog">
+		select bNo,bTitle,bDate,bContent,bReadCount,bCategory,mNo
+		from blog
+	</select>
+	
+	<select id="selectOne" resultType="Blog">
+		select bNo,bTitle,bDate,bContent,bReadCount,bCategory,mNo
+		from blog
+		where bNo=#{bNo} 
+	</select>
+	
+	<insert id="insertBlog" parameterType="Blog">
+		insert into blog(bNO,bTitle,bDate,bContent,bReadCount,bCategory,mNo) 
+		values (blog_SEQ.nextval, #{bTitle}, #{bDate}, #{bContent}, #{bReadCount}, #{bCategory}, #{mNo})
+	</insert>
+	
+	<delete id="deleteBlog" parameterType="_int">
+		delete from blog
+		where bNo=#{bNo}
+	</delete>
+	
+	<update id="updateBlog" parameterType="_int">
+		update blog
+		set bTitle=#{bTitle}, bContent=#{bContent}
+		where bNo=#{bNo}
+	</update>
+</mapper>
