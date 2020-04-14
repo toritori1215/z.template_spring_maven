@@ -1,5 +1,6 @@
 package com.itwill.hotel.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,9 +24,16 @@ public class ProductController {
 	public String tourList(Model model) {
 		HashMap parameterMap = new HashMap();
 		parameterMap.put("pType", "tour");
-		model.addAttribute("productList", productService.selectByType(parameterMap));
-		System.out.println(productService.selectByType(parameterMap));
+		List<Product> productList=productService.selectByType(parameterMap);
+		System.out.println(productList);
+		model.addAttribute("productList", productList);
 		return "forward:tour_all_list.jsp";
+	}
+	
+	@RequestMapping(value = "/tour_detail")
+	public String tourDetail(@RequestParam(value="pNo") String pNo, Model model) {
+		model.addAttribute("pNo", pNo);
+		return "forward:tour_single_with_gallery.jsp";
 	}
 	
 	@RequestMapping(value = "/room_list")
