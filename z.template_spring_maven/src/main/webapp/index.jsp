@@ -19,7 +19,7 @@
 		<li><a href="">찜</a></li>
 		<li><a href="">블로그</a></li>
 		<li><a href="review">리뷰</a></li>
-		<li></li>
+		<li><a href="javascript:callFunction();">function</a></li>
 		<li></li>
 		<li></li>
 		<li></li>
@@ -27,5 +27,10 @@
 		<li></li>
 	</ul>
 	</div>
+	<script type="text/javascript">
+		function callFunction() {
+			alert("!!!");
+		}
+	</script>
 </body>
 </html>

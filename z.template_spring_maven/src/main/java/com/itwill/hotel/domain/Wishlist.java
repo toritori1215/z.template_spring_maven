@@ -11,8 +11,9 @@ public class Wishlist {
 	public Wishlist() {
 		
 	}
-	
+
 	public Wishlist(int mNo, int pNo) {
+		super();
 		this.mNo = mNo;
 		this.pNo = pNo;
 	}

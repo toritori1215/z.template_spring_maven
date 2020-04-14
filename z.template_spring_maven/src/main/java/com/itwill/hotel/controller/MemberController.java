@@ -55,7 +55,7 @@ public class MemberController {
 					return "forward:main";
 				} else {
 					// 아이디 휴면
-					model.addAttribute("msg", "아이디 휴면상태야");
+					model.addAttribute("msg", "아이디가 휴면상태입니다");
 					return "forward:member_login_form";
 				}
 			} else if (tempMember.getmTempPassword() != null && 
@@ -67,12 +67,12 @@ public class MemberController {
 					return "forward:member_change_password_form";
 				} else {
 					// 아이디 휴면
-					model.addAttribute("msg", "아이디 휴면상태야");
+					model.addAttribute("msg", "아이디가 휴면상태입니다");
 					return "forward:member_login_form";
 				}
 			} else {
 				// 비밀번호 불일치
-				model.addAttribute("msg", "비밀번호 아니잖아");
+				model.addAttribute("msg", "비밀번호가 일치하지 않습니다");
 				return "forward:member_login_form";
 			}
 		}
@@ -134,7 +134,7 @@ public class MemberController {
 			memberService.updatePassword(hashMap);
 			return "forward:member_login_form";			
 		} else {
-			model.addAttribute("msg", "비밀번호 불일치");
+			model.addAttribute("msg", "비밀번호가 일치하지 않습니다");
 			return "forward:member_change_password_form";
 		}
 	}
@@ -175,7 +175,7 @@ public class MemberController {
 			model.addAttribute("msg1", member.getmTempPassword());
 			return "forward:member_login_form";
 		} else {
-			model.addAttribute("msg2", "존재하지 않은 아이디입니다");
+			model.addAttribute("msg2", "입력하신 정보와 일치하는 계정이 없습니다");
 			return "forward:member_login_form";
 		}
 	}
@@ -212,10 +212,10 @@ public class MemberController {
 		if (memberService.checkExist2(hashMap) == 1) {
 			HashMap hashMap1 = new HashMap();
 			memberService.reActivateAccount(mId);
-			model.addAttribute("msg4", "당신의 계정을 재활성화 했습니다");
+			model.addAttribute("msg4", "당신의 계정이 활성화 되었습니다");
 			return "forward:member_login_form";
 		} else {
-			model.addAttribute("msg3", "존재하지 않은 아이디입니다");
+			model.addAttribute("msg3", "입력하신 정보와 일치하는 계정이 없습니다");
 			return "forward:member_login_form";
 		}
 	}

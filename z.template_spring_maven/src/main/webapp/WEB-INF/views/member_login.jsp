@@ -355,41 +355,40 @@
 				</div>
 				<!-- End main-menu -->
 				<ul id="top_tools">
-					<li><a href="javascript:void(0);"
-						class="search-overlay-menu-btn"><i class="icon_search"></i></a></li>
+					<li><a href="javascript:void(0);" class="search-overlay-menu-btn"><i class="icon_search"></i></a></li>
 					<li>
 						<div class="dropdown dropdown-cart">
-							<a href="#" data-toggle="dropdown" class="cart_bt"><i
-								class="icon_bag_alt"></i><strong>3</strong></a>
+							<a href="#" data-toggle="dropdown" class="cart_bt">
+							<i class="icon_bag_alt"></i><strong>3</strong></a>
 							<ul class="dropdown-menu" id="cart_items">
 								<li>
 									<div class="image">
 										<img src="${pageContext.request.contextPath}/resources/img/thumb_cart_1.jpg"
 											alt="image">
-									</div> <strong><a href="#">Louvre museum</a>1x $36.00 </strong> <a
-									href="#" class="action"><i class="icon-trash"></i></a>
+									</div><strong><a href="#">Louvre museum</a>1x $36.00 </strong>
+									<a href="#" class="action"><i class="icon-trash"></i></a>
 								</li>
 								<li>
 									<div class="image">
-										<img
-											src="${pageContext.request.contextPath}/resources/img/thumb_cart_2.jpg"
+										<img src="${pageContext.request.contextPath}/resources/img/thumb_cart_2.jpg"
 											alt="image">
-									</div> <strong><a href="#">Versailles tour</a>2x $36.00 </strong> <a
-									href="#" class="action"><i class="icon-trash"></i></a>
+									</div> <strong><a href="#">Versailles tour</a>2x $36.00 </strong>
+									<a href="#" class="action"><i class="icon-trash"></i></a>
 								</li>
 								<li>
 									<div class="image">
-										<img
-											src="${pageContext.request.contextPath}/resources/img/thumb_cart_3.jpg"
+										<img src="${pageContext.request.contextPath}/resources/img/thumb_cart_3.jpg"
 											alt="image">
-									</div> <strong><a href="#">Versailles tour</a>1x $36.00 </strong> <a
-									href="#" class="action"><i class="icon-trash"></i></a>
+									</div><strong>
+									<a href="#">Versailles tour</a>1x $36.00 </strong>
+									<a href="#" class="action"><i class="icon-trash"></i></a>
 								</li>
 								<li>
 									<div>
 										Total: <span>$120.00</span>
-									</div> <a href="cart.html" class="button_drop">Go to cart</a> <a
-									href="payment.html" class="button_drop outline">Check out</a>
+									</div>
+									<a href="cart.html" class="button_drop">Go to cart</a>
+									<a href="payment.html" class="button_drop outline">Check out</a>
 								</li>
 							</ul>
 						</div> <!-- End dropdown-cart-->
@@ -450,7 +449,7 @@
 		                        입니다!
 	                        </h5>
 	                        <br><br><br>
-	                        <a href="member_login.jsp" class="btn_full">Go to Sign up</a>
+	                        <a href="member_login_form" class="btn_full">Go to Sign in</a>
                         </c:if>
                         <c:if test="${msg2 != null and msg2 ne ''}">
 	                        <div class="divider"><span><font style="font-style: normal; font-size: 15px; color: red;">${msg2}</font></span></div>
@@ -545,7 +544,7 @@
                         </c:if>
                         <c:if test="${msg4 != null and msg4 ne ''}">
                         	<div class="divider"><span><font style="font-style: normal; font-size: 15px; color: red;">${msg4}</font></span></div>
-	                        <a href="member_login.jsp" class="btn_full">Go to Sign up</a>
+	                        <a href="member_login_form" class="btn_full">Go to Sign in</a>
                         </c:if>
              		</div>
                 </div>
