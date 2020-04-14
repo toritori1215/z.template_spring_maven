@@ -56,18 +56,14 @@
 
 				<div class="col-sm-6 col-7">
 					<ul id="top_links">
-						<li><a href="#sign-in-dialog" id="access_link">Sign in</a></li>
-						<li><a href="wishlist.html" id="wishlist_link">Wishlist</a></li>
 						<li>
 							<div class="dropdown dropdown-mini">
 								<a href="#" data-toggle="dropdown" id="lang_link">English</a>
 								<div class="dropdown-menu">
 									<ul id="lang_menu">
-										<li><a href="#0">Spanish</a></li>
-										<li><a href="#0">French</a></li>
-										<li><a href="#0">German</a></li>
-										<li><a href="#0">Italian</a></li>
-										<li><a href="#0">Japanese</a></li>
+										<li><a href="#0">English</a></li>
+										<li><a href="#0">Korean</a></li>
+										<li><a href="#0">Chinese</a></li>
 									</ul>
 								</div>
 							</div> <!-- End Dropdown access -->
@@ -80,8 +76,8 @@
 										<li><a href="#0">USD</a></li>
 										<li><a href="#0">GBP</a></li>
 										<li><a href="#0">EUR</a></li>
-										<li><a href="#0">CHF</a></li>
-										<li><a href="#0">BRL</a></li>
+										<li><a href="#0">KRW</a></li>
+										<li><a href="#0">CNY</a></li>
 									</ul>
 								</div>
 							</div> <!-- End Dropdown access -->
@@ -355,41 +351,40 @@
 				</div>
 				<!-- End main-menu -->
 				<ul id="top_tools">
-					<li><a href="javascript:void(0);"
-						class="search-overlay-menu-btn"><i class="icon_search"></i></a></li>
+					<li><a href="javascript:void(0);" class="search-overlay-menu-btn"><i class="icon_search"></i></a></li>
 					<li>
 						<div class="dropdown dropdown-cart">
-							<a href="#" data-toggle="dropdown" class="cart_bt"><i
-								class="icon_bag_alt"></i><strong>3</strong></a>
+							<a href="#" data-toggle="dropdown" class="cart_bt">
+							<i class="icon_bag_alt"></i><strong>3</strong></a>
 							<ul class="dropdown-menu" id="cart_items">
 								<li>
 									<div class="image">
 										<img src="${pageContext.request.contextPath}/resources/img/thumb_cart_1.jpg"
 											alt="image">
-									</div> <strong><a href="#">Louvre museum</a>1x $36.00 </strong> <a
-									href="#" class="action"><i class="icon-trash"></i></a>
+									</div><strong><a href="#">Louvre museum</a>1x $36.00 </strong>
+									<a href="#" class="action"><i class="icon-trash"></i></a>
 								</li>
 								<li>
 									<div class="image">
-										<img
-											src="${pageContext.request.contextPath}/resources/img/thumb_cart_2.jpg"
+										<img src="${pageContext.request.contextPath}/resources/img/thumb_cart_2.jpg"
 											alt="image">
-									</div> <strong><a href="#">Versailles tour</a>2x $36.00 </strong> <a
-									href="#" class="action"><i class="icon-trash"></i></a>
+									</div> <strong><a href="#">Versailles tour</a>2x $36.00 </strong>
+									<a href="#" class="action"><i class="icon-trash"></i></a>
 								</li>
 								<li>
 									<div class="image">
-										<img
-											src="${pageContext.request.contextPath}/resources/img/thumb_cart_3.jpg"
+										<img src="${pageContext.request.contextPath}/resources/img/thumb_cart_3.jpg"
 											alt="image">
-									</div> <strong><a href="#">Versailles tour</a>1x $36.00 </strong> <a
-									href="#" class="action"><i class="icon-trash"></i></a>
+									</div><strong>
+									<a href="#">Versailles tour</a>1x $36.00 </strong>
+									<a href="#" class="action"><i class="icon-trash"></i></a>
 								</li>
 								<li>
 									<div>
 										Total: <span>$120.00</span>
-									</div> <a href="cart.html" class="button_drop">Go to cart</a> <a
-									href="payment.html" class="button_drop outline">Check out</a>
+									</div>
+									<a href="cart.html" class="button_drop">Go to cart</a>
+									<a href="payment.html" class="button_drop outline">Check out</a>
 								</li>
 							</ul>
 						</div> <!-- End dropdown-cart-->
@@ -409,7 +404,7 @@
             	<div class="col-xl-4 col-lg-5 col-md-6 col-sm-8">
                 	<div id="login">
                    		<div class="text-center"><img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/youngae.jpg" width="120px" height="150px" alt="Image" data-retina="true" ></div>
-                        <c:if test="${(msg1 == null || msg1 eq '') && (msg2 == null || msg2 eq '')}">
+                        <c:if test="${(msg1 == null || msg1 eq '') && (msg2 == null || msg2 eq '') && (msg3 == null || msg3 eq '') && (msg4 == null || msg4 eq '')}">
 							<div class="divider"><span><font style="font-style: normal; font-size: 15px; color: red;">${msg}</font></span></div>
                         	<form id="login_form" method="post" action="member_login_action">
 	                        	<div id="login-form">
@@ -439,6 +434,18 @@
 	                              <a href="member_insert_form" class="btn_full_outline">Register</a>
 	                        	</div>
 	                        </form>
+                        </c:if>
+                        <c:if test="${msg1 != null and msg1 ne ''}">
+                        	<div class="divider"></div>
+	                        <h5 align="center">
+	                        	당신의 임시비밀번호는:<br>
+		                        <font style="font-style: normal; font-size: 15px; color: red;">
+		                        ${msg1}
+		                        </font><br>
+		                        입니다!
+	                        </h5>
+	                        <br><br><br>
+	                        <a href="member_login_form" class="btn_full">Go to Sign in</a>
                         </c:if>
                         <c:if test="${msg2 != null and msg2 ne ''}">
 	                        <div class="divider"><span><font style="font-style: normal; font-size: 15px; color: red;">${msg2}</font></span></div>
@@ -483,17 +490,64 @@
 	                        	</div>
 	                        </form>
                         </c:if>
-                        <c:if test="${msg1 != null and msg1 ne ''}">
+                        <c:if test="${msg3 != null and msg3 ne ''}">
+	                        <div class="divider"><span><font style="font-style: normal; font-size: 15px; color: red;">${msg3}</font></span></div>
+	                        <form id="login_form" method="post" action="reactive_account">
+	                        	<div id="login-form">
+	                            	<div class="form-group">
+										<label>Username</label>
+										<input type="text" class="form-control" name="mId" value="${mId}" placeholder="Username">
+										<i class="icon-user"></i>
+									</div>
+									<div class="form-group">
+	                                  <label>Password</label>
+	                                  <input type="password" class=" form-control" placeholder="Password" name="mPassword" value="${mPassword}">
+									  <i class="icon-lock"></i>
+	                          		</div>
+									<div class="form-group">
+										<label>First Name</label>
+										<input type="text" class="form-control" name="mFirstName" value="${mFirstName}" placeholder="First Name">
+										<i class="icon_set_1_icon-68"></i>
+									</div>
+									<div class="form-group">
+										<label>Last Name</label>
+										<input type="text" class="form-control" name="mLastName" value="${mLastName}" placeholder="Last Name">
+										<i class="icon_set_1_icon-68"></i>
+									</div>
+									<div class="form-group">
+										<label>Tel</label>
+										<input type="text" class="form-control" name="mTel" value="${mTel}" placeholder="Phone">
+										<i class="icon-phone"></i>
+									</div>
+									<div class="form-group">
+										<label>Email</label>
+										<input type="text" class="form-control" name="mEmail" value="${mEmail}" placeholder="Email">
+										<i class="icon-mail"></i>
+									</div>
+									<div class="form-group">
+										<label>Birth</label>
+										<input type="text" class="form-control" name="mBirth" value="${mBirth}" placeholder="Birth">
+										<i class="icon-calendar"></i>
+									</div>
+									<div class="text-center">
+										<input type="submit" value="Re-active Account" class="btn_login">
+									</div>
+									<div class="text-center">
+										Remember Your Password?&nbsp;&nbsp;&nbsp;<a href="member_login_form">Sign in</a>
+									</div>
+	                        	</div>
+	                        </form>
+                        </c:if>
+                        <c:if test="${msg4 != null and msg4 ne ''}">
                         	<div class="divider"></div>
 	                        <h5 align="center">
-	                        	당신의 임시비밀번호는:<br>
+	                        	<br>
 		                        <font style="font-style: normal; font-size: 15px; color: red;">
-		                        ${msg1}
-		                        </font><br>
-		                        입니다!
+		                        ${msg4}
+		                        </font>
 	                        </h5>
 	                        <br><br><br>
-	                        <a href="member_login.jsp" class="btn_full">Go to Sign up</a>
+	                        <a href="member_login.jsp" class="btn_full">Go to Sign in</a>
                         </c:if>
              		</div>
                 </div>
