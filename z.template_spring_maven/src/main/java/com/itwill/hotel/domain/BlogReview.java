@@ -4,20 +4,20 @@ import java.util.Date;
 
 public class BlogReview {
 	private int brNo; 			// 블로그 댓글 번호
-	private Date brDate; 		// 블로그 댓글 작성 날짜
+	private String brDate; 		// 블로그 댓글 작성 날짜
 	private String brContent; 	// 블로그 댓글 내용
 	private int mNo; 			// 회원 번호
 	private int bNo; 			// 블로그 번호
 
-	private int brStep; 		// 댓글 정렬 순서
-	private int brGroup; 		// 원글과 댓글을 같은 그룹으로 묶음
-	private int brDepth; 		// 몇 번째 댓글인가 판단하는 값
+	private Integer brStep; 		// 댓글 정렬 순서
+	private Integer brGroup; 		// 원글과 댓글을 같은 그룹으로 묶음
+	private Integer brDepth; 		// 몇 번째 댓글인가 판단하는 값
 
 	public BlogReview() {
 
 	}
 
-	public BlogReview(int brNo, Date brDate, String brContent, int mNo, int bNo, int brStep, int brGroup, int brDepth) {
+	public BlogReview(int brNo, String brDate, String brContent, int mNo, int bNo, Integer brStep, Integer brGroup, Integer brDepth) {
 		super();
 		this.brNo = brNo;
 		this.brDate = brDate;
@@ -37,11 +37,11 @@ public class BlogReview {
 		this.brNo = brNo;
 	}
 
-	public Date getBrDate() {
+	public String getBrDate() {
 		return brDate;
 	}
 
-	public void setBrDate(Date brDate) {
+	public void setBrDate(String brDate) {
 		this.brDate = brDate;
 	}
 
@@ -69,27 +69,27 @@ public class BlogReview {
 		this.bNo = bNo;
 	}
 
-	public int getBrStep() {
+	public Integer getBrStep() {
 		return brStep;
 	}
 
-	public void setBrStep(int brStep) {
+	public void setBrStep(Integer brStep) {
 		this.brStep = brStep;
 	}
 
-	public int getBrGroup() {
+	public Integer getBrGroup() {
 		return brGroup;
 	}
 
-	public void setBrGroup(int brGroup) {
+	public void setBrGroup(Integer brGroup) {
 		this.brGroup = brGroup;
 	}
 
-	public int getBrDepth() {
+	public Integer getBrDepth() {
 		return brDepth;
 	}
 
-	public void setBrDepth(int brDepth) {
+	public void setBrDepth(Integer brDepth) {
 		this.brDepth = brDepth;
 	}
 
