@@ -21,13 +21,13 @@ public class WishlistServiceImpl implements WishlistService {
 	}
 
 	@Override
-	public void insertWishlist(Wishlist wishlist) {
-		wishlistDao.insertWishlist(wishlist);
+	public int insertWishlist(Wishlist wishlist) {
+		return wishlistDao.insertWishlist(wishlist);
 	}
 
 	@Override
-	public void deleteWishlist(Wishlist wishlist) {
-		wishlistDao.deleteWishlist(wishlist);
+	public int deleteWishlist(Wishlist wishlist) {
+		return wishlistDao.deleteWishlist(wishlist);
 	}
 
 }

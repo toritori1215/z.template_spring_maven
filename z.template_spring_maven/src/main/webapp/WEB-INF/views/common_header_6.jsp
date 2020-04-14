@@ -1,4 +1,5 @@
-		
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 	<!-- COMMON CSS -->
 	<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet">
@@ -31,35 +32,40 @@
 				<div class="col-sm-6 col-5">
 					<i class="icon-phone"></i><strong>0045 043204434</strong>
 				</div>
-
 				<div class="col-sm-6 col-7">
 					<ul id="top_links">
-						<li><a href="#sign-in-dialog" id="access_link">Sign in</a></li>
-						<li><a href="wishlist.html" id="wishlist_link">Wishlist</a></li>
+						<c:choose>
+							<c:when test="${sUser != null and sUser ne ''}">
+								<li>Hello ${sUser}</a></li>
+								<li><a href="member_logout" id="sign-out-link">Sign Out</a></li>
+								<li><a href="wishlist_list" id="wishlist_link">Wishlist</a></li>
+							</c:when>
+							<c:otherwise>
+								<li><a href="#sign-in-dialog" id="access_link">Sign in</a></li>
+							</c:otherwise>
+						</c:choose>
 						<li>
 							<div class="dropdown dropdown-mini">
 								<a href="#" data-toggle="dropdown" id="lang_link">English</a>
 								<div class="dropdown-menu">
 									<ul id="lang_menu">
-										<li><a href="#0">Spanish</a></li>
-										<li><a href="#0">French</a></li>
-										<li><a href="#0">German</a></li>
-										<li><a href="#0">Italian</a></li>
-										<li><a href="#0">Japanese</a></li>
+										<li><a href="#0">English</a></li>
+										<li><a href="#0">Korean</a></li>
+										<li><a href="#0">Chinese</a></li>
 									</ul>
 								</div>
 							</div> <!-- End Dropdown access -->
 						</li>
 						<li>
 							<div class="dropdown dropdown-mini">
-								<a href="#" data-toggle="dropdown" id="currency_link">Euro</a>
+								<a href="#" data-toggle="dropdown" id="currency_link">USD</a>
 								<div class="dropdown-menu">
 									<ul id="lang_menu">
 										<li><a href="#0">USD</a></li>
 										<li><a href="#0">GBP</a></li>
 										<li><a href="#0">EUR</a></li>
-										<li><a href="#0">CHF</a></li>
-										<li><a href="#0">BRL</a></li>
+										<li><a href="#0">KRW</a></li>
+										<li><a href="#0">CNY</a></li>
 									</ul>
 								</div>
 							</div> <!-- End Dropdown access -->
@@ -78,7 +84,7 @@
 			<div class="col-3">
 				<div id="logo_home">
 					<h1>
-						<a href="index.jsp" title="City tours travel template">City Tours travel template</a>
+						<a href="main" title="City tours travel template">Silicon Village</a>
 					</h1>
 				</div>
 			</div>

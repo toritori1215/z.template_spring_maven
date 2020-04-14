@@ -56,18 +56,14 @@
 
 				<div class="col-sm-6 col-7">
 					<ul id="top_links">
-						<li><a href="#sign-in-dialog" id="access_link">Sign in</a></li>
-						<li><a href="wishlist.html" id="wishlist_link">Wishlist</a></li>
 						<li>
 							<div class="dropdown dropdown-mini">
 								<a href="#" data-toggle="dropdown" id="lang_link">English</a>
 								<div class="dropdown-menu">
 									<ul id="lang_menu">
-										<li><a href="#0">Spanish</a></li>
-										<li><a href="#0">French</a></li>
-										<li><a href="#0">German</a></li>
-										<li><a href="#0">Italian</a></li>
-										<li><a href="#0">Japanese</a></li>
+										<li><a href="#0">English</a></li>
+										<li><a href="#0">Korean</a></li>
+										<li><a href="#0">Chinese</a></li>
 									</ul>
 								</div>
 							</div> <!-- End Dropdown access -->
@@ -80,8 +76,8 @@
 										<li><a href="#0">USD</a></li>
 										<li><a href="#0">GBP</a></li>
 										<li><a href="#0">EUR</a></li>
-										<li><a href="#0">CHF</a></li>
-										<li><a href="#0">BRL</a></li>
+										<li><a href="#0">KRW</a></li>
+										<li><a href="#0">CNY</a></li>
 									</ul>
 								</div>
 							</div> <!-- End Dropdown access -->
@@ -408,7 +404,7 @@
             	<div class="col-xl-4 col-lg-5 col-md-6 col-sm-8">
                 	<div id="login">
                    		<div class="text-center"><img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/youngae.jpg" width="120px" height="150px" alt="Image" data-retina="true" ></div>
-                        <c:if test="${(msg1 == null || msg1 eq '') && (msg2 == null || msg2 eq '')}">
+                        <c:if test="${(msg1 == null || msg1 eq '') && (msg2 == null || msg2 eq '') && (msg3 == null || msg3 eq '') && (msg4 == null || msg4 eq '')}">
 							<div class="divider"><span><font style="font-style: normal; font-size: 15px; color: red;">${msg}</font></span></div>
                         	<form id="login_form" method="post" action="member_login_action">
 	                        	<div id="login-form">
@@ -439,7 +435,6 @@
 	                        	</div>
 	                        </form>
                         </c:if>
-<<<<<<< HEAD
                         <c:if test="${msg1 != null and msg1 ne ''}">
                         	<div class="divider"></div>
 	                        <h5 align="center">
@@ -452,8 +447,6 @@
 	                        <br><br><br>
 	                        <a href="member_login_form" class="btn_full">Go to Sign in</a>
                         </c:if>
-=======
->>>>>>> branch 'master' of https://github.com/toritori1215/z.template_spring_maven.git
                         <c:if test="${msg2 != null and msg2 ne ''}">
 	                        <div class="divider"><span><font style="font-style: normal; font-size: 15px; color: red;">${msg2}</font></span></div>
 	                        <form id="login_form" method="post" action="member_get_temppassword">
@@ -508,7 +501,7 @@
 									</div>
 									<div class="form-group">
 	                                  <label>Password</label>
-	                                  <input type="password" class=" form-control" placeholder="Password" name="mPassword" value="">
+	                                  <input type="password" class=" form-control" placeholder="Password" name="mPassword" value="${mPassword}">
 									  <i class="icon-lock"></i>
 	                          		</div>
 									<div class="form-group">
@@ -546,19 +539,12 @@
 	                        </form>
                         </c:if>
                         <c:if test="${msg4 != null and msg4 ne ''}">
-                        	<br>
-                        	<div class="divider"><span><font style="font-style: normal; font-size: 15px; color: red;">${msg4}</font></span></div>
-	                        <br><br><br>
-	                        <a href="member_login_form" class="btn_full">Go to Sign in</a>
-	                    </c:if>
-                        <c:if test="${msg1 != null and msg1 ne ''}">
                         	<div class="divider"></div>
 	                        <h5 align="center">
-	                        	당신의 임시비밀번호는:<br>
+	                        	<br>
 		                        <font style="font-style: normal; font-size: 15px; color: red;">
-		                        ${msg1}
-		                        </font><br>
-		                        입니다!
+		                        ${msg4}
+		                        </font>
 	                        </h5>
 	                        <br><br><br>
 	                        <a href="member_login.jsp" class="btn_full">Go to Sign in</a>

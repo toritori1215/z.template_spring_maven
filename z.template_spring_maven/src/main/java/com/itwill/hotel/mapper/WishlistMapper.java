@@ -9,8 +9,8 @@ public interface WishlistMapper {
 	
 	public List<Product> selectWishlist(Integer mNo);
 
-	public void insertWishlist(Wishlist wishlist);
+	public int insertWishlist(Wishlist wishlist);
 	
-	public void deleteWishlist(Wishlist wishlist);
+	public int deleteWishlist(Wishlist wishlist);
 	
 }

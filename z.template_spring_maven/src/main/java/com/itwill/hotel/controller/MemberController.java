@@ -41,6 +41,10 @@ public class MemberController {
 									@RequestParam(value = "mPassword") String mPassword,
 									HttpSession httpSession,
 									Model model) {
+		if (mId == "" || mPassword == "" || mId == null || mPassword == null ) {
+			model.addAttribute("msg", "빈 칸에 값을 입력하십시오.");
+			return "forward:member_login_form"; 
+		}
 		if (memberService.checkIdExist(mId) == 0) {
 			// 아이디 없음
 			model.addAttribute("msg", "아이디가 존재하지 않습니다.");
@@ -51,7 +55,7 @@ public class MemberController {
 				if (tempMember.getmIfActive() == 1) {
 					// 로그인
 					memberService.setTempPasswordNull(mId);
-					httpSession.setAttribute("sUser", tempMember);
+					httpSession.setAttribute("sUser", tempMember.getmId());
 					return "main_page";
 				} else {
 					// 아이디 휴면

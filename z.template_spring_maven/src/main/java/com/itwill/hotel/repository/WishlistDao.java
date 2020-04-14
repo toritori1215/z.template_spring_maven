@@ -9,8 +9,8 @@ public interface WishlistDao {
 
 	public List<Product> selectWishlist(int mNo);
 	
-	public void insertWishlist(Wishlist wishlist);
+	public int insertWishlist(Wishlist wishlist);
 	
-	public void deleteWishlist(Wishlist wishlist);
+	public int deleteWishlist(Wishlist wishlist);
 	
 }

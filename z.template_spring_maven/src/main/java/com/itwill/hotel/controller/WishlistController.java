@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwill.hotel.domain.Product;
 import com.itwill.hotel.domain.Wishlist;
@@ -45,18 +46,19 @@ public class WishlistController {
 		model.addAttribute("wishlistList", wishlistList);
 		return "insert";
 	}
-	 
+	
 	@RequestMapping(value = "/wishlist_delete")
-	public String wishlistDelete(
+	@ResponseBody
+	public String wishlistDelete(@RequestParam(value="sUser") String sUser,
 			 					 @RequestParam(value="pNo") String pNo,
 			 					 Model model) {
-		Integer mNo_int = Integer.parseInt("1");
-		Integer pNo_int = Integer.parseInt(pNo);
-		wishlistService.deleteWishlist(new Wishlist(mNo_int, pNo_int));
-		List<Product> wishlistList = wishlistService.selectWishlist(mNo_int);
-		//model.addAttribute("mNo", mNo);
-		model.addAttribute("wishlistList", wishlistList);
-		return "forward:wishlist_list";
+		int deleteRowCount = 
+			wishlistService.deleteWishlist(new Wishlist(Integer.parseInt(sUser), Integer.parseInt(pNo)));
+		if (deleteRowCount ==1) {
+			return "true";
+		} else {
+			return "false";
+		}
 	}
 	
 }

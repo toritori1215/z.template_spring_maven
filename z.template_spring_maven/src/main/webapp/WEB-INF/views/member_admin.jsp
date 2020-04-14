@@ -915,6 +915,9 @@
 	</script>
 	<script>
 		$('.wishlist_close_admin').on('click', function (c) {
+			$(this).parent().parent().parent().fadeOut('slow', function (c) {
+				
+			});
 		});
 	</script>
 </body>

@@ -22,13 +22,13 @@ public class WishlistDaoImpl implements WishlistDao {
 	}
 
 	@Override
-	public void insertWishlist(Wishlist wishlist) {
-		wishlistMapper.insertWishlist(wishlist);
+	public int insertWishlist(Wishlist wishlist) {
+		return wishlistMapper.insertWishlist(wishlist);
 	}
 
 	@Override
-	public void deleteWishlist(Wishlist wishlist) {
-		wishlistMapper.deleteWishlist(wishlist);
+	public int deleteWishlist(Wishlist wishlist) {
+		return wishlistMapper.deleteWishlist(wishlist);
 	}
 
 }
