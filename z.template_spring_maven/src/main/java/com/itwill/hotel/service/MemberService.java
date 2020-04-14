@@ -24,11 +24,11 @@ public interface MemberService {
 	public String getTempPassword();
 	
 	public int checkExist(HashMap hashMap);
-	
+
 	public int updateTempPassword(HashMap hashMap);
 	
 	public int checkExist2(HashMap hashMap);
 	
 	public int reActivateAccount(String mId);
-
+	
 }

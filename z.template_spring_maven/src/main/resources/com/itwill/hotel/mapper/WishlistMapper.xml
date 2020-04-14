@@ -3,11 +3,13 @@
 <mapper namespace="com.itwill.hotel.mapper.WishlistMapper">
 
 	<select id="selectWishlist"
-			parameterType="java.lang.Integer"
 			resultType="Product">
-		select pNo, pName, pPrice, pType, pAvailable, pImg, pCapacity, pRate, pDesc
-		from product
-		where pNo in (select pNo from wish_list where mNo = #{mNo})
+		select w.pNo, p.pName, p.pPrice, p.pType, p.pAvailable, p.pImg, p.pCapacity, p.pRate, p.pDesc, p.foodCategory
+		from member m inner join wish_list w 
+		on m.mNo=w.mNo 
+		inner join product p
+		on w.pNo=p.pNo
+		and w.mNo=#{mNo}
 	</select>
 
 	<insert  id="insertWishlist" parameterType="Wishlist">

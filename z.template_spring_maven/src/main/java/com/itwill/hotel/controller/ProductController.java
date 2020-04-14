@@ -24,7 +24,13 @@ public class ProductController {
 		HashMap parameterMap = new HashMap();
 		parameterMap.put("pType", "tour");
 		model.addAttribute("productList", productService.selectByType(parameterMap));
+		System.out.println(productService.selectByType(parameterMap));
 		return "forward:tour_all_list.jsp";
+	}
+	
+	@RequestMapping(value = "/room_list")
+	public String roomList() {
+		return "room_all_list";
 	}
 	
 	@RequestMapping(value = "/tour_grid")
@@ -32,10 +38,9 @@ public class ProductController {
 		return "tour_all_grid";
 	}
 	
-	@RequestMapping(value = "/tour_detail")
-	public String tourDetail(@RequestParam(value="pNo") String pNo, Model model) {
-		model.addAttribute("product", productService.selectByNo(Integer.parseInt(pNo)));
-		return "forward:tour_single_with_gallery.jsp";
+	@RequestMapping(value = "/room_grid")
+	public String roomListGrid() {
+		return "room_all_grid";
 	}
 	
 	@RequestMapping(value = "/product_list_condition")
@@ -47,31 +52,19 @@ public class ProductController {
 	public String productList(@RequestParam(value="pType") String pType,
 							  @RequestParam(value="pPrice_lb") String pPrice_lb,
 							  @RequestParam(value="pPrice_ub") String pPrice_ub,
-							  @RequestParam(value="pRate1") String pRate1,
-							  @RequestParam(value="pRate2") String pRate2,
-							  @RequestParam(value="pRate3") String pRate3,
-							  @RequestParam(value="pRate4") String pRate4,
-							  @RequestParam(value="pRate5") String pRate5,
+							  @RequestParam(value="pRateStar") String pRateStar,
 							  @RequestParam(value="orderBy") String orderBy,
 							  Model model) {
 		
 		if (pPrice_lb == "") {pPrice_lb = null;}
 		if (pPrice_ub == "") {pPrice_ub = null;}
-		if (pRate1 == "") {pRate1 = null;}
-		if (pRate2 == "") {pRate2 = null;}
-		if (pRate3 == "") {pRate3 = null;}
-		if (pRate4 == "") {pRate4 = null;}
-		if (pRate5 == "") {pRate5 = null;}
+		if (pRateStar == "") {pRateStar = null;}
 		
 		HashMap parameterMap = new HashMap();
 		parameterMap.put("pType", pType);
 		parameterMap.put("pPrice_lb", pPrice_lb);
 		parameterMap.put("pPrice_ub", pPrice_ub);
-		parameterMap.put("pRate1", pRate1);
-		parameterMap.put("pRate2", pRate2);
-		parameterMap.put("pRate3", pRate3);
-		parameterMap.put("pRate4", pRate4);
-		parameterMap.put("pRate5", pRate5);
+		parameterMap.put("pRateStar", pRateStar);
 		parameterMap.put("orderBy", orderBy);
 
 		List<Product> productList = productService.selectByType(parameterMap);
@@ -132,5 +125,5 @@ public class ProductController {
 		model.addAttribute("remain", remain);
 		return "product/count_tour";
 	}
-	
+		
 }

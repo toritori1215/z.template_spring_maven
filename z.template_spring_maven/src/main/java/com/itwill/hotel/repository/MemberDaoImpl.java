@@ -53,15 +53,15 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public String getTempPassword() {
-		return memberMapper.getTempPassword();
-	}
-
-	@Override
 	public int checkExist(HashMap hashMap) {
 		return memberMapper.checkExist(hashMap);
 	}
 	
+	@Override
+	public String getTempPassword() {
+		return memberMapper.getTempPassword();
+	}
+
 	@Override
 	public int updateTempPassword(HashMap hashMap) {
 		return memberMapper.updateTempPassword(hashMap);
@@ -76,6 +76,5 @@ public class MemberDaoImpl implements MemberDao {
 	public int reActivateAccount(String mId) {
 		return memberMapper.reActivateAccount(mId);
 	}
-
 
 }
