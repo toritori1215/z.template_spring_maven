@@ -16,21 +16,19 @@
 		select p.pNo, pName, pPrice, pType, pAvailable, pImg, pCapacity, pRate, pDesc, foodCategory, 
 			   (select count(rNo) from review r where r.pNo = p.pNo) as rCount
 		from product p
-		<where>
+		<trim prefix="where" suffixOverrides="and">
 			<if test="pType != null">
-				pType = #{pType}
+				pType = #{pType} and
 			</if>
 			<if test="pPrice_lb != null and pPrice_ub != null">
-				and pPrice &lt;= #{pPrice_ub} and pPrice &gt;= #{pPrice_lb}
+				pPrice &lt;= #{pPrice_ub} and pPrice &gt;= #{pPrice_lb} and
 			</if>
 			<if test="pRate1 != null or pRate2 != null or pRate3 != null or pRate4 != null or pRate5 != null">
-				and ROUND(pRate/2) = #{pRate1}
-				 or ROUND(pRate/2) = #{pRate2}
-				 or ROUND(pRate/2) = #{pRate3}
-				 or ROUND(pRate/2) = #{pRate4}
-				 or ROUND(pRate/2) = #{pRate5}
+				(ROUND(pRate/2) = #{pRate1, jdbcType=NUMERIC} or ROUND(pRate/2) = #{pRate2, jdbcType=NUMERIC} or 
+				 ROUND(pRate/2) = #{pRate3, jdbcType=NUMERIC} or ROUND(pRate/2) = #{pRate4, jdbcType=NUMERIC} or 
+				 ROUND(pRate/2) = #{pRate5, jdbcType=NUMERIC})
 			</if>
-		</where>
+		</trim>
 		<trim prefix="order by">
 			<if test="orderBy == 'pPrice'"> pPrice </if>
 			<if test="orderBy == 'pPriceDesc'"> pPrice DESC </if>
