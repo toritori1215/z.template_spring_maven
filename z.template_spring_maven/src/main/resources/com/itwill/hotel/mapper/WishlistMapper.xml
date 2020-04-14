@@ -9,7 +9,7 @@
 		on m.mNo=w.mNo 
 		inner join product p
 		on w.pNo=p.pNo
-		and w.mNo=1
+		and w.mNo=#{mNo}
 	</select>
 
 	<insert  id="insertWishlist" parameterType="Wishlist">

@@ -55,7 +55,7 @@ public class MemberController {
 				if (tempMember.getmIfActive() == 1) {
 					// 로그인
 					memberService.setTempPasswordNull(mId);
-					httpSession.setAttribute("sUser", tempMember.getmId());
+					httpSession.setAttribute("sUser", tempMember);
 					return "main_page";
 				} else {
 					// 아이디 휴면

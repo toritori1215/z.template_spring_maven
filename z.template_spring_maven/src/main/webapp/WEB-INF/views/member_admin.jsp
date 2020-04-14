@@ -369,16 +369,14 @@
 							<ul class="dropdown-menu" id="cart_items">
 								<li>
 									<div class="image">
-										<img
-											src="${pageContext.request.contextPath}/resources/img/thumb_cart_1.jpg"
+										<img src="${pageContext.request.contextPath}/resources/img/thumb_cart_1.jpg"
 											alt="image">
 									</div> <strong><a href="#">Louvre museum</a>1x $36.00 </strong> <a
 									href="#" class="action"><i class="icon-trash"></i></a>
 								</li>
 								<li>
 									<div class="image">
-										<img
-											src="${pageContext.request.contextPath}/resources/img/thumb_cart_2.jpg"
+										<img src="${pageContext.request.contextPath}/resources/img/thumb_cart_2.jpg"
 											alt="image">
 									</div> <strong><a href="#">Versailles tour</a>2x $36.00 </strong> <a
 									href="#" class="action"><i class="icon-trash"></i></a>
@@ -592,7 +590,7 @@
 					<section id="section-2">
 						<div class="row">
 							<c:forEach var="wishlist" items="${wishlistList}">
-							<div class="col-lg-4 col-md-6">
+							<div class="col-lg-4 col-md-6" mNo="${sUser.mNo}" pNo="${wishlist.pNo}">
 								<div class="hotel_container">
 									<div class="img_container">
 										<a href="tour_detail?pNo=${wishlist.pNo}">
@@ -914,9 +912,20 @@
 		new CBPFWTabs(document.getElementById('tabs'));
 	</script>
 	<script>
-		$('.wishlist_close_admin').on('click', function (c) {
-			$(this).parent().parent().parent().fadeOut('slow', function (c) {
-				
+		$(".wishlist_close_admin").on("click", function (e) {
+			$(this).parent().parent().parent().fadeOut("slow", function (c) {
+				var mNo = $(this).attr("mNo");
+				var pNo = $(this).attr("pNo");
+				console.log(mNo);
+				console.log(pNo);
+				$.ajax({
+					url : "wishlist_delete",
+					data : "mNo="+mNo+"&pNo="+pNo,
+					method : "POST",
+					dataType : "json",
+					success : function() {
+					}
+				});
 			});
 		});
 	</script>

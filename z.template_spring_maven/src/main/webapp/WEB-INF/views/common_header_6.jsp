@@ -36,7 +36,7 @@
 					<ul id="top_links">
 						<c:choose>
 							<c:when test="${sUser != null and sUser ne ''}">
-								<li>Hello ${sUser}</a></li>
+								<li>Hello ${sUser.mId}</a></li>
 								<li><a href="member_logout" id="sign-out-link">Sign Out</a></li>
 								<li><a href="wishlist_list" id="wishlist_link">Wishlist</a></li>
 							</c:when>
