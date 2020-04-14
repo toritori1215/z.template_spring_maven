@@ -623,7 +623,7 @@
 							</c:forEach>
 						</div>
 						<!-- End row -->
-						<button type="submit" class="btn_1 green">Update wishlist</button>
+						<a href="tour_list" class="btn_1 green">Update wishlist</a>
 					</section>
 					<!-- End section 2 -->
 
