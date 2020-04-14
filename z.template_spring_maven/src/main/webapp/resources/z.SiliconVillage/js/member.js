@@ -25,3 +25,4 @@ $('#access_link3').magnificPopup({
 	removalDelay: 300,
 	mainClass: 'my-mfp-zoom-in'
 });
+

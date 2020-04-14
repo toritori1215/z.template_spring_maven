@@ -30,5 +30,7 @@ public interface MemberMapper {
 	public int checkExist2(HashMap hashMap);
 	
 	public int reActivateAccount(String mId);
+	
+	public int updateMember(HashMap hashMap);
 
 }

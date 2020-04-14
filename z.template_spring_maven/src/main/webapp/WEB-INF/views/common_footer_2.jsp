@@ -104,7 +104,7 @@
 		<h3>Sign In</h3>
 	</div>
 	<div class="text-center">
-    	<img src="${pageContext.request.contextPath}/resources/img/logo_sticky.png" alt="Image" data-retina="true" >
+    	<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/youngae.jpg" width="120px" height="150px" alt="Image" data-retina="true" >
     </div>
 	<form method="post" action="member_login_action">
 		<div class="divider"><span><font style="font-style: normal; font-size: 15px; color: red;">${msg}</font></span></div>
@@ -148,7 +148,7 @@
 		<h3>Get A Temporary Password</h3>
 	</div>
 	<div class="text-center">
-    	<img src="${pageContext.request.contextPath}/resources/img/logo_sticky.png" alt="Image" data-retina="true" >
+    	<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/youngae.jpg" width="120px" height="150px" alt="Image" data-retina="true" >
     </div>
 	<form method="post" action="member_get_temppassword">
 		<div class="divider"></div>
@@ -201,7 +201,7 @@
 		<h3>Account Reactivation</h3>
 	</div>
 	<div class="text-center">
-    	<img src="${pageContext.request.contextPath}/resources/img/logo_sticky.png" alt="Image" data-retina="true" >
+    	<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/youngae.jpg" width="120px" height="150px" alt="Image" data-retina="true" >
     </div>
 	<form method="post" action="reactive_account">
 		<div class="divider"></div>
@@ -256,7 +256,7 @@
 		<h3>Account Reactivation</h3>
 	</div>
 	<div class="text-center">
-    	<img src="${pageContext.request.contextPath}/resources/img/logo_sticky.png" alt="Image" data-retina="true" >
+    	<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/youngae.jpg" width="120px" height="150px" alt="Image" data-retina="true" >
     </div>
 	<form method="post" action="member_get_temppassword">
 		<div class="divider"><span><font style="font-style: normal; font-size: 15px; color: red;">${msg}</font></span></div>

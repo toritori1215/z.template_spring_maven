@@ -31,4 +31,6 @@ public interface MemberService {
 	
 	public int reActivateAccount(String mId);
 	
+	public int updateMember(HashMap hashMap);
+	
 }

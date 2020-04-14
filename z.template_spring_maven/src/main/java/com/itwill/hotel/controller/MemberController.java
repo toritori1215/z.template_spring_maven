@@ -1,21 +1,15 @@
 package com.itwill.hotel.controller;
 
 import java.util.HashMap;
-import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.itwill.hotel.domain.Member;
 import com.itwill.hotel.service.MemberService;
@@ -39,6 +33,7 @@ public class MemberController {
 	@RequestMapping(value = "/member_login_action", method=RequestMethod.POST)
 	public String memberLoginAction(@RequestParam(value = "mId") String mId,
 									@RequestParam(value = "mPassword") String mPassword,
+									@RequestParam(value = "mCheck", defaultValue = "") String mCheck,
 									HttpSession httpSession,
 									Model model) {
 		if (mId == "" || mPassword == "" || mId == null || mPassword == null ) {
@@ -55,7 +50,11 @@ public class MemberController {
 				if (tempMember.getmIfActive() == 1) {
 					// 로그인
 					memberService.setTempPasswordNull(mId);
-					httpSession.setAttribute("sUser", tempMember);
+					if (mCheck != null && !mCheck.equals("")) {
+						// 쿠키
+					} else {
+						httpSession.setAttribute("sUser", tempMember);
+					}
 					return "main_page";
 				} else {
 					// 아이디 휴면
@@ -118,28 +117,6 @@ public class MemberController {
 			model.addAttribute(member);
 			model.addAttribute("msg", "비밀번호와 확인 비밀번호가 일치하지 않습니다");
 			return "member_register";
-		}
-	}
-	
-	@RequestMapping(value = "/member_change_password_form")
-	public String memberPasswordChangeForm() {
-		return "member_change_password";
-	}
-	
-	@RequestMapping(value = "/member_change_password_action")
-	public String memberPasswordChangeAction(@RequestParam(value = "mId") String mId, 
-											 @RequestParam(value = "mPassword") String mPassword, 
-											 @RequestParam(value = "mPassword2") String mPassword2, 
-											 Model model) {
-		if (mPassword.equals(mPassword2)) {
-			HashMap hashMap = new HashMap();
-			hashMap.put("mId", mId);
-			hashMap.put("mPassword", mPassword);
-			memberService.updatePassword(hashMap);
-			return "forward:member_login_form";			
-		} else {
-			model.addAttribute("msg", "비밀번호가 일치하지 않습니다");
-			return "forward:member_change_password_form";
 		}
 	}
 	
@@ -224,4 +201,37 @@ public class MemberController {
 		}
 	}
 
+	@RequestMapping(value = "/member_update_password")
+	public String memberPasswordChangeAction(HttpSession httpSession, 
+											 @RequestParam(value = "mPassword") String mPassword, 
+											 @RequestParam(value = "mPassword2") String mPassword2, 
+											 Model model) {
+		if (mPassword.equals(mPassword2)) {
+			Member member = (Member) httpSession.getAttribute("sUser");
+			HashMap hashMap = new HashMap();
+			hashMap.put("mId", member.getmNo());
+			hashMap.put("mPassword", mPassword);
+			memberService.updatePassword(hashMap);
+			return "forward:member_login_form";
+		} else {
+			model.addAttribute("msg", "비밀번호가 일치하지 않습니다");
+			return "member_admin";
+		}
+	}
+	
+	@RequestMapping(value = "/member_update")
+	public String memberUpdate(HttpSession httpSession,
+							   @RequestParam(value = "email") String email, 
+							   @RequestParam(value = "tel") String tel, 
+							   @RequestParam(value = "birth") String birth) {
+		Member member = (Member)httpSession.getAttribute("sUser");
+		HashMap hashMap = new HashMap();
+		hashMap.put("mEmail", email);
+		hashMap.put("mTel", tel);
+		hashMap.put("mBirth", birth);
+		hashMap.put("mNo", member.getmNo());
+		memberService.updateMember(hashMap);
+		return "member_admin";
+	}
+	
 }

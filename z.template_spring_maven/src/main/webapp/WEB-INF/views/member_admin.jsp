@@ -52,30 +52,27 @@
 	<!-- Mobile menu overlay mask -->
 	
 	<header>
-		<div id="top_line" class="visible_on_mobile">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-6 col-5">
-						<i class="icon-phone"></i><strong>0045 043204434</strong>
-					</div>
-	
-					<div class="col-sm-6 col-7">
-						<ul id="top_links">
-							<li><a href="#" id="sign-out-link">Sign Out</a></li>
-							<li><a href="wishlist.html" id="wishlist_link">Wishlist</a></li>
-							<li>
-								<div class="dropdown dropdown-mini">
-									<a href="#" data-toggle="dropdown" id="lang_link">English</a>
-									<div class="dropdown-menu">
-										<ul id="lang_menu">
-											<li><a href="#0">Spanish</a></li>
-											<li><a href="#0">French</a></li>
-											<li><a href="#0">German</a></li>
-											<li><a href="#0">Italian</a></li>
-											<li><a href="#0">Japanese</a></li>
-										</ul>
-									</div>
-								</div> <!-- End Dropdown access -->
+	<div id="top_line" class="visible_on_mobile">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 col-5">
+					<i class="icon-phone"></i><strong>0045 043204434</strong>
+				</div>
+				<div class="col-sm-6 col-7">
+					<ul id="top_links">
+						<li><a href="member_logout" id="sign-out-link">Sign Out</a></li>
+						<li><a href="wishlist_list" id="wishlist_link">Wishlist</a></li>
+						<li>
+							<div class="dropdown dropdown-mini">
+								<a href="#" data-toggle="dropdown" id="lang_link">English</a>
+								<div class="dropdown-menu">
+									<ul id="lang_menu">
+									<li><a href="#0">English</a></li>
+									<li><a href="#0">Korean</a></li>
+									<li><a href="#0">Chinese</a></li>
+									</ul>
+								</div>
+							</div> <!-- End Dropdown access -->
 						</li>
 						<li>
 							<div class="dropdown dropdown-mini">
@@ -85,8 +82,8 @@
 										<li><a href="#0">USD</a></li>
 										<li><a href="#0">GBP</a></li>
 										<li><a href="#0">EUR</a></li>
-										<li><a href="#0">CHF</a></li>
-										<li><a href="#0">BRL</a></li>
+										<li><a href="#0">KRW</a></li>
+										<li><a href="#0">CNY</a></li>
 									</ul>
 								</div>
 							</div> <!-- End Dropdown access -->
@@ -105,31 +102,29 @@
 			<div class="col-3">
 				<div id="logo_home">
 					<h1>
-						<a href="index.html" title="City tours travel template">City
-							Tours travel template</a>
+						<a href="main" title="City tours travel template">City Tours travel template</a>
 					</h1>
 				</div>
 			</div>
 			<nav class="col-9">
-				<a class="cmn-toggle-switch cmn-toggle-switch__htx open_close"
-					href="javascript:void(0);"><span>Menu mobile</span></a>
+				<a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
 				<div class="main-menu">
 					<div id="header_menu">
-						<img
-							src="${pageContext.request.contextPath}/resources/img/logo_sticky.png"
+						<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/SiliconVillage.png"
 							width="160" height="34" alt="City tours" data-retina="true">
 					</div>
-					<a href="#" class="open_close" id="close_in"><i
-						class="icon_set_1_icon-77"></i></a>
+					<a href="#" class="open_close" id="close_in">
+					<i class="icon_set_1_icon-77"></i></a>
 					<ul>
-						<li class="submenu"><a href="javascript:void(0);"
-							class="show-submenu">Home <i class="icon-down-open-mini"></i></a>
+						<li class="submenu">
+						<a href="javascript:void(0);" class="show-submenu">
+							Home <i class="icon-down-open-mini"></i>
+						</a>
 							<ul>
 								<li><a href="index.html">Owl Carousel Slider</a></li>
 								<li><a href="index_22.html">Home items with Carousel</a></li>
 								<li><a href="index_23.html">Home with Search V2</a></li>
-								<li class="third-level"><a href="javascript:void(0);">Revolution
-										slider</a>
+								<li class="third-level"><a href="javascript:void(0);">Revolution slider</a>
 									<ul>
 										<li><a href="index_24.html">Default slider</a></li>
 										<li><a href="index_20.html">Basic slider</a></li>
@@ -153,8 +148,10 @@
 								<li><a href="index_10.html">With Cookie Bar (EU law)</a></li>
 								<li><a href="index_11.html">Popup Advertising</a></li>
 							</ul></li>
-						<li class="submenu"><a href="javascript:void(0);"
-							class="show-submenu">Tours <i class="icon-down-open-mini"></i></a>
+						<li class="submenu">
+						<a href="javascript:void(0);" class="show-submenu">
+							Tours <i class="icon-down-open-mini"></i>
+						</a>
 							<ul>
 								<li><a href="all_tours_list.html">All tours list</a></li>
 								<li><a href="all_tours_grid.html">All tours grid</a></li>
@@ -360,12 +357,16 @@
 				</div>
 				<!-- End main-menu -->
 				<ul id="top_tools">
-					<li><a href="javascript:void(0);"
-						class="search-overlay-menu-btn"><i class="icon_search"></i></a></li>
+					<li>
+						<a href="javascript:void(0);" class="search-overlay-menu-btn">
+							<i class="icon_search"></i>
+						</a>
+					</li>
 					<li>
 						<div class="dropdown dropdown-cart">
-							<a href="#" data-toggle="dropdown" class="cart_bt"><i
-								class="icon_bag_alt"></i><strong>3</strong></a>
+							<a href="#" data-toggle="dropdown" class="cart_bt">
+								<i class="icon_bag_alt"></i><strong>3</strong>
+							</a>
 							<ul class="dropdown-menu" id="cart_items">
 								<li>
 									<div class="image">
@@ -629,36 +630,40 @@
 					<section id="section-3">
 						<div class="row">
 							<div class="col-md-6 add_bottom_30">
-								<h4>Change your password</h4>
-								<div class="form-group">
-									<label>Old password</label>
-									<input class="form-control" name="old_password" id="old_password" type="password">
-								</div>
-								<div class="form-group">
-									<label>New password</label>
-									<input class="form-control" name="new_password" id="new_password" type="password">
-								</div>
-								<div class="form-group">
-									<label>Confirm new password</label>
-									<input class="form-control" name="confirm_new_password" id="confirm_new_password" type="password">
-								</div>
-								<button type="submit" class="btn_1 green">Update Password</button>
+								<form id="f3-1" method="post" action="javascript:memberUpdate();">
+									<h4>Change your password</h4>
+									<div class="form-group">
+										<label>Old password</label>
+										<input class="form-control" name="old_password" id="old_password" type="password">
+									</div>
+									<div class="form-group">
+										<label>New password</label>
+										<input class="form-control" name="new_password" id="new_password" type="password">
+									</div>
+									<div class="form-group">
+										<label>Confirm new password</label>
+										<input class="form-control" name="confirm_password" id="confirm_new_password" type="password">
+									</div>
+									<button type="submit" class="btn_1 green">Update Password</button>
+								</form>
 							</div>
 							<div class="col-md-6 add_bottom_30">
-								<h4>Change your email</h4>
-								<div class="form-group">
-									<label>Old email</label>
-									<input class="form-control" name="old_password" id="old_password" type="password">
-								</div>
-								<div class="form-group">
-									<label>New email</label>
-									<input class="form-control" name="new_password" id="new_password" type="password">
-								</div>
-								<div class="form-group">
-									<label>Confirm new email</label>
-									<input class="form-control" name="confirm_new_password" id="confirm_new_password" type="password">
-								</div>
-								<button type="submit" class="btn_1 green">Update Email</button>
+								<form id="f3-2" method="post" action="member_update">
+									<h4>Change your email</h4>
+									<div class="form-group">
+										<label>Old Email</label>
+										<input class="form-control" name="old_email" type="text" value="${sUser.mEmail}">
+									</div>
+									<div class="form-group">
+										<label>New Email</label>
+										<input class="form-control" name="new_email" type="text">
+									</div>
+									<div class="form-group">
+										<label>Comfirm Email</label>
+										<input class="form-control" name="confirm_email" type="text">
+									</div>
+									<button type="submit" class="btn_1 green">Update Information</button>
+								</form>
 							</div>
 						</div>
 						<!-- End row -->
@@ -752,33 +757,34 @@
 					<!-- End section 3 -->
 
 					<section id="section-4">
+					<form id="f4">
 						<div class="row">
 							<div class="col-md-6">
 								<h4>Your profile</h4>
 								<ul id="profile_summary">
-									<li>Username <span>info@clara.com</span>
+									<li>Username <span>${sUser.mId}</span>
 									</li>
-									<li>First name <span>Clara</span>
+									<li>First name <span>${sUser.mFirstName}</span>
 									</li>
-									<li>Last name <span>Tomson</span>
+									<li>Last name <span>${sUser.mLastName}</span>
 									</li>
-									<li>Phone number <span>+00 032 42366</span>
+									<li>Phone number <span>${sUser.mTel}</span>
 									</li>
-									<li>Date of birth <span>13/04/1975</span>
+									<li>Date of birth <span>${sUser.mBirth}</span>
 									</li>
-									<li>Street address <span>24 Rue de Rivoli</span>
+									<li>Street address <span>${sUser.mAddress}</span>
 									</li>
-									<li>Town/City <span>Paris</span>
+									<li>Town/City <span>${sUser.mCity}</span>
 									</li>
-									<li>Zip code <span>002843</span>
+									<li>Zip code <span>${sUser.mZipCode}</span>
 									</li>
-									<li>Country <span>France</span>
+									<li>Country <span>${sUser.mCountry}</span>
 									</li>
 								</ul>
 							</div>
 							<div class="col-md-6">
 								<p>
-								<img src="${pageContext.request.contextPath}/resources/img/tourist_guide_pic.jpg" alt="Image" class="img-fluid styled profile_pic">
+								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/youngae.png" alt="Image" class="img-fluid styled profile_pic">
 								</p>
 							</div>
 						</div>
@@ -793,13 +799,13 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>First name</label>
-									<input class="form-control" name="first_name" id="first_name" type="text">
+									<input class="form-control" name="first_name" id="first_name" type="text" value="${sUser.mFirstName}">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Last name</label>
-									<input class="form-control" name="last_name" id="last_name" type="text">
+									<input class="form-control" name="last_name" id="last_name" type="text" value="${sUser.mLastName}">
 								</div>
 							</div>
 						</div>
@@ -809,14 +815,14 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Phone number</label>
-									<input class="form-control" name="email_2" id="email_2" type="text">
+									<input class="form-control" name="tel" id="email_2" type="text" value="${sUser.mEmail}">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>Date of birth <small>(dd/mm/yyyy)</small>
+									<label>Date of birth <small>YYYYMMDD</small>
 									</label>
-									<input class="form-control" name="email" id="email" type="text">
+									<input class="form-control" name="birth" id="email" type="text" value="${sUser.mBirth}">
 								</div>
 							</div>
 						</div>
@@ -887,9 +893,9 @@
 								</div>
 							</div>
 							<!-- End Hidden on mobiles -->
-
 							<hr>
 							<button type="submit" class="btn_1 green">Update Profile</button>
+						</form>
 					</section>
 					<!-- End section 4 -->
 
@@ -928,6 +934,15 @@
 				});
 			});
 		});
+	</script>
+	<script type="text/javascript">
+		function memberUpdate() {
+			var oldPassword = window.document.f2.value;
+			var oldPassword = window.document.f2.value;
+			if (condition) {
+				
+			}
+		}
 	</script>
 </body>
 

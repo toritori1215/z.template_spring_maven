@@ -77,4 +77,9 @@ public class MemberDaoImpl implements MemberDao {
 		return memberMapper.reActivateAccount(mId);
 	}
 
+	@Override
+	public int updateMember(HashMap hashMap) {
+		return memberMapper.updateMember(hashMap);
+	}
+
 }

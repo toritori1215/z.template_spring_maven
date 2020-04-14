@@ -31,5 +31,6 @@ public interface MemberDao {
 	
 	public int reActivateAccount(String mId);
 
+	public int updateMember(HashMap hashMap);
 
 }

@@ -53,7 +53,6 @@
 				<div class="col-sm-6 col-5">
 					<i class="icon-phone"></i><strong>0045 043204434</strong>
 				</div>
-
 				<div class="col-sm-6 col-7">
 					<ul id="top_links">
 						<li>
@@ -96,8 +95,7 @@
 			<div class="col-3">
 				<div id="logo_home">
 					<h1>
-						<a href="index.html" title="City tours travel template">City
-							Tours travel template</a>
+						<a href="main" title="City tours travel template">Silicon Village</a>
 					</h1>
 				</div>
 			</div>
@@ -106,8 +104,7 @@
 					href="javascript:void(0);"><span>Menu mobile</span></a>
 				<div class="main-menu">
 					<div id="header_menu">
-						<img
-							src="${pageContext.request.contextPath}/resources/img/logo_sticky.png"
+						<img src="${pageContext.request.contextPath}/resources/img/logo_sticky.png"
 							width="160" height="34" alt="City tours" data-retina="true">
 					</div>
 					<a href="#" class="open_close" id="close_in"><i
@@ -249,8 +246,7 @@
 											<li><a href="header_4.html">With socials on top</a></li>
 											<li><a href="header_5.html">With language selection</a></li>
 											<li><a href="header_6.html">With lang and conversion</a></li>
-											<li><a href="header_7.html">With full horizontal
-													menu</a></li>
+											<li><a href="header_7.html">With full horizontal menu</a></li>
 										</ul>
 									</div>
 									<div class="col-lg-4">
@@ -420,7 +416,7 @@
 	                              </div>
 	                              <div class="clearfix add_bottom_15">
 									  <div class="checkboxes float-left">
-										  <input id="remember-me" type="checkbox" name="check">
+										  <input id="remember-me" type="checkbox" name="mCheck" value="check">
 										  <label for="remember-me">Remember Me</label>
 									  </div>
 								  </div>
