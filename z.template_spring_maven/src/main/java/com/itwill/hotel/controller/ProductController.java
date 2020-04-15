@@ -132,5 +132,9 @@ public class ProductController {
 		model.addAttribute("remain", remain);
 		return "product/count_tour";
 	}
-		
+	
+	@RequestMapping(value = "/error_page")
+	public String errorPage() {
+		return "common_404";
+	}
 }
