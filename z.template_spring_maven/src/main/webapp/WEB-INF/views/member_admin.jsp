@@ -630,8 +630,10 @@
 					<section id="section-3">
 						<div class="row">
 							<div class="col-md-6 add_bottom_30">
-								<form id="f3-1" method="post" action="javascript:memberUpdate();">
+								<form id="f3-1" method="post" action="javascript:updatePassword();">
 									<h4>Change your password</h4>
+									<input type="hidden" id="password1" value="${sUser.mPassword}">
+									<input type="hidden" id="password2" value="${sUser.mTempPassword}">
 									<div class="form-group">
 										<label>Old password</label>
 										<input class="form-control" name="old_password" id="old_password" type="password">
@@ -648,21 +650,22 @@
 								</form>
 							</div>
 							<div class="col-md-6 add_bottom_30">
-								<form id="f3-2" method="post" action="member_update">
+								<form id="f3-2" method="post" action="javascript:updateEmail();">
 									<h4>Change your email</h4>
+									<input type="hidden" id="email1" value="${sUser.mEmail}">
 									<div class="form-group">
 										<label>Old Email</label>
-										<input class="form-control" name="old_email" type="text" value="${sUser.mEmail}">
+										<input class="form-control" name="old_email" id="old_email" type="text" value="${sUser.mEmail}">
 									</div>
 									<div class="form-group">
 										<label>New Email</label>
-										<input class="form-control" name="new_email" type="text">
+										<input class="form-control" name="new_email" id="new_email" type="text">
 									</div>
 									<div class="form-group">
 										<label>Comfirm Email</label>
-										<input class="form-control" name="confirm_email" type="text">
+										<input class="form-control" name="confirm_email" id="confirm_new_email" type="text">
 									</div>
-									<button type="submit" class="btn_1 green">Update Information</button>
+									<button type="submit" class="btn_1 green">Update Email</button>
 								</form>
 							</div>
 						</div>
@@ -757,7 +760,7 @@
 					<!-- End section 3 -->
 
 					<section id="section-4">
-					<form id="f4">
+					<form id="f4" action="javascript:updateMember();">
 						<div class="row">
 							<div class="col-md-6">
 								<h4>Your profile</h4>
@@ -791,7 +794,7 @@
 						<!-- End row -->
 
 						<div class="divider"></div>
-
+						
 						<div class="row">
 							<div class="col-md-12">
 								<h4>Edit profile</h4>
@@ -815,14 +818,14 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Phone number</label>
-									<input class="form-control" name="tel" id="email_2" type="text" value="${sUser.mEmail}">
+									<input class="form-control" name="tel" id="tel" type="text" value="${sUser.mEmail}">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Date of birth <small>YYYYMMDD</small>
 									</label>
-									<input class="form-control" name="birth" id="email" type="text" value="${sUser.mBirth}">
+									<input class="form-control" name="birth" id="birth" type="text" value="${sUser.mBirth}">
 								</div>
 							</div>
 						</div>
@@ -836,13 +839,13 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Street address</label>
-									<input class="form-control" name="first_name" id="first_name" type="text">
+									<input class="form-control" name="address" id="address" type="text">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>City/Town</label>
-									<input class="form-control" name="last_name" id="last_name" type="text">
+									<input class="form-control" name="city" id="city" type="text">
 								</div>
 							</div>
 						</div>
@@ -852,16 +855,16 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Zip code</label>
-									<input class="form-control" name="email" id="email" type="text">
+									<input class="form-control" name="zipcode" id="zipcode" type="text">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Country</label>
 									<select id="country" class="form-control" name="country">
-										<option value="U.S.A">U.S.A</option>
+										<option value="U.S.A">United States</option>
 										<option value="CANADA">CANADA</option>
-										<option value="U.K">U.K</option>
+										<option value="U.K">United Kingdom</option>
 										<option value="KOREA">KOREA</option>
 										<option value="CHINA">CHINA</option>
 									</select>
@@ -893,7 +896,7 @@
 							<div class="js-upload-finished">
 								<h5>Processed files</h5>
 								<div class="list-group">
-									<a href="#" class="list-group-item list-group-item-success"><span class="badge alert-success pull-right">Success</span>image-01.jpg</a>
+									<a href="#" class="list-group-item list-group-item-success"><span class="badge alert-success pull-right">Success</span>${sUser.mImg}</a>
 								</div>
 							</div>
 							<!-- End Hidden on mobiles -->
@@ -918,35 +921,9 @@
 
 	<!-- Specific scripts -->
 	<script src="${pageContext.request.contextPath}/resources/js/tabs.js"></script>
+
 	<script>
 		new CBPFWTabs(document.getElementById('tabs'));
-	</script>
-	<script>
-		$(".wishlist_close_admin").on("click", function (e) {
-			$(this).parent().parent().parent().fadeOut("slow", function (c) {
-				var mNo = $(this).attr("mNo");
-				var pNo = $(this).attr("pNo");
-				console.log(mNo);
-				console.log(pNo);
-				$.ajax({
-					url : "wishlist_delete",
-					data : "mNo="+mNo+"&pNo="+pNo,
-					method : "POST",
-					dataType : "json",
-					success : function() {
-					}
-				});
-			});
-		});
-	</script>
-	<script type="text/javascript">
-		function memberUpdate() {
-			var oldPassword = window.document.f2.value;
-			var oldPassword = window.document.f2.value;
-			if (condition) {
-				
-			}
-		}
 	</script>
 </body>
 
