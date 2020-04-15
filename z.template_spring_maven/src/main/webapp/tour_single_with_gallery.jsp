@@ -94,7 +94,7 @@
 								</c:choose></li>
 							<li><i class="icon_set_1_icon-83"></i>3 Hours</li>
 							<li><i class="icon_set_1_icon-13"></i>Accessibiliy</li>
-							<li><i class="icon_set_1_icon-82"></i>144 Likes</li>
+							<li><i class="icon_set_1_icon-82"></i>${product.wCount} Likes</li>
 							<li><i class="icon_set_1_icon-22"></i>Pet allowed</li>
 							<li><i class="icon_set_1_icon-97"></i>Audio guide</li>
 							<li><i class="icon_set_1_icon-29"></i>Tour guide</li>

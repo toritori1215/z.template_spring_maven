@@ -19,7 +19,7 @@ public class WishlistServiceImpl implements WishlistService {
 	public List<Product> selectWishlist(int mNo) {
 		return wishlistDao.selectWishlist(mNo);
 	}
-
+	
 	@Override
 	public int insertWishlist(Wishlist wishlist) {
 		return wishlistDao.insertWishlist(wishlist);
