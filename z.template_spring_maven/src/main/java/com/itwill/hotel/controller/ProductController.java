@@ -24,15 +24,13 @@ public class ProductController {
 	public String tourList(Model model) {
 		HashMap parameterMap = new HashMap();
 		parameterMap.put("pType", "tour");
-		List<Product> productList=productService.selectByType(parameterMap);
-		System.out.println(productList);
-		model.addAttribute("productList", productList);
+		model.addAttribute("productList", productService.selectByType(parameterMap));
 		return "forward:tour_all_list.jsp";
 	}
 	
 	@RequestMapping(value = "/tour_detail")
 	public String tourDetail(@RequestParam(value="pNo") String pNo, Model model) {
-		model.addAttribute("pNo", pNo);
+		model.addAttribute("product", productService.selectByNo(Integer.parseInt(pNo)));
 		return "forward:tour_single_with_gallery.jsp";
 	}
 	

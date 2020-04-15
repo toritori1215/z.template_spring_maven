@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
     <meta name="author" content="Ansonika">
-    <title>CITY TOURS - City tours and travel site template by Ansonika</title>
+    <title>Silicon Village｜${product.pName}</title>
 
     <!-- Favicons-->
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico" type="image/x-icon">
@@ -26,18 +27,26 @@
 	<jsp:include page="z.references/common_header_6.jsp"/>
 	<!-- End Header -->
 
-	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/img/single_tour_bg_1.jpg" data-natural-width="1400" data-natural-height="470">
+	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}.jpg" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-2">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8">
-						<h1>Arc de Triomphe</h1>
-						<span>Champ de Mars, 5 Avenue Anatole, 75007 Paris.</span>
-						<span class="rating"><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small></span>
+						<h1>${product.pName}</h1>
+						<span>${product.rCount} of our fellow travellers rate this tour as... &nbsp;&nbsp;</span>
+						<span class="rating">
+							<c:forEach var="index" begin="1" end="${Math.round(product.pRate/2)}">
+								<i class="icon-smile voted"></i>
+							</c:forEach>
+							<c:forEach var="index" begin="1" end="${5-Math.round(product.pRate/2)}">
+								<i class="icon-smile"></i>
+							</c:forEach>
+							<small>(${product.pRate})</small>
+						</span>
 					</div>
 					<div class="col-md-4">
 						<div id="price_single_main">
-							from/per person <span><sup>$</sup>52</span>
+							<span><sup>￦</sup>${product.pPrice/10000}만</span> / person 
 						</div>
 					</div>
 				</div>
@@ -50,11 +59,11 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="#">Home</a>
+					<li><a href="main">Home</a>
 					</li>
-					<li><a href="#">Category</a>
+					<li><a href="tour_list">Tours</a>
 					</li>
-					<li>Page active</li>
+					<li>${product.pName}</li>
 				</ul>
 			</div>
 		</div>
@@ -71,7 +80,18 @@
 				<div class="col-lg-8" id="single_tour_desc">
 					<div id="single_tour_feat">
 						<ul>
-							<li><i class="icon_set_1_icon-4"></i>Museum</li>
+							<li>
+								<c:choose>
+								    <c:when test="${product.foodCategory eq 'water'}">
+								       	<i class="pe-7s-drop"></i>WATER
+								    </c:when>
+								    <c:when test="${product.foodCategory eq 'ice'}">
+								       	<i class="icon-snow"></i>ICE
+								    </c:when>
+								    <c:otherwise>
+								       	<i class="icon-tree"></i>FIELD
+								    </c:otherwise>
+								</c:choose></li>
 							<li><i class="icon_set_1_icon-83"></i>3 Hours</li>
 							<li><i class="icon_set_1_icon-13"></i>Accessibiliy</li>
 							<li><i class="icon_set_1_icon-82"></i>144 Likes</li>
