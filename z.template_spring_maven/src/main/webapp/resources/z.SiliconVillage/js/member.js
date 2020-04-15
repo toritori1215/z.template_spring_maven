@@ -97,4 +97,7 @@ function updateEmail() {
 /* member_admin.jsp : updateMember */
 function updateMember() {
 	alert("!!!");
+	var fileName = $("#js-upload-files").val();
+	console.log("fileName:" + fileName);
+	console.log(fileName);
 }
