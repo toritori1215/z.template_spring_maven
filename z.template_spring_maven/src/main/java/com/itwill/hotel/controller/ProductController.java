@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwill.hotel.domain.Product;
 import com.itwill.hotel.service.ProductService;
+import com.itwill.hotel.service.WishlistService;
 
 @Controller
 public class ProductController {
