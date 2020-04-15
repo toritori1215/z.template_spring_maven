@@ -80,7 +80,7 @@
 				<div class="col-lg-8" id="single_tour_desc">
 					<div id="single_tour_feat">
 						<ul>
-							<li>
+							<li> 
 								<c:choose>
 								    <c:when test="${product.foodCategory eq 'water'}">
 								       	<i class="pe-7s-drop"></i>WATER
