@@ -623,7 +623,7 @@
 							</c:forEach>
 						</div>
 						<!-- End row -->
-						<button type="submit" class="btn_1 green">Update wishlist</button>
+						<a href="tour_list" class="btn_1 green">Update wishlist</a>
 					</section>
 					<!-- End section 2 -->
 
@@ -784,7 +784,7 @@
 							</div>
 							<div class="col-md-6">
 								<p>
-								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/youngae.png" alt="Image" class="img-fluid styled profile_pic">
+								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${sUser.mImg}" width="250" height="300" alt="Image" class="img-fluid styled profile_pic">
 								</p>
 							</div>
 						</div>
@@ -859,7 +859,11 @@
 								<div class="form-group">
 									<label>Country</label>
 									<select id="country" class="form-control" name="country">
-										<option value="">Select...</option>
+										<option value="U.S.A">U.S.A</option>
+										<option value="CANADA">CANADA</option>
+										<option value="U.K">U.K</option>
+										<option value="KOREA">KOREA</option>
+										<option value="CHINA">CHINA</option>
 									</select>
 								</div>
 							</div>

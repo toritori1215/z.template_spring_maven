@@ -399,7 +399,7 @@
 			success:function(jsonObject) {
 				console.log(jsonObject);
 			}
-		});
+		}); 
 	});
 	</script>
 	
