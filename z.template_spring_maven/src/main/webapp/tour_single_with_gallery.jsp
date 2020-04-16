@@ -10,7 +10,7 @@
     <meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
     <meta name="author" content="Ansonika">
     <title>Silicon Village｜${product.pName}</title>
-
+    
     <!-- Favicons-->
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-57x57-precomposed.png">
@@ -74,7 +74,7 @@
 			<div id="map" class="map"></div>
 		</div>
 		<!-- End Map -->
-
+<!-- 
 		<div class="container margin_60">
 			<div class="row">
 				<div class="col-lg-8" id="single_tour_desc">

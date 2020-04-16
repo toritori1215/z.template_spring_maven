@@ -7,9 +7,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwill.hotel.domain.Product;
 import com.itwill.hotel.service.ProductService;
@@ -27,6 +29,19 @@ public class ProductController {
 		parameterMap.put("pType", "tour");
 		model.addAttribute("productList", productService.selectByType(parameterMap));
 		return "forward:tour_all_list.jsp";
+	}
+	
+	@RequestMapping(value = "/tour_list_json", produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public List<Product> productList(@RequestParam(value="ratingArray[]") ArrayList<Integer> ratingArray) {
+		
+		HashMap parameterMap = new HashMap();
+		for (int i = 0; i < ratingArray.size(); i++) {
+			Integer rating = ratingArray.get(i);
+			parameterMap.put("pType", "tour");
+			parameterMap.put("pRate"+rating, rating);
+		}
+		return productService.selectByType(parameterMap);
 	}
 	
 	@RequestMapping(value = "/tour_detail")
