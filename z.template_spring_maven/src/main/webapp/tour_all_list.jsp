@@ -22,11 +22,10 @@
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css?family=Gochi+Hand|Montserrat:300,400,700" rel="stylesheet">
 	
-	
 	<!-- Header================================================== -->
 	<jsp:include page="z.references/common_header_6.jsp"/>
 	<!-- End Header -->
-
+	
 	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/tour.jpg" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
@@ -36,7 +35,6 @@
 		</div>
 	</section>
 	<!-- End section -->
-
 	<main>
 		<div id="position">
 			<div class="container">
@@ -198,6 +196,10 @@
 
 						</div>
 					</div>
+					
+					<div id="helloo">
+					</div>
+					
 					<!--/tools -->
 					<div id="productList">
 					<c:forEach var="product" items="${productList}">
@@ -209,7 +211,6 @@
 								</div>
 								<div class="img_list">
 									<a href="tour_detail?pNo=${product.pNo}"><img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg" alt="Image">
-										
 										<div class="short_info">
 											<c:choose>
 											    <c:when test="${product.foodCategory eq 'water'}">
@@ -235,7 +236,7 @@
 									<c:forEach var="index" begin="1" end="${5-Math.round(product.pRate/2)}">
 									<i class="icon-smile"></i>
 									</c:forEach>
-									<small>(${product.rCount})</small>
+									<small>(${product.pRate})</small>
 									</div>
 									<h3><strong>${product.pName}</strong> tour</h3>
 									<p>${product.pDesc}</p>
@@ -395,7 +396,9 @@
 			contentType:"application/x-www-form-urlencoded;charset=utf-8",
 			success:function(jsonObject) {
 				//$('c\\:forEach:first').attr('items', jsonObject);
-				//console.log(jsonObject);
+				//var jsonHtml = JSON.stringify(data, null, 4);
+				$('#helloo').html($('#productList:first-child'));
+				//$('#helloo').html(jsonObject[0].pNo);
 			}
 		}); 
 	});

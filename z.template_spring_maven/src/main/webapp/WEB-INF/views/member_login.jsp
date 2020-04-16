@@ -543,7 +543,7 @@
 		                        </font>
 	                        </h5>
 	                        <br><br><br>
-	                        <a href="member_login.jsp" class="btn_full">Go to Sign in</a>
+	                        <a href="member_login_form" class="btn_full">Go to Sign in</a>
                         </c:if>
              		</div>
                 </div>

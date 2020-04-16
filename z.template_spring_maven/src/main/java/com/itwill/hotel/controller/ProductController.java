@@ -41,6 +41,7 @@ public class ProductController {
 			parameterMap.put("pType", "tour");
 			parameterMap.put("pRate"+rating, rating);
 		}
+		
 		return productService.selectByType(parameterMap);
 	}
 	

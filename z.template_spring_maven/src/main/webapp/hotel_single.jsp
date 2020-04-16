@@ -428,6 +428,7 @@
 						</div>
 						<!-- End row -->
 						<hr>
+						
 						<form name="f" method="post">
 						<c:forEach var="review" items="${hotelreviewList}">
 						<input type="hidden" name="review_rNo" id="review_rNo" value="${review.rNo}" />
@@ -439,9 +440,41 @@
 								<h4>${review.mId}</h4>
 								<p>${review.rContent}</p>
 								<div class="rating">
-									<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i
-										class="icon-smile voted"></i><i class="icon-smile"></i><i
-										class="icon-smile"></i>
+									<c:if test="${review.rRate == '1.0'}">
+										<i class="icon-smile voted"></i>
+										<i class="icon-smile"></i>
+										<i class="icon-smile"></i>
+										<i class="icon-smile"></i>
+										<i class="icon-smile"></i>
+									</c:if>
+									<c:if test="${review.rRate == '2.0'}">
+										<i class="icon-smile voted"></i>
+										<i class="icon-smile voted"></i>
+										<i class="icon-smile"></i>
+										<i class="icon-smile"></i>
+										<i class="icon-smile"></i>
+									</c:if>
+									<c:if test="${review.rRate == '3.0'}">
+										<i class="icon-smile voted"></i>
+										<i class="icon-smile voted"></i>
+										<i class="icon-smile voted"></i>
+										<i class="icon-smile"></i>
+										<i class="icon-smile"></i>
+									</c:if>
+									<c:if test="${review.rRate == '4.0'}">
+										<i class="icon-smile voted"></i>
+										<i class="icon-smile voted"></i>
+										<i class="icon-smile voted"></i>
+										<i class="icon-smile voted"></i>
+										<i class="icon-smile"></i>
+									</c:if>
+									<c:if test="${review.rRate == '5.0'}">
+										<i class="icon-smile voted"></i>
+										<i class="icon-smile voted"></i>
+										<i class="icon-smile voted"></i>
+										<i class="icon-smile voted"></i>
+										<i class="icon-smile voted"></i>
+									</c:if>
 								<div align="right">
 									<input id="reviweUpdate" type="submit" 
 										value="수정" >&nbsp;
@@ -597,7 +630,7 @@
 									<option value="3">Good</option>
 									<option value="4">Excellent</option>
 									<option value="5">Super</option>
-									<option value="Not rated">I don't know</option>
+									<option value="1">I don't know</option>
 								</select>
 							</div>
 						</div>
@@ -611,7 +644,7 @@
 									<option value="3">Good</option>
 									<option value="4">Excellent</option>
 									<option value="5">Super</option>
-									<option value="Not rated">I don't know</option>
+									<option value="1">I don't know</option>
 								</select>
 							</div>
 						</div>
@@ -628,7 +661,7 @@
 									<option value="3">Good</option>
 									<option value="4">Excellent</option>
 									<option value="5">Super</option>
-									<option value="Not rated">I don't know</option>
+									<option value="1">I don't know</option>
 								</select>
 							</div>
 						</div>
@@ -642,7 +675,7 @@
 									<option value="3">Good</option>
 									<option value="4">Excellent</option>
 									<option value="5">Super</option>
-									<option value="Not rated">I don't know</option>
+									<option value="1">I don't know</option>
 								</select>
 							</div>
 						</div>
@@ -729,16 +762,17 @@
 		var Price = $("#price_review option:selected").val();
 		var Quality = $("#quality_review option:selected").val();
 		
-		alert(cleanliness);
-		alert(comfort);
-		alert(Price);
-		alert(Quality);
-		
+
 		$.ajax({
 			type : "POST",
 			url : "review_write",
 			data : {
-				"rContent" : $('#rContent').val()
+				"rContent" : $('#rContent').val(),
+			"cleanliness" : $("#cleanliness_review option:selected").val(),
+			"comfort": $("#comfort_review option:selected").val(),
+			"price": $("#price_review option:selected").val(),
+			"quality": $("#quality_review option:selected").val()
+					
 			},
 			success : function() {
 				alert('게시글 등록 성공');
@@ -771,8 +805,11 @@
 </script>
 
 <!--Review modal validation -->
+
 <script src="${pageContext.request.contextPath}/resources/assets/validate.js"></script>
-	
+
+<script	src="${pageContext.request.contextPath}/resources/assets/validate.js"></script>
+
 </body>
 
 </html>

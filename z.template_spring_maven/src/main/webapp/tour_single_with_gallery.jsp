@@ -27,7 +27,7 @@
 	<jsp:include page="z.references/common_header_6.jsp"/>
 	<!-- End Header -->
 
-	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}33.jpg" data-natural-width="1400" data-natural-height="470">
+	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}.jpg" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-2">
 			<div class="container">
 				<div class="row">
@@ -83,13 +83,13 @@
 							<li> 
 								<c:choose>
 								    <c:when test="${product.foodCategory eq 'water'}">
-								       	<i class="pe-7s-drop"></i>WATER
+								       	<i class="pe-7s-drop"></i>Above water
 								    </c:when>
 								    <c:when test="${product.foodCategory eq 'ice'}">
-								       	<i class="icon-snow"></i>ICE
+								       	<i class="icon-snow"></i>Icy surface
 								    </c:when>
 								    <c:otherwise>
-								       	<i class="icon-tree"></i>FIELD
+								       	<i class="pe-7s-leaf"></i>Green field
 								    </c:otherwise>
 								</c:choose>
 							</li>
@@ -97,7 +97,7 @@
 							<li><i class="icon_set_1_icon-13"></i>Accessibiliy</li>
 							<li><i class="icon_set_1_icon-82"></i>${product.wCount} Likes</li>
 							<li><i class="icon_set_1_icon-22"></i>Pet allowed</li>
-							<li><i class="icon_set_1_icon-97"></i>Audio guide</li>
+							<li><i class="pe-7s-coffee"></i>Refreshments</li>
 							<li><i class="icon_set_1_icon-29"></i>Tour guide</li>
 						</ul>
 					</div>
@@ -109,50 +109,50 @@
 						<div class="sp-slides">
 
 							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/css/images/blank.gif" data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/1_medium.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_tour/1_small.jpg" data-medium="${pageContext.request.contextPath}/resources/img/slider_single_tour/1_medium.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/1_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/1_large.jpg">
+								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg" data-src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg" data-small="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg" data-medium="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg" data-large="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg" data-retina="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg">
 							</div>
 							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/css/images/blank.gif" data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/2_medium.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_tour/2_small.jpg" data-medium="${pageContext.request.contextPath}/resources/img/slider_single_tour/2_medium.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/2_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/2_large.jpg">
-							</div>
-
-							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/css/images/blank.gif" data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/3_medium.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_tour/3_small.jpg" data-medium="${pageContext.request.contextPath}/resources/img/slider_single_tour/3_medium.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/3_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/3_large.jpg">
+								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}2.jpg" data-src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg" data-small="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}2.jpg" data-medium="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}2.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/2_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/2_large.jpg">
 							</div>
 
 							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/css/images/blank.gif" data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/4_medium.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_tour/4_small.jpg" data-medium="${pageContext.request.contextPath}/resources/img/slider_single_tour/4_medium.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/4_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/4_large.jpg">
+								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}3.jpg" data-src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_tour/3_small.jpg" data-medium="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}3.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/3_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/3_large.jpg">
 							</div>
 
 							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/css/images/blank.gif" data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/5_medium.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_tour/5_small.jpg" data-medium="${pageContext.request.contextPath}/resources/img/slider_single_tour/5_medium.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/5_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/5_large.jpg">
+								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}4.jpg" data-src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_tour/4_small.jpg" data-medium="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}4.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/4_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/4_large.jpg">
 							</div>
 
 							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/css/images/blank.gif" data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/6_medium.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_tour/6_small.jpg" data-medium="${pageContext.request.contextPath}/resources/img/slider_single_tour/6_medium.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/6_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/6_large.jpg">
+								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}5.jpg" data-src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_tour/5_small.jpg" data-medium="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}5.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/5_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/5_large.jpg">
 							</div>
 
 							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/css/images/blank.gif" data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/7_medium.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_tour/7_small.jpg" data-medium="${pageContext.request.contextPath}/resources/img/slider_single_tour/7_medium.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/7_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/7_large.jpg">
+								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}6.jpg" data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/6_medium.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_tour/6_small.jpg" data-medium="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}6.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/6_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/6_large.jpg">
 							</div>
 
 							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/css/images/blank.gif" data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/8_medium.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_tour/8_small.jpg" data-medium="${pageContext.request.contextPath}/resources/img/slider_single_tour/8_medium.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/8_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/8_large.jpg">
+								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}7.jpg" data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/7_medium.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_tour/7_small.jpg" data-medium="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}7.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/7_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/7_large.jpg">
 							</div>
 
 							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/css/images/blank.gif" data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/9_medium.jpg" data-small="../resourcesimg/slider_single_tour/9_small.jpg" data-medium="${pageContext.request.contextPath}/resources/img/slider_single_tour/9_medium.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/9_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/9_large.jpg">
+								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}8.jpg" data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/8_medium.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_tour/8_small.jpg" data-medium="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}8.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/8_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/8_large.jpg">
+							</div>
+
+							<div class="sp-slide">
+								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}9.jpg" data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/9_medium.jpg" data-small="../resourcesimg/slider_single_tour/9_small.jpg" data-medium="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}9.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/9_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/9_large.jpg">
 							</div>
 						</div>
 						<div class="sp-thumbnails">
-							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/img/slider_single_tour/1_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/img/slider_single_tour/2_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/img/slider_single_tour/3_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/img/slider_single_tour/4_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/img/slider_single_tour/5_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/img/slider_single_tour/6_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/img/slider_single_tour/7_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/img/slider_single_tour/8_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/img/slider_single_tour/9_medium.jpg">
+							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg">
+							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}2.jpg">
+							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}3.jpg">
+							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}4.jpg">
+							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}5.jpg">
+							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}6.jpg">
+							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}7.jpg">
+							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}8.jpg">
+							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}9.jpg">
 						</div>
 					</div>
 
@@ -161,11 +161,12 @@
 					<div class="row">
 						<div class="col-lg-3">
 							<h3>Description</h3>
+							<a href="#" class="btn_1 white add_bottom_30" data-toggle="modal" data-target="#guide">GUIDE INFO</a>
 						</div>
 						<div class="col-lg-9">
 							<h4>Paris in love</h4>
 							<p>
-								Lorem ipsum dolor sit amet, at omnes deseruisse pri. Quo aeterno legimus insolens ad. Sit cu detraxit constituam, an mel iudico constituto efficiendi. Eu ponderum mediocrem has, vitae adolescens in pro. Mea liber ridens inermis ei, mei legendos vulputate an, labitur tibique te qui.
+								${product.pDesc}
 							</p>
 							<h4>What's include</h4>
 							<p>
@@ -198,6 +199,7 @@
 					<div class="row">
 						<div class="col-lg-3">
 							<h3>Schedule</h3>
+							<a href="#" class="btn_1 outline add_bottom_30" data-toggle="modal" data-target="#timeline">　TIMELINE　</a>
 						</div>
 						<div class="col-lg-9">
 
@@ -548,7 +550,90 @@
 	<!-- Footer================================================== -->
 	<jsp:include page="z.references/common_footer_2.jsp"/>
 	<!-- End Footer -->
-
+	
+	
+	<!-- Modal Timeline -->
+	
+	<!-- End Modal Timeline -->
+	<div class="modal fade" id="timeline" tabindex="-1" role="dialog" aria-labelledby="timelineLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				
+				<div class="container margin_60">
+			<div class="main_title">
+				<h2><span>TIMELINE</span> for ${product.pName} Tour</h2>
+				<p>
+					Quisque at tortor a libero posuere laoreet vitae sed arcu. Curabitur consequat.
+				</p>
+			</div>
+				</div>
+				
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				
+				<div class="modal-body">
+				<div class="container margin_60">
+					<ul class="cbp_tmtimeline">
+						<li>
+							<time class="cbp_tmtime" datetime="09:30"><span>30 minutes</span> <span>09:30</span>
+							</time>
+							<div class="cbp_tmicon timeline_icon_point"></div>
+							<div class="cbp_tmlabel">
+								<div class="float-right d-none d-md-block">Guide <strong>John Doe</strong><img src="${pageContext.request.contextPath}/resources/img/guide_1.jpg" alt="Image" class="rounded-circle speaker">
+								</div>
+								<h2><span>Lorem ipsum</span>Meeting point</h2>
+								<p>Winter purslane courgette pumpkin quandong komatsuna fennel green bean cucumber watercress. Pea sprouts wattle seed rutabaga okra yarrow cress avocado grape radish bush tomato ricebean black-eyed pea maize eggplant. </p>
+							</div>
+						</li>
+						<li>
+							<time class="cbp_tmtime" datetime="11:30"><span>2 hours</span> <span>11:30</span>
+							</time>
+							<div class="cbp_tmicon timeline_icon_pic"></div>
+							<div class="cbp_tmlabel">
+								<div class="float-right d-none d-md-block">Guide <strong>John Doe</strong><img src="${pageContext.request.contextPath}/resources/img/guide_2.jpg" alt="Image" class="rounded-circle speaker">
+								</div>
+								<h2><span>Lorem ipsum</span>Exhibitions</h2>
+								<p>Caulie dandelion maize lentil collard greens radish arugula sweet pepper water spinach kombu courgette lettuce. Celery coriander bitterleaf epazote radicchio shallot winter purslane collard greens spring onion squash lentil. Artichoke salad bamboo shoot black-eyed pea brussels sprout garlic kohlrabi.</p>
+							</div>
+						</li>
+						<li>
+							<time class="cbp_tmtime" datetime="13:30"><span>1 hour</span> <span>13:30</span>
+							</time>
+							<div class="cbp_tmicon timeline_icon_break"></div>
+							<div class="cbp_tmlabel">
+								<h2><span>Lorem ipsum</span>Lunch and coffee break</h2>
+								<p>Parsnip lotus root celery yarrow seakale tomato collard greens tigernut epazote ricebean melon tomatillo soybean chicory broccoli beet greens peanut salad. </p>
+							</div>
+						</li>
+						<li>
+							<time class="cbp_tmtime" datetime="14:30"><span>2 hours</span> <span>14:30</span>
+							</time>
+							<div class="cbp_tmicon timeline_icon_audio"></div>
+							<div class="cbp_tmlabel">
+								<div class="float-right d-none d-md-block">Guide <strong>John Doe</strong><img src="${pageContext.request.contextPath}/resources/img/guide_1.jpg" alt="Image" class="rounded-circle speaker">
+								</div>
+								<h2><span>Lorem ipsum</span>The auditorium Louvre</h2>
+								<p>Peanut gourd nori welsh onion rock melon mustard jícama. Desert raisin amaranth kombu aubergine kale seakale brussels sprout pea. Black-eyed pea celtuce bamboo shoot salad kohlrabi leek squash prairie turnip catsear rock melon chard taro broccoli turnip greens. Fennel quandong potato watercress ricebean swiss chard garbanzo. Endive daikon brussels sprout lotus root silver beet epazote melon shallot.</p>
+							</div>
+						</li>
+						<li>
+							<time class="cbp_tmtime" datetime="16:30"><span>2 hours</span> <span>16:30</span>
+							</time>
+							<div class="cbp_tmicon timeline_icon_pic"></div>
+							<div class="cbp_tmlabel">
+								<div class="float-right d-none d-md-block">Guide <strong>John Doe</strong><img src="${pageContext.request.contextPath}/resources/img/guide_2.jpg" alt="Image" class="rounded-circle speaker">
+								</div>
+								<h2><span>Lorem ipsum</span>Modern art</h2>
+								<p>Parsley amaranth tigernut silver beet maize fennel spinach. Ricebean black-eyed pea maize scallion green bean spinach cabbage jícama bell pepper carrot onion corn plantain garbanzo. Sierra leone bologi komatsuna celery peanut swiss chard silver beet squash dandelion maize chicory burdock tatsoi dulse radish wakame beetroot.</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- Modal Review -->
 	<div class="modal fade" id="myReview" tabindex="-1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
 		<div class="modal-dialog">
