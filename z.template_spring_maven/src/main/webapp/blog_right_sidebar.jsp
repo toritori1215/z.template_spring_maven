@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,13 +59,17 @@
 
 				<div class="col-lg-9">
 					<div class="box_style_1">
+					<c:forEach var ="blog" items = "${blogList}">
+					<input type = "hidden" name="blog_bNo" id="blog_bNo">
+						
+					
 						<div class="post">
 							<a href="blog_post_right_sidebar.html"><img src="${pageContext.request.contextPath}/resources/img/blog-3.jpg" alt="Image" class="img-fluid">
 							</a>
 							<div class="post_info clearfix">
 								<div class="post-left">
 									<ul>
-										<li><i class="icon-calendar-empty"></i> On <span>12 Nov 2020</span>
+										<li><i class="icon-calendar-empty"></i> On <span>${blog.bDate}</span>
 										</li>
 										<li><i class="icon-inbox-alt"></i> In <a href="#">Top tours</a>
 										</li>
@@ -75,69 +80,16 @@
 								<div class="post-right"><i class="icon-comment"></i><a href="#">25 </a>
 								</div>
 							</div>
-							<h2>Duis aute irure dolor in reprehenderit</h2>
+							<h2>${blog.bTitle}</h2>
+							
+							
 							<p>
-								Ludus albucius adversarium eam eu. Sit eu reque tation aliquip. Quo no dolorum albucius lucilius, hinc eligendi ut sed. Ex nam quot ferri suscipit, mea ne legere alterum repudiandae. Ei pri quaerendum intellegebat, ut vel consequuntur voluptatibus. Et volumus sententiae adversarium duo......
-							</p>
-							<p>
-								Ludus albucius adversarium eam eu. Sit eu reque tation aliquip. Quo no dolorum albucius lucilius, hinc eligendi ut sed. Ex nam quot ferri suscipit, mea ne legere alterum repudiandae. Ei pri quaerendum intellegebat, ut vel consequuntur voluptatibus. Et volumus sententiae adversarium duo......
-							</p>
-							<a href="blog_post_right_sidebar.html" class="btn_1">Read more</a>
-						</div>
-						<!-- end post -->
-
-
-						<div class="post">
-							<a href="blog_post_right_sidebar.jsp"><img src="${pageContext.request.contextPath}/resources/img/blog-1.jpg" alt="Image" class="img-fluid">
-							</a>
-							<div class="post_info clearfix">
-								<div class="post-left">
-									<ul>
-										<li><i class="icon-calendar-empty"></i> On <span>12 Nov 2020</span>
-										</li>
-										<li><i class="icon-inbox-alt"></i> In <a href="#">Top tours</a>
-										</li>
-										<li><i class="icon-tags"></i> Tags <a href="#">Works</a>, <a href="#">Personal</a>
-										</li>
-									</ul>
-								</div>
-								<div class="post-right"><i class="icon-comment"></i><a href="#">25 </a>Comments</div>
-							</div>
-							<h2>Duis aute irure dolor in reprehenderit</h2>
-							<p>
-								Praesent vestibulum molestie lacus. Aenean nonummy hendrerit mauris. Phasellus porta. Fusce suscipit varius mi nascetur ridiculus mus. Nulla dui. Fusce feugiat malesuada odio. Morbi nunc odio, gravida at, cursus nec, luctus a, lorem.....
-							</p>
-							<a href="blog_post_right_sidebar.html" class=" btn_1">Read more</a>
-						</div>
-						<!-- end post -->
-
-						<hr>
-
-						<div class="post">
-							<a href="blog_post_right_sidebar.jsp"><img src="${pageContext.request.contextPath}/resources/img/blog-2.jpg" alt="Image" class="img-fluid">
-							</a>
-							<div class="post_info clearfix">
-								<div class="post-left">
-									<ul>
-										<li><i class="icon-calendar-empty"></i> On <span>12 Nov 2020</span>
-										</li>
-										<li><i class="icon-inbox-alt"></i> In <a href="#">Top tours</a>
-										</li>
-										<li><i class="icon-tags"></i> Tags <a href="#">Works</a>, <a href="#">Personal</a>
-										</li>
-									</ul>
-								</div>
-								<div class="post-right"><i class="icon-comment"></i><a href="#">25 </a>Comments</div>
-							</div>
-							<h2>Duis aute irure dolor in reprehenderit</h2>
-							<p>
-								Praesent vestibulum molestie lacus. Aenean nonummy hendrerit mauris. Phasellus porta. Fusce suscipit varius mi nascetur ridiculus mus. Nulla dui. Fusce feugiat malesuada odio. Morbi nunc odio, gravida at, cursus nec, luctus a, lorem.....
-							</p>
-							<p>
-								Ludus albucius adversarium eam eu. Sit eu reque tation aliquip. Quo no dolorum albucius lucilius, hinc eligendi ut sed. Ex nam quot ferri suscipit, mea ne legere alterum repudiandae. Ei pri quaerendum intellegebat, ut vel consequuntur voluptatibus. Et volumus sententiae adversarium duo......
+							${blog.bContent}
 							</p>
 							<a href="blog_post_right_sidebar.jsp" class="btn_1">Read more</a>
 						</div>
+						</c:forEach>
+
 						<!-- end post -->
 					</div>
 					<hr>
