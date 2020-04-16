@@ -84,7 +84,7 @@
 	<update id="updateEmail" parameterType="java.util.HashMap">
 		update member
 		set mEmail=#{mEmail} 
-		where mId=#{mNo}
+		where mNo=#{mNo}
 	</update>
 	
 </mapper>

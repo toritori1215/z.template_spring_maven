@@ -233,6 +233,7 @@
 							<div class="col-md-6 add_bottom_30">
 								<form id="f3-1" method="post" action="javascript:updatePassword();">
 									<h4>Change your password</h4>
+									<input type="hidden" id="passwordMsg" value="${passwordMsg}">
 									<input type="hidden" id="password1" value="${sUser.mPassword}">
 									<input type="hidden" id="password2" value="${sUser.mTempPassword}">
 									<div class="form-group">
@@ -253,6 +254,7 @@
 							<div class="col-md-6 add_bottom_30">
 								<form id="f3-2" method="post" action="javascript:updateEmail();">
 									<h4>Change your email</h4>
+									<input type="hidden" id="emailMsg" value="${emailMsg}">
 									<input type="hidden" id="email1" value="${sUser.mEmail}">
 									<div class="form-group">
 										<label>Old Email</label>
@@ -371,6 +373,8 @@
 									<li>First name <span>${sUser.mFirstName}</span>
 									</li>
 									<li>Last name <span>${sUser.mLastName}</span>
+									</li>
+									<li>Email <span>${sUser.mEmail}</span>
 									</li>
 									<li>Phone number <span>${sUser.mTel}</span>
 									</li>
@@ -525,6 +529,19 @@
 
 	<script>
 		new CBPFWTabs(document.getElementById('tabs'));
+	</script>
+	
+	<script type="text/javascript">
+		$(function() {
+			var emailMsg = $("#emailMsg").val();
+			if (emailMsg != null && emailMsg != "") {
+				alert(emailMsg);
+			}
+			var passwordMsg = $("#passwordMsg").val();
+			if (passwordMsg != null &passwordMsg != "") {
+				alert(passwordMsg);
+			}
+		});
 	</script>
 </body>
 
