@@ -394,7 +394,8 @@
 			async:true,
 			contentType:"application/x-www-form-urlencoded;charset=utf-8",
 			success:function(jsonObject) {
-				console.log(jsonObject);
+				//$('c\\:forEach:first').attr('items', jsonObject);
+				//console.log(jsonObject);
 			}
 		}); 
 	});
