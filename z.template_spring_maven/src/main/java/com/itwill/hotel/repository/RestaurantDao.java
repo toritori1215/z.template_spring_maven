@@ -9,6 +9,7 @@ public interface RestaurantDao {
 	public int registerProduct(RestaurantDTO restDto);
 	public RestaurantDTO get_Restaurant_Product(int pNo);
 	public int restEntireProductCnt();
+	public int foodCategoryDessertCnt();
 	public int restCategoryProductCnt(String category);
 	public int restCategoryProductDessertCnt(String category);
 	public List<RestaurantDTO> findRestBoardList(String orderBy,String category);

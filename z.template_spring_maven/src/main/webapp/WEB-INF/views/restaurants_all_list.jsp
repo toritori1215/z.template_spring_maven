@@ -5,8 +5,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
-
-
+   
+ 
 	<!-- Header================================================== -->
 	<jsp:include page="common_header_6.jsp"/>
 	<!-- 사용자 지정 CSS -->
@@ -78,7 +78,7 @@
 									</li>
 							</c:forEach>
 							
-							<li><a href="restaurants_all_list?category=Dessert"><i class="icon_set_3_restaurant-8"></i>Dessert <span>(08)</span></a>
+							<li><a href="restaurants_all_list?category=Dessert"><i class="icon_set_3_restaurant-8"></i>Dessert <span>(${foodCategoryDessertCnt})</span></a>
 							
 							<!-- 
 							<li><a href="#"><i class="icon_set_3_restaurant-1"></i>Pizza / Italian <span>(20)</span></a>

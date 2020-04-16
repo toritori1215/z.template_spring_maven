@@ -121,7 +121,7 @@
 			
 			SELECT  foodcategory,COUNT(*) categoryCnt
 			FROM PRODUCT
-			WHERE PTYPE ='restaurant' AND foodcategory NOT IN ('Dummy','Restaurant Booking') and foodcategory not like '%Dessert'
+			WHERE PTYPE ='restaurant' AND foodcategory NOT IN ('Dummy','Restaurant Booking') AND foodcategory NOT LIKE '%Dessert'
 			GROUP BY foodcategory
 	</select>
 
@@ -156,4 +156,16 @@
               WHERE pname !='BPPP' and ptype = 'restaurant' and foodcategory like #{category}
               ORDER BY prate ${orderBy},pname asc) p
 	</select>
+	
+	<select id="foodCategoryDessertCnt"
+			resultType="int">
+		SELECT SUM(a.categoryCnt)
+		FROM (SELECT  COUNT(*) categoryCnt
+			  FROM PRODUCT
+			  WHERE PTYPE ='restaurant' AND foodcategory like '%Dessert'
+			  GROUP BY foodcategory) a
+
+	</select>
+	
+	
 </mapper>

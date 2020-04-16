@@ -90,12 +90,13 @@ public class RestaurantViewResolverController {
 			=restService.findRestaurantBoardList(pageInputDto, orderBy,category);
 		
 		List<HashMap<String,Integer>> foodCategoryList = restService.foodCategoryList();
-		
+		int foodCategoryDessertCnt = restService.foodCategoryDessertCnt();
 		System.out.println("restListPage -->"+restListPage );
 		model.addAttribute("restListPage",restListPage);
 		model.addAttribute("foodCategoryList",foodCategoryList);
 		model.addAttribute("currentPageno",pageno);
 		model.addAttribute("category",category);
+		model.addAttribute("foodCategoryDessertCnt",foodCategoryDessertCnt);
 		
 		System.out.println("restListPage ::-->"+ restListPage);
 		for (int i = 0; i < foodCategoryList.size(); i++) {

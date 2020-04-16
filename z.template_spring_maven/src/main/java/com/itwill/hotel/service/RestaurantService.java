@@ -16,4 +16,5 @@ public interface RestaurantService {
 	public RestaurantBoardListPageDto findRestaurantBoardList(PageInputDto pageInputDto,String orderBy,String category);
 	public RestaurantBoardListPageDto calculator_paging(PageInputDto pageInputDto);
 	public List<HashMap<String,Integer>> foodCategoryList();
+	public int foodCategoryDessertCnt();
 }

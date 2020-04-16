@@ -34,6 +34,7 @@
 
 		<div class="margin_60 container">
 			<div id="tabs" class="tabs">
+				<input type="hidden" id="inputMsg" value="${inputMsg}">
 				<nav>
 					<ul>
 						<li><a href="#section-1" class="icon-booking"><span>Bookings</span></a>
@@ -528,7 +529,16 @@
 	<script src="${pageContext.request.contextPath}/resources/js/tabs.js"></script>
 
 	<script>
-		new CBPFWTabs(document.getElementById('tabs'));
+		var inputMsg = $("#inputMsg").val();
+		if (inputMsg == 1) {
+			new CBPFWTabs(document.getElementById('tabs'),{start : 1});
+		} else if (inputMsg == 2) {
+			new CBPFWTabs(document.getElementById('tabs'),{start : 2});
+		} else if (inputMsg == 3) {
+			new CBPFWTabs(document.getElementById('tabs'),{start : 3});
+		} else {
+			new CBPFWTabs(document.getElementById('tabs'));
+		}
 	</script>
 	
 	<script type="text/javascript">
