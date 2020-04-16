@@ -16,11 +16,12 @@ public class BlogController {
 	@Autowired
 	private BlogService blogService;
 	
-	@RequestMapping(value = "/blog_list")
+	@RequestMapping(value = "/blog_right_sidebar")
 	public String blogList(Model model) {
 		List<Blog> blogList = blogService.selectAll();
 		model.addAttribute("blogList", blogList);
 		return "forward:blog_right_sidebar.jsp";
 	}
+	
 	
 }
