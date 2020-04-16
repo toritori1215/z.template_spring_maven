@@ -148,6 +148,15 @@ public class RestaurantDaoImpl implements RestaurantDao{
 	}
 
 
+	@Override
+	public int foodCategoryDessertCnt() {
+		// TODO Auto-generated method stub
+		int foodCategoryDessertCnt = restMapper.foodCategoryDessertCnt();
+		System.out.println("검색된 상품 수:"+ foodCategoryDessertCnt);
+		return foodCategoryDessertCnt;
+	}
+
+	
 	
 
 	
