@@ -36,21 +36,38 @@ public class ReviewController {
 	public String hotelreviewList(HttpServletRequest request,Model model) {
 		System.out.println("list컨트롤러");
 		List<Review>hotelreviewList =reviewService.selectAll();
+		
 		System.out.println("@@@@@@@@@"+hotelreviewList);
 		model.addAttribute("hotelreviewList",hotelreviewList);
 		return "forward:hotel_single.jsp";
 	}
 	
 	@RequestMapping(value = "/review_write", method=RequestMethod.POST)
-	public String write(HttpServletRequest request,Review review,Model model){
+	public String write(HttpServletRequest request,Review review,Model model,
+						@RequestParam(value = "cleanliness") String cleanliness,
+						@RequestParam(value = "comfort") String comfort,
+						@RequestParam(value = "price") String price,
+						@RequestParam(value = "quality") String quality){
 	System.out.println("쓰기 컨트롤러");
+	System.out.println("cleanliness-->"+cleanliness);
+	System.out.println("comfort-->"+comfort);
+	System.out.println("price-->"+price);
+	System.out.println("quality-->"+quality);
+	int var1 =Integer.parseInt(cleanliness);
+	int var2 =Integer.parseInt(comfort);
+	int var3 =Integer.parseInt(price);
+	int var4 =Integer.parseInt(quality);
+	int total_review =(var1+var2+var3+var4)/4;
+	System.out.println("total_review-->"+total_review);
+	review.setrRate(new Double(total_review));
 	int reviewWrite=reviewService.createReview(review);
 	System.out.println("reviewWrite");
     List<Review> reviewList = reviewService.selectAll();
     model.addAttribute("reviewList",reviewList);
-    System.out.println("@@@@@@@@@"+reviewWrite);
+    //model.addAttribute("total_review", 34);
 	return "hotel_single";
 	}
+	
 	@RequestMapping(value = "/review_delete_action" ,method=RequestMethod.GET)
 	public String delete(@RequestParam(value = "rNo") String rNo,Model model) {
 	System.out.println("delete컨트롤러 도착");

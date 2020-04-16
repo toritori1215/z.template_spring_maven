@@ -14,7 +14,7 @@
 	</select>
 	<insert id="reviewWrite" parameterType="Review">
 		insert into review (rNo,rContent,rRegdate,rReadcount,rRate,rGroup,rStep,rDepth,mNo,pNo) values
-						(REVIEW_SEQ.nextval,#{rContent},sysdate,0,0,0,0,0,1,1)
+						(REVIEW_SEQ.nextval,#{rContent},sysdate,0,#{rRate},0,0,0,1,1)
 	</insert>
 	
 	<delete id="deleteReview" parameterType="_int">
