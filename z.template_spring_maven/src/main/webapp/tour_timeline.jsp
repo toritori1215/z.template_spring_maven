@@ -5,7 +5,7 @@
 <html>
 
 	<!-- Header================================================== -->
-	<jsp:include page="common_header_6.jsp"/>
+	<jsp:include page="z.references/common_header_6.jsp"/>
 	<!-- End Header -->
 
 	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/img/header_bg.jpg" data-natural-width="1400" data-natural-height="470">
@@ -101,7 +101,7 @@
 	<!-- End main -->
 
 	<!-- Footer================================================== -->
-	<jsp:include page="common_footer_2.jsp"/>
+	<jsp:include page="z.references/common_footer_2.jsp"/>
 	<!-- End Footer -->
 	
 
