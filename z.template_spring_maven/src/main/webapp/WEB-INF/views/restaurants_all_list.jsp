@@ -496,7 +496,7 @@
 					//console.log($('div[valueStatus="'+i+'"] .price_list  label').text());
 					let priceParent = document.querySelectorAll('.price_list  label');
 					for (var i = 0; i < priceParent.length; i++) {
-						console.log("text::"+priceParent[i].firstChild.nodeValue);
+						//console.log("text::"+priceParent[i].firstChild.nodeValue);
 						
 						//숫자로 변환
 						let labelPrice = priceParent[i].firstChild.nodeValue;
