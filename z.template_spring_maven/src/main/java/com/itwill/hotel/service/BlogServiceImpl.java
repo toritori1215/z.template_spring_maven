@@ -38,9 +38,9 @@ public class BlogServiceImpl implements BlogService {
 	}
 
 	@Override
-	public int updateBlog(int bNo) {
+	public int updateBlog(Blog blog) {
 		
-		return blogDao.updateBlog(bNo);
+		return blogDao.updateBlog(blog);
 	}
 	
 }

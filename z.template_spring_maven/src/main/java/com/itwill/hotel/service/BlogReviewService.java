@@ -14,6 +14,6 @@ public interface BlogReviewService {
 	
 	public int deleteBlogReview(int brNo);
 	
-	public int updateBlogReview(int brNO);
+	public int updateBlogReview(BlogReview blogReview);
 	
 }

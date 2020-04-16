@@ -40,8 +40,8 @@ public class BlogDaoImpl implements BlogDao {
 	}
 
 	@Override
-	public int updateBlog(int bNo) {
-		int updateResult = blogMapper.updateBlog(bNo);
+	public int updateBlog(Blog blog) {
+		int updateResult = blogMapper.updateBlog(blog);
 		return updateResult;
 	}
 	

@@ -39,8 +39,8 @@ public class BlogReviewDaoImpl implements BlogReviewDao {
 	}
 
 	@Override
-	public int updateBlogReview(int brNo) {
-		int updateResult = BlogReviewMapper.updateBlogReview(brNo);
+	public int updateBlogReview(BlogReview blogReview) {
+		int updateResult = BlogReviewMapper.updateBlogReview(blogReview);
 		return updateResult;
 	}
 

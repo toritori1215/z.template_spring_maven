@@ -14,6 +14,6 @@ public interface BlogReviewDao {
 	
 	public int deleteBlogReview(int brNo);
 	
-	public int updateBlogReview(int brNo);
+	public int updateBlogReview(BlogReview blogReview);
 	
 }
