@@ -30,8 +30,8 @@ public class BlogReviewServiceImpl {
 		return blogReviewDao.deleteBlogReview(brNo);
 	}
 	
-	public int updateBlogReview(int brNo) {
-		return blogReviewDao.updateBlogReview(brNo);
+	public int updateBlogReview(BlogReview blogReview) {
+		return blogReviewDao.updateBlogReview(blogReview);
 	}
 	
 }
