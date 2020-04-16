@@ -264,3 +264,15 @@ a#mypage-link {
 }
 
 #mypage-link:before{content: "\e80f";}
+
+
+
+
+
+
+
+/* timeline */
+.modal-dialog1 {
+	margin-top: 120px;
+	width: 300px;
+}
