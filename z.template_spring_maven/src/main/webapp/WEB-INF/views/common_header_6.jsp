@@ -75,7 +75,7 @@
 							<c:when test="${sUser != null and sUser ne ''}">
 								<li>Hello ${sUser.mId}!</a></li>
 								<li><a href="member_logout" id="sign-out-link">Sign Out</a></li>
-								<li><a href="wishlist_list" id="mypage-link">MyPage</a></li>
+								<li><a href="member_mypage" id="mypage-link">MyPage</a></li>
 								<li><a href="wishlist_list" id="wishlist_link">Wishlist</a></li>
 							</c:when>
 							<c:otherwise>
@@ -100,8 +100,8 @@
 								<div class="dropdown-menu">
 									<ul id="lang_menu">
 										<li><a href="#0">USD</a></li>
-										<li><a href="#0">GBP</a></li>
 										<li><a href="#0">EUR</a></li>
+										<li><a href="#0">GBP</a></li>
 										<li><a href="#0">KRW</a></li>
 										<li><a href="#0">CNY</a></li>
 									</ul>

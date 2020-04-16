@@ -26,6 +26,12 @@ public class MemberController {
 		return "main_page";
 	}
 	
+	@RequestMapping(value = "/member_mypage")
+	public String mypage(Model model) {
+		model.addAttribute("inputMsg", "3");
+		return "member_admin";
+	}
+	
 	@RequestMapping(value = "/member_login_form")
 	public String memberLogin() {
 		return "member_login";
@@ -256,6 +262,7 @@ public class MemberController {
 			model.addAttribute("passwordMsg", "비밀번호 변경 실패했습니다");
 		}
 		httpSession.setAttribute("sUser", memberService.selectOne(member.getmId()));
+		model.addAttribute("inputMsg", "2");
 		return "member_admin";
 	}
 	
@@ -274,6 +281,7 @@ public class MemberController {
 			model.addAttribute("emailMsg", "이메일 변경 실패했습니다");
 		}
 		httpSession.setAttribute("sUser", memberService.selectOne(member.getmId()));
+		model.addAttribute("inputMsg", "2");
 		return "member_admin";
 	}
 	

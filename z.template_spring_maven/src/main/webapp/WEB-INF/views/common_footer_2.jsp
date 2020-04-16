@@ -45,9 +45,8 @@
 				<div class="styled-select">
 					<select name="lang" id="lang">
 						<option value="English" selected>English</option>
-						<option value="French">French</option>
-						<option value="Spanish">Spanish</option>
-						<option value="Russian">Russian</option>
+						<option value="French">Korean</option>
+						<option value="Spanish">Chinese</option>
 					</select>
 				</div>
 				<div class="styled-select">
@@ -55,7 +54,8 @@
 						<option value="USD" selected>USD</option>
 						<option value="EUR">EUR</option>
 						<option value="GBP">GBP</option>
-						<option value="RUB">RUB</option>
+						<option value="RUB">KRW</option>
+						<option value="RUB">CNY</option>
 					</select>
 				</div>
 			</div>

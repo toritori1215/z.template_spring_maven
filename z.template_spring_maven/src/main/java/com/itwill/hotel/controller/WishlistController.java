@@ -23,17 +23,13 @@ public class WishlistController {
 	
 	@Autowired
 	private WishlistService wishlistService;
-	
-	@RequestMapping(value = "/wishlist")
-	public String wishlist() {
-		return "wishlist";
-	}
 	 
 	@RequestMapping(value = "/wishlist_list")
 	public String wishlistList(HttpSession session, Model model) {
 		Member sUser = (Member) session.getAttribute("sUser");
 		List<Product> wishlistList = wishlistService.selectWishlist(sUser.getmNo());
 		model.addAttribute("wishlistList", wishlistList);
+		model.addAttribute("inputMsg", "1");
 		return "member_admin";
 	}
 	
