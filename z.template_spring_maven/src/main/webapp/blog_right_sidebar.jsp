@@ -88,7 +88,7 @@
 
 
 						<div class="post">
-							<a href="blog_post_right_sidebar.html"><img src="${pageContext.request.contextPath}/resources/img/blog-1.jpg" alt="Image" class="img-fluid">
+							<a href="blog_post_right_sidebar.jsp"><img src="${pageContext.request.contextPath}/resources/img/blog-1.jpg" alt="Image" class="img-fluid">
 							</a>
 							<div class="post_info clearfix">
 								<div class="post-left">
@@ -114,7 +114,7 @@
 						<hr>
 
 						<div class="post">
-							<a href="blog_post_right_sidebar.html"><img src="${pageContext.request.contextPath}/resources/img/blog-2.jpg" alt="Image" class="img-fluid">
+							<a href="blog_post_right_sidebar.jsp"><img src="${pageContext.request.contextPath}/resources/img/blog-2.jpg" alt="Image" class="img-fluid">
 							</a>
 							<div class="post_info clearfix">
 								<div class="post-left">
@@ -136,7 +136,7 @@
 							<p>
 								Ludus albucius adversarium eam eu. Sit eu reque tation aliquip. Quo no dolorum albucius lucilius, hinc eligendi ut sed. Ex nam quot ferri suscipit, mea ne legere alterum repudiandae. Ei pri quaerendum intellegebat, ut vel consequuntur voluptatibus. Et volumus sententiae adversarium duo......
 							</p>
-							<a href="blog_post_right_sidebar.html" class="btn_1">Read more</a>
+							<a href="blog_post_right_sidebar.jsp" class="btn_1">Read more</a>
 						</div>
 						<!-- end post -->
 					</div>
