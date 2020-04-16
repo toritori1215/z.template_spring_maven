@@ -89,7 +89,7 @@ public class RestaurantViewResolverController {
 		RestaurantBoardListPageDto restListPage 
 			=restService.findRestaurantBoardList(pageInputDto, orderBy,category);
 		
-		List<HashMap<String,Integer>> foodCategoryList = restService.foodCategoryList();
+		List<HashMap<String,Integer>> foodCategoryList = restService.foodCategoryList(); //
 		
 		System.out.println("restListPage -->"+restListPage );
 		model.addAttribute("restListPage",restListPage);
