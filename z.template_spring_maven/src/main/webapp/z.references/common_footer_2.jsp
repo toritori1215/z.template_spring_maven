@@ -45,9 +45,8 @@
 				<div class="styled-select">
 					<select name="lang" id="lang">
 						<option value="English" selected>English</option>
-						<option value="French">French</option>
-						<option value="Spanish">Spanish</option>
-						<option value="Russian">Russian</option>
+						<option value="French">Korean</option>
+						<option value="Spanish">Chinese</option>
 					</select>
 				</div>
 				<div class="styled-select">
@@ -55,7 +54,8 @@
 						<option value="USD" selected>USD</option>
 						<option value="EUR">EUR</option>
 						<option value="GBP">GBP</option>
-						<option value="RUB">RUB</option>
+						<option value="RUB">KRW</option>
+						<option value="RUB">CNY</option>
 					</select>
 				</div>
 			</div>
@@ -104,8 +104,9 @@
 		<h3>Sign In</h3>
 	</div>
 	<div class="text-center">
-    	<img src="${pageContext.request.contextPath}/resources/img/logo_sticky.png" alt="Image" data-retina="true" >
+    	<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/youngae.jpg" width="120px" height="150px" alt="Image" data-retina="true" >
     </div>
+    <br>
 	<form method="post" action="member_login_action">
 		<div class="divider"><span><font style="font-style: normal; font-size: 15px; color: red;">${msg}</font></span></div>
 		<div class="sign-in-wrapper">
@@ -148,7 +149,7 @@
 		<h3>Get A Temporary Password</h3>
 	</div>
 	<div class="text-center">
-    	<img src="${pageContext.request.contextPath}/resources/img/logo_sticky.png" alt="Image" data-retina="true" >
+    	<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/youngae.jpg" width="120px" height="150px" alt="Image" data-retina="true" >
     </div>
 	<form method="post" action="member_get_temppassword">
 		<div class="divider"></div>
@@ -201,9 +202,9 @@
 		<h3>Account Reactivation</h3>
 	</div>
 	<div class="text-center">
-    	<img src="${pageContext.request.contextPath}/resources/img/logo_sticky.png" alt="Image" data-retina="true" >
+    	<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/youngae.jpg" width="120px" height="150px" alt="Image" data-retina="true" >
     </div>
-	<form method="post" action="member_get_temppassword">
+	<form method="post" action="reactive_account">
 		<div class="divider"></div>
 		<div class="sign-in-wrapper">
 			<div class="form-group">
@@ -256,7 +257,7 @@
 		<h3>Account Reactivation</h3>
 	</div>
 	<div class="text-center">
-    	<img src="${pageContext.request.contextPath}/resources/img/logo_sticky.png" alt="Image" data-retina="true" >
+    	<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/youngae.jpg" width="120px" height="150px" alt="Image" data-retina="true" >
     </div>
 	<form method="post" action="member_get_temppassword">
 		<div class="divider"><span><font style="font-style: normal; font-size: 15px; color: red;">${msg}</font></span></div>
@@ -316,4 +317,6 @@
 <script src="${pageContext.request.contextPath}/resources/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/revolution_func.js"></script>
 
-<script src="${pageContext.request.contextPath}/resources/z.SiliconVillage/js/member.js"></script>
+<!-- CUSTOM JS -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/js/member.js"></script>
+
