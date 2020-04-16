@@ -5,7 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
-
+   
  
 	<!-- Header================================================== -->
 	<jsp:include page="common_header_6.jsp"/>
