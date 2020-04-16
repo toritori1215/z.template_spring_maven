@@ -29,6 +29,7 @@
 		<property name="mapperLocations">
 			<list>
 				<value>classpath:com/itwill/hotel/mapper/MemberMapper.xml</value>
+				<value>classpath:com/itwill/hotel/mapper/RestaurantMapper.xml</value>
 			</list>
 		</property>
 	</bean>

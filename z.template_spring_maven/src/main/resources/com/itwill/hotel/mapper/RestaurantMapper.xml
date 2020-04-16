@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itwill.hotel.mapper.RestaurantMapper">
+
+	<resultMap type="java.util.HashMap" id="foodCategory_Info">
+		<result column="foodcategory" property="foodcategory"/>
+		<result column="categoryCnt" property="categoryCnt"/>
+	</resultMap>
+
+	<insert id="registerProduct" 
+			parameterType="com.itwill.hotel.domain.RestaurantDTO">
+			
+		INSERT INTO PRODUCT(pno, pname, pprice, ptype, pavailable, pimg, prate, pdesc, foodcategory)
+		VALUES(product_seq.nextval, #{pname}, #{pprice}, #{ptype}, #{pavailable}, #{pimg}, #{prate}, #{pdesc}, #{pfoodcategory})
+	
+	</insert>
+	<!-- 
+	<insert id="createReply" parameterType="itwillBoard">
+		INSERT INTO Board(BoardNo, title, writer, content, groupNo, step, depth)
+		VALUES (board_sequence.nextval,#{title},#{writer},#{content},#{groupNo}, #{step}+1,#{depth}+1)
+	</insert>
+	 -->
+	 
+	<select id="get_Restaurant_Product"
+			parameterType="int"
+			resultType="com.itwill.hotel.domain.RestaurantDTO">
+			SELECT pno, pname, pprice, ptype, pavailable, pimg, prate, pdesc, foodcategory
+			FROM PRODUCT
+			WHERE PNO = #{pNO}
+	</select>
+	
+	<!-- int restEntireProductCnt() -->
+	<select id="restEntireProductCnt"
+			resultType="int">
+			
+			SELECT COUNT(*)
+			FROM PRODUCT
+			WHERE PTYPE = 'restaurant' and pname !='BPPP'
+			
+	</select>
+	
+	<select id="restCategoryProductCnt"
+			parameterType="String"
+			resultType="int">
+			
+			SELECT COUNT(*)
+			FROM PRODUCT
+			WHERE PTYPE = 'restaurant' AND foodcategory like #{category}
+	</select>
+	
+	
+		
+	<select id="findRestBoardList"
+			resultType="com.itwill.hotel.domain.RestaurantDTO">
+			<!-- 
+		SELECT *
+		FROM (SELECT rownum idx , p.*
+		      FROM (SELECT *
+		          FROM product
+		          WHERE pname !='BPPP'
+		          order by pno) p)
+		WHERE idx BETWEEN #{startRowNum} AND #{endRowNum}
+			 -->
+		SELECT rownum idx , p.*
+		FROM (SELECT pno, pname, pprice, ptype, pavailable, pimg, NVL2(prate,prate,0) prate, pdesc, foodcategory
+	  		  FROM product
+      		  WHERE pname !='BPPP' and ptype = 'restaurant' 
+      		  order by pno) p
+	</select>
+	
+	<select id="findRestBoardList_price_ASC"
+			resultType="com.itwill.hotel.domain.RestaurantDTO">
+
+		 SELECT rownum idx , p.*
+		 FROM (SELECT pno, pname, pprice, ptype, pavailable, pimg, NVL2(prate,prate,0) prate, pdesc, foodcategory
+               FROM product
+               WHERE pname !='BPPP' and ptype = 'restaurant'
+               ORDER BY pprice asc,pname asc) p
+		
+		
+	</select>
+	
+	<select id="findRestBoardList_price_DESC"
+			resultType="com.itwill.hotel.domain.RestaurantDTO">
+
+		SELECT rownum idx , p.*
+		FROM (SELECT pno, pname, pprice, ptype, pavailable, pimg, NVL2(prate,prate,0) prate, pdesc, foodcategory
+              FROM product
+              WHERE pname !='BPPP' and ptype = 'restaurant'
+              ORDER BY pprice desc,pname asc) p
+		
+	</select>
+	
+	
+	<select id="findRestBoardList_lower_ASC"
+			resultType="com.itwill.hotel.domain.RestaurantDTO">
+
+		
+		SELECT rownum idx , p.*
+      	FROM (SELECT pno, pname, pprice, ptype, pavailable, pimg, NVL2(prate,prate,0) prate, pdesc, foodcategory
+              FROM product
+              WHERE pname !='BPPP' and ptype = 'restaurant'
+              ORDER BY prate asc,pname asc) p
+		
+		
+	</select>
+	
+	<select id="findRestBoardList_lower_DESC"
+			resultType="com.itwill.hotel.domain.RestaurantDTO">
+		 
+		SELECT rownum idx , p.*
+      	FROM (SELECT pno, pname, pprice, ptype, pavailable, pimg, NVL2(prate,prate,0) prate, pdesc, foodcategory
+              FROM product
+              WHERE pname !='BPPP' and ptype = 'restaurant'
+              ORDER BY prate desc,pname asc) p
+	
+	</select>
+	
+	<select id="foodCategoryList"
+			resultMap="foodCategory_Info">
+			
+			SELECT  foodcategory,COUNT(*) categoryCnt
+			FROM PRODUCT
+			WHERE PTYPE ='restaurant' AND foodcategory NOT IN ('Dummy','Restaurant Booking') and foodcategory not like '%Dessert'
+			GROUP BY foodcategory
+	</select>
+
+
+	<select id="findRestBoardList_Cartegory"
+			parameterType="String"
+			resultType="com.itwill.hotel.domain.RestaurantDTO">
+			
+			SELECT rownum idx , p.*
+      		FROM (SELECT pno, pname, pprice, ptype, pavailable, pimg, NVL2(prate,prate,0) prate, pdesc, foodcategory
+              	  FROM product
+              	  WHERE pname !='BPPP' and ptype = 'restaurant' and foodcategory like #{category}
+              	  ORDER BY pno) p
+	</select>
+
+	<select id="findRestBoardList_Cartegory_price_sort"
+			parameterType="String"
+			resultType="com.itwill.hotel.domain.RestaurantDTO">
+			SELECT rownum idx , p.*
+      		FROM (SELECT pno, pname, pprice, ptype, pavailable, pimg, NVL2(prate,prate,0) prate, pdesc, foodcategory
+              FROM product
+              WHERE pname !='BPPP' and ptype = 'restaurant' and foodcategory like #{category}
+              ORDER BY pprice ${orderBy},pname asc) p
+	</select>
+	
+	<select id="findRestBoardList_Cartegory_prate_sort"
+			parameterType="String"
+			resultType="com.itwill.hotel.domain.RestaurantDTO">
+			SELECT rownum idx , p.*
+      		FROM (SELECT pno, pname, pprice, ptype, pavailable, pimg, NVL2(prate,prate,0) prate, pdesc, foodcategory
+              FROM product
+              WHERE pname !='BPPP' and ptype = 'restaurant' and foodcategory like #{category}
+              ORDER BY prate ${orderBy},pname asc) p
+	</select>
+</mapper>
