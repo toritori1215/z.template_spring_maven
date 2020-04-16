@@ -212,10 +212,10 @@
 										
 										<div class="short_info">
 											<c:choose>
-											    <c:when test="${!empty(product.foodCategory) && product.foodCategory eq 'water'}">
+											    <c:when test="${product.foodCategory eq 'water'}">
 											       	<i class="pe-7s-drop"></i>WATER
 											    </c:when>
-											    <c:when test="${!empty(product.foodCategory) && product.foodCategory eq 'ice'}">
+											    <c:when test="${product.foodCategory eq 'ice'}">
 											       	<i class="icon-snow"></i>ICE
 											    </c:when>
 											    <c:otherwise>
