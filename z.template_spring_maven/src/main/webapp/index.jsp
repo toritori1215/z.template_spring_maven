@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Silicon Village</title>
 </head>
 <body>
 	<h1 align="center">Final Test</h1><hr>

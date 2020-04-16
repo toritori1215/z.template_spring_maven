@@ -33,4 +33,6 @@ public interface MemberService {
 	
 	public int updateMember(HashMap hashMap);
 	
+	public int updateEmail(HashMap hashMap);
+	
 }

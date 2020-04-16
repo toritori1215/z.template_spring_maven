@@ -83,4 +83,9 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.updateMember(hashMap);
 	}
 
+	@Override
+	public int updateEmail(HashMap hashMap) {
+		return memberDao.updateEmail(hashMap);
+	}
+
 }

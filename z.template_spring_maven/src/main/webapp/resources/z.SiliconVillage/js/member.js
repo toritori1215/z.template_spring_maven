@@ -1,4 +1,4 @@
-/**
+/* JS Document */
 
 /* Modal Sign In */
 $('#access_link2').magnificPopup({
@@ -53,19 +53,26 @@ function updatePassword() {
 	var tempPassword = $("#password2").val();
 	if (oldPassword == null || oldPassword == "") {
 		alert("기존 비밀번호 입력하십시오");
+		return;
 	}
 	if (newPassword == null || newPassword == "") {
-			alert("새 비밀번호 입력하십시오");
+		alert("새 비밀번호 입력하십시오");
+		return;
 	}
 	if (confirmNewPassword == null || confirmNewPassword == "") {
-			alert("새 비밀번호 확인하십시오");
+		alert("새 비밀번호 확인하십시오");
+		return;
 	}
 	if (newPassword != confirmNewPassword) {
 		alert("비밀번호가 일치하지 않습니다");
+		return;
 	}
 	if (oldPassword != password && oldPassword != tempPassword) {
 		alert("잘못된 기존 비밀번호 입니다");
+		return;
 	}
+	$("#f3-1").attr("action", "member_update_password");
+	$("#f3-1").submit();
 }
 
 /* member_admin.jsp : updateEmail */
@@ -76,22 +83,30 @@ function updateEmail() {
 	var email = $("#email1").val();
 	if (oldEmail == null || oldEmail == "") {
 		alert("기존 이메일주소 입력하십시오");
+		return;
 	}
 	if (newEmail == null || newEmail == "") {
-			alert("새 이메일주소 입력하십시오");
+		alert("새 이메일주소 입력하십시오");
+		return;
 	}
 	if (confirmNewEmail == null || confirmNewEmail == "") {
-			alert("새 이메일주소 확인하십시오");
+		alert("새 이메일주소 확인하십시오");
+		return;
 	}
 	if (newEmail != confirmNewEmail) {
 		alert("이메일주소가 일치하지 않습니다");
+		return;
 	}
 	if (oldEmail == null || oldEmail == "") {
 		alert("기존 이메일주소 입력하십시오");
+		return;
 	}
-	if (oldPassword != password && oldPassword != tempPassword) {
+	if (oldEmail != email) {
 		alert("잘못된 기존 이메일주소 입니다");
+		return;
 	}
+	$("#f3-2").attr("action", "member_update_email");
+	$("#f3-2").submit();
 }
 
 /* member_admin.jsp : updateMember */

@@ -82,4 +82,9 @@ public class MemberDaoImpl implements MemberDao {
 		return memberMapper.updateMember(hashMap);
 	}
 
+	@Override
+	public int updateEmail(HashMap hashMap) {
+		return memberMapper.updateEmail(hashMap);
+	}
+
 }

@@ -38,12 +38,12 @@ public class MemberController {
 									Model model) {
 		if (mId == "" || mPassword == "" || mId == null || mPassword == null ) {
 			model.addAttribute("msg", "빈 칸에 값을 입력하십시오.");
-			return "forward:member_login_form"; 
+			return "member_login"; 
 		}
 		if (memberService.checkIdExist(mId) == 0) {
 			// 아이디 없음
 			model.addAttribute("msg", "아이디가 존재하지 않습니다.");
-			return "forward:member_login_form";
+			return "member_login";
 		} else {
 			Member tempMember = memberService.selectOne(mId);
 			if (mPassword.equals(tempMember.getmPassword())) {
@@ -59,7 +59,7 @@ public class MemberController {
 				} else {
 					// 아이디 휴면
 					model.addAttribute("msg", "아이디가 휴면상태입니다");
-					return "forward:member_login_form";
+					return "member_login";
 				}
 			} else if (tempMember.getmTempPassword() != null && 
 						tempMember.getmTempPassword() != "" && 
@@ -67,16 +67,16 @@ public class MemberController {
 				if (tempMember.getmIfActive() == 1) {
 					// password-change로 이동
 					model.addAttribute("sUser", tempMember);
-					return "forward:member_change_password_form";
+					return "member_admin";
 				} else {
 					// 아이디 휴면
 					model.addAttribute("msg", "아이디가 휴면상태입니다");
-					return "forward:member_login_form";
+					return "member_login";
 				}
 			} else {
 				// 비밀번호 불일치
 				model.addAttribute("msg", "비밀번호가 일치하지 않습니다");
-				return "forward:member_login_form";
+				return "member_login";
 			}
 		}
 	}
@@ -138,7 +138,7 @@ public class MemberController {
 				mEmail == "" || mBirth == "" || mId == null || mFirstName == null || 
 				mLastName == null || mTel == null || mEmail == null || mBirth == null) {
 			model.addAttribute("msg2", "빈 칸에 값을 입력하십시오");
-			return "forward:member_login_form";
+			return "member_login";
 		}
 		HashMap hashMap = new HashMap();
 		hashMap.put("mId", mId);
@@ -154,10 +154,10 @@ public class MemberController {
 			memberService.updateTempPassword(hashMap1);
 			Member member = memberService.selectOne(mId);
 			model.addAttribute("msg1", member.getmTempPassword());
-			return "forward:member_login_form";
+			return "member_login";
 		} else {
 			model.addAttribute("msg2", "입력하신 정보와 일치하는 계정이 없습니다");
-			return "forward:member_login_form";
+			return "member_login";
 		}
 	}
 	
@@ -180,7 +180,7 @@ public class MemberController {
 				mEmail == "" || mBirth == "" || mId == null || mPassword == null || mFirstName == null || 
 				mLastName == null || mTel == null || mEmail == null || mBirth == null) {
 			model.addAttribute("msg3", "빈 칸에 값을 입력하십시오");
-			return "forward:member_login_form";
+			return "member_login";
 		}
 		HashMap hashMap = new HashMap();
 		hashMap.put("mId", mId);
@@ -194,43 +194,34 @@ public class MemberController {
 			HashMap hashMap1 = new HashMap();
 			memberService.reActivateAccount(mId);
 			model.addAttribute("msg4", "당신의 계정이 활성화 되었습니다");
-			return "forward:member_login_form";
+			return "member_login";
 		} else {
 			model.addAttribute("msg3", "입력하신 정보와 일치하는 계정이 없습니다");
-			return "forward:member_login_form";
+			return "member_login";
 		}
 	}
 
 	@RequestMapping(value = "/member_update_password")
-	public String memberPasswordChangeAction(HttpSession httpSession, 
-											 @RequestParam(value = "mPassword") String mPassword, 
-											 @RequestParam(value = "mPassword2") String mPassword2, 
-											 Model model) {
-		if (mPassword.equals(mPassword2)) {
-			Member member = (Member) httpSession.getAttribute("sUser");
-			HashMap hashMap = new HashMap();
-			hashMap.put("mId", member.getmNo());
-			hashMap.put("mPassword", mPassword);
-			memberService.updatePassword(hashMap);
-			return "forward:member_login_form";
-		} else {
-			model.addAttribute("msg", "비밀번호가 일치하지 않습니다");
-			return "member_admin";
-		}
+	public String memberUpdatePassword(HttpSession httpSession, 
+										@RequestParam(value = "new_password") String new_password, 
+										Model model) {
+		Member member = (Member) httpSession.getAttribute("sUser");
+		HashMap hashMap = new HashMap();
+		hashMap.put("mId", member.getmId());
+		hashMap.put("mPassword", new_password);
+		memberService.updatePassword(hashMap);
+		return "member_admin";
 	}
 	
-	@RequestMapping(value = "/member_update")
-	public String memberUpdate(HttpSession httpSession,
-							   @RequestParam(value = "email") String email, 
-							   @RequestParam(value = "tel") String tel, 
-							   @RequestParam(value = "birth") String birth) {
-		Member member = (Member)httpSession.getAttribute("sUser");
+	@RequestMapping(value = "/member_update_email")
+	public String memberUpdateEmail(HttpSession httpSession, 
+									@RequestParam(value = "new_email") String new_email, 
+									Model model) {
+		Member member = (Member) httpSession.getAttribute("sUser");
 		HashMap hashMap = new HashMap();
-		hashMap.put("mEmail", email);
-		hashMap.put("mTel", tel);
-		hashMap.put("mBirth", birth);
+		hashMap.put("mEmail", new_email);
 		hashMap.put("mNo", member.getmNo());
-		memberService.updateMember(hashMap);
+		memberService.updateEmail(hashMap);
 		return "member_admin";
 	}
 	
