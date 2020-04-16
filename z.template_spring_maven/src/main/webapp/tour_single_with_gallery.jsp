@@ -27,7 +27,7 @@
 	<jsp:include page="z.references/common_header_6.jsp"/>
 	<!-- End Header -->
 
-	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}.jpg" data-natural-width="1400" data-natural-height="470">
+	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}33.jpg" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-2">
 			<div class="container">
 				<div class="row">
@@ -74,7 +74,7 @@
 			<div id="map" class="map"></div>
 		</div>
 		<!-- End Map -->
-
+ 
 		<div class="container margin_60">
 			<div class="row">
 				<div class="col-lg-8" id="single_tour_desc">
@@ -91,7 +91,8 @@
 								    <c:otherwise>
 								       	<i class="icon-tree"></i>FIELD
 								    </c:otherwise>
-								</c:choose></li>
+								</c:choose>
+							</li>
 							<li><i class="icon_set_1_icon-83"></i>3 Hours</li>
 							<li><i class="icon_set_1_icon-13"></i>Accessibiliy</li>
 							<li><i class="icon_set_1_icon-82"></i>${product.wCount} Likes</li>
@@ -537,7 +538,7 @@
 			<!--End row -->
 		</div>
 		<!--End container -->
-        
+
         <div id="overlay"></div>
 		<!-- Mask on input focus -->
         

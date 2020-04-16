@@ -199,9 +199,7 @@
 						</div>
 					</div>
 					<!--/tools -->
-					
 					<div id="productList">
-					
 					<c:forEach var="product" items="${productList}">
 					<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
 						<div class="row">
@@ -211,18 +209,19 @@
 								</div>
 								<div class="img_list">
 									<a href="tour_detail?pNo=${product.pNo}"><img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg" alt="Image">
+										
 										<div class="short_info">
-										<c:choose>
-										    <c:when test="${product.foodCategory eq 'water'}">
-										       	<i class="pe-7s-drop"></i>WATER
-										    </c:when>
-										    <c:when test="${product.foodCategory eq 'ice'}">
-										       	<i class="icon-snow"></i>ICE
-										    </c:when>
-										    <c:otherwise>
-										       	<i class="icon-tree"></i>FIELD
-										    </c:otherwise>
-										</c:choose>
+											<c:choose>
+											    <c:when test="${product.foodCategory eq 'water'}">
+											       	<i class="pe-7s-drop"></i>WATER
+											    </c:when>
+											    <c:when test="${product.foodCategory eq 'ice'}">
+											       	<i class="icon-snow"></i>ICE
+											    </c:when>
+											    <c:otherwise>
+											       	<i class="icon-tree"></i>FIELD
+											    </c:otherwise>
+											</c:choose>
 										</div>
 									</a>
 								</div>
@@ -309,9 +308,7 @@
 						</div>
 					</div>
 					</c:forEach>
-					
 					</div>
-					
 					<!--End strip -->
 
 					<hr>
@@ -397,11 +394,11 @@
 			async:true,
 			contentType:"application/x-www-form-urlencoded;charset=utf-8",
 			success:function(jsonObject) {
-				console.log(jsonObject);
+				//$('c\\:forEach:first').attr('items', jsonObject);
+				//console.log(jsonObject);
 			}
 		}); 
 	});
 	</script>
 </body>
-
 </html>
