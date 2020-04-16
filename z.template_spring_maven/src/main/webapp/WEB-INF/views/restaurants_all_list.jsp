@@ -177,10 +177,12 @@
 										<option value="" selected>Sort by price</option>
 										<option value="ASC" >Lowest price</option>
 										<option value="DESC">Highest price</option>
+										<option value="LOWER">Lowest ranking</option>
+										<option value="HIGHER">Highest ranking</option>
 									</select>
 								</div>
 							</div>
-							<div class="col-md-3 col-sm-4 col-6">
+							<div class="col-md-3 col-sm-4 col-6" style="visibility: hidden;">
 								<div class="styled-select-filters">
 									<select name="sort_rating" id="sort_rating">
 										<option value="" selected>Sort by ranking</option>
@@ -718,7 +720,7 @@
 				
 			});
 			
-			
+			/*
 			$('#sort_rating').on('change',function(){
 				//console.log($('#sort_price > option:selected').attr('value'));
 				let selectOption= $('#sort_rating > option:selected').attr('value');
@@ -727,11 +729,11 @@
 				let category =document.getElementById("category").value;
 				let param ="pageno="+currentpage+"&orderBy="+ selectOption +"&category="+category;
 				console.log("currentpage --> "+currentpage);
-				/*
+				
 				if(category!=null && category!=""){
 					param+="&category="+category;
 				}
-				*/
+				
 				
 				$.ajax({
 					url : 'rest_all_list',
@@ -744,6 +746,8 @@
 				});
 				<!-- ajax end-->
 			});
+			
+			*/
 			<!-- sort_rating -->
 			
 			$('input').iCheck({
