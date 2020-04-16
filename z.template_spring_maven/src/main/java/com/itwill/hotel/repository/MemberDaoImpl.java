@@ -38,8 +38,18 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public int deleteInactiveMember(String mId) {
-		return memberMapper.deleteInactiveMember(mId);
+	public int deleteInactiveMember() {
+		return memberMapper.deleteInactiveMember();
+	}
+
+	@Override
+	public int removeMember(String mId) {
+		return memberMapper.removeMember(mId);
+	}
+
+	@Override
+	public int deleteMember(String mId) {
+		return memberMapper.deleteMember(mId);
 	}
 
 	@Override

@@ -106,6 +106,7 @@
 	<div class="text-center">
     	<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/youngae.jpg" width="120px" height="150px" alt="Image" data-retina="true" >
     </div>
+    <br>
 	<form method="post" action="member_login_action">
 		<div class="divider"><span><font style="font-style: normal; font-size: 15px; color: red;">${msg}</font></span></div>
 		<div class="sign-in-wrapper">

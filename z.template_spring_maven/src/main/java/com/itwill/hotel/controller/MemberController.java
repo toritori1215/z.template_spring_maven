@@ -22,6 +22,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "/main")
 	public String mainPage() {
+		memberService.deleteInactiveMember();
 		return "main_page";
 	}
 	
@@ -36,6 +37,7 @@ public class MemberController {
 									@RequestParam(value = "mCheck", defaultValue = "") String mCheck,
 									HttpSession httpSession,
 									Model model) {
+		memberService.deleteInactiveMember();
 		if (mId == "" || mPassword == "" || mId == null || mPassword == null ) {
 			model.addAttribute("msg", "빈 칸에 값을 입력하십시오.");
 			return "member_login"; 
@@ -81,8 +83,15 @@ public class MemberController {
 		}
 	}
 	
+	@RequestMapping(value = "/member_logout")
+	public String memberLogout(HttpSession session) {
+		session.invalidate();
+		return "main_page";
+	}
+	
 	@RequestMapping(value = "/member_insert_form")
 	public String memberInsertForm() {
+		memberService.deleteInactiveMember();
 		return "member_register";
 	}
 	
@@ -96,6 +105,7 @@ public class MemberController {
 							   @RequestParam(value = "mTel") String mTel,
 							   @RequestParam(value = "mBirth") String mBirth,
 							   Model model) {
+		memberService.deleteInactiveMember();
 		if (mId == "" || mPassword == "" || mPassword2 == "" || mFirstName == "" || 
 			mLastName == "" || mEmail == "" || mTel == "" || mBirth == "" || 
 			mId == null || mPassword == null || mPassword2 == null || mFirstName == null || 
@@ -128,6 +138,7 @@ public class MemberController {
 										@RequestParam(value = "mEmail") String mEmail, 
 										@RequestParam(value = "mBirth") String mBirth, 
 										Model model) {
+		memberService.deleteInactiveMember();
 		model.addAttribute("mId", mId);
 		model.addAttribute("mFirstName", mFirstName);
 		model.addAttribute("mLastName", mLastName);
@@ -161,8 +172,23 @@ public class MemberController {
 		}
 	}
 	
+	@RequestMapping(value = "/remove_member")
+	public String memberRemove(HttpSession session, Model model) {
+		Member member = (Member) session.getAttribute("sUser");
+		int rowCount = memberService.removeMember(member.getmId());
+		if (rowCount == 1) {
+			model.addAttribute("removeMsg", "아이디 비활성화 되었습니다. "
+											+ "정보는 30일 동안 보존됩니다."
+											+ "30일 안에 계정 활성화 가능합니다."
+											+ "본 계정은 30일 후 자동적으로 삭제 됩니다!");
+		} else {
+			return "common_404";
+		}
+		return "main_page";
+	}
+	
 	@RequestMapping(value = "/reactive_account")
-	public String reactive_account_action(@RequestParam(value = "mId") String mId, 
+	public String reactiveAccountAction(@RequestParam(value = "mId") String mId, 
 										  @RequestParam(value = "mPassword") String mPassword,
 										  @RequestParam(value = "mFirstName") String mFirstName, 
 										  @RequestParam(value = "mLastName") String mLastName, 
@@ -170,6 +196,7 @@ public class MemberController {
 										  @RequestParam(value = "mEmail") String mEmail, 
 										  @RequestParam(value = "mBirth") String mBirth, 
 										  Model model) {
+		memberService.deleteInactiveMember();
 		model.addAttribute("mId", mId);
 		model.addAttribute("mFirstName", mFirstName);
 		model.addAttribute("mLastName", mLastName);
@@ -198,6 +225,19 @@ public class MemberController {
 		} else {
 			model.addAttribute("msg3", "입력하신 정보와 일치하는 계정이 없습니다");
 			return "member_login";
+		}
+	}
+	
+	@RequestMapping(value = "/member_delete")
+	public String memberDelete(HttpSession session, Model model) {
+		Member member = (Member) session.getAttribute("sUSer");
+		int rowCount = memberService.deleteMember(member.getmId());
+		if (rowCount == 1) {
+			model.addAttribute("deleteMsg", "계정이 삭제되었습니다");
+			session.invalidate();
+			return "main_page";
+		} else {
+			return "common_404";
 		}
 	}
 

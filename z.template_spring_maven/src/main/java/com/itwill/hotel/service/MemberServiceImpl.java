@@ -39,8 +39,18 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int deleteInactiveMember(String mId) {
-		return memberDao.deleteInactiveMember(mId);
+	public int deleteInactiveMember() {
+		return memberDao.deleteInactiveMember();
+	}
+
+	@Override
+	public int removeMember(String mId) {
+		return memberDao.removeMember(mId);
+	}
+
+	@Override
+	public int deleteMember(String mId) {
+		return memberDao.deleteMember(mId);
 	}
 
 	@Override
