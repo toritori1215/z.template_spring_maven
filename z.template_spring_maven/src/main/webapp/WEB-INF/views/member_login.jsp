@@ -411,7 +411,7 @@
 	                              </div>
 	                              <div class="form-group">
 	                                  <label>Password</label>
-	                                  <input type="password" class=" form-control" placeholder="Password" name="mPassword" value="">
+	                                  <input type="password" class=" form-control" id="password" placeholder="Password" name="mPassword" value="">
 									  <i class="icon-lock"></i>
 	                              </div>
 	                              <div class="clearfix add_bottom_15">

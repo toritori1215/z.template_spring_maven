@@ -29,24 +29,31 @@
 				#{mBirth}, null, null, null, null, null, 1)
 	</insert>
 	
-	<delete id="deleteInactiveMember" parameterType="string">
+	<delete id="deleteInactiveMember">
+		delete from member
+		where sysdate - mRemoveDate > 1
+	</delete>
+	
+	<update id="removeMember">
+		update member 
+		set mIfActive=0, mRemoveDate=sysdate 
+		where mNo=#{mNo}
+	</update>
+	
+	<delete id="deleteMember">
 		delete from member 
-		where mId=#{mId} 
-		and mIfActive=0 
-		and (select m.mRemoveDate - SYSDATE
-			 from member m 
-			 where m.mId=#{mId} ) &lt; -30
+		where mId=#{mId}
 	</delete>
 	
 	<update id="setTempPasswordNull" parameterType="string">
 		update member
-		set mTempPassword=#{mTempPassword}
+		set mTempPassword=#{mTempPassword} 
 		where mId=#{mId}
 	</update>
 	
 	<update id="updatePassword" parameterType="java.util.HashMap">
 		update member
-		set mPassword=#{mPassword}, mTempPassword=null
+		set mPassword=#{mPassword}, mTempPassword=null 
 		where mId=#{mId}
 	</update>
 	
@@ -56,33 +63,33 @@
 	</select>
 	
 	<select id="checkExist" parameterType="string" resultType="_int">
-		select count(mNo)
-		from member
+		select count(mNo) 
+		from member 
 		where mId=#{mId} and mFirstName=#{mFirstName} and mLastName=#{mLastName} 
 			  and mTel=#{mTel} and mEmail=#{mEmail} and mBirth=#{mBirth}
 	</select>
 	
 	<update id="updateTempPassword" parameterType="java.util.HashMap">
-		update member
-		set mTempPassword=#{mTempPassword}
+		update member 
+		set mTempPassword=#{mTempPassword} 
 		where mId=#{mId}
 	</update>
 	
 	<select id="checkExist2" parameterType="string" resultType="_int">
-		select count(mNo)
-		from member
+		select count(mNo) 
+		from member 
 		where mId=#{mId} and mPassword=#{mPassword} and mFirstName=#{mFirstName} and 
 			  mLastName=#{mLastName} and mTel=#{mTel} and mEmail=#{mEmail} and mBirth=#{mBirth}
 	</select>
 	
 	<update id="reActivateAccount" parameterType="string">
-		update member
-		set mIfActive=1
+		update member 
+		set mIfActive=1, mRemoveDate=null 
 		where mId=#{mId}
 	</update>
 	
 	<update id="updateEmail" parameterType="java.util.HashMap">
-		update member
+		update member 
 		set mEmail=#{mEmail} 
 		where mNo=#{mNo}
 	</update>

@@ -15,7 +15,11 @@ public interface MemberMapper {
 	
 	public int insertMember(Member member);
 	
-	public int deleteInactiveMember(String mId);
+	public int deleteInactiveMember();
+	
+	public int removeMember(String mId);
+	
+	public int deleteMember(String mId);
 	
 	public int setTempPasswordNull(String mId);
 	

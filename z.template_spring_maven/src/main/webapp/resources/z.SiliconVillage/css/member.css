@@ -246,3 +246,21 @@ a#sign-out-link {
 }
 
 #sign-out-link:before{content: "\e87c";}
+
+a#mypage-link {
+	position:relative;
+	display:inline-block;
+	padding-left:16px;
+}
+
+#mypage-link:before {
+	font-style: normal;
+ 	font-weight: normal;
+ 	font-family: "fontello";
+    font-size:14px;
+	position:absolute;
+	left:0;
+	top:0;
+}
+
+#mypage-link:before{content: "\e80f";}
