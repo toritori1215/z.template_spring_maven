@@ -15,7 +15,7 @@ public interface RestaurantMapper {
 	public RestaurantDTO get_Restaurant_Product(int pNo);
 	public int restEntireProductCnt();
 	public int restCategoryProductCnt(String category);
-	
+	public int foodCategoryDessertCnt();
 	
 	public List<RestaurantDTO> findRestBoardList();
 	public List<RestaurantDTO> findRestBoardList_price_ASC();

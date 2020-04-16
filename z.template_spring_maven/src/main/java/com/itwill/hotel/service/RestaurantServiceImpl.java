@@ -33,10 +33,6 @@ public class RestaurantServiceImpl implements RestaurantService{
 	public int registerProduct(RestaurantDTO restdto) {
 		
 		int registProductCnt = restaurantdao.registerProduct(restdto);
-		
-		
-		
-		
 		return registProductCnt;
 	}
 	
@@ -110,5 +106,11 @@ public class RestaurantServiceImpl implements RestaurantService{
 		foodCategoryList = restaurantdao.foodCategoryList();
 		
 		return foodCategoryList;
+	}
+
+	@Override
+	public int foodCategoryDessertCnt() {
+		int foodCategoryDessertCnt = restaurantdao.foodCategoryDessertCnt();
+		return foodCategoryDessertCnt;
 	}
 }
