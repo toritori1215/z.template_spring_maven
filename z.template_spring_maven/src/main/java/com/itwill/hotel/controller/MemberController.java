@@ -209,7 +209,13 @@ public class MemberController {
 		HashMap hashMap = new HashMap();
 		hashMap.put("mId", member.getmId());
 		hashMap.put("mPassword", new_password);
-		memberService.updatePassword(hashMap);
+		int rowCount = memberService.updatePassword(hashMap);
+		if (rowCount == 1) {
+			model.addAttribute("passwordMsg", "비밀번호 변경 성공했습니다");
+		} else {
+			model.addAttribute("passwordMsg", "비밀번호 변경 실패했습니다");
+		}
+		httpSession.setAttribute("sUser", memberService.selectOne(member.getmId()));
 		return "member_admin";
 	}
 	
@@ -221,7 +227,13 @@ public class MemberController {
 		HashMap hashMap = new HashMap();
 		hashMap.put("mEmail", new_email);
 		hashMap.put("mNo", member.getmNo());
-		memberService.updateEmail(hashMap);
+		int rowCount = memberService.updateEmail(hashMap);
+		if (rowCount == 1) {
+			model.addAttribute("emailMsg", "이메일 변경 성공했습니다");
+		} else {
+			model.addAttribute("emailMsg", "이메일 변경 실패했습니다");
+		}
+		httpSession.setAttribute("sUser", memberService.selectOne(member.getmId()));
 		return "member_admin";
 	}
 	
