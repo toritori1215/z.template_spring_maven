@@ -20,20 +20,10 @@
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css?family=Gochi+Hand|Montserrat:300,400,700" rel="stylesheet">
 
-    <!-- COMMON CSS -->
-	<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet">
-	<link href="${pageContext.request.contextPath}/resources/css/vendors.css" rel="stylesheet">
-	
-	<!-- SPECIFIC CSS -->
+    <!-- SPECIFIC CSS -->
 	<link href="${pageContext.request.contextPath}/resources/css/shop.css" rel="stylesheet">
 	
-	<!-- CUSTOM CSS -->
-	<link href="${pageContext.request.contextPath}/resources/css/custom.css" rel="stylesheet">
-
-</head>
-
-<body>
+	
 
 	<!-- Header================================================== -->
 	<jsp:include page="z.references/common_header_6.jsp"/>
@@ -147,41 +137,7 @@
 												</div>
 											</div>
 
-											<div class="review-box clearfix">
-												<figure class="rev-thumb"><img src="${pageContext.request.contextPath}/resources/img/avatar2.jpg" alt="">
-												</figure>
-												<div class="rev-content">
-													<div class="rating">
-														<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
-													</div>
-													<div class="rev-info">
-														Ahsan – April 01, 2016:
-													</div>
-													<div class="rev-text">
-														<p>
-															Sed eget turpis a pede tempor malesuada. Vivamus quis mi at leo pulvinar hendrerit. Cum sociis natoque penatibus et magnis dis
-														</p>
-													</div>
-												</div>
-											</div>
-
-											<div class="review-box clearfix">
-												<figure class="rev-thumb"><img src="${pageContext.request.contextPath}/resources/img/avatar3.jpg" alt="">
-												</figure>
-												<div class="rev-content">
-													<div class="rating">
-														<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
-													</div>
-													<div class="rev-info">
-														Sara – March 31, 2016:
-													</div>
-													<div class="rev-text">
-														<p>
-															Sed eget turpis a pede tempor malesuada. Vivamus quis mi at leo pulvinar hendrerit. Cum sociis natoque penatibus et magnis dis
-														</p>
-													</div>
-												</div>
-											</div>
+											
 
 										</div>
 										<!--End Review Container-->
@@ -440,8 +396,14 @@
 				$(target).fadeIn(500);
 				$(target).addClass('active-tab');
 			});
-
+			$(function(){
+				$(".btn_1").button(function(){
+					alert("버튼클릭")
+					})
+				})
 		}
+		
+		
 	</script>
 	
 

@@ -22,9 +22,9 @@
 		where bNo=#{bNo}
 	</delete>
 	
-	<update id="updateBlog" parameterType="_int">
+	<update id="updateBlog" parameterType="Blog">
 		update blog
-		set bTitle=#{bTitle}, bContent=#{bContent}
+		set bTitle=#{bTitle}, bContent=#{bContent}, bDate=sysdate
 		where bNo=#{bNo}
 	</update>
 </mapper>
