@@ -175,7 +175,7 @@
 						<div class="ribbon_3 popular"><span>Popular</span></div>
 						<div class="img_container">
 							<a href="single_tour.html">
-								<img src="${pageContext.request.contextPath}/resources/img/tour_box_1.jpg" width="800" height="533" class="img-fluid" alt="image">
+								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/youngae.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="short_info">
 									<i class="icon_set_1_icon-44"></i>Historic Buildings<span class="price"><sup>$</sup>39</span>
 								</div>
@@ -202,7 +202,7 @@
 						<div class="ribbon_3 popular"><span>Popular</span></div>
 						<div class="img_container">
 							<a href="single_tour.html">
-								<img src="${pageContext.request.contextPath}/resources/img/tour_box_2.jpg" width="800" height="533" class="img-fluid" alt="image">
+								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/chaewon2.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="short_info">
 									<i class="icon_set_1_icon-43"></i>Churches<span class="price"><sup>$</sup>45</span>
 								</div>
@@ -229,7 +229,7 @@
 						<div class="ribbon_3 popular"><span>Popular</span></div>
 						<div class="img_container">
 							<a href="single_tour.html">
-								<img src="${pageContext.request.contextPath}/resources/img/tour_box_3.jpg" width="800" height="533" class="img-fluid" alt="image">
+								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/taehee.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="badge_save">Save<strong>30%</strong></div>
 								<div class="short_info">
 									<i class="icon_set_1_icon-44"></i>Historic Buildings<span class="price"><sup>$</sup>48</span>
@@ -257,7 +257,7 @@
 						<div class="ribbon_3"><span>Top rated</span></div>
 						<div class="img_container">
 							<a href="single_tour.html">
-								<img src="${pageContext.request.contextPath}/resources/img/tour_box_4.jpg" width="800" height="533" class="img-fluid" alt="image">
+								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/chaewon.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="badge_save">Save<strong>20%</strong></div>
 								<div class="short_info">
 									<i class="icon_set_1_icon-30"></i>Walking tour<span class="price"><sup>$</sup>36</span>
@@ -285,7 +285,7 @@
 						<div class="ribbon_3"><span>Top rated</span></div>
 						<div class="img_container">
 							<a href="single_tour.html">
-								<img src="${pageContext.request.contextPath}/resources/img/tour_box_14.jpg" width="800" height="533" class="img-fluid" alt="image">
+								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/youngae_2x.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="short_info">
 									<i class="icon_set_1_icon-28"></i>Skyline tours<span class="price"><sup>$</sup>42</span>
 								</div>
@@ -312,7 +312,7 @@
 						<div class="ribbon_3"><span>Top rated</span></div>
 						<div class="img_container">
 							<a href="single_tour.html">
-								<img src="${pageContext.request.contextPath}/resources/img/tour_box_5.jpg" width="800" height="533" class="img-fluid" alt="image">
+								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/taehee2.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="short_info">
 									<i class="icon_set_1_icon-44"></i>Historic Buildings<span class="price"><sup>$</sup>40</span>
 								</div>
