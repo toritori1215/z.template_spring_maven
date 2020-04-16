@@ -1,21 +1,22 @@
 package com.itwill.hotel.domain;
 
-import java.util.Date;
+import org.apache.ibatis.type.Alias;
 
+@Alias(value = "Blog")
 public class Blog {
-	private int bNo; 			// 회원번호
-	private String bTitle; 		// 블로그 제목
-	private Date bDate; 		// 블로그 작성 날짜
-	private String bContent; 	// 블로그 내용
-	private int bReadCount; 	// 블로그 조회수
-	private String bCategory; 	// 블로그 카테고리
-	private int mNo; 			// 회원 번호
+	private int bNo; 				// 불로그 번호
+	private String bTitle; 			// 블로그 제목
+	private String bDate; 			// 블로그 작성 날짜
+	private String bContent; 		// 블로그 내용
+	private Integer bReadCount; 	// 블로그 조회수
+	private String bCategory; 		// 블로그 카테고리
+	private int mNo; 				// 회원 번호
 
 	public Blog() {
 
 	}
 
-	public Blog(int bNo, String bTitle, Date bDate, String bContent, int bReadCount, String bCategory, int mNo) {
+	public Blog(int bNo, String bTitle, String bDate, String bContent, Integer bReadCount, String bCategory, int mNo) {
 		super();
 		this.bNo = bNo;
 		this.bTitle = bTitle;
@@ -43,11 +44,11 @@ public class Blog {
 		this.bTitle = bTitle;
 	}
 
-	public Date getbDate() {
+	public String getbDate() {
 		return bDate;
 	}
 
-	public void setbDate(Date bDate) {
+	public void setbDate(String bDate) {
 		this.bDate = bDate;
 	}
 
@@ -59,11 +60,11 @@ public class Blog {
 		this.bContent = bContent;
 	}
 
-	public int getbReadCount() {
+	public Integer getbReadCount() {
 		return bReadCount;
 	}
 
-	public void setbReadCount(int bReadCount) {
+	public void setbReadCount(Integer bReadCount) {
 		this.bReadCount = bReadCount;
 	}
 

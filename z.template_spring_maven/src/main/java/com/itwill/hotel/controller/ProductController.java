@@ -1,20 +1,21 @@
 package com.itwill.hotel.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwill.hotel.domain.Product;
 import com.itwill.hotel.service.ProductService;
+import com.itwill.hotel.service.WishlistService;
 
 @Controller
 public class ProductController {
@@ -23,16 +24,45 @@ public class ProductController {
 	private ProductService productService;
 	
 	@RequestMapping(value = "/tour_list")
-	public String tourList(HttpServletRequest request, Model model) {
+	public String tourList(Model model) {
 		HashMap parameterMap = new HashMap();
 		parameterMap.put("pType", "tour");
 		model.addAttribute("productList", productService.selectByType(parameterMap));
 		return "forward:tour_all_list.jsp";
 	}
 	
+	@RequestMapping(value = "/tour_list_json", produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public List<Product> productList(@RequestParam(value="ratingArray[]") ArrayList<Integer> ratingArray) {
+		
+		HashMap parameterMap = new HashMap();
+		for (int i = 0; i < ratingArray.size(); i++) {
+			Integer rating = ratingArray.get(i);
+			parameterMap.put("pType", "tour");
+			parameterMap.put("pRate"+rating, rating);
+		}
+		return productService.selectByType(parameterMap);
+	}
+	
+	@RequestMapping(value = "/tour_detail")
+	public String tourDetail(@RequestParam(value="pNo") String pNo, Model model) {
+		model.addAttribute("product", productService.selectByNo(Integer.parseInt(pNo)));
+		return "forward:tour_single_with_gallery.jsp";
+	}
+	
+	@RequestMapping(value = "/room_list")
+	public String roomList() {
+		return "room_all_list";
+	}
+	
 	@RequestMapping(value = "/tour_grid")
 	public String tourListGrid() {
 		return "tour_all_grid";
+	}
+	
+	@RequestMapping(value = "/room_grid")
+	public String roomListGrid() {
+		return "room_all_grid";
 	}
 	
 	@RequestMapping(value = "/product_list_condition")
@@ -118,4 +148,8 @@ public class ProductController {
 		return "product/count_tour";
 	}
 	
+	@RequestMapping(value = "/error_page")
+	public String errorPage() {
+		return "common_404";
+	}
 }

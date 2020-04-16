@@ -1,5 +1,6 @@
 package com.itwill.hotel.repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,51 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public int deleteInactiveMember(String mId) {
 		return memberMapper.deleteInactiveMember(mId);
+	}
+
+	@Override
+	public int setTempPasswordNull(String mId) {
+		return memberMapper.setTempPasswordNull(mId);
+	}
+
+	@Override
+	public int updatePassword(HashMap hashMap) {
+		return memberMapper.updatePassword(hashMap);
+	}
+
+	@Override
+	public int checkExist(HashMap hashMap) {
+		return memberMapper.checkExist(hashMap);
+	}
+	
+	@Override
+	public String getTempPassword() {
+		return memberMapper.getTempPassword();
+	}
+
+	@Override
+	public int updateTempPassword(HashMap hashMap) {
+		return memberMapper.updateTempPassword(hashMap);
+	}
+
+	@Override
+	public int checkExist2(HashMap hashMap) {
+		return memberMapper.checkExist2(hashMap);
+	}
+	
+	@Override
+	public int reActivateAccount(String mId) {
+		return memberMapper.reActivateAccount(mId);
+	}
+
+	@Override
+	public int updateMember(HashMap hashMap) {
+		return memberMapper.updateMember(hashMap);
+	}
+
+	@Override
+	public int updateEmail(HashMap hashMap) {
+		return memberMapper.updateEmail(hashMap);
 	}
 
 }

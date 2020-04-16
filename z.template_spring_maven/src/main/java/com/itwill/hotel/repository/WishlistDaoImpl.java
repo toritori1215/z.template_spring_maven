@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.itwill.hotel.domain.Product;
 import com.itwill.hotel.domain.Wishlist;
 import com.itwill.hotel.mapper.WishlistMapper;
 
@@ -15,19 +16,19 @@ public class WishlistDaoImpl implements WishlistDao {
 	private WishlistMapper wishlistMapper;
 	
 	@Override
-	public List<Wishlist> selectWishlist(Integer mNo) {
-		List<Wishlist> wishlistList = wishlistMapper.selectWishlist(mNo);
+	public List<Product> selectWishlist(int mNo) {
+		List<Product> wishlistList = wishlistMapper.selectWishlist(mNo);
 		return wishlistList;
 	}
 
 	@Override
-	public void insertWishlist(Wishlist wishlist) {
-		wishlistMapper.insertWishlist(wishlist);
+	public int insertWishlist(Wishlist wishlist) {
+		return wishlistMapper.insertWishlist(wishlist);
 	}
 
 	@Override
-	public void deleteWishlist(Wishlist wishlist) {
-		wishlistMapper.deleteWishlist(wishlist);
+	public int deleteWishlist(Wishlist wishlist) {
+		return wishlistMapper.deleteWishlist(wishlist);
 	}
 
 }

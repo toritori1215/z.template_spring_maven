@@ -17,26 +17,22 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public Product selectByNo(Integer pNo) {
-		Product product = productMapper.selectByNo(pNo);
-		return product;
+		return productMapper.selectByNo(pNo);
 	}
 
 	@Override
 	public List<Product> selectByType(HashMap parameterMap) {
-		List<Product> productList = productMapper.selectByType(parameterMap);
-		return productList;
+		return productMapper.selectByType(parameterMap);
 	}
 
 	@Override
 	public Integer countBookedRoomQty(HashMap parameterMap) {
-		Integer count = productMapper.countBookedRoomQty(parameterMap);
-		return count;
+		return productMapper.countBookedRoomQty(parameterMap);
 	}
 
 	@Override
 	public Integer countBookedTourQty(HashMap parameterMap) {
-		Integer count = productMapper.countBookedTourQty(parameterMap);
-		return null;
+		return productMapper.countBookedTourQty(parameterMap);
 	}
 
 }

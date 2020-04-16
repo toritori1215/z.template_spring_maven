@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.itwill.hotel.domain.Product;
 import com.itwill.hotel.domain.Wishlist;
 import com.itwill.hotel.repository.WishlistDao;
 
@@ -15,18 +16,18 @@ public class WishlistServiceImpl implements WishlistService {
 	private WishlistDao wishlistDao;
 	
 	@Override
-	public List<Wishlist> selectWishlist(Integer mNo) {
+	public List<Product> selectWishlist(int mNo) {
 		return wishlistDao.selectWishlist(mNo);
 	}
-
+	
 	@Override
-	public void insertWishlist(Wishlist wishlist) {
-		wishlistDao.insertWishlist(wishlist);
+	public int insertWishlist(Wishlist wishlist) {
+		return wishlistDao.insertWishlist(wishlist);
 	}
 
 	@Override
-	public void deleteWishlist(Wishlist wishlist) {
-		wishlistDao.deleteWishlist(wishlist);
+	public int deleteWishlist(Wishlist wishlist) {
+		return wishlistDao.deleteWishlist(wishlist);
 	}
 
 }

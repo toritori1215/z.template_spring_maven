@@ -1,5 +1,6 @@
 ﻿package com.itwill.hotel.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,51 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int deleteInactiveMember(String mId) {
 		return memberDao.deleteInactiveMember(mId);
+	}
+
+	@Override
+	public int setTempPasswordNull(String mId) {
+		return memberDao.setTempPasswordNull(mId);
+	}
+
+	@Override
+	public int updatePassword(HashMap hashMap) {
+		return memberDao.updatePassword(hashMap);
+	}
+
+	@Override
+	public String getTempPassword() {
+		return memberDao.getTempPassword();
+	}
+	
+	@Override
+	public int checkExist(HashMap hashMap) {
+		return memberDao.checkExist(hashMap);
+	}
+
+	@Override
+	public int updateTempPassword(HashMap hashMap) {
+		return memberDao.updateTempPassword(hashMap);
+	}
+
+	@Override
+	public int checkExist2(HashMap hashMap) {
+		return memberDao.checkExist2(hashMap);
+	}
+
+	@Override
+	public int reActivateAccount(String mId) {
+		return memberDao.reActivateAccount(mId);
+	}
+
+	@Override
+	public int updateMember(HashMap hashMap) {
+		return memberDao.updateMember(hashMap);
+	}
+
+	@Override
+	public int updateEmail(HashMap hashMap) {
+		return memberDao.updateEmail(hashMap);
 	}
 
 }

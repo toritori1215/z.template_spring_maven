@@ -1,12 +1,50 @@
-		
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
+<head>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
+    <meta name="author" content="Ansonika">
+    <title>Silicon Village</title>
+
+    <!-- Favicons-->
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-57x57-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-144x144-precomposed.png">
+
 	<!-- COMMON CSS -->
 	<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/resources/css/vendors.css" rel="stylesheet">
+
+    <!-- GOOGLE WEB FONT -->
+    <link href="https://fonts.googleapis.com/css?family=Gochi+Hand|Montserrat:300,400,700" rel="stylesheet">
+
+	<!-- REVOLUTION SLIDER CSS -->
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/rev-slider-files/fonts/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/rev-slider-files/css/settings.css">
+    
+    <!-- REVOLUTION LAYERS STYLES -->
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/z.SiliconVillage/css/specific.css">
+	
+	<!-- SPECIFIC CSS - GRID GALLERY -->
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/resources/css/finaltilesgallery.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/resources/css/lightbox2.css" rel="stylesheet">
+	
+	<!-- SPECIFIC CSS -->
+	<link href="${pageContext.request.contextPath}/resources/css/admin.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/resources/css/blog.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/resources/css/shop.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/resources/css/timeline.css" rel="stylesheet">
 	
 	<!-- CUSTOM CSS -->
 	<link href="${pageContext.request.contextPath}/resources/z.SiliconVillage/css/member.css" rel="stylesheet">
-	
+
 </head>
 
 <body>
@@ -31,35 +69,40 @@
 				<div class="col-sm-6 col-5">
 					<i class="icon-phone"></i><strong>0045 043204434</strong>
 				</div>
-
 				<div class="col-sm-6 col-7">
 					<ul id="top_links">
-						<li><a href="#sign-in-dialog" id="access_link">Sign in</a></li>
-						<li><a href="wishlist.html" id="wishlist_link">Wishlist</a></li>
+						<c:choose>
+							<c:when test="${sUser != null and sUser ne ''}">
+								<li>Hello ${sUser.mId}</a></li>
+								<li><a href="member_logout" id="sign-out-link">Sign Out</a></li>
+								<li><a href="wishlist_list" id="wishlist_link">Wishlist</a></li>
+							</c:when>
+							<c:otherwise>
+								<li><a href="#sign-in-dialog" id="access_link">Sign in</a></li>
+							</c:otherwise>
+						</c:choose>
 						<li>
 							<div class="dropdown dropdown-mini">
 								<a href="#" data-toggle="dropdown" id="lang_link">English</a>
 								<div class="dropdown-menu">
 									<ul id="lang_menu">
-										<li><a href="#0">Spanish</a></li>
-										<li><a href="#0">French</a></li>
-										<li><a href="#0">German</a></li>
-										<li><a href="#0">Italian</a></li>
-										<li><a href="#0">Japanese</a></li>
+										<li><a href="#0">English</a></li>
+										<li><a href="#0">Korean</a></li>
+										<li><a href="#0">Chinese</a></li>
 									</ul>
 								</div>
 							</div> <!-- End Dropdown access -->
 						</li>
 						<li>
 							<div class="dropdown dropdown-mini">
-								<a href="#" data-toggle="dropdown" id="currency_link">Euro</a>
+								<a href="#" data-toggle="dropdown" id="currency_link">USD</a>
 								<div class="dropdown-menu">
 									<ul id="lang_menu">
 										<li><a href="#0">USD</a></li>
 										<li><a href="#0">GBP</a></li>
 										<li><a href="#0">EUR</a></li>
-										<li><a href="#0">CHF</a></li>
-										<li><a href="#0">BRL</a></li>
+										<li><a href="#0">KRW</a></li>
+										<li><a href="#0">CNY</a></li>
 									</ul>
 								</div>
 							</div> <!-- End Dropdown access -->
@@ -78,8 +121,7 @@
 			<div class="col-3">
 				<div id="logo_home">
 					<h1>
-						<a href="index.html" title="City tours travel template">City
-							Tours travel template</a>
+						<a href="main" title="City tours travel template">Silicon Village</a>
 					</h1>
 				</div>
 			</div>
@@ -88,8 +130,7 @@
 					href="javascript:void(0);"><span>Menu mobile</span></a>
 				<div class="main-menu">
 					<div id="header_menu">
-						<img
-							src="${pageContext.request.contextPath}/resources/img/logo_sticky.png"
+						<img src="${pageContext.request.contextPath}/resources/img/logo_sticky.png"
 							width="160" height="34" alt="City tours" data-retina="true">
 					</div>
 					<a href="#" class="open_close" id="close_in"><i

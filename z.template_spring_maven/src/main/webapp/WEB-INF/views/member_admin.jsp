@@ -1,40 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
-	<meta name="author" content="Ansonika">
-	<title>CITY TOURS - City tours and travel site template by Ansonika</title>
-
-	<!-- Favicons-->
-	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico" type="image/x-icon">
-	<link rel="apple-touch-icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-57x57-precomposed.png">
-	<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-72x72-precomposed.png">
-	<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-114x114-precomposed.png">
-	<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-144x144-precomposed.png">
-
-    <!-- GOOGLE WEB FONT -->
-    <link href="https://fonts.googleapis.com/css?family=Gochi+Hand|Montserrat:300,400,700" rel="stylesheet">
-	
-	<!-- COMMON CSS -->
-	<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet">
-	<link href="${pageContext.request.contextPath}/resources/css/vendors.css" rel="stylesheet">
-	
-	<!-- SPECIFIC CSS -->
-	<link href="${pageContext.request.contextPath}/resources/css/admin.css" rel="stylesheet">
-	
-	<!-- CUSTOM CSS -->
-	<link href="${pageContext.request.contextPath}/resources/css/custom.css" rel="stylesheet">
-
-</head>
-
-<body>
 
 	<!-- Header================================================== -->
 	<jsp:include page="common_header_6.jsp"/>
@@ -223,23 +191,24 @@
 
 					<section id="section-2">
 						<div class="row">
-							<div class="col-lg-4 col-md-6">
+							<c:forEach var="wishlist" items="${wishlistList}">
+							<div class="col-lg-4 col-md-6" mNo="${sUser.mNo}" pNo="${wishlist.pNo}">
 								<div class="hotel_container">
 									<div class="img_container">
-										<a href="single_hotel.html">
-											<img src="${pageContext.request.contextPath}/resources/img/hotel_1.jpg" width="800" height="533" class="img-fluid" alt="Image">
+										<a href="tour_detail?pNo=${wishlist.pNo}">
+											<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${wishlist.pName}1.jpg" width="800" height="533" class="img-fluid" alt="Image">
 											<div class="ribbon top_rated">
 											</div>
 											<div class="score">
-												<span>7.5</span>Good
+												<span>${wishlist.pRate}</span>Good
 											</div>
 											<div class="short_info hotel">
-												From/Per night<span class="price"><sup>$</sup>59</span>
+												From/Per night<span class="price"><sup></sup>${wishlist.pPrice}</span>
 											</div>
 										</a>
 									</div>
 									<div class="hotel_title">
-										<h3><strong>Park Hyatt</strong> Hotel</h3>
+										<h3><strong>${wishlist.pName}, ${wishlist.pNo}</strong> ${wishlist.pType}</h3>
 										<div class="rating">
 											<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
 										</div>
@@ -252,184 +221,55 @@
 								<!-- End box tour -->
 							</div>
 							<!-- End col-md-6 -->
-
-							<div class="col-lg-4 col-md-6 ">
-								<div class="hotel_container">
-									<div class="img_container">
-										<a href="single_hotel.html">
-											<img src="${pageContext.request.contextPath}/resources/img/hotel_2.jpg" width="800" height="533" class="img-fluid" alt="Image">
-											<div class="ribbon top_rated">
-											</div>
-											<div class="score">
-												<span>9.0</span>Superb
-											</div>
-											<div class="short_info hotel">
-												From/Per night<span class="price"><sup>$</sup>45</span>
-											</div>
-										</a>
-									</div>
-									<div class="hotel_title">
-										<h3><strong>Mariott</strong> Hotel</h3>
-										<div class="rating">
-											<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
-										</div>
-										<!-- end rating -->
-										<div class="wishlist_close_admin">
-											-
-										</div>
-									</div>
-								</div>
-								<!-- End box -->
-							</div>
-							<!-- End col-md-6 -->
-
-							<div class="col-lg-4 col-md-6">
-								<div class="tour_container">
-									<div class="img_container">
-										<a href="single_tour.html">
-											<img src="${pageContext.request.contextPath}/resources/img/tour_box_1.jpg" width="800" height="533" class="img-fluid" alt="Image">
-											<div class="ribbon top_rated">
-											</div>
-											<div class="short_info">
-												<i class="icon_set_1_icon-44"></i>Historic Buildings<span class="price"><sup>$</sup>45</span>
-											</div>
-										</a>
-									</div>
-									<div class="tour_title">
-										<h3><strong>Arc Triomphe</strong> tour</h3>
-										<div class="rating">
-											<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
-										</div>
-										<!-- end rating -->
-										<div class="wishlist_close_admin">
-											-
-										</div>
-									</div>
-								</div>
-								<!-- End box tour -->
-							</div>
-							<!-- End col-md-6 -->
-
-							<div class="col-lg-4 col-md-6">
-								<div class="tour_container">
-									<div class="img_container">
-										<a href="single_tour.html">
-											<img src="${pageContext.request.contextPath}/resources/img/tour_box_3.jpg" width="800" height="533" class="img-fluid" alt="Image">
-											<div class="ribbon popular">
-											</div>
-											<div class="short_info">
-												<i class="icon_set_1_icon-44"></i>Historic Buildings<span class="price"><sup>$</sup>45</span>
-											</div>
-										</a>
-									</div>
-									<div class="tour_title">
-										<h3><strong>Versailles</strong> tour</h3>
-										<div class="rating">
-											<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
-										</div>
-										<!-- end rating -->
-										<div class="wishlist_close_admin">
-											-
-										</div>
-									</div>
-								</div>
-								<!-- End box tour -->
-							</div>
-							<!-- End col-md-6 -->
-
-							<div class="col-lg-4 col-md-6">
-								<div class="tour_container">
-									<div class="img_container">
-										<a href="single_tour.html">
-											<img src="${pageContext.request.contextPath}/resources/img/tour_box_4.jpg" width="800" height="533" class="img-fluid" alt="Image">
-											<div class="ribbon popular">
-											</div>
-											<div class="short_info">
-												<i class="icon_set_1_icon-30"></i>Walking tour<span class="price"><sup>$</sup>45</span>
-											</div>
-										</a>
-									</div>
-									<div class="tour_title">
-										<h3><strong>Pompidue</strong> tour</h3>
-										<div class="rating">
-											<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
-										</div>
-										<!-- end rating -->
-										<div class="wishlist_close_admin">
-											-
-										</div>
-									</div>
-								</div>
-								<!-- End box tour -->
-							</div>
-							<!-- End col-md-6 -->
-
-							<div class="col-lg-4 col-md-6">
-								<div class="transfer_container">
-									<div class="img_container">
-										<a href="single_transfer.html">
-											<img src="${pageContext.request.contextPath}/resources/img/transfer_1.jpg" width="800" height="533" class="img-fluid" alt="Image">
-											<div class="ribbon top_rated">
-											</div>
-											<div class="short_info">
-												From/Per person<span class="price"><sup>$</sup>45</span>
-											</div>
-										</a>
-									</div>
-									<div class="transfer_title">
-										<h3><strong>Orly Airport</strong> private</h3>
-										<div class="rating">
-											<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
-										</div>
-										<!-- end rating -->
-										<div class="wishlist_close_admin">
-											-
-										</div>
-									</div>
-								</div>
-								<!-- End box tour -->
-							</div>
-							<!-- End col-md-6 -->
-
+							</c:forEach>
 						</div>
 						<!-- End row -->
-						<button type="submit" class="btn_1 green">Update wishlist</button>
+						<a href="tour_list" class="btn_1 green">Update wishlist</a>
 					</section>
 					<!-- End section 2 -->
 
 					<section id="section-3">
 						<div class="row">
 							<div class="col-md-6 add_bottom_30">
-								<h4>Change your password</h4>
-								<div class="form-group">
-									<label>Old password</label>
-									<input class="form-control" name="old_password" id="old_password" type="password">
-								</div>
-								<div class="form-group">
-									<label>New password</label>
-									<input class="form-control" name="new_password" id="new_password" type="password">
-								</div>
-								<div class="form-group">
-									<label>Confirm new password</label>
-									<input class="form-control" name="confirm_new_password" id="confirm_new_password" type="password">
-								</div>
-								<button type="submit" class="btn_1 green">Update Password</button>
+								<form id="f3-1" method="post" action="javascript:updatePassword();">
+									<h4>Change your password</h4>
+									<input type="hidden" id="passwordMsg" value="${passwordMsg}">
+									<input type="hidden" id="password1" value="${sUser.mPassword}">
+									<input type="hidden" id="password2" value="${sUser.mTempPassword}">
+									<div class="form-group">
+										<label>Old password</label>
+										<input class="form-control" name="old_password" id="old_password" type="password">
+									</div>
+									<div class="form-group">
+										<label>New password</label>
+										<input class="form-control" name="new_password" id="new_password" type="password">
+									</div>
+									<div class="form-group">
+										<label>Confirm new password</label>
+										<input class="form-control" name="confirm_password" id="confirm_new_password" type="password">
+									</div>
+									<button type="submit" class="btn_1 green">Update Password</button>
+								</form>
 							</div>
 							<div class="col-md-6 add_bottom_30">
-								<h4>Change your email</h4>
-								<div class="form-group">
-									<label>Old email</label>
-									<input class="form-control" name="old_password" id="old_password" type="password">
-								</div>
-								<div class="form-group">
-									<label>New email</label>
-									<input class="form-control" name="new_password" id="new_password" type="password">
-								</div>
-								<div class="form-group">
-									<label>Confirm new email</label>
-									<input class="form-control" name="confirm_new_password" id="confirm_new_password" type="password">
-								</div>
-								<button type="submit" class="btn_1 green">Update Email</button>
+								<form id="f3-2" method="post" action="javascript:updateEmail();">
+									<h4>Change your email</h4>
+									<input type="hidden" id="emailMsg" value="${emailMsg}">
+									<input type="hidden" id="email1" value="${sUser.mEmail}">
+									<div class="form-group">
+										<label>Old Email</label>
+										<input class="form-control" name="old_email" id="old_email" type="text" value="${sUser.mEmail}">
+									</div>
+									<div class="form-group">
+										<label>New Email</label>
+										<input class="form-control" name="new_email" id="new_email" type="text">
+									</div>
+									<div class="form-group">
+										<label>Comfirm Email</label>
+										<input class="form-control" name="confirm_email" id="confirm_new_email" type="text">
+									</div>
+									<button type="submit" class="btn_1 green">Update Email</button>
+								</form>
 							</div>
 						</div>
 						<!-- End row -->
@@ -488,7 +328,7 @@
 												<label class="switch-light switch-ios pull-right">
 													<input type="checkbox" name="option_3" id="option_3" value="" checked>
 													<span>
-							<span>No</span>
+													<span>No</span>
 													<span>Yes</span>
 													</span>
 													<a></a>
@@ -506,7 +346,7 @@
 												<label class="switch-light switch-ios pull-right">
 													<input type="checkbox" name="option_4" id="option_4" value="">
 													<span>
-							<span>No</span>
+													<span>No</span>
 													<span>Yes</span>
 													</span>
 													<a></a>
@@ -523,40 +363,43 @@
 					<!-- End section 3 -->
 
 					<section id="section-4">
+					<form id="f4" action="javascript:updateMember();">
 						<div class="row">
 							<div class="col-md-6">
 								<h4>Your profile</h4>
 								<ul id="profile_summary">
-									<li>Username <span>info@clara.com</span>
+									<li>Username <span>${sUser.mId}</span>
 									</li>
-									<li>First name <span>Clara</span>
+									<li>First name <span>${sUser.mFirstName}</span>
 									</li>
-									<li>Last name <span>Tomson</span>
+									<li>Last name <span>${sUser.mLastName}</span>
 									</li>
-									<li>Phone number <span>+00 032 42366</span>
+									<li>Email <span>${sUser.mEmail}</span>
 									</li>
-									<li>Date of birth <span>13/04/1975</span>
+									<li>Phone number <span>${sUser.mTel}</span>
 									</li>
-									<li>Street address <span>24 Rue de Rivoli</span>
+									<li>Date of birth <span>${sUser.mBirth}</span>
 									</li>
-									<li>Town/City <span>Paris</span>
+									<li>Street address <span>${sUser.mAddress}</span>
 									</li>
-									<li>Zip code <span>002843</span>
+									<li>Town/City <span>${sUser.mCity}</span>
 									</li>
-									<li>Country <span>France</span>
+									<li>Zip code <span>${sUser.mZipCode}</span>
+									</li>
+									<li>Country <span>${sUser.mCountry}</span>
 									</li>
 								</ul>
 							</div>
 							<div class="col-md-6">
 								<p>
-								<img src="${pageContext.request.contextPath}/resources/img/tourist_guide_pic.jpg" alt="Image" class="img-fluid styled profile_pic">
+								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${sUser.mImg}" width="250" height="300" alt="Image" class="img-fluid styled profile_pic">
 								</p>
 							</div>
 						</div>
 						<!-- End row -->
 
 						<div class="divider"></div>
-
+						
 						<div class="row">
 							<div class="col-md-12">
 								<h4>Edit profile</h4>
@@ -564,13 +407,13 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>First name</label>
-									<input class="form-control" name="first_name" id="first_name" type="text">
+									<input class="form-control" name="first_name" id="first_name" type="text" value="${sUser.mFirstName}">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Last name</label>
-									<input class="form-control" name="last_name" id="last_name" type="text">
+									<input class="form-control" name="last_name" id="last_name" type="text" value="${sUser.mLastName}">
 								</div>
 							</div>
 						</div>
@@ -580,14 +423,14 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Phone number</label>
-									<input class="form-control" name="email_2" id="email_2" type="text">
+									<input class="form-control" name="tel" id="tel" type="text" value="${sUser.mEmail}">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label>Date of birth <small>(dd/mm/yyyy)</small>
+									<label>Date of birth <small>YYYYMMDD</small>
 									</label>
-									<input class="form-control" name="email" id="email" type="text">
+									<input class="form-control" name="birth" id="birth" type="text" value="${sUser.mBirth}">
 								</div>
 							</div>
 						</div>
@@ -601,13 +444,13 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Street address</label>
-									<input class="form-control" name="first_name" id="first_name" type="text">
+									<input class="form-control" name="address" id="address" type="text">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>City/Town</label>
-									<input class="form-control" name="last_name" id="last_name" type="text">
+									<input class="form-control" name="city" id="city" type="text">
 								</div>
 							</div>
 						</div>
@@ -617,14 +460,18 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Zip code</label>
-									<input class="form-control" name="email" id="email" type="text">
+									<input class="form-control" name="zipcode" id="zipcode" type="text">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Country</label>
 									<select id="country" class="form-control" name="country">
-										<option value="">Select...</option>
+										<option value="U.S.A">United States</option>
+										<option value="CANADA">CANADA</option>
+										<option value="U.K">United Kingdom</option>
+										<option value="KOREA">KOREA</option>
+										<option value="CHINA">CHINA</option>
 									</select>
 								</div>
 							</div>
@@ -654,13 +501,13 @@
 							<div class="js-upload-finished">
 								<h5>Processed files</h5>
 								<div class="list-group">
-									<a href="#" class="list-group-item list-group-item-success"><span class="badge alert-success pull-right">Success</span>image-01.jpg</a>
+									<a href="#" class="list-group-item list-group-item-success"><span class="badge alert-success pull-right">Success</span>${sUser.mImg}</a>
 								</div>
 							</div>
 							<!-- End Hidden on mobiles -->
-
 							<hr>
 							<button type="submit" class="btn_1 green">Update Profile</button>
+						</form>
 					</section>
 					<!-- End section 4 -->
 
@@ -679,15 +526,23 @@
 
 	<!-- Specific scripts -->
 	<script src="${pageContext.request.contextPath}/resources/js/tabs.js"></script>
+
 	<script>
 		new CBPFWTabs(document.getElementById('tabs'));
 	</script>
-	<script>
-		$('.wishlist_close_admin').on('click', function (c) {
-			$(this).parent().parent().parent().fadeOut('slow', function (c) {});
+	
+	<script type="text/javascript">
+		$(function() {
+			var emailMsg = $("#emailMsg").val();
+			if (emailMsg != null && emailMsg != "") {
+				alert(emailMsg);
+			}
+			var passwordMsg = $("#passwordMsg").val();
+			if (passwordMsg != null &passwordMsg != "") {
+				alert(passwordMsg);
+			}
 		});
 	</script>
-
 </body>
 
 </html>
