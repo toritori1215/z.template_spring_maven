@@ -64,7 +64,7 @@
 						
 					
 						<div class="post">
-							<a href="blog_post_right_sidebar.html"><img src="${pageContext.request.contextPath}/resources/img/blog-3.jpg" alt="Image" class="img-fluid">
+							<a href="blog_post_right_sidebar.jsp"><img src="${pageContext.request.contextPath}/resources/img/blog-3.jpg" alt="Image" class="img-fluid">
 							</a>
 							<div class="post_info clearfix">
 								<div class="post-left">
