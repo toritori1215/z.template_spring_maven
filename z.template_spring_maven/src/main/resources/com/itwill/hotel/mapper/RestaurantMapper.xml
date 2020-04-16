@@ -121,7 +121,7 @@
 			
 			SELECT  foodcategory,COUNT(*) categoryCnt
 			FROM PRODUCT
-			WHERE PTYPE ='restaurant' AND foodcategory NOT IN ('Dummy','Restaurant Booking')
+			WHERE PTYPE ='restaurant' AND foodcategory NOT IN ('Dummy','Restaurant Booking') AND foodcategory NOT LIKE '%Dessert'
 			GROUP BY foodcategory
 	</select>
 
