@@ -16,6 +16,7 @@ public class Product {
 	private String pDesc;
 	private String foodCategory;
 	private int rCount;
+	private int wCount;
 	
 	public Product() {
 		
@@ -123,11 +124,19 @@ public class Product {
 		this.rCount = rCount;
 	}
 
+	public int getwCount() {
+		return wCount;
+	}
+
+	public void setwCount(int wCount) {
+		this.wCount = wCount;
+	}
+
 	@Override
 	public String toString() {
 		return "Product [pNo=" + pNo + ", pName=" + pName + ", pPrice=" + pPrice + ", pType=" + pType + ", pAvailable="
 				+ pAvailable + ", pImg=" + pImg + ", pCapacity=" + pCapacity + ", pRate=" + pRate + ", pDesc=" + pDesc
-				+ ", foodCategory=" + foodCategory + ", rCount=" + rCount + "]";
+				+ ", foodCategory=" + foodCategory + ", rCount=" + rCount + ", wCount=" + wCount + "]";
 	}
 
 }
