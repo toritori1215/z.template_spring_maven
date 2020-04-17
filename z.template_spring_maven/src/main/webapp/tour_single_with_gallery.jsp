@@ -362,7 +362,7 @@
 												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
 											</div>
 										</li>
-										<li>Tourist guide
+										<li>Tour guide
 											<div class="rating">
 												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i>
 											</div>
@@ -388,7 +388,7 @@
 							<hr>
 							<div class="review_strip_single">
 								<img src="${pageContext.request.contextPath}/resources/img/avatar1.jpg" alt="Image" class="rounded-circle">
-								<small> - 10 March 2015 -</small>
+								<small> - 10 March 2015 - </small>
 								<h4>Jhon Doe</h4>
 								<p>
 									"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
@@ -439,30 +439,22 @@
 							<div class="col-sm-6">
 								<div class="form-group">
 									<label><i class="icon-calendar-7"></i> Select a date</label>
-									<input class="date-pick form-control" data-date-format="M d, D" type="text">
+									<input class="date-pick form-control" data-date-format="M d, D" type="text" name="date">
 								</div>
 							</div>
 							<div class="col-sm-6">
 								<div class="form-group">
 									<label><i class=" icon-clock"></i> Time</label>
-									<input class="time-pick form-control" value="12:00 AM" type="text">
+									<input disabled class="time-pick form-control" value="08:00 AM" type="text">
 								</div>
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-6">
+							<div class="col-12">
 								<div class="form-group">
-									<label>Adults</label>
+									<label>How many travellers?</label>
 									<div class="numbers-row">
 										<input type="text" value="1" id="adults" class="qty2 form-control" name="quantity">
-									</div>
-								</div>
-							</div>
-							<div class="col-6">
-								<div class="form-group">
-									<label>Children</label>
-									<div class="numbers-row">
-										<input type="text" value="0" id="children" class="qty2 form-control" name="quantity">
 									</div>
 								</div>
 							</div>
@@ -505,7 +497,9 @@
 							</tbody>
 						</table>
 						<a class="btn_full" href="cart.html">Book now</a>
-						<a class="btn_full_outline" href="#"><i class=" icon-heart"></i> Add to whislist</a>
+						<div id="addWishlistParam" mNo="${sUser.mNo}" pNo="${product.pNo}">
+							<a class="btn_full_outline" id="addWishlist" href="#"><i class=" icon-heart"></i> Add to wishlist</a>
+						</div>
 					</div>
 					<!--/box_style_1 -->
 
@@ -905,8 +899,8 @@
 	<script>
 		$('input.date-pick').datepicker('setDate', 'today');
 		$('input.time-pick').timepicker({
-			minuteStep: 15,
-			showInpunts: false
+			minuteStep: 30,
+			showInputs: false
 		})
 	</script>
 
