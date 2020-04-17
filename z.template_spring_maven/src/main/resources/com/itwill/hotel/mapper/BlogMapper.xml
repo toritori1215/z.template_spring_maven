@@ -33,31 +33,11 @@
 	
 	
 	<!-- Blog Review -->
-	<select id="selectAllBlogReviewDepth1" resultType="BlogReview">
-		select brNo, brDate, brContent, mNo, bNo, brStep, brGroup, brDepth
+	<select id="selectBlogReview" parameterType="_int" resultType="BlogReview">
+		select brNo, brDate, brContent, brGroup, brStep, brDepth, mNo, bNo
 		from blog_review
-		where brDepth=1 
-		order by brDate desc
-	</select>
-	
-	<select id="selectAllBlogReviewDepth2" resultType="BlogReview">
-		select brNo, brDate, brContent, mNo, bNo, brStep, brGroup, brDepth
-		from blog_review
-		where brDepth=2 
-		order by brDate desc
-	</select>
-	
-	<select id="selectAllBlogReviewDepth3" resultType="BlogReview">
-		select brNo, brDate, brContent, mNo, bNo, brStep, brGroup, brDepth
-		from blog_review
-		where brDepth=3 
-		order by brDate desc
-	</select>
-	
-	<select id="selectOneBlogReview" resultType="BlogReview">
-		select brNo,brDate,brContent,mNo,BNo,brStep,brGroup,brDepth
-		from blog_review
-		where brNo=#{brNo} 
+		where bNo=1
+		order by brStep, brDepth, brDate desc
 	</select>
 	
 	<insert id="insertBlogReview" parameterType="java.util.HashMap">

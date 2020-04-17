@@ -30,17 +30,16 @@ public class BlogController {
 	}
 	
 	@RequestMapping(value = "/blog_post_right_sidebar")
-	public String viewBlog(@RequestParam(value = "bNo") String bNo, 
+	public String viewBlog(@RequestParam(value = "bNo", defaultValue = "") String bNo, 
 							Model model) {
+		if (bNo == null || bNo.trim().equals("")) {
+			return "forward:blog_right_sidebar";
+		}
 		Blog blogView = blogService.selectOneBlog(Integer.parseInt(bNo));
-		List<BlogReview> blogReviewList1 = blogService.selectAllBlogReviewDepth1();
-		List<BlogReview> blogReviewList2 = blogService.selectAllBlogReviewDepth2();
-		List<BlogReview> blogReviewList3 = blogService.selectAllBlogReviewDepth3();
-		int size = blogReviewList1.size();
+		List<BlogReview> blogReviewList = blogService.selectBlogReview(Integer.parseInt(bNo));
+		int size = blogReviewList.size();
 		model.addAttribute("blogView", blogView);
-		model.addAttribute("blogReviewList1", blogReviewList1);
-		model.addAttribute("blogReviewList2", blogReviewList2);
-		model.addAttribute("blogReviewList3", blogReviewList3);
+		model.addAttribute("blogReviewList", blogReviewList);
 		model.addAttribute("size", size);
 		return "forward:blog_post_right_sidebar.jsp";
 	}

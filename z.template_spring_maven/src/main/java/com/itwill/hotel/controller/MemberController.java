@@ -45,7 +45,7 @@ public class MemberController {
 									HttpSession session,
 									Model model) {
 		memberService.deleteInactiveMember();
-		if (mId == "" || mPassword == "" || mId == null || mPassword == null ) {
+		if (mId.trim().equals("") || mPassword.trim().equals("") || mId == null || mPassword == null ) {
 			model.addAttribute("msg", "빈 칸에 값을 입력하십시오.");
 			return "member_login"; 
 		}
@@ -75,7 +75,7 @@ public class MemberController {
 				if (tempMember.getmIfActive() == 1) {
 					// 로그인
 					memberService.setTempPasswordNull(mId);
-					if (mCheck != null && !mCheck.equals("")) {
+					if (mCheck != null && !mCheck.trim().equals("")) {
 						// 쿠키
 					} else {
 						session.setAttribute("sUser", tempMember);
@@ -123,8 +123,8 @@ public class MemberController {
 		model.addAttribute("mEmail", mEmail);
 		model.addAttribute("mTel", mTel);
 		model.addAttribute("mBirth", mBirth);
-		if (mId == "" || mPassword == "" || mPassword2 == "" || mFirstName == "" || 
-			mLastName == "" || mEmail == "" || mTel == "" || mBirth == "" || 
+		if (mId.trim().equals("") || mPassword.trim().equals("") || mPassword2.trim().equals("") || mFirstName.trim().equals("") || 
+			mLastName.trim().equals("") || mEmail.trim().equals("") || mTel.trim().equals("") || mBirth.trim().equals("") || 
 			mId == null || mPassword == null || mPassword2 == null || mFirstName == null || 
 			mLastName == null || mEmail == null || mTel == null || mBirth == null) {
 			model.addAttribute("msg", "빈 칸에 값을 입력하십시오.");
@@ -170,8 +170,8 @@ public class MemberController {
 		model.addAttribute("mTel", mTel);
 		model.addAttribute("mEmail", mEmail);
 		model.addAttribute("mBirth", mBirth);
-		if (mId == "" || mFirstName == "" || mLastName == "" || mTel == "" || 
-				mEmail == "" || mBirth == "" || mId == null || mFirstName == null || 
+		if (mId.trim().equals("") || mFirstName.trim().equals("") || mLastName.trim().equals("") || mTel.trim().equals("") || 
+				mEmail.trim().equals("") || mBirth.trim().equals("") || mId == null || mFirstName == null || 
 				mLastName == null || mTel == null || mEmail == null || mBirth == null) {
 			model.addAttribute("msg2", "빈 칸에 값을 입력하십시오");
 			return "member_login";
@@ -228,8 +228,8 @@ public class MemberController {
 		model.addAttribute("mTel", mTel);
 		model.addAttribute("mEmail", mEmail);
 		model.addAttribute("mBirth", mBirth);
-		if (mId == "" || mPassword == "" || mFirstName == "" || mLastName == "" || mTel == "" || 
-				mEmail == "" || mBirth == "" || mId == null || mPassword == null || mFirstName == null || 
+		if (mId.trim().equals("") || mPassword.trim().equals("") || mFirstName.trim().equals("") || mLastName.trim().equals("") || mTel.trim().equals("") || 
+				mEmail.trim().equals("") || mBirth.trim().equals("") || mId == null || mPassword == null || mFirstName == null || 
 				mLastName == null || mTel == null || mEmail == null || mBirth == null) {
 			model.addAttribute("msg3", "빈 칸에 값을 입력하십시오");
 			return "member_login";
