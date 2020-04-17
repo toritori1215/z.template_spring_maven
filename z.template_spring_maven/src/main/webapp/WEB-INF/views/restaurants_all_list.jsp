@@ -214,7 +214,7 @@
 										<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 									</div>
 									<div class="img_list">
-										<a href="restaurant_single_with_gallery">
+										<a href="restaurant_single_with_gallery?pno=${restListPage.list[st.index].pno}">
 											
 											<c:set var="fileImg" 
 											 value="${fn:split(restListPage.list[st.index].pimg,'/')}"/>
@@ -324,7 +324,7 @@
 											
 											<span class="normal_price_list"></span><small>*Per food</small>
 											 											
-											<p><a href="restaurant_single_with_gallery" class="btn_1">Details</a>
+											<p><a href="restaurant_single_with_gallery?pno=${restListPage.list[st.index].pno}" class="btn_1">Details</a>
 											</p>
 										</div>
 	
