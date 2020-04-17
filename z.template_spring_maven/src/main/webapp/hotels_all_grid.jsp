@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -218,6 +219,7 @@
 				</aside>
 				<!--End aside -->
 
+				<!-- Main sort and changing style -->
 				<div class="col-lg-9">
 
 					<div id="tools">
@@ -241,20 +243,25 @@
 								</div>
 							</div>
 							<div class="col-md-6 col-sm-4 d-none d-sm-block text-right">
-								<a href="#" class="bt_filters"><i class="icon-th"></i></a> <a href="all_hotels_list.html" class="bt_filters"><i class=" icon-list"></i></a>
+								<a href="hotel_grid" class="bt_filters"><i class="icon-th"></i></a> <a href="hotel_list" class="bt_filters"><i class=" icon-list"></i></a>
 							</div>
 						</div>
 					</div>
 					<!--End tools -->
 
+					<!-- List start -->
+					<c:forEach var="product" items="${productList}"> 
 					<div class="row">
 						<div class="col-md-6 wow zoomIn" data-wow-delay="0.1s">
 							<div class="hotel_container">
+								<!-- 
+								<div class="ribbon_3 popular"><span>Popular</span>
+								 -->
 								<div class="ribbon_3 popular"><span>Popular</span>
 								</div>
 								<div class="img_container">
-									<a href="single_hotel.html">
-										<img src="${pageContext.request.contextPath}/resources/img/hotel_1.jpg" width="800" height="533" class="img-fluid" alt="Image">
+									<a href="hotel_single.jsp?pNo=${product.pNo}">
+										<img src="${pageContext.request.contextPath}/resources/z.SiliconVilage/img/${product.pName}_thumb.jpg" width="800" height="533" class="img-fluid" alt="Image">
 										<div class="score"><span>7.5</span>Good</div>
 										<div class="short_info hotel">
 											From/Per night<span class="price"><sup>$</sup>59</span>
@@ -262,7 +269,7 @@
 									</a>
 								</div>
 								<div class="hotel_title">
-									<h3><strong>Park Hyatt</strong> Hotel</h3>
+									<h3><strong>${product.pName}</strong></h3>
 									<div class="rating">
 										<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
 									</div>
@@ -274,163 +281,15 @@
 								</div>
 							</div>
 							<!-- End box tour -->
-						</div>
+						</div>				
 						<!-- End col-md-6 -->
+						<!-- List end -->
+						</c:forEach>
 
-						<div class="col-md-6 wow zoomIn" data-wow-delay="0.2s">
-							<div class="hotel_container">
-								<div class="ribbon_3 popular"><span>Popular</span>
-								</div>
-								<div class="img_container">
-									<a href="single_hotel.html">
-										<img src="${pageContext.request.contextPath}/resources/img/hotel_2.jpg" width="800" height="533" class="img-fluid" alt="Image">
-										<div class="score"><span>9.0</span>Superb</div>
-										<div class="short_info hotel">
-											From/Per night<span class="price"><sup>$</sup>45</span>
-										</div>
-									</a>
-								</div>
-								<div class="hotel_title">
-									<h3><strong>Mariott</strong> Hotel</h3>
-									<div class="rating">
-										<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
-									</div>
-									<!-- end rating -->
-									<div class="wishlist">
-										<a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-									</div>
-									<!-- End wish list-->
-								</div>
-							</div>
-							<!-- End box -->
-						</div>
-						<!-- End col-md-6 -->
-					</div>
-					<!-- End row -->
-
-					<div class="row">
-						<div class="col-md-6 wow zoomIn" data-wow-delay="0.2s">
-							<div class="hotel_container">
-								<div class="ribbon_3"><span>Top rated</span>
-								</div>
-								<div class="img_container">
-									<a href="single_hotel.html">
-										<img src="${pageContext.request.contextPath}/resources/img/hotel_3.jpg" width="800" height="533" class="img-fluid" alt="Image">
-										<div class="score"><span>9.5</span>Superb</div>
-										<div class="short_info hotel">
-											From/Per night<span class="price"><sup>$</sup>39</span>
-										</div>
-									</a>
-								</div>
-								<div class="hotel_title">
-									<h3><strong>Lumiere</strong> Hotel</h3>
-									<div class="rating">
-										<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
-									</div>
-									<!-- end rating -->
-									<div class="wishlist">
-										<a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-									</div>
-									<!-- End wish list-->
-								</div>
-							</div>
-							<!-- End box -->
-						</div>
-						<!-- End col-md-6 -->
-
-						<div class="col-md-6 wow zoomIn" data-wow-delay="0.4s">
-							<div class="hotel_container">
-								<div class="ribbon_3"><span>Top rated</span>
-								</div>
-								<div class="img_container">
-									<a href="single_hotel.html">
-										<img src="${pageContext.request.contextPath}/resources/img/hotel_4.jpg" width="800" height="533" class="img-fluid" alt="Image">
-										<div class="score"><span>7.5</span>Good</div>
-										<div class="short_info hotel">
-											From/Per night<span class="price"><sup>$</sup>45</span>
-										</div>
-									</a>
-								</div>
-								<div class="hotel_title">
-									<h3><strong>Concorde</strong> Hotel</h3>
-									<div class="rating">
-										<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
-									</div>
-									<!-- end rating -->
-									<div class="wishlist">
-										<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-									</div>
-									<!-- End wish list-->
-								</div>
-							</div>
-							<!-- End box -->
-						</div>
-						<!-- End col-md-6 -->
-					</div>
-					<!-- End row -->
-
-					<div class="row">
-						<div class="col-md-6 wow zoomIn" data-wow-delay="0.2s">
-							<div class="hotel_container">
-								<div class="ribbon_3"><span>Top rated</span>
-								</div>
-								<div class="img_container">
-									<a href="single_hotel.html">
-										<img src="${pageContext.request.contextPath}/resources/img/hotel_5.jpg" width="800" height="533" class="img-fluid" alt="Image">
-										<div class="score"><span>8.0</span>Good</div>
-										<div class="short_info hotel">
-											From/Per night<span class="price"><sup>$</sup>39</span>
-										</div>
-									</a>
-								</div>
-								<div class="hotel_title">
-									<h3><strong>Louvre</strong> Hotel</h3>
-									<div class="rating">
-										<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
-									</div>
-									<!-- end rating -->
-									<div class="wishlist">
-										<a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-									</div>
-									<!-- End wish list-->
-								</div>
-							</div>
-							<!-- End box -->
-						</div>
-						<!-- End col-md-6 -->
-
-						<div class="col-md-6 wow zoomIn" data-wow-delay="0.4s">
-							<div class="hotel_container">
-								<div class="ribbon_3"><span>Top rated</span>
-								</div>
-								<div class="img_container">
-									<a href="single_hotel.html">
-										<img src="${pageContext.request.contextPath}/resources/img/hotel_6.jpg" width="800" height="533" class="img-fluid" alt="Image">
-										<div class="score"><span>8.5</span>Superb</div>
-										<div class="short_info hotel">
-											From/Per night<span class="price"><sup>$</sup>45</span>
-										</div>
-									</a>
-								</div>
-								<div class="hotel_title">
-									<h3><strong>Concorde</strong> Hotel</h3>
-									<div class="rating">
-										<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
-									</div>
-									<!-- end rating -->
-									<div class="wishlist">
-										<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-									</div>
-									<!-- End wish list-->
-								</div>
-							</div>
-							<!-- End box -->
-						</div>
-						<!-- End col-md-6 -->
-					</div>
-					<!-- End row -->
+						
 
 					<hr>
+					
 					
 					<nav aria-label="Page navigation">
 						<ul class="pagination justify-content-center">

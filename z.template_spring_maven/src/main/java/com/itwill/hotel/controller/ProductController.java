@@ -31,6 +31,14 @@ public class ProductController {
 		return "forward:tour_all_list.jsp";
 	}
 	
+	@RequestMapping(value = "/hotel_list")
+	public String hotelList(Model model) {
+		HashMap parameterMap = new HashMap();
+		parameterMap.put("pType", "hotel");
+		model.addAttribute("productList", productService.selectByType(parameterMap));
+		return "forward:hotels_all_list.jsp";
+	}
+	
 	@RequestMapping(value = "/tour_list_json", produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public List<Product> productList(@RequestParam(value="ratingArray[]") ArrayList<Integer> ratingArray) {
@@ -51,19 +59,17 @@ public class ProductController {
 		return "forward:tour_single_with_gallery.jsp";
 	}
 	
-	@RequestMapping(value = "/room_list")
-	public String roomList() {
-		return "room_all_list";
-	}
-	
 	@RequestMapping(value = "/tour_grid")
 	public String tourListGrid() {
 		return "tour_all_grid";
 	}
 	
-	@RequestMapping(value = "/room_grid")
-	public String roomListGrid() {
-		return "room_all_grid";
+	@RequestMapping(value = "/hotel_grid")
+	public String hotelListGrid(Model model) {
+		HashMap parameterMap = new HashMap();
+		parameterMap.put("pType", "hotel");
+		model.addAttribute("productList", productService.selectByType(parameterMap));
+		return "forward:hotels_all_grid.jsp";
 	}
 	
 	@RequestMapping(value = "/product_list_condition")
@@ -101,12 +107,12 @@ public class ProductController {
 		return "product/list_wishlist_condition";
 	}
 	
-	@RequestMapping(value = "/count_room_condition")
+	@RequestMapping(value = "/count_hotel_condition")
 	public String countRoomCondition() {
 		return "product/count_room_condition";
 	}
 	
-	@RequestMapping(value = "/count_room")
+	@RequestMapping(value = "/count_hotel")
 	public String countRoom(@RequestParam(value="pNo", required=true) String pNo,
 							@RequestParam(value="jdOrderDate", required=true) String jdOrderDate,
 							@RequestParam(value="jdCheckOut", required=true) String jdCheckOut,
@@ -122,7 +128,7 @@ public class ProductController {
 		Product product = productService.selectByNo(Integer.parseInt(pNo));
 		int remain = product.getpAvailable() - count;
 		model.addAttribute("remain", remain);
-		return "product/count_room";
+		return "product/count_hotel";
 	}
 	
 	@RequestMapping(value = "/count_tour_condition")

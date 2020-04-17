@@ -42,11 +42,11 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="#">Home</a>
+					<li><a href="${pageContext.request.contextPath}/main_page.jsp">Home</a>
 					</li>
-					<li><a href="#">Category</a>
+					<li><a href="#">Hotel</a>
 					</li>
-					<li>Page active</li>
+					<li>Hotel list</li>
 				</ul>
 			</div>
 		</div>
@@ -240,7 +240,7 @@
 				</aside>
 				<!--End aside -->
 				
-				<!-- Main List Sorting -->
+				<!-- Main sort and changing style -->
 				<div class="col-lg-9">
 
 					<div id="tools">
@@ -264,17 +264,22 @@
 								</div>
 							</div>
 							<div class="col-md-6 col-sm-4 d-none d-sm-block text-right">
-								<a href="#" class="bt_filters"><i class="icon-th"></i></a> <a href="hotels_all_list.jsp" class="bt_filters"><i class=" icon-list"></i></a>
+								<a href="hotel_grid" class="bt_filters"><i class="icon-th"></i></a> <a href="hotel_list" class="bt_filters"><i class=" icon-list"></i></a>
 							</div>
 						</div>
 					</div>
 					<!--End tools -->
+
+
 
 					<!-- List start -->
 					<c:forEach var="product" items="${productList}"> 
 						<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
 							<div class="row">
 								<div class="col-lg-4 col-md-4">
+									<!-- 
+									<div class="ribbon_3 popular"><span>Popular</span>
+									 -->
 									<div class="ribbon_3 popular"><span>Popular</span>
 									</div>
 									<div class="wishlist">
@@ -285,7 +290,7 @@
 										<a href="single_hotel.html"><img src="${pageContext.request.contextPath}/resources/img/hotel_1.jpg" alt="Image">
 											<div class="short_info"></div>
 										 -->
-										<a href="room${product.pNo}"><img src="${pageContext.request.contextPath}/resources/z.SiliconVilage/img/%{product.pName}_thumb.jpg" alt="Image">
+										<a href="room${product.pNo}"><img src="${pageContext.request.contextPath}/resources/z.SiliconVilage/img/${product.pName}_thumb.jpg" alt="Image">
 											<div class="short_info"></div>
 										</a>
 									</div>
@@ -296,8 +301,8 @@
 										</div>
 										<div class="rating"><i class="icon-star voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star-empty"></i>
 										</div>
-										<h3><strong>Park Hyatt</strong> Hotel</h3>
-										<p>Lorem ipsum dolor sit amet, quem convenire interesset ut vix, ad dicat sanctus detracto vis. Eos modus dolorum...</p>
+										<h3><strong>${product.pName}</strong></h3>
+										<p>${product.pDesc}</p>
 										<ul class="add_info">
 											<li>
 												<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Free Wifi"><i class="icon_set_1_icon-86"></i></a>
@@ -322,232 +327,21 @@
 										<!-- 
 										<div><sup>$</sup>89*<span class="normal_price_list">$99</span><small>*From/Per night</small>
 										 -->
-										<div><sup>￦</sup>${product.pPrice/10000}<span class="normal_price_list">${product.pPrice/10000}*1.3</span><small>*From/Per night</small>
+										<div><sup>￦</sup>${product.pPrice}<span class="normal_price_list">${product.pPrice*1.3}</span><small>*From/Per night</small>
 											<p><a href="hotel_single.jsp" class="btn_1">Details</a>
 											</p>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						</div>					
+					<!--End strip -->
+					<!-- List end -->
 					</c:forEach>
-					<!--End strip -->
-
-					<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
-						<div class="row">
-							<div class="col-lg-4 col-md-4">
-								<div class="ribbon_3 popular"><span>Popular</span>
-								</div>
-								<div class="wishlist">
-									<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-								</div>
-								<div class="img_list">
-									<a href="single_hotel.html"><img src="${pageContext.request.contextPath}/resources/img/hotel_2.jpg" alt="Image">
-										<div class="short_info"></div>
-									</a>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6">
-								<div class="tour_list_desc">
-									<div class="score">Superb<span>9.0</span>
-									</div>
-									<div class="rating"><i class="icon-star voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star-empty"></i>
-									</div>
-									<h3><strong>Mariott</strong> Hotel</h3>
-									<p>Lorem ipsum dolor sit amet, quem convenire interesset ut vix, ad dicat sanctus detracto vis. Eos modus dolorum...</p>
-									<ul class="add_info">
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Free Wifi"><i class="icon_set_1_icon-86"></i></a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Plasma TV with cable channels"><i class="icon_set_2_icon-116"></i></a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Swimming pool"><i class="icon_set_2_icon-110"></i></a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Fitness Center"><i class="icon_set_2_icon-117"></i></a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Restaurant"><i class="icon_set_1_icon-58"></i></a>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="col-lg-2 col-md-2">
-								<div class="price_list">
-									<div><sup>$</sup>39*<span class="normal_price_list">$99</span><small>*From/Per night</small>
-										<p><a href="single_hotel.html" class="btn_1">Details</a>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--End strip -->
-
-					<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
-						<div class="row">
-							<div class="col-lg-4 col-md-4">
-								<div class="ribbon_3"><span>Top rated</span>
-								</div>
-								<div class="wishlist">
-									<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-								</div>
-								<div class="img_list">
-									<a href="single_hotel.html"><img src="${pageContext.request.contextPath}/resources/img/hotel_3.jpg" alt="Image">
-										<div class="short_info"></div>
-									</a>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6">
-								<div class="tour_list_desc">
-									<div class="score">Superb<span>9.0</span>
-									</div>
-									<div class="rating"><i class="icon-star voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i>
-									</div>
-									<h3><strong>Lumiere</strong> Hotel</h3>
-									<p>Lorem ipsum dolor sit amet, quem convenire interesset ut vix, ad dicat sanctus detracto vis. Eos modus dolorum...</p>
-									<ul class="add_info">
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Free Wifi"><i class="icon_set_1_icon-86"></i></a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Plasma TV with cable channels"><i class="icon_set_2_icon-116"></i></a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Swimming pool"><i class="icon_set_2_icon-110"></i></a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Fitness Center"><i class="icon_set_2_icon-117"></i></a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Restaurant"><i class="icon_set_1_icon-58"></i></a>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="col-lg-2 col-md-2">
-								<div class="price_list">
-									<div><sup>$</sup>129*<span class="normal_price_list">$99</span><small>*From/Per night</small>
-										<p><a href="single_hotel.html" class="btn_1">Details</a>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--End strip -->
-
-					<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
-						<div class="row">
-							<div class="col-lg-4 col-md-4">
-								<div class="ribbon_3"><span>Top rated</span>
-								</div>
-								<div class="wishlist">
-									<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-								</div>
-								<div class="img_list">
-									<a href="single_hotel.html"><img src="${pageContext.request.contextPath}/resources/img/hotel_4.jpg" alt="Image">
-										<div class="short_info"></div>
-									</a>
-								</div>
-							</div>
-							<div class="clearfix visible-xs-block"></div>
-							<div class="col-lg-6 col-md-6">
-								<div class="tour_list_desc">
-									<div class="score">Good<span>7.5</span>
-									</div>
-									<div class="rating"><i class="icon-star voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i>
-									</div>
-									<h3><strong>Concorde</strong> Hotel</h3>
-									<p>Lorem ipsum dolor sit amet, quem convenire interesset ut vix, ad dicat sanctus detracto vis. Eos modus dolorum...</p>
-									<ul class="add_info">
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Free Wifi"><i class="icon_set_1_icon-86"></i></a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Plasma TV with cable channels"><i class="icon_set_2_icon-116"></i></a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Swimming pool"><i class="icon_set_2_icon-110"></i></a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Fitness Center"><i class="icon_set_2_icon-117"></i></a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Restaurant"><i class="icon_set_1_icon-58"></i></a>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="col-lg-2 col-md-2">
-								<div class="price_list">
-									<div><sup>$</sup>119*<span class="normal_price_list">$99</span><small>*From/Per night</small>
-										<p><a href="single_hotel.html" class="btn_1">Details</a>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--End strip -->
-
-					<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
-						<div class="row">
-							<div class="col-lg-4 col-md-4">
-								<div class="ribbon_3"><span>Top rated</span>
-								</div>
-								<div class="wishlist">
-									<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-								</div>
-								<div class="img_list">
-									<a href="single_hotel.html"><img src="${pageContext.request.contextPath}/resources/img/hotel_5.jpg" alt="Image">
-										<div class="short_info"></div>
-									</a>
-								</div>
-							</div>
-							<div class="clearfix visible-xs-block"></div>
-							<div class="col-lg-6 col-md-6">
-								<div class="tour_list_desc">
-									<div class="score">Very Good<span>8.0</span>
-									</div>
-									<div class="rating"><i class="icon-star voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i><i class="icon-star  voted"></i>
-									</div>
-									<h3><strong>Concorde</strong> Hotel</h3>
-									<p>Lorem ipsum dolor sit amet, quem convenire interesset ut vix, ad dicat sanctus detracto vis. Eos modus dolorum...</p>
-									<ul class="add_info">
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Free Wifi"><i class="icon_set_1_icon-86"></i></a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Plasma TV with cable channels"><i class="icon_set_2_icon-116"></i></a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Swimming pool"><i class="icon_set_2_icon-110"></i></a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Fitness Center"><i class="icon_set_2_icon-117"></i></a>
-										</li>
-										<li>
-											<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Restaurant"><i class="icon_set_1_icon-58"></i></a>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="col-lg-2 col-md-2">
-								<div class="price_list">
-									<div><sup>$</sup>129*<span class="normal_price_list">$99</span><small>*From/Per night</small>
-										<p><a href="single_hotel.html" class="btn_1">Details</a>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--End strip -->
+					
 
 					<hr>
+					
 
 					<nav aria-label="Page navigation">
 						<ul class="pagination justify-content-center">
@@ -597,6 +391,10 @@
 		 });
 	</script>
 	
+	
+	
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/z.SiliconVillage/js/product.js"></script>
 
 </body>
 
