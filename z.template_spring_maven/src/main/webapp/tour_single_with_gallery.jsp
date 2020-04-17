@@ -7,6 +7,9 @@
 	<!-- Header================================================== -->
 	<jsp:include page="/WEB-INF/views/common_header_6.jsp"/>
 	<!-- End Header -->
+	
+	<!-- CUSTOM CSS -->
+	<link href="${pageContext.request.contextPath}/resources/z.SiliconVillage/css/product.css" rel="stylesheet">
 
 	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}.jpg" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-2">
@@ -142,7 +145,7 @@
 					<div class="row">
 						<div class="col-lg-3">
 							<h3>Description</h3>
-							<a href="#" class="btn_1 white add_bottom_30" data-toggle="modal" data-target="#guide">GUIDE INFO</a>
+							<a href="#" class="btn_1 white add_bottom_30" data-toggle="modal" data-target="#tourGuide">GUIDE INFO</a>
 						</div>
 						<div class="col-lg-9">
 							<h4>Paris in love</h4>
@@ -362,7 +365,7 @@
 												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
 											</div>
 										</li>
-										<li>Tourist guide
+										<li>Tour guide
 											<div class="rating">
 												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i>
 											</div>
@@ -388,7 +391,7 @@
 							<hr>
 							<div class="review_strip_single">
 								<img src="${pageContext.request.contextPath}/resources/img/avatar1.jpg" alt="Image" class="rounded-circle">
-								<small> - 10 March 2015 -</small>
+								<small> - 10 March 2015 - </small>
 								<h4>Jhon Doe</h4>
 								<p>
 									"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
@@ -439,30 +442,22 @@
 							<div class="col-sm-6">
 								<div class="form-group">
 									<label><i class="icon-calendar-7"></i> Select a date</label>
-									<input class="date-pick form-control" data-date-format="M d, D" type="text">
+									<input class="date-pick form-control" data-date-format="M d, D" type="text" name="date">
 								</div>
 							</div>
 							<div class="col-sm-6">
 								<div class="form-group">
 									<label><i class=" icon-clock"></i> Time</label>
-									<input class="time-pick form-control" value="12:00 AM" type="text">
+									<input disabled class="time-pick form-control" value="08:00 AM" type="text">
 								</div>
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-6">
+							<div class="col-12">
 								<div class="form-group">
-									<label>Adults</label>
+									<label>Travellers</label>
 									<div class="numbers-row">
 										<input type="text" value="1" id="adults" class="qty2 form-control" name="quantity">
-									</div>
-								</div>
-							</div>
-							<div class="col-6">
-								<div class="form-group">
-									<label>Children</label>
-									<div class="numbers-row">
-										<input type="text" value="0" id="children" class="qty2 form-control" name="quantity">
 									</div>
 								</div>
 							</div>
@@ -505,7 +500,9 @@
 							</tbody>
 						</table>
 						<a class="btn_full" href="cart.html">Book now</a>
-						<a class="btn_full_outline" href="#"><i class=" icon-heart"></i> Add to whislist</a>
+						<div id="addWishlistParam" mNo="${sUser.mNo}" pNo="${product.pNo}">
+							<a class="btn_full_outline" id="addWishlist" href="#"><i class=" icon-heart"></i> Add to wishlist</a>
+						</div>
 					</div>
 					<!--/box_style_1 -->
 
@@ -640,85 +637,241 @@
 	<!-- End modal review -->
 	
 	<!-- Modal Timeline -->
-	<div class="modal fade" id="timeline" tabindex="-1" role="dialog" 
-		aria-labelledby="timelineLabel" aria-hidden="true">
+	<div class="modal fade" id="timeline" tabindex="-1" role="dialog" aria-labelledby="timelineLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
-				
-				<div class="container margin_60">
-			<div class="main_title">
-				<h2><span>TIMELINE</span> for ${product.pName} Tour</h2>
-				<p>
-					Quisque at tortor a libero posuere laoreet vitae sed arcu. Curabitur consequat.
-				</p>
-			</div>
-				</div>
+					<div class="container margin_60">
+						<div class="main_title">
+							<h2><span>TIMELINE</span> for ${product.pName} Tour</h2>
+							<p>Quisque at tortor a libero posuere laoreet vitae sed arcu. Curabitur consequat.</p>
+						</div>
+					</div>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				</div>
 				<div class="modal-body">
-				<div class="container margin_60">
-					<ul class="cbp_tmtimeline">
-						<li>
-							<time class="cbp_tmtime" datetime="09:30"><span>30 minutes</span> <span>09:30</span>
-							</time>
-							<div class="cbp_tmicon timeline_icon_point"></div>
-							<div class="cbp_tmlabel">
-								<div class="float-right d-none d-md-block">Guide <strong>John Doe</strong><img src="${pageContext.request.contextPath}/resources/img/guide_1.jpg" alt="Image" class="rounded-circle speaker">
+					<div class="container margin_60">
+						<ul class="cbp_tmtimeline">
+							<li>
+								<time class="cbp_tmtime" datetime="09:30"><span>30 minutes</span> <span>09:30</span></time>
+								<div class="cbp_tmicon timeline_icon_point"></div>
+									<div class="cbp_tmlabel">
+										<div class="float-right d-none d-md-block">Guide <strong>John Doe</strong><img src="${pageContext.request.contextPath}/resources/img/guide_1.jpg" alt="Image" class="rounded-circle speaker">
+										</div>
+										<h2><span>Lorem ipsum</span>Meeting point</h2>
+										<p>Winter purslane courgette pumpkin quandong komatsuna fennel green bean cucumber watercress. Pea sprouts wattle seed rutabaga okra yarrow cress avocado grape radish bush tomato ricebean black-eyed pea maize eggplant. </p>
+									</div>
+							</li>
+							<li>
+								<time class="cbp_tmtime" datetime="11:30"><span>2 hours</span> <span>11:30</span>
+								</time>
+								<div class="cbp_tmicon timeline_icon_pic"></div>
+								<div class="cbp_tmlabel">
+									<div class="float-right d-none d-md-block">Guide <strong>John Doe</strong><img src="${pageContext.request.contextPath}/resources/img/guide_2.jpg" alt="Image" class="rounded-circle speaker">
+									</div>
+									<h2><span>Lorem ipsum</span>Exhibitions</h2>
+									<p>Caulie dandelion maize lentil collard greens radish arugula sweet pepper water spinach kombu courgette lettuce. Celery coriander bitterleaf epazote radicchio shallot winter purslane collard greens spring onion squash lentil. Artichoke salad bamboo shoot black-eyed pea brussels sprout garlic kohlrabi.</p>
 								</div>
-								<h2><span>Lorem ipsum</span>Meeting point</h2>
-								<p>Winter purslane courgette pumpkin quandong komatsuna fennel green bean cucumber watercress. Pea sprouts wattle seed rutabaga okra yarrow cress avocado grape radish bush tomato ricebean black-eyed pea maize eggplant. </p>
-							</div>
-						</li>
-						<li>
-							<time class="cbp_tmtime" datetime="11:30"><span>2 hours</span> <span>11:30</span>
-							</time>
-							<div class="cbp_tmicon timeline_icon_pic"></div>
-							<div class="cbp_tmlabel">
-								<div class="float-right d-none d-md-block">Guide <strong>John Doe</strong><img src="${pageContext.request.contextPath}/resources/img/guide_2.jpg" alt="Image" class="rounded-circle speaker">
+							</li>
+							<li>
+								<time class="cbp_tmtime" datetime="13:30"><span>1 hour</span> <span>13:30</span>
+								</time>
+								<div class="cbp_tmicon timeline_icon_break"></div>
+								<div class="cbp_tmlabel">
+									<h2><span>Lorem ipsum</span>Lunch and coffee break</h2>
+									<p>Parsnip lotus root celery yarrow seakale tomato collard greens tigernut epazote ricebean melon tomatillo soybean chicory broccoli beet greens peanut salad. </p>
 								</div>
-								<h2><span>Lorem ipsum</span>Exhibitions</h2>
-								<p>Caulie dandelion maize lentil collard greens radish arugula sweet pepper water spinach kombu courgette lettuce. Celery coriander bitterleaf epazote radicchio shallot winter purslane collard greens spring onion squash lentil. Artichoke salad bamboo shoot black-eyed pea brussels sprout garlic kohlrabi.</p>
-							</div>
-						</li>
-						<li>
-							<time class="cbp_tmtime" datetime="13:30"><span>1 hour</span> <span>13:30</span>
-							</time>
-							<div class="cbp_tmicon timeline_icon_break"></div>
-							<div class="cbp_tmlabel">
-								<h2><span>Lorem ipsum</span>Lunch and coffee break</h2>
-								<p>Parsnip lotus root celery yarrow seakale tomato collard greens tigernut epazote ricebean melon tomatillo soybean chicory broccoli beet greens peanut salad. </p>
-							</div>
-						</li>
-						<li>
-							<time class="cbp_tmtime" datetime="14:30"><span>2 hours</span> <span>14:30</span>
-							</time>
-							<div class="cbp_tmicon timeline_icon_audio"></div>
-							<div class="cbp_tmlabel">
-								<div class="float-right d-none d-md-block">Guide <strong>John Doe</strong><img src="${pageContext.request.contextPath}/resources/img/guide_1.jpg" alt="Image" class="rounded-circle speaker">
+							</li>
+							<li>
+								<time class="cbp_tmtime" datetime="14:30"><span>2 hours</span> <span>14:30</span>
+								</time>
+								<div class="cbp_tmicon timeline_icon_audio"></div>
+								<div class="cbp_tmlabel">
+									<div class="float-right d-none d-md-block">Guide <strong>John Doe</strong><img src="${pageContext.request.contextPath}/resources/img/guide_1.jpg" alt="Image" class="rounded-circle speaker">
+									</div>
+									<h2><span>Lorem ipsum</span>The auditorium Louvre</h2>
+									<p>Peanut gourd nori welsh onion rock melon mustard jícama. Desert raisin amaranth kombu aubergine kale seakale brussels sprout pea. Black-eyed pea celtuce bamboo shoot salad kohlrabi leek squash prairie turnip catsear rock melon chard taro broccoli turnip greens. Fennel quandong potato watercress ricebean swiss chard garbanzo. Endive daikon brussels sprout lotus root silver beet epazote melon shallot.</p>
 								</div>
-								<h2><span>Lorem ipsum</span>The auditorium Louvre</h2>
-								<p>Peanut gourd nori welsh onion rock melon mustard jícama. Desert raisin amaranth kombu aubergine kale seakale brussels sprout pea. Black-eyed pea celtuce bamboo shoot salad kohlrabi leek squash prairie turnip catsear rock melon chard taro broccoli turnip greens. Fennel quandong potato watercress ricebean swiss chard garbanzo. Endive daikon brussels sprout lotus root silver beet epazote melon shallot.</p>
-							</div>
-						</li>
-						<li>
-							<time class="cbp_tmtime" datetime="16:30"><span>2 hours</span> <span>16:30</span>
-							</time>
-							<div class="cbp_tmicon timeline_icon_pic"></div>
-							<div class="cbp_tmlabel">
-								<div class="float-right d-none d-md-block">Guide <strong>John Doe</strong><img src="${pageContext.request.contextPath}/resources/img/guide_2.jpg" alt="Image" class="rounded-circle speaker">
+							</li>
+							<li>
+								<time class="cbp_tmtime" datetime="16:30"><span>2 hours</span> <span>16:30</span>
+								</time>
+								<div class="cbp_tmicon timeline_icon_pic"></div>
+								<div class="cbp_tmlabel">
+									<div class="float-right d-none d-md-block">Guide <strong>John Doe</strong><img src="${pageContext.request.contextPath}/resources/img/guide_2.jpg" alt="Image" class="rounded-circle speaker">
+									</div>
+									<h2><span>Lorem ipsum</span>Modern art</h2>
+									<p>Parsley amaranth tigernut silver beet maize fennel spinach. Ricebean black-eyed pea maize scallion green bean spinach cabbage jícama bell pepper carrot onion corn plantain garbanzo. Sierra leone bologi komatsuna celery peanut swiss chard silver beet squash dandelion maize chicory burdock tatsoi dulse radish wakame beetroot.</p>
 								</div>
-								<h2><span>Lorem ipsum</span>Modern art</h2>
-								<p>Parsley amaranth tigernut silver beet maize fennel spinach. Ricebean black-eyed pea maize scallion green bean spinach cabbage jícama bell pepper carrot onion corn plantain garbanzo. Sierra leone bologi komatsuna celery peanut swiss chard silver beet squash dandelion maize chicory burdock tatsoi dulse radish wakame beetroot.</p>
-							</div>
-						</li>
-					</ul>
-				</div>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- End Modal Timeline -->
+	
+	<!-- Modal Tour Guide -->
+	<div class="modal fade" id="tourGuide" tabindex="-1" role="dialog" aria-labelledby="tourGuideLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<div class="container margin_60">
+						<div class="main_title">
+							<h1>I am Madlene</h1>
+							<p>Ridiculus sociosqu cursus neque cursus curae ante scelerisque vehicula.</p>
+						</div>
+					</div>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<div class="modal-body">
+					<div class="margin_60 container">
+						<div id="tour_guide">
+							<p>
+								<img src="${pageContext.request.contextPath}/resources/img/tourist_guide_pic.jpg" alt="Image" class="rounded-circle styled">
+							</p>
+							<h2>Madlene - Certified tourist guide</h2>
+							<p class="lead add_bottom_30">
+								"Eu tota moderatius usu, ad putant aliquando constituam ius, <strong>commodo sententiae</strong> suscipiantur nam eu. Tamquam nominati abhorreant at vis, has id harum melius petentium. Mea wisi debet omnium ne, est ea graecis noluisse recusabo, denique deterruisset ius et."
+							</p>
+						</div>
+						<div class="row">
+							<div class="col-md-8">
+								<h3>Some words about me</h3>
+								<p>
+									Lorem ipsum dolor sit amet, ex justo nominavi eum, cu veniam salutatus reprimique quo, nisl virtute meliore ei eos. Quaestio consequat sed no, urbanitas honestatis ei usu. Ex nec aliquid appetere petentium, ei eum soleat possim. Has ea omnes prompta. Vel te magna voluptaria, cu nec fabulas voluptatum, has et dictas quaeque labores. Qui ex mazim sadipscing.
+								</p>
+								<h5>Education</h5>
+								<p>
+									Lorem ipsum dolor sit amet, ex justo nominavi eum, cu veniam salutatus reprimique quo, nisl virtute meliore ei eos. Quaestio consequat sed no, urbanitas honestatis ei usu. Ex nec aliquid appetere petentium, ei eum soleat possim. Has ea omnes prompta. Vel te magna voluptaria, cu nec fabulas voluptatum, has et dictas quaeque labores. Qui ex mazim sadipscing.
+								</p>
+								<h5>Past experiences</h5>
+								<p>
+									Lorem ipsum dolor sit amet, ex justo nominavi eum, cu veniam salutatus reprimique quo, nisl virtute meliore ei eos. Quaestio consequat sed no, urbanitas honestatis ei usu. Ex nec aliquid appetere petentium, ei eum soleat possim. Has ea omnes prompta. Vel te magna voluptaria, cu nec fabulas voluptatum, has et dictas quaeque labores. Qui ex mazim sadipscing.
+								</p>
+							</div>
+							<div class="col-md-4">
+								<h3>Spoken languages</h3>
+								<p>
+									Eu tota moderatius usu, ad putant aliquando constituam ius, commodo sententiae suscipiantur nam eu.
+								</p>
+								<p>
+									<img src="${pageContext.request.contextPath}/resources/img/lang_en.png" width="40" height="26" alt="Image" data-retina="true"> <img src="${pageContext.request.contextPath}/resources/img/lang_fr.png" width="40" height="26" alt="Image" data-retina="true">
+									<img src="${pageContext.request.contextPath}/resources/img/lang_de.png" width="40" height="26" alt="Image" data-retina="true"> <img src="${pageContext.request.contextPath}/resources/img/lang_es.png" width="40" height="26" alt="Image" data-retina="true">
+								</p>
+								<h3><i class=""></i>Certificates</h3>
+								<p>
+									Eu tota moderatius usu, ad putant aliquando constituam ius, commodo sententiae suscipiantur nam eu.
+								</p>
+								<ul class="list_ok">
+									<li>Putant aliquando constituam</li>
+									<li>Commodo sententiae</li>
+									<li>Denique deterruisset</li>
+									<li>Putant aliquando constituam</li>
+								</ul>
+							</div>
+						</div>
+						<!-- end row -->
+					</div>
+					<!-- end container -->
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-lg-6 nopadding features-intro-img">
+								<div class="features-bg">
+									<div class="features-img">
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 nopadding">
+								<div class="features-content">
+									<h3>"Ex vero mediocrem"</h3>
+									<p>
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+									</p>
+									<p>
+										<a href="#" class=" btn_1 white">Read more</a>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="container margin_60">
+						<div class="main_title">
+							<h2>What <span>customers </span>says</h2>
+							<p>
+								Quisque at tortor a libero posuere laoreet vitae sed arcu. Curabitur consequat.
+							</p>
+						</div>
+			
+						<div class="row">
+							<div class="col-md-6">
+								<div class="review_strip">
+									<img src="${pageContext.request.contextPath}/resources/img/avatar1.jpg" alt="Image" class="rounded-circle">
+									<h4>Jhon Doe</h4>
+									<p>
+										"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
+									</p>
+									<div class="rating">
+										<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class=" icon-star-empty"></i><i class=" icon-star-empty"></i>
+									</div>
+								</div>
+								<!-- End review strip -->
+							</div>
+			
+							<div class="col-md-6">
+								<div class="review_strip">
+									<img src="${pageContext.request.contextPath}/resources/img/avatar2.jpg" alt="Image" class="rounded-circle">
+									<h4>Mark Schulz</h4>
+									<p>
+										"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
+									</p>
+									<div class="rating">
+										<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class=" icon-star-empty"></i><i class=" icon-star-empty"></i>
+									</div>
+								</div>
+								<!-- End review strip -->
+							</div>
+						</div>
+						<!-- End row -->
+			
+						<div class="row">
+							<div class="col-md-6">
+								<div class="review_strip">
+									<img src="${pageContext.request.contextPath}/resources/img/avatar3.jpg" alt="Image" class="rounded-circle">
+									<h4>Tony Costello</h4>
+									<p>
+										"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
+									</p>
+									<div class="rating">
+										<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class=" icon-star-empty"></i><i class=" icon-star-empty"></i>
+									</div>
+								</div>
+								<!-- End review strip -->
+							</div>
+			
+							<div class="col-md-6">
+								<div class="review_strip">
+									<img src="${pageContext.request.contextPath}/resources/img/avatar1.jpg" alt="Image" class="rounded-circle">
+									<h4>Peter Gabriel</h4>
+									<p>
+										"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
+									</p>
+									<div class="rating">
+										<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class=" icon-star-empty"></i><i class=" icon-star-empty"></i>
+									</div>
+								</div>
+								<!-- End review strip -->
+							</div>
+						</div>
+						<!-- End row -->
+					</div>
+					<!-- End container -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Modal Tour Guide -->
 	
 	<!-- Footer================================================== -->
 	<jsp:include page="/WEB-INF/views/common_footer_2.jsp"/>
@@ -749,8 +902,8 @@
 	<script>
 		$('input.date-pick').datepicker('setDate', 'today');
 		$('input.time-pick').timepicker({
-			minuteStep: 15,
-			showInpunts: false
+			minuteStep: 30,
+			showInputs: false
 		})
 	</script>
 

@@ -177,10 +177,12 @@
 										<option value="" selected>Sort by price</option>
 										<option value="ASC" >Lowest price</option>
 										<option value="DESC">Highest price</option>
+										<option value="LOWER">Lowest ranking</option>
+										<option value="HIGHER">Highest ranking</option>
 									</select>
 								</div>
 							</div>
-							<div class="col-md-3 col-sm-4 col-6">
+							<div class="col-md-3 col-sm-4 col-6" style="visibility: hidden;">
 								<div class="styled-select-filters">
 									<select name="sort_rating" id="sort_rating">
 										<option value="" selected>Sort by ranking</option>
@@ -212,7 +214,7 @@
 										<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 									</div>
 									<div class="img_list">
-										<a href="restaurant_single_with_gallery">
+										<a href="restaurant_single_with_gallery?pno=${restListPage.list[st.index].pno}">
 											
 											<c:set var="fileImg" 
 											 value="${fn:split(restListPage.list[st.index].pimg,'/')}"/>
@@ -322,7 +324,7 @@
 											
 											<span class="normal_price_list"></span><small>*Per food</small>
 											 											
-											<p><a href="restaurant_single_with_gallery" class="btn_1">Details</a>
+											<p><a href="restaurant_single_with_gallery?pno=${restListPage.list[st.index].pno}" class="btn_1">Details</a>
 											</p>
 										</div>
 	
@@ -494,7 +496,7 @@
 					//console.log($('div[valueStatus="'+i+'"] .price_list  label').text());
 					let priceParent = document.querySelectorAll('.price_list  label');
 					for (var i = 0; i < priceParent.length; i++) {
-						console.log("text::"+priceParent[i].firstChild.nodeValue);
+						//console.log("text::"+priceParent[i].firstChild.nodeValue);
 						
 						//숫자로 변환
 						let labelPrice = priceParent[i].firstChild.nodeValue;
@@ -718,7 +720,7 @@
 				
 			});
 			
-			
+			/*
 			$('#sort_rating').on('change',function(){
 				//console.log($('#sort_price > option:selected').attr('value'));
 				let selectOption= $('#sort_rating > option:selected').attr('value');
@@ -727,11 +729,11 @@
 				let category =document.getElementById("category").value;
 				let param ="pageno="+currentpage+"&orderBy="+ selectOption +"&category="+category;
 				console.log("currentpage --> "+currentpage);
-				/*
+				
 				if(category!=null && category!=""){
 					param+="&category="+category;
 				}
-				*/
+				
 				
 				$.ajax({
 					url : 'rest_all_list',
@@ -744,6 +746,8 @@
 				});
 				<!-- ajax end-->
 			});
+			
+			*/
 			<!-- sort_rating -->
 			
 			$('input').iCheck({
