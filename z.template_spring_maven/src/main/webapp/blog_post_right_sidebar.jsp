@@ -56,16 +56,15 @@
 		<!-- End position -->
 		<div class="container margin_60">
 			<div class="row">
-
 				<div class="col-lg-9">
 					<div class="box_style_1">
-					
+					<input type="hidden" name="bNo" id="bNo" value="${blogView}">
 						<div class="post nopadding">
 							<img src="${pageContext.request.contextPath}/resources/img/blog-1.jpg" alt="Image" class="img-fluid">
 							<div class="post_info clearfix">
 								<div class="post-left">
 									<ul>
-										<li><i class="icon-calendar-empty"></i>On <span>12 Nov 2020</span>
+										<li><i class="icon-calendar-empty"></i>On <span>${blogView.bDate}</span>
 										</li>
 										<li><i class="icon-inbox-alt"></i>In <a href="#">Top tours</a>
 										</li>
@@ -91,6 +90,8 @@
 						<!-- end post -->
 					</div>
 					<!-- end box_style_1 -->
+
+
 
 					<h4>3 comments</h4>
 

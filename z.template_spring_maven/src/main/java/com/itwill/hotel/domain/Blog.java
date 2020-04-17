@@ -25,7 +25,6 @@ public class Blog {
 		this.bReadCount = bReadCount;
 		this.bCategory = bCategory;
 		this.mNo = mNo;
-
 	}
 
 	public int getbNo() {
