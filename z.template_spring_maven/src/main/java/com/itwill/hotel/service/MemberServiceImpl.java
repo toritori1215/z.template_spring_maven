@@ -39,6 +39,16 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public int checkTelExist(String mTel) {
+		return memberDao.checkTelExist(mTel);
+	}
+	
+	@Override
+	public int checkEmailExist(String mEmail) {
+		return memberDao.checkEmailExist(mEmail);
+	}
+
+	@Override
 	public int deleteInactiveMember() {
 		return memberDao.deleteInactiveMember();
 	}
@@ -69,8 +79,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public int checkExist(HashMap hashMap) {
-		return memberDao.checkExist(hashMap);
+	public int forgetPasswordCheck(HashMap hashMap) {
+		return memberDao.forgetPasswordCheck(hashMap);
 	}
 
 	@Override
@@ -79,13 +89,18 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int checkExist2(HashMap hashMap) {
-		return memberDao.checkExist2(hashMap);
+	public int reactiveAccountCheck(HashMap hashMap) {
+		return memberDao.reactiveAccountCheck(hashMap);
 	}
 
 	@Override
 	public int reActivateAccount(String mId) {
 		return memberDao.reActivateAccount(mId);
+	}
+
+	@Override
+	public int ifActive(HashMap hashMap) {
+		return memberDao.ifActive(hashMap);
 	}
 
 	@Override

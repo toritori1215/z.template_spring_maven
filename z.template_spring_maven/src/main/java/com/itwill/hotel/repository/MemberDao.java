@@ -15,6 +15,10 @@ public interface MemberDao {
 	
 	public int insertMember(Member member);
 	
+	public int checkTelExist(String mTel);
+	
+	public int checkEmailExist(String mEmail);
+	
 	public int deleteInactiveMember();
 	
 	public int removeMember(String mId);
@@ -27,13 +31,15 @@ public interface MemberDao {
 	
 	public String getTempPassword();
 	
-	public int checkExist(HashMap hashMap);
-
+	public int forgetPasswordCheck(HashMap hashMap);
+	
 	public int updateTempPassword(HashMap hashMap);
 	
-	public int checkExist2(HashMap hashMap);
+	public int reactiveAccountCheck(HashMap hashMap);
 	
 	public int reActivateAccount(String mId);
+	
+	public int ifActive(HashMap hashMap);
 
 	public int updateMember(HashMap hashMap);
 	

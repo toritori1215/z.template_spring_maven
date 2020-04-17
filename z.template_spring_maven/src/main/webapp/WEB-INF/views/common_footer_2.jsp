@@ -5,39 +5,37 @@
 		<div class="row">
 			<div class="col-lg-4 col-md-4">
 				<h3>Need help?</h3>
-				<a href="tel://004542344599" id="phone">+45 423 445 99</a> <a
-					href="mailto:help@citytours.com" id="email_footer">help@citytours.com</a>
+				<a href="tel://004542344599" id="phone">+45 423 445 99</a>
+				<a href="mailto:help@citytours.com" id="email_footer">help@citytours.com</a>
 				<p>
 					<img src="${pageContext.request.contextPath}/resources/img/payments.png" width="231" height="30"
-						alt="Image" data-retina="true" class="img-fluid">
+							alt="Image" data-retina="true" class="img-fluid">
 				</p>
 			</div>
 			<div class="col-lg-2 col-md-3 ml-md-auto">
 				<h3>About</h3>
 				<ul>
-					<li><a href="#">About us</a></li>
-					<li><a href="#">FAQ</a></li>
+					<li><a href="common_about_us">About us</a></li>
+					<li><a href="common_faq_2">FAQ</a></li>
 					<li><a href="#">Blog</a></li>
 					<li><a href="#">Contacts</a></li>
-					<li><a href="#">Login</a></li>
-					<li><a href="#">Register</a></li>
+					<li><a href="member_login_form">Login</a></li>
+					<li><a href="member_insert_form">Register</a></li>
 					<li><a href="#">Terms and condition</a></li>
 				</ul>
 			</div>
 			<div class="col-lg-3 col-md-4" id="newsletter">
 				<h3>Newsletter</h3>
-				<p>Join our newsletter to keep be informed about offers and
-					news.</p>
+				<p>Join our newsletter to keep be informed about offers and news.</p>
 				<div id="message-newsletter_2"></div>
 				<form method="post" action="${pageContext.request.contextPath}/resources/assets/newsletter.php"
 					name="newsletter_2" id="newsletter_2">
 					<div class="form-group">
-						<input name="email_newsletter_2" id="email_newsletter_2"
-							type="email" value="" placeholder="Your mail"
-							class="form-control">
+						<input name="email_newsletter_2" id="email_newsletter_2" type="email" 
+								value="" placeholder="Your mail" class="form-control">
 					</div>
-					<input type="submit" value="Subscribe" class="btn_1"
-						id="submit-newsletter_2">
+					<input type="submit" value="Subscribe" class="btn_1" 
+							id="submit-newsletter_2">
 				</form>
 			</div>
 			<div class="col-lg-2 ml-lg-auto">
@@ -73,7 +71,7 @@
 						<li><a href="#"><i class="icon-vimeo"></i></a></li>
 						<li><a href="#"><i class="icon-youtube-play"></i></a></li>
 					</ul>
-					<p>© Citytours 2018</p>
+					<p>© Silicon Village 2020</p>
 				</div>
 			</div>
 		</div>
