@@ -7,6 +7,9 @@
 	<!-- Header================================================== -->
 	<jsp:include page="/WEB-INF/views/common_header_6.jsp"/>
 	<!-- End Header -->
+	
+	<!-- CUSTOM CSS -->
+	<link href="${pageContext.request.contextPath}/resources/z.SiliconVillage/css/product.css" rel="stylesheet">
 
 	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}.jpg" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-2">
