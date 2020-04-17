@@ -59,6 +59,17 @@ public class ProductController {
 		return "forward:tour_single_with_gallery.jsp";
 	}
 	
+	@RequestMapping(value = "/tour_detail_travellers", produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String tourTravellers(@RequestParam(value="tnum") String tnum) {
+		return tnum;
+	}
+	
+	@RequestMapping(value = "/room_list")
+	public String roomList() {
+		return "room_all_list";
+	}
+	
 	@RequestMapping(value = "/tour_grid")
 	public String tourListGrid() {
 		return "tour_all_grid";

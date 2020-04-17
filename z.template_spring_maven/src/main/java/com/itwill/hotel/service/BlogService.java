@@ -20,7 +20,9 @@ public interface BlogService {
 	
 	
 	/****** Blog Review ******/
-	public List<BlogReview> selectAllBlogReview();
+	public List<BlogReview> selectAllBlogReviewDepth1();
+	public List<BlogReview> selectAllBlogReviewDepth2();
+	public List<BlogReview> selectAllBlogReviewDepth3();
 	
 	public BlogReview selectOneBlogReview(int brNo);
 	

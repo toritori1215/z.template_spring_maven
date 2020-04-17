@@ -45,8 +45,16 @@ public class BlogServiceImpl implements BlogService {
 	
 	/****** Blog Review ******/
 	@Override
-	public List<BlogReview> selectAllBlogReview() {
-		return blogDao.selectAllBlogReview();
+	public List<BlogReview> selectAllBlogReviewDepth1() {
+		return blogDao.selectAllBlogReviewDepth1();
+	}
+	@Override
+	public List<BlogReview> selectAllBlogReviewDepth2() {
+		return blogDao.selectAllBlogReviewDepth2();
+	}
+	@Override
+	public List<BlogReview> selectAllBlogReviewDepth3() {
+		return blogDao.selectAllBlogReviewDepth3();
 	}
 	
 	@Override
