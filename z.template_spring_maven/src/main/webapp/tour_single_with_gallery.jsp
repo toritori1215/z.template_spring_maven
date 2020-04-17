@@ -455,9 +455,9 @@
 						<div class="row">
 							<div class="col-12">
 								<div class="form-group">
-									<label>Travellers</label>
+									<label><i class="icon-adult"></i> Travellers</label>
 									<div class="numbers-row">
-										<input type="text" value="1" id="adults" class="qty2 form-control" name="quantity">
+										<input type="text" value="1" id="travellers" class="qty2 form-control" name="quantity">
 									</div>
 								</div>
 							</div>
@@ -467,18 +467,10 @@
 							<tbody>
 								<tr>
 									<td>
-										Adults
+										Travellers
 									</td>
 									<td class="text-right">
 										2
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Children
-									</td>
-									<td class="text-right">
-										0
 									</td>
 								</tr>
 								<tr>
@@ -906,6 +898,26 @@
 			showInputs: false
 		})
 	</script>
+	
+	<script>
+		var ratings = [];
+		$('#travellers').bind(function(e) {
+			alert($(this).val());
+			var tnum = $(this).val();
+	
+			$.ajax({
+				type:"POST",
+				data:tnum,
+				url:"tour_detail_travellers",
+				async:true,
+				dataType: "html",
+				success:function(d) {
+					console.log(d);
+				}
+			}); 
+		});
+	</script>
+	
 
 	<!--Review modal validation -->
 	<script src="${pageContext.request.contextPath}/resources/assets/validate.js"></script>
