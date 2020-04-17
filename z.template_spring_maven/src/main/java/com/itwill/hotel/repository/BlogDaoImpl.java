@@ -50,8 +50,16 @@ public class BlogDaoImpl implements BlogDao {
 	
 	/****** Blog Review ******/
 	@Override
-	public List<BlogReview> selectAllBlogReview() {
-		return blogMapper.selectAllBlogReview();
+	public List<BlogReview> selectAllBlogReviewDepth1() {
+		return blogMapper.selectAllBlogReviewDepth1();
+	}
+	@Override
+	public List<BlogReview> selectAllBlogReviewDepth2() {
+		return blogMapper.selectAllBlogReviewDepth2();
+	}
+	@Override
+	public List<BlogReview> selectAllBlogReviewDepth3() {
+		return blogMapper.selectAllBlogReviewDepth3();
 	}
 
 	@Override

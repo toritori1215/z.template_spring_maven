@@ -6,6 +6,7 @@
 	<select id="selectAllBlog" resultType="Blog">
 		select bNo, bTitle, bDate, bContent, bReadCount, bCategory, mNo
 		from blog
+		order by bDate desc
 	</select>
 	
 	<select id="selectOneBlog" resultType="Blog">
@@ -32,9 +33,25 @@
 	
 	
 	<!-- Blog Review -->
-	<select id="selectAllBlogReview" resultType="BlogReview">
-		select brNo,brDate,brContent,mNo,BNo,brStep,brGroup,brDepth
+	<select id="selectAllBlogReviewDepth1" resultType="BlogReview">
+		select brNo, brDate, brContent, mNo, bNo, brStep, brGroup, brDepth
 		from blog_review
+		where brDepth=1 
+		order by brDate desc
+	</select>
+	
+	<select id="selectAllBlogReviewDepth2" resultType="BlogReview">
+		select brNo, brDate, brContent, mNo, bNo, brStep, brGroup, brDepth
+		from blog_review
+		where brDepth=2 
+		order by brDate desc
+	</select>
+	
+	<select id="selectAllBlogReviewDepth3" resultType="BlogReview">
+		select brNo, brDate, brContent, mNo, bNo, brStep, brGroup, brDepth
+		from blog_review
+		where brDepth=3 
+		order by brDate desc
 	</select>
 	
 	<select id="selectOneBlogReview" resultType="BlogReview">

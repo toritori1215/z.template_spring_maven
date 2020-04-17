@@ -54,6 +54,7 @@
 			</div>
 		</div>
 		<!-- End position -->
+		
 		<div class="container margin_60">
 			<div class="row">
 				<div class="col-lg-9">
@@ -97,55 +98,69 @@
 
 					<div id="comments">
 						<ol>
-							<li>
-								<div class="avatar">
-									<a href="#"><img src="${pageContext.request.contextPath}/resources/img/avatar1.jpg" alt="Image">
-									</a>
+						<c:forEach var="blogReview1" items="${blogReviewList1}">
+						<c:forEach var="blogReview2" items="${blogReviewList2}">
+						<c:forEach var="blogReview3" items="${blogReviewList3}">
+						<c:forEach var="i" begin="1" end="${size}">
+						<c:if test="${blogReview1.brGroup == 1 or blogReview2.brGroup == 1 or blogReview3.brGroup == 1}">
+						<li>
+							<div class="avatar">
+								<c:if test="${blogReview1.brDepth == 1 or blogReview2.brDepth == 1 or blogReview3.brDepth == 1}">
+								<a href="#"><img src="${pageContext.request.contextPath}/resources/img/avatar1.jpg" alt="Image"></a>
+								</c:if>
+							</div>
+							<div class="comment_right clearfix">
+								<div class="comment_info">
+									<c:if test="${blogReview1.brDepth == 1 or blogReview2.brDepth == 1 or blogReview3.brDepth == 1}">
+									Posted by: <a href="#">${sUser.mFirstName} ${sUser.mLastName}</a><span>|</span> ${blogReview1.brDate} <span>|</span><a href="#">Reply</a>
+									</c:if>
 								</div>
-								<div class="comment_right clearfix">
-									<div class="comment_info">
-										Posted by <a href="#">Anna Smith</a><span>|</span> 25 apr 2019 <span>|</span><a href="#">Reply</a>
+								<p>${blogReview1.brContent}</p>
+							</div>
+							<c:if test="${blogReview1.brGroup == 2 or blogReview2.brGroup == 2 or blogReview3.brGroup == 2}">
+							<ul>
+								<li>
+									<div class="avatar">
+										<c:if test="${blogReview1.brDepth == 2 or blogReview2.brDepth == 2 or blogReview3.brDepth == 2}">
+										<a href="#"><img src="${pageContext.request.contextPath}/resources/img/avatar2.jpg" alt="Image"></a>
+										</c:if>
 									</div>
-									<p>
-										Nam cursus tellus quis magna porta adipiscing. Donec et eros leo, non pellentesque arcu. Curabitur vitae mi enim, at vestibulum magna. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed sit amet sem a urna rutrumeger fringilla. Nam vel enim ipsum, et congue ante.
-									</p>
-								</div>
-								<ul>
-									<li>
-										<div class="avatar">
-											<a href="#"><img src="${pageContext.request.contextPath}/resources/img/avatar2.jpg" alt="Image">
-											</a>
+									<div class="comment_right clearfix">
+										<div class="comment_info">
+											<c:if test="${blogReview1.brDepth == 2 or blogReview2.brDepth == 2 or blogReview3.brDepth == 2}">
+											Posted by: <a href="#">${sUser.mFirstName} ${sUser.mLastName}</a><span>|</span> ${blogReview2.brDate} <span>|</span><a href="#">Reply</a>
+											</c:if>
 										</div>
-
-										<div class="comment_right clearfix">
-											<div class="comment_info">
-												Posted by <a href="#">Tom Sawyer</a><span>|</span> 25 apr 2019 <span>|</span><a href="#">Reply</a>
+										<p>${blogReview2.brContent}</p>
+									</div>
+									<c:if test="${blogReview1.brGroup == 3 or blogReview2.brGroup == 3 or blogReview3.brGroup == 3}">
+									<ul>
+										<li>
+											<div class="avatar">
+												<c:if test="${blogReview1.brDepth == 3 or blogReview2.brDepth == 3 or blogReview3.brDepth == 3}">
+												<a href="#"><img src="${pageContext.request.contextPath}/resources/img/avatar2.jpg" alt="Image"></a>
+												</c:if>
 											</div>
-											<p>
-												Nam cursus tellus quis magna porta adipiscing. Donec et eros leo, non pellentesque arcu. Curabitur vitae mi enim, at vestibulum magna. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed sit amet sem a urna rutrumeger fringilla. Nam vel enim ipsum, et congue ante.
-											</p>
-											<p>
-												Aenean iaculis sodales dui, non hendrerit lorem rhoncus ut. Pellentesque ullamcorper venenatis elit idaipiscingi Duis tellus neque, tincidunt eget pulvinar sit amet, rutrum nec urna. Suspendisse pretium laoreet elit vel ultricies. Maecenas ullamcorper ultricies rhoncus. Aliquam erat volutpat.
-											</p>
-										</div>
-									</li>
-								</ul>
-							</li>
-							<li>
-								<div class="avatar">
-									<a href="#"><img src="${pageContext.request.contextPath}/resources/img/avatar3.jpg" alt="Image">
-									</a>
-								</div>
-
-								<div class="comment_right clearfix">
-									<div class="comment_info">
-										Posted by <a href="#">Adam White</a><span>|</span> 25 apr 2019 <span>|</span><a href="#">Reply</a>
-									</div>
-									<p>
-										Cursus tellus quis magna porta adipiscin
-									</p>
-								</div>
-							</li>
+											<div class="comment_right clearfix">
+												<div class="comment_info">
+													<c:if test="${blogReview1.brDepth == 3 or blogReview2.brDepth == 3 or blogReview3.brDepth == 3}">
+													Posted by <a href="#">${sUser.mFirstName} ${sUser.mLastName}</a><span>|</span> ${blogReview3.brDate}
+													</c:if>
+												</div>
+												<p>${blogReview3.brContent}</p>
+											</div>
+										</li>
+									</ul>
+									</c:if>
+								</li>
+							</ul>
+							</c:if>
+						</li>
+						</c:if>
+						</c:forEach>
+						</c:forEach>
+						</c:forEach>
+						</c:forEach>
 						</ol>
 					</div>
 					<!-- End Comments -->
