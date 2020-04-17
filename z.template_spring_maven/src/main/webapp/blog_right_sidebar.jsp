@@ -63,7 +63,7 @@
 						<c:forEach var ="blog" items = "${blogList}">
 							<form method="post" action="blog_post_right_sidebar">
 							<input type = "hidden" name="bNo" id="bNo" value="${blog.bNo}">
-							<a href="blog_post_right_sidebar?bNo=${blog.bNo}"><img src="${pageContext.request.contextPath}/resources/img/blog-3.jpg" alt="Image" class="img-fluid">
+							<a href="javascript:blog_post_right_sidebar();"><img src="${pageContext.request.contextPath}/resources/img/blog-3.jpg" alt="Image" class="img-fluid">
 							</a>
 							<div class="post_info clearfix">
 								<div class="post-left">
@@ -87,7 +87,7 @@
 							<p>
 								Ludus albucius adversarium eam eu. Sit eu reque tation aliquip. Quo no dolorum albucius lucilius, hinc eligendi ut sed. Ex nam quot ferri suscipit, mea ne legere alterum repudiandae. Ei pri quaerendum intellegebat, ut vel consequuntur voluptatibus. Et volumus sententiae adversarium duo......
 							</p>
-							<input type="submit" class="btn_1" value="Read more">
+							<input type="submit" id="blog_post_right_sidebar_submit" class="btn_1" value="Read more">
 							</form>
 						<hr>
 						</c:forEach>
@@ -196,6 +196,12 @@
 	<!-- Footer================================================== -->
 	<jsp:include page="WEB-INF/views/common_footer_2.jsp"/>
 	<!-- End Footer -->
+	
+	<script type="text/javascript">
+		function blog_post_right_sidebar() {
+			$("#blog_post_right_sidebar_submit").trigger("click");
+		}
+	</script>
 	
 </body>
 
