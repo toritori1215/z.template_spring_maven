@@ -3,7 +3,7 @@ package com.itwill.hotel.domain;
 public class Cart {
 	private int mNo;
 	private int cProductQty;
-	private double cProductTypePay;
+	private int cProductTypePay;
 	private String cCheckinTime;
 	private String cCheckin;
 	private String cCheckout;
@@ -16,7 +16,7 @@ public class Cart {
 		
 	}
 	
-	public Cart(int mNo, int cProductQty, double cProductTypePay, String cCheckinTime, String cCheckin, String cCheckout,
+	public Cart(int mNo, int cProductQty, int cProductTypePay, String cCheckinTime, String cCheckin, String cCheckout,
 			String cPickupPos, String cDropoffPos, int cOrderCnt, int pNo) {
 		this.mNo = mNo;
 		this.cProductQty = cProductQty;
@@ -46,7 +46,7 @@ public class Cart {
 		this.cProductQty = cProductQty;
 	}
 
-	public double getcProductTypePay() {
+	public int getcProductTypePay() {
 		return cProductTypePay;
 	}
 
