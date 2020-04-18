@@ -473,7 +473,7 @@
 										Travellers
 									</td>
 									<td id="travellers_cnt" class="text-right">
-										
+										1
 									</td>
 								</tr>
 								<tr>
@@ -927,11 +927,12 @@
 				url:"tour_detail_travellers?",
 				data:"newVal="+newVal+"&pNo="+pNo,
 				async:true,
-				dataType: "text",
+				contentType:"application/x-www-form-urlencoded;charset=utf-8",
 				success:function(d) {
-					console.log(d.pPrice);
-					$("#travellers_cnt").html(d.newVal);
-					$("#total_cost").html("￦"+d.newVal*d.pPrice/10000+"만");
+					console.log(d.cProductQty);
+					console.log(d.cProductTypePay);
+					$("#travellers_cnt").html(d.cProductQty);
+					$("#total_cost").html("￦"+d.cProductTypePay/10000+"만");
 				}
 			});
 		});

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.itwill.hotel.domain.Cart;
+import com.itwill.hotel.domain.Member;
 import com.itwill.hotel.domain.Product;
 import com.itwill.hotel.service.ProductService;
 import com.itwill.hotel.service.WishlistService;
@@ -23,20 +27,35 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
-	@RequestMapping(value = "/tour_list")
-	public String tourList(Model model) {
-		HashMap parameterMap = new HashMap();
-		parameterMap.put("pType", "tour");
-		model.addAttribute("productList", productService.selectByType(parameterMap));
-		return "forward:tour_all_list.jsp";
-	}
-	
 	@RequestMapping(value = "/hotel_list")
 	public String hotelList(Model model) {
 		HashMap parameterMap = new HashMap();
 		parameterMap.put("pType", "hotel");
 		model.addAttribute("productList", productService.selectByType(parameterMap));
 		return "forward:hotels_all_list.jsp";
+	}
+	
+	@RequestMapping(value = "/hotel_grid")
+	public String hotelListGrid(Model model) {
+		HashMap parameterMap = new HashMap();
+		parameterMap.put("pType", "hotel");
+		model.addAttribute("productList", productService.selectByType(parameterMap));
+		return "forward:hotels_all_grid.jsp";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value = "/tour_list")
+	public String tourList(Model model) {
+		HashMap parameterMap = new HashMap();
+		parameterMap.put("pType", "tour");
+		model.addAttribute("productList", productService.selectByType(parameterMap));
+		return "forward:tour_all_list.jsp";
 	}
 	
 	@RequestMapping(value = "/tour_list_json", produces = "application/json;charset=UTF-8")
@@ -61,12 +80,15 @@ public class ProductController {
 	
 	@RequestMapping(value = "/tour_detail_travellers", produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String tourTravellers(@RequestParam(value="newVal") String newVal,
-								 @RequestParam(value="pNo") String pNo) {
-		//List returnList = new ArrayList();
-		//returnList.set(0, newVal);
-		//returnList.set(1, productService.selectByNo(Integer.parseInt(pNo)).getpPrice());
-		return "{'newVal':"+newVal+", 'pPrice':"+productService.selectByNo(Integer.parseInt(pNo)).getpPrice()+"}";
+	public Cart tourTravellers(@RequestParam(value="newVal") String newVal,
+								 @RequestParam(value="pNo") String pNo,
+								 HttpSession session) {		
+		Member member = (Member) session.getAttribute("sUser");
+		int newVal_int = Integer.parseInt(newVal);
+		int pNo_int = Integer.parseInt(pNo);
+		int pPrice = productService.selectByNo(Integer.parseInt(pNo)).getpPrice();
+		Cart cart = new Cart(0, newVal_int, newVal_int*pPrice, null, null, null, null, null, 0, pNo_int);
+		return cart;
 	}
 	
 	@RequestMapping(value = "/tour_grid")
@@ -74,13 +96,13 @@ public class ProductController {
 		return "tour_all_grid";
 	}
 	
-	@RequestMapping(value = "/hotel_grid")
-	public String hotelListGrid(Model model) {
-		HashMap parameterMap = new HashMap();
-		parameterMap.put("pType", "hotel");
-		model.addAttribute("productList", productService.selectByType(parameterMap));
-		return "forward:hotels_all_grid.jsp";
-	}
+	
+	
+	
+	
+	
+	
+	
 	
 	@RequestMapping(value = "/product_list_condition")
 	public String productListCondition() {
