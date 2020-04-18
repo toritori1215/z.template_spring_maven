@@ -100,17 +100,6 @@ public class ProductController {
 		return cart;
 	}
 	
-	@RequestMapping(value = "/cart_add_action")
-	public String cartAddAction(@RequestParam(value="cart") Cart cart) {
-		
-		return "cart_product"; 
-	}
-	
-	@RequestMapping(value = "/cart_product")
-	public String tourHotelCart() {
-		return "cart_fixed_sidebar";
-	}
-	
 	@RequestMapping(value = "/tour_grid")
 	public String tourListGrid() {
 		return "tour_all_grid";
