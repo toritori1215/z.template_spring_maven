@@ -127,7 +127,13 @@
 	<!-- -------------------------------------------- -->
 	<h2><a href="restaurants_all_list">restaurants_all_list입니다!..</a></h2>
 	<h2><a href="restaurant_cart_fixed_sidebar">restaurant_cart_fixed_sidebar입니다!..</a></h2>
-	<h2><a href="restaurant_single_with_gallery">single_restaurant_with_gallery입니다!..</a></h2>
+	<h2><a href="restaurant_single_food_detail">restaurant_single_food_detail입니다!..</a></h2>
+	<h2><a href="restaurant_payment_fixed_sidebar">restaurant_payment_fixed_sidebar입니다!..</a></h2>
+	<h2><a href="restaurant_confirmation_fixed_sidebar">restaurant_confirmation_fixed_sidebar입니다!..</a></h2>
+	<h2><a href="restaurant_single_restaurant_detail">restaurant_single_restaurant_detail입니다!..</a></h2>
+	
+	
+	
 	<div>
 		<h2><a href="asdasf" class="ajaxsample">ajax 요청 입니다!..</a></h2>
 	</div>

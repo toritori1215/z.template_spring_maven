@@ -8,3 +8,15 @@
     width: 100%;
     margin-left: -15px;
 }
+
+.img_container{
+	width: 960;
+	height: 500;
+}
+
+.product-image{
+	width:100%;
+	height:auto;
+	margin-left: 0px;
+	margin-top: -50.5px;
+}
