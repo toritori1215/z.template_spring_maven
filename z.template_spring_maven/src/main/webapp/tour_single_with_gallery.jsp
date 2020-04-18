@@ -456,9 +456,12 @@
 							<div class="col-12">
 								<div class="form-group">
 									<label><i class="icon-adult"></i> Travellers</label>
-									<div class="numbers-row">
+									<div class="numbers-row1">
 										<input type="text" value="1" id="travellers" class="qty2 form-control" name="quantity">
+										<div class="inc button_inc1">+</div>
+										<div class="dec button_inc1">-</div>
 									</div>
+									<input type="hidden" id="pNo" value="${product.pNo}">
 								</div>
 							</div>
 						</div>
@@ -469,24 +472,24 @@
 									<td>
 										Travellers
 									</td>
-									<td class="text-right">
-										2
+									<td id="travellers_cnt" class="text-right">
+										
 									</td>
 								</tr>
 								<tr>
 									<td>
-										Total amount
+										Tour price
 									</td>
 									<td class="text-right">
-										3x $52
+										x &nbsp;&nbsp;&nbsp; ￦${product.pPrice/10000}만
 									</td>
 								</tr>
 								<tr class="total">
 									<td>
 										Total cost
 									</td>
-									<td class="text-right">
-										$154
+									<td id="total_cost" class="text-right">
+										￦${product.pPrice/10000}만
 									</td>
 								</tr>
 							</tbody>
@@ -900,25 +903,43 @@
 	</script>
 	
 	<script>
-		var ratings = [];
-		$('#travellers').bind(function(e) {
-			alert($(this).val());
-			var tnum = $(this).val();
-	
-			$.ajax({
-				type:"POST",
-				data:tnum,
-				url:"tour_detail_travellers",
-				async:true,
-				dataType: "html",
-				success:function(d) {
-					console.log(d);
+		$(".button_inc1").click(function () {
+
+			var $button = $(this);
+			var oldValue = $button.parent().find("input").val();
+
+			if ($button.text() == "+") {
+				var newVal = parseFloat(oldValue) + 1;
+			} else {
+				// Don't allow decrementing below zero
+				if (oldValue > 1) {
+					var newVal = parseFloat(oldValue) - 1;
+				} else {
+					newVal = 0;
 				}
-			}); 
+			}
+			$button.parent().find("input").val(newVal);
+			
+			var pNo = $button.parent().next().attr("value");
+			
+			$.ajax({
+				type:"GET",
+				url:"tour_detail_travellers?",
+				data:"newVal="+newVal+"&pNo="+pNo,
+				async:true,
+				dataType: "text",
+				success:function(d) {
+					console.log(d.pPrice);
+					$("#travellers_cnt").html(d.newVal);
+					$("#total_cost").html("￦"+d.newVal*d.pPrice/10000+"만");
+				}
+			});
 		});
+		
 	</script>
 	
-
+	<script src="${pageContext.request.contextPath}/resources/z.SiliconVillage/js/product.js"></script>
+	
 	<!--Review modal validation -->
 	<script src="${pageContext.request.contextPath}/resources/assets/validate.js"></script>
 

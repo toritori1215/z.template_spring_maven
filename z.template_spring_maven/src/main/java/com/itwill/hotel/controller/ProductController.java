@@ -59,15 +59,14 @@ public class ProductController {
 		return "forward:tour_single_with_gallery.jsp";
 	}
 	
-	@RequestMapping(value = "/tour_detail_travellers", produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value = "/tour_detail_travellers", produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String tourTravellers(@RequestParam(value="tnum") String tnum) {
-		return tnum;
-	}
-	
-	@RequestMapping(value = "/room_list")
-	public String roomList() {
-		return "room_all_list";
+	public String tourTravellers(@RequestParam(value="newVal") String newVal,
+								 @RequestParam(value="pNo") String pNo) {
+		//List returnList = new ArrayList();
+		//returnList.set(0, newVal);
+		//returnList.set(1, productService.selectByNo(Integer.parseInt(pNo)).getpPrice());
+		return "{'newVal':"+newVal+", 'pPrice':"+productService.selectByNo(Integer.parseInt(pNo)).getpPrice()+"}";
 	}
 	
 	@RequestMapping(value = "/tour_grid")
