@@ -481,7 +481,7 @@
 										Tour price
 									</td>
 									<td class="text-right">
-										x &nbsp;&nbsp;&nbsp; ￦${product.pPrice/10000}만
+										x &nbsp; ${product.pPrice/10000}만
 									</td>
 								</tr>
 								<tr class="total">

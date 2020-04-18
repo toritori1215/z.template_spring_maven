@@ -1,25 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-
+	
 	<!-- Header================================================== -->
-	<jsp:include page="common_header_6.jsp"/>
+	<jsp:include page="/WEB-INF/views/common_header_6.jsp"/>
 	<!-- End Header -->
+	
+	<!-- CUSTOM CSS -->
+	<link href="${pageContext.request.contextPath}/resources/z.SiliconVillage/css/product.css" rel="stylesheet">
 
-	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/img/single_tour_bg_1.jpg" data-natural-width="1400" data-natural-height="470">
+	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}.jpg" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-2">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8">
-						<h1>Arc de Triomphe</h1>
-						<span>Champ de Mars, 5 Avenue Anatole, 75007 Paris.</span>
-						<span class="rating"><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small></span>
+						<h1>${product.pName}</h1>
+						<span>${product.rCount} of our fellow travellers rate this tour as... &nbsp;&nbsp;</span>
+						<span class="rating">
+							<c:forEach var="index" begin="1" end="${Math.round(product.pRate/2)}">
+								<i class="icon-smile voted"></i>
+							</c:forEach>
+							<c:forEach var="index" begin="1" end="${5-Math.round(product.pRate/2)}">
+								<i class="icon-smile"></i>
+							</c:forEach>
+							<small>(${product.pRate})</small>
+						</span>
 					</div>
 					<div class="col-md-4">
 						<div id="price_single_main">
-							from/per person <span><sup>$</sup>52</span>
+							<span><sup>￦</sup>${product.pPrice/10000}만</span> / person 
 						</div>
 					</div>
 				</div>
@@ -32,11 +43,11 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="#">Home</a>
+					<li><a href="main">Home</a>
 					</li>
-					<li><a href="#">Category</a>
+					<li><a href="tour_list">Tours</a>
 					</li>
-					<li>Page active</li>
+					<li>${product.pName}</li>
 				</ul>
 			</div>
 		</div>
@@ -47,18 +58,30 @@
 			<div id="map" class="map"></div>
 		</div>
 		<!-- End Map -->
-
+ 
 		<div class="container margin_60">
 			<div class="row">
 				<div class="col-lg-8" id="single_tour_desc">
 					<div id="single_tour_feat">
 						<ul>
-							<li><i class="icon_set_1_icon-4"></i>Museum</li>
+							<li> 
+								<c:choose>
+								    <c:when test="${product.foodCategory eq 'water'}">
+								       	<i class="pe-7s-drop"></i>Above water
+								    </c:when>
+								    <c:when test="${product.foodCategory eq 'ice'}">
+								       	<i class="icon-snow"></i>Icy surface
+								    </c:when>
+								    <c:otherwise>
+								       	<i class="pe-7s-leaf"></i>Green field
+								    </c:otherwise>
+								</c:choose>
+							</li>
 							<li><i class="icon_set_1_icon-83"></i>3 Hours</li>
 							<li><i class="icon_set_1_icon-13"></i>Accessibiliy</li>
-							<li><i class="icon_set_1_icon-82"></i>144 Likes</li>
+							<li><i class="icon_set_1_icon-82"></i>${product.wCount} Likes</li>
 							<li><i class="icon_set_1_icon-22"></i>Pet allowed</li>
-							<li><i class="icon_set_1_icon-97"></i>Audio guide</li>
+							<li><i class="pe-7s-coffee"></i>Refreshments</li>
 							<li><i class="icon_set_1_icon-29"></i>Tour guide</li>
 						</ul>
 					</div>
@@ -70,50 +93,50 @@
 						<div class="sp-slides">
 
 							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/css/images/blank.gif" data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/1_medium.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_tour/1_small.jpg" data-medium="${pageContext.request.contextPath}/resources/img/slider_single_tour/1_medium.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/1_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/1_large.jpg">
+								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg" data-src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg" data-small="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg" data-medium="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg" data-large="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg" data-retina="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg">
 							</div>
 							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/css/images/blank.gif" data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/2_medium.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_tour/2_small.jpg" data-medium="${pageContext.request.contextPath}/resources/img/slider_single_tour/2_medium.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/2_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/2_large.jpg">
-							</div>
-
-							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/css/images/blank.gif" data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/3_medium.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_tour/3_small.jpg" data-medium="${pageContext.request.contextPath}/resources/img/slider_single_tour/3_medium.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/3_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/3_large.jpg">
+								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}2.jpg" data-src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg" data-small="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}2.jpg" data-medium="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}2.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/2_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/2_large.jpg">
 							</div>
 
 							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/css/images/blank.gif" data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/4_medium.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_tour/4_small.jpg" data-medium="${pageContext.request.contextPath}/resources/img/slider_single_tour/4_medium.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/4_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/4_large.jpg">
+								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}3.jpg" data-src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_tour/3_small.jpg" data-medium="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}3.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/3_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/3_large.jpg">
 							</div>
 
 							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/css/images/blank.gif" data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/5_medium.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_tour/5_small.jpg" data-medium="${pageContext.request.contextPath}/resources/img/slider_single_tour/5_medium.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/5_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/5_large.jpg">
+								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}4.jpg" data-src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_tour/4_small.jpg" data-medium="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}4.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/4_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/4_large.jpg">
 							</div>
 
 							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/css/images/blank.gif" data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/6_medium.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_tour/6_small.jpg" data-medium="${pageContext.request.contextPath}/resources/img/slider_single_tour/6_medium.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/6_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/6_large.jpg">
+								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}5.jpg" data-src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_tour/5_small.jpg" data-medium="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}5.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/5_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/5_large.jpg">
 							</div>
 
 							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/css/images/blank.gif" data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/7_medium.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_tour/7_small.jpg" data-medium="${pageContext.request.contextPath}/resources/img/slider_single_tour/7_medium.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/7_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/7_large.jpg">
+								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}6.jpg" data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/6_medium.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_tour/6_small.jpg" data-medium="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}6.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/6_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/6_large.jpg">
 							</div>
 
 							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/css/images/blank.gif" data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/8_medium.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_tour/8_small.jpg" data-medium="${pageContext.request.contextPath}/resources/img/slider_single_tour/8_medium.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/8_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/8_large.jpg">
+								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}7.jpg" data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/7_medium.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_tour/7_small.jpg" data-medium="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}7.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/7_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/7_large.jpg">
 							</div>
 
 							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/css/images/blank.gif" data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/9_medium.jpg" data-small="../resourcesimg/slider_single_tour/9_small.jpg" data-medium="${pageContext.request.contextPath}/resources/img/slider_single_tour/9_medium.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/9_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/9_large.jpg">
+								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}8.jpg" data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/8_medium.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_tour/8_small.jpg" data-medium="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}8.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/8_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/8_large.jpg">
+							</div>
+
+							<div class="sp-slide">
+								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}9.jpg" data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/9_medium.jpg" data-small="../resourcesimg/slider_single_tour/9_small.jpg" data-medium="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}9.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/9_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/9_large.jpg">
 							</div>
 						</div>
 						<div class="sp-thumbnails">
-							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/img/slider_single_tour/1_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/img/slider_single_tour/2_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/img/slider_single_tour/3_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/img/slider_single_tour/4_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/img/slider_single_tour/5_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/img/slider_single_tour/6_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/img/slider_single_tour/7_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/img/slider_single_tour/8_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/img/slider_single_tour/9_medium.jpg">
+							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg">
+							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}2.jpg">
+							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}3.jpg">
+							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}4.jpg">
+							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}5.jpg">
+							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}6.jpg">
+							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}7.jpg">
+							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}8.jpg">
+							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}9.jpg">
 						</div>
 					</div>
 
@@ -122,11 +145,12 @@
 					<div class="row">
 						<div class="col-lg-3">
 							<h3>Description</h3>
+							<a href="#" class="btn_1 white add_bottom_30" data-toggle="modal" data-target="#tourGuide">GUIDE INFO</a>
 						</div>
 						<div class="col-lg-9">
 							<h4>Paris in love</h4>
 							<p>
-								Lorem ipsum dolor sit amet, at omnes deseruisse pri. Quo aeterno legimus insolens ad. Sit cu detraxit constituam, an mel iudico constituto efficiendi. Eu ponderum mediocrem has, vitae adolescens in pro. Mea liber ridens inermis ei, mei legendos vulputate an, labitur tibique te qui.
+								${product.pDesc}
 							</p>
 							<h4>What's include</h4>
 							<p>
@@ -159,6 +183,7 @@
 					<div class="row">
 						<div class="col-lg-3">
 							<h3>Schedule</h3>
+							<a href="#" class="btn_1 outline add_bottom_30" data-toggle="modal" data-target="#timeline">　TIMELINE　</a>
 						</div>
 						<div class="col-lg-9">
 
@@ -340,7 +365,7 @@
 												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
 											</div>
 										</li>
-										<li>Tourist guide
+										<li>Tour guide
 											<div class="rating">
 												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i>
 											</div>
@@ -366,7 +391,7 @@
 							<hr>
 							<div class="review_strip_single">
 								<img src="${pageContext.request.contextPath}/resources/img/avatar1.jpg" alt="Image" class="rounded-circle">
-								<small> - 10 March 2015 -</small>
+								<small> - 10 March 2015 - </small>
 								<h4>Jhon Doe</h4>
 								<p>
 									"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
@@ -417,31 +442,26 @@
 							<div class="col-sm-6">
 								<div class="form-group">
 									<label><i class="icon-calendar-7"></i> Select a date</label>
-									<input class="date-pick form-control" data-date-format="M d, D" type="text">
+									<input class="date-pick form-control" data-date-format="M d, D" type="text" name="date">
 								</div>
 							</div>
 							<div class="col-sm-6">
 								<div class="form-group">
 									<label><i class=" icon-clock"></i> Time</label>
-									<input class="time-pick form-control" value="12:00 AM" type="text">
+									<input disabled class="time-pick form-control" value="08:00 AM" type="text">
 								</div>
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-6">
+							<div class="col-12">
 								<div class="form-group">
-									<label>Adults</label>
-									<div class="numbers-row">
-										<input type="text" value="1" id="adults" class="qty2 form-control" name="quantity">
+									<label><i class="icon-adult"></i> Travellers</label>
+									<div class="numbers-row1">
+										<input type="text" value="1" id="travellers" class="qty2 form-control" name="quantity">
+										<div class="inc button_inc1">+</div>
+										<div class="dec button_inc1">-</div>
 									</div>
-								</div>
-							</div>
-							<div class="col-6">
-								<div class="form-group">
-									<label>Children</label>
-									<div class="numbers-row">
-										<input type="text" value="0" id="children" class="qty2 form-control" name="quantity">
-									</div>
+									<input type="hidden" id="pNo" value="${product.pNo}">
 								</div>
 							</div>
 						</div>
@@ -450,40 +470,37 @@
 							<tbody>
 								<tr>
 									<td>
-										Adults
+										Travellers
 									</td>
-									<td class="text-right">
-										2
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Children
-									</td>
-									<td class="text-right">
-										0
+									<td id="travellers_cnt" class="text-right">
+										1
 									</td>
 								</tr>
 								<tr>
 									<td>
-										Total amount
+										Tour price
 									</td>
 									<td class="text-right">
-										3x $52
+										x &nbsp; ${product.pPrice/10000}만
 									</td>
 								</tr>
 								<tr class="total">
 									<td>
 										Total cost
 									</td>
-									<td class="text-right">
-										$154
+									<td id="total_cost" class="text-right">
+										￦${product.pPrice/10000}만
 									</td>
 								</tr>
 							</tbody>
 						</table>
-						<a class="btn_full" href="cart.html">Book now</a>
-						<a class="btn_full_outline" href="#"><i class=" icon-heart"></i> Add to whislist</a>
+						<form id="cart_add" method="post" action="cart_add_action">
+							<input type="submit" class="btn_full" value="Book now" />
+							<input type="hidden" name=cart value="${cart}">
+						</form> 
+						<div id="addWishlistParam" mNo="${sUser.mNo}" pNo="${product.pNo}">
+							<a class="btn_full_outline" id="addWishlist" href="#"><i class=" icon-heart"></i> Add to wishlist</a>
+						</div>
 					</div>
 					<!--/box_style_1 -->
 
@@ -499,16 +516,12 @@
 			<!--End row -->
 		</div>
 		<!--End container -->
-        
+
         <div id="overlay"></div>
 		<!-- Mask on input focus -->
         
 	</main>
 	<!-- End main -->
-
-	<!-- Footer================================================== -->
-	<jsp:include page="common_footer_2.jsp"/>
-	<!-- End Footer -->
 
 	<!-- Modal Review -->
 	<div class="modal fade" id="myReview" tabindex="-1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
@@ -620,6 +633,247 @@
 		</div>
 	</div>
 	<!-- End modal review -->
+	
+	<!-- Modal Timeline -->
+	<div class="modal fade" id="timeline" tabindex="-1" role="dialog" aria-labelledby="timelineLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<div class="container margin_60">
+						<div class="main_title">
+							<h2><span>TIMELINE</span> for ${product.pName} Tour</h2>
+							<p>Quisque at tortor a libero posuere laoreet vitae sed arcu. Curabitur consequat.</p>
+						</div>
+					</div>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<div class="modal-body">
+					<div class="container margin_60">
+						<ul class="cbp_tmtimeline">
+							<li>
+								<time class="cbp_tmtime" datetime="09:30"><span>30 minutes</span> <span>09:30</span></time>
+								<div class="cbp_tmicon timeline_icon_point"></div>
+									<div class="cbp_tmlabel">
+										<div class="float-right d-none d-md-block">Guide <strong>John Doe</strong><img src="${pageContext.request.contextPath}/resources/img/guide_1.jpg" alt="Image" class="rounded-circle speaker">
+										</div>
+										<h2><span>Lorem ipsum</span>Meeting point</h2>
+										<p>Winter purslane courgette pumpkin quandong komatsuna fennel green bean cucumber watercress. Pea sprouts wattle seed rutabaga okra yarrow cress avocado grape radish bush tomato ricebean black-eyed pea maize eggplant. </p>
+									</div>
+							</li>
+							<li>
+								<time class="cbp_tmtime" datetime="11:30"><span>2 hours</span> <span>11:30</span>
+								</time>
+								<div class="cbp_tmicon timeline_icon_pic"></div>
+								<div class="cbp_tmlabel">
+									<div class="float-right d-none d-md-block">Guide <strong>John Doe</strong><img src="${pageContext.request.contextPath}/resources/img/guide_2.jpg" alt="Image" class="rounded-circle speaker">
+									</div>
+									<h2><span>Lorem ipsum</span>Exhibitions</h2>
+									<p>Caulie dandelion maize lentil collard greens radish arugula sweet pepper water spinach kombu courgette lettuce. Celery coriander bitterleaf epazote radicchio shallot winter purslane collard greens spring onion squash lentil. Artichoke salad bamboo shoot black-eyed pea brussels sprout garlic kohlrabi.</p>
+								</div>
+							</li>
+							<li>
+								<time class="cbp_tmtime" datetime="13:30"><span>1 hour</span> <span>13:30</span>
+								</time>
+								<div class="cbp_tmicon timeline_icon_break"></div>
+								<div class="cbp_tmlabel">
+									<h2><span>Lorem ipsum</span>Lunch and coffee break</h2>
+									<p>Parsnip lotus root celery yarrow seakale tomato collard greens tigernut epazote ricebean melon tomatillo soybean chicory broccoli beet greens peanut salad. </p>
+								</div>
+							</li>
+							<li>
+								<time class="cbp_tmtime" datetime="14:30"><span>2 hours</span> <span>14:30</span>
+								</time>
+								<div class="cbp_tmicon timeline_icon_audio"></div>
+								<div class="cbp_tmlabel">
+									<div class="float-right d-none d-md-block">Guide <strong>John Doe</strong><img src="${pageContext.request.contextPath}/resources/img/guide_1.jpg" alt="Image" class="rounded-circle speaker">
+									</div>
+									<h2><span>Lorem ipsum</span>The auditorium Louvre</h2>
+									<p>Peanut gourd nori welsh onion rock melon mustard jícama. Desert raisin amaranth kombu aubergine kale seakale brussels sprout pea. Black-eyed pea celtuce bamboo shoot salad kohlrabi leek squash prairie turnip catsear rock melon chard taro broccoli turnip greens. Fennel quandong potato watercress ricebean swiss chard garbanzo. Endive daikon brussels sprout lotus root silver beet epazote melon shallot.</p>
+								</div>
+							</li>
+							<li>
+								<time class="cbp_tmtime" datetime="16:30"><span>2 hours</span> <span>16:30</span>
+								</time>
+								<div class="cbp_tmicon timeline_icon_pic"></div>
+								<div class="cbp_tmlabel">
+									<div class="float-right d-none d-md-block">Guide <strong>John Doe</strong><img src="${pageContext.request.contextPath}/resources/img/guide_2.jpg" alt="Image" class="rounded-circle speaker">
+									</div>
+									<h2><span>Lorem ipsum</span>Modern art</h2>
+									<p>Parsley amaranth tigernut silver beet maize fennel spinach. Ricebean black-eyed pea maize scallion green bean spinach cabbage jícama bell pepper carrot onion corn plantain garbanzo. Sierra leone bologi komatsuna celery peanut swiss chard silver beet squash dandelion maize chicory burdock tatsoi dulse radish wakame beetroot.</p>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Modal Timeline -->
+	
+	<!-- Modal Tour Guide -->
+	<div class="modal fade" id="tourGuide" tabindex="-1" role="dialog" aria-labelledby="tourGuideLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<div class="container margin_60">
+						<div class="main_title">
+							<h1>I am Madlene</h1>
+							<p>Ridiculus sociosqu cursus neque cursus curae ante scelerisque vehicula.</p>
+						</div>
+					</div>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<div class="modal-body">
+					<div class="margin_60 container">
+						<div id="tour_guide">
+							<p>
+								<img src="${pageContext.request.contextPath}/resources/img/tourist_guide_pic.jpg" alt="Image" class="rounded-circle styled">
+							</p>
+							<h2>Madlene - Certified tourist guide</h2>
+							<p class="lead add_bottom_30">
+								"Eu tota moderatius usu, ad putant aliquando constituam ius, <strong>commodo sententiae</strong> suscipiantur nam eu. Tamquam nominati abhorreant at vis, has id harum melius petentium. Mea wisi debet omnium ne, est ea graecis noluisse recusabo, denique deterruisset ius et."
+							</p>
+						</div>
+						<div class="row">
+							<div class="col-md-8">
+								<h3>Some words about me</h3>
+								<p>
+									Lorem ipsum dolor sit amet, ex justo nominavi eum, cu veniam salutatus reprimique quo, nisl virtute meliore ei eos. Quaestio consequat sed no, urbanitas honestatis ei usu. Ex nec aliquid appetere petentium, ei eum soleat possim. Has ea omnes prompta. Vel te magna voluptaria, cu nec fabulas voluptatum, has et dictas quaeque labores. Qui ex mazim sadipscing.
+								</p>
+								<h5>Education</h5>
+								<p>
+									Lorem ipsum dolor sit amet, ex justo nominavi eum, cu veniam salutatus reprimique quo, nisl virtute meliore ei eos. Quaestio consequat sed no, urbanitas honestatis ei usu. Ex nec aliquid appetere petentium, ei eum soleat possim. Has ea omnes prompta. Vel te magna voluptaria, cu nec fabulas voluptatum, has et dictas quaeque labores. Qui ex mazim sadipscing.
+								</p>
+								<h5>Past experiences</h5>
+								<p>
+									Lorem ipsum dolor sit amet, ex justo nominavi eum, cu veniam salutatus reprimique quo, nisl virtute meliore ei eos. Quaestio consequat sed no, urbanitas honestatis ei usu. Ex nec aliquid appetere petentium, ei eum soleat possim. Has ea omnes prompta. Vel te magna voluptaria, cu nec fabulas voluptatum, has et dictas quaeque labores. Qui ex mazim sadipscing.
+								</p>
+							</div>
+							<div class="col-md-4">
+								<h3>Spoken languages</h3>
+								<p>
+									Eu tota moderatius usu, ad putant aliquando constituam ius, commodo sententiae suscipiantur nam eu.
+								</p>
+								<p>
+									<img src="${pageContext.request.contextPath}/resources/img/lang_en.png" width="40" height="26" alt="Image" data-retina="true"> <img src="${pageContext.request.contextPath}/resources/img/lang_fr.png" width="40" height="26" alt="Image" data-retina="true">
+									<img src="${pageContext.request.contextPath}/resources/img/lang_de.png" width="40" height="26" alt="Image" data-retina="true"> <img src="${pageContext.request.contextPath}/resources/img/lang_es.png" width="40" height="26" alt="Image" data-retina="true">
+								</p>
+								<h3><i class=""></i>Certificates</h3>
+								<p>
+									Eu tota moderatius usu, ad putant aliquando constituam ius, commodo sententiae suscipiantur nam eu.
+								</p>
+								<ul class="list_ok">
+									<li>Putant aliquando constituam</li>
+									<li>Commodo sententiae</li>
+									<li>Denique deterruisset</li>
+									<li>Putant aliquando constituam</li>
+								</ul>
+							</div>
+						</div>
+						<!-- end row -->
+					</div>
+					<!-- end container -->
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-lg-6 nopadding features-intro-img">
+								<div class="features-bg">
+									<div class="features-img">
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 nopadding">
+								<div class="features-content">
+									<h3>"Ex vero mediocrem"</h3>
+									<p>
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+									</p>
+									<p>
+										<a href="#" class=" btn_1 white">Read more</a>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="container margin_60">
+						<div class="main_title">
+							<h2>What <span>customers </span>says</h2>
+							<p>
+								Quisque at tortor a libero posuere laoreet vitae sed arcu. Curabitur consequat.
+							</p>
+						</div>
+			
+						<div class="row">
+							<div class="col-md-6">
+								<div class="review_strip">
+									<img src="${pageContext.request.contextPath}/resources/img/avatar1.jpg" alt="Image" class="rounded-circle">
+									<h4>Jhon Doe</h4>
+									<p>
+										"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
+									</p>
+									<div class="rating">
+										<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class=" icon-star-empty"></i><i class=" icon-star-empty"></i>
+									</div>
+								</div>
+								<!-- End review strip -->
+							</div>
+			
+							<div class="col-md-6">
+								<div class="review_strip">
+									<img src="${pageContext.request.contextPath}/resources/img/avatar2.jpg" alt="Image" class="rounded-circle">
+									<h4>Mark Schulz</h4>
+									<p>
+										"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
+									</p>
+									<div class="rating">
+										<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class=" icon-star-empty"></i><i class=" icon-star-empty"></i>
+									</div>
+								</div>
+								<!-- End review strip -->
+							</div>
+						</div>
+						<!-- End row -->
+			
+						<div class="row">
+							<div class="col-md-6">
+								<div class="review_strip">
+									<img src="${pageContext.request.contextPath}/resources/img/avatar3.jpg" alt="Image" class="rounded-circle">
+									<h4>Tony Costello</h4>
+									<p>
+										"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
+									</p>
+									<div class="rating">
+										<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class=" icon-star-empty"></i><i class=" icon-star-empty"></i>
+									</div>
+								</div>
+								<!-- End review strip -->
+							</div>
+			
+							<div class="col-md-6">
+								<div class="review_strip">
+									<img src="${pageContext.request.contextPath}/resources/img/avatar1.jpg" alt="Image" class="rounded-circle">
+									<h4>Peter Gabriel</h4>
+									<p>
+										"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
+									</p>
+									<div class="rating">
+										<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class=" icon-star-empty"></i><i class=" icon-star-empty"></i>
+									</div>
+								</div>
+								<!-- End review strip -->
+							</div>
+						</div>
+						<!-- End row -->
+					</div>
+					<!-- End container -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Modal Tour Guide -->
+	
+	<!-- Footer================================================== -->
+	<jsp:include page="/WEB-INF/views/common_footer_2.jsp"/>
+	<!-- End Footer -->
 
 	<!-- Date and time pickers -->
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.sliderPro.min.js"></script>
@@ -646,11 +900,50 @@
 	<script>
 		$('input.date-pick').datepicker('setDate', 'today');
 		$('input.time-pick').timepicker({
-			minuteStep: 15,
-			showInpunts: false
+			minuteStep: 30,
+			showInputs: false
 		})
 	</script>
+	
+	<script>
+		$(".button_inc1").click(function () {
 
+			var $button = $(this);
+			var oldValue = $button.parent().find("input").val();
+
+			if ($button.text() == "+") {
+				var newVal = parseFloat(oldValue) + 1;
+			} else {
+				// Don't allow decrementing below zero
+				if (oldValue > 1) {
+					var newVal = parseFloat(oldValue) - 1;
+				} else {
+					newVal = 0;
+				}
+			}
+			$button.parent().find("input").val(newVal);
+			
+			var pNo = $button.parent().next().attr("value");
+			
+			$.ajax({
+				type:"GET",
+				url:"tour_detail_travellers?",
+				data:"newVal="+newVal+"&pNo="+pNo,
+				async:true,
+				contentType:"application/x-www-form-urlencoded;charset=utf-8",
+				success:function(d) {
+					console.log(d.cProductQty);
+					console.log(d.cProductTypePay);
+					$("#travellers_cnt").html(d.cProductQty);
+					$("#total_cost").html("￦"+d.cProductTypePay/10000+"만");
+				}
+			});
+		});
+		
+	</script>
+	
+	<script src="${pageContext.request.contextPath}/resources/z.SiliconVillage/js/product.js"></script>
+	
 	<!--Review modal validation -->
 	<script src="${pageContext.request.contextPath}/resources/assets/validate.js"></script>
 
@@ -658,7 +951,6 @@
 	<script src="http://maps.googleapis.com/maps/api/js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/map.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/infobox.js"></script>
-	
 	
 </body>
 

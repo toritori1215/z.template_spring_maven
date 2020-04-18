@@ -73,9 +73,17 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/tour_detail")
-	public String tourDetail(@RequestParam(value="pNo") String pNo, Model model) {
-		model.addAttribute("product", productService.selectByNo(Integer.parseInt(pNo)));
-		return "forward:tour_single_with_gallery.jsp";
+	public String tourDetail(@RequestParam(value="pNo") String pNo, HttpSession session, Model model) {
+		
+		Product product = productService.selectByNo(Integer.parseInt(pNo));
+		int pPrice = product.getpPrice();
+		Member member = (Member) session.getAttribute("sUser");
+		int mNo = member.getmNo();
+		Cart cart = new Cart(mNo, 1, pPrice, null, null, null, null, null, 0, Integer.parseInt(pNo));
+		
+		model.addAttribute("product", product);
+		model.addAttribute("cart", cart);
+		return "tour_single_with_gallery";
 	}
 	
 	@RequestMapping(value = "/tour_detail_travellers", produces = "application/json;charset=UTF-8")
@@ -84,11 +92,23 @@ public class ProductController {
 								 @RequestParam(value="pNo") String pNo,
 								 HttpSession session) {		
 		Member member = (Member) session.getAttribute("sUser");
+		int mNo = member.getmNo();
 		int newVal_int = Integer.parseInt(newVal);
 		int pNo_int = Integer.parseInt(pNo);
 		int pPrice = productService.selectByNo(Integer.parseInt(pNo)).getpPrice();
-		Cart cart = new Cart(0, newVal_int, newVal_int*pPrice, null, null, null, null, null, 0, pNo_int);
+		Cart cart = new Cart(mNo, newVal_int, newVal_int*pPrice, null, null, null, null, null, 0, pNo_int);
 		return cart;
+	}
+	
+	@RequestMapping(value = "/cart_add_action")
+	public String cartAddAction(@RequestParam(value="cart") Cart cart) {
+		
+		return "cart_product"; 
+	}
+	
+	@RequestMapping(value = "/cart_product")
+	public String tourHotelCart() {
+		return "cart_fixed_sidebar";
 	}
 	
 	@RequestMapping(value = "/tour_grid")
