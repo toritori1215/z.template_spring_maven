@@ -20,9 +20,7 @@ public interface BlogDao {
 	
 	
 	/****** Blog Review ******/
-	public List<BlogReview> selectAllBlogReview();
-	
-	public BlogReview selectOneBlogReview(int brNo);
+	public List<BlogReview> selectBlogReview(int bNo);
 	
 	public int insertBlogReview(BlogReview blogReview);
 	

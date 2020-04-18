@@ -290,7 +290,7 @@
 										<a href="single_hotel.html"><img src="${pageContext.request.contextPath}/resources/img/hotel_1.jpg" alt="Image">
 											<div class="short_info"></div>
 										 -->
-										<a href="room${product.pNo}"><img src="${pageContext.request.contextPath}/resources/z.SiliconVilage/img/${product.pName}_thumb.jpg" alt="Image">
+										<a href="hotel_single?pNo=${product.pNo}"><img src="${pageContext.request.contextPath}/resources/z.SiliconVilage/img/${product.pName}1.jpg" alt="Image">
 											<div class="short_info"></div>
 										</a>
 									</div>

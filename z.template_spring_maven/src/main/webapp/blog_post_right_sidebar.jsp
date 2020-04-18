@@ -54,6 +54,7 @@
 			</div>
 		</div>
 		<!-- End position -->
+		
 		<div class="container margin_60">
 			<div class="row">
 				<div class="col-lg-9">
@@ -93,59 +94,57 @@
 
 
 
-					<h4>3 comments</h4>
+					<h4>${size} comments</h4>
 
 					<div id="comments">
 						<ol>
-							<li>
-								<div class="avatar">
-									<a href="#"><img src="${pageContext.request.contextPath}/resources/img/avatar1.jpg" alt="Image">
-									</a>
-								</div>
-								<div class="comment_right clearfix">
-									<div class="comment_info">
-										Posted by <a href="#">Anna Smith</a><span>|</span> 25 apr 2019 <span>|</span><a href="#">Reply</a>
+						<c:forEach var="i" begin="1" end="${size}">
+						<c:forEach var="blogReview" items="${blogReviewList}">
+						<c:if test="${blogReview.brGroup == i}">
+							
+							<c:if test="${blogReview.brDepth == 1}">
+								<li>
+									brGroup: ${blogReview.brGroup}, brStep: ${blogReview.brStep}, brDepth: ${blogReview.brDepth}
+									<div class="avatar"><a href="#"><img src="${pageContext.request.contextPath}/resources/img/avatar1.jpg" alt="Image"></a></div>
+									<div class="comment_right clearfix">
+										<div class="comment_info">
+											Posted by: <a href="#">ToriTori</a><span>|</span> ${blogReview.brDate} <span>|</span><a href="#">Reply</a>
+										</div><p>${blogReview.brContent}</p>
 									</div>
-									<p>
-										Nam cursus tellus quis magna porta adipiscing. Donec et eros leo, non pellentesque arcu. Curabitur vitae mi enim, at vestibulum magna. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed sit amet sem a urna rutrumeger fringilla. Nam vel enim ipsum, et congue ante.
-									</p>
-								</div>
-								<ul>
-									<li>
-										<div class="avatar">
-											<a href="#"><img src="${pageContext.request.contextPath}/resources/img/avatar2.jpg" alt="Image">
-											</a>
-										</div>
-
+								</li>
+							</c:if>
+							
+							<c:forEach var="j" begin="2" end="${size}">
+								<c:if test="${blogReview.brStep == j}">
+									<c:if test="${blogReview.brDepth == 2}">
+										<li style="padding-left: 70px">
+											brGroup: ${blogReview.brGroup}, brStep: ${blogReview.brStep}, brDepth: ${blogReview.brDepth}
+											<div class="avatar"><a href="#"><img src="${pageContext.request.contextPath}/resources/img/avatar2.jpg" alt="Image"></a></div>
+											<div class="comment_right clearfix">
+												<div class="comment_info">
+													Posted by: <a href="#">ToriTori</a><span>|</span> ${blogReview.brDate} <span>|</span><a href="#">Reply</a>
+												</div><p>${blogReview.brContent}</p>
+											</div>
+										</li>
+									</c:if>
+									
+									<c:if test="${blogReview.brDepth == 3}">
+									<li style="padding-left: 140px">
+										brGroup: ${blogReview.brGroup}, brStep: ${blogReview.brStep}, brDepth: ${blogReview.brDepth}
+										<div class="avatar"><a href="#"><img src="${pageContext.request.contextPath}/resources/img/avatar3.jpg" alt="Image"></a></div>
 										<div class="comment_right clearfix">
 											<div class="comment_info">
-												Posted by <a href="#">Tom Sawyer</a><span>|</span> 25 apr 2019 <span>|</span><a href="#">Reply</a>
-											</div>
-											<p>
-												Nam cursus tellus quis magna porta adipiscing. Donec et eros leo, non pellentesque arcu. Curabitur vitae mi enim, at vestibulum magna. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed sit amet sem a urna rutrumeger fringilla. Nam vel enim ipsum, et congue ante.
-											</p>
-											<p>
-												Aenean iaculis sodales dui, non hendrerit lorem rhoncus ut. Pellentesque ullamcorper venenatis elit idaipiscingi Duis tellus neque, tincidunt eget pulvinar sit amet, rutrum nec urna. Suspendisse pretium laoreet elit vel ultricies. Maecenas ullamcorper ultricies rhoncus. Aliquam erat volutpat.
-											</p>
+												Posted by: <a href="#">ToriTori</a><span>|</span> ${blogReview.brDate} 
+											</div><p>${blogReview.brContent}</p>
 										</div>
 									</li>
-								</ul>
-							</li>
-							<li>
-								<div class="avatar">
-									<a href="#"><img src="${pageContext.request.contextPath}/resources/img/avatar3.jpg" alt="Image">
-									</a>
-								</div>
-
-								<div class="comment_right clearfix">
-									<div class="comment_info">
-										Posted by <a href="#">Adam White</a><span>|</span> 25 apr 2019 <span>|</span><a href="#">Reply</a>
-									</div>
-									<p>
-										Cursus tellus quis magna porta adipiscin
-									</p>
-								</div>
-							</li>
+								</c:if>
+								</c:if>
+							</c:forEach>
+							
+						</c:if>
+						</c:forEach>
+						</c:forEach>
 						</ol>
 					</div>
 					<!-- End Comments -->

@@ -6,6 +6,7 @@
 	<select id="selectAllBlog" resultType="Blog">
 		select bNo, bTitle, bDate, bContent, bReadCount, bCategory, mNo
 		from blog
+		order by bDate desc
 	</select>
 	
 	<select id="selectOneBlog" resultType="Blog">
@@ -32,15 +33,11 @@
 	
 	
 	<!-- Blog Review -->
-	<select id="selectAllBlogReview" resultType="BlogReview">
-		select brNo,brDate,brContent,mNo,BNo,brStep,brGroup,brDepth
+	<select id="selectBlogReview" parameterType="_int" resultType="BlogReview">
+		select brNo, brDate, brContent, brGroup, brStep, brDepth, mNo, bNo
 		from blog_review
-	</select>
-	
-	<select id="selectOneBlogReview" resultType="BlogReview">
-		select brNo,brDate,brContent,mNo,BNo,brStep,brGroup,brDepth
-		from blog_review
-		where brNo=#{brNo} 
+		where bNo=1
+		order by brStep, brDepth, brDate desc
 	</select>
 	
 	<insert id="insertBlogReview" parameterType="java.util.HashMap">
