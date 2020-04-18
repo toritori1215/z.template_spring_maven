@@ -294,6 +294,65 @@
 
 				<aside class="col-lg-4" id="sidebar">
 					<div class="theiaStickySidebar">
+					
+						<p class="d-none d-xl-block d-lg-block d-xl-none">
+							<a class="btn_map" data-toggle="collapse" href="#reservation_div_space" 
+							   aria-expanded="false" aria-controls="reservation_div_space" id="BookingState"
+							   data-text-swap="No restaurant reservation" data-text-original="Restaurant Reservation">
+							   		Restaurant Reservation
+							</a>
+						</p>
+					
+						<!-- 예약 div 시작 -->
+						<div class= "collapse" id="reservation_div_space">
+							<div class="box_style_1 expose" id="reservation_div">
+								
+									<h3 class="inner">- Reservation -</h3>
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label><i class="icon-calendar-7"></i> Select a date</label>
+												<input class="date-pick form-control" data-date-format="M d, D" type="text">
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label><i class=" icon-clock"></i> Time</label>
+												<input class="time-pick form-control" value="12:00 AM" type="text">
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-6">
+											<div class="form-group">
+												<label>persons</label>
+												<div class="numbers-row">
+													<input type="text" value="1" id="adults" class="qty2 form-control" name="quantity">
+												</div>
+											</div>
+										</div>
+										<!-- 
+										<div class="col-6">
+											<div class="form-group">
+												<label>Children</label>
+												<div class="numbers-row">
+													<input type="text" value="0" id="children" class="qty2 form-control" name="quantity">
+												</div>
+											</div>
+										</div>
+										 -->
+									</div>
+									<!-- 
+									<hr>
+									 -->
+								
+								<!-- 
+								<a class="btn_full" href="restaurant_payment_fixed_sidebar">BUY NOW</a>
+								<a class="btn_full_outline" href="restaurant_cart_fixed_sidebar" id="addToCartBtn"><i class=" icon-heart"></i> ADD TO CART</a>
+								 -->
+							</div>
+						</div>
+						<!-- 예약 div 끝 -->
 						<div class="box_style_1">
 							<h3 class="inner">- Summary -</h3>
 							<table class="table table_summary">
@@ -340,7 +399,7 @@
 									</tr>
 								</tbody>
 							</table>
-							<a class="btn_full" href="payment_fixed_sidebar.html">Check out</a>
+							<a class="btn_full" id="go_to_reservation_or_payment" href="restaurant_payment_fixed_sidebar">Check out</a>
 							<a class="btn_full_outline" href="#"><i class="icon-right"></i> Continue shopping</a>
 						</div>
 						<div class="box_style_4">
@@ -367,10 +426,46 @@
 
 	<!-- Fixed sidebar -->
 	<script src="${pageContext.request.contextPath}/resources/js/theia-sticky-sidebar.js"></script>
+	
+	<!-- Date and time pickers -->
+	<script>
+		$('input.date-pick').datepicker('setDate', 'today');
+		$('input.time-pick').timepicker({
+			minuteStep: 15,
+			showInpunts: false
+		})
+	</script>
+	
+	
 	<script>
 		jQuery('#sidebar').theiaStickySidebar({
 			additionalMarginTop: 80
 		});
+		
+		//on load Start
+		$(function(){
+			
+			$('#BookingState').on("click", function(e) {
+				let bookState = document.getElementById("BookingState").firstChild.nodeValue;
+				console.log("bookState ::" + bookState);
+				let chanegCheckoutLink = document.getElementById("go_to_reservation_or_payment");
+				if(bookState.toUpperCase()=='RESTAURANT RESERVATION'){
+					console.log("들어오긴 하니2?");
+					//$('#reservation_div').show();
+					chanegCheckoutLink.setAttribute("href", "restaurant_payment_fixed_sidebar");
+					console.log("chanegCheckoutLink.getAttribute ->"+chanegCheckoutLink.getAttribute('href'));
+				}else{	
+					console.log("들어오긴 하니3?");
+					//$('#reservation_div').hide();
+					chanegCheckoutLink.setAttribute("href", "restaurant_single_restaurant_detail");
+					console.log("chanegCheckoutLink.getAttribute ->"+chanegCheckoutLink.getAttribute('href'));
+				}
+			});
+			
+			
+		});
+		//on load end
+		
 	</script>
 		
 

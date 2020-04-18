@@ -128,6 +128,9 @@
 							</div>
 						</div>
 						<div class="sp-thumbnails">
+						
+						
+						
 							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg">
 							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}2.jpg">
 							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}3.jpg">

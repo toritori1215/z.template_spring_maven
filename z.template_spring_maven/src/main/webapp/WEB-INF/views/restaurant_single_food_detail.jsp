@@ -8,6 +8,7 @@
 
 	<!-- Header================================================== -->
 	<jsp:include page="common_header_6.jsp"/>
+	<link href="${pageContext.request.contextPath}/resources/z.SiliconVillage/css/hbkMy.css" rel="stylesheet">
 	<!-- End Header -->
 
 	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/img/restaurant_top_in.jpg" data-natural-width="1400" data-natural-height="470">
@@ -99,60 +100,85 @@
 						<a class="btn_map" data-toggle="collapse" href="#reservation_div_space" aria-expanded="false" aria-controls="reservation_div_space" data-text-swap="No restaurant reservation" data-text-original="Restaurant Reservation">Restaurant Reservation</a>
 					</p>
 					<!-- Map button for tablets/mobiles -->
-
-					<div id="Img_carousel" class="slider-pro">
-						<div class="sp-slides">
-
-							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/css/images/blank.gif" data-src="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/1_medium.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/1_small.jpg" data-medium="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/1_medium.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/1_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/1_large.jpg">
-							</div>
-							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/css/images/blank.gif" data-src="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/2_medium.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/2_small.jpg" data-medium="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/2_medium.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/2_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/2_large.jpg">
-								<h3 class="sp-layer sp-black sp-padding" data-horizontal="40" data-vertical="40" data-show-transition="left">
-                        Lorem ipsum dolor sit amet </h3>
-							</div>
+					
+					
+					<c:set var="images" value="${fn:split(restaurantProduct.pimg,'/')}"/>
+					<c:set var="imgCnt" value="${fn:length(images)}"/>
+					
+					<c:choose>
+						<c:when test="${imgCnt<3}">
+							<div class="img_container"> 
+									   <img  class="product-image" 
+											 alt="이미지 읎다!!!"
+											 src="${pageContext.request.contextPath}/resources/css/images/restaurant_Product_img/${images[0]}"
+											 data-src="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/" 
+											 data-small="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/1_small.jpg" 
+											 data-medium="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/1_medium.jpg" 
+											 data-large="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/1_large.jpg" 
+											 data-retina="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/1_large.jpg">
 							
-							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/css/images/blank.gif" data-src="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/3_medium.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/3_small.jpg" data-medium="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/3_medium.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/3_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/3_large.jpg">
 							</div>
-
-							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/css/images/blank.gif" data-src="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/4_medium.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/4_small.jpg" data-medium="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/4_medium.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/4_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/4_large.jpg">
+						</c:when>
+					 	<c:when test="${imgCnt>=3}">
+							<div id="Img_carousel" class="slider-pro">
+								<div class="sp-slides">	
+									<c:forEach var="image" items='${images}' varStatus="st" step="1">
+										<div class="sp-slide">
+											<img alt="이미지 읎다!!!" class="sp-image" src="${pageContext.request.contextPath}/resources/css/images/restaurant_Product_img/${image}">
+										</div>
+									</c:forEach>
+									 
+									<!-- 
+									<div class="sp-slide">
+										<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/css/images/blank.gif"
+											 data-src="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/1_medium.jpg" 
+											 data-small="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/1_small.jpg" 
+											 data-medium="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/1_medium.jpg" 
+											 data-large="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/1_large.jpg" 
+											 data-retina="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/1_large.jpg">
+									
+									</div>
+									
+									<div class="sp-slide">
+										<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/css/images/blank.gif" 
+											 data-src="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/2_medium.jpg"
+											 data-small="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/2_small.jpg"
+											 data-medium="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/2_medium.jpg" 
+											 data-large="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/2_large.jpg" 
+											 data-retina="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/2_large.jpg">
+									</div>
+		
+									<div class="sp-slide">
+										<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/css/images/blank.gif" 
+											 data-src="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/3_medium.jpg"
+											 data-small="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/3_small.jpg"
+											 data-medium="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/3_medium.jpg" 
+											 data-large="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/3_large.jpg" 
+											 data-retina="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/3_large.jpg">
+									</div>
+									 -->							
+								</div>
+									 
+								<div class="sp-thumbnails">
+									<c:forEach var="image" items="${images}" varStatus="st" step="1">
+										<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/css/images/restaurant_Product_img/${image}">
+									</c:forEach>
+									<!-- 
+									<img alt="Image" class="sp-thumbnail" 
+													 src="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/1_medium.jpg"> 
+									<img alt="Image" class="sp-thumbnail" 
+													 src="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/2_medium.jpg">
+									<img alt="Image" class="sp-thumbnail" 
+													 src="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/3_medium.jpg">
+									 -->	 
+								</div>
 							</div>
-
-							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/css/images/blank.gif" data-src="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/5_medium.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/5_small.jpg" data-medium="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/5_medium.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/5_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/5_large.jpg">
-							</div>
-
-							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/css/images/blank.gif" data-src="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/6_medium.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/6_small.jpg" data-medium="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/6_medium.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/6_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/6_large.jpg">
-							</div>
-
-							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/css/images/blank.gif" data-src="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/7_medium.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/7_small.jpg" data-medium="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/7_medium.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/7_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/7_large.jpg">
-							</div>
-
-							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/css/images/blank.gif" data-src="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/8_medium.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/8_small.jpg" data-medium="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/8_medium.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/8_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/8_large.jpg">
-							</div>
-
-							<div class="sp-slide">
-								<img alt="Image" class="sp-image" src="${pageContext.request.contextPath}/resources/css/images/blank.gif" data-src="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/9_medium.jpg" data-small="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/9_small.jpg" data-medium="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/9_medium.jpg" data-large="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/9_large.jpg" data-retina="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/9_large.jpg">
-							</div>
-						</div>
-						<div class="sp-thumbnails">
-							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/1_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/2_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/3_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/4_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/5_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/6_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/7_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/8_medium.jpg">
-							<img alt="Image" class="sp-thumbnail" src="${pageContext.request.contextPath}/resources/img/slider_single_restaurant/9_medium.jpg">
-						</div>
-					</div>
-
+					 	</c:when>
+					</c:choose>
+					
+					
+					
+					
 					<hr>
 
 					<div class="row">
@@ -160,10 +186,17 @@
 							<h3>Description</h3>
 						</div>
 						<div class="col-lg-9">
+							<!-- 
 							<h4>About us</h4>
+							 -->
+							<h4>${restaurantProduct.pname}</h4>
 							<p>
+								${restaurantProduct.pdesc}
+								<!-- 
 								Lorem ipsum dolor sit amet, at omnes deseruisse pri. Quo aeterno legimus insolens ad. Sit cu detraxit constituam, an mel iudico constituto efficiendi. Eu ponderum mediocrem has, vitae adolescens in pro. Mea liber ridens inermis ei, mei legendos vulputate an, labitur tibique te qui.
+								 -->
 							</p>
+							<!--
 							<h4>Menu and dishes</h4>
 							<p>
 								Lorem ipsum dolor sit amet, at omnes deseruisse pri. Quo aeterno legimus insolens ad. Sit cu detraxit constituam, an mel iudico constituto efficiendi.
@@ -188,6 +221,7 @@
 									</ul>
 								</div>
 							</div>
+							-->
 							<!-- End row  -->
 						</div>
 					</div>
@@ -203,7 +237,7 @@
 									<thead>
 										<tr>
 											<th colspan="2">
-												1st March to 31st October
+												Every Day
 											</th>
 										</tr>
 									</thead>
@@ -213,7 +247,7 @@
 												Monday
 											</td>
 											<td>
-												10.00 - 17.30
+												10.00 - 20.00
 											</td>
 										</tr>
 										<tr>
@@ -221,7 +255,7 @@
 												Tuesday
 											</td>
 											<td>
-												09.00 - 17.30
+												09.00 - 20.00
 											</td>
 										</tr>
 										<tr>
@@ -229,7 +263,7 @@
 												Wednesday
 											</td>
 											<td>
-												09.00 - 17.30
+												09.00 - 20.00
 											</td>
 										</tr>
 										<tr>
@@ -237,7 +271,10 @@
 												Thursday
 											</td>
 											<td>
+												09.00 - 20.00
+											<!-- 
 												<span class="label label-danger">Closed</span>
+											 -->
 											</td>
 										</tr>
 										<tr>
@@ -245,7 +282,7 @@
 												Friday
 											</td>
 											<td>
-												09.00 - 17.30
+												09.00 - 20.00
 											</td>
 										</tr>
 										<tr>
@@ -253,7 +290,7 @@
 												Saturday
 											</td>
 											<td>
-												09.00 - 17.30
+												09.00 - 14.00
 											</td>
 										</tr>
 										<tr>
@@ -261,7 +298,7 @@
 												Sunday
 											</td>
 											<td>
-												10.00 - 17.30
+												09.00 - 14.00
 											</td>
 										</tr>
 									</tbody>
@@ -382,7 +419,7 @@
 								<div class="col-sm-6">
 									<div class="form-group">
 										<label><i class="icon-calendar-7"></i> Select a date</label>
-										<input class="date-pick form-control" data-date-format="M d, D" type="text">
+										<input id='datePicker' class="date-pick form-control" data-date-format="M d, D" type="text">
 									</div>
 								</div>
 								<div class="col-sm-6">
@@ -556,7 +593,9 @@
 	<!-- Specific scripts -->
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.sliderPro.min.js"></script>
 	<script type="text/javascript">
+		
 		$(document).ready(function ($) {
+			
 			$('#Img_carousel').sliderPro({
 				width: 960,
 				height: 500,
@@ -571,16 +610,27 @@
 				thumbnailArrows: true,
 				autoplay: false
 			});
+			
 		});
+		
 	</script>
 
 	<!-- Date and time pickers -->
 	<script>
-		$('input.date-pick').datepicker('setDate', 'today');
+	/*
+		$('#datePicker').datepicker({
+				
+				setDate : 'today',
+				beforeShowDay: function(date) {
+					var day= date.getDay();
+					return [(day!=2)];
+				}
+		});
 		$('input.time-pick').timepicker({
 			minuteStep: 15,
 			showInpunts: false
 		})
+		*/
 	</script>
 
 	<!--Review modal validation -->
@@ -592,8 +642,25 @@
 	<script src="${pageContext.request.contextPath}/resources/js/infobox.js"></script>
 	
 	<script type="text/javascript">
+		
+		
 		$(function(){
 			
+			$('#datePicker').datepicker({
+				
+				setDate : 'today',
+				beforeShowDay: function (date) {
+					//console.log("date::"+date);
+					console.log("date.getDay::"+date.getDay());
+					let day = date.getDay();
+					console.log("[day !=2] -->"+[day !=2]);
+					return [day != 2];
+
+				}
+			});
+		
+			
+			$('#datePicker').datepicker("setDate",'today');
 			//console.log("bookState ::=>"+bookState);
 			
 			//let bookButton = document.getElementById("BookingState");
