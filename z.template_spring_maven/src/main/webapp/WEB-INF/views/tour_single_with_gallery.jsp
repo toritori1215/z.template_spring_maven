@@ -442,7 +442,7 @@
 							<div class="col-sm-6">
 								<div class="form-group">
 									<label><i class="icon-calendar-7"></i> Select a date</label>
-									<input class="date-pick form-control" data-date-format="M d, D" type="text" name="date">
+									<input class="date-pick form-control" data-date-format="yyyy/MM/dd" type="text" name="date">
 								</div>
 							</div>
 							<div class="col-sm-6">
@@ -495,11 +495,13 @@
 							</tbody>
 						</table>
 						<form id="cart_add" method="post" action="cart_add_action">
-							<input type="submit" class="btn_full" value="Book now" />
 							<input type="hidden" name=cart value="${cart}">
+							<input type="submit" class="btn_full" value="Book now" />
 						</form> 
-						<div id="addWishlistParam" mNo="${sUser.mNo}" pNo="${product.pNo}">
-							<a class="btn_full_outline" id="addWishlist" href="#"><i class=" icon-heart"></i> Add to wishlist</a>
+						<div id="addWishlistParam" data-pNo="${product.pNo}">
+							<button class="btn_full_outline" type="button" data-toggle="modal" data-target="#addWishlist">
+								<i class=" icon-heart"></i> Add to wishlist
+							</button>
 						</div>
 					</div>
 					<!--/box_style_1 -->
@@ -871,6 +873,29 @@
 	</div>
 	<!-- End Modal Tour Guide -->
 	
+	<!-- Modal add wishlist -->
+	<div class="modal fade" id="addWishlist" tabindex="-1" role="dialog" aria-labelledby="addWishlistLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="addWishlistLabel">Successfully Added!</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<div class="modal-body" align="center">
+					<div id="addWishlistBody">
+						<i class="icon-heart-3"></i><br>
+						<a href="wishlist_list" class="btn_1">VIEW WISHLIST</a>
+						<button type="button" class="btn_1 outline" data-dismiss="modal">
+							<i class="icon-cancel-circled2-1"></i>&nbsp;CLOSE
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Modal add wishlist -->
+	
+	
 	<!-- Footer================================================== -->
 	<jsp:include page="/WEB-INF/views/common_footer_2.jsp"/>
 	<!-- End Footer -->
@@ -932,10 +957,29 @@
 				async:true,
 				contentType:"application/x-www-form-urlencoded;charset=utf-8",
 				success:function(d) {
-					console.log(d.cProductQty);
-					console.log(d.cProductTypePay);
 					$("#travellers_cnt").html(d.cProductQty);
 					$("#total_cost").html("￦"+d.cProductTypePay/10000+"만");
+					// line 498:  input의 value값을 "cart" 객체로 교체하기 (tour_single_with_gallery.jsp)
+					console.log(d);
+					$("#cart_add").firstChild.attr("value", d)
+				}
+			});
+		});
+		
+		
+		$(".btn_full_outline").click(function () {
+
+			var $button = $(this);
+			var pNo = $button.parent().data("pNo");
+			
+			$.ajax({
+				type:"POST",
+				url:"wishlist_insert?",
+				data:"&pNo="+pNo,
+				async:true,
+				success:function(d) {
+					var new_html = "<button class='btn_full_outline' disabled><i class='icon-ok-circled2-1'>Already in Wishlist</i></button>"
+					$('#addWishlistParam').html(new_html);
 				}
 			});
 		});

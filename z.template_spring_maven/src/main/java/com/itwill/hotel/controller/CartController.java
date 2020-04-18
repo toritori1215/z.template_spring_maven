@@ -22,9 +22,13 @@ public class CartController {
 	
 	@RequestMapping(value = "/cart_add_action")
 	public String cartAddAction(@RequestParam(value="cart") Cart cart, HttpSession session, Model model) {
+		// line 498: "${cart}가 객체로 넘어왔는지 String으로 넘어왔는지 확인하기 (tour_single_with_gallery.jsp)
+		/*
 		Member member = (Member) session.getAttribute("sUser");
 		int mNo = member.getmNo();
+		 */
 		cartService.insertCart(cart);
+		int mNo = cart.getmNo();
 		List<Cart> cartList = cartService.selectByNo(mNo);
 		model.addAttribute("cartList", cartList);
 		return "cart_fixed_sidebar"; 

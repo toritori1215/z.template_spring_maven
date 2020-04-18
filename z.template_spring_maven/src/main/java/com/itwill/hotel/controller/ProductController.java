@@ -1,6 +1,9 @@
 package com.itwill.hotel.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -79,7 +82,11 @@ public class ProductController {
 		int pPrice = product.getpPrice();
 		Member member = (Member) session.getAttribute("sUser");
 		int mNo = member.getmNo();
-		Cart cart = new Cart(mNo, 1, pPrice, null, null, null, null, null, 0, Integer.parseInt(pNo));
+		// 주문 default에 날짜는 오늘 날짜로 지정
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		Date date = new Date();
+		System.out.println(dateFormat.format(date));
+		Cart cart = new Cart(mNo, 1, pPrice, null, dateFormat.format(date), null, null, null, 1, Integer.parseInt(pNo));
 		
 		model.addAttribute("product", product);
 		model.addAttribute("cart", cart);
@@ -89,14 +96,18 @@ public class ProductController {
 	@RequestMapping(value = "/tour_detail_travellers", produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public Cart tourTravellers(@RequestParam(value="newVal") String newVal,
-								 @RequestParam(value="pNo") String pNo,
-								 HttpSession session) {		
+							   @RequestParam(value="pNo") String pNo,
+							   @RequestParam(value="date") String date,
+							   HttpSession session) {		
 		Member member = (Member) session.getAttribute("sUser");
 		int mNo = member.getmNo();
 		int newVal_int = Integer.parseInt(newVal);
 		int pNo_int = Integer.parseInt(pNo);
 		int pPrice = productService.selectByNo(Integer.parseInt(pNo)).getpPrice();
-		Cart cart = new Cart(mNo, newVal_int, newVal_int*pPrice, null, null, null, null, null, 0, pNo_int);
+		// line 445: date 받아오는 포맷과 제대로 오는지 확인 (tour_single_with_gallery.jsp)
+		System.out.println(date);
+		Cart cart = new Cart(mNo, newVal_int, newVal_int*pPrice, null, date,
+							 null, null, null, newVal_int, pNo_int);
 		return cart;
 	}
 	
