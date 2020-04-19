@@ -98,7 +98,22 @@
 
             this.setDefaultTime(this.defaultTime);
         },
-
+        /***** 내입맛에 맞게 수정!!! start *****/
+        setDay : function(day){
+        	console.log('day:'+ day);
+        	this.day = day;
+        },
+        setHour : function(hour){
+        	console.log('hour:'+ hour);
+        	this.hour = hour;
+        },
+        setMeridian : function(meridian){
+        	console.log('meridian:'+ meridian);
+        	this.meridian = meridian;
+        },
+        
+        /***** 내입맛에 맞게 수정!!! end *****/
+        
         blurElement: function() {
             this.highlightedUnit = null;
             this.updateFromElementVal();
@@ -530,7 +545,9 @@
        
         incrementHour: function() {
         	
-        	console.log("decrementHour This->"+this);
+        	console.log("incrementHour This day->"+this.day);
+        	console.log("incrementHour This weekendstTime->"+this.weekendstTime);
+        	console.log("incrementHour This weekendedTime->"+this.weekendedTime);
     		if(this.day.toUpperCase()=='SAT' || this.day.toUpperCase()=='SUN'){
     			this.setincrementhourrange(this.weekendstTime,this.weekendedTime);
     		}else{
