@@ -312,7 +312,7 @@
 										<div class="col-sm-6">
 											<div class="form-group">
 												<label><i class="icon-calendar-7"></i> Select a date</label>
-												<input class="date-pick form-control" data-date-format="M d, D" type="text">
+												<input id="datePicker" class="date-pick form-control" data-date-format="M d, D" type="text">
 											</div>
 										</div>
 										<div class="col-sm-6">
@@ -427,14 +427,7 @@
 	<!-- Fixed sidebar -->
 	<script src="${pageContext.request.contextPath}/resources/js/theia-sticky-sidebar.js"></script>
 	
-	<!-- Date and time pickers -->
-	<script>
-		$('input.date-pick').datepicker('setDate', 'today');
-		$('input.time-pick').timepicker({
-			minuteStep: 15,
-			showInpunts: false
-		})
-	</script>
+	
 	
 	
 	<script>
@@ -442,8 +435,32 @@
 			additionalMarginTop: 80
 		});
 		
+		
+		
+		
+		
 		//on load Start
 		$(function(){
+			
+			$('#datePicker').datepicker({
+
+				beforeShowDay : function(date) {
+					console.log("date.getDay::"+date.getDay());
+					let day = date.getDay();
+					
+					
+					
+					return day ==2 ? false:true;
+				} 	
+				
+			});
+			
+			
+			$('input.date-pick').datepicker('setDate', 'today');
+			$('input.time-pick').timepicker({
+				minuteStep: 15,
+				showInpunts: false
+			})
 			
 			$('#BookingState').on("click", function(e) {
 				let bookState = document.getElementById("BookingState").firstChild.nodeValue;
