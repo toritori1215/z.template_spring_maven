@@ -8,6 +8,7 @@
 
 	<!-- Header================================================== -->
 	<jsp:include page="common_header_6.jsp"/>
+	<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/resources/z.SiliconVillage/css/hbkMy.css" rel="stylesheet">
 	<!-- End Header -->
 
@@ -237,7 +238,7 @@
 									<thead>
 										<tr>
 											<th colspan="2">
-												Every Day
+												Every Weeks
 											</th>
 										</tr>
 									</thead>
@@ -247,7 +248,7 @@
 												Monday
 											</td>
 											<td>
-												10.00 - 20.00
+												09.00 - 20.00
 											</td>
 										</tr>
 										<tr>
@@ -255,7 +256,7 @@
 												Tuesday
 											</td>
 											<td>
-												09.00 - 20.00
+												close
 											</td>
 										</tr>
 										<tr>
@@ -425,7 +426,7 @@
 								<div class="col-sm-6">
 									<div class="form-group">
 										<label><i class=" icon-clock"></i> Time</label>
-										<input class="time-pick form-control" value="12:00 AM" type="text">
+										<input id='datetimePicker' class="form-control" twelvehour="true" value="12:00 AM" type="text" max="10:00PM" min="9:00AM">
 									</div>
 								</div>
 							</div>
@@ -592,6 +593,8 @@
 
 	<!-- Specific scripts -->
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.sliderPro.min.js"></script>
+	
+	
 	<script type="text/javascript">
 		
 		$(document).ready(function ($) {
@@ -626,6 +629,8 @@
 					return [(day!=2)];
 				}
 		});
+		*/
+		/*
 		$('input.time-pick').timepicker({
 			minuteStep: 15,
 			showInpunts: false
@@ -640,6 +645,10 @@
 	<script src="http://maps.googleapis.com/maps/api/js"></script>                   
 	<script src="${pageContext.request.contextPath}/resources/js/map.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/infobox.js"></script>
+	<!-- 
+	 -->
+	<script src="${pageContext.request.contextPath}/resources/js/bootstrap-timepicker_redefination_restaurant.js"></script>
+	
 	
 	<script type="text/javascript">
 		
@@ -647,19 +656,129 @@
 		$(function(){
 			
 			$('#datePicker').datepicker({
-				
-				setDate : 'today',
 				beforeShowDay: function (date) {
 					//console.log("date::"+date);
-					console.log("date.getDay::"+date.getDay());
+					//console.log("date.getDay::"+date.getDay());
 					let day = date.getDay();
-					console.log("[day !=2] -->"+[day !=2]);
-					return [day != 2];
+					//console.log("[day !=2] -->"+[day !c=2]);
+					
+					return day==2 ? false :true;
 
 				}
 			});
-		
 			
+			/*
+			$('#datetimePicker').datetimepicker({
+				 format: 'LT',
+				 
+			});
+			*/
+			$('#datetimePicker').timepicker({
+				minuteStep: 60,
+				showInpunts: false,
+				weekendstTime : 9,
+				weekendedTime : 1,
+				weekdaystTime : 9,
+				weekdayedTime : 5,
+				day:'Mon'
+			})
+			
+			
+			
+			
+				
+				
+			$('#datetimePicker').on("click", function(e) {
+				
+				$('a[data-action="incrementMinute"]').parent().remove();
+				$('a[data-action="decrementMinute"]').parent().remove();
+				$('td> input[class="bootstrap-timepicker-minute"]').parent().remove();
+				$('td[class="separator"]').remove();
+				
+				
+				
+				
+			});
+			/*
+			
+			$('td > a[href="#""]').on('click',function(e){
+				
+				
+				
+			});
+			*/
+			/*
+			$('#datetimePicker').timepicker().on('changeTime.timepicker', function(e) {
+			    
+				console.log("e::"+$(e.target).attr('id'));
+				//console.log('The time is ' + e.time.value);
+			    //console.log('The hour is ' + e.time.hours);
+			    //console.log('The minute is ' + e.time.minutes);
+			    //console.log('The meridian is ' + e.time.meridian);
+			    
+			    if(e.time.hours>=2 && e.time.meridian=='PM'){
+			    	e.time.hours = 9;
+			    	e.time.meridian ='AM';
+			    	e.time.value = '9:00 AM';
+					$('body > div.bootstrap-timepicker-widget.dropdown-menu.timepicker-orient-left.timepicker-orient-bottom.open > table > tbody > tr:nth-child(2) > td:nth-child(1) > input').val('9');
+			    	$('body > div.bootstrap-timepicker-widget.dropdown-menu.timepicker-orient-left.timepicker-orient-bottom.open > table > tbody > tr:nth-child(2) > td:nth-child(2) > input').val('AM')
+					console.log(e.time.hours);
+			    	
+			    	document.getElementById('datetimePicker').value ='9:00 AM';
+					//$('.bootstrap-timepicker-hour').val('9');
+					//document.getElementsByClassName('bootstrap-timepicker-hour').item(0).firstChild.nodeValue = '9';
+					//document.getElementsByClassName('bootstrap-timepicker-meridian').item(0).firstChild.nodeValue = 'AM';
+					//$('.bootstrap-timepicker-hour').text(9);
+					//$('.bootstrap-timepicker-meridian').text('AM');
+				}else if(e.time.hours<9 && e.time.meridian=='AM'){
+					e.time.hours = 1;
+					e.time.meridian ='PM';
+			    	e.time.value = '1:00 PM';
+			    	$('body > div.bootstrap-timepicker-widget.dropdown-menu.timepicker-orient-left.timepicker-orient-bottom.open > table > tbody > tr:nth-child(2) > td:nth-child(1) > input').val('1');
+			    	$('body > div.bootstrap-timepicker-widget.dropdown-menu.timepicker-orient-left.timepicker-orient-bottom.open > table > tbody > tr:nth-child(2) > td:nth-child(2) > input').val('PM')
+					document.getElementById('datetimePicker').value ='1:00 PM';
+					//document.getElementsByClassName('bootstrap-timepicker-hour').item(0).firstChild.nodeValue = '1';
+					//document.getElementsByClassName('bootstrap-timepicker-meridian').item(0).firstChild.nodeValue = 'PM';
+					
+				}
+					
+			  });
+			
+			*/
+			/*
+			$('#datetimePicker').on("change", function(e) {
+				let day = document.getElementById('datePicker').value;
+				//console.log($('#datePicker').val());
+				//console.log(day);
+				//console.log(e);
+				let dayStr = day.substring(day.indexOf(',')+1);
+				let daytrim = dayStr.replace(" ","");
+				//console.log(daytrim);
+				let timeStr = this.value;
+				//console.log("timeStr -->"+timeStr);
+				let time = Number(timeStr.substring(0,1));
+				//console.log(time);
+				
+				if(daytrim=='Sun' || daytrim=='Sat'){
+					if((timeStr=='2:00 PM')){
+						this.value='9:00 AM';
+						//$('.bootstrap-timepicker-hour').val('9');
+						//document.getElementsByClassName('bootstrap-timepicker-hour').item(0).firstChild.nodeValue = '9';
+						//document.getElementsByClassName('bootstrap-timepicker-meridian').item(0).firstChild.nodeValue = 'AM';
+						//$('.bootstrap-timepicker-hour').text(9);
+						//$('.bootstrap-timepicker-meridian').text('AM');
+					}else if((timeStr=='8:00 AM')){
+						this.value='1:00 PM';
+						//document.getElementsByClassName('bootstrap-timepicker-hour').item(0).firstChild.nodeValue = '1';
+						//document.getElementsByClassName('bootstrap-timepicker-meridian').item(0).firstChild.nodeValue = 'PM';
+						$('.bootstrap-timepicker-hour').text(1);
+						$('.bootstrap-timepicker-meridian').text("PM");
+					}
+				}
+				
+				
+			});
+			*/
 			$('#datePicker').datepicker("setDate",'today');
 			//console.log("bookState ::=>"+bookState);
 			
@@ -669,7 +788,7 @@
 				let bookState = document.getElementById("BookingState").firstChild.nodeValue;
 				console.log("bookState ::" + bookState);
 				if(bookState.toUpperCase()=='RESTAURANT RESERVATION'){
-					console.log("들어오긴 하니2?");
+					//console.log("들어오긴 하니2?");
 					$('#addToCartBtn').show();
 				}else{	
 					console.log("들어오긴 하니3?");
