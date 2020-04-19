@@ -719,7 +719,8 @@
 				weekendstTime : 9,
 				weekendedTime : 1,
 				weekdaystTime : 9,
-				weekdayedTime : 7
+				weekdayedTime : 7,
+				showInpunts: false
 			});
 			
 			/*
