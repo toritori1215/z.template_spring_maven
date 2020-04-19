@@ -426,7 +426,7 @@
 
 	<!-- Fixed sidebar -->
 	<script src="${pageContext.request.contextPath}/resources/js/theia-sticky-sidebar.js"></script>
-	
+	<script src="${pageContext.request.contextPath}/resources/js/bootstrap-timepicker_redefination_restaurant.js"></script>
 	
 	
 	
@@ -461,6 +461,65 @@
 				minuteStep: 15,
 				showInpunts: false
 			})
+			
+						$('#datetimePicker').timepicker({
+			
+				/*
+				this.widget = '';
+		        this.$element = $(element);
+		        this.defaultTime = options.defaultTime;
+		        this.disableFocus = options.disableFocus;
+		        this.disableMousewheel = options.disableMousewheel;
+		        this.isOpen = options.isOpen;
+		        this.minuteStep = options.minuteStep;
+		        this.modalBackdrop = options.modalBackdrop;
+		        this.orientation = options.orientation;
+		        this.secondStep = options.secondStep;
+		        this.showInputs = options.showInputs;
+		        this.showMeridian = options.showMeridian;
+		        this.showSeconds = options.showSeconds;
+		        this.template = options.template;
+		        this.appendWidgetTo = options.appendWidgetTo;
+		        this.showWidgetOnAddonClick = options.showWidgetOnAddonClick;
+		        // 추가한 멤버변수 start
+		        this.day = options.day;
+		        this.weekendstTime = options.weekendstTime;
+		        this.weekendedTime = options.weekendedTime;
+		        this.weekdaystTime = options.weekdaystTime;
+		        this.weekdayedTime = options.weekdayedTime;
+        		// 추가한 멤버변수 end
+				*/	
+				minuteStep: 60,
+				showInpunts: false,
+				weekendstTime : 9,
+				weekendedTime : 1,
+				weekdaystTime : 9,
+				weekdayedTime : 7,
+				day:'Mon'
+			});
+			
+			
+			$('#datetimePicker').on("click", function(e) {
+				
+				$('a[data-action="incrementMinute"]').parent().remove();
+				$('a[data-action="decrementMinute"]').parent().remove();
+				$('td> input[class="bootstrap-timepicker-minute"]').parent().remove();
+				$('td[class="separator"]').remove();
+
+			});
+			
+			$('#datetimePicker').timepicker().on('changeTime.timepicker', function(e) {
+			    
+				console.log("e::"+$(e.target).attr('id'));
+				//console.log('The time is ' + e.time.value);
+			    //console.log('The hour is ' + e.time.hours);
+			    //console.log('The minute is ' + e.time.minutes);
+			    //console.log('The meridian is ' + e.time.meridian);
+					
+			 });
+			
+			
+			
 			
 			$('#BookingState').on("click", function(e) {
 				let bookState = document.getElementById("BookingState").firstChild.nodeValue;

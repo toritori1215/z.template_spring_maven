@@ -426,7 +426,7 @@
 								<div class="col-sm-6">
 									<div class="form-group">
 										<label><i class=" icon-clock"></i> Time</label>
-										<input id='datetimePicker' class="form-control" twelvehour="true" value="12:00 AM" type="text" max="10:00PM" min="9:00AM">
+										<input id='timePicker' class="form-control" twelvehour="true" value="9:00 AM" type="text">
 									</div>
 								</div>
 							</div>
@@ -661,130 +661,101 @@
 					//console.log("date.getDay::"+date.getDay());
 					let day = date.getDay();
 					//console.log("[day !=2] -->"+[day !c=2]);
-					
 					return day==2 ? false :true;
 
 				}
 			});
 			
-			/*
-			$('#datetimePicker').datetimepicker({
-				 format: 'LT',
-				 
-			});
-			*/
-			$('#datetimePicker').timepicker({
+			$('#datePicker').datepicker("setDate",'today');
+			//console.log("bookState ::=>"+bookState);
+			
+			$('#datePicker').datepicker().on('change', function(e) {
+				let dayStr = document.getElementById('datePicker').value;
+				console.log("day::"+ dayStr);
+				let daycustom = dayStr.substring(dayStr.indexOf(',')+1).trim();
+				console.log('daycustom ::' + daycustom);
+				
+				//요일 변경이 되었을시 input (#datePicker) 값 변경
+				$('#timePicker').timepicker('setDay',daycustom);
+				$('#timePicker').val('9:00 AM');
+				
+				//$('#timePicker').timepicker('setHour','9');
+				//$('#timePicker').timepicker('setMeridian','AM');
+				
+				
+				
+   			 });
+			
+			$('#timePicker').timepicker({
+			
+			
+				/*
+				this.widget = '';
+		        this.$element = $(element);
+		        this.defaultTime = options.defaultTime;
+		        this.disableFocus = options.disableFocus;
+		        this.disableMousewheel = options.disableMousewheel;
+		        this.isOpen = options.isOpen;
+		        this.minuteStep = options.minuteStep;
+		        this.modalBackdrop = options.modalBackdrop;
+		        this.orientation = options.orientation;
+		        this.secondStep = options.secondStep;
+		        this.showInputs = options.showInputs;
+		        this.showMeridian = options.showMeridian;
+		        this.showSeconds = options.showSeconds;
+		        this.template = options.template;
+		        this.appendWidgetTo = options.appendWidgetTo;
+		        this.showWidgetOnAddonClick = options.showWidgetOnAddonClick;
+		        // 추가한 멤버변수 start
+		        this.day = options.day;
+		        this.weekendstTime = options.weekendstTime;
+		        this.weekendedTime = options.weekendedTime;
+		        this.weekdaystTime = options.weekdaystTime;
+		        this.weekdayedTime = options.weekdayedTime;
+        		// 추가한 멤버변수 end
+					*/	
+				//내가 만든 멤버 변수로 주말시프트 시간과 주중 시프트 시간을 설정 영업종료시간 -1시간 까지 예약가능
 				minuteStep: 60,
 				showInpunts: false,
 				weekendstTime : 9,
 				weekendedTime : 1,
 				weekdaystTime : 9,
-				weekdayedTime : 5,
-				day:'Mon'
-			})
+				weekdayedTime : 7
+			});
+					
 			
-			
-			
-			
+			$('#timePicker').on("click", function(e) {
+				let timeStr = this.value; 
+				console.log('timeStr->'+timeStr);
+				let time = timeStr.substring(0,1);
+				console.log('time->'+time);
 				
-				
-			$('#datetimePicker').on("click", function(e) {
+				//날짜를 변경했을시에 Time값을 Default로 해준다.
+				//-->금요일날 2시 이후의 값이 선택되고 토요일로 변경되면 Timepicker 위젯이 영업을 하지 않는 시간으로 셋팅되는 것을 막음 
+				$('table > tbody > tr:nth-child(2) > td:nth-child(1) > input').val(time);
+				$('table > tbody > tr:nth-child(2) > td:nth-child(2) > input').val('AM');
 				
 				$('a[data-action="incrementMinute"]').parent().remove();
 				$('a[data-action="decrementMinute"]').parent().remove();
 				$('td> input[class="bootstrap-timepicker-minute"]').parent().remove();
 				$('td[class="separator"]').remove();
-				
-				
-				
-				
+
 			});
-			/*
 			
-			$('td > a[href="#""]').on('click',function(e){
-				
-				
-				
-			});
-			*/
-			/*
-			$('#datetimePicker').timepicker().on('changeTime.timepicker', function(e) {
+			$('#timePicker').timepicker().on('changeTime.timepicker', function(e) {
 			    
-				console.log("e::"+$(e.target).attr('id'));
+				//console.log("e::"+$(e.target).attr('id'));
 				//console.log('The time is ' + e.time.value);
 			    //console.log('The hour is ' + e.time.hours);
 			    //console.log('The minute is ' + e.time.minutes);
 			    //console.log('The meridian is ' + e.time.meridian);
-			    
-			    if(e.time.hours>=2 && e.time.meridian=='PM'){
-			    	e.time.hours = 9;
-			    	e.time.meridian ='AM';
-			    	e.time.value = '9:00 AM';
-					$('body > div.bootstrap-timepicker-widget.dropdown-menu.timepicker-orient-left.timepicker-orient-bottom.open > table > tbody > tr:nth-child(2) > td:nth-child(1) > input').val('9');
-			    	$('body > div.bootstrap-timepicker-widget.dropdown-menu.timepicker-orient-left.timepicker-orient-bottom.open > table > tbody > tr:nth-child(2) > td:nth-child(2) > input').val('AM')
-					console.log(e.time.hours);
-			    	
-			    	document.getElementById('datetimePicker').value ='9:00 AM';
-					//$('.bootstrap-timepicker-hour').val('9');
-					//document.getElementsByClassName('bootstrap-timepicker-hour').item(0).firstChild.nodeValue = '9';
-					//document.getElementsByClassName('bootstrap-timepicker-meridian').item(0).firstChild.nodeValue = 'AM';
-					//$('.bootstrap-timepicker-hour').text(9);
-					//$('.bootstrap-timepicker-meridian').text('AM');
-				}else if(e.time.hours<9 && e.time.meridian=='AM'){
-					e.time.hours = 1;
-					e.time.meridian ='PM';
-			    	e.time.value = '1:00 PM';
-			    	$('body > div.bootstrap-timepicker-widget.dropdown-menu.timepicker-orient-left.timepicker-orient-bottom.open > table > tbody > tr:nth-child(2) > td:nth-child(1) > input').val('1');
-			    	$('body > div.bootstrap-timepicker-widget.dropdown-menu.timepicker-orient-left.timepicker-orient-bottom.open > table > tbody > tr:nth-child(2) > td:nth-child(2) > input').val('PM')
-					document.getElementById('datetimePicker').value ='1:00 PM';
-					//document.getElementsByClassName('bootstrap-timepicker-hour').item(0).firstChild.nodeValue = '1';
-					//document.getElementsByClassName('bootstrap-timepicker-meridian').item(0).firstChild.nodeValue = 'PM';
 					
-				}
-					
-			  });
-			
-			*/
-			/*
-			$('#datetimePicker').on("change", function(e) {
-				let day = document.getElementById('datePicker').value;
-				//console.log($('#datePicker').val());
-				//console.log(day);
-				//console.log(e);
-				let dayStr = day.substring(day.indexOf(',')+1);
-				let daytrim = dayStr.replace(" ","");
-				//console.log(daytrim);
-				let timeStr = this.value;
-				//console.log("timeStr -->"+timeStr);
-				let time = Number(timeStr.substring(0,1));
-				//console.log(time);
-				
-				if(daytrim=='Sun' || daytrim=='Sat'){
-					if((timeStr=='2:00 PM')){
-						this.value='9:00 AM';
-						//$('.bootstrap-timepicker-hour').val('9');
-						//document.getElementsByClassName('bootstrap-timepicker-hour').item(0).firstChild.nodeValue = '9';
-						//document.getElementsByClassName('bootstrap-timepicker-meridian').item(0).firstChild.nodeValue = 'AM';
-						//$('.bootstrap-timepicker-hour').text(9);
-						//$('.bootstrap-timepicker-meridian').text('AM');
-					}else if((timeStr=='8:00 AM')){
-						this.value='1:00 PM';
-						//document.getElementsByClassName('bootstrap-timepicker-hour').item(0).firstChild.nodeValue = '1';
-						//document.getElementsByClassName('bootstrap-timepicker-meridian').item(0).firstChild.nodeValue = 'PM';
-						$('.bootstrap-timepicker-hour').text(1);
-						$('.bootstrap-timepicker-meridian').text("PM");
-					}
-				}
-				
-				
-			});
-			*/
-			$('#datePicker').datepicker("setDate",'today');
-			//console.log("bookState ::=>"+bookState);
+			 });
+
 			
 			//let bookButton = document.getElementById("BookingState");
 			$('#BookingState').on("click", function(e) {
-				console.log("들어오긴 하니?");
+				//console.log("들어오긴 하니?");
 				let bookState = document.getElementById("BookingState").firstChild.nodeValue;
 				console.log("bookState ::" + bookState);
 				if(bookState.toUpperCase()=='RESTAURANT RESERVATION'){
