@@ -676,16 +676,15 @@
 				console.log('daycustom ::' + daycustom);
 				
 				//요일 변경이 되었을시 input (#datePicker) 값 변경
-				$('#timePicker').timepicker('setDay',daycustom);
+				//$('#timePicker').timepicker('setDay',daycustom); timepicker가 클릭되었을시에 setDay값 셋팅으로 바꾸어주어 필요 없어짐
 				$('#timePicker').val('9:00 AM');
 				
 				//$('#timePicker').timepicker('setHour','9');
 				//$('#timePicker').timepicker('setMeridian','AM');
-				
-				
-				
+
    			 });
 			
+
 			$('#timePicker').timepicker({
 			
 			
@@ -722,28 +721,16 @@
 				weekdaystTime : 9,
 				weekdayedTime : 7
 			});
-					
 			
-			$('#timePicker').on("click", function(e) {
-				let timeStr = this.value; 
-				console.log('timeStr->'+timeStr);
-				let time = timeStr.substring(0,1);
-				console.log('time->'+time);
+			/*
+			$('#timePicker').timepicker().on('click', function(e) {
+				let dayStr = document.getElementById('datePicker').value;
+				console.log("day::"+ dayStr);
+				let daycustom = dayStr.substring(dayStr.indexOf(',')+1).trim();
+				console.log('daycustom ::' + daycustom);
 				
-				//날짜를 변경했을시에 Time값을 Default로 해준다.
-				//-->금요일날 2시 이후의 값이 선택되고 토요일로 변경되면 Timepicker 위젯이 영업을 하지 않는 시간으로 셋팅되는 것을 막음 
-				$('table > tbody > tr:nth-child(2) > td:nth-child(1) > input').val(time);
-				$('table > tbody > tr:nth-child(2) > td:nth-child(2) > input').val('AM');
-				
-				$('a[data-action="incrementMinute"]').parent().remove();
-				$('a[data-action="decrementMinute"]').parent().remove();
-				$('td> input[class="bootstrap-timepicker-minute"]').parent().remove();
-				$('td[class="separator"]').remove();
-
-			});
-			
-			$('#timePicker').timepicker().on('changeTime.timepicker', function(e) {
-			    
+				//timepicker에 Day seting
+				$('#timePicker').timepicker('setDay',daycustom);
 				//console.log("e::"+$(e.target).attr('id'));
 				//console.log('The time is ' + e.time.value);
 			    //console.log('The hour is ' + e.time.hours);
@@ -751,6 +738,39 @@
 			    //console.log('The meridian is ' + e.time.meridian);
 					
 			 });
+			*/
+			
+			
+			$('#timePicker').on("click", function(e) {
+				//# 1, 3번은 이어진다.
+				//1.날짜가 변경되면 timePicker Input 데이터도 9:00AM으로 초기화 된다.
+				let timeStr = this.value; 
+				console.log('timeStr->'+timeStr);
+				let time = timeStr.substring(0,1);
+				console.log('time->'+time);
+
+				//2.위젯 필요없는 노드 삭제
+				$('a[data-action="incrementMinute"]').parent().remove();
+				$('a[data-action="decrementMinute"]').parent().remove();
+				$('td> input[class="bootstrap-timepicker-minute"]').parent().remove();
+				$('td[class="separator"]').remove();
+				
+				//3. 날짜를 변경했을시에 Time값을 Default로 해준다.
+				//-->금요일날 2시 이후의 값이 선택되고 토요일로 변경되면 Timepicker 위젯이 영업을 하지 않는 시간으로 셋팅되는 것을 막음 
+				$('table > tbody > tr:nth-child(2) > td:nth-child(1) > input').val(time);
+				$('table > tbody > tr:nth-child(2) > td:nth-child(2) > input').val('AM');
+				
+				//4.요일 계산 및 timepicker setDay 셋팅
+				let dayStr = document.getElementById('datePicker').value;
+				console.log("day::"+ dayStr);
+				let daycustom = dayStr.substring(dayStr.indexOf(',')+1).trim();
+				console.log('daycustom ::' + daycustom);
+				
+				//timepicker에 Day seting
+				$('#timePicker').timepicker('setDay',daycustom);
+
+			});
+			
 
 			
 			//let bookButton = document.getElementById("BookingState");
