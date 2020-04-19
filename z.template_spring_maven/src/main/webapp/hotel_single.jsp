@@ -683,14 +683,15 @@
 					<!-- End row -->
 					<div class="form-group">
 						<textarea name="rContent" id="rContent" class="form-control"
-							style="height: 100px" placeholder="Write your review"></textarea>
+								  style="height: 100px" placeholder="Write your review">
+						</textarea>
 					</div>
 					<div class="form-group">
 						<input type="text" id="verify_review" class=" form-control"
-							placeholder="Are you human? 3 + 1 =">
+							   placeholder="Are you human? 3 + 1 =">
 					</div>
 					<input type="submit" value="Submit" class="btn_1"
-						id="submit-review">
+						   id="submit-review">
 				</form>
 			</div>
 		</div>
