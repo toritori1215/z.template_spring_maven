@@ -116,7 +116,7 @@ var guUploadManager = function(option) {
 				upload_progress_handler: uploadProgress,
 				upload_success_handler : this.uploadSuccess
 		};
-		guFileList.innerHTML = '<div class="dragMessage">Drag files here.</div>';
+		guFileList.innerHTML = '<div class="dragMessage">Drag File Here</div>';
 
 		this.uploader = new GUUpload(settings);
 	} else {
