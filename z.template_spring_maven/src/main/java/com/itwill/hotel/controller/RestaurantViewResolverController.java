@@ -128,8 +128,12 @@ public class RestaurantViewResolverController {
 		}
 		
 		RestaurantDTO product = restService.get_Restaurant_Product(pno);
+		RestaurantDTO deposit_cost= restService.get_Restaurant_Product_name_select("BPPP");
+		
+		System.out.println("deposit_cost.pprice ->"+ deposit_cost.getPprice());
 		
 		model.addAttribute("restaurantProduct",product);
+		model.addAttribute("deposit_cost",deposit_cost);
 		return "restaurant_single_food_detail";
 	}
 	

@@ -291,7 +291,7 @@
 					</div>
 				</div>
 				<!-- End col-md-8 -->
-
+				
 				<aside class="col-lg-4" id="sidebar">
 					<div class="theiaStickySidebar">
 					
@@ -342,9 +342,19 @@
 										</div>
 										 -->
 									</div>
-									<!-- 
 									<hr>
-									 -->
+									Deposit per person<br>
+									${deposit_cost.pprice}
+									<hr>
+									  ※예약금은 레스토랑 도착 시 
+									결재카드 및 Invoice 제시시 
+									환불됩니다.
+									<br>
+									(Your deposit will be returned
+									 in full provided that we receive
+									 your credit card or invoice upon
+									 your arrival to our restaurant.)
+									 
 								
 								<!-- 
 								<a class="btn_full" href="restaurant_payment_fixed_sidebar">BUY NOW</a>
@@ -353,6 +363,11 @@
 							</div>
 						</div>
 						<!-- 예약 div 끝 -->
+						<p class="d-none d-md-block d-block d-lg-none">
+						<a class="btn_map" data-toggle="collapse" href="#reservation_div_space" aria-expanded="false" aria-controls="reservation_div_space" data-text-swap="No restaurant reservation" data-text-original="Restaurant Reservation">Restaurant Reservation</a>
+						</p>
+						
+						
 						<div class="box_style_1">
 							<h3 class="inner">- Summary -</h3>
 							<table class="table table_summary">

@@ -113,4 +113,13 @@ public class RestaurantServiceImpl implements RestaurantService{
 		int foodCategoryDessertCnt = restaurantdao.foodCategoryDessertCnt();
 		return foodCategoryDessertCnt;
 	}
+
+	@Override
+	public RestaurantDTO get_Restaurant_Product_name_select(String pname) {
+		// TODO Auto-generated method stub
+		
+		RestaurantDTO deposit_cost = restaurantdao.get_Restaurant_Product_name_select(pname);
+		
+		return deposit_cost;
+	}
 }

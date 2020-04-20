@@ -5,7 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
-
+	
 	<!-- Header================================================== -->
 	<jsp:include page="common_header_6.jsp"/>
 	<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
@@ -413,8 +413,8 @@
 						</a>
 					</p>
 					
-					<div class="box_style_1 expose">
-						<div class= "collapse" id="reservation_div_space">
+					<div class= "collapse" id="reservation_div_space">
+						<div class="box_style_1 expose">
 							<h3 class="inner">- Reservation -</h3>
 							<div class="row">
 								<div class="col-sm-6">
@@ -434,8 +434,11 @@
 								<div class="col-6">
 									<div class="form-group">
 										<label>persons</label>
-										<div class="numbers-row">
-											<input type="text" value="1" id="adults" class="qty2 form-control" name="quantity">
+										
+										<div class="my-numbers-row">
+											<input type="text" value="1" id="persons" class="qty2 form-control" name="quantity">
+											<div id="person_increaseBtn" class="inc my-button_inc"></div>
+											<div id="person_decreaseBtn" class="dec my-button_inc"></div>
 										</div>
 									</div>
 								</div>
@@ -450,13 +453,92 @@
 								</div>
 								 -->
 							</div>
+							<hr>							
+							Deposit per person <br>
+							￦ ${deposit_cost.pprice}
 							<hr>
-						</div>
+							
+								※예약금은 레스토랑 도착 시 
+								결재카드 및 Invoice 제시시 
+								환불됩니다.
+								<br>
+								(Your deposit will be returned
+								 in full provided that we receive
+								 your credit card or invoice upon
+								 your arrival to our restaurant.)
+							
+							<hr>
+						
+						<!-- 
 						<a class="btn_full" href="restaurant_payment_fixed_sidebar">BUY NOW</a>
-						<a class="btn_full_outline" href="restaurant_cart_fixed_sidebar" id="addToCartBtn"><i class=" icon-heart"></i> ADD TO CART</a>
+						<a class="btn_full_outline" href="restaurant_cart_fixed_sidebar" id="addToCartBtn"><i class=" icon-cart"></i> ADD TO CART</a>
+						 -->
+						</div>
 					</div>
 					<!--/box_style_1 -->
-
+					
+					<div class="box_style_1">
+							<h3 class="inner">- Summary -</h3>
+							<table class="table table_summary">
+								<tbody>
+									<tr>
+										<td>
+											Food Count
+										</td>
+										<td class="text-right">
+										
+											<div class="my-numbers-row">
+										 
+											<input type="text" value="1" id="foodCnt" class="qty2 my-form-control" name="quantity">
+											<div id="increaseBtn" class="inc my-button_inc"></div>
+											<div id="decreaseBtn" class="dec my-button_inc"></div>
+										 	<!-- 
+										 	<input type="text" value="1" id="children" class="qty2 form-control" name="quantity">
+										 	 -->
+											</div>
+										 
+										</td>
+									</tr>
+									<tr id="reservation_tr" class="reservation_info">
+										<td>
+											Reservation Persons
+										</td>
+										<td class="text-right" id="personCntTd">
+											1
+										</td>
+									</tr>
+									<tr class="reservation_info">
+										<td>
+											Deposit cost
+										</td>
+										<td class="text-right" id="depositPrice" price_list='price'>
+											10,000
+											<input type="hidden" id="PeoplePerPrice" value="${deposit_cost.pprice}">
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Food Price
+										</td>
+										<td class="text-right" price_list='price' id="perfoodPriceTd">
+											${restaurantProduct.pprice}
+											<input type="hidden" id="perfoodPrice" value="${restaurantProduct.pprice}">
+										</td>
+									</tr>
+									<tr class="total">
+										<td>
+											Total cost
+										</td>
+										<td class="text-right" price_list='price' id="sumPrice">
+											154
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<a class="btn_full" href="restaurant_payment_fixed_sidebar">BUY NOW</a>
+							<a class="btn_full_outline" href="restaurant_cart_fixed_sidebar" id="addToCartBtn"><i class=" icon-cart"></i> ADD TO CART</a>
+					</div>
+					
 					<div class="box_style_4">
 						<i class="icon_set_1_icon-90"></i>
 						<h4><span>Book</span> by phone</h4>
@@ -596,7 +678,12 @@
 	
 	
 	<script type="text/javascript">
-		
+		function numberWithCommas(x) {
+		    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}	
+	
+	
+	
 		$(document).ready(function ($) {
 			
 			$('#Img_carousel').sliderPro({
@@ -652,8 +739,147 @@
 	
 	<script type="text/javascript">
 		
+		function common_Person_Cnt(personsCntNumber){
+			console.log('personsCntNumber ::' + personsCntNumber);
+			document.getElementById('persons').value = personsCntNumber;
+			document.getElementById('personCntTd').firstChild.nodeValue = personsCntNumber;
+			
+			let depositPrice = calculDepositPrice();
+			document.getElementById('depositPrice').firstChild.nodeValue = "￦"+numberWithCommas(depositPrice);
+			
+			
+			
+		}
+		
+		function calculDepositPrice(){
+			let personsCntNumber= Number(document.getElementById('personCntTd').firstChild.nodeValue);
+			let depositPriceStr = $('#PeoplePerPrice').val();
+			console.log("depositPrice ::" + depositPriceStr);
+			let depositPriceStr1 = depositPriceStr.replace('￦', "");
+			let depositPrice = Number(depositPriceStr1.replace(',', "")) * personsCntNumber;
+			console.log("depositPrice ::"+ depositPrice);
+			return depositPrice;
+		}
+		
+		function calculfoodPrice(){
+			let foodCntNumber = document.getElementById('foodCnt').value;
+			let foodPrice = document.getElementById('perfoodPrice').value;
+			let numberfoodPrice =Number(foodPrice);
+			//Food Count별 Food Price계산
+			let foodsPrice = foodCntNumber * numberfoodPrice;
+			
+			return foodsPrice;
+		}
+		
+		function common_food_Cnt(foodCntNumber){
+			console.log('foodCntNumber ::' + foodCntNumber);
+			document.getElementById('foodCnt').value = foodCntNumber;
+			
+			//Food Count별 Food Price계산
+			let foodsPrice = calculfoodPrice();
+			document.getElementById('perfoodPriceTd').firstChild.nodeValue= "￦"+numberWithCommas(foodsPrice);
+			//Reservation 창의 숨김과 보이기에 따라 Sum값 처리가 달라진다.
+			//console.log("숨김처리 여부 ::"+ $('#reservation_div_space').is(':visible'));
+			let show_reservation_window = $('#reservation_div_space').is(':visible');	
+			if(show_reservation_window){
+				let depositPrice = calculDepositPrice();
+				let sumPrice = foodsPrice + depositPrice;
+				document.getElementById('sumPrice').firstChild.nodeValue ="￦" +numberWithCommas(sumPrice);	
+			}else{
+				let sumPrice = foodsPrice;
+				document.getElementById('sumPrice').firstChild.nodeValue ="￦" +numberWithCommas(sumPrice);	
+			}
+			
+		}
+	
+		
 		
 		$(function(){
+			
+			$('td.text-right > div > div.dec.button_inc').text("");
+			$('td.text-right > div > div.inc.button_inc').text("");
+			$('.reservation_info').hide();
+			//$(".my-numbers-row").append('<div class="inc button_inc"></div><div class="dec button_inc"></div>');
+
+			$('#person_increaseBtn').on('click',function(e){
+				//let foodCnt = document.getElementById('foodCnt').value;
+				let personsCntVal = document.getElementById('persons').value;
+				if(personsCntVal==''){
+					console.log("여긴 들어오니?");
+					personsCntVal='1';
+				}
+				console.log('personsCntVal :: ' + personsCntVal);
+				let personsCntNumber = Number(personsCntVal)+1;
+				
+				common_Person_Cnt(personsCntNumber);
+				
+			});
+			
+			$('#person_decreaseBtn').on('click',function(e){
+				//let foodCnt = document.getElementById('foodCnt').value;
+				let personsCntVal = document.getElementById('persons').value;
+				console.log('personsCntVal :: ' + personsCntVal);
+				let personsCntNumber = Number(personsCntVal)-1;
+				if(personsCntVal=='1'){
+					personsCntNumber =1;
+				}	
+				
+				common_Person_Cnt(personsCntNumber);
+				
+			});
+			
+			
+		
+			$('#increaseBtn').on('click',function(e){
+				//let foodCnt = document.getElementById('foodCnt').value;
+				let foodCntVal = document.getElementById('foodCnt').value;
+				if(foodCntVal==''){
+					console.log("여긴 들어오니?");
+					foodCntVal='1';
+				}
+				console.log('foodCntVal :: ' + foodCntVal);
+				let foodCntNumber = Number(foodCntVal)+1;
+				
+				common_food_Cnt(foodCntNumber);
+				
+			});
+			
+			$('#decreaseBtn').on('click',function(e){
+				//let foodCnt = document.getElementById('foodCnt').value;
+				var foodCntVal = document.getElementById('foodCnt').value;
+				
+				console.log('foodCntVal :: ' + foodCntVal);
+				var foodCntNumber = Number(foodCntVal)-1;
+				
+				if(foodCntVal=='1'){
+					foodCntNumber =1;
+				}
+				
+				common_food_Cnt(foodCntNumber);
+			});
+			
+			
+			
+			
+			//가격 원화 표시
+			var abc = document.querySelectorAll( 'td[price_list="price"]');
+			var valueProd;
+			for (var i = 0; i < abc.length; i++) {
+			
+				//abc[i].style.color='green';
+				valueProd = abc[i].firstChild.nodeValue;
+				//console.log("valueProd="+valueProd);
+				let subValue = valueProd.substr(1).trim();
+				//console.log("subValue="+subValue);
+				//console.log("subValue numberWithCommas="+numberWithCommas(subValue));
+				let completeVal = numberWithCommas(subValue);
+				//console.log("valueProd="+valueProd);
+				//console.log("valueProd.firstChild.nodeValue="+valueProd.firstChild.nodeValue);
+				
+				abc[i].firstChild.nodeValue = "￦"+ completeVal;
+			}
+			
+			
 			
 			$('#datePicker').datepicker({
 				beforeShowDay: function (date) {
@@ -782,13 +1008,17 @@
 				if(bookState.toUpperCase()=='RESTAURANT RESERVATION'){
 					//console.log("들어오긴 하니2?");
 					$('#addToCartBtn').show();
+					$('.reservation_info').hide();
 				}else{	
 					console.log("들어오긴 하니3?");
 					$('#addToCartBtn').hide();
+					$('.reservation_info').show();
 				}
 			});
 			
 			
+			
+				
 		});
 	
 	
