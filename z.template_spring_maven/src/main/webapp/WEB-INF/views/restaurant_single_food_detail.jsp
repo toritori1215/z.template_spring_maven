@@ -962,6 +962,7 @@
 				weekendedTime : 1,
 				weekdaystTime : 9,
 				weekdayedTime : 7,
+				day : 'Sat',
 				showInpunts: false
 			});
 			

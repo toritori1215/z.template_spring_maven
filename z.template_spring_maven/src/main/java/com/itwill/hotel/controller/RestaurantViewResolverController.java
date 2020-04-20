@@ -122,7 +122,9 @@ public class RestaurantViewResolverController {
 		//카트에 집어넣기위해 필요한정보
 		//mNo 회원번호 , cproductQty(제품별 주문 수량), cProductTypePay(제품별 총가격),제품번호
 		 
+		//pno 가 null일시에는 레스토랑 카트를 품목을 확인하기 위해 장바구니를 클릭한 경우. 세션에 저장된 회원번호에 맞는 카트 리스트 품목을 가져오기만 하면 됨 
 		
+		//pno가 null이 아닐시에는 카트에 제품을 추가한 경우 임으로. pno를 카트 테이블에 삽입하고, 세션에 저장된 회원번호에 맞는 카트리스트 품목들을 가져와야함
 		
 		
 		return "restaurant_cart_fixed_sidebar";
