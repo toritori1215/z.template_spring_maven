@@ -103,13 +103,18 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
+	public int updateEmail(HashMap hashMap) {
+		return memberMapper.updateEmail(hashMap);
+	}
+
+	@Override
 	public int updateMember(HashMap hashMap) {
 		return memberMapper.updateMember(hashMap);
 	}
 
 	@Override
-	public int updateEmail(HashMap hashMap) {
-		return memberMapper.updateEmail(hashMap);
+	public int updateImg(HashMap hashMap) {
+		return memberMapper.updateImg(hashMap);
 	}
 
 }
