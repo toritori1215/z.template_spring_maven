@@ -40,9 +40,10 @@ public interface MemberDao {
 	public int reActivateAccount(String mId);
 	
 	public int ifActive(HashMap hashMap);
-
-	public int updateMember(HashMap hashMap);
 	
 	public int updateEmail(HashMap hashMap);
 
+	public int updateMember(HashMap hashMap);
+	
+	public int updateImg(HashMap hashMap);
 }

@@ -347,7 +347,7 @@
 					<!-- End section 3 -->
 
 					<section id="section-4">
-					<form id="f4" action="javascript:updateMember();">
+					<form id="f4" action="javascript:updateMember();" method="post">
 						<div class="row">
 							<div class="col-md-6">
 								<h4>Your profile</h4>
@@ -378,10 +378,10 @@
 								<p>
 								<c:choose>
 									<c:when test="${sUser.mImg != null and sUser.mImg ne ''}">
-										<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${sUser.mImg}" width="250" height="300" alt="Image" class="img-fluid styled profile_pic">
+										<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/member/${sUser.mImg}" width="250" height="250" alt="Image" class="img-fluid styled profile_pic">
 									</c:when>
 									<c:otherwise>
-										<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/chaewon2.jpg" width="250" height="300" alt="Image" class="img-fluid styled profile_pic">
+										<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/chaewon2.jpg" width="250" height="250" alt="Image" class="img-fluid styled profile_pic">
 									</c:otherwise>
 								</c:choose>
 								</p>
@@ -414,7 +414,7 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Phone number</label>
-									<input class="form-control" name="tel" id="tel" type="text" value="${sUser.mEmail}">
+									<input class="form-control" name="tel" id="tel" type="text" value="${sUser.mTel}">
 								</div>
 							</div>
 							<div class="col-md-6">
@@ -426,8 +426,8 @@
 							</div>
 						</div>
 						<!-- End row -->
-
-						<hr>
+						
+						<br>
 						<div class="row">
 							<div class="col-md-12">
 								<h4>Edit address</h4>
@@ -435,13 +435,13 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Street address</label>
-									<input class="form-control" name="address" id="address" type="text">
+									<input class="form-control" name="address" id="address" type="text" value="${sUser.mAddress}">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>City/Town</label>
-									<input class="form-control" name="city" id="city" type="text">
+									<input class="form-control" name="city" id="city" type="text" value="${sUser.mCity}">
 								</div>
 							</div>
 						</div>
@@ -451,16 +451,17 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Zip code</label>
-									<input class="form-control" name="zipcode" id="zipcode" type="text">
+									<input class="form-control" name="zipcode" id="zipcode" type="text" value="${sUser.mZipCode}">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Country</label>
+									<input type="hidden" id="countryCheck" value="${sUser.mCountry}">
 									<select id="country" class="form-control" name="country">
 										<option value="U.S.A">United States</option>
-										<option value="CANADA">CANADA</option>
 										<option value="U.K">United Kingdom</option>
+										<option value="CANADA">CANADA</option>
 										<option value="KOREA">KOREA</option>
 										<option value="CHINA">CHINA</option>
 									</select>
@@ -468,37 +469,18 @@
 							</div>
 						</div>
 						<!-- End row -->
+						<button type="submit" class="btn_1 green">Update Profile</button>
+					</form>
 
-						<hr>
+					<hr>
+						<form id="form1" name="form1" action="member_mypage" method="post">
 						<h4>Upload profile photo</h4>
-						<div class="form-inline upload_1">
-							<div class="form-group">
-								<input type="file" name="files[]" id="js-upload-files" multiple>
-							</div>
-							<button type="submit" class="btn_1 green" id="js-upload-submit">Upload file</button>
-						</div>
-							<!-- Drop Zone -->
-							<h5>Or drag and drop files below</h5>
-							<div class="upload-drop-zone" id="drop-zone">
-								Just drag and drop files here
-							</div>
-							<!-- Progress Bar -->
-							<div class="progress">
-								<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-									<span class="sr-only">60% Complete</span>
-								</div>
-							</div>
-							<!-- Upload Finished -->
-							<div class="js-upload-finished">
-								<h5>Processed files</h5>
-								<div class="list-group">
-									<a href="#" class="list-group-item list-group-item-success"><span class="badge alert-success pull-right">Success</span>${sUser.mImg}</a>
-								</div>
-							</div>
-							<!-- End Hidden on mobiles -->
-							<hr>
-							<button type="submit" class="btn_1 green">Update Profile</button>
-						</form>
+						<!-- Drop Zone -->
+						<div id="attachFile" style="width: 500px;"></div>
+						<br>
+						<button type="submit" class="btn_1 green" id="js-upload-submit" onclick="formSubmit()">Upload file</button>
+					</form>
+					<hr>
 					</section>
 					<!-- End section 4 -->
 
@@ -540,7 +522,58 @@
 			if (alertMsg != null && alertMsg != "") {
 				alert(alertMsg);
 			}
+			
+			var country = $("#countryCheck").val();
+			if (country == null || country.trim() == "" || country == "U.S.A") {
+				window.f4.country[0].selected = true;
+			}
+			if (country == "U.K") {
+				window.f4.country[1].selected = true;
+			}
+			if (country == "CANADA") {
+				window.f4.country[2].selected = true;
+			}
+			if (country == "KOREA") {
+				window.f4.country[3].selected = true;
+			}
+			if (country == "CHINA") {
+				window.f4.country[4].selected = true;
+			}
 		});
+	</script>
+	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/gu-upload/guuploadManager.js"></script>
+	<script type="text/javascript">
+		var guManager = null;
+		
+		window.onload = function() {
+			var option = {
+				fileid: "attachFile",
+				listtype: "thumbnail",
+				uploadURL: "upload",
+				maxFileSize: 100,
+				maxFileCount: 1,
+				useButtons: true,
+				afterFileTransfer: afterFileTransfer
+			}
+			guManager = new guUploadManager(option);
+		}	
+		
+		function formSubmit() {
+			guManager.uploadFiles();
+		}
+		
+		function afterFileTransfer(realname, filename, filesize) {
+			var realname9 = document.getElementById("realname");
+			var filename9 = document.getElementById("filename");
+			var filesize9 = document.getElementById("filesize");
+			
+			realname9.value = realname;
+			filename9.value = filename;
+			filesize9.value = filesize;
+			
+			document.form1.submit();
+		}
 	</script>
 </body>
 

@@ -104,13 +104,18 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public int updateEmail(HashMap hashMap) {
+		return memberDao.updateEmail(hashMap);
+	}
+
+	@Override
 	public int updateMember(HashMap hashMap) {
 		return memberDao.updateMember(hashMap);
 	}
 
 	@Override
-	public int updateEmail(HashMap hashMap) {
-		return memberDao.updateEmail(hashMap);
+	public int updateImg(HashMap hashMap) {
+		return memberDao.updateImg(hashMap);
 	}
 
 }

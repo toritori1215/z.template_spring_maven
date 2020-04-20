@@ -24,15 +24,6 @@ public class WishlistController {
 	@Autowired
 	private WishlistService wishlistService;
 	
-	@RequestMapping(value = "/member_mypage")
-	public String mypage(Model model, HttpSession session) {
-		Member member = (Member) session.getAttribute("sUser");
-		List<Product> wishlistList = wishlistService.selectWishlist(member.getmNo());
-		session.setAttribute("wishlistList", wishlistList);
-		model.addAttribute("inputMsg", "3");
-		return "member_admin";
-	}
-	
 	@RequestMapping(value = "/wishlist_list")
 	public String wishlistList(HttpSession session, Model model) {
 		Member member = (Member) session.getAttribute("sUser");

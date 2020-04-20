@@ -44,6 +44,7 @@
 	
 	<!-- CUSTOM CSS -->
 	<link href="${pageContext.request.contextPath}/resources/z.SiliconVillage/css/member.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/z.SiliconVillage/gu-upload/css/guupload.css"/>
 
 </head>
 

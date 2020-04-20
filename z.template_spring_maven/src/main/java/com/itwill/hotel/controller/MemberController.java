@@ -1,16 +1,24 @@
 package com.itwill.hotel.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.itwill.hotel.domain.Member;
 import com.itwill.hotel.domain.Product;
@@ -30,6 +38,15 @@ public class MemberController {
 	public String mainPage() {
 		memberService.deleteInactiveMember();
 		return "main_page";
+	}
+	
+	@RequestMapping(value = "/member_mypage")
+	public String mypage(Model model, HttpSession session) {
+		Member member = (Member) session.getAttribute("sUser");
+		List<Product> wishlistList = wishlistService.selectWishlist(member.getmNo());
+		session.setAttribute("wishlistList", wishlistList);
+		model.addAttribute("inputMsg", "3");
+		return "member_admin";
 	}
 	
 	@RequestMapping(value = "/member_login_form")
@@ -324,5 +341,71 @@ public class MemberController {
 		}
 		return "main_page";
 	};
+	
+	@RequestMapping(value = "/member_update")
+	public String updateMember(@RequestParam(value = "first_name") String firstName, 
+								@RequestParam(value = "last_name") String lastName, 
+								@RequestParam(value = "tel") String tel, 
+								@RequestParam(value = "birth") String birth, 
+								@RequestParam(value = "address", defaultValue = "") String address, 
+								@RequestParam(value = "city", defaultValue = "") String city, 
+								@RequestParam(value = "zipcode", defaultValue = "") String zipcode, 
+								@RequestParam(value = "country", defaultValue = "") String country, 
+								HttpSession session,
+								Model model) {
+		if (address.trim().equals("")) {
+			address = null;
+		}
+		if (city.trim().equals("")) {
+			city = null;
+		}
+		if (zipcode.trim().equals("")) {
+			zipcode = null;
+		}
+		if (country.trim().equals("")) {
+			country = null;
+		}
+		Member member = (Member) session.getAttribute("sUser");
+		HashMap hashMap = new HashMap();
+		hashMap.put("mFirstName", firstName);
+		hashMap.put("mLastName", lastName);
+		hashMap.put("mTel", tel);
+		hashMap.put("mBirth", Integer.parseInt(birth));
+		hashMap.put("mAddress", address);
+		hashMap.put("mCity", city);
+		hashMap.put("mZipCode", zipcode);
+		hashMap.put("mCountry", country);
+		hashMap.put("mNo", member.getmNo());
+		int rowCount = memberService.updateMember(hashMap);
+		session.setAttribute("sUser", memberService.selectOne(member.getmId()));
+		if (rowCount == 1) {
+			model.addAttribute("inputMsg", "3");
+			return "member_admin";			
+		} else {
+			return "common_404";
+		}
+	}
+	
+	@RequestMapping(value = "/upload")
+	public void upload(HttpServletResponse response, HttpServletRequest request, 
+						@RequestParam("Filedata") MultipartFile Filedata, 
+						HttpSession session, Model model) {
+	   	SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+	   	String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10)) + ".jpg";
+	   	
+		File f = new File("C:\\Users\\STU\\git\\z.template_spring_maven\\z.template_spring_maven\\src\\main\\webapp\\resources\\z.SiliconVillage\\img\\member\\" + newfilename);
+		try { 
+			Filedata.transferTo(f);
+		   	response.getWriter().write(newfilename);
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+		}
+		Member member = (Member) session.getAttribute("sUser");
+		HashMap hashMap = new HashMap();
+		hashMap.put("mImg", newfilename);
+		hashMap.put("mNo", member.getmNo());
+		int rowCount = memberService.updateImg(hashMap);
+		session.setAttribute("sUser", memberService.selectOne(member.getmId()));
+	}
 	
 }

@@ -17,50 +17,16 @@
 	<mvc:annotation-driven/>
 	<mvc:resources mapping="/resources/**" location="/resources/"/>
 	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="100000000" />
+        <property name="maxInMemorySize" value="100000000" />
+    </bean>
+    
 	<!-- ViewResolver -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="order" value="1"/>
 		<property name="prefix" value="/WEB-INF/views/"/>
 		<property name="suffix" value=".jsp"/>
 	</bean>
-	
-	<bean id="xmlMarshaller" 
-    	  class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
-    	  <property name="packagesToScan">
-    	  	<list>
-    	  		<value>com.itwill.restaurant.controller</value>
-    	  	</list>
-    	  </property>
-    	  <!-- 
-    	  <property name="classesToBeBound">
-    	  	<array>
-    	  		<value>com.itwill.ajax.News</value>
-    	  		<value>com.itwill.ajax.NewsListResult</value>
-    	  	</array>	
-    	  </property>
-    	   -->
-    </bean> 
-    
-    <!-- XMLView -->
-    <bean id="jaxbXmlView" 
-    	class="org.springframework.web.servlet.view.xml.MarshallingView">
-    	<property name="marshaller" ref="xmlMarshaller"/>
-    	<property name="contentType" value="text/xml;charset=UTF-8"/>
-    </bean>
-    
-    <!-- JSONView json의 사용을 가능하게 함-->
-    <bean id="jsonView" 
-    class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"></bean>
-	
-	<!-- interceptor -->
-	<!-- 
-	<mvc:interceptors>
-	    <mvc:interceptor>
-	        <mvc:mapping path="/**"/>  
-	          <bean class="com.itwill.hotel.controller." />  
-	       	  <bean class="com.itwill.user.controller.AuthLoginInterceptor" />
-	    </mvc:interceptor>
-    </mvc:interceptors>
-	 -->
 	
 </beans>
