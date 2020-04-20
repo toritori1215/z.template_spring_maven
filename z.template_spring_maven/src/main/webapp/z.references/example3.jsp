@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/z.SiliconVillage/gu-upload/css/guupload.css"/>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/gu-upload/guuploadManager.js"></script>
 <script type="text/javascript">
-	var guManager=null;
+	var guManager = null;
 	
 	window.onload = function() {
 		var option = {
