@@ -3,6 +3,7 @@ package com.itwill.hotel.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwill.hotel.domain.Blog;
 import com.itwill.hotel.domain.BlogReview;
+import com.itwill.hotel.domain.Member;
 import com.itwill.hotel.service.BlogService;
 
 @Controller
@@ -53,13 +55,19 @@ public class BlogController {
 	}
 	
 	
-	
-	public String delete(@RequestParam(value = "bNo") String bNo, Model model) {
+	@RequestMapping(value = "/blog_delete")
+	public String delete(@RequestParam(value = "bNo") HttpSession httpSession, String bNo, Model model) {
+		Member member = (Member)httpSession.getAttribute("sUser");
 		int deleteBlog = blogService.deleteBlog(Integer.parseInt(bNo));
+		if (deleteBlog == 1) {
+			model.addAttribute("deleteMsg","삭제되었습니다.");
+			httpSession.invalidate();
+		} else {
+			model.addAttribute("deleteMsg", "삭제 실패하였습니다.");
+		}
 		List<Blog> blogList = blogService.selectAllBlog();
 		model.addAttribute("blogList", blogList);
 		return "forward:blog_right_sidebar";
-		
 	}
 	
 	
