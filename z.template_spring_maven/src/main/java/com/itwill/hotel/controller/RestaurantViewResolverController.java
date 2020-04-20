@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwill.hotel.controller.interceptors.LoginCheck;
@@ -115,9 +116,14 @@ public class RestaurantViewResolverController {
 	}
 	
 	@LoginCheck
-	@RequestMapping("restaurant_cart_fixed_sidebar")
+	@RequestMapping(value="restaurant_cart_fixed_sidebar",method = RequestMethod.POST)
 	public String restaurant_cart_fixed_sidebar(HttpSession session,
-			@RequestParam(required =false) Integer pno) {
+												@RequestParam(required =false) Integer pno) {
+		//카트에 집어넣기위해 필요한정보
+		//mNo 회원번호 , cproductQty(제품별 주문 수량), cProductTypePay(제품별 총가격),제품번호
+		 
+		
+		
 		
 		return "restaurant_cart_fixed_sidebar";
 	}
@@ -139,12 +145,14 @@ public class RestaurantViewResolverController {
 		model.addAttribute("deposit_cost",deposit_cost);
 		return "restaurant_single_food_detail";
 	}
+	
 	@LoginCheck
 	@RequestMapping("restaurant_payment_fixed_sidebar")
 	public String restaurant_payment_fixed_sidebar() {
 		
 		return "restaurant_payment_fixed_sidebar";
 	}
+	
 	@LoginCheck
 	@RequestMapping("restaurant_confirmation_fixed_sidebar")
 	public String restaurant_confirmation_fixed_sidebar() {

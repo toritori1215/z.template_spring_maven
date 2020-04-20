@@ -98,7 +98,7 @@
 					<p class="d-none d-md-block d-block d-lg-none"><a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="Hide map" data-text-original="View on map">View on map</a></p>
 					 -->
 					<p class="d-none d-md-block d-block d-lg-none">
-						<a class="btn_map" data-toggle="collapse" href="#reservation_div_space" aria-expanded="false" aria-controls="reservation_div_space" data-text-swap="No restaurant reservation" data-text-original="Restaurant Reservation">Restaurant Reservation</a>
+						<a class="btn_map" data-toggle="collapse" href="#reservation_div_space" collapseBtn="BookingState" aria-expanded="false" aria-controls="reservation_div_space" data-text-swap="No restaurant reservation" data-text-original="Restaurant Reservation">Restaurant Reservation</a>
 					</p>
 					<!-- Map button for tablets/mobiles -->
 					
@@ -407,7 +407,7 @@
 					
 					<p class="d-none d-xl-block d-lg-block d-xl-none">
 						<a class="btn_map" data-toggle="collapse" href="#reservation_div_space" 
-						   aria-expanded="false" aria-controls="reservation_div_space" id="BookingState"
+						   aria-expanded="false" aria-controls="reservation_div_space" collapseBtn="BookingState"
 						   data-text-swap="No restaurant reservation" data-text-original="Restaurant Reservation">
 						   		Restaurant Reservation
 						</a>
@@ -1017,24 +1017,41 @@
 
 			
 			//let bookButton = document.getElementById("BookingState");
-			$('#BookingState').on("click", function(e) {
-				//console.log("들어오긴 하니?");
-				let bookState = document.getElementById("BookingState").firstChild.nodeValue;
-				console.log("bookState ::" + bookState);
-				if(bookState.toUpperCase()=='RESTAURANT RESERVATION'){
-					//console.log("들어오긴 하니2?");
-					hideReservationinfoSumCalcul();
+			
+			$('a[collapseBtn="BookingState"]').on("click", function(e) {
+				
+				let show_reservation_window = $('#reservation_div_space').is(':visible');
+				console.log('show_reservation_window::'+ show_reservation_window);
+				//보여줄때 false 가나옴.
+				if(show_reservation_window){
 					$('#addToCartBtn').show();
 					$('.reservation_info').hide();
-				}else{	
-					console.log("들어오긴 하니3?");
-					showReservationinfoSumCalcul();
+					console.log("hideReservationinfoSumCalcul");
+					hideReservationinfoSumCalcul();
+				}else{
 					$('#addToCartBtn').hide();
 					$('.reservation_info').show();
+					console.log("showReservationinfoSumCalcul");
+					showReservationinfoSumCalcul();
 				}
 			});
 			
-			
+			//console.log("들어오긴 하니?");
+			//let bookState = document.getElementById("BookingState").firstChild.nodeValue;
+			//console.log("bookState ::" + bookState);
+			/*
+			if(bookState.toUpperCase()=='RESTAURANT RESERVATION'){
+				//console.log("들어오긴 하니2?");
+				hideReservationinfoSumCalcul();
+				$('#addToCartBtn').show();
+				$('.reservation_info').hide();
+			}else{	
+				console.log("들어오긴 하니3?");
+				showReservationinfoSumCalcul();
+				$('#addToCartBtn').hide();
+				$('.reservation_info').show();
+			}
+			*/
 			
 				
 		});
