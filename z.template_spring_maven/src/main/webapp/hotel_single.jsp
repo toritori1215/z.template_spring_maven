@@ -253,7 +253,7 @@
 				<!-- End row  -->
 
 				<hr>
-
+ 
 				<div class="row">
 					<div class="col-lg-3">
 						<h3>Rooms Types</h3>
@@ -280,6 +280,7 @@
 								</ul>
 							</div>
 						</div>
+
 						<!-- End row  -->
 						<div
 							class="owl-carousel owl-theme carousel-thumbs-2 magnific-gallery">
@@ -387,7 +388,9 @@
 						<div id="score_detail">
 							<span>7.5</span>Good <small>(Based on 34 reviews)</small>
 						</div>
+
 						<!-- End general_rating -->
+
 						<div class="row" id="rating_summary">
 							<div class="col-md-6">
 								<ul>
@@ -426,55 +429,68 @@
 								</ul>
 							</div>
 						</div>
+
 						<!-- End row -->
 						<hr>
-						
+						 
 						<form name="f" method="post">
 						<c:forEach var="review" items="${hotelreviewList}">
 						<input type="hidden" name="review_rNo" id="review_rNo" value="${review.rNo}" />
+						<input type="hidden" name="review_mNo" id="review_mNo" value="${review.mNo}" />
 							<div class="review_strip_single">
 								<img
 									src="${pageContext.request.contextPath}/resources/img/avatar1.jpg"
 									alt="Image" class="rounded-circle"> <small> -
 									${review.rRegdate } -</small>
 								<h4>${review.mId}</h4>
-								<p>${review.rContent}</p>
+								<p>${review.rContent}, ${total_review}</p>
+								<input type="hidden" id="total_review" value="${total_review}">
+								
 								<div class="rating">
-									<c:if test="${review.rRate == '1.0'}">
+								<c:choose>
+									<c:when test="${total_review ge 0 and total_review lt 2}">
 										<i class="icon-smile voted"></i>
 										<i class="icon-smile"></i>
 										<i class="icon-smile"></i>
 										<i class="icon-smile"></i>
 										<i class="icon-smile"></i>
-									</c:if>
-									<c:if test="${review.rRate == '2.0'}">
+									</c:when>
+									<c:when test="${total_review ge 2 and total_review le 4}">
 										<i class="icon-smile voted"></i>
+										<i class="icon-smile"></i>
+										<i class="icon-smile"></i>
+										<i class="icon-smile"></i>
+										<i class="icon-smile"></i>
+									</c:when>
+									<c:when test="${total_review ge 4 and total_review le 6}">
 										<i class="icon-smile voted"></i>
 										<i class="icon-smile"></i>
 										<i class="icon-smile"></i>
 										<i class="icon-smile"></i>
-									</c:if>
-									<c:if test="${review.rRate == '3.0'}">
-										<i class="icon-smile voted"></i>
-										<i class="icon-smile voted"></i>
+										<i class="icon-smile"></i>
+									</c:when>
+									<c:when test="${total_review ge 6 and total_review le 8}">
 										<i class="icon-smile voted"></i>
 										<i class="icon-smile"></i>
 										<i class="icon-smile"></i>
-									</c:if>
-									<c:if test="${review.rRate == '4.0'}">
-										<i class="icon-smile voted"></i>
-										<i class="icon-smile voted"></i>
-										<i class="icon-smile voted"></i>
+										<i class="icon-smile"></i>
+										<i class="icon-smile"></i>
+									</c:when>
+									<c:when test="${total_review ge 8 and total_review le 10}">
 										<i class="icon-smile voted"></i>
 										<i class="icon-smile"></i>
-									</c:if>
-									<c:if test="${review.rRate == '5.0'}">
-										<i class="icon-smile voted"></i>
-										<i class="icon-smile voted"></i>
-										<i class="icon-smile voted"></i>
-										<i class="icon-smile voted"></i>
-										<i class="icon-smile voted"></i>
-									</c:if>
+										<i class="icon-smile"></i>
+										<i class="icon-smile"></i>
+										<i class="icon-smile"></i>
+									</c:when>
+									<c:otherwise>
+										<i class="icon-smile"></i>
+										<i class="icon-smile"></i>
+										<i class="icon-smile"></i>
+										<i class="icon-smile"></i>
+										<i class="icon-smile"></i>
+									</c:otherwise>
+								</c:choose>							
 								<div align="right">
 									<input id="reviweUpdate" type="submit" 
 										value="수정" >&nbsp;
@@ -486,12 +502,13 @@
 							</div>
 						</c:forEach>
 						</form>
+	 
 							<!-- End review strip -->
-					</div>
-				</div>
+					</div>  
+				</div> 
 			</div>
 			<!--End  single_tour_desc-->
-
+ 
 			<aside class="col-lg-4">
 				<p class="d-none d-xl-block d-lg-block d-xl-none">
 					<a class="btn_map" data-toggle="collapse" href="#collapseMap"
@@ -541,6 +558,7 @@
 					<a class="btn_full_outline" href="#"><i class=" icon-heart"></i>
 						Add to whislist</a>
 				</div>
+ 
 				<!--/box_style_1 -->
 
 				<div class="box_style_4">
@@ -553,6 +571,7 @@
 				</div>
 
 			</aside>
+ 
 		</div>
 		<!--End row -->
 	</div>
@@ -587,26 +606,31 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<input name="name_review" id="name_review" type="text"
-									placeholder="Your name" class="form-control">
+									placeholder="Your name" class="form-control" value="${sUser.mFirstName}" readonly="readonly">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<input name="lastname_review" id="lastname_review" type="text"
-									placeholder="Your last name" class="form-control">
+									placeholder="Your last name" class="form-control"  value="${sUser.mLastName}" readonly="readonly">
 							</div>
 						</div>
 					</div>
+
 					<!-- End row -->
+
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
 								<input name="email_review" id="email_review" type="email"
-									placeholder="Your email" class="form-control">
+									placeholder="Your email" class="form-control" value="${sUser.mEmail}" readonly="readonly">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
+								<!--  <input name="email_review" id="email_review" type="email"
+									placeholder="Your email" class="form-control" value="" readonly="readonly">
+								-->
 								<select class="form-control" name="room_type_review"
 									id="room_type_review">
 									<option value="">Select room type</option>
@@ -617,7 +641,9 @@
 							</div>
 						</div>
 					</div>
+
 					<!-- End row -->
+
 					<hr>
 					<div class="row">
 						<div class="col-md-6">
@@ -650,6 +676,7 @@
 						</div>
 					</div>
 					<!-- End row -->
+
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
@@ -680,6 +707,7 @@
 							</div>
 						</div>
 					</div>
+
 					<!-- End row -->
 					<div class="form-group">
 						<textarea name="rContent" id="rContent" class="form-control"
@@ -736,6 +764,12 @@
 
 <!-- Carousel -->
 <script>
+	$(function() {
+		var total_review = $("#total_review").val();
+		alert(total_review);
+		console.log(total_review);
+	})
+
 	$('.carousel-thumbs-2').owlCarousel({
 		loop : false,
 		margin : 5,
@@ -758,21 +792,32 @@
 	
 	
 	$('#submit-review').click(function() {
-		var cleanliness = $("#cleanliness_review option:selected").val();
-		var comfort = $("#comfort_review option:selected").val();
-		var Price = $("#price_review option:selected").val();
-		var Quality = $("#quality_review option:selected").val();
 		
-
+		var rFirst = $("#name_review").val();
+		var rLast = $("#lastname_review").val();
+		var rEmail =	$("#email_review").val();
+		var rCleanliness = $("#cleanliness_review option:selected").val();
+		var rComfort = $("#comfort_review option:selected").val();
+		var rPrice = $("#price_review option:selected").val();
+		var rQuality = $("#quality_review option:selected").val();
+		var rContent = $("#rContent").val();
+		var pType = $("#room_type_review").val();
+			
+		
 		$.ajax({
 			type : "POST",
 			url : "review_write",
 			data : {
-				"rContent" : $('#rContent').val(),
-			"cleanliness" : $("#cleanliness_review option:selected").val(),
-			"comfort": $("#comfort_review option:selected").val(),
-			"price": $("#price_review option:selected").val(),
-			"quality": $("#quality_review option:selected").val()
+				
+			"rFirst" : $("#name_review").val(),
+			"rLast" : $("#lastname_review").val(),
+			"rEmail" :	$("#email_review").val(),
+			"rCleanliness" : $("#cleanliness_review option:selected").val(),
+			"rComfort": $("#comfort_review option:selected").val(),
+			"rPrice": $("#price_review option:selected").val(),
+			"rQuality": $("#quality_review option:selected").val(),
+			"rContent" : $("#rContent").val(),
+			"pType" : $("#room_type_review").val()
 					
 			},
 			success : function() {
@@ -786,7 +831,7 @@
 	});
 	
 	$('#reviewDelete').click(function(){
-		//alert($('#review_rNo').val());
+		alert($('#review_rNo').val());
 		
 		var rNo = $('#review_rNo').val();
 		var params="rNo="+rNo;	

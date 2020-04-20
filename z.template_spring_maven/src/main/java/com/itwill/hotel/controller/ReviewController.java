@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.tags.form.PasswordInputTag;
 
 import com.itwill.hotel.domain.Review;
@@ -36,37 +37,35 @@ public class ReviewController {
 	public String hotelreviewList(HttpServletRequest request,Model model) {
 		System.out.println("list컨트롤러");
 		List<Review>hotelreviewList =reviewService.selectAll();
-		
 		System.out.println("@@@@@@@@@"+hotelreviewList);
 		model.addAttribute("hotelreviewList",hotelreviewList);
 		return "forward:hotel_single.jsp";
 	}
 	
 	@RequestMapping(value = "/review_write", method=RequestMethod.POST)
-	public String write(HttpServletRequest request,Review review,Model model,
-						@RequestParam(value = "cleanliness") String cleanliness,
-						@RequestParam(value = "comfort") String comfort,
-						@RequestParam(value = "price") String price,
-						@RequestParam(value = "quality") String quality){
-	System.out.println("쓰기 컨트롤러");
-	System.out.println("cleanliness-->"+cleanliness);
-	System.out.println("comfort-->"+comfort);
-	System.out.println("price-->"+price);
-	System.out.println("quality-->"+quality);
-	int var1 =Integer.parseInt(cleanliness);
-	int var2 =Integer.parseInt(comfort);
-	int var3 =Integer.parseInt(price);
-	int var4 =Integer.parseInt(quality);
-	int total_review =(var1+var2+var3+var4)/4;
-	System.out.println("total_review-->"+total_review);
-	review.setrRate(new Double(total_review));
-	int reviewWrite=reviewService.createReview(review);
-	System.out.println("reviewWrite");
-    List<Review> reviewList = reviewService.selectAll();
-    model.addAttribute("reviewList",reviewList);
-    //model.addAttribute("total_review", 34);
-	return "hotel_single";
+	public String write(@RequestParam(value = "rFirst") String rFirst,
+						@RequestParam(value = "rLast") String rLast,
+						@RequestParam(value = "rEmail") String rEmail,
+						@RequestParam(value = "rCleanliness") String rCleanliness,
+						@RequestParam(value = "rComfort") String rComfort,
+						@RequestParam(value = "rPrice") String rPrice,
+						@RequestParam(value = "rQuality") String rQuality,
+						@RequestParam(value = "rContent") String rContent,
+						@RequestParam(value = "pType") String pType, 
+						Model model){
+	
+	int var1 = Integer.parseInt(rCleanliness);
+	int var2 = Integer.parseInt(rComfort);
+	int var3 = Integer.parseInt(rPrice);
+	int var4 = Integer.parseInt(rQuality);
+	int reviewWrite = reviewService.createReview(new Review(-9999, rFirst, rLast, rEmail, var1, var2, var3, var4, rContent, null, pType, 1, 1, "toto"));
+	int total_review = (var1+var2+var3+var4);
+    List<Review> hotelreviewList = reviewService.selectAll();
+    System.out.println("########total_review: " + total_review);
+    model.addAttribute("total_review", total_review);
+	return "forward:hotel_single.jsp";
 	}
+	
 	
 	@RequestMapping(value = "/review_delete_action" ,method=RequestMethod.GET)
 	public String delete(@RequestParam(value = "rNo") String rNo,Model model) {
@@ -78,4 +77,5 @@ public class ReviewController {
 	return "forward:hotel_single.jsp";
 	
 	}
+	
 }
