@@ -87,7 +87,13 @@
 								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>
 								<small>Someone famous in <cite title="">Body of work</cite></small>
 							</blockquote>
+								<form action="blog_right_sidebar">
+								<input type="submit" id="delete_blog_post" class="btn_1" value="Delete">
+								<input type="submit" id="update_blog_post" class="btn_1" value="Update">
+								</form>
+							
 						</div>
+						
 						<!-- end post -->
 					</div>
 					<!-- end box_style_1 -->
