@@ -7,42 +7,118 @@ import org.apache.ibatis.type.Alias;
 @Alias("Review")
 public class Review {
  
-	private int rNo;
+	private Integer rNo;
+	private String rFirst;
+	private String rLast;
+	private String rEmail;
+	private Integer rCleanliness;
+	private Integer rComfort;
+	private Integer rPrice;
+	private Integer rQuality;
 	private String rContent;
 	private String rRegdate;
-	private Integer rReadCount;
-	private Double rRate;
-	private Integer rGroup;
-	private Integer rStep;
-	private Integer rDepth;
-	private int mNo;
-	private String mId;
+	private String pType;
+	private Integer pNo;
+	private Integer mId;
+	private String mNo;
+	private Integer rRate;
 	
-	public Review() {
+	
+	public Integer getrRate() {
+		return rRate;
+	}
+
+	public void setrRate(Integer rRate) {
+		this.rRate = rRate;
+	}
+
+	public Review(Integer rNo, String rFirst, String rLast, String rEmail, Integer rCleanliness, Integer rComfort,
+			Integer rPrice, Integer rQuality, String rContent, String rRegdate, String pType, Integer pNo, Integer mId,
+			String mNo  ) {
+		super();
+		this.rNo = rNo;
+		this.rFirst = rFirst;
+		this.rLast = rLast;
+		this.rEmail = rEmail;
+		this.rCleanliness = rCleanliness;
+		this.rComfort = rComfort;
+		this.rPrice = rPrice;
+		this.rQuality = rQuality;
+		this.rContent = rContent;
+		this.rRegdate = rRegdate;
+		this.pType = pType;
+		this.pNo = pNo;
+		this.mId = mId;
+		this.mNo = mNo;
 		
 	}
 
-	public Review(int rNo, String rContent, String rRegdate, Integer rReadCount, Double rRate, Integer rGroup, Integer rStep,
-			Integer rDepth, int mNo, String mId) {
+	public Review() {
 		super();
-		this.rNo = rNo;
-		this.rContent = rContent;
-		this.rRegdate = rRegdate;
-		this.rReadCount = rReadCount;
-		this.rRate = rRate;
-		this.rGroup = rGroup;
-		this.rStep = rStep;
-		this.rDepth = rDepth;
-		this.mNo = mNo;
-		this.mId = mId;
 	}
 
-	public int getrNo() {
+	public Integer getrNo() {
 		return rNo;
 	}
 
-	public void setrNo(int rNo) {
+	public void setrNo(Integer rNo) {
 		this.rNo = rNo;
+	}
+
+	public String getrFirst() {
+		return rFirst;
+	}
+
+	public void setrFirst(String rFirst) {
+		this.rFirst = rFirst;
+	}
+
+	public String getrLast() {
+		return rLast;
+	}
+
+	public void setrLast(String rLast) {
+		this.rLast = rLast;
+	}
+
+	public String getrEmail() {
+		return rEmail;
+	}
+
+	public void setrEmail(String rEmail) {
+		this.rEmail = rEmail;
+	}
+
+	public Integer getrCleanliness() {
+		return rCleanliness;
+	}
+
+	public void setrCleanliness(Integer rCleanliness) {
+		this.rCleanliness = rCleanliness;
+	}
+
+	public Integer getrComfort() {
+		return rComfort;
+	}
+
+	public void setrComfort(Integer rComfort) {
+		this.rComfort = rComfort;
+	}
+
+	public Integer getrPrice() {
+		return rPrice;
+	}
+
+	public void setrPrice(Integer rPrice) {
+		this.rPrice = rPrice;
+	}
+
+	public Integer getrQuality() {
+		return rQuality;
+	}
+
+	public void setrQuality(Integer rQuality) {
+		this.rQuality = rQuality;
 	}
 
 	public String getrContent() {
@@ -61,60 +137,49 @@ public class Review {
 		this.rRegdate = rRegdate;
 	}
 
-	public Integer getrReadCount() {
-		return rReadCount;
+	public String getpType() {
+		return pType;
 	}
 
-	public void setrReadCount(Integer rReadCount) {
-		this.rReadCount = rReadCount;
+	public void setpType(String pType) {
+		this.pType = pType;
 	}
 
-	public Double getrRate() {
-		return rRate;
+	public Integer getpNo() {
+		return pNo;
 	}
 
-	public void setrRate(Double rRate) {
-		this.rRate = rRate;
+	public void setpNo(Integer pNo) {
+		this.pNo = pNo;
 	}
 
-	public Integer getrGroup() {
-		return rGroup;
-	}
-
-	public void setrGroup(Integer rGroup) {
-		this.rGroup = rGroup;
-	}
-
-	public Integer getrStep() {
-		return rStep;
-	}
-
-	public void setrStep(Integer rStep) {
-		this.rStep = rStep;
-	}
-
-	public Integer getrDepth() {
-		return rDepth;
-	}
-
-	public void setrDepth(Integer rDepth) {
-		this.rDepth = rDepth;
-	}
-
-	public int getmNo() {
-		return mNo;
-	}
-
-	public void setmNo(int mNo) {
-		this.mNo = mNo;
-	}
-
-	public String getmId() {
+	public Integer getmId() {
 		return mId;
 	}
 
-	public void setmId(String mId) {
+	public void setmId(Integer mId) {
 		this.mId = mId;
 	}
+
+	public String getmNo() {
+		return mNo;
+	}
+
+	public void setmNo(String mNo) {
+		this.mNo = mNo;
+	}
+
+	@Override
+	public String toString() {
+		return "Review [rNo=" + rNo + ", rFirst=" + rFirst + ", rLast=" + rLast + ", rEmail=" + rEmail
+				+ ", rCleanliness=" + rCleanliness + ", rComfort=" + rComfort + ", rPrice=" + rPrice + ", rQuality="
+				+ rQuality + ", rContent=" + rContent + ", rRegdate=" + rRegdate + ", pType=" + pType + ", pNo=" + pNo
+				+ ", mId=" + mId + ", mNo=" + mNo + ", rRate=" + rRate + "]";
+	}
+
 	
+
+	
+	
+
 }
