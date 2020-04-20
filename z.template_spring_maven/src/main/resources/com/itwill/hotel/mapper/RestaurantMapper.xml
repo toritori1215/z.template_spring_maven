@@ -29,6 +29,17 @@
 			WHERE PNO = #{pNO}
 	</select>
 	
+	<select id="get_Restaurant_Product_name_select"
+			parameterType="String"
+			resultType="com.itwill.hotel.domain.RestaurantDTO">
+			
+			SELECT pno, pname, pprice, ptype, pavailable, pimg, prate, pdesc, foodcategory
+			FROM PRODUCT
+			WHERE pname = #{pname}
+	
+	</select>
+	
+	
 	<!-- int restEntireProductCnt() -->
 	<select id="restEntireProductCnt"
 			resultType="int">

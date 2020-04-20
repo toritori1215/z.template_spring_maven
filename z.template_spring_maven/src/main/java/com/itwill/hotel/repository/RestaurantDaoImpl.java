@@ -156,6 +156,17 @@ public class RestaurantDaoImpl implements RestaurantDao{
 		return foodCategoryDessertCnt;
 	}
 
+
+	@Override
+	public RestaurantDTO get_Restaurant_Product_name_select(String pname) {
+		// TODO Auto-generated method stub
+		//System.out.println("Dao pname:"+ pname);
+		RestaurantDTO deposit_cost = restMapper.get_Restaurant_Product_name_select(pname);
+		//System.out.println("RestaurantDTO  deposit_cost:"+ deposit_cost);
+		
+		return deposit_cost;
+	}
+
 	
 	
 
