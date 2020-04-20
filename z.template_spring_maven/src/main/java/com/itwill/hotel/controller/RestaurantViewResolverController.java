@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itwill.hotel.controller.interceptors.LoginCheck;
 import com.itwill.hotel.domain.RestaurantDTO;
 import com.itwill.hotel.exception.WrongRestaurantDataException;
 import com.itwill.hotel.service.RestaurantService;
@@ -112,6 +113,8 @@ public class RestaurantViewResolverController {
 		
 		return "restaurants_all_list";
 	}
+	
+	@LoginCheck
 	@RequestMapping("restaurant_cart_fixed_sidebar")
 	public String restaurant_cart_fixed_sidebar(HttpSession session,
 			@RequestParam(required =false) Integer pno) {
@@ -136,13 +139,13 @@ public class RestaurantViewResolverController {
 		model.addAttribute("deposit_cost",deposit_cost);
 		return "restaurant_single_food_detail";
 	}
-	
+	@LoginCheck
 	@RequestMapping("restaurant_payment_fixed_sidebar")
 	public String restaurant_payment_fixed_sidebar() {
 		
 		return "restaurant_payment_fixed_sidebar";
 	}
-	
+	@LoginCheck
 	@RequestMapping("restaurant_confirmation_fixed_sidebar")
 	public String restaurant_confirmation_fixed_sidebar() {
 	

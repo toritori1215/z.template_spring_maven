@@ -29,4 +29,11 @@
 		<property name="suffix" value=".jsp"/>
 	</bean>
 	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+				<bean class="com.itwill.hotel.controller.interceptors.AuthLoginAnnotationInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 </beans>
