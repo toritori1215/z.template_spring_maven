@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.itwill.hotel.mapper.ProductMapper">
+<mapper namespace="com.itwill.hotel.mapper.CartMapper">
 	
 	<select id="selectByNo" parameterType="java.lang.Integer" resultType="Cart">
 		select c.mNo, c.cProductQty, c.cProductTypePay, c.cCheckinTime, c.cCheckin, 
@@ -10,11 +10,11 @@
 		and c.mNo = #{mNo}
 		order by p.pType;
 	</select>
-
+<!-- 
 	<insert id="insertCart" parameterType="Cart">
 		insert into cart (mNo, cProductQty, cProductTypePay, cCheckInTime, cCheckIn, 
 						  cCheckOut, cPickupPos, cDropoffPos, cOrderCnt, pNo)
 		values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 	</insert>
-	
+ -->
 </mapper>
