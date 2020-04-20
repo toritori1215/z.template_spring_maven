@@ -530,7 +530,7 @@
 											Total cost
 										</td>
 										<td class="text-right" price_list='price' id="sumPrice">
-											154
+											${restaurantProduct.pprice}
 										</td>
 									</tr>
 								</tbody>
@@ -738,17 +738,30 @@
 	
 	
 	<script type="text/javascript">
-		
+		function showReservationinfoSumCalcul(){
+			let depositPrice = calculDepositPrice();
+			let foodsPrice = calculfoodPrice();
+			let sumPrice = foodsPrice + depositPrice;
+			document.getElementById('sumPrice').firstChild.nodeValue ="￦" +numberWithCommas(sumPrice);	
+		}	
+		function hideReservationinfoSumCalcul(){
+			let foodsPrice = calculfoodPrice();
+			let sumPrice = foodsPrice;
+			document.getElementById('sumPrice').firstChild.nodeValue ="￦" +numberWithCommas(sumPrice);	
+		}	
+	
+	
 		function common_Person_Cnt(personsCntNumber){
 			console.log('personsCntNumber ::' + personsCntNumber);
 			document.getElementById('persons').value = personsCntNumber;
 			document.getElementById('personCntTd').firstChild.nodeValue = personsCntNumber;
-			
 			let depositPrice = calculDepositPrice();
 			document.getElementById('depositPrice').firstChild.nodeValue = "￦"+numberWithCommas(depositPrice);
-			
-			
-			
+			let foodsPrice = calculfoodPrice();
+
+			//let sumPrice = foodsPrice + depositPrice;
+			//document.getElementById('sumPrice').firstChild.nodeValue ="￦" +numberWithCommas(sumPrice);	
+			showReservationinfoSumCalcul();
 		}
 		
 		function calculDepositPrice(){
@@ -782,18 +795,21 @@
 			//console.log("숨김처리 여부 ::"+ $('#reservation_div_space').is(':visible'));
 			let show_reservation_window = $('#reservation_div_space').is(':visible');	
 			if(show_reservation_window){
+				showReservationinfoSumCalcul();
+				/*
 				let depositPrice = calculDepositPrice();
 				let sumPrice = foodsPrice + depositPrice;
 				document.getElementById('sumPrice').firstChild.nodeValue ="￦" +numberWithCommas(sumPrice);	
+				*/
 			}else{
+				hideReservationinfoSumCalcul();
+				/*
 				let sumPrice = foodsPrice;
 				document.getElementById('sumPrice').firstChild.nodeValue ="￦" +numberWithCommas(sumPrice);	
+				*/
 			}
 			
 		}
-	
-		
-		
 		$(function(){
 			
 			$('td.text-right > div > div.dec.button_inc').text("");
@@ -1007,10 +1023,12 @@
 				console.log("bookState ::" + bookState);
 				if(bookState.toUpperCase()=='RESTAURANT RESERVATION'){
 					//console.log("들어오긴 하니2?");
+					hideReservationinfoSumCalcul();
 					$('#addToCartBtn').show();
 					$('.reservation_info').hide();
 				}else{	
 					console.log("들어오긴 하니3?");
+					showReservationinfoSumCalcul();
 					$('#addToCartBtn').hide();
 					$('.reservation_info').show();
 				}
