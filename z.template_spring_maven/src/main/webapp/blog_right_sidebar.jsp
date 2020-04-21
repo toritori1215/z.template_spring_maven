@@ -61,9 +61,9 @@
 					<div class="box_style_1">
 						<div class="post">
 						<c:forEach var ="blog" items = "${blogList}">
-							<form method="post" action="blog_post_right_sidebar">
+							<form id="blogForm" method="post" action="blog_delete">
 							<input type = "hidden" name="bNo" id="bNo" value="${blog.bNo}">
-							<a href="javascript:blog_post_right_sidebar();"><img src="${pageContext.request.contextPath}/resources/img/blog-3.jpg" alt="Image" class="img-fluid">
+								<a href="blog_post_right_sidebar?bNo=${bNo}"><img src="${pageContext.request.contextPath}/resources/img/blog-3.jpg" alt="Image" class="img-fluid">
 							</a>
 							<div class="post_info clearfix">
 								<div class="post-left">
@@ -87,9 +87,9 @@
 							<p>
 								Ludus albucius adversarium eam eu. Sit eu reque tation aliquip. Quo no dolorum albucius lucilius, hinc eligendi ut sed. Ex nam quot ferri suscipit, mea ne legere alterum repudiandae. Ei pri quaerendum intellegebat, ut vel consequuntur voluptatibus. Et volumus sententiae adversarium duo......
 							</p>
-							<input type="submit" id="blog_post_right_sidebar_submit" class="btn_1" value="Read more"> &nbsp;&nbsp;&nbsp;
+							<input type="button" class="btn_1" value="Read more" onclick="readmore();"> &nbsp;&nbsp;&nbsp;
 							<c:if test="${blog.mNo == sUser.mNo}">
-								<input type="button" id="delete" class="btn_1" value="delete">
+								<input type="submit" id="delete_blog" class="btn_1" value="delete">
 							</c:if>
 							</form>
 						<hr>
@@ -195,14 +195,25 @@
 		<!-- End container -->
 	</main>
 	<!-- End main -->
-
+	
+	<input type="hidden" id="deleteBlogMsg" value="${deleteBlogMsg}">
+	
+	
 	<!-- Footer================================================== -->
 	<jsp:include page="WEB-INF/views/common_footer_2.jsp"/>
 	<!-- End Footer -->
 	
 	<script type="text/javascript">
-		function blog_post_right_sidebar() {
-			$("#blog_post_right_sidebar_submit").trigger("click");
+		$(function() {
+			var deleteMsg = $("#deleteBlogMsg").val();
+			if (deleteMsg != null && deleteMsg != "") {
+				alert(deleteMsg);
+			}
+		});
+		
+		function readmore() {
+			var bNo = $("#bNo").val();
+			location.href = "blog_post_right_sidebar?bNo=" + bNo;
 		}
 	</script>
 	
