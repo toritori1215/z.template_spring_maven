@@ -2,26 +2,46 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.hotel.mapper.CartMapper">
 	
-	<select id="selectByNo" parameterType="java.lang.Integer" resultType="Cart">
+	<select id="selectBymNo" parameterType="java.lang.Integer" resultType="Cart">
 		select c.cNo, c.cProductQty, c.cProductTypePay, c.cCheckinTime, c.cCheckin, 
 			   c.cCheckout, c.cPickupPos, c.cDropoffPos, c.cOrderCnt, c.mNo, c.pNo, p.pName 
 		from cart c inner join product p
 		on c.pNo = p.pNo
 		and c.mNo = #{mNo}
-		order by p.pType, c.cCheckin, c.cCheckinTime, c.cCheckout
+		order by p.pType, p.pName, c.cCheckin, c.cCheckinTime, c.cCheckout
+	</select>
+	
+	<select id="selectByCartNo" parameterType="java.lang.Integer" resultType="Cart">
+		select c.cNo, c.cProductQty, c.cProductTypePay, c.cCheckinTime, c.cCheckin, 
+			   c.cCheckout, c.cPickupPos, c.cDropoffPos, c.cOrderCnt, c.mNo, c.pNo, p.pPrice 
+		from cart c inner join product p
+		on c.pNo = p.pNo
+		and c.cNo = #{cNo}
+	</select>
+	
+	<select id="checkCartProduct" parameterType="Cart" resultType="Cart">
+		select cNo, cProductQty
+		from cart
+		where mNo=#{mNo} and pNo=#{pNo} and cCheckin=#{cCheckin}
 	</select>
 	
 	<insert id="insertCart" parameterType="Cart">
 		insert into cart (cNo, cProductQty, cProductTypePay, cCheckinTime, cCheckin, 
-						  cCheckout, cPickupPos, cDropoffPos, cOrderCnt, mNo, pNo)
+						  cCheckout, cPickupPos, cDropoffPos, cOrderCnt, mNo, pNo) 
 		values (cart_SEQ.nextval, #{cProductQty}, #{cProductTypePay}, #{cCheckinTime, jdbcType=VARCHAR}, 
 				#{cCheckin}, #{cCheckout, jdbcType=VARCHAR}, #{cPickupPos, jdbcType=VARCHAR}, 
 				#{cDropoffPos, jdbcType=VARCHAR}, #{cOrderCnt}, #{mNo}, #{pNo})
 	</insert>
 	
-	<delete id ="deleteCart" parameterType="java.lang.Integer">
+	<delete id="deleteCart" parameterType="java.lang.Integer">
 		delete from cart
 		where cNo=#{cNo}
 	</delete>
+	
+	<update id="updateCart" parameterType="java.util.HashMap">
+		update cart 
+		set cProductQty=#{cProductQty}, cProductTypePay=#{cProductTypePay}, cOrderCnt=#{cOrderCnt} 
+		where cNo=#{cNo}
+	</update>
 	
 </mapper>

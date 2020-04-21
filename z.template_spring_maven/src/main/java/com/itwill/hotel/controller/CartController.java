@@ -3,6 +3,7 @@ package com.itwill.hotel.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -32,7 +33,7 @@ public class CartController {
 		
 		if (member != null) {
 			int mNo = member.getmNo();
-			List<Cart> cartList = cartService.selectByNo(mNo);
+			List<Cart> cartList = cartService.selectBymNo(mNo);
 			model.addAttribute(cartList);
 			return "cart_fixed_sidebar";
 		} else {
@@ -57,13 +58,27 @@ public class CartController {
 		String strDate = new SimpleDateFormat("yyyy/MM/dd").format(date);
 		
 		Cart cart = new Cart(0, newVal_int, newVal_int*pPrice_int, selectTime, strDate, 
-							 null, null, null, newVal_int, mNo, pNo_int);
-		int count = cartService.insertCart(cart);
-		if (count == 1) {
-			List<Cart> cartList = cartService.selectByNo(mNo);
+							 null, null, null, newVal_int, mNo, pNo_int, pPrice_int);
+		Cart cartExist = cartService.checkCartProduct(cart);
+		int success = 0;
+		if (cartExist != null) {
+			int cNo = cartExist.getcNo();
+			int cOldQty = cartExist.getcProductQty();
+			int cNewQty = cOldQty + newVal_int;
+			HashMap parameterMap = new HashMap();
+			parameterMap.put("cNo", cNo);
+			parameterMap.put("cProductQty", cNewQty);
+			parameterMap.put("cProductTypePay", cNewQty*pPrice_int);
+			parameterMap.put("cOrderCnt", cNewQty);
+			success = cartService.updateCart(parameterMap);
+		} else {
+			success = cartService.insertCart(cart);
+		}
+		
+		if (success == 1) {
+			List<Cart> cartList = cartService.selectBymNo(mNo);
 			model.addAttribute("cartList", cartList);
 			return "redirect:/cart_services";
-			// 카트에 갯수 확인하기
 		} else {
 			return "redirect:/common_404";
 		}
@@ -71,17 +86,25 @@ public class CartController {
 	
 	@RequestMapping(value = "/cart_delete")
 	@ResponseBody
-	public int cartDelete (@RequestParam(value="cNo") Integer cNo,
-							  HttpSession session) {
-		/*
-		Member member = (Member) session.getAttribute("sUser");
-		if (member == null) {
-			return 0;
-		} else {
-			return cartService.deleteCart(cNo);
-		}
-		*/
-		return cartService.deleteCart(cNo);
+	public int cartDelete (@RequestParam(value="cNo") String cNo) {
+		return cartService.deleteCart(Integer.parseInt(cNo));
+	}
+	
+	@RequestMapping(value = "/cart_update")
+	@ResponseBody
+	public int cartUpdate (@RequestParam(value="cNo") String cNo, 
+						   @RequestParam(value="cProductQty") String cProductQty) {
+		int cNo_int = Integer.parseInt(cNo);
+		int cProductQty_int = Integer.parseInt(cProductQty);
+		int pPrice = cartService.selectByCartNo(cNo_int).getpPrice();
+		HashMap parameterMap = new HashMap();
+		parameterMap.put("cNo", cNo_int);
+		parameterMap.put("cProductQty", cProductQty_int);
+		parameterMap.put("cProductTypePay", cProductQty_int*pPrice);
+		parameterMap.put("cOrderCnt", cProductQty_int);
+		int count = cartService.updateCart(parameterMap);
+		System.out.println(count);
+		return cProductQty_int*pPrice;
 	}
 	
 	@RequestMapping(value = "/session_check")

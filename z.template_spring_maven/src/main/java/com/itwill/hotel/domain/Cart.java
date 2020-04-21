@@ -13,13 +13,14 @@ public class Cart {
 	private int mNo;
 	private int pNo;
 	private String pName;
+	private int pPrice;
 	
 	public Cart() {
 		
 	}
 	
 	public Cart(int cNo, int cProductQty, int cProductTypePay, String cCheckinTime, String cCheckin, String cCheckout,
-			String cPickupPos, String cDropoffPos, int cOrderCnt, int mNo, int pNo) {
+			String cPickupPos, String cDropoffPos, int cOrderCnt, int mNo, int pNo, int pPrice) {
 		super();
 		this.cNo = cNo;
 		this.cProductQty = cProductQty;
@@ -32,6 +33,7 @@ public class Cart {
 		this.cOrderCnt = cOrderCnt;
 		this.mNo = mNo;
 		this.pNo = pNo;
+		this.pPrice = pPrice;
 	}
 
 	public int getcNo() {
@@ -130,12 +132,20 @@ public class Cart {
 		this.pName = pName;
 	}
 
+	public int getpPrice() {
+		return pPrice;
+	}
+
+	public void setpPrice(int pPrice) {
+		this.pPrice = pPrice;
+	}
+
 	@Override
 	public String toString() {
 		return "Cart [cNo=" + cNo + ", cProductQty=" + cProductQty + ", cProductTypePay=" + cProductTypePay
 				+ ", cCheckinTime=" + cCheckinTime + ", cCheckin=" + cCheckin + ", cCheckout=" + cCheckout
 				+ ", cPickupPos=" + cPickupPos + ", cDropoffPos=" + cDropoffPos + ", cOrderCnt=" + cOrderCnt + ", mNo="
-				+ mNo + ", pNo=" + pNo + "]";
+				+ mNo + ", pNo=" + pNo + ", pName=" + pName + ", pPrice=" + pPrice + "]";
 	}
 	
 }

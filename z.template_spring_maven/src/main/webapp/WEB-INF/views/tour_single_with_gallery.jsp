@@ -1008,7 +1008,8 @@
 		$("#datePicker").change(function () {
 			$("input[name='selectDate']").attr("value", $("#datePicker").val());
 		});
-	
+		
+		/* Qty Update Button */
 		$(".button_inc1").click(function () {
 			var $button = $(this);
 			var oldValue = $button.parent().find("input").val();
@@ -1033,10 +1034,9 @@
 				url:"tour_detail_travellers?",
 				data:"newVal="+newVal,
 				async:true,
-				contentType:"application/x-www-form-urlencoded;charset=utf-8",
 				success:function(d) {
-					$("#travellers_cnt").html(d.cProductQty);
-					$("#total_cost").html("￦ "+d.cProductQty*pPrice/10000+"만");
+					$("#travellers_cnt").html(d);
+					$("#total_cost").html("￦ "+d*pPrice/10000+"만");
 				}
 			});
 		});
@@ -1051,7 +1051,6 @@
 				data:"pNo="+pNo,
 				async:true,
 				success:function(d) {
-					
 				}
 			});
 		});

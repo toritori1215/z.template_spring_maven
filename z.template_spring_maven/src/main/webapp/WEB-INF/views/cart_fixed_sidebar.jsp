@@ -7,6 +7,9 @@
 	<!-- Header================================================== -->
 	<jsp:include page="common_header_6.jsp"/>
 	<!-- End Header -->
+	
+	<!-- CUSTOM CSS -->
+	<link href="${pageContext.request.contextPath}/resources/z.SiliconVillage/css/cart.css" rel="stylesheet">
 
 	<section id="hero_2">
 		<div class="intro_title">
@@ -87,11 +90,13 @@
 									<div class="thumb_cart">
 										<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${cart.pName}1.jpg" alt="Image">
 									</div>
-									<span class="item_cart">${cart.pName}</span>
+									<span class="item_cart"><strong>${cart.pName}<strong></span>
 								</td>
 								<td>
-									<div class="numbers-row">
+									<div class="numbers-row2">
 										<input type="text" value="${cart.cProductQty}" id="quantity_1" class="qty2 form-control" name="quantity_1">
+										<div class="inc button_inc2">+</div>
+										<div class="dec button_inc2">-</div>
 									</div>
 								</td>
 								<td>
@@ -100,8 +105,7 @@
 								<td>
 									<strong>￦${cart.cProductTypePay}</strong>
 								</td>
-								<td class="options">
-									<input class="sUser" type="hidden" value="${sUser}">
+								<td class="options" id="${cart.cProductQty}">
 									<input class="cNo" type="hidden" value="${cart.cNo}">
 									<a class="cartItemDelete" href="#"><i class=" icon-trash"></i></a>
 									<a class="cartItemRefresh" href="#"><i class="icon-ccw-2"></i></a>
@@ -334,39 +338,88 @@
 	</script>
 	
 	<script>
-	/* Cart Delete Item */
-	$(".cartItemDelete").on("click", function (e) {
-		var sUser = $(this).prev().prev().attr("value");
-		var cNo = $(this).prev().attr("value");
-		
-		if (sUser != null) {
-			$(this).parent().parent().fadeOut("slow", function (c) {
-				$.ajax({
-					url : "cart_delete",
-					data : "cNo="+cNo,
-					method : "POST",
-					dataType : "json",
-					success : function() {
-					}
-				});
-			});
+	/* Qty Update Button */
+	$(".button_inc2").click(function () {
+		var $button = $(this);
+		var oldValue = $button.parent().find("input").val();
+
+		if ($button.text() == "+") {
+			var newVal = parseFloat(oldValue) + 1;
 		} else {
-			
+			// Don't allow decrementing below one
+			if (oldValue > 2) {
+				var newVal = parseFloat(oldValue) - 1;
+			} else {
+				newVal = 1;
+			}
 		}
+		$button.parent().find("input").val(newVal);
 	});
 	
-	$(".cartItemRefresh").on("click", function (e) {
-		$(this).parent().parent().fadeOut("slow", function (c) {
-			$.ajax({
-				url : "cart_update",
-				data : "cNo="+cNo,
-				method : "POST",
-				dataType : "json",
-				success : function() {
+	
+	/* Cart Delete Item */
+	$(".cartItemDelete").on("click", function (e) {
+		var $button = $(this);
+		// var sUser = $(this).prev().prev().prev().attr("value");
+		var cNo = $(this).prev().attr("value");
+		
+		$.ajax({
+			url: "session_check",
+			dataType: "json",
+			success: function(d) {
+				if (d != null) {
+					$button.parent().parent().fadeOut("slow", function (c) {
+						$.ajax({
+							url : "cart_delete",
+							data : "cNo="+cNo,
+							method : "POST",
+							dataType : "json",
+							success : function() {
+							}
+						});
+					});
+					
+				} else {
+					//alert("Your session has expired. Please sign in again.");
 				}
-			});
+			}
 		});
+		e.preventDefault();
 	});
+	
+	
+	/* Cart Refresh Item */
+	$(".cartItemRefresh").on("click", function (e) {
+		var $button = $(this);
+		var cNo = $(this).prev().prev().attr("value");
+		var newQty = $button.parent().prev().prev().prev().children(':first').children(':first').val();
+		
+		$.ajax({
+			url: "session_check",
+			dataType: "json",
+			success: function(d) {
+				if (d != null) {
+					$.ajax({
+						url : "cart_update",
+						data : "cNo="+cNo+"&cProductQty="+newQty,
+						method : "POST",
+						dataType : "json",
+						success : function(p) {
+							$button.parent().prev().html("<strong>￦"+p+"</strong>");
+						}
+					});
+				} else {
+					//alert("Your session has expired. Please sign in again.");
+				}
+			}
+		});
+		e.preventDefault();
+	});
+	/*
+	<td>
+		<strong>￦${cart.cProductTypePay}</strong>
+	</td>
+	*/
 	</script>
 	
 </body>

@@ -1,5 +1,6 @@
 package com.itwill.hotel.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,18 @@ public class CartServiceImpl implements CartService {
 	private CartDao cartDao;
 	
 	@Override
-	public List<Cart> selectByNo(Integer mNo) {
-		return cartDao.selectByNo(mNo);
+	public List<Cart> selectBymNo(Integer mNo) {
+		return cartDao.selectBymNo(mNo);
+	}
+	
+	@Override
+	public Cart selectByCartNo(Integer cNo) {
+		return cartDao.selectByCartNo(cNo);
+	}
+
+	@Override
+	public Cart checkCartProduct(Cart cart) {
+		return cartDao.checkCartProduct(cart);
 	}
 	
 	@Override
@@ -27,6 +38,11 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public int deleteCart(Integer cNo) {
 		return cartDao.deleteCart(cNo);
+	}
+
+	@Override
+	public int updateCart(HashMap parameterMap) {
+		return cartDao.updateCart(parameterMap);
 	}
 	
 }

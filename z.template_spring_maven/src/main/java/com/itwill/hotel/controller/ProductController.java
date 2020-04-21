@@ -95,10 +95,8 @@ public class ProductController {
 	
 	@RequestMapping(value = "/tour_detail_travellers", produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public Cart tourTravellers(@RequestParam(value="newVal") String newVal) {
-		int newVal_int = Integer.parseInt(newVal);
-		Cart cart = new Cart(0, newVal_int, 0, null, null, null, null, null, 0, 0, 0);
-		return cart;
+	public int tourTravellers(@RequestParam(value="newVal") String newVal) {
+		return Integer.parseInt(newVal);
 	}
 	
 	@RequestMapping(value = "/tour_grid")
