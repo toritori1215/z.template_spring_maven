@@ -90,7 +90,6 @@
 								<form action="blog_right_sidebar">
 									<c:if test="${blogView.mNo == sUser.mNo}">
 									<input type="submit" id="update_blog_post" class="btn_1" value="Update">
-									<input type="button" id="insert_blog_post" class="btn_1" value="Insert">
 									<input type="button" id="delete_blog_post" class="btn_1" value="Delete">
 									</c:if>
 								</form>
@@ -149,6 +148,7 @@
 								</c:if>
 								</c:if>
 							</c:forEach>
+							
 							
 						</c:if>
 						</c:forEach>
