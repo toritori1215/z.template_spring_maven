@@ -328,7 +328,6 @@
 					</div>
 					<!--End transfers -->
 
-					
 				</div>
 				<!-- End col lg-9 -->
 			</div>

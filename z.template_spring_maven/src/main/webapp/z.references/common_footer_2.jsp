@@ -315,6 +315,9 @@
 <script src="${pageContext.request.contextPath}/resources/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/revolution_func.js"></script>
 
+<!-- Fixed sidebar -->
+<script src="${pageContext.request.contextPath}/resources/js/theia-sticky-sidebar.js"></script>
+
 <!-- CUSTOM JS -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/js/member.js"></script>
 
