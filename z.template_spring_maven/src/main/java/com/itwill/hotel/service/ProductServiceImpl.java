@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itwill.hotel.domain.Product;
+import com.itwill.hotel.domain.Wishlist;
 import com.itwill.hotel.repository.ProductDao;
 
 @Service
@@ -23,6 +24,11 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Product> selectByType(HashMap parameterMap) {
 		return productDao.selectByType(parameterMap);
+	}
+	
+	@Override
+	public Integer checkWishlist(Wishlist wishlist) {
+		return productDao.checkWishlist(wishlist);
 	}
 	
 	@Override

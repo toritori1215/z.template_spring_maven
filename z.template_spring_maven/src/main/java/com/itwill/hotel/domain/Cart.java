@@ -17,7 +17,7 @@ public class Cart {
 	}
 	
 	public Cart(int mNo, int cProductQty, int cProductTypePay, String cCheckinTime, String cCheckin, String cCheckout,
-			String cPickupPos, String cDropoffPos, int cOrderCnt, int pNo) {
+				String cPickupPos, String cDropoffPos, int cOrderCnt, int pNo) {
 		this.mNo = mNo;
 		this.cProductQty = cProductQty;
 		this.cProductTypePay = cProductTypePay;

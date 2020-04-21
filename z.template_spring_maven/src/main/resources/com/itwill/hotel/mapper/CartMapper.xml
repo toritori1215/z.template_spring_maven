@@ -8,13 +8,15 @@
 		from cart c inner join product p
 		on c.pNo = p.pNo
 		and c.mNo = #{mNo}
-		order by p.pType;
+		order by p.pType
 	</select>
-<!-- 
+	
 	<insert id="insertCart" parameterType="Cart">
-		insert into cart (mNo, cProductQty, cProductTypePay, cCheckInTime, cCheckIn, 
-						  cCheckOut, cPickupPos, cDropoffPos, cOrderCnt, pNo)
-		values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+		insert into cart (mNo, cProductQty, cProductTypePay, cCheckinTime, cCheckin, 
+						  cCheckout, cPickupPos, cDropoffPos, cOrderCnt, pNo)
+		values (#{mNo}, #{cProductQty}, #{cProductTypePay}, #{cCheckinTime, jdbcType=VARCHAR}, 
+				#{cCheckin}, #{cCheckout, jdbcType=VARCHAR}, #{cPickupPos, jdbcType=VARCHAR}, 
+				#{cDropoffPos, jdbcType=VARCHAR}, #{cOrderCnt}, #{pNo})
 	</insert>
- -->
+	
 </mapper>
