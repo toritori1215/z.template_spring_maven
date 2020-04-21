@@ -15,6 +15,10 @@ public interface MemberMapper {
 	
 	public int insertMember(Member member);
 	
+	public int checkTelExist(String mTel);
+	
+	public int checkEmailExist(String mEmail);
+	
 	public int deleteInactiveMember();
 	
 	public int removeMember(String mId);
@@ -27,16 +31,19 @@ public interface MemberMapper {
 	
 	public String getTempPassword();
 	
-	public int checkExist(HashMap hashMap);
+	public int forgetPasswordCheck(HashMap hashMap);
 	
 	public int updateTempPassword(HashMap hashMap);
 	
-	public int checkExist2(HashMap hashMap);
+	public int reactiveAccountCheck(HashMap hashMap);
 	
 	public int reActivateAccount(String mId);
 	
-	public int updateMember(HashMap hashMap);
+	public int ifActive(HashMap hashMap);
 	
 	public int updateEmail(HashMap hashMap);
 
+	public int updateMember(HashMap hashMap);
+	
+	public int updateImg(HashMap hashMap);
 }

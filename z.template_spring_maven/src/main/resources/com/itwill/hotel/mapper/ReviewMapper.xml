@@ -2,19 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.hotel.mapper.ReviewMapper">
 	<select id="selectAll" resultType="Review">
-		select r.rNo, r.rContent, r.rRegdate, r.rReadCount, r.rRate, r.rGroup, r.rStep, r.rDepth, r.mNo, m.mId
+		select r.rNo, r.rFirst, r.rLast, r.rEmail, r.rCleanliness, r.rComfort, r.rPrice, r.rQuality, r.rContent, r.rRegdate, r.pType, r.pNo, m.mId , m.mNo
 		from review r inner join member m 
-		on r.mNo=m.mNo
+		on r.mNo = m.mNo
 	</select>
 	
 	<select id="selectOne" parameterType="_int" resultType="Review">
-		select rNo,rContent,rRegdate,rReadcount,rRate,rGroup,rStep,rDepth
-		from review
-		where rNo=#{rNo} 
+		
+		 
 	</select>
 	<insert id="reviewWrite" parameterType="Review">
-		insert into review (rNo,rContent,rRegdate,rReadcount,rRate,rGroup,rStep,rDepth,mNo,pNo) values
-						(REVIEW_SEQ.nextval,#{rContent},sysdate,0,#{rRate},0,0,0,1,1)
+	<!-- 
+		insert into review (rNo, rFirst, rLast, rEmail, rCleanliness, rComfort, rPrice, rQuality, rContent, rRegdate, pType, pNo, mId, mNo)
+          values(review_SEQ.nextval, '김', '성민', '2222', 1, 1, 1, 1, '김서인이이', sysdate,'호텔', 6, '6',6)
+	 -->
+		insert into review (rNo, rFirst, rLast, rEmail, rCleanliness, rComfort, rPrice, rQuality, rContent, rRegdate, pType, pNo, mId, mNo)
+			values(review_SEQ.nextval, #{rFirst}, #{rLast}, #{rEmail}, #{rCleanliness}, #{rComfort}, #{rPrice}, #{rQuality}, #{rContent}, sysdate, #{pType}, 6, '6', 6)
+		
 	</insert>
 	
 	<delete id="deleteReview" parameterType="_int">
@@ -23,9 +27,7 @@
 	</delete>
 	
 	<update id="updateReview" parameterType="Review">
-	update review
-	set rContent = #{rContent}, rRegdate = sysdate, rRate = #{rRate}
-	where rNo = #{rNo}
+	
 	</update>
 	
 </mapper>

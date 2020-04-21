@@ -27,7 +27,7 @@
 	
 
 	<!-- Header================================================== -->
-	<jsp:include page="z.references/common_header_6.jsp"/>
+	<jsp:include page="WEB-INF/views/common_header_6.jsp"/>
 	<!-- End Header -->
 
 	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/img/bg_blog.jpg" data-natural-width="1400" data-natural-height="470">
@@ -59,12 +59,11 @@
 
 				<div class="col-lg-9">
 					<div class="box_style_1">
-					<c:forEach var ="blog" items = "${blogList}">
-					<input type = "hidden" name="blog_bNo" id="blog_bNo">
-						
-					
 						<div class="post">
-							<a href="blog_post_right_sidebar.html"><img src="${pageContext.request.contextPath}/resources/img/blog-3.jpg" alt="Image" class="img-fluid">
+						<c:forEach var ="blog" items = "${blogList}">
+							<form method="post" action="blog_post_right_sidebar">
+							<input type = "hidden" name="bNo" id="bNo" value="${blog.bNo}">
+							<a href="javascript:blog_post_right_sidebar();"><img src="${pageContext.request.contextPath}/resources/img/blog-3.jpg" alt="Image" class="img-fluid">
 							</a>
 							<div class="post_info clearfix">
 								<div class="post-left">
@@ -81,18 +80,23 @@
 								</div>
 							</div>
 							<h2>${blog.bTitle}</h2>
-							
-							
+							<p>${blog.bContent}</p>
 							<p>
-							${blog.bContent}
+								Ludus albucius adversarium eam eu. Sit eu reque tation aliquip. Quo no dolorum albucius lucilius, hinc eligendi ut sed. Ex nam quot ferri suscipit, mea ne legere alterum repudiandae. Ei pri quaerendum intellegebat, ut vel consequuntur voluptatibus. Et volumus sententiae adversarium duo......
 							</p>
-							<a href="blog_post_right_sidebar.jsp" class="btn_1">Read more</a>
-						</div>
+							<p>
+								Ludus albucius adversarium eam eu. Sit eu reque tation aliquip. Quo no dolorum albucius lucilius, hinc eligendi ut sed. Ex nam quot ferri suscipit, mea ne legere alterum repudiandae. Ei pri quaerendum intellegebat, ut vel consequuntur voluptatibus. Et volumus sententiae adversarium duo......
+							</p>
+							<input type="submit" id="blog_post_right_sidebar_submit" class="btn_1" value="Read more"> &nbsp;&nbsp;&nbsp;
+							<c:if test="${blog.mNo == sUser.mNo}">
+								<input type="button" id="delete" class="btn_1" value="delete">
+							</c:if>
+							</form>
+						<hr>
 						</c:forEach>
-
+						</div>
 						<!-- end post -->
 					</div>
-					<hr>
 
 					<nav aria-label="Page navigation">
 						<ul class="pagination justify-content-center">
@@ -193,9 +197,15 @@
 	<!-- End main -->
 
 	<!-- Footer================================================== -->
-	<jsp:include page="z.references/common_footer_2.jsp"/>
+	<jsp:include page="WEB-INF/views/common_footer_2.jsp"/>
 	<!-- End Footer -->
-
+	
+	<script type="text/javascript">
+		function blog_post_right_sidebar() {
+			$("#blog_post_right_sidebar_submit").trigger("click");
+		}
+	</script>
+	
 </body>
 
 </html>

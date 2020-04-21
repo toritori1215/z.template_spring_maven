@@ -1,24 +1,38 @@
 package com.itwill.hotel.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.itwill.hotel.domain.Member;
+import com.itwill.hotel.domain.Product;
 import com.itwill.hotel.service.MemberService;
+import com.itwill.hotel.service.WishlistService;
 
 @Controller
 public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private WishlistService wishlistService;
 	
 	@RequestMapping(value = "/main")
 	public String mainPage() {
@@ -27,13 +41,17 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/member_mypage")
-	public String mypage(Model model) {
+	public String mypage(Model model, HttpSession session) {
+		Member member = (Member) session.getAttribute("sUser");
+		List<Product> wishlistList = wishlistService.selectWishlist(member.getmNo());
+		session.setAttribute("wishlistList", wishlistList);
 		model.addAttribute("inputMsg", "3");
 		return "member_admin";
 	}
 	
 	@RequestMapping(value = "/member_login_form")
 	public String memberLogin() {
+		memberService.deleteInactiveMember();
 		return "member_login";
 	}
 	
@@ -41,10 +59,10 @@ public class MemberController {
 	public String memberLoginAction(@RequestParam(value = "mId") String mId,
 									@RequestParam(value = "mPassword") String mPassword,
 									@RequestParam(value = "mCheck", defaultValue = "") String mCheck,
-									HttpSession httpSession,
+									HttpSession session,
 									Model model) {
 		memberService.deleteInactiveMember();
-		if (mId == "" || mPassword == "" || mId == null || mPassword == null ) {
+		if (mId.trim().equals("") || mPassword.trim().equals("") || mId == null || mPassword == null ) {
 			model.addAttribute("msg", "빈 칸에 값을 입력하십시오.");
 			return "member_login"; 
 		}
@@ -54,28 +72,32 @@ public class MemberController {
 			return "member_login";
 		} else {
 			Member tempMember = memberService.selectOne(mId);
-			if (mPassword.equals(tempMember.getmPassword())) {
+			if (tempMember.getmTempPassword() != null && 
+				tempMember.getmTempPassword() != "" && 
+				mPassword.equals(tempMember.getmTempPassword())) {
 				if (tempMember.getmIfActive() == 1) {
-					// 로그인
-					memberService.setTempPasswordNull(mId);
-					if (mCheck != null && !mCheck.equals("")) {
-						// 쿠키
-					} else {
-						httpSession.setAttribute("sUser", tempMember);
-					}
-					return "main_page";
+					// password-change로 이동
+					session.setAttribute("sUser", tempMember);
+					model.addAttribute("alertMsg", "임시비밀번호로 등록 하셨습니다.\n 비밀번호 변경 추천드립니다");
+					List<Product> wishlistList = wishlistService.selectWishlist(tempMember.getmNo());
+					session.setAttribute("wishlistList", wishlistList);
+					model.addAttribute("inputMsg", 2);
+					return "member_admin";
 				} else {
 					// 아이디 휴면
 					model.addAttribute("msg", "아이디가 휴면상태입니다");
 					return "member_login";
 				}
-			} else if (tempMember.getmTempPassword() != null && 
-						tempMember.getmTempPassword() != "" && 
-						mPassword.equals(tempMember.getmTempPassword())) {
+			} else if (mPassword.equals(tempMember.getmPassword())) {
 				if (tempMember.getmIfActive() == 1) {
-					// password-change로 이동
-					model.addAttribute("sUser", tempMember);
-					return "member_admin";
+					// 로그인
+					memberService.setTempPasswordNull(mId);
+					if (mCheck != null && !mCheck.trim().equals("")) {
+						// 쿠키
+					} else {
+						session.setAttribute("sUser", tempMember);
+					}
+					return "main_page";
 				} else {
 					// 아이디 휴면
 					model.addAttribute("msg", "아이디가 휴면상태입니다");
@@ -112,25 +134,39 @@ public class MemberController {
 							   @RequestParam(value = "mBirth") String mBirth,
 							   Model model) {
 		memberService.deleteInactiveMember();
-		if (mId == "" || mPassword == "" || mPassword2 == "" || mFirstName == "" || 
-			mLastName == "" || mEmail == "" || mTel == "" || mBirth == "" || 
+		model.addAttribute("mId", mId);
+		model.addAttribute("mFirstName", mFirstName);
+		model.addAttribute("mLastName", mLastName);
+		model.addAttribute("mEmail", mEmail);
+		model.addAttribute("mTel", mTel);
+		model.addAttribute("mBirth", mBirth);
+		if (mId.trim().equals("") || mPassword.trim().equals("") || mPassword2.trim().equals("") || mFirstName.trim().equals("") || 
+			mLastName.trim().equals("") || mEmail.trim().equals("") || mTel.trim().equals("") || mBirth.trim().equals("") || 
 			mId == null || mPassword == null || mPassword2 == null || mFirstName == null || 
 			mLastName == null || mEmail == null || mTel == null || mBirth == null) {
 			model.addAttribute("msg", "빈 칸에 값을 입력하십시오.");
 			return "member_register"; 
-		} else if (mPassword.equals(mPassword2)) {
-			Member member = new Member(0, mId, mFirstName, mLastName, mPassword, mTel, mEmail, Integer.parseInt(mBirth),
-										null, null, null, null, null, null, null, 1);
-			int insertRowCount = memberService.insertMember(member);
-			if (insertRowCount == 1) {
-				return "member_login";
+		}
+		if (mPassword.equals(mPassword2)) {
+			if (memberService.checkIdExist(mId) == 1) {
+				model.addAttribute("msg", "이미 사용중인 아이디 입니다");
+				return "member_register";
+			} else if (memberService.checkTelExist(mTel) == 1) {
+				model.addAttribute("msg", "이미 사용중인 전화번호 입니다");
+				return "member_register";
+			} else if (memberService.checkEmailExist(mEmail) == 1) {
+				model.addAttribute("msg", "이미 사용중인 이메일 입니다");
+				return "member_register";
 			} else {
-				return "common_404";
+				Member member = new Member(0, mId, mFirstName, mLastName, mPassword, mTel, mEmail, Integer.parseInt(mBirth),
+						null, null, null, null, null, null, null, 1);
+				if (memberService.insertMember(member) == 1) {
+					return "member_login";
+				} else {
+					return "common_404";
+				}
 			}
 		} else {
-			Member member = new Member(0, mId, mFirstName, mLastName, mPassword, mTel, mEmail, Integer.parseInt(mBirth),
-										null, null, null, null, null, null, null, 1);
-			model.addAttribute(member);
 			model.addAttribute("msg", "비밀번호와 확인 비밀번호가 일치하지 않습니다");
 			return "member_register";
 		}
@@ -151,8 +187,8 @@ public class MemberController {
 		model.addAttribute("mTel", mTel);
 		model.addAttribute("mEmail", mEmail);
 		model.addAttribute("mBirth", mBirth);
-		if (mId == "" || mFirstName == "" || mLastName == "" || mTel == "" || 
-				mEmail == "" || mBirth == "" || mId == null || mFirstName == null || 
+		if (mId.trim().equals("") || mFirstName.trim().equals("") || mLastName.trim().equals("") || mTel.trim().equals("") || 
+				mEmail.trim().equals("") || mBirth.trim().equals("") || mId == null || mFirstName == null || 
 				mLastName == null || mTel == null || mEmail == null || mBirth == null) {
 			model.addAttribute("msg2", "빈 칸에 값을 입력하십시오");
 			return "member_login";
@@ -164,7 +200,7 @@ public class MemberController {
 		hashMap.put("mTel", mTel);
 		hashMap.put("mEmail", mEmail);
 		hashMap.put("mBirth", mBirth);
-		if (memberService.checkExist(hashMap) == 1) {
+		if (memberService.forgetPasswordCheck(hashMap) == 1) {
 			HashMap hashMap1 = new HashMap();
 			hashMap1.put("mId", mId);
 			hashMap1.put("mTempPassword", memberService.getTempPassword());
@@ -209,8 +245,8 @@ public class MemberController {
 		model.addAttribute("mTel", mTel);
 		model.addAttribute("mEmail", mEmail);
 		model.addAttribute("mBirth", mBirth);
-		if (mId == "" || mPassword == "" || mFirstName == "" || mLastName == "" || mTel == "" || 
-				mEmail == "" || mBirth == "" || mId == null || mPassword == null || mFirstName == null || 
+		if (mId.trim().equals("") || mPassword.trim().equals("") || mFirstName.trim().equals("") || mLastName.trim().equals("") || mTel.trim().equals("") || 
+				mEmail.trim().equals("") || mBirth.trim().equals("") || mId == null || mPassword == null || mFirstName == null || 
 				mLastName == null || mTel == null || mEmail == null || mBirth == null) {
 			model.addAttribute("msg3", "빈 칸에 값을 입력하십시오");
 			return "member_login";
@@ -223,66 +259,153 @@ public class MemberController {
 		hashMap.put("mTel", mTel);
 		hashMap.put("mEmail", mEmail);
 		hashMap.put("mBirth", mBirth);
-		if (memberService.checkExist2(hashMap) == 1) {
-			HashMap hashMap1 = new HashMap();
-			memberService.reActivateAccount(mId);
-			model.addAttribute("msg4", "당신의 계정이 활성화 되었습니다");
-			return "member_login";
+		if (memberService.ifActive(hashMap) == 0) {
+			if (memberService.reactiveAccountCheck(hashMap) == 1) {
+				HashMap hashMap1 = new HashMap();
+				memberService.reActivateAccount(mId);
+				model.addAttribute("msg4", "당신의 계정이 활성화 되었습니다");
+				return "member_login";
+			} else {
+				model.addAttribute("msg3", "입력하신 정보와 일치하는 계정이 없습니다");
+				return "member_login";
+			}
 		} else {
-			model.addAttribute("msg3", "입력하신 정보와 일치하는 계정이 없습니다");
+			model.addAttribute("msg4", "당신의 계정은 이미 활성화 상태입니다");
 			return "member_login";
-		}
-	}
-	
-	@RequestMapping(value = "/member_delete")
-	public String memberDelete(HttpSession session, Model model) {
-		Member member = (Member) session.getAttribute("sUSer");
-		int rowCount = memberService.deleteMember(member.getmId());
-		if (rowCount == 1) {
-			model.addAttribute("deleteMsg", "계정이 삭제되었습니다");
-			session.invalidate();
-			return "main_page";
-		} else {
-			return "common_404";
 		}
 	}
 
 	@RequestMapping(value = "/member_update_password")
-	public String memberUpdatePassword(HttpSession httpSession, 
+	public String memberUpdatePassword(HttpSession session, 
 										@RequestParam(value = "new_password") String new_password, 
 										Model model) {
-		Member member = (Member) httpSession.getAttribute("sUser");
+		Member member = (Member) session.getAttribute("sUser");
 		HashMap hashMap = new HashMap();
 		hashMap.put("mId", member.getmId());
 		hashMap.put("mPassword", new_password);
 		int rowCount = memberService.updatePassword(hashMap);
 		if (rowCount == 1) {
-			model.addAttribute("passwordMsg", "비밀번호 변경 성공했습니다");
+			model.addAttribute("alertMsg", "비밀번호 변경 성공했습니다");
 		} else {
-			model.addAttribute("passwordMsg", "비밀번호 변경 실패했습니다");
+			model.addAttribute("alertMsg", "비밀번호 변경 실패했습니다");
 		}
-		httpSession.setAttribute("sUser", memberService.selectOne(member.getmId()));
+		session.setAttribute("sUser", memberService.selectOne(member.getmId()));
 		model.addAttribute("inputMsg", "2");
 		return "member_admin";
 	}
 	
 	@RequestMapping(value = "/member_update_email")
-	public String memberUpdateEmail(HttpSession httpSession, 
+	public String memberUpdateEmail(HttpSession session, 
 									@RequestParam(value = "new_email") String new_email, 
 									Model model) {
-		Member member = (Member) httpSession.getAttribute("sUser");
+		Member member = (Member) session.getAttribute("sUser");
 		HashMap hashMap = new HashMap();
 		hashMap.put("mEmail", new_email);
 		hashMap.put("mNo", member.getmNo());
 		int rowCount = memberService.updateEmail(hashMap);
 		if (rowCount == 1) {
-			model.addAttribute("emailMsg", "이메일 변경 성공했습니다");
+			model.addAttribute("alertMsg", "이메일 변경 성공했습니다");
 		} else {
-			model.addAttribute("emailMsg", "이메일 변경 실패했습니다");
+			model.addAttribute("alertMsg", "이메일 변경 실패했습니다");
 		}
-		httpSession.setAttribute("sUser", memberService.selectOne(member.getmId()));
+		session.setAttribute("sUser", memberService.selectOne(member.getmId()));
 		model.addAttribute("inputMsg", "2");
 		return "member_admin";
+	}
+	
+	@RequestMapping(value = "/member_delete")
+	public String memberDelete(HttpSession session, 
+								@RequestParam(value = "option_1", defaultValue = "off") String ifSave, 
+								Model model) {
+		Member member = (Member) session.getAttribute("sUser");
+		System.out.println(ifSave);
+		if (ifSave.equals("on")) {
+			int rowCount = memberService.removeMember(member.getmId());
+			if (rowCount == 1) {
+				model.addAttribute("DeleteMsg", "계정 비활성화 성공했습니다.\n" + 
+												"정보는 30일 동안 보존됩니다.\n" + 
+												"30일 안에 계정 활성화 가능합니다.\n" + 
+												"본 계정은 30일 후 자동적으로 삭제 됩니다!");
+				session.invalidate();
+			} else {
+				model.addAttribute("DeleteMsg", "계정 비활성화 실패했습니다");
+			}
+		} else if (ifSave.equals("off")) {
+			int rowCount = memberService.deleteMember(member.getmId());
+			if (rowCount == 1) {
+				model.addAttribute("DeleteMsg", "계정 삭제 성공했습니다");
+				session.invalidate();
+			} else {
+				model.addAttribute("DeleteMsg", "계정 삭제 실패했습니다");
+			}
+		}
+		return "main_page";
+	};
+	
+	@RequestMapping(value = "/member_update")
+	public String updateMember(@RequestParam(value = "first_name") String firstName, 
+								@RequestParam(value = "last_name") String lastName, 
+								@RequestParam(value = "tel") String tel, 
+								@RequestParam(value = "birth") String birth, 
+								@RequestParam(value = "address", defaultValue = "") String address, 
+								@RequestParam(value = "city", defaultValue = "") String city, 
+								@RequestParam(value = "zipcode", defaultValue = "") String zipcode, 
+								@RequestParam(value = "country", defaultValue = "") String country, 
+								HttpSession session,
+								Model model) {
+		if (address.trim().equals("")) {
+			address = null;
+		}
+		if (city.trim().equals("")) {
+			city = null;
+		}
+		if (zipcode.trim().equals("")) {
+			zipcode = null;
+		}
+		if (country.trim().equals("")) {
+			country = null;
+		}
+		Member member = (Member) session.getAttribute("sUser");
+		HashMap hashMap = new HashMap();
+		hashMap.put("mFirstName", firstName);
+		hashMap.put("mLastName", lastName);
+		hashMap.put("mTel", tel);
+		hashMap.put("mBirth", Integer.parseInt(birth));
+		hashMap.put("mAddress", address);
+		hashMap.put("mCity", city);
+		hashMap.put("mZipCode", zipcode);
+		hashMap.put("mCountry", country);
+		hashMap.put("mNo", member.getmNo());
+		int rowCount = memberService.updateMember(hashMap);
+		session.setAttribute("sUser", memberService.selectOne(member.getmId()));
+		if (rowCount == 1) {
+			model.addAttribute("inputMsg", "3");
+			return "member_admin";			
+		} else {
+			return "common_404";
+		}
+	}
+	
+	@RequestMapping(value = "/upload")
+	public void upload(HttpServletResponse response, HttpServletRequest request, 
+						@RequestParam("Filedata") MultipartFile Filedata, 
+						HttpSession session, Model model) {
+	   	SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+	   	String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10)) + ".jpg";
+	   	
+		File f = new File("C:\\Users\\STU\\git\\z.template_spring_maven\\z.template_spring_maven\\src\\main\\webapp\\resources\\z.SiliconVillage\\img\\member\\" + newfilename);
+		try { 
+			Filedata.transferTo(f);
+		   	response.getWriter().write(newfilename);
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+		}
+		Member member = (Member) session.getAttribute("sUser");
+		HashMap hashMap = new HashMap();
+		hashMap.put("mImg", newfilename);
+		hashMap.put("mNo", member.getmNo());
+		int rowCount = memberService.updateImg(hashMap);
+		session.setAttribute("sUser", memberService.selectOne(member.getmId()));
 	}
 	
 }

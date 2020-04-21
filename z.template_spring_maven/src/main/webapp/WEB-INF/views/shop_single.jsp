@@ -344,7 +344,7 @@
 						<hr>
 						<div class="widget related-products">
 							<h4>Top Related </h4>
-							<div class="post">
+							<div class="shop-post">
 								<figure class="post-thumb">
 									<a href="#"><img src="${pageContext.request.contextPath}/resources/img/products/thumb-1.jpg" alt="">
 									</a>
@@ -357,7 +357,7 @@
 									$ 15.00
 								</div>
 							</div>
-							<div class="post">
+							<div class="shop-post">
 								<figure class="post-thumb">
 									<a href="#"><img src="${pageContext.request.contextPath}/resources/img/products/thumb-2.jpg" alt="">
 									</a>
@@ -370,7 +370,7 @@
 									$ 15.00
 								</div>
 							</div>
-							<div class="post">
+							<div class="shop-post">
 								<figure class="post-thumb">
 									<a href="#"><img src="${pageContext.request.contextPath}/resources/img/products/thumb-3.jpg" alt="">
 									</a>

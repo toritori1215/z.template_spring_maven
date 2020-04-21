@@ -23,31 +23,44 @@
 	</select>
 	
 	<insert id="insertMember" parameterType="Member">
-		insert into Member (mNo, mId, mFirstName, mLastName, mPassword, mTel, mEmail, mBirth, mImg, 
-		 					mCountry, mCity, mAddress, mZipCode, mIfActive)
-		values (member_SEQ.nextval, #{mId}, #{mFirstName}, #{mLastName}, #{mPassword}, #{mTel}, #{mEmail}, 
-				#{mBirth}, null, null, null, null, null, 1)
+		insert into 
+		Member (mNo, mId, mFirstName, mLastName, mPassword, mTel, mEmail, mBirth, mImg, 
+				mCountry, mCity, mAddress, mZipCode, mTempPassword, mRemoveDate, mIfActive)
+		values (member_SEQ.nextval, #{mId}, #{mFirstName}, #{mLastName}, #{mPassword}, #{mTel}, 
+				#{mEmail}, #{mBirth}, null, null, null, null, null, null, null, 1)
 	</insert>
+	
+	<select id="checkTelExist" parameterType="string" resultType="_int">
+		select count(mNo) 
+		from member 
+		where mTel=#{mTel}
+	</select>
+	
+	<select id="checkEmailExist" parameterType="string" resultType="_int">
+		select count(mNo) 
+		from member 
+		where mEmail=#{mEmail}
+	</select>
 	
 	<delete id="deleteInactiveMember">
 		delete from member
 		where sysdate - mRemoveDate > 1
 	</delete>
 	
-	<update id="removeMember">
+	<update id="removeMember" parameterType="string">
 		update member 
 		set mIfActive=0, mRemoveDate=sysdate 
-		where mNo=#{mNo}
+		where mId=#{mId}
 	</update>
 	
-	<delete id="deleteMember">
+	<delete id="deleteMember" parameterType="string">
 		delete from member 
 		where mId=#{mId}
 	</delete>
 	
 	<update id="setTempPasswordNull" parameterType="string">
 		update member
-		set mTempPassword=#{mTempPassword} 
+		set mTempPassword=null 
 		where mId=#{mId}
 	</update>
 	
@@ -62,7 +75,7 @@
 		FROM DUAL
 	</select>
 	
-	<select id="checkExist" parameterType="string" resultType="_int">
+	<select id="forgetPasswordCheck" parameterType="java.util.HashMap" resultType="_int">
 		select count(mNo) 
 		from member 
 		where mId=#{mId} and mFirstName=#{mFirstName} and mLastName=#{mLastName} 
@@ -75,8 +88,15 @@
 		where mId=#{mId}
 	</update>
 	
-	<select id="checkExist2" parameterType="string" resultType="_int">
+	<select id="reactiveAccountCheck" parameterType="java.util.HashMap" resultType="_int">
 		select count(mNo) 
+		from member 
+		where mId=#{mId} and mPassword=#{mPassword} and mFirstName=#{mFirstName} and 
+			  mLastName=#{mLastName} and mTel=#{mTel} and mEmail=#{mEmail} and mBirth=#{mBirth}
+	</select>
+	
+	<select id="ifActive" parameterType="java.util.HashMap" resultType="_int">
+		select mIfActive
 		from member 
 		where mId=#{mId} and mPassword=#{mPassword} and mFirstName=#{mFirstName} and 
 			  mLastName=#{mLastName} and mTel=#{mTel} and mEmail=#{mEmail} and mBirth=#{mBirth}
@@ -94,4 +114,16 @@
 		where mNo=#{mNo}
 	</update>
 	
+	<update id="updateMember">
+		update member 
+		set mFirstName=#{mFirstName}, mLastName=#{mLastName}, mTel=#{mTel}, mBirth=#{mBirth}, 
+			mAddress=#{mAddress}, mCity=#{mCity}, mZipCode=#{mZipCode}, mCountry=#{mCountry}
+		where mNo=#{mNo}
+	</update>
+	
+	<update id="updateImg">
+		update member 
+		set mImg=#{mImg} 
+		where mNo=#{mNo}
+	</update>
 </mapper>

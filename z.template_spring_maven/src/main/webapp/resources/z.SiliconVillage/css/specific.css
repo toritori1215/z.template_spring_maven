@@ -1,5 +1,9 @@
 @charset "UTF-8";
-/* CSS Document */
+/****** History ******/
+/* 1.shop.css --> .post --> rename to --> .shop-post */
+
+
+/****** CSS Document ******/
 .tp-caption.NotGeneric-Title, .NotGeneric-Title {
 	color: rgba(255, 255, 255, 1.00);
 	font-size: 70px;

@@ -21,7 +21,7 @@
                            		<div id="insert-member">
 	                                <div class="form-group">
 	                                	<label>Username</label>
-	                                    <input type="text" class="form-control"  placeholder="Username" name="mId" value="${member.mId}">
+	                                    <input type="text" class="form-control"  placeholder="Username" name="mId" value="${mId}">
 	                                	<i class="icon-user-1"></i>
 	                                </div>
 	                                <div class="form-group">
@@ -36,27 +36,27 @@
 	                                </div>
 	                                <div class="form-group">
 	                                	<label>First Name</label>
-	                                    <input type="text" class="form-control"  placeholder="First Name" name="mFirstName" value="${member.mFirstName}">
+	                                    <input type="text" class="form-control"  placeholder="First Name" name="mFirstName" value="${mFirstName}">
 	                                	<i class="icon-doc-text-1"></i>
 	                                </div>
 	                                <div class="form-group">
 	                                	<label>Last Name</label>
-	                                    <input type="text" class="form-control"  placeholder="Last Name" name="mLastName" value="${member.mLastName}">
+	                                    <input type="text" class="form-control"  placeholder="Last Name" name="mLastName" value="${mLastName}">
 		                                <i class="icon-doc-text-inv-1"></i>
 	                                </div>                                
 	                                <div class="form-group">
 	                                	<label>Phone</label>
-	                                    <input type="tel" maxlength="11" class="form-control" placeholder="01023456789" name="mTel" value="${member.mTel}">
+	                                    <input type="tel" maxlength="11" class="form-control" placeholder="01023456789" name="mTel" value="${mTel}">
 	                                	<i class="icon-phone-3"></i>
 	                                </div>
 	                                <div class="form-group">
 	                                	<label>Email</label>
-	                                    <input type="email" class="form-control" placeholder="xxx@gmail.com" name="mEmail" value="${member.mEmail}">
+	                                    <input type="email" class="form-control" placeholder="xxx@gmail.com" name="mEmail" value="${mEmail}">
 	                                	<i class="icon-mail"></i>
 	                                </div>
 	                                <div class="form-group">
 	                                	<label>Birth</label>
-	                                    <input type="text" maxlength="8" class="form-control" placeholder="19940927" name="mBirth" value="${member.mBirth}">
+	                                    <input type="text" maxlength="8" class="form-control" placeholder="19940927" name="mBirth" value="${mBirth}">
 	                                	<i class="icon-calendar-5"></i>
 	                                </div>
 	                                <div id="pass-info" class="clearfix"></div><br>

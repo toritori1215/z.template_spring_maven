@@ -897,7 +897,8 @@
 	margin-bottom:15px;
 }
 
- .post{
+/****** .post --> rename to --> .shop-post ******/
+ .shop-post{
 	position:relative;
 	font-size:14px;
 	color:#cccccc;
@@ -907,43 +908,43 @@
 	margin-bottom:25px;
 }
 
-.sidebar .related-products .post:last-child{
+.sidebar .related-products .shop-post:last-child{
 	margin-bottom:0px;
 }
 
-.sidebar .related-products .post .post-thumb{
+.sidebar .related-products .shop-post .post-thumb{
 	 position:absolute;
 	 left:0px;
 	 top:4px;
 	 width:72px;
 }
 
-.sidebar .related-products .post .post-thumb img{
+.sidebar .related-products .shop-post .post-thumb img{
 	display:block;
 	width:100%;	
 }
 
-.sidebar .related-products .post h5{
+.sidebar .related-products .shop-post h5{
 	font-size:13px;
 	color:#555;
 	margin:0 0 0 0;
 	padding-top:10px;
 }
 
-.sidebar .related-products .post h5 a{
+.sidebar .related-products .shop-post h5 a{
 	color:#555;	
 }
 
-.sidebar .related-products .post a:hover{
+.sidebar .related-products .shop-post a:hover{
 	color:#333;	
 }
 
-.sidebar .related-products .post .price{
+.sidebar .related-products .shop-post .price{
 	font-size:13px;
 	font-weight:500;
 	color:#e04f67;	
 }
-.sidebar .related-products .post .rating{
+.sidebar .related-products .shop-post .rating{
 	font-size:13px;
 	margin-bottom:5px;
 }

@@ -1,7 +1,8 @@
 package com.itwill.hotel.domain;
 
-import java.util.Date;
+import org.apache.ibatis.type.Alias;
 
+@Alias(value = "BlogReview")
 public class BlogReview {
 	private int brNo; 			// 블로그 댓글 번호
 	private String brDate; 		// 블로그 댓글 작성 날짜

@@ -23,37 +23,37 @@ public class WishlistController {
 	
 	@Autowired
 	private WishlistService wishlistService;
-	 
+	
 	@RequestMapping(value = "/wishlist_list")
 	public String wishlistList(HttpSession session, Model model) {
-		Member sUser = (Member) session.getAttribute("sUser");
-		List<Product> wishlistList = wishlistService.selectWishlist(sUser.getmNo());
-		model.addAttribute("wishlistList", wishlistList);
+		Member member = (Member) session.getAttribute("sUser");
+		List<Product> wishlistList = wishlistService.selectWishlist(member.getmNo());
+		session.setAttribute("wishlistList", wishlistList);
 		model.addAttribute("inputMsg", "1");
 		return "member_admin";
 	}
 	
 	@RequestMapping(value = "/wishlist_insert", method=RequestMethod.POST)
-	public String wishlistInsert(@RequestParam(value="mNo") String mNo,
-								 @RequestParam(value="pNo") String pNo,
-								 Model model) {
-		Integer mNo_int = Integer.parseInt(mNo);
-		Integer pNo_int = Integer.parseInt(pNo);
-		wishlistService.insertWishlist(new Wishlist(mNo_int, pNo_int));
-		List<Product> wishlistList = wishlistService.selectWishlist(mNo_int);
-		model.addAttribute("mNo", mNo);
+	public String wishlistInsert(@RequestParam(value="pNo") String pNo,
+								 Model model, HttpSession session) {
+		Member member = (Member) session.getAttribute("sUser");
+		wishlistService.insertWishlist(new Wishlist(member.getmNo(), Integer.parseInt(pNo)));
+		List<Product> wishlistList = wishlistService.selectWishlist(member.getmNo());
 		model.addAttribute("pNo", pNo);
-		model.addAttribute("wishlistList", wishlistList);
+		session.setAttribute("wishlistList", wishlistList);
 		return "insert";
 	}
 	
 	@RequestMapping(value = "/wishlist_delete")
 	@ResponseBody
-	public String wishlistDelete(@RequestParam(value="mNo") String mNo,
-			 					 @RequestParam(value="pNo") String pNo) {
+	public String wishlistDelete(@RequestParam(value="pNo") String pNo, 
+			 					 HttpSession session) {
+		Member member = (Member) session.getAttribute("sUser");
 		int deleteRowCount = 
-			wishlistService.deleteWishlist(new Wishlist(Integer.parseInt(mNo), Integer.parseInt(pNo)));
+			wishlistService.deleteWishlist(new Wishlist(member.getmNo(), Integer.parseInt(pNo)));
 		if (deleteRowCount == 1) {
+			List<Product> wishlistList = wishlistService.selectWishlist(member.getmNo());
+			session.setAttribute("wishlist", wishlistList);
 			return "true";
 		} else {
 			return "false";

@@ -16,6 +16,7 @@
 						<span class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class=" icon-star-empty"></i></span>
 						<h1>Mariott Hotel</h1>
 						<span>Champ de Mars, 5 Avenue Anatole, 75007 Paris.</span>
+				
 					</div>
 					<div class="col-md-4">
 						<div id="price_single_main" class="hotel">
