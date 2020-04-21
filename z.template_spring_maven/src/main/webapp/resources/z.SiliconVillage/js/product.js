@@ -12,7 +12,7 @@ if ($(this).width() < 991) {
 /* Input range slider */
 $(function () {
 	'use strict';
-	$("#price-range").ionRangeSlider({
+	$('#price-range').ionRangeSlider({
 		hide_min_max: true,
 		keyboard: true,
 		min: 0,
