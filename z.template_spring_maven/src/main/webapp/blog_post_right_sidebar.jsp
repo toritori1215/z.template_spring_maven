@@ -353,7 +353,10 @@
 	<!-- Footer================================================== -->
 	<jsp:include page="z.references/common_footer_2.jsp"/>
 	<!-- End Footer -->
-
+	
+	<script type="text/javascript">
+		
+	</script>
 </body>
 
 </html>
