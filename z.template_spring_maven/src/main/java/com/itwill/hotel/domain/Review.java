@@ -21,20 +21,22 @@ public class Review {
 	private Integer pNo;
 	private Integer mId;
 	private String mNo;
-	private Integer rRate;
+	private Integer rTotal;
 	
-	
-	public Integer getrRate() {
-		return rRate;
+	public Integer getrTotal() {
+		return rTotal;
 	}
 
-	public void setrRate(Integer rRate) {
-		this.rRate = rRate;
+	public void setrTotal(Integer rTotal) {
+		this.rTotal = rTotal;
 	}
+
+	
+	
 
 	public Review(Integer rNo, String rFirst, String rLast, String rEmail, Integer rCleanliness, Integer rComfort,
 			Integer rPrice, Integer rQuality, String rContent, String rRegdate, String pType, Integer pNo, Integer mId,
-			String mNo  ) {
+			String mNo, Integer rTotal) {
 		super();
 		this.rNo = rNo;
 		this.rFirst = rFirst;
@@ -50,7 +52,7 @@ public class Review {
 		this.pNo = pNo;
 		this.mId = mId;
 		this.mNo = mNo;
-		
+		this.rTotal = rTotal;
 	}
 
 	public Review() {
@@ -174,7 +176,7 @@ public class Review {
 		return "Review [rNo=" + rNo + ", rFirst=" + rFirst + ", rLast=" + rLast + ", rEmail=" + rEmail
 				+ ", rCleanliness=" + rCleanliness + ", rComfort=" + rComfort + ", rPrice=" + rPrice + ", rQuality="
 				+ rQuality + ", rContent=" + rContent + ", rRegdate=" + rRegdate + ", pType=" + pType + ", pNo=" + pNo
-				+ ", mId=" + mId + ", mNo=" + mNo + ", rRate=" + rRate + "]";
+				+ ", mId=" + mId + ", mNo=" + mNo+"]";
 	}
 
 	

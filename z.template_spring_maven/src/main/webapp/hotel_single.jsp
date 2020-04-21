@@ -443,54 +443,47 @@
 									alt="Image" class="rounded-circle"> <small> -
 									${review.rRegdate } -</small>
 								<h4>${review.mId}</h4>
-								<p>${review.rContent}, ${total_review}</p>
+								<p>${review.rContent}</p>
 								<input type="hidden" id="total_review" value="${total_review}">
 								
 								<div class="rating">
-								<c:choose>
-									<c:when test="${total_review ge 0 and total_review lt 2}">
+								
+									<c:if test="${review.rTotal eq 1}">
 										<i class="icon-smile voted"></i>
 										<i class="icon-smile"></i>
 										<i class="icon-smile"></i>
 										<i class="icon-smile"></i>
 										<i class="icon-smile"></i>
-									</c:when>
-									<c:when test="${total_review ge 2 and total_review le 4}">
+									</c:if>
+									<c:if test="${review.rTotal eq 2}">
+										<i class="icon-smile voted"></i>
 										<i class="icon-smile voted"></i>
 										<i class="icon-smile"></i>
 										<i class="icon-smile"></i>
 										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-									</c:when>
-									<c:when test="${total_review ge 4 and total_review le 6}">
+									</c:if>
+									<c:if test="${review.rTotal eq 3}">
+										<i class="icon-smile voted"></i>
+										<i class="icon-smile voted"></i>
 										<i class="icon-smile voted"></i>
 										<i class="icon-smile"></i>
 										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-									</c:when>
-									<c:when test="${total_review ge 6 and total_review le 8}">
+									</c:if>
+									<c:if test="${review.rTotal eq 4}">
+										<i class="icon-smile voted"></i>
+										<i class="icon-smile voted"></i>
+										<i class="icon-smile voted"></i>
 										<i class="icon-smile voted"></i>
 										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-									</c:when>
-									<c:when test="${total_review ge 8 and total_review le 10}">
+									</c:if>
+									<c:if test="${review.rTotal eq 5}">
 										<i class="icon-smile voted"></i>
-										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-									</c:when>
-									<c:otherwise>
-										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-									</c:otherwise>
-								</c:choose>							
+										<i class="icon-smile voted"></i>
+										<i class="icon-smile voted"></i>
+										<i class="icon-smile voted"></i>
+										<i class="icon-smile voted"></i>
+									</c:if>
+															
 								<div align="right">
 									<input id="reviweUpdate" type="submit" 
 										value="수정" >&nbsp;
@@ -764,11 +757,7 @@
 
 <!-- Carousel -->
 <script>
-	$(function() {
-		var total_review = $("#total_review").val();
-		alert(total_review);
-		console.log(total_review);
-	})
+	
 
 	$('.carousel-thumbs-2').owlCarousel({
 		loop : false,
@@ -831,7 +820,7 @@
 	});
 	
 	$('#reviewDelete').click(function(){
-		alert($('#review_rNo').val());
+		//alert($('#review_rNo').val());
 		
 		var rNo = $('#review_rNo').val();
 		var params="rNo="+rNo;	
@@ -840,10 +829,10 @@
 			url: "review_delete_action",
 			data: params,
 			success : function() {
-				alert('게시글 삭제 성공 ');
+				alert('게시글 삭제 성공');
 			},
 			error : function(){
-				alert('해당 게시글을 삭제 할 수 없습니다.');
+			alert('해당 게시글을 삭제 할 수 없습니다.');
 			}
 		});
 	});
