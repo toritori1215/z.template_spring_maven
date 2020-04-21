@@ -41,9 +41,9 @@ public class ReviewController {
 		model.addAttribute("hotelreviewList",hotelreviewList);
 		return "forward:hotel_single.jsp";
 	}
-	
+	@ResponseBody
 	@RequestMapping(value = "/review_write", method=RequestMethod.POST)
-	public String write(@RequestParam(value = "rFirst") String rFirst,
+	public Integer write(@RequestParam(value = "rFirst") String rFirst,
 						@RequestParam(value = "rLast") String rLast,
 						@RequestParam(value = "rEmail") String rEmail,
 						@RequestParam(value = "rCleanliness") String rCleanliness,
@@ -58,12 +58,12 @@ public class ReviewController {
 	int var2 = Integer.parseInt(rComfort);
 	int var3 = Integer.parseInt(rPrice);
 	int var4 = Integer.parseInt(rQuality);
-	int reviewWrite = reviewService.createReview(new Review(-9999, rFirst, rLast, rEmail, var1, var2, var3, var4, rContent, null, pType, 1, 1, "toto"));
-	int total_review = (var1+var2+var3+var4);
+	int total_review = (var1+var2+var3+var4) /4;
+	int reviewWrite = reviewService.createReview(new Review(-9999, rFirst, rLast, rEmail, var1, var2, var3, var4, rContent, null, pType, 1, 1, "toto", total_review));
     List<Review> hotelreviewList = reviewService.selectAll();
     System.out.println("########total_review: " + total_review);
     model.addAttribute("total_review", total_review);
-	return "forward:hotel_single.jsp";
+	return total_review;
 	}
 	
 	

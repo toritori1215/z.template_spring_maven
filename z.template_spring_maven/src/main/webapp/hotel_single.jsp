@@ -443,58 +443,53 @@
 									alt="Image" class="rounded-circle"> <small> -
 									${review.rRegdate } -</small>
 								<h4>${review.mId}</h4>
-								<p>${review.rContent}, ${total_review}</p>
+								<p>${review.rContent}</p>
 								<input type="hidden" id="total_review" value="${total_review}">
 								
 								<div class="rating">
-								<c:choose>
-									<c:when test="${total_review ge 0 and total_review lt 2}">
+								
+									<c:if test="${review.rTotal eq 1}">
 										<i class="icon-smile voted"></i>
 										<i class="icon-smile"></i>
 										<i class="icon-smile"></i>
 										<i class="icon-smile"></i>
 										<i class="icon-smile"></i>
-									</c:when>
-									<c:when test="${total_review ge 2 and total_review le 4}">
+									</c:if>
+									<c:if test="${review.rTotal eq 2}">
+										<i class="icon-smile voted"></i>
 										<i class="icon-smile voted"></i>
 										<i class="icon-smile"></i>
 										<i class="icon-smile"></i>
 										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-									</c:when>
-									<c:when test="${total_review ge 4 and total_review le 6}">
+									</c:if>
+									<c:if test="${review.rTotal eq 3}">
+										<i class="icon-smile voted"></i>
+										<i class="icon-smile voted"></i>
 										<i class="icon-smile voted"></i>
 										<i class="icon-smile"></i>
 										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-									</c:when>
-									<c:when test="${total_review ge 6 and total_review le 8}">
+									</c:if>
+									<c:if test="${review.rTotal eq 4}">
+										<i class="icon-smile voted"></i>
+										<i class="icon-smile voted"></i>
+										<i class="icon-smile voted"></i>
 										<i class="icon-smile voted"></i>
 										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-									</c:when>
-									<c:when test="${total_review ge 8 and total_review le 10}">
+									</c:if>
+									<c:if test="${review.rTotal eq 5}">
 										<i class="icon-smile voted"></i>
-										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-									</c:when>
-									<c:otherwise>
-										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-									</c:otherwise>
-								</c:choose>							
+										<i class="icon-smile voted"></i>
+										<i class="icon-smile voted"></i>
+										<i class="icon-smile voted"></i>
+										<i class="icon-smile voted"></i>
+									</c:if>
+															
 								<div align="right">
-									<input id="reviweUpdate" type="submit" 
+									<!--  <input id="reviweUpdate" type="submit" 
 										value="수정" >&nbsp;
-									<input id="reviewDelete" type="submit" 
+										-->
+									<a class="btn btn-outline-warning btn-sm update" data-toggle="modal" data-id="${review.rNo}">수정</a>
+									<input  class="btn btn-outline-danger btn-sm" id="reviewDelete" type="submit" 
 										value="삭제" >&nbsp; 
 								</div>
 
@@ -598,7 +593,7 @@
 			<div class="modal-body">
 				<div id="message-review"></div>
 				<form method="post"
-					action="${pageContext.request.contextPath}/resources/vassets/review_hotel.php"
+					action="review_write"
 					name="review_hotel" id="review_hotel">
 					<input name="hotel_name" id="hotel_name" type="hidden"
 						value="Mariott Hotel Paris">
@@ -711,13 +706,151 @@
 					<!-- End row -->
 					<div class="form-group">
 						<textarea name="rContent" id="rContent" class="form-control"
-								  style="height: 100px" placeholder="Write your review">
-						</textarea>
+								  style="height: 100px" placeholder="Write your review"></textarea>
 					</div>
+					<br>
+					<input type="submit" value="Submit" class="btn_1"
+						   id="submit-review">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End modal review -->
+
+
+<!-- Modal UpdateReview -->
+<div class="modal fade" id="updateReview" tabindex="-1" role="dialog"
+	aria-labelledby="myReviewLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="myReviewLabel">Update your review</h4>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div id="message-review"></div>
+				<form method="post"
+					action="review_update_action"
+					name="review_hotel" id="review_hotel">
+					<input name="hotel_name" id="hotel_name" type="hidden"
+						value="Mariott Hotel Paris">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<input name="name_review" id="name_review" type="text"
+									placeholder="Your name" class="form-control" value="${sUser.mFirstName}" readonly="readonly">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<input name="lastname_review" id="lastname_review" type="text"
+									placeholder="Your last name" class="form-control"  value="${sUser.mLastName}" readonly="readonly">
+							</div>
+						</div>
+					</div>
+
+					<!-- End row -->
+
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<input name="email_review" id="email_review" type="email"
+									placeholder="Your email" class="form-control" value="${sUser.mEmail}" readonly="readonly">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<!--  
+								<input name="pType_review" id="pType_review" type="pType"
+									class="form-control" value="${product.pType}" readonly="readonly">
+								-->
+								<select class="form-control" name="room_type_review"
+									id="room_type_review">
+									<option value="">Select room type</option>
+									<option value="Single room">Single Room</option>
+									<option value="Double Room">Double Room</option>
+									<option value="King double room">King Double Room</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<!-- End row -->
+
+					<hr>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Cleanliness</label> <select class="form-control"
+									name="cleanliness_review" id="cleanliness_review"  >
+									<option value="">Please review</option>
+									<option value="1">Low</option>
+									<option value="2">Sufficient</option>
+									<option value="3">Good</option>
+									<option value="4">Excellent</option>
+									<option value="5">Super</option>
+									<option value="1">I don't know</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Comfort</label> <select class="form-control"
+									name="comfort_review" id="comfort_review">
+									<option value="">Please review</option>
+									<option value="1">Low</option>
+									<option value="2">Sufficient</option>
+									<option value="3">Good</option>
+									<option value="4">Excellent</option>
+									<option value="5">Super</option>
+									<option value="1">I don't know</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<!-- End row -->
+
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Price</label> <select class="form-control"
+									name="price_review" id="price_review">
+									<option value="">Please review</option>
+									<option value="1">Low</option>
+									<option value="2">Sufficient</option>
+									<option value="3">Good</option>
+									<option value="4">Excellent</option>
+									<option value="5">Super</option>
+									<option value="1">I don't know</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Quality</label> <select class="form-control"
+									name="quality_review" id="quality_review">
+									<option value="">Please review</option>
+									<option value="1">Low</option>
+									<option value="2">Sufficient</option>
+									<option value="3">Good</option>
+									<option value="4">Excellent</option>
+									<option value="5">Super</option>
+									<option value="1">I don't know</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<!-- End row -->
 					<div class="form-group">
-						<input type="text" id="verify_review" class=" form-control"
-							   placeholder="Are you human? 3 + 1 =">
+						<textarea name="rContent" id="rContent" class="form-control" 
+								style="height: 100px" placeholder="Write your review">${review.rContent}</textarea>
 					</div>
+					<br>
 					<input type="submit" value="Submit" class="btn_1"
 						   id="submit-review">
 				</form>
@@ -764,11 +897,7 @@
 
 <!-- Carousel -->
 <script>
-	$(function() {
-		var total_review = $("#total_review").val();
-		alert(total_review);
-		console.log(total_review);
-	})
+	
 
 	$('.carousel-thumbs-2').owlCarousel({
 		loop : false,
@@ -831,7 +960,7 @@
 	});
 	
 	$('#reviewDelete').click(function(){
-		alert($('#review_rNo').val());
+		//alert($('#review_rNo').val());
 		
 		var rNo = $('#review_rNo').val();
 		var params="rNo="+rNo;	
@@ -840,13 +969,19 @@
 			url: "review_delete_action",
 			data: params,
 			success : function() {
-				alert('게시글 삭제 성공 ');
+				alert('게시글 삭제 성공');
 			},
 			error : function(){
-				alert('해당 게시글을 삭제 할 수 없습니다.');
+			alert('해당 게시글을 삭제 할 수 없습니다.');
 			}
 		});
 	});
+	
+		 $(".update").click(function(){ 
+		     $('#updateReview').modal('show');
+		   });
+		
+	
 	
 </script>
 
