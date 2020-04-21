@@ -58,7 +58,7 @@
 			<div id="map" class="map"></div>
 		</div>
 		<!-- End Map -->
- 
+	 	
 		<div class="container margin_60">
 			<div class="row">
 				<div class="col-lg-8" id="single_tour_desc">
@@ -431,7 +431,7 @@
 					</div>
 				</div>
 				<!--End  single_tour_desc-->
-
+				
 				<aside class="col-lg-4">
 					<p class="d-none d-xl-block d-lg-block d-xl-none">
 						<a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="Hide map" data-text-original="View on map">View on map</a>
@@ -442,7 +442,7 @@
 							<div class="col-sm-6">
 								<div class="form-group">
 									<label><i class="icon-calendar-7"></i> Select a date</label>
-									<input class="date-pick form-control" data-date-format="yyyy/MM/dd" type="text" name="date">
+									<input id="datePicker" class="date-pick form-control" data-date-format="yyyy/MM/dd" type="text" name="date">
 								</div>
 							</div>
 							<div class="col-sm-6">
@@ -461,7 +461,6 @@
 										<div class="inc button_inc1">+</div>
 										<div class="dec button_inc1">-</div>
 									</div>
-									<input type="hidden" id="pNo" value="${product.pNo}">
 								</div>
 							</div>
 						</div>
@@ -494,14 +493,36 @@
 								</tr>
 							</tbody>
 						</table>
-						<form id="cart_add" method="post" action="cart_add_action">
-							<input type="hidden" name=cart value="${cart}">
-							<input type="submit" class="btn_full" value="Book now" />
-						</form> 
-						<div id="addWishlistParam" data-pNo="${product.pNo}">
-							<button class="btn_full_outline" type="button" data-toggle="modal" data-target="#addWishlist">
-								<i class=" icon-heart"></i> Add to wishlist
-							</button>
+						<form id="cart_add" name="f" method="post" action="cart_insert">
+							<input type="hidden" name="sUser" value="${sUser}">
+							<input type="hidden" name="newVal" value="1">
+							<input type="hidden" name="pNo" value="${product.pNo}">
+							<input type="hidden" name="pPrice" value="${product.pPrice}">
+							<input type="hidden" name="selectDate" value="">
+							<c:if test="${sUser != null}">
+								<input type="submit" class="btn_full" value="Book now" />
+							</c:if>
+							<c:if test="${sUser == null}">
+								<a class="btn_full" data-toggle="modal" data-target="#signInAlert" href="#">
+									BOOK NOW
+								</a>
+							</c:if>
+						</form>
+						
+						<div id="addWishlistButton">
+							<c:if test="${(sUser != null) && (ifExist == 0)}">
+								<a id="addToWishlist" class="btn_full_outline" data-toggle="modal" data-target="#addWishlist" href="#">
+									<i class=" icon-heart"></i> Add to wishlist
+								</a>
+							</c:if>
+					 		<c:if test="${(sUser != null) && (ifExist == 1)}">
+								<a class='btn_full_outline' disabled><i class='icon-check'></i>&nbsp;Already in Wishlist</a>
+							</c:if>
+							<c:if test="${sUser == null}">
+								<a class="btn_full_outline" data-toggle="modal" data-target="#signInAlert" href="#">
+									<i class=" icon-heart"></i> Add to wishlist
+								</a>
+							</c:if>
 						</div>
 					</div>
 					<!--/box_style_1 -->
@@ -877,17 +898,18 @@
 	<div class="modal fade" id="addWishlist" tabindex="-1" role="dialog" aria-labelledby="addWishlistLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="addWishlistLabel">Successfully Added!</h4>
+				<div class="modal-header" align="center">
+					<h4 class="col-12 modal-title text-center" id="addWishlistLabel">Successfully Added!</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				</div>
 				<div class="modal-body" align="center">
 					<div id="addWishlistBody">
-						<i class="icon-heart-3"></i><br>
-						<a href="wishlist_list" class="btn_1">VIEW WISHLIST</a>
-						<button type="button" class="btn_1 outline" data-dismiss="modal">
-							<i class="icon-cancel-circled2-1"></i>&nbsp;CLOSE
-						</button>
+						<h1 style="font-size:200px"><i class="icon-heart-4"></i></h1><br><hr>
+						<a href="wishlist_list" class="btn_1 white" style="width: 200px">VIEW MY WISHLIST</a>&nbsp;
+						<a href="tour_detail?pNo=${product.pNo}" class="btn_1 white" data-dismiss="modal">CONTINUE SHOPPING</a>
+					<!--  	<button type="button" class="btn_1 white" data-dismiss="modal">
+							CONTINUE SHOPPING
+						</button>-->
 					</div>
 				</div>
 			</div>
@@ -895,6 +917,49 @@
 	</div>
 	<!-- End Modal add wishlist -->
 	
+	<!-- Sign-in alert -->
+	<div class="modal fade" id="signInAlert" tabindex="-1" role="dialog" aria-labelledby="signInAlertLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="col-12 modal-title text-center" id="signInAlertLabel">Almost there!</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<div class="modal-body" align="center">
+					<div class="row">
+						<div class="col-6">
+							<div class="mycontent-left">
+								<br>
+								<a href="member_login_form" class="btn_1 white" style="height: 38px; font-size: 1.2em; border-style:solid">Register</a><br><br><br>
+								<h4>Join our membership</h4><br>
+								Hotel services and facilities are only open to our members.
+					    	</div>
+						</div>
+						<div class="col-6">
+						    <div class="mycontent-right">
+						    	<br>
+								<a href="member_login_form" class="btn_1 white" style="height: 38px; font-size: 1.2em; border-style:solid">Sign in</a><br><br><br>
+						    	<h4>Already a member?</h4><br>
+						    </div>
+						</div>
+					</div>
+				
+				<!-- 
+					<div class="col-6">
+						
+					</div>
+					<div id="addWishlistBody">
+						<i class="icon-heart-3"></i><br>
+						<a href="wishlist_list" class="btn_1">VIEW WISHLIST</a>
+						<button type="button" class="btn_1 outline" data-dismiss="modal">
+							<i class="icon-cancel-circled2-1"></i>&nbsp;CLOSE
+						</button>
+					</div> -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End sign-in alert -->
 	
 	<!-- Footer================================================== -->
 	<jsp:include page="/WEB-INF/views/common_footer_2.jsp"/>
@@ -931,8 +996,15 @@
 	</script>
 	
 	<script>
+		$(function() {
+			$("input[name='selectDate']").attr("value", $("#datePicker").val());
+		});
+	
+		$("#datePicker").change(function () {
+			$("input[name='selectDate']").attr("value", $("#datePicker").val());
+		});
+	
 		$(".button_inc1").click(function () {
-
 			var $button = $(this);
 			var oldValue = $button.parent().find("input").val();
 
@@ -946,40 +1018,35 @@
 					newVal = 0;
 				}
 			}
-			$button.parent().find("input").val(newVal);
 			
-			var pNo = $button.parent().next().attr("value");
+			$button.parent().find("input").val(newVal);
+			$("input[name='newVal']").attr("value", newVal);
+			var pPrice = $("input[name='pPrice']").attr("value");
 			
 			$.ajax({
 				type:"GET",
 				url:"tour_detail_travellers?",
-				data:"newVal="+newVal+"&pNo="+pNo,
+				data:"newVal="+newVal,
 				async:true,
 				contentType:"application/x-www-form-urlencoded;charset=utf-8",
 				success:function(d) {
 					$("#travellers_cnt").html(d.cProductQty);
-					$("#total_cost").html("￦"+d.cProductTypePay/10000+"만");
-					// line 498:  input의 value값을 "cart" 객체로 교체하기 (tour_single_with_gallery.jsp)
-					console.log(d);
-					$("#cart_add").firstChild.attr("value", d)
+					$("#total_cost").html("￦ "+d.cProductQty*pPrice/10000+"만");
 				}
 			});
 		});
 		
-		
-		$(".btn_full_outline").click(function () {
-
+		$("#addToWishlist").click(function (e) {
 			var $button = $(this);
-			var pNo = $button.parent().data("pNo");
+			var pNo = $("input[name='pNo']").attr("value");
 			
 			$.ajax({
 				type:"POST",
 				url:"wishlist_insert?",
-				data:"&pNo="+pNo,
+				data:"pNo="+pNo,
 				async:true,
 				success:function(d) {
-					var new_html = "<button class='btn_full_outline' disabled><i class='icon-ok-circled2-1'>Already in Wishlist</i></button>"
-					$('#addWishlistParam').html(new_html);
+					
 				}
 			});
 		});
