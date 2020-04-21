@@ -3,6 +3,7 @@ package com.itwill.hotel.repository;
 import java.util.HashMap;
 import java.util.List;
 
+import com.itwill.hotel.domain.RestaurantCartDTO;
 import com.itwill.hotel.domain.RestaurantDTO;
 
 public interface RestaurantDao {
@@ -15,4 +16,6 @@ public interface RestaurantDao {
 	public int restCategoryProductDessertCnt(String category);
 	public List<RestaurantDTO> findRestBoardList(String orderBy,String category);
 	public List<HashMap<String,Integer>> foodCategoryList();
+	public List<RestaurantCartDTO> findCartList(Integer mno);
+	public int insertCartInfo(RestaurantCartDTO cart_info);
 }

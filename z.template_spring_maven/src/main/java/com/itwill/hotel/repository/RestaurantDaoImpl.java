@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategy.UpperCamelCaseStrategy;
+import com.itwill.hotel.domain.RestaurantCartDTO;
 import com.itwill.hotel.domain.RestaurantDTO;
 import com.itwill.hotel.mapper.RestaurantMapper;
 
@@ -165,6 +166,22 @@ public class RestaurantDaoImpl implements RestaurantDao{
 		//System.out.println("RestaurantDTO  deposit_cost:"+ deposit_cost);
 		
 		return deposit_cost;
+	}
+
+
+	@Override
+	public List<RestaurantCartDTO> findCartList(Integer mno) {
+		// TODO Auto-generated method stub
+		List<RestaurantCartDTO> restaurantCartList = restMapper.findCartList(mno);
+		return restaurantCartList;
+	}
+
+
+	@Override
+	public int insertCartInfo(RestaurantCartDTO cart_info) {
+		// TODO Auto-generated method stub
+		int cartInsertCnt = restMapper.insertCartInfo(cart_info);
+		return cartInsertCnt;
 	}
 
 	

@@ -6,6 +6,7 @@
 	
 	<!-- Header================================================== -->
 	<jsp:include page="common_header_6.jsp"/>
+	<link href="${pageContext.request.contextPath}/resources/z.SiliconVillage/css/hbkMy.css" rel="stylesheet">
 	<!-- End Header -->
 
 	<section id="hero_2">
@@ -297,50 +298,52 @@
 					
 						<p class="d-none d-xl-block d-lg-block d-xl-none">
 							<a class="btn_map" data-toggle="collapse" href="#reservation_div_space" 
-							   aria-expanded="false" aria-controls="reservation_div_space" id="BookingState"
-							   data-text-swap="No restaurant reservation" data-text-original="Restaurant Reservation">
-							   		Restaurant Reservation
+						   		aria-expanded="false" aria-controls="reservation_div_space" collapseBtn="BookingState"
+						   		data-text-swap="No restaurant reservation" data-text-original="Restaurant Reservation">
+						   			Restaurant Reservation
 							</a>
 						</p>
 					
 						<!-- 예약 div 시작 -->
 						<div class= "collapse" id="reservation_div_space">
 							<div class="box_style_1 expose" id="reservation_div">
-								
-									<h3 class="inner">- Reservation -</h3>
-									<div class="row">
-										<div class="col-sm-6">
-											<div class="form-group">
-												<label><i class="icon-calendar-7"></i> Select a date</label>
-												<input id="datePicker" class="date-pick form-control" data-date-format="M d, D" type="text">
-											</div>
+								<h3 class="inner">- Reservation -</h3>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label><i class="icon-calendar-7"></i> Select a date</label>
+											<input id='datePicker' class="date-pick form-control" data-date-format="M d, D" type="text">
 										</div>
-										<div class="col-sm-6">
-											<div class="form-group">
-												<label><i class=" icon-clock"></i> Time</label>
-												<input id="timePicker" class="time-pick form-control" value="9:00 AM" type="text">
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<label><i class=" icon-clock"></i> Time</label>
+											<input id='timePicker' class="form-control" twelvehour="true" value="9:00 AM" type="text">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-6">
+										<div class="form-group">
+											<label>persons</label>
+										
+											<div class="my-numbers-row">
+												<input type="text" value="1" id="persons" class="qty2 form-control" name="quantity">
+												<div id="person_increaseBtn" class="inc my-button_inc"></div>
+												<div id="person_decreaseBtn" class="dec my-button_inc"></div>
 											</div>
 										</div>
 									</div>
-									<div class="row">
-										<div class="col-6">
-											<div class="form-group">
-												<label>persons</label>
-												<div class="numbers-row">
-													<input type="text" value="1" id="adults" class="qty2 form-control" name="quantity">
-												</div>
+									<!-- 
+									<div class="col-6">
+										<div class="form-group">
+											<label>Children</label>
+											<div class="numbers-row">
+												<input type="text" value="0" id="children" class="qty2 form-control" name="quantity">
 											</div>
 										</div>
-										<!-- 
-										<div class="col-6">
-											<div class="form-group">
-												<label>Children</label>
-												<div class="numbers-row">
-													<input type="text" value="0" id="children" class="qty2 form-control" name="quantity">
-												</div>
-											</div>
-										</div>
-										 -->
+									</div>
+									 -->
 									</div>
 									<hr>
 									Deposit per person<br>
@@ -354,7 +357,8 @@
 									 in full provided that we receive
 									 your credit card or invoice upon
 									 your arrival to our restaurant.)
-									 
+									
+									<hr>
 								
 								<!-- 
 								<a class="btn_full" href="restaurant_payment_fixed_sidebar">BUY NOW</a>
@@ -364,7 +368,7 @@
 						</div>
 						<!-- 예약 div 끝 -->
 						<p class="d-none d-md-block d-block d-lg-none">
-						<a class="btn_map" data-toggle="collapse" href="#reservation_div_space" aria-expanded="false" aria-controls="reservation_div_space" data-text-swap="No restaurant reservation" data-text-original="Restaurant Reservation">Restaurant Reservation</a>
+							<a class="btn_map" data-toggle="collapse" href="#reservation_div_space" collapseBtn="BookingState" aria-expanded="false" aria-controls="reservation_div_space" data-text-swap="No restaurant reservation" data-text-original="Restaurant Reservation">Restaurant Reservation</a>
 						</p>
 						
 						
@@ -372,50 +376,52 @@
 							<h3 class="inner">- Summary -</h3>
 							<table class="table table_summary">
 								<tbody>
-									<tr>
+									
+									<tr id="reservation_tr" class="reservation_info">
 										<td>
-											Adults
+											Reservation Persons
 										</td>
-										<td class="text-right">
-											2
+										<td class="text-right" id="personCntTd">
+											1
+										</td>
+									</tr>
+									<tr class="reservation_info">
+										<td>
+											Deposit cost
+										</td>
+										<td class="text-right" id="depositPrice" price_list='price'>
+											10,000
+											<input type="hidden" id="PeoplePerPrice" value="${deposit_cost.pprice}">
 										</td>
 									</tr>
 									<tr>
 										<td>
-											Children
+											Food Price
 										</td>
-										<td class="text-right">
-											0
-										</td>
-									</tr>
-									<tr>
-										<td>
-											Dedicated tour guide
-										</td>
-										<td class="text-right">
-											$34
-										</td>
-									</tr>
-									<tr>
-										<td>
-											Insurance
-										</td>
-										<td class="text-right">
-											$34
+										<td class="text-right" price_list='price' id="perfoodPriceTd">
+											${restaurantProduct.pprice}
+											<input type="hidden" id="perfoodPrice" value="${restaurantProduct.pprice}">
 										</td>
 									</tr>
 									<tr class="total">
 										<td>
 											Total cost
 										</td>
-										<td class="text-right">
-											$154
+										<td class="text-right" price_list='price' id="sumPrice">
+											${restaurantProduct.pprice}
 										</td>
 									</tr>
 								</tbody>
 							</table>
-							<a class="btn_full" id="go_to_reservation_or_payment" href="restaurant_payment_fixed_sidebar">Check out</a>
-							<a class="btn_full_outline" href="#"><i class="icon-right"></i> Continue shopping</a>
+							<form name="f" id="f">
+								<input type="hidden" name="pno" id="pno" value= "${restaurantProduct.pno}">
+								<input type="hidden" name="foodsPrice" id="foodsPrice" value= "">							
+								<input type="hidden" name="foodCount" id="foodCount" value= "">					
+								<input type="hidden" name="bookingTime" id="bookingTime" value= "">					
+								<input type="hidden" name="bookingdate" id="bookingdate" value= "">						
+							</form>
+							<a class="btn_full" href="restaurant_payment_fixed_sidebar" >BUY NOW</a>
+							<a class="btn_full_outline" href="restaurant_cart_fixed_sidebar" id="addToCartBtn"><i class=" icon-cart"></i> ADD TO CART</a>
 						</div>
 						<div class="box_style_4">
 						<i class="icon_set_1_icon-57"></i>
@@ -450,10 +456,85 @@
 			additionalMarginTop: 80
 		});
 		
+		function numberWithCommas(x) {
+		    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}	
+
+		function showReservationinfoSumCalcul(){
+			/*
+			let depositPrice = calculDepositPrice();
+			let foodsPrice = calculfoodPrice();
+			let sumPrice = foodsPrice + depositPrice;
+			document.getElementById('sumPrice').firstChild.nodeValue ="￦" +numberWithCommas(sumPrice);	
+			*/
+		}
+		
+		function hideReservationinfoSumCalcul(){
+			/*
+			let foodsPrice = calculfoodPrice();
+			let sumPrice = foodsPrice;
+			document.getElementById('sumPrice').firstChild.nodeValue ="￦" +numberWithCommas(sumPrice);	
+			*/
+		}	
 
 		//on load Start
 		$(function(){
 			
+			$('#person_increaseBtn').on('click',function(e){
+				//let foodCnt = document.getElementById('foodCnt').value;
+				let personsCntVal = document.getElementById('persons').value;
+				if(personsCntVal==''){
+					console.log("여긴 들어오니?");
+					personsCntVal='1';
+				}
+				console.log('personsCntVal :: ' + personsCntVal);
+				let personsCntNumber = Number(personsCntVal)+1;
+				
+				common_Person_Cnt(personsCntNumber);
+				
+			});
+			
+			$('#person_decreaseBtn').on('click',function(e){
+				//let foodCnt = document.getElementById('foodCnt').value;
+				let personsCntVal = document.getElementById('persons').value;
+				console.log('personsCntVal :: ' + personsCntVal);
+				let personsCntNumber = Number(personsCntVal)-1;
+				if(personsCntVal=='1'){
+					personsCntNumber =1;
+				}	
+				
+				common_Person_Cnt(personsCntNumber);
+				
+			});
+			
+			function common_Person_Cnt(personsCntNumber){
+				console.log('personsCntNumber ::' + personsCntNumber);
+				document.getElementById('persons').value = personsCntNumber;
+				document.getElementById('personCntTd').firstChild.nodeValue = personsCntNumber;
+				
+			}
+			
+			
+			//가격 원화 표시
+			var abc = document.querySelectorAll( 'td[price_list="price"]');
+			var valueProd;
+			for (var i = 0; i < abc.length; i++) {
+			
+				//abc[i].style.color='green';
+				valueProd = abc[i].firstChild.nodeValue;
+				//console.log("valueProd="+valueProd);
+				let subValue = valueProd.substr(1).trim();
+				//console.log("subValue="+subValue);
+				//console.log("subValue numberWithCommas="+numberWithCommas(subValue));
+				let completeVal = numberWithCommas(subValue);
+				//console.log("valueProd="+valueProd);
+				//console.log("valueProd.firstChild.nodeValue="+valueProd.firstChild.nodeValue);
+				
+				abc[i].firstChild.nodeValue = "￦"+ completeVal;
+			}
+			
+			
+			//화요일 ban
 			$('#datePicker').datepicker({
 				beforeShowDay : function(date) {
 					console.log("date.getDay::"+date.getDay());
@@ -483,60 +564,15 @@
 			
 			$('#timePicker').timepicker({
 			
-				/*
-				this.widget = '';
-		        this.$element = $(element);
-		        this.defaultTime = options.defaultTime;
-		        this.disableFocus = options.disableFocus;
-		        this.disableMousewheel = options.disableMousewheel;
-		        this.isOpen = options.isOpen;
-		        this.minuteStep = options.minuteStep;
-		        this.modalBackdrop = options.modalBackdrop;
-		        this.orientation = options.orientation;
-		        this.secondStep = options.secondStep;
-		        this.showInputs = options.showInputs;
-		        this.showMeridian = options.showMeridian;
-		        this.showSeconds = options.showSeconds;
-		        this.template = options.template;
-		        this.appendWidgetTo = options.appendWidgetTo;
-		        this.showWidgetOnAddonClick = options.showWidgetOnAddonClick;
-		        // 추가한 멤버변수 start
-		        this.day = options.day;
-		        this.weekendstTime = options.weekendstTime;
-		        this.weekendedTime = options.weekendedTime;
-		        this.weekdaystTime = options.weekdaystTime;
-		        this.weekdayedTime = options.weekdayedTime;
-        		// 추가한 멤버변수 end
-				*/	
 				minuteStep: 60,
 				showInpunts: false,
 				weekendstTime : 9,
 				weekendedTime : 1,
 				weekdaystTime : 9,
 				weekdayedTime : 7,
+				day :'Sat',
 				showInpunts: false
 			});
-			
-			/*
-			$('#timePicker').timepicker().on('click', function(e) {
-				let dayStr = document.getElementById('datePicker').value;
-				console.log("day::"+ dayStr);
-				let daycustom = dayStr.substring(dayStr.indexOf(',')+1).trim();
-				console.log('daycustom ::' + daycustom);
-				
-				//timepicker에 Day seting
-				$('#timePicker').timepicker('setDay',daycustom);
-				//console.log("e::"+$(e.target).attr('id'));
-				//console.log('The time is ' + e.time.value);
-			    //console.log('The hour is ' + e.time.hours);
-			    //console.log('The minute is ' + e.time.minutes);
-			    //console.log('The meridian is ' + e.time.meridian);
-					
-			 });
-			*/
-			
-			
-			
 			
 			
 			$('#timePicker').on("click", function(e) {
@@ -573,20 +609,21 @@
 			
 			
 			
-			$('#BookingState').on("click", function(e) {
-				let bookState = document.getElementById("BookingState").firstChild.nodeValue;
-				console.log("bookState ::" + bookState);
-				let chanegCheckoutLink = document.getElementById("go_to_reservation_or_payment");
-				if(bookState.toUpperCase()=='RESTAURANT RESERVATION'){
-					console.log("들어오긴 하니2?");
-					//$('#reservation_div').show();
-					chanegCheckoutLink.setAttribute("href", "restaurant_payment_fixed_sidebar");
-					console.log("chanegCheckoutLink.getAttribute ->"+chanegCheckoutLink.getAttribute('href'));
-				}else{	
-					console.log("들어오긴 하니3?");
-					//$('#reservation_div').hide();
-					chanegCheckoutLink.setAttribute("href", "restaurant_single_restaurant_detail");
-					console.log("chanegCheckoutLink.getAttribute ->"+chanegCheckoutLink.getAttribute('href'));
+			$('a[collapseBtn="BookingState"]').on("click", function(e) {
+				
+				let show_reservation_window = $('#reservation_div_space').is(':visible');
+				console.log('show_reservation_window::'+ show_reservation_window);
+				//보여줄때 false 가나옴.
+				if(show_reservation_window){
+					$('#addToCartBtn').show();
+					$('.reservation_info').hide();
+					console.log("hideReservationinfoSumCalcul");
+					hideReservationinfoSumCalcul();
+				}else{
+					$('#addToCartBtn').hide();
+					$('.reservation_info').show();
+					console.log("showReservationinfoSumCalcul");
+					showReservationinfoSumCalcul();
 				}
 			});
 			

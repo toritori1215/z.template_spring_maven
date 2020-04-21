@@ -3,6 +3,7 @@ package com.itwill.hotel.service;
 import java.util.HashMap;
 import java.util.List;
 
+import com.itwill.hotel.domain.RestaurantCartDTO;
 import com.itwill.hotel.domain.RestaurantDTO;
 import com.itwill.hotel.util.PageInputDto;
 import com.itwill.hotel.util.RestaurantBoardListPageDto;
@@ -18,4 +19,6 @@ public interface RestaurantService {
 	public RestaurantBoardListPageDto calculator_paging(PageInputDto pageInputDto);
 	public List<HashMap<String,Integer>> foodCategoryList();
 	public int foodCategoryDessertCnt();
+	public List<RestaurantCartDTO> findCartList(Integer mno);
+	public int insertCartInfo(RestaurantCartDTO cart_info);
 }

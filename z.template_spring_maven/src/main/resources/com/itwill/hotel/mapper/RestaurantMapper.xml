@@ -179,4 +179,21 @@
 	</select>
 	
 	
+	<select id="findCartList"
+			parameterType="int"
+			resultType="com.itwill.hotel.domain.RestaurantCartDTO">
+			
+			SELECT mno,cproductQty,cproductTypePay,pno
+			FROM cart
+			WHERE mno = #{mno}
+	</select>
+	
+	<insert id="insertCartInfo"
+			parameterType="com.itwill.hotel.domain.RestaurantCartDTO">
+			INSERT INTO CART(CNO,MNO,PNO,CPRODUCTQTY,CPRODUCTTYPEPAY)
+			VALUES(CART_SEQ.nextval,#{mno},#{pno},#{cproductQty},#{cproductTypePay})
+	</insert>
+	
+	
+	
 </mapper>

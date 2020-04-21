@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwill.hotel.controller.interceptors.LoginCheck;
+import com.itwill.hotel.domain.Member;
+import com.itwill.hotel.domain.RestaurantCartDTO;
 import com.itwill.hotel.domain.RestaurantDTO;
 import com.itwill.hotel.exception.WrongRestaurantDataException;
 import com.itwill.hotel.service.RestaurantService;
@@ -115,22 +117,43 @@ public class RestaurantViewResolverController {
 		return "restaurants_all_list";
 	}
 	
+	
 	@LoginCheck
 	@RequestMapping(value="restaurant_cart_fixed_sidebar",method = RequestMethod.POST)//,method = RequestMethod.POST
 	public String restaurant_cart_fixed_sidebar(HttpSession session,
+												Model model,
 												@RequestParam(required =false) Integer pno,
 												@RequestParam(required =false) Integer foodCount,
 												@RequestParam(required = false) Integer foodsPrice) {
 		//카트에 집어넣기위해 필요한정보
 		//mNo 회원번호 , cproductQty(제품별 주문 수량), cProductTypePay(제품별 총가격),제품번호
-		System.out.println("pno -->" + pno);
-		System.out.println("foodCount -->" + foodCount);
-		System.out.println("foodsPrice -->" + foodsPrice);
+		Member user_info = (Member)session.getAttribute("sUser");
 		
+		//System.out.println("pno -->" + pno);
+		//System.out.println("foodCount -->" + foodCount);
+		//System.out.println("foodsPrice -->" + foodsPrice);
 		
 		//pno 가 null일시에는 레스토랑 카트를 품목을 확인하기 위해 장바구니를 클릭한 경우. 세션에 저장된 회원번호에 맞는 카트 리스트 품목을 가져오기만 하면 됨 
-		
 		//pno가 null이 아닐시에는 카트에 제품을 추가한 경우 임으로. pno를 카트 테이블에 삽입하고, 세션에 저장된 회원번호에 맞는 카트리스트 품목들을 가져와야함
+		
+		//1.카트에 저장되어있는 회원의 cart리스트를 먼저 가져온다.
+		//2.pno가 인지 아닌지의 여부 및 list상에 존재하는지의 여부에 따라 동작을 달리한다. 
+		//3.입력 상품번호가 리스트에 존재하면 cartlist에 존재하는 cartDTO의 상품 수량 및 가격을 더한다
+		//4.리스트를 날려보낸다.
+		
+		if(pno!=null){
+			System.out.println("mybatis insert요청");
+			RestaurantCartDTO cart_info = new RestaurantCartDTO(user_info.getmNo(), foodCount, foodsPrice, pno);
+			int insertCartCnt = restService.insertCartInfo(cart_info);
+			System.out.println("cart에 들어간 행 수 :"+insertCartCnt);
+		}
+		
+		List<RestaurantCartDTO> restCartList = restService.findCartList(user_info.getmNo());
+		
+		for (RestaurantCartDTO restaurantCartDTO : restCartList) {
+			
+		}
+		model.addAttribute("restCartList", restCartList);
 		
 		
 		return "restaurant_cart_fixed_sidebar";

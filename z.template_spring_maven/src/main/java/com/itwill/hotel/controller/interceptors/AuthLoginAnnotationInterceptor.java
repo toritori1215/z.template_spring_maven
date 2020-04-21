@@ -31,7 +31,7 @@ public class AuthLoginAnnotationInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		System.out.println("### AuthLoginAnnotationInterceptor.preHandle()메써드");
+		//System.out.println("### AuthLoginAnnotationInterceptor.preHandle()메써드");
 		// 1. handler 종류 확인
 		// 우리가 관심 있는 것은 Controller에 있는 메서드이므로 HandlerMethod 타입인지 체크
 		if (handler instanceof HandlerMethod == false) {

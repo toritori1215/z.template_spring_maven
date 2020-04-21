@@ -751,6 +751,7 @@
 			let sumPrice = foodsPrice + depositPrice;
 			document.getElementById('sumPrice').firstChild.nodeValue ="￦" +numberWithCommas(sumPrice);	
 		}	
+		
 		function hideReservationinfoSumCalcul(){
 			let foodsPrice = calculfoodPrice();
 			let sumPrice = foodsPrice;
@@ -821,8 +822,8 @@
 		
 		$(function(){
 			
-			$('td.text-right > div > div.dec.button_inc').text("");
-			$('td.text-right > div > div.inc.button_inc').text("");
+			//$('td.text-right > div > div.dec.button_inc').text("");
+			//$('td.text-right > div > div.inc.button_inc').text("");
 			$('.reservation_info').hide();
 			//$(".my-numbers-row").append('<div class="inc button_inc"></div><div class="dec button_inc"></div>');
 

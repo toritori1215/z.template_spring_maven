@@ -5,12 +5,15 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.itwill.hotel.domain.RestaurantCartDTO;
 import com.itwill.hotel.domain.RestaurantDTO;
 
 
 
 
 public interface RestaurantMapper {
+	
+	//Product
 	public int registerProduct(RestaurantDTO restDto);
 	public RestaurantDTO get_Restaurant_Product(int pNo);
 	public RestaurantDTO get_Restaurant_Product_name_select(String pname);
@@ -29,6 +32,10 @@ public interface RestaurantMapper {
 	public List<RestaurantDTO> findRestBoardList_Cartegory(String category);
 	public List<RestaurantDTO> findRestBoardList_Cartegory_price_sort(@Param("category")String category,@Param("orderBy") String orderBy);
 	public List<RestaurantDTO> findRestBoardList_Cartegory_prate_sort(@Param("category")String category,@Param("orderBy") String orderBy);
+	
+	//Cart
+	List<RestaurantCartDTO> findCartList(Integer mno);
+	public int insertCartInfo(RestaurantCartDTO cartInsertInfo);
 	
 	
 }
