@@ -90,7 +90,7 @@
 								<form action="blog_right_sidebar">
 									<c:if test="${blogView.mNo == sUser.mNo}">
 									<a href="#" class="btn_1" data-toggle="modal"
-										data-target="#updateBlog">Update</a>
+										data-target="#myReview">Update</a>
 									<input type="button" id="delete_blog_post" class="btn_1" value="Delete">
 									</c:if>
 								</form>
@@ -250,22 +250,22 @@
 		<!-- End container -->
 	</main>
 	<!-- End main -->
-	<!-- Modal Review -->
-<div class="modal fade" id="updateBlog" tabindex="-1" role="dialog"
-	aria-labelledby="updateBlogLavel" aria-hidden="true">
+	<!-- Modal Update -->
+<div class="modal fade" id="myReview" tabindex="-1" role="dialog"
+	aria-labelledby="myReviewLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title" id="updateBlogLavel">Update your Blog</h4>
+				<h4 class="modal-title" id="myReviewLabel">Update your Blog</h4>
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<div id="message-updateBlog"></div>
+				<div id="message-review"></div>
 				<form method="post"
-					action="blog_update"
+					action="review_write"
 					name="review_hotel" id="review_hotel">
 					<input name="hotel_name" id="hotel_name" type="hidden"
 						value="Mariott Hotel Paris">
@@ -327,10 +327,10 @@
 				
 					
 							<div class="form-group">
-								 <select class=""
-									name="" id=""></select>
+								<label>Blog Title</label> <select class="form-control"
+									name="price_review" id="price_review">
+								
 							</div>
-							
 								
 								
 					</div>
