@@ -724,10 +724,10 @@
 
 		</div>
 		<!-- End container -->
+    	<input type="hidden" id="DeleteMsg" value="${DeleteMsg}">
 	</main>
 	<!-- End main -->
     
-    <input type="hidden" id="DeleteMsg" value="${DeleteMsg}">
     
 	<!-- Footer================================================== -->
 	<jsp:include page="common_footer_2.jsp"/>

@@ -490,11 +490,11 @@
 				<!-- End tabs -->
 			</div>
 			<!-- end container -->
+		<input type="hidden" id="inputMsg" value="${inputMsg}">
+		<input type="hidden" id="alertMsg" value="${alertMsg}">
 	</main>
 	<!-- End main -->
 	
-	<input type="hidden" id="inputMsg" value="${inputMsg}">
-	<input type="hidden" id="alertMsg" value="${alertMsg}">
 	
 	<!-- Footer================================================== -->
 	<jsp:include page="common_footer_2.jsp"/>

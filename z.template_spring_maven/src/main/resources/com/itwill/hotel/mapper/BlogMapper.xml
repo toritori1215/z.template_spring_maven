@@ -12,18 +12,13 @@
 	<select id="selectOneBlog" resultType="Blog">
 		select bNo, bTitle, bDate, bContent, bReadCount, bCategory, mNo
 		from blog
-		where bNo=#{bNo} 
+		where bNo=#{bNo}
 	</select>
 	
 	<insert id="insertBlog" parameterType="java.util.HashMap">
 		insert into blog(bNO, bTitle, bDate, bContent, bReadCount, bCategory, mNo) 
-		values (blog_SEQ.nextval, #{bTitle}, #{bDate}, #{bContent}, #{bReadCount}, #{bCategory}, #{mNo})
+		values (blog_SEQ.nextval, #{bTitle}, sysdate, #{bContent}, 0, #{bCategory}, #{mNo})
 	</insert>
-	
-	<delete id="deleteBlog" parameterType="_int">
-		delete from blog
-		where bNo=#{bNo}
-	</delete>
 	
 	<update id="updateBlog" parameterType="java.util.HashMap">
 		update blog
@@ -31,28 +26,43 @@
 		where bNo=#{bNo}
 	</update>
 	
+	<delete id="deleteBlog" parameterType="_int">
+		delete from blog
+		where bNo=#{bNo}
+	</delete>
+	
 	
 	<!-- Blog Review -->
 	<select id="selectBlogReview" parameterType="_int" resultType="BlogReview">
 		select brNo, brDate, brContent, brGroup, brStep, brDepth, mNo, bNo
 		from blog_review
-		where bNo=1
+		where bNo=#{bNo}
 		order by brStep, brDepth, brDate desc
 	</select>
 	
-	<insert id="insertBlogReview" parameterType="java.util.HashMap">
+	<insert id="insertBlogReviewDepth1" parameterType="java.util.HashMap">
 		insert into blog_review(brNo, brDate, brContent, brStep, brGroup, brDepth, mNo)
-		values (blog_review_SEQ.nextval, #{brDate}, #{brContent}, #{brStep}, #{brGroup}, #{brDepth}, #{mNo})
+		values (blog_review_SEQ.nextval, sysdate, #{brContent}, 1, #{brGroup}, 1, #{mNo})
 	</insert>
+	
+	<insert id="insertBlogReviewDepth2" parameterType="java.util.HashMap">
+		insert into blog_review(brNo, brDate, brContent, brStep, brGroup, brDepth, mNo)
+		values (blog_review_SEQ.nextval, sysdate, #{brContent}, #{brStep}, #{brGroup}, 2, #{mNo})
+	</insert>
+	
+	<insert id="insertBlogReviewDepth3" parameterType="java.util.HashMap">
+		insert into blog_review(brNo, brDate, brContent, brStep, brGroup, brDepth, mNo)
+		values (blog_review_SEQ.nextval, sysdate, #{brContent}, #{brStep}, #{brGroup}, 3, #{mNo})
+	</insert>
+	
+	<update id="updateBlogReview" parameterType="java.util.HashMap">
+		update blog_review 
+		set brDate=sysdate, brContent, brStep, brGroup, brDepth, mNo 
+		where brNo=#{brNo}
+	</update>
 	
 	<delete id="deleteBlogReview" parameterType="_int">
 		delete from blog_review
 		where brNo=#{brNo} 
 	</delete>
-	
-	<update id="updateBlogReview" parameterType="java.util.HashMap">
-		update blog_review
-		set brContent=#{brContent}, brDate=sysdate 
-		where brNo=#{brNo}
-	</update>
 </mapper>

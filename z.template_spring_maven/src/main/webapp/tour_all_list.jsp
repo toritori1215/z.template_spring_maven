@@ -371,8 +371,6 @@
 	
 	<script src="${pageContext.request.contextPath}/resources/z.SiliconVillage/js/product.js"></script>
 	
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	
 	<script>
 	var ratings = [];
 	$('input:checkbox').click(function(e) {

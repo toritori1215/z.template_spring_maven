@@ -41,6 +41,12 @@
 		</trim>
 	</select>
 	
+	<select id="checkWishlist" parameterType="Wishlist" resultType="java.lang.Integer">
+		select count(pNo)
+		from wish_list
+		where mNo = #{mNo} and pNo=#{pNo}
+	</select>
+	
 	<select id="countBookedRoomQty"
 			parameterType="java.util.HashMap"
 			resultType="java.lang.Integer">

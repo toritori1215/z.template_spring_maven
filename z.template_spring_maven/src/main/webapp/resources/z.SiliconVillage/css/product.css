@@ -15,7 +15,6 @@ input.qty2 {
 
 
 /* Tour Detail Traveller button */
-
 .numbers-row1 {
 	position: relative;
 	width: 130px;
@@ -36,4 +35,20 @@ input.qty2 {
 	width: 33px;
 	height: 40px;
 	z-index: 9;
+}
+
+
+
+/* Modal Header Close button */
+.modal-header .close {
+  position: fixed;
+  padding: 1rem 1rem;
+  margin: -1rem -1rem -1rem auto;
+}
+
+
+
+/* Modal Sign-in Alert vertical line divider */
+.mycontent-left {
+  border-right: 1px solid #ccc;
 }

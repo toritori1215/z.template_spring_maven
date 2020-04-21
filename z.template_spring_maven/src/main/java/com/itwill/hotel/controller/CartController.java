@@ -1,6 +1,10 @@
 package com.itwill.hotel.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
@@ -20,15 +24,24 @@ public class CartController {
 	@Autowired
 	private CartService cartService;
 	
-	@RequestMapping(value = "/cart_add_action")
-	public String cartAddAction(@RequestParam(value="cart") Cart cart, HttpSession session, Model model) {
-		// line 498: "${cart}가 객체로 넘어왔는지 String으로 넘어왔는지 확인하기 (tour_single_with_gallery.jsp)
-		/*
+	@RequestMapping(value = "/cart_insert")
+	public String cartAddAction(@RequestParam(value="newVal") String newVal,
+								@RequestParam(value="pNo") String pNo,
+								@RequestParam(value="pPrice") String pPrice,
+								@RequestParam(value="selectDate") String selectDate,
+								HttpSession session, Model model) throws ParseException {
+		
 		Member member = (Member) session.getAttribute("sUser");
 		int mNo = member.getmNo();
-		 */
-		cartService.insertCart(cart);
-		int mNo = cart.getmNo();
+		int newVal_int = Integer.parseInt(newVal);
+		int pNo_int = Integer.parseInt(pNo);
+		int pPrice_int = Integer.parseInt(pPrice);
+		Date date = new SimpleDateFormat("yyyy/MMMM/dd", Locale.US).parse(selectDate);
+		String strDate = new SimpleDateFormat("yyyy/MM/dd").format(date);
+		
+		Cart cart = new Cart(mNo, newVal_int, newVal_int*pPrice_int, null, strDate, 
+							 null, null, null, newVal_int, pNo_int);
+		int count = cartService.insertCart(cart);
 		List<Cart> cartList = cartService.selectByNo(mNo);
 		model.addAttribute("cartList", cartList);
 		return "cart_fixed_sidebar"; 
