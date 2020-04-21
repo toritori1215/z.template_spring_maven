@@ -3,8 +3,8 @@
 <mapper namespace="com.itwill.hotel.mapper.CartMapper">
 	
 	<select id="selectByNo" parameterType="java.lang.Integer" resultType="Cart">
-		select c.mNo, c.cProductQty, c.cProductTypePay, c.cCheckinTime, c.cCheckin, 
-			   c.cCheckout, c.cPickupPos, c.cDropoffPos, c.cOrderCnt, c.pNo 
+		select c.cNo, c.cProductQty, c.cProductTypePay, c.cCheckinTime, c.cCheckin, 
+			   c.cCheckout, c.cPickupPos, c.cDropoffPos, c.cOrderCnt, c.mNo, c.pNo 
 		from cart c inner join product p
 		on c.pNo = p.pNo
 		and c.mNo = #{mNo}
@@ -12,11 +12,11 @@
 	</select>
 	
 	<insert id="insertCart" parameterType="Cart">
-		insert into cart (mNo, cProductQty, cProductTypePay, cCheckinTime, cCheckin, 
-						  cCheckout, cPickupPos, cDropoffPos, cOrderCnt, pNo)
-		values (#{mNo}, #{cProductQty}, #{cProductTypePay}, #{cCheckinTime, jdbcType=VARCHAR}, 
+		insert into cart (cNo, cProductQty, cProductTypePay, cCheckinTime, cCheckin, 
+						  cCheckout, cPickupPos, cDropoffPos, cOrderCnt, mNo, pNo)
+		values (cart_SEQ.nextval, #{cProductQty}, #{cProductTypePay}, #{cCheckinTime, jdbcType=VARCHAR}, 
 				#{cCheckin}, #{cCheckout, jdbcType=VARCHAR}, #{cPickupPos, jdbcType=VARCHAR}, 
-				#{cDropoffPos, jdbcType=VARCHAR}, #{cOrderCnt}, #{pNo})
+				#{cDropoffPos, jdbcType=VARCHAR}, #{cOrderCnt}, #{mNo}, #{pNo})
 	</insert>
 	
 </mapper>

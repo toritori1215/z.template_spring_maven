@@ -1,7 +1,7 @@
 package com.itwill.hotel.domain;
 
 public class Cart {
-	private int mNo;
+	private int cNo;
 	private int cProductQty;
 	private int cProductTypePay;
 	private String cCheckinTime;
@@ -10,15 +10,17 @@ public class Cart {
 	private String cPickupPos;
 	private String cDropoffPos;
 	private int cOrderCnt;
+	private int mNo;
 	private int pNo;
 	
 	public Cart() {
 		
 	}
 	
-	public Cart(int mNo, int cProductQty, int cProductTypePay, String cCheckinTime, String cCheckin, String cCheckout,
-				String cPickupPos, String cDropoffPos, int cOrderCnt, int pNo) {
-		this.mNo = mNo;
+	public Cart(int cNo, int cProductQty, int cProductTypePay, String cCheckinTime, String cCheckin, String cCheckout,
+			String cPickupPos, String cDropoffPos, int cOrderCnt, int mNo, int pNo) {
+		super();
+		this.cNo = cNo;
 		this.cProductQty = cProductQty;
 		this.cProductTypePay = cProductTypePay;
 		this.cCheckinTime = cCheckinTime;
@@ -27,15 +29,16 @@ public class Cart {
 		this.cPickupPos = cPickupPos;
 		this.cDropoffPos = cDropoffPos;
 		this.cOrderCnt = cOrderCnt;
+		this.mNo = mNo;
 		this.pNo = pNo;
 	}
 
-	public int getmNo() {
-		return mNo;
+	public int getcNo() {
+		return cNo;
 	}
 
-	public void setmNo(int mNo) {
-		this.mNo = mNo;
+	public void setcNo(int cNo) {
+		this.cNo = cNo;
 	}
 
 	public int getcProductQty() {
@@ -102,6 +105,14 @@ public class Cart {
 		this.cOrderCnt = cOrderCnt;
 	}
 
+	public int getmNo() {
+		return mNo;
+	}
+
+	public void setmNo(int mNo) {
+		this.mNo = mNo;
+	}
+
 	public int getpNo() {
 		return pNo;
 	}
@@ -112,10 +123,10 @@ public class Cart {
 
 	@Override
 	public String toString() {
-		return "Cart [mNo=" + mNo + ", cProductQty=" + cProductQty + ", cProductTypePay=" + cProductTypePay
+		return "Cart [cNo=" + cNo + ", cProductQty=" + cProductQty + ", cProductTypePay=" + cProductTypePay
 				+ ", cCheckinTime=" + cCheckinTime + ", cCheckin=" + cCheckin + ", cCheckout=" + cCheckout
-				+ ", cPickupPos=" + cPickupPos + ", cDropoffPos=" + cDropoffPos + ", cOrderCnt=" + cOrderCnt + ", pNo="
-				+ pNo + "]";
+				+ ", cPickupPos=" + cPickupPos + ", cDropoffPos=" + cDropoffPos + ", cOrderCnt=" + cOrderCnt + ", mNo="
+				+ mNo + ", pNo=" + pNo + "]";
 	}
 	
 }

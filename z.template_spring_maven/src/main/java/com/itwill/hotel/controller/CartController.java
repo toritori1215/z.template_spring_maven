@@ -39,8 +39,8 @@ public class CartController {
 		Date date = new SimpleDateFormat("yyyy/MMMM/dd", Locale.US).parse(selectDate);
 		String strDate = new SimpleDateFormat("yyyy/MM/dd").format(date);
 		
-		Cart cart = new Cart(mNo, newVal_int, newVal_int*pPrice_int, null, strDate, 
-							 null, null, null, newVal_int, pNo_int);
+		Cart cart = new Cart(0, newVal_int, newVal_int*pPrice_int, null, strDate, 
+							 null, null, null, newVal_int, mNo, pNo_int);
 		int count = cartService.insertCart(cart);
 		List<Cart> cartList = cartService.selectByNo(mNo);
 		model.addAttribute("cartList", cartList);
