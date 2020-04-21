@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwill.hotel.domain.Cart;
@@ -23,6 +24,20 @@ public class CartController {
 	
 	@Autowired
 	private CartService cartService;
+	
+	@RequestMapping(value = "/cart_services")
+	public String cartServices(HttpSession session, Model model) {
+		Member member = (Member) session.getAttribute("sUser");
+		
+		if (member != null) {
+			int mNo = member.getmNo();
+			List<Cart> cartList = cartService.selectByNo(mNo);
+			model.addAttribute(cartList);
+			return "cart_fixed_sidebar";
+		} else {
+			return "forward:member_login_form";
+		}
+	}
 	
 	@RequestMapping(value = "/cart_insert")
 	public String cartAddAction(@RequestParam(value="newVal") String newVal,

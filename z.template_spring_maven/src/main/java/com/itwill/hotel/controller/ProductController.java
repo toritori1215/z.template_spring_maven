@@ -58,7 +58,7 @@ public class ProductController {
 		HashMap parameterMap = new HashMap();
 		parameterMap.put("pType", "tour");
 		model.addAttribute("productList", productService.selectByType(parameterMap));
-		return "forward:tour_all_list.jsp";
+		return "tour_all_list";
 	}
 	
 	@RequestMapping(value = "/tour_list_json", produces = "application/json;charset=UTF-8")

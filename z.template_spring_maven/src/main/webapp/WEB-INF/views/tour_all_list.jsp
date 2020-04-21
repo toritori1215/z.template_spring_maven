@@ -3,11 +3,29 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
+	<meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
+	<meta name="author" content="Ansonika">
+	<title>Silicon Village｜Tours</title>
+
+	<!-- Favicons-->
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-57x57-precomposed.png">
+	<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-72x72-precomposed.png">
+	<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-114x114-precomposed.png">
+	<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-144x144-precomposed.png">
+
+    <!-- GOOGLE WEB FONT -->
+    <link href="https://fonts.googleapis.com/css?family=Gochi+Hand|Montserrat:300,400,700" rel="stylesheet">
+	
 	<!-- Header================================================== -->
 	<jsp:include page="common_header_6.jsp"/>
 	<!-- End Header -->
-
+	
 	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/tour.jpg" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
@@ -17,16 +35,14 @@
 		</div>
 	</section>
 	<!-- End section -->
-
 	<main>
 		<div id="position">
 			<div class="container">
 				<ul>
 					<li><a href="main">Home</a>
 					</li>
-					<li><a href="tour_list">Tours</a>
+					<li>Tours</a>
 					</li>
-					<li>Tour List</li>
 				</ul>
 			</div>
 		</div>
@@ -179,11 +195,13 @@
 
 						</div>
 					</div>
+					
+					<div id="helloo">
+					</div>
+					
 					<!--/tools -->
-					
+					<div id="productList">
 					<c:forEach var="product" items="${productList}">
-					
-					<%--
 					<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
 						<div class="row">
 							<div class="col-lg-4 col-md-4">
@@ -193,17 +211,17 @@
 								<div class="img_list">
 									<a href="tour_detail?pNo=${product.pNo}"><img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg" alt="Image">
 										<div class="short_info">
-										<c:choose>
-										    <c:when test="${product.foodCategory eq 'water'}">
-										       	<i class="pe-7s-drop"></i>WATER
-										    </c:when>
-										    <c:when test="${product.foodCategory eq 'ice'}">
-										       	<i class="icon-snow"></i>ICE
-										    </c:when>
-										    <c:otherwise>
-										       	<i class="icon-tree"></i>FIELD
-										    </c:otherwise>
-										</c:choose>
+											<c:choose>
+											    <c:when test="${product.foodCategory eq 'water'}">
+											       	<i class="pe-7s-drop"></i>WATER
+											    </c:when>
+											    <c:when test="${product.foodCategory eq 'ice'}">
+											       	<i class="icon-snow"></i>ICE
+											    </c:when>
+											    <c:otherwise>
+											       	<i class="icon-tree"></i>FIELD
+											    </c:otherwise>
+											</c:choose>
 										</div>
 									</a>
 								</div>
@@ -217,7 +235,7 @@
 									<c:forEach var="index" begin="1" end="${5-Math.round(product.pRate/2)}">
 									<i class="icon-smile"></i>
 									</c:forEach>
-									<small>(${product.rCount})</small>
+									<small>(${product.pRate})</small>
 									</div>
 									<h3><strong>${product.pName}</strong> tour</h3>
 									<p>${product.pDesc}</p>
@@ -289,9 +307,8 @@
 							</div>
 						</div>
 					</div>
-					 --%>
 					</c:forEach>
-					 
+					</div>
 					<!--End strip -->
 
 					<hr>
@@ -353,8 +370,6 @@
 	
 	<script src="${pageContext.request.contextPath}/resources/z.SiliconVillage/js/product.js"></script>
 	
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	
 	<script>
 	var ratings = [];
 	$('input:checkbox').click(function(e) {
@@ -377,13 +392,13 @@
 			async:true,
 			contentType:"application/x-www-form-urlencoded;charset=utf-8",
 			success:function(jsonObject) {
-				console.log(jsonObject);
-				
+				//$('c\\:forEach:first').attr('items', jsonObject);
+				//var jsonHtml = JSON.stringify(data, null, 4);
+				$('#helloo').html($('#productList:first-child'));
+				//$('#helloo').html(jsonObject[0].pNo);
 			}
-		});
+		}); 
 	});
 	</script>
-	
 </body>
-
 </html>
