@@ -40,7 +40,7 @@
 	
 	<delete id="deleteOutdatedCart" parameterType="java.util.HashMap">
 		delete from cart
-		where mNo=#{mNo} and cCheckin - SYSDATE &lt; 1
+		where mNo=#{mNo} and cCheckin - SYSDATE &lt; 0.000000000000000001
 	</delete>
 	
 	<update id="updateCart" parameterType="java.util.HashMap">

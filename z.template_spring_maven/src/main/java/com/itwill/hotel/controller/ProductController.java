@@ -64,20 +64,17 @@ public class ProductController {
 	@RequestMapping(value = "/tour_list_json", produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public List<Product> productList(@RequestParam(value="ratingArray[]") ArrayList<Integer> ratingArray) {
-		
 		HashMap parameterMap = new HashMap();
 		for (int i = 0; i < ratingArray.size(); i++) {
 			Integer rating = ratingArray.get(i);
 			parameterMap.put("pType", "tour");
 			parameterMap.put("pRate"+rating, rating);
 		}
-		
 		return productService.selectByType(parameterMap);
 	}
 	
 	@RequestMapping(value = "/tour_detail")
 	public String tourDetail(@RequestParam(value="pNo") String pNo, HttpSession session, Model model) {
-		
 		Member member = (Member) session.getAttribute("sUser");
 		int ifExist = 0;
 		

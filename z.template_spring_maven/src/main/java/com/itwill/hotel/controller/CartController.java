@@ -34,13 +34,13 @@ public class CartController {
 			int mNo = member.getmNo();
 			HashMap parameterMap = new HashMap();
 			parameterMap.put("mNo", mNo);
-			int count = cartService.deleteOutdatedCart(parameterMap);
-			System.out.println(count);
+			cartService.deleteOutdatedCart(parameterMap);
+			
 			List<Cart> cartList = cartService.selectBymNo(mNo);
 			model.addAttribute(cartList);
 			return "cart_fixed_sidebar";
 		} else {
-			return "forward:member_login_form";
+			return "redirect:/member_login_form";
 		}
 	}
 	
@@ -53,37 +53,38 @@ public class CartController {
 							 HttpSession session, Model model) throws ParseException {
 		
 		Member member = (Member) session.getAttribute("sUser");
-		int mNo = member.getmNo();
-		int newVal_int = Integer.parseInt(newVal);
-		int pNo_int = Integer.parseInt(pNo);
-		int pPrice_int = Integer.parseInt(pPrice);
-		Date date = new SimpleDateFormat("yyyy/MMMM/dd", Locale.US).parse(selectDate);
-		String strDate = new SimpleDateFormat("yyyy/MM/dd").format(date);
 		
-		Cart cart = new Cart(0, newVal_int, newVal_int*pPrice_int, selectTime, strDate, 
-							 null, null, null, newVal_int, mNo, pNo_int, pPrice_int);
-		Cart cartExist = cartService.checkCartProduct(cart);
-		int success = 0;
-		if (cartExist != null) {
-			int cNo = cartExist.getcNo();
-			int cOldQty = cartExist.getcProductQty();
-			int cNewQty = cOldQty + newVal_int;
-			HashMap parameterMap = new HashMap();
-			parameterMap.put("cNo", cNo);
-			parameterMap.put("cProductQty", cNewQty);
-			parameterMap.put("cProductTypePay", cNewQty*pPrice_int);
-			parameterMap.put("cOrderCnt", cNewQty);
-			success = cartService.updateCart(parameterMap);
-		} else {
-			success = cartService.insertCart(cart);
-		}
-		
-		if (success == 1) {
+		if (member != null) {
+			int mNo = member.getmNo();
+			int newVal_int = Integer.parseInt(newVal);
+			int pNo_int = Integer.parseInt(pNo);
+			int pPrice_int = Integer.parseInt(pPrice);
+			Date date = new SimpleDateFormat("yyyy/MMMM/dd", Locale.US).parse(selectDate);
+			String strDate = new SimpleDateFormat("yyyy/MM/dd").format(date);
+			
+			Cart cart = new Cart(0, newVal_int, newVal_int*pPrice_int, selectTime, strDate, 
+								 null, null, null, newVal_int, mNo, pNo_int, pPrice_int);
+			Cart cartExist = cartService.checkCartProduct(cart);
+			
+			if (cartExist != null) {
+				int cNo = cartExist.getcNo();
+				int cOldQty = cartExist.getcProductQty();
+				int cNewQty = cOldQty + newVal_int;
+				HashMap parameterMap = new HashMap();
+				parameterMap.put("cNo", cNo);
+				parameterMap.put("cProductQty", cNewQty);
+				parameterMap.put("cProductTypePay", cNewQty*pPrice_int);
+				parameterMap.put("cOrderCnt", cNewQty);
+				cartService.updateCart(parameterMap);
+			} else {
+				cartService.insertCart(cart);
+			}
+			
 			List<Cart> cartList = cartService.selectBymNo(mNo);
 			model.addAttribute("cartList", cartList);
 			return "redirect:/cart_services";
 		} else {
-			return "redirect:/common_404";
+			return "forward:member_login_form";
 		}
 	}
 	
