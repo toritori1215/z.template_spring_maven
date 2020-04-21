@@ -56,18 +56,15 @@ public class BlogController {
 	
 	
 	@RequestMapping(value = "/blog_delete")
-	public String delete(@RequestParam(value = "bNo") HttpSession httpSession, String bNo, Model model) {
-		Member member = (Member)httpSession.getAttribute("sUser");
+	public String delete(@RequestParam(value = "bNo") String bNo, Model model) {
 		int deleteBlog = blogService.deleteBlog(Integer.parseInt(bNo));
 		if (deleteBlog == 1) {
-			model.addAttribute("deleteMsg","삭제되었습니다.");
-			httpSession.invalidate();
+			model.addAttribute("deleteBlogMsg", "삭제되었습니다.");
+			return "forward:blog_right_sidebar";
 		} else {
-			model.addAttribute("deleteMsg", "삭제 실패하였습니다.");
+			model.addAttribute("deleteBlogMsg", "삭제 실패하였습니다.");
+			return "common_404";
 		}
-		List<Blog> blogList = blogService.selectAllBlog();
-		model.addAttribute("blogList", blogList);
-		return "forward:blog_right_sidebar";
 	}
 	
 	

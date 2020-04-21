@@ -5,7 +5,7 @@
 <html>
 	
 	<!-- Header================================================== -->
-	<jsp:include page="/WEB-INF/views/common_header_6.jsp"/>
+	<jsp:include page="z.references/common_header_6.jsp"/>
 	<!-- End Header -->
 	
 	<!-- CUSTOM CSS -->
@@ -872,7 +872,7 @@
 	<!-- End Modal Tour Guide -->
 	
 	<!-- Footer================================================== -->
-	<jsp:include page="/WEB-INF/views/common_footer_2.jsp"/>
+	<jsp:include page="z.references/common_footer_2.jsp"/>
 	<!-- End Footer -->
 
 	<!-- Date and time pickers -->
