@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itwill.hotel.mapper.JumunMapper">
+	
+	<select id="selectJumun" parameterType="_int" resultType="Jumun">
+		select jNo, jTotPay, jDate, jCardOwner, jEmail, jPhoneNo, jCardNo, 
+				jValidDate, jCardCVC, jStreetAddr, jStreetNMG, jCity, jCountry, 
+				jState, jZipCode, jGuest, jIfCancel, mNo, trunc(jDate-sysdate) as ifUse, 
+                UPPER(to_char(jDate, 'dy', 'NLS_DATE_LANGUAGE=english')) as jDy, 
+                to_char(jDate, 'dd', 'NLS_DATE_LANGUAGE=english') as jDd, 
+                UPPER(to_char(jDate, 'mon', 'NLS_DATE_LANGUAGE=english')) as jMon
+		from jumun
+		where mNo=#{mNo}
+	</select>
+	
+	<insert id="insertJumun" parameterType="Jumun">
+		insert into 
+		jumun (jNo, jTotPay, jDate, jCardOwner, jEmail, jPhoneNo, jCardNo, 
+				jValidDate, jCardCVC, jStreetAddr, jStreetNMG, jCity, jCountry, 
+				jState, jZipCode, jGuest, jIfCancel, mNo
+		values (jumun_SEQ.nextval, #{jTotPay}, sysdate, #{jCardOwner}, #{jEmail}, #{jPhoneNo}, #{jCardNo}, 
+				#{jValidDate}, #{jCardCVC}, #{jStreetAddr}, #{jStreetNMG}, #{jCity}, #{jCountry}, 
+				#{jState}, #{jZipCode}, #{jGuest}, 1, #{mNo})
+	</insert>
+	
+	<update id="cancelJumun" parameterType="java.util.HashMap">
+		update jumun 
+		set jIfCancel=0 
+		where jNo=#{jNo} and mNo=#{mNo}
+	</update>
+	
+</mapper>

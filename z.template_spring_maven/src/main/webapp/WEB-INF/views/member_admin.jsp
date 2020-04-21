@@ -53,16 +53,6 @@
 							<div class="row">
 								<div class="col-lg-2 col-md-3 col-6">
 									<div class="styled-select-filters">
-										<select name="sort_type" id="sort_type">
-											<option value="" selected>Sort by type</option>
-											<option value="tours">Tours</option>
-											<option value="hotels">Hotels</option>
-											<option value="transfers">Transfers</option>
-										</select>
-									</div>
-								</div>
-								<div class="col-lg-2 col-md-3 col-6">
-									<div class="styled-select-filters">
 										<select name="sort_date" id="sort_date">
 											<option value="" selected>Sort by date</option>
 											<option value="oldest">Oldest</option>
@@ -73,118 +63,59 @@
 							</div>
 						</div>
 						<!--/tools -->
-
-						<div class="strip_booking">
-							<div class="row">
-								<div class="col-lg-2 col-md-2">
-									<div class="date">
-										<span class="month">Dec</span>
-										<span class="day"><strong>23</strong>Sat</span>
+						
+						<c:forEach var="jumun" items="${jumunList}">
+							<div class="strip_booking">
+								<div class="row">
+									<div class="col-lg-2 col-md-2">
+										<div class="date">
+											<span class="month">${jumun.jDy}</span>
+											<span class="day"><strong>${jumun.jDd}</strong>${jumun.jMon}</span>
+										</div>
 									</div>
+									<c:choose>
+										<c:when test="${jumun.jIfCancel == 1}">
+											<div class="col-lg-6 col-md-5">
+												<h3 class="hotel_booking">Guest Name: ${jumun.jGuest}<span>Total Price: ${jumun.jTotPay}</span></h3>
+											</div>
+											<div class="col-lg-2 col-md-3">
+												<ul class="info_booking">
+													<li><strong>Booking id</strong>${jumun.jNo}</li>
+													<li><strong>Booked on</strong> ${jumun.jDate}</li>
+												</ul>
+											</div>
+											<div class="col-lg-2 col-md-2">
+												<div class="booking_buttons">
+													<a href="#0" class="btn_2">See Detail</a>
+													<c:if test="${jumun.ifUse != null}">
+														<a href="#0" class="btn_3">Cancel</a>
+													</c:if>
+												</div>
+											</div>
+										</c:when>
+										<c:otherwise>
+											<div class="col-lg-6 col-md-5">
+												<h1 class="hotel_booking" align="center">Canceled</h1>
+											</div>
+											<div class="col-lg-2 col-md-3">
+												<ul class="info_booking">
+													<li><strong>Booking id</strong>${jumun.jNo}</li>
+													<li><strong>Booked on</strong> ${jumun.jDate}</li>
+												</ul>
+											</div>
+											<div class="col-lg-2 col-md-2">
+												<div class="booking_buttons">
+													<a href="#0" class="btn_2">See Detail</a>
+												</div>
+											</div>
+										</c:otherwise>
+									</c:choose>
+									
 								</div>
-								<div class="col-lg-6 col-md-5">
-									<h3 class="hotel_booking">Hotel Mariott Paris<span>2 Adults / 2 Nights</span></h3>
-								</div>
-								<div class="col-lg-2 col-md-3">
-									<ul class="info_booking">
-										<li><strong>Booking id</strong> 23442</li>
-										<li><strong>Booked on</strong> Sat. 23 Dec. 2015</li>
-									</ul>
-								</div>
-								<div class="col-lg-2 col-md-2">
-									<div class="booking_buttons">
-										<a href="#0" class="btn_2">Edit</a>
-										<a href="#0" class="btn_3">Cancel</a>
-									</div>
-								</div>
+								<!-- End row -->
 							</div>
-							<!-- End row -->
-						</div>
-						<!-- End strip booking -->
-
-						<div class="strip_booking">
-							<div class="row">
-								<div class="col-lg-2 col-md-2">
-									<div class="date">
-										<span class="month">Dec</span>
-										<span class="day"><strong>27</strong>Fri</span>
-									</div>
-								</div>
-								<div class="col-lg-6 col-md-5">
-									<h3 class="tours_booking">Louvre Museum<span>2 Adults / 2 Childs</span></h3>
-								</div>
-								<div class="col-lg-2 col-md-3">
-									<ul class="info_booking">
-										<li><strong>Booking id</strong> 23442</li>
-										<li><strong>Booked on</strong> Sat. 20 Dec. 2015</li>
-									</ul>
-								</div>
-								<div class="col-lg-2 col-md-2">
-									<div class="booking_buttons">
-										<a href="#0" class="btn_2">Edit</a>
-										<a href="#0" class="btn_3">Cancel</a>
-									</div>
-								</div>
-							</div>
-							<!-- End row -->
-						</div>
-						<!-- End strip booking -->
-
-						<div class="strip_booking">
-							<div class="row">
-								<div class="col-lg-2 col-md-2">
-									<div class="date">
-										<span class="month">Dec</span>
-										<span class="day"><strong>28</strong>Fri</span>
-									</div>
-								</div>
-								<div class="col-lg-6 col-md-5">
-									<h3 class="tours_booking">Tour Eiffel<span>2 Adults</span></h3>
-								</div>
-								<div class="col-lg-2 col-md-3">
-									<ul class="info_booking">
-										<li><strong>Booking id</strong> 23442</li>
-										<li><strong>Booked on</strong> Sat. 20 Dec. 2015</li>
-									</ul>
-								</div>
-								<div class="col-lg-2 col-md-2">
-									<div class="booking_buttons">
-										<a href="#0" class="btn_2">Edit</a>
-										<a href="#0" class="btn_3">Cancel</a>
-									</div>
-								</div>
-							</div>
-							<!-- End row -->
-						</div>
-						<!-- End strip booking -->
-
-						<div class="strip_booking">
-							<div class="row">
-								<div class="col-lg-2 col-md-2">
-									<div class="date">
-										<span class="month">Dec</span>
-										<span class="day"><strong>30</strong>Fri</span>
-									</div>
-								</div>
-								<div class="col-lg-6 col-md-5">
-									<h3 class="transfers_booking">Orly Airport<span>2 Adults / 2Childs</span></h3>
-								</div>
-								<div class="col-lg-2 col-md-3">
-									<ul class="info_booking">
-										<li><strong>Booking id</strong> 23442</li>
-										<li><strong>Booked on</strong> Sat. 20 Dec. 2015</li>
-									</ul>
-								</div>
-								<div class="col-lg-2 col-md-2">
-									<div class="booking_buttons">
-										<a href="#0" class="btn_2">Edit</a>
-										<a href="#0" class="btn_3">Cancel</a>
-									</div>
-								</div>
-							</div>
-							<!-- End row -->
-						</div>
-						<!-- End strip booking -->
+							<!-- End strip booking -->
+						</c:forEach>
 
 					</section>
 					<!-- End section 1 -->
@@ -381,7 +312,7 @@
 										<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/member/${sUser.mImg}" width="250" height="250" alt="Image" class="img-fluid styled profile_pic">
 									</c:when>
 									<c:otherwise>
-										<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/chaewon2.jpg" width="250" height="250" alt="Image" class="img-fluid styled profile_pic">
+										<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/member/member.jpg" width="250" height="250" alt="Image" class="img-fluid styled profile_pic">
 									</c:otherwise>
 								</c:choose>
 								</p>
