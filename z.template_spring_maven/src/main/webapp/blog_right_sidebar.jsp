@@ -88,9 +88,6 @@
 								Ludus albucius adversarium eam eu. Sit eu reque tation aliquip. Quo no dolorum albucius lucilius, hinc eligendi ut sed. Ex nam quot ferri suscipit, mea ne legere alterum repudiandae. Ei pri quaerendum intellegebat, ut vel consequuntur voluptatibus. Et volumus sententiae adversarium duo......
 							</p>
 							<input type="submit" id="blog_post_right_sidebar_submit" class="btn_1" value="Read more"> &nbsp;&nbsp;&nbsp;
-							<c:if test="${blog.mNo == sUser.mNo}">
-								<input type="button" id="delete" class="btn_1" value="delete">
-							</c:if>
 							</form>
 						<hr>
 						</c:forEach>
