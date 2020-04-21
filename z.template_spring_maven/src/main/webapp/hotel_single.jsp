@@ -485,9 +485,11 @@
 									</c:if>
 															
 								<div align="right">
-									<input id="reviweUpdate" type="submit" 
+									<!--  <input id="reviweUpdate" type="submit" 
 										value="수정" >&nbsp;
-									<input id="reviewDelete" type="submit" 
+										-->
+									<a class="btn btn-outline-warning btn-sm update" data-toggle="modal" data-id="${review.rNo}">수정</a>
+									<input  class="btn btn-outline-danger btn-sm" id="reviewDelete" type="submit" 
 										value="삭제" >&nbsp; 
 								</div>
 
@@ -591,7 +593,7 @@
 			<div class="modal-body">
 				<div id="message-review"></div>
 				<form method="post"
-					action="${pageContext.request.contextPath}/resources/vassets/review_hotel.php"
+					action="review_write"
 					name="review_hotel" id="review_hotel">
 					<input name="hotel_name" id="hotel_name" type="hidden"
 						value="Mariott Hotel Paris">
@@ -704,13 +706,151 @@
 					<!-- End row -->
 					<div class="form-group">
 						<textarea name="rContent" id="rContent" class="form-control"
-								  style="height: 100px" placeholder="Write your review">
-						</textarea>
+								  style="height: 100px" placeholder="Write your review"></textarea>
 					</div>
+					<br>
+					<input type="submit" value="Submit" class="btn_1"
+						   id="submit-review">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End modal review -->
+
+
+<!-- Modal UpdateReview -->
+<div class="modal fade" id="updateReview" tabindex="-1" role="dialog"
+	aria-labelledby="myReviewLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="myReviewLabel">Update your review</h4>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div id="message-review"></div>
+				<form method="post"
+					action="review_update_action"
+					name="review_hotel" id="review_hotel">
+					<input name="hotel_name" id="hotel_name" type="hidden"
+						value="Mariott Hotel Paris">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<input name="name_review" id="name_review" type="text"
+									placeholder="Your name" class="form-control" value="${sUser.mFirstName}" readonly="readonly">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<input name="lastname_review" id="lastname_review" type="text"
+									placeholder="Your last name" class="form-control"  value="${sUser.mLastName}" readonly="readonly">
+							</div>
+						</div>
+					</div>
+
+					<!-- End row -->
+
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<input name="email_review" id="email_review" type="email"
+									placeholder="Your email" class="form-control" value="${sUser.mEmail}" readonly="readonly">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<!--  
+								<input name="pType_review" id="pType_review" type="pType"
+									class="form-control" value="${product.pType}" readonly="readonly">
+								-->
+								<select class="form-control" name="room_type_review"
+									id="room_type_review">
+									<option value="">Select room type</option>
+									<option value="Single room">Single Room</option>
+									<option value="Double Room">Double Room</option>
+									<option value="King double room">King Double Room</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<!-- End row -->
+
+					<hr>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Cleanliness</label> <select class="form-control"
+									name="cleanliness_review" id="cleanliness_review"  >
+									<option value="">Please review</option>
+									<option value="1">Low</option>
+									<option value="2">Sufficient</option>
+									<option value="3">Good</option>
+									<option value="4">Excellent</option>
+									<option value="5">Super</option>
+									<option value="1">I don't know</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Comfort</label> <select class="form-control"
+									name="comfort_review" id="comfort_review">
+									<option value="">Please review</option>
+									<option value="1">Low</option>
+									<option value="2">Sufficient</option>
+									<option value="3">Good</option>
+									<option value="4">Excellent</option>
+									<option value="5">Super</option>
+									<option value="1">I don't know</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<!-- End row -->
+
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Price</label> <select class="form-control"
+									name="price_review" id="price_review">
+									<option value="">Please review</option>
+									<option value="1">Low</option>
+									<option value="2">Sufficient</option>
+									<option value="3">Good</option>
+									<option value="4">Excellent</option>
+									<option value="5">Super</option>
+									<option value="1">I don't know</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Quality</label> <select class="form-control"
+									name="quality_review" id="quality_review">
+									<option value="">Please review</option>
+									<option value="1">Low</option>
+									<option value="2">Sufficient</option>
+									<option value="3">Good</option>
+									<option value="4">Excellent</option>
+									<option value="5">Super</option>
+									<option value="1">I don't know</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<!-- End row -->
 					<div class="form-group">
-						<input type="text" id="verify_review" class=" form-control"
-							   placeholder="Are you human? 3 + 1 =">
+						<textarea name="rContent" id="rContent" class="form-control" 
+								style="height: 100px" placeholder="Write your review">${review.rContent}</textarea>
 					</div>
+					<br>
 					<input type="submit" value="Submit" class="btn_1"
 						   id="submit-review">
 				</form>
@@ -836,6 +976,12 @@
 			}
 		});
 	});
+	
+		 $(".update").click(function(){ 
+		     $('#updateReview').modal('show');
+		   });
+		
+	
 	
 </script>
 
