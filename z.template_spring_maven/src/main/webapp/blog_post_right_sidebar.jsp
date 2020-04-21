@@ -90,7 +90,7 @@
 								<form action="blog_right_sidebar">
 									<c:if test="${blogView.mNo == sUser.mNo}">
 									<a href="#" class="btn_1" data-toggle="modal"
-										data-target="#myReview">Update</a>
+										data-target="#updateBlog">Update</a>
 									<input type="button" id="delete_blog_post" class="btn_1" value="Delete">
 									</c:if>
 								</form>
@@ -251,21 +251,21 @@
 	</main>
 	<!-- End main -->
 	<!-- Modal Review -->
-<div class="modal fade" id="myReview" tabindex="-1" role="dialog"
-	aria-labelledby="myReviewLabel" aria-hidden="true">
+<div class="modal fade" id="updateBlog" tabindex="-1" role="dialog"
+	aria-labelledby="updateBlogLavel" aria-hidden="true">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title" id="myReviewLabel">Update your Blog</h4>
+				<h4 class="modal-title" id="updateBlogLavel">Update your Blog</h4>
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<div id="message-review"></div>
+				<div id="message-updateBlog"></div>
 				<form method="post"
-					action="review_write"
+					action="blog_update"
 					name="review_hotel" id="review_hotel">
 					<input name="hotel_name" id="hotel_name" type="hidden"
 						value="Mariott Hotel Paris">
@@ -316,39 +316,23 @@
 					<!-- End row -->
 
 					<hr>
+					
+					<div class="col-md-6">
+							<div class="form-group">
+								<label>Blog Title</label>
+								<input type="text" name="update_blogTitle"
+									 class="form-control" value="" >
+							</div>
+						</div>
 				
-					<div class="row">
-						<div class="col-md-6">
+					
 							<div class="form-group">
-								<label>Price</label> <select class="form-control"
-									name="price_review" id="price_review">
-									<option value="">Please review</option>
-									<option value="1">Low</option>
-									<option value="2">Sufficient</option>
-									<option value="3">Good</option>
-									<option value="4">Excellent</option>
-									<option value="5">Super</option>
-									<option value="1">I don't know</option>
+								 <select class=""
+									name="" id=""></select>
 							</div>
-								</select>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-									<label>Price</label> <select class="form-control"
-									name="price_review" id="price_review">
-									<option value="">Please review</option>
-									<option value="1">Low</option>
-									<option value="2">Sufficient</option>
-									<option value="3">Good</option>
-									<option value="4">Excellent</option>
-									<option value="5">Super</option>
-									<option value="1">I don't know</option>
-							</div>
-								</select>
+							
 								
-							</div>
-						</div>
+								
 					</div>
 
 					<!-- End row -->
