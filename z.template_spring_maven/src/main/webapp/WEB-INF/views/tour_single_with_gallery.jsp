@@ -927,11 +927,11 @@
 				</div>
 				<div class="modal-body" align="center">
 					<div class="row">
-						<div class="col-6">
+						<div class="col-6 border-right">
 							<div class="mycontent-left">
 								<br>
-								<a href="member_login_form" class="btn_1 white" style="height: 38px; font-size: 1.2em; border-style:solid">Register</a><br><br><br>
-								<h4>Join the membership</h4><br>
+								<a href="member_insert_form" class="btn_1 white" style="height: 38px; font-size: 1.2em; border-style:solid">Register</a><br><br><br>
+								<h4>Join the membership!</h4><br>
 								SV is only open to our members.<br>
 								Sign up today, and take a step closer to the trip of a lifetime.
 					    	</div>
