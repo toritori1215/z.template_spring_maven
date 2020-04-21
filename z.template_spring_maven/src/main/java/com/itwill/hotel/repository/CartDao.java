@@ -17,6 +17,8 @@ public interface CartDao {
 	
 	public int deleteCart(Integer cNo);
 	
+	public int deleteOutdatedCart(HashMap parameterMap);
+	
 	public int updateCart(HashMap parameterMap);
 	
 }

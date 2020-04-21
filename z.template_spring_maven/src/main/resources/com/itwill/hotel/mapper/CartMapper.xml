@@ -38,6 +38,11 @@
 		where cNo=#{cNo}
 	</delete>
 	
+	<delete id="deleteOutdatedCart" parameterType="java.util.HashMap">
+		delete from cart
+		where mNo=#{mNo} and cCheckin - SYSDATE &lt; 1
+	</delete>
+	
 	<update id="updateCart" parameterType="java.util.HashMap">
 		update cart 
 		set cProductQty=#{cProductQty}, cProductTypePay=#{cProductTypePay}, cOrderCnt=#{cOrderCnt} 

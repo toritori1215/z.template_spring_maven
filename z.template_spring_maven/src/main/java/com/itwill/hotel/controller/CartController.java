@@ -30,9 +30,12 @@ public class CartController {
 	@RequestMapping(value = "/cart_services")
 	public String cartServices(HttpSession session, Model model) {
 		Member member = (Member) session.getAttribute("sUser");
-		
 		if (member != null) {
 			int mNo = member.getmNo();
+			HashMap parameterMap = new HashMap();
+			parameterMap.put("mNo", mNo);
+			int count = cartService.deleteOutdatedCart(parameterMap);
+			System.out.println(count);
 			List<Cart> cartList = cartService.selectBymNo(mNo);
 			model.addAttribute(cartList);
 			return "cart_fixed_sidebar";
@@ -103,7 +106,6 @@ public class CartController {
 		parameterMap.put("cProductTypePay", cProductQty_int*pPrice);
 		parameterMap.put("cOrderCnt", cProductQty_int);
 		int count = cartService.updateCart(parameterMap);
-		System.out.println(count);
 		return cProductQty_int*pPrice;
 	}
 	

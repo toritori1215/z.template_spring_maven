@@ -88,9 +88,11 @@
 							<tr>
 								<td>
 									<div class="thumb_cart">
-										<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${cart.pName}1.jpg" alt="Image">
+										<a href="tour_detail?pNo=${cart.pNo}">
+											<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${cart.pName}_cart.jpg" alt="Image">
+										</a>
 									</div>
-									<span class="item_cart"><strong>${cart.pName}<strong></span>
+									&nbsp;<span class="item_cart"><a href="tour_detail?pNo=${cart.pNo}"><strong>${cart.pName}<strong></a></span>
 								</td>
 								<td>
 									<div class="numbers-row2">

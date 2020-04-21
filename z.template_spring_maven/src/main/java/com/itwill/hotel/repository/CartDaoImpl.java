@@ -41,6 +41,11 @@ public class CartDaoImpl implements CartDao {
 	}
 
 	@Override
+	public int deleteOutdatedCart(HashMap parameterMap) {
+		return cartMapper.deleteOutdatedCart(parameterMap);
+	}
+
+	@Override
 	public int updateCart(HashMap parameterMap) {
 		return cartMapper.updateCart(parameterMap);
 	}

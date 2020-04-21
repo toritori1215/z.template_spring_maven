@@ -992,11 +992,13 @@
 
 	<!-- Date and time pickers -->
 	<script>
-		$('input.date-pick').datepicker('setDate', 'today');
+		$('input.date-pick').datepicker('setDate', '+2d');
+		$('input.date-pick').datepicker('setStartDate', '+2d');
+		$('input.date-pick').datepicker('setEndDate', '+3m');
 		$('input.time-pick').timepicker({
 			minuteStep: 30,
 			showInputs: false
-		})
+		});
 	</script>
 	
 	<script>
@@ -1018,10 +1020,10 @@
 				var newVal = parseFloat(oldValue) + 1;
 			} else {
 				// Don't allow decrementing below zero
-				if (oldValue > 1) {
+				if (oldValue > 2) {
 					var newVal = parseFloat(oldValue) - 1;
 				} else {
-					newVal = 0;
+					newVal = 1;
 				}
 			}
 			
