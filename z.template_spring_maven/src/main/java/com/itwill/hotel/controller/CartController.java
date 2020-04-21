@@ -63,7 +63,6 @@ public class CartController {
 			List<Cart> cartList = cartService.selectByNo(mNo);
 			model.addAttribute("cartList", cartList);
 			return "redirect:/cart_services";
-			//return "cart_fixed_sidebar";
 			// 카트에 갯수 확인하기
 		} else {
 			return "redirect:/common_404";
@@ -74,12 +73,22 @@ public class CartController {
 	@ResponseBody
 	public int cartDelete (@RequestParam(value="cNo") Integer cNo,
 							  HttpSession session) {
+		/*
 		Member member = (Member) session.getAttribute("sUser");
 		if (member == null) {
 			return 0;
 		} else {
 			return cartService.deleteCart(cNo);
 		}
+		*/
+		return cartService.deleteCart(cNo);
+	}
+	
+	@RequestMapping(value = "/session_check")
+	@ResponseBody
+	public Member cartDelete (HttpSession session) {
+		Member member = (Member) session.getAttribute("sUser");
+		return member;
 	}
 	
 }

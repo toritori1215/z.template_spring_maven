@@ -125,7 +125,7 @@
 			<div class="col-3">
 				<div id="logo_home">
 					<h1>
-						<a href="main" title="City tours travel template">Silicon Village</a>
+						<a href="main" title="Silicon Village Hotel & Tours">Silicon Village</a>
 					</h1>
 				</div>
 			</div>
