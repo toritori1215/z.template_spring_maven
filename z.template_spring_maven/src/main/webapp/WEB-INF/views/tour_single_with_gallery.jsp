@@ -927,12 +927,13 @@
 				</div>
 				<div class="modal-body" align="center">
 					<div class="row">
-						<div class="col-6">
+						<div class="col-6 border-right">
 							<div class="mycontent-left">
 								<br>
-								<a href="member_login_form" class="btn_1 white" style="height: 38px; font-size: 1.2em; border-style:solid">Register</a><br><br><br>
-								<h4>Join our membership</h4><br>
-								Hotel services and facilities are only open to our members.
+								<a href="member_insert_form" class="btn_1 white" style="height: 38px; font-size: 1.2em; border-style:solid">Register</a><br><br><br>
+								<h4>Join the membership!</h4><br>
+								SV is only open to our members.<br>
+								Sign up today, and take a step closer to the trip of a lifetime.
 					    	</div>
 						</div>
 						<div class="col-6">
@@ -940,6 +941,8 @@
 						    	<br>
 								<a href="member_login_form" class="btn_1 white" style="height: 38px; font-size: 1.2em; border-style:solid">Sign in</a><br><br><br>
 						    	<h4>Already a member?</h4><br>
+						    	Welcome back.<br>
+						    	Simply sign in, and start booking your trip as you plan it.
 						    </div>
 						</div>
 					</div>
