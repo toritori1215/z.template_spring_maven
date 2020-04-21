@@ -124,40 +124,78 @@ public class RestaurantViewResolverController {
 												Model model,
 												@RequestParam(required =false) Integer pno,
 												@RequestParam(required =false) Integer foodCount,
-												@RequestParam(required = false) Integer foodsPrice) {
+												@RequestParam(required =false) Integer foodsPrice,
+												@RequestParam(required =false) Integer deposit_cost_ori) {
+		
+		
 		//카트에 집어넣기위해 필요한정보
 		//mNo 회원번호 , cproductQty(제품별 주문 수량), cProductTypePay(제품별 총가격),제품번호
 		Member user_info = (Member)session.getAttribute("sUser");
-		
+		System.out.println("deposit_cost_ori :: "+ deposit_cost_ori);
 		//System.out.println("pno -->" + pno);
 		//System.out.println("foodCount -->" + foodCount);
 		//System.out.println("foodsPrice -->" + foodsPrice);
+		boolean duplication = false;
+		int sumprice =0; 
+		//0.'BPPP'레스토랑 예약금 금액등록
+		model.addAttribute("deposit_cost",deposit_cost_ori);
 		
-		//pno 가 null일시에는 레스토랑 카트를 품목을 확인하기 위해 장바구니를 클릭한 경우. 세션에 저장된 회원번호에 맞는 카트 리스트 품목을 가져오기만 하면 됨 
-		//pno가 null이 아닐시에는 카트에 제품을 추가한 경우 임으로. pno를 카트 테이블에 삽입하고, 세션에 저장된 회원번호에 맞는 카트리스트 품목들을 가져와야함
-		
-		//1.카트에 저장되어있는 회원의 cart리스트를 먼저 가져온다.
-		//2.pno가 인지 아닌지의 여부 및 list상에 존재하는지의 여부에 따라 동작을 달리한다. 
-		//3.입력 상품번호가 리스트에 존재하면 cartlist에 존재하는 cartDTO의 상품 수량 및 가격을 더한다
-		//4.리스트를 날려보낸다.
-		
-		if(pno!=null){
-			System.out.println("mybatis insert요청");
-			RestaurantCartDTO cart_info = new RestaurantCartDTO(user_info.getmNo(), foodCount, foodsPrice, pno);
-			int insertCartCnt = restService.insertCartInfo(cart_info);
-			System.out.println("cart에 들어간 행 수 :"+insertCartCnt);
-		}
-		
+		//1.회원의 카트에 저장되어있는  cart리스트를 먼저 가져온다.
 		List<RestaurantCartDTO> restCartList = restService.findCartList(user_info.getmNo());
-		
-		for (RestaurantCartDTO restaurantCartDTO : restCartList) {
+		//2.pno가 null인지 아닌지의 여부 및 list상에 존재하는지의 여부에 따라 동작을 달리한다. 
+		if(pno!=null){
+			//3.입력 상품번호가 리스트에 존재하면 cartlist에 존재하는 cartDTO의 상품 수량 및 가격을 DB에 업데이트
+			for (RestaurantCartDTO restaurantCartDTO : restCartList) {
+				//카트에 중복되는 상품이 들어올경우
+				duplication = pno.equals(restaurantCartDTO.getPno()) ? true : false;
+				if(duplication) {
+					int cartSaveFoodCnt = restaurantCartDTO.getCproductQty();
+					int cartSavePriceCnt = restaurantCartDTO.getCproductTypePay();
+					int updateFoodCnt = cartSaveFoodCnt + foodCount;
+					int updatefoodsPrice = cartSavePriceCnt + foodsPrice;
+					HashMap<String, Integer> updateMap = new HashMap<String, Integer>();
+					RestaurantCartDTO updateCartDto = 
+							new RestaurantCartDTO(user_info.getmNo(), updateFoodCnt, updatefoodsPrice, pno, null);
+					int updateCnt = restService.updateCartInfo(updateCartDto);
+					System.out.println("update 행:"+updateCnt);
+				}
+			}
 			
+			if(!duplication) {
+				//아닐경우 cart list에 insert
+				RestaurantCartDTO insertCartDto = new RestaurantCartDTO(user_info.getmNo(), foodCount, foodsPrice, pno, null);
+				int insertCartCnt = restService.insertCartInfo(insertCartDto);
+				System.out.println("cart에 들어간 행 수 :"+insertCartCnt);
+			}
+			
+		}else {
+			//4.pno가 null일시는 addCart요청이 아님으로 처음 검색한 리스트를 날려보낸다.
+			for (RestaurantCartDTO restaurantCartDTO : restCartList) {
+				sumprice+= restaurantCartDTO.getCproductTypePay();
+			}
+			model.addAttribute("sumprice", sumprice);
+			System.out.println("sumprice 정보 :"+sumprice);
+			model.addAttribute("restCartList", restCartList);
+			System.out.println("첫 검색 cartlist 정보 :"+restCartList);
+			return "restaurant_cart_fixed_sidebar";
 		}
+		//5. 업데이트나 삽입이 완료되었음으로 리스트를 다시 받아와야한다.
+		restCartList = restService.findCartList(user_info.getmNo());
+		for (RestaurantCartDTO restaurantCartDTO : restCartList) {
+			sumprice+= restaurantCartDTO.getCproductTypePay();
+		}
+		System.out.println("sumprice 정보 :"+sumprice);
+		model.addAttribute("sumprice", sumprice);
+		System.out.println("재 검색 cartlist 정보 :"+restCartList);
 		model.addAttribute("restCartList", restCartList);
-		
-		
 		return "restaurant_cart_fixed_sidebar";
 	}
+	
+	
+	
+	
+	
+	
 	
 	@RequestMapping("restaurant_single_food_detail")
 	public String single_restaurant_with_gallery(Model model,

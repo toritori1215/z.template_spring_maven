@@ -184,6 +184,14 @@ public class RestaurantDaoImpl implements RestaurantDao{
 		return cartInsertCnt;
 	}
 
+
+	@Override
+	public int updateCartInfo(RestaurantCartDTO cart_info) {
+		// TODO Auto-generated method stub
+		int updateCartCnt = restMapper.updateCartInfo(cart_info);
+		return updateCartCnt;
+	}
+
 	
 	
 

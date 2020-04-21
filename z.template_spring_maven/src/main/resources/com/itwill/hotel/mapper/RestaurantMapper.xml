@@ -2,11 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.hotel.mapper.RestaurantMapper">
 
+	<resultMap id="RestaurantDTO" 
+				type="com.itwill.hotel.domain.RestaurantDTO"
+				autoMapping="true">
+	</resultMap>
+
 	<resultMap type="java.util.HashMap" id="foodCategory_Info">
 		<result column="foodcategory" property="foodcategory"/>
 		<result column="categoryCnt" property="categoryCnt"/>
 	</resultMap>
-
+	
+	<resultMap id="cartlist" 
+	           type="com.itwill.hotel.domain.RestaurantCartDTO" 
+			   autoMapping="true">
+		<collection property="restproductList"
+					resultMap="RestaurantDTO"/>
+	</resultMap>
+	
+	
 	<insert id="registerProduct" 
 			parameterType="com.itwill.hotel.domain.RestaurantDTO">
 			
@@ -178,14 +191,16 @@
 
 	</select>
 	
-	
+	<!--   Cart   -->
 	<select id="findCartList"
 			parameterType="int"
-			resultType="com.itwill.hotel.domain.RestaurantCartDTO">
+			resultMap="cartlist">
 			
-			SELECT mno,cproductQty,cproductTypePay,pno
-			FROM cart
-			WHERE mno = #{mno}
+			SELECT mno,cproductQty,cproductTypePay,c.pno ,p.*
+			FROM cart c inner join product p
+			on c.pno = p.pno
+			where mno = #{mno}
+
 	</select>
 	
 	<insert id="insertCartInfo"
@@ -194,6 +209,12 @@
 			VALUES(CART_SEQ.nextval,#{mno},#{pno},#{cproductQty},#{cproductTypePay})
 	</insert>
 	
+	<update id="updateCartInfo"
+			parameterType="com.itwill.hotel.domain.RestaurantCartDTO">
+			update cart
+			set CPRODUCTQTY = #{cproductQty}, CPRODUCTTYPEPAY=#{cproductTypePay}
+			where pno = #{pno} and mno=#{mno}
 	
+	</update>
 	
 </mapper>

@@ -541,6 +541,7 @@
 								<input type="hidden" name="foodCount" id="foodCount" value= "">					
 								<input type="hidden" name="bookingTime" id="bookingTime" value= "">					
 								<input type="hidden" name="bookingdate" id="bookingdate" value= "">						
+								<input type="hidden" name="deposit_cost_ori" id="deposit_cost_ori" value= "${deposit_cost.pprice}">						
 							</form>
 							<a class="btn_full" href="restaurant_payment_fixed_sidebar" >BUY NOW</a>
 							<a class="btn_full_outline" href="restaurant_cart_fixed_sidebar" id="addToCartBtn"><i class=" icon-cart"></i> ADD TO CART</a>
@@ -1052,7 +1053,7 @@
 				e.preventDefault();
 				let foodCount = $('#foodCnt').val();
 				let foodsPrice = calculfoodPrice();
-				let pNo = document.getElementById('pno').value;
+				//let pNo = document.getElementById('pno').value;
 				
 				
 				$('#foodsPrice').val(foodsPrice);

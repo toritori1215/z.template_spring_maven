@@ -36,6 +36,10 @@ public interface RestaurantMapper {
 	//Cart
 	List<RestaurantCartDTO> findCartList(Integer mno);
 	public int insertCartInfo(RestaurantCartDTO cartInsertInfo);
+	public int updateCartInfo(RestaurantCartDTO cartInsertInfo);
+	
+	
+	
 	
 	
 }

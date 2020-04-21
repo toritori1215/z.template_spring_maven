@@ -347,7 +347,7 @@
 									</div>
 									<hr>
 									Deposit per person<br>
-									${deposit_cost.pprice}
+									￦  ${deposit_cost}
 									<hr>
 									  ※예약금은 레스토랑 도착 시 
 									결재카드 및 Invoice 제시시 
@@ -391,7 +391,7 @@
 										</td>
 										<td class="text-right" id="depositPrice" price_list='price'>
 											10,000
-											<input type="hidden" id="PeoplePerPrice" value="${deposit_cost.pprice}">
+											<input type="hidden" id="PeoplePerPrice" value="${deposit_cost}">
 										</td>
 									</tr>
 									<tr>
@@ -421,7 +421,7 @@
 								<input type="hidden" name="bookingdate" id="bookingdate" value= "">						
 							</form>
 							<a class="btn_full" href="restaurant_payment_fixed_sidebar" >BUY NOW</a>
-							<a class="btn_full_outline" href="restaurant_cart_fixed_sidebar" id="addToCartBtn"><i class=" icon-cart"></i> ADD TO CART</a>
+							<a class="btn_full_outline" href="restaurants_all_list" id="addToCartBtn"><i class=" icon-right"></i> ADD TO CART</a>
 						</div>
 						<div class="box_style_4">
 						<i class="icon_set_1_icon-57"></i>
@@ -461,6 +461,7 @@
 		}	
 
 		function showReservationinfoSumCalcul(){
+			
 			/*
 			let depositPrice = calculDepositPrice();
 			let foodsPrice = calculfoodPrice();
@@ -476,7 +477,17 @@
 			document.getElementById('sumPrice').firstChild.nodeValue ="￦" +numberWithCommas(sumPrice);	
 			*/
 		}	
-
+		
+		function calculDepositPrice(){
+			let personsCntNumber= Number(document.getElementById('personCntTd').firstChild.nodeValue);
+			let depositPriceStr = $('#PeoplePerPrice').val();
+			console.log("depositPrice ::" + depositPriceStr);
+			let depositPriceStr1 = depositPriceStr.replace('￦', "");
+			let depositPrice = Number(depositPriceStr1.replace(',', "")) * personsCntNumber;
+			console.log("depositPrice ::"+ depositPrice);
+			return depositPrice;
+		}
+		
 		//on load Start
 		$(function(){
 			
@@ -511,6 +522,8 @@
 				console.log('personsCntNumber ::' + personsCntNumber);
 				document.getElementById('persons').value = personsCntNumber;
 				document.getElementById('personCntTd').firstChild.nodeValue = personsCntNumber;
+				let depositPrice = calculDepositPrice();
+				document.getElementById('depositPrice').firstChild.nodeValue = "￦"+numberWithCommas(depositPrice);
 				
 			}
 			

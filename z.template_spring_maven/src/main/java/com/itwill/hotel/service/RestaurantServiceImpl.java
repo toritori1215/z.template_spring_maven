@@ -141,6 +141,17 @@ public class RestaurantServiceImpl implements RestaurantService{
 		int insertCartCnt = restaurantdao.insertCartInfo(cart_info);
 		return insertCartCnt;
 	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED,
+	isolation = Isolation.READ_COMMITTED,
+	timeout = 10)
+	public int updateCartInfo(RestaurantCartDTO cart_info) {
+		// TODO Auto-generated method stub
+		int updateCartCnt = restaurantdao.updateCartInfo(cart_info);
+		
+		return updateCartCnt;
+	}
 	
 	
 }

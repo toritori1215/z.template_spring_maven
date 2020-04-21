@@ -1,5 +1,7 @@
 package com.itwill.hotel.domain;
 
+import java.util.List;
+
 /**
  * @author KIMHB
  *
@@ -9,18 +11,26 @@ public class RestaurantCartDTO {
 	private Integer cproductQty; //제품주문수량
 	private Integer cproductTypePay;//제품별 가격
 	private Integer pno;//제품번호
+	private List<RestaurantDTO> restproductList;
+	
 	
 	public RestaurantCartDTO() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public RestaurantCartDTO(Integer mno, Integer cproductQty, Integer cproductTypePay, Integer pno) {
+	
+
+	public RestaurantCartDTO(Integer mno, Integer cproductQty, Integer cproductTypePay, Integer pno,
+			List<RestaurantDTO> restproductList) {
 		super();
 		this.mno = mno;
 		this.cproductQty = cproductQty;
 		this.cproductTypePay = cproductTypePay;
 		this.pno = pno;
+		this.restproductList = restproductList;
 	}
+
+
 
 	public Integer getMno() {
 		return mno;
@@ -54,12 +64,15 @@ public class RestaurantCartDTO {
 		this.pno = pno;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "RestaurantCartDTO [mno=" + mno + ", cproductQty=" + cproductQty + ", cproductTypePay=" + cproductTypePay
-				+ ", pno=" + pno + "]";
+				+ ", pno=" + pno + ", restproductList=" + restproductList + "]";
 	}
-	
+
+
 	
 	
 	
