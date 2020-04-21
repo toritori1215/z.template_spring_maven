@@ -64,6 +64,16 @@ public class RestaurantCartDTO {
 		this.pno = pno;
 	}
 
+	public List<RestaurantDTO> getRestproductList() {
+		return restproductList;
+	}
+
+
+
+	public void setRestproductList(List<RestaurantDTO> restproductList) {
+		this.restproductList = restproductList;
+	}
+
 
 
 	@Override

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 	
@@ -83,50 +85,36 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>
-									<div class="thumb_cart">
-										<img src="${pageContext.request.contextPath}/resources/img/thumb_cart_1.jpg" alt="Image">
-									</div>
-									<span class="item_cart">Louvre Museum tickets</span>
-								</td>
-								<td>
-									<div class="numbers-row">
-										<input type="text" value="1" id="quantity_1" class="qty2 form-control" name="quantity_1">
-									</div>
-								</td>
-								<td>
-									0%
-								</td>
-								<td>
-									<strong>€24,71</strong>
-								</td>
-								<td class="options">
-									<a href="#"><i class=" icon-trash"></i></a><a href="#"><i class="icon-ccw-2"></i></a>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<div class="thumb_cart">
-										<img src="${pageContext.request.contextPath}/resources/img/thumb_cart_1.jpg" alt="Image">
-									</div>
-									<span class="item_cart">Eiffell tour</span>
-								</td>
-								<td>
-									<div class="numbers-row">
-										<input type="text" value="0" id="quantity_2" class="qty2 form-control" name="quantity_2">
-									</div>
-								</td>
-								<td>
-									0%
-								</td>
-								<td>
-									<strong>€0,0</strong>
-								</td>
-								<td class="options">
-									<a href="#"><i class=" icon-trash"></i></a><a href="#"><i class="icon-ccw-2"></i></a>
-								</td>
-							</tr>
+						
+							
+							<c:forEach var="cartItem" items="${restCartList}" varStatus="st"> 
+								<c:forEach var="productItem" items="${cartItem.restproductList}">
+									<tr>
+										<td>
+											<div class="thumb_cart">
+												<img src="${pageContext.request.contextPath}/resources/img/thumb_cart_1.jpg" alt="Image">
+											</div>
+											<span class="item_cart">Louvre Museum tickets</span>
+										</td>
+										<td>
+											<div class="numbers-row">
+												<input type="text" value="1" id="quantity_1" class="qty2 form-control" name="quantity_1">
+											</div>
+										</td>
+										<td>
+											0%
+										</td>
+										<td>
+											<strong>€24,71</strong>
+										</td>
+										<td class="options">
+											<a href="#"><i class=" icon-trash"></i></a><a href="#"><i class="icon-ccw-2"></i></a>
+										</td>
+									</tr>
+								</c:forEach>
+							</c:forEach>
+							
+							<!-- 
 							<tr>
 								<td>
 									<div class="thumb_cart">
@@ -149,6 +137,7 @@
 									<a href="#"><i class=" icon-trash"></i></a><a href="#"><i class="icon-ccw-2"></i></a>
 								</td>
 							</tr>
+							 -->
 						</tbody>
 					</table>
 					<table class="table table-striped options_cart">
@@ -396,11 +385,10 @@
 									</tr>
 									<tr>
 										<td>
-											Food Price
+											Total Food Price
 										</td>
-										<td class="text-right" price_list='price' id="perfoodPriceTd">
-											${restaurantProduct.pprice}
-											<input type="hidden" id="perfoodPrice" value="${restaurantProduct.pprice}">
+										<td class="text-right" price_list='price' id="foodsPriceTd">
+											${sumprice}
 										</td>
 									</tr>
 									<tr class="total">
@@ -414,8 +402,10 @@
 								</tbody>
 							</table>
 							<form name="f" id="f">
+							<!-- 
 								<input type="hidden" name="pno" id="pno" value= "${restaurantProduct.pno}">
-								<input type="hidden" name="foodsPrice" id="foodsPrice" value= "">							
+							 -->
+								<input type="hidden" name="foodsPrice" id="foodsPrice" value= "${sumprice}">							
 								<input type="hidden" name="foodCount" id="foodCount" value= "">					
 								<input type="hidden" name="bookingTime" id="bookingTime" value= "">					
 								<input type="hidden" name="bookingdate" id="bookingdate" value= "">						
