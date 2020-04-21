@@ -535,7 +535,14 @@
 									</tr>
 								</tbody>
 							</table>
-							<a class="btn_full" href="restaurant_payment_fixed_sidebar">BUY NOW</a>
+							<form name="f" id="f">
+								<input type="hidden" name="pno" id="pno" value= "${restaurantProduct.pno}">
+								<input type="hidden" name="foodsPrice" id="foodsPrice" value= "">							
+								<input type="hidden" name="foodCount" id="foodCount" value= "">					
+								<input type="hidden" name="bookingTime" id="bookingTime" value= "">					
+								<input type="hidden" name="bookingdate" id="bookingdate" value= "">						
+							</form>
+							<a class="btn_full" href="restaurant_payment_fixed_sidebar" >BUY NOW</a>
 							<a class="btn_full_outline" href="restaurant_cart_fixed_sidebar" id="addToCartBtn"><i class=" icon-cart"></i> ADD TO CART</a>
 					</div>
 					
@@ -810,6 +817,8 @@
 			}
 			
 		}
+	
+		
 		$(function(){
 			
 			$('td.text-right > div > div.dec.button_inc').text("");
@@ -1037,27 +1046,30 @@
 				}
 			});
 			
-			//console.log("들어오긴 하니?");
-			//let bookState = document.getElementById("BookingState").firstChild.nodeValue;
-			//console.log("bookState ::" + bookState);
-			/*
-			if(bookState.toUpperCase()=='RESTAURANT RESERVATION'){
-				//console.log("들어오긴 하니2?");
-				hideReservationinfoSumCalcul();
-				$('#addToCartBtn').show();
-				$('.reservation_info').hide();
-			}else{	
-				console.log("들어오긴 하니3?");
-				showReservationinfoSumCalcul();
-				$('#addToCartBtn').hide();
-				$('.reservation_info').show();
-			}
-			*/
+			
+			$('#addToCartBtn').on('click',function(e){
+				e.preventDefault();
+				let foodCount = $('#foodCnt').val();
+				let foodsPrice = calculfoodPrice();
+				let pNo = document.getElementById('pno').value;
+				
+				
+				$('#foodsPrice').val(foodsPrice);
+				$('#foodCount').val(foodCount);
+				
+				move_restaurant_cart_fixed_sidebar();
+				
+			});
 			
 				
 		});
 	
-	
+		function move_restaurant_cart_fixed_sidebar(){
+			document.f.action = "restaurant_cart_fixed_sidebar";
+			document.f.method ="POST";
+			document.f.submit();
+			
+		}
 	</script>
 	
 	
