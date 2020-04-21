@@ -37,6 +37,7 @@ public class BlogController {
 		if (bNo == null || bNo.trim().equals("")) {
 			return "forward:blog_right_sidebar";
 		}
+		
 		Blog blogView = blogService.selectOneBlog(Integer.parseInt(bNo));
 		List<BlogReview> blogReviewList = blogService.selectBlogReview(Integer.parseInt(bNo));
 		int size = blogReviewList.size();
