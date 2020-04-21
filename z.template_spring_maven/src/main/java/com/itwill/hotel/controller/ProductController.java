@@ -58,7 +58,7 @@ public class ProductController {
 		HashMap parameterMap = new HashMap();
 		parameterMap.put("pType", "tour");
 		model.addAttribute("productList", productService.selectByType(parameterMap));
-		return "forward:tour_all_list.jsp";
+		return "tour_all_list";
 	}
 	
 	@RequestMapping(value = "/tour_list_json", produces = "application/json;charset=UTF-8")
@@ -97,7 +97,7 @@ public class ProductController {
 	@ResponseBody
 	public Cart tourTravellers(@RequestParam(value="newVal") String newVal) {
 		int newVal_int = Integer.parseInt(newVal);
-		Cart cart = new Cart(0, newVal_int, 0, null, null, null, null, null, 0, 0);
+		Cart cart = new Cart(0, newVal_int, 0, null, null, null, null, null, 0, 0, 0);
 		return cart;
 	}
 	

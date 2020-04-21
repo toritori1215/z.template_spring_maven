@@ -85,9 +85,6 @@
 								Ludus albucius adversarium eam eu. Sit eu reque tation aliquip. Quo no dolorum albucius lucilius, hinc eligendi ut sed. Ex nam quot ferri suscipit, mea ne legere alterum repudiandae. Ei pri quaerendum intellegebat, ut vel consequuntur voluptatibus. Et volumus sententiae adversarium duo......
 							</p>
 							<input type="button" class="btn_1" value="Read More" onclick="location.href='blog_post_right_sidebar?bNo=${blog.bNo}'"> &nbsp;&nbsp;&nbsp;
-							<c:if test="${blog.mNo == sUser.mNo}">
-								<input type="submit" id="delete_blog" class="btn_1" value="delete">
-							</c:if>
 							</form>
 						<hr>
 						</c:forEach>
@@ -178,7 +175,6 @@
 			<!-- End row-->
 		</div>
 		<!-- End container -->
-		<input type="hidden" id="deleteBlogMsg" value="${deleteBlogMsg}">
 	</main>
 	<!-- End main -->
 	
@@ -188,14 +184,7 @@
 	<jsp:include page="WEB-INF/views/common_footer_2.jsp"/>
 	<!-- End Footer -->
 	
-	<script type="text/javascript">
-		$(function() {
-			var deleteMsg = $("#deleteBlogMsg").val();
-			if (deleteMsg != null && deleteMsg != "") {
-				alert(deleteMsg);
-			}
-		});
-	</script>
+	
 	
 </body>
 

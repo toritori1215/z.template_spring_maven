@@ -89,8 +89,8 @@
 							</blockquote>
 								<form action="blog_right_sidebar">
 									<c:if test="${blogView.mNo == sUser.mNo}">
-									<input type="submit" id="update_blog_post" class="btn_1" value="Update">
-									<input type="button" id="insert_blog_post" class="btn_1" value="Insert">
+									<a href="#" class="btn_1" data-toggle="modal"
+										data-target="#myReview">Update</a>
 									<input type="button" id="delete_blog_post" class="btn_1" value="Delete">
 									</c:if>
 								</form>
@@ -150,12 +150,14 @@
 								</c:if>
 							</c:forEach>
 							
+							
 						</c:if>
 						</c:forEach>
 						</c:forEach>
 						</ol>
 					</div>
 					<!-- End Comments -->
+
 
 					<h4>Leave a comment</h4>
 					<form action="#" method="post">
@@ -248,6 +250,121 @@
 		<!-- End container -->
 	</main>
 	<!-- End main -->
+	<!-- Modal Review -->
+<div class="modal fade" id="myReview" tabindex="-1" role="dialog"
+	aria-labelledby="myReviewLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="myReviewLabel">Update your Blog</h4>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div id="message-review"></div>
+				<form method="post"
+					action="review_write"
+					name="review_hotel" id="review_hotel">
+					<input name="hotel_name" id="hotel_name" type="hidden"
+						value="Mariott Hotel Paris">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>First Name</label>
+								<input name="name_review" id="name_review" type="text"
+									placeholder="Your name" class="form-control" value="${sUser.mFirstName}" readonly="readonly">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Last Name</label>
+								<input name="lastname_review" id="lastname_review" type="text"
+									placeholder="Your last name" class="form-control"  value="${sUser.mLastName}" readonly="readonly">
+							</div>
+						</div>
+					</div>
+
+					<!-- End row -->
+
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Email Address</label>
+								<input name="email_review" id="email_review" type="email"
+									placeholder="Your email" class="form-control" value="${sUser.mEmail}" readonly="readonly">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Room Type</label>
+								<!--  <input name="email_review" id="email_review" type="email"
+									placeholder="Your email" class="form-control" value="" readonly="readonly">
+								-->
+								<select class="form-control" name="room_type_review"
+									id="room_type_review">
+									<option value="">Select room type</option>
+									<option value="Single room">Single Room</option>
+									<option value="Double Room">Double Room</option>
+									<option value="King double room">King Double Room</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<!-- End row -->
+
+					<hr>
+				
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Price</label> <select class="form-control"
+									name="price_review" id="price_review">
+									<option value="">Please review</option>
+									<option value="1">Low</option>
+									<option value="2">Sufficient</option>
+									<option value="3">Good</option>
+									<option value="4">Excellent</option>
+									<option value="5">Super</option>
+									<option value="1">I don't know</option>
+							</div>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+									<label>Price</label> <select class="form-control"
+									name="price_review" id="price_review">
+									<option value="">Please review</option>
+									<option value="1">Low</option>
+									<option value="2">Sufficient</option>
+									<option value="3">Good</option>
+									<option value="4">Excellent</option>
+									<option value="5">Super</option>
+									<option value="1">I don't know</option>
+							</div>
+								</select>
+								
+							</div>
+						</div>
+					</div>
+
+					<!-- End row -->
+					<div class="form-group">
+						<textarea name="rContent" id="rContent" class="form-control"
+								  style="height: 100px" placeholder="Update your Blog"></textarea>
+					</div>
+					<br>
+					<input type="submit" value="Submit" class="btn_1"
+						   id="submit-review">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End modal review -->
 
 	<!-- Footer================================================== -->
 	<jsp:include page="z.references/common_footer_2.jsp"/>

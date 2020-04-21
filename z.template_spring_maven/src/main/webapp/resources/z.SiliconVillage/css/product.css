@@ -45,10 +45,3 @@ input.qty2 {
   padding: 1rem 1rem;
   margin: -1rem -1rem -1rem auto;
 }
-
-
-
-/* Modal Sign-in Alert vertical line divider */
-.mycontent-left {
-  border-right: 1px solid #ccc;
-}

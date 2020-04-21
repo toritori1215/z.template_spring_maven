@@ -67,5 +67,17 @@ public class BlogController {
 		}
 	}
 	
+	@RequestMapping(value = "/blog_update")
+	public String update(@RequestParam(value = "blog") Blog blog, Model model) {
+		int updateBlog = blogService.updateBlog(blog);
+		if (updateBlog == 1) {
+			model.addAttribute("updateBlogMsg", "수정되었습니다.");
+			return "forward:blog_post_right_sidebar";
+		} else {
+			model.addAttribute("updateBlogMsg", "수정 실패하였습니다.");
+			return "common_404";
+		}
+	}
+	
 	
 }
