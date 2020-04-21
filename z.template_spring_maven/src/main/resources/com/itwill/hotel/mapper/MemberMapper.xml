@@ -114,4 +114,16 @@
 		where mNo=#{mNo}
 	</update>
 	
+	<update id="updateMember">
+		update member 
+		set mFirstName=#{mFirstName}, mLastName=#{mLastName}, mTel=#{mTel}, mBirth=#{mBirth}, 
+			mAddress=#{mAddress}, mCity=#{mCity}, mZipCode=#{mZipCode}, mCountry=#{mCountry}
+		where mNo=#{mNo}
+	</update>
+	
+	<update id="updateImg">
+		update member 
+		set mImg=#{mImg} 
+		where mNo=#{mNo}
+	</update>
 </mapper>

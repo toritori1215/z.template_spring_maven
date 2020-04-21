@@ -291,9 +291,83 @@
 					</div>
 				</div>
 				<!-- End col-md-8 -->
-
+				
 				<aside class="col-lg-4" id="sidebar">
 					<div class="theiaStickySidebar">
+					
+						<p class="d-none d-xl-block d-lg-block d-xl-none">
+							<a class="btn_map" data-toggle="collapse" href="#reservation_div_space" 
+							   aria-expanded="false" aria-controls="reservation_div_space" id="BookingState"
+							   data-text-swap="No restaurant reservation" data-text-original="Restaurant Reservation">
+							   		Restaurant Reservation
+							</a>
+						</p>
+					
+						<!-- 예약 div 시작 -->
+						<div class= "collapse" id="reservation_div_space">
+							<div class="box_style_1 expose" id="reservation_div">
+								
+									<h3 class="inner">- Reservation -</h3>
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label><i class="icon-calendar-7"></i> Select a date</label>
+												<input id="datePicker" class="date-pick form-control" data-date-format="M d, D" type="text">
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="form-group">
+												<label><i class=" icon-clock"></i> Time</label>
+												<input id="timePicker" class="time-pick form-control" value="9:00 AM" type="text">
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-6">
+											<div class="form-group">
+												<label>persons</label>
+												<div class="numbers-row">
+													<input type="text" value="1" id="adults" class="qty2 form-control" name="quantity">
+												</div>
+											</div>
+										</div>
+										<!-- 
+										<div class="col-6">
+											<div class="form-group">
+												<label>Children</label>
+												<div class="numbers-row">
+													<input type="text" value="0" id="children" class="qty2 form-control" name="quantity">
+												</div>
+											</div>
+										</div>
+										 -->
+									</div>
+									<hr>
+									Deposit per person<br>
+									${deposit_cost.pprice}
+									<hr>
+									  ※예약금은 레스토랑 도착 시 
+									결재카드 및 Invoice 제시시 
+									환불됩니다.
+									<br>
+									(Your deposit will be returned
+									 in full provided that we receive
+									 your credit card or invoice upon
+									 your arrival to our restaurant.)
+									 
+								
+								<!-- 
+								<a class="btn_full" href="restaurant_payment_fixed_sidebar">BUY NOW</a>
+								<a class="btn_full_outline" href="restaurant_cart_fixed_sidebar" id="addToCartBtn"><i class=" icon-heart"></i> ADD TO CART</a>
+								 -->
+							</div>
+						</div>
+						<!-- 예약 div 끝 -->
+						<p class="d-none d-md-block d-block d-lg-none">
+						<a class="btn_map" data-toggle="collapse" href="#reservation_div_space" aria-expanded="false" aria-controls="reservation_div_space" data-text-swap="No restaurant reservation" data-text-original="Restaurant Reservation">Restaurant Reservation</a>
+						</p>
+						
+						
 						<div class="box_style_1">
 							<h3 class="inner">- Summary -</h3>
 							<table class="table table_summary">
@@ -340,7 +414,7 @@
 									</tr>
 								</tbody>
 							</table>
-							<a class="btn_full" href="payment_fixed_sidebar.html">Check out</a>
+							<a class="btn_full" id="go_to_reservation_or_payment" href="restaurant_payment_fixed_sidebar">Check out</a>
 							<a class="btn_full_outline" href="#"><i class="icon-right"></i> Continue shopping</a>
 						</div>
 						<div class="box_style_4">
@@ -367,10 +441,159 @@
 
 	<!-- Fixed sidebar -->
 	<script src="${pageContext.request.contextPath}/resources/js/theia-sticky-sidebar.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/bootstrap-timepicker_redefination_restaurant.js"></script>
+	
+	
+	
 	<script>
 		jQuery('#sidebar').theiaStickySidebar({
 			additionalMarginTop: 80
 		});
+		
+
+		//on load Start
+		$(function(){
+			
+			$('#datePicker').datepicker({
+				beforeShowDay : function(date) {
+					console.log("date.getDay::"+date.getDay());
+					let day = date.getDay();
+					return day ==2 ? false:true;
+				} 	
+				
+			});
+			
+			$('input.date-pick').datepicker('setDate', 'today');
+			
+			$('#datePicker').datepicker().on('change', function(e) {
+				let dayStr = document.getElementById('datePicker').value;
+				console.log("day::"+ dayStr);
+				let daycustom = dayStr.substring(dayStr.indexOf(',')+1).trim();
+				console.log('daycustom ::' + daycustom);
+				
+				//요일 변경이 되었을시 input (#datePicker) 값 변경
+				//$('#timePicker').timepicker('setDay',daycustom); timepicker가 클릭되었을시에 setDay값 셋팅으로 바꾸어주어 필요 없어짐
+				$('#timePicker').val('9:00 AM');
+				
+				//$('#timePicker').timepicker('setHour','9');
+				//$('#timePicker').timepicker('setMeridian','AM');
+
+   			 });
+			
+			
+			$('#timePicker').timepicker({
+			
+				/*
+				this.widget = '';
+		        this.$element = $(element);
+		        this.defaultTime = options.defaultTime;
+		        this.disableFocus = options.disableFocus;
+		        this.disableMousewheel = options.disableMousewheel;
+		        this.isOpen = options.isOpen;
+		        this.minuteStep = options.minuteStep;
+		        this.modalBackdrop = options.modalBackdrop;
+		        this.orientation = options.orientation;
+		        this.secondStep = options.secondStep;
+		        this.showInputs = options.showInputs;
+		        this.showMeridian = options.showMeridian;
+		        this.showSeconds = options.showSeconds;
+		        this.template = options.template;
+		        this.appendWidgetTo = options.appendWidgetTo;
+		        this.showWidgetOnAddonClick = options.showWidgetOnAddonClick;
+		        // 추가한 멤버변수 start
+		        this.day = options.day;
+		        this.weekendstTime = options.weekendstTime;
+		        this.weekendedTime = options.weekendedTime;
+		        this.weekdaystTime = options.weekdaystTime;
+		        this.weekdayedTime = options.weekdayedTime;
+        		// 추가한 멤버변수 end
+				*/	
+				minuteStep: 60,
+				showInpunts: false,
+				weekendstTime : 9,
+				weekendedTime : 1,
+				weekdaystTime : 9,
+				weekdayedTime : 7,
+				showInpunts: false
+			});
+			
+			/*
+			$('#timePicker').timepicker().on('click', function(e) {
+				let dayStr = document.getElementById('datePicker').value;
+				console.log("day::"+ dayStr);
+				let daycustom = dayStr.substring(dayStr.indexOf(',')+1).trim();
+				console.log('daycustom ::' + daycustom);
+				
+				//timepicker에 Day seting
+				$('#timePicker').timepicker('setDay',daycustom);
+				//console.log("e::"+$(e.target).attr('id'));
+				//console.log('The time is ' + e.time.value);
+			    //console.log('The hour is ' + e.time.hours);
+			    //console.log('The minute is ' + e.time.minutes);
+			    //console.log('The meridian is ' + e.time.meridian);
+					
+			 });
+			*/
+			
+			
+			
+			
+			
+			$('#timePicker').on("click", function(e) {
+				//# 1, 3번은 이어진다.
+				//1.날짜가 변경되면 timePicker Input 데이터도 9:00AM으로 초기화 된다.
+				let timeStr = this.value; 
+				console.log('timeStr->'+timeStr);
+				let time = timeStr.substring(0,1);
+				console.log('time->'+time);
+
+				//2.위젯 필요없는 노드 삭제
+				$('a[data-action="incrementMinute"]').parent().remove();
+				$('a[data-action="decrementMinute"]').parent().remove();
+				$('td> input[class="bootstrap-timepicker-minute"]').parent().remove();
+				$('td[class="separator"]').remove();
+				
+				//3. 날짜를 변경했을시에 Time값을 Default로 해준다.
+				//-->금요일날 2시 이후의 값이 선택되고 토요일로 변경되면 Timepicker 위젯이 영업을 하지 않는 시간으로 셋팅되는 것을 막음 
+				$('table > tbody > tr:nth-child(2) > td:nth-child(1) > input').val(time);
+				$('table > tbody > tr:nth-child(2) > td:nth-child(2) > input').val('AM');
+				
+				//4.요일 계산 및 timepicker setDay 셋팅
+				let dayStr = document.getElementById('datePicker').value;
+				console.log("day::"+ dayStr);
+				let daycustom = dayStr.substring(dayStr.indexOf(',')+1).trim();
+				console.log('daycustom ::' + daycustom);
+				
+				//timepicker에 Day seting
+				$('#timePicker').timepicker('setDay',daycustom);
+
+			});
+			
+			
+			
+			
+			
+			$('#BookingState').on("click", function(e) {
+				let bookState = document.getElementById("BookingState").firstChild.nodeValue;
+				console.log("bookState ::" + bookState);
+				let chanegCheckoutLink = document.getElementById("go_to_reservation_or_payment");
+				if(bookState.toUpperCase()=='RESTAURANT RESERVATION'){
+					console.log("들어오긴 하니2?");
+					//$('#reservation_div').show();
+					chanegCheckoutLink.setAttribute("href", "restaurant_payment_fixed_sidebar");
+					console.log("chanegCheckoutLink.getAttribute ->"+chanegCheckoutLink.getAttribute('href'));
+				}else{	
+					console.log("들어오긴 하니3?");
+					//$('#reservation_div').hide();
+					chanegCheckoutLink.setAttribute("href", "restaurant_single_restaurant_detail");
+					console.log("chanegCheckoutLink.getAttribute ->"+chanegCheckoutLink.getAttribute('href'));
+				}
+			});
+			
+			
+		});
+		//on load end
+		
 	</script>
 		
 

@@ -41,8 +41,8 @@ public class RestaurantViewRestController {
 	}
 	
 	
-	@ResponseBody
 	@RequestMapping(value="insertRestDTO", produces = "text/xml;charset=UTF-8")
+	@ResponseBody
 	public String registerProduct(@ModelAttribute RestaurantDTO restdto) {
 		System.out.println("restController로 상품등록~!!!");
 		System.out.println("restdto ::" + restdto);
@@ -59,8 +59,8 @@ public class RestaurantViewRestController {
 		return cnt+"";
 	}
 	*/
-	@ResponseBody
 	@RequestMapping(value="rest_all_list", produces = "text/xml;charset=UTF-8")
+	@ResponseBody
 	public String rest_all_list(@RequestParam(required = false) String pageno,
 								@RequestParam(required = false) String orderBy,
 								@RequestParam(required = false) String category) {
@@ -102,8 +102,8 @@ public class RestaurantViewRestController {
 		return jsonStr;
 	}
 	
-	@ResponseBody
 	@RequestMapping(value="paging_Ajax", produces = "text/xml;charset=UTF-8")
+	@ResponseBody
 	public String paging_Ajax(@RequestParam(required = false) String pageno,
 								@RequestParam(required = false) String orderBy) {
 		
@@ -134,7 +134,6 @@ public class RestaurantViewRestController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		return jsonStr;
 	}
 	

@@ -41,8 +41,9 @@ public interface MemberMapper {
 	
 	public int ifActive(HashMap hashMap);
 	
-	public int updateMember(HashMap hashMap);
-	
 	public int updateEmail(HashMap hashMap);
 
+	public int updateMember(HashMap hashMap);
+	
+	public int updateImg(HashMap hashMap);
 }

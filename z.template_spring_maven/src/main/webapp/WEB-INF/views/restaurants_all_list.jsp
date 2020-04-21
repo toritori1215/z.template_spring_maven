@@ -214,16 +214,16 @@
 										<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 									</div>
 									<div class="img_list">
-										<a href="restaurant_single_with_gallery?pno=${restListPage.list[st.index].pno}">
+										<a href="restaurant_single_food_detail?pno=${restListPage.list[st.index].pno}">
 											
 											<c:set var="fileImg" 
 											 value="${fn:split(restListPage.list[st.index].pimg,'/')}"/>
 											 
 											<!--  사진이름 처리 -->
-											<%--
-											<img src="${pageContext.request.contextPath}/resources/img/${fileImg[0]}" alt="Image">
-											 --%>
-											  ${fileImg[0]}
+										
+											<img src="${pageContext.request.contextPath}/resources/css/images/restaurant_Product_img/${fileImg[0]}" alt="Image">
+											
+											 
 											 <!-- 
 											 <img src="${pageContext.request.contextPath}/resources/img/restaurant_box_1.jpg" alt="Image">
 											  -->
@@ -324,7 +324,7 @@
 											
 											<span class="normal_price_list"></span><small>*Per food</small>
 											 											
-											<p><a href="restaurant_single_with_gallery?pno=${restListPage.list[st.index].pno}" class="btn_1">Details</a>
+											<p><a href="restaurant_single_food_detail?pno=${restListPage.list[st.index].pno}" class="btn_1">Details</a>
 											</p>
 										</div>
 	

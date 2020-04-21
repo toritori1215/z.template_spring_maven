@@ -61,22 +61,19 @@
 					<div class="box_style_1">
 						<div class="post">
 						<c:forEach var ="blog" items = "${blogList}">
-							<form method="post" action="blog_post_right_sidebar">
-							<input type = "hidden" name="bNo" id="bNo" value="${blog.bNo}">
-							<a href="javascript:blog_post_right_sidebar();"><img src="${pageContext.request.contextPath}/resources/img/blog-3.jpg" alt="Image" class="img-fluid">
-							</a>
+							<form id="blogForm" method="post" action="blog_delete">
+							<input type="hidden" name="bNo" value="${blog.bNo}">
+							<a href="blog_post_right_sidebar?bNo=${blog.bNo}"><img src="${pageContext.request.contextPath}/resources/img/blog-3.jpg" alt="Image" class="img-fluid"></a>
 							<div class="post_info clearfix">
 								<div class="post-left">
 									<ul>
 										<li><i class="icon-calendar-empty"></i> On <span>${blog.bDate}</span>
 										</li>
-										<li><i class="icon-inbox-alt"></i> In <a href="#">Top tours</a>
-										</li>
-										<li><i class="icon-tags"></i> Tags <a href="#">Works</a>, <a href="#">Personal</a>
+										<li><i class="icon-inbox-alt"></i> In ${blog.bCategory}
 										</li>
 									</ul>
 								</div>
-								<div class="post-right"><i class="icon-comment"></i><a href="#">25 </a>
+								<div class="post-right"><i class="icon-comment"></i><a href="#">${blog.bReadCount}</a>
 								</div>
 							</div>
 							<h2>${blog.bTitle}</h2>
@@ -87,7 +84,10 @@
 							<p>
 								Ludus albucius adversarium eam eu. Sit eu reque tation aliquip. Quo no dolorum albucius lucilius, hinc eligendi ut sed. Ex nam quot ferri suscipit, mea ne legere alterum repudiandae. Ei pri quaerendum intellegebat, ut vel consequuntur voluptatibus. Et volumus sententiae adversarium duo......
 							</p>
-							<input type="submit" id="blog_post_right_sidebar_submit" class="btn_1" value="Read more">
+							<input type="button" class="btn_1" value="Read More" onclick="location.href='blog_post_right_sidebar?bNo=${blog.bNo}'"> &nbsp;&nbsp;&nbsp;
+							<c:if test="${blog.mNo == sUser.mNo}">
+								<input type="submit" id="delete_blog" class="btn_1" value="delete">
+							</c:if>
 							</form>
 						<hr>
 						</c:forEach>
@@ -147,7 +147,6 @@
 						</ul>
 					</div>
 					<!-- End widget -->
-
 					<hr>
 
 					<div class="widget">
@@ -171,17 +170,6 @@
 						</ul>
 					</div>
 					<!-- End widget -->
-					<hr>
-					<div class="widget tags">
-						<h4>Tags</h4>
-						<a href="#">Lorem ipsum</a>
-						<a href="#">Dolor</a>
-						<a href="#">Long established</a>
-						<a href="#">Sit amet</a>
-						<a href="#">Latin words</a>
-						<a href="#">Excepteur sint</a>
-					</div>
-					<!-- End widget -->
 
 				</aside>
 				<!-- End aside -->
@@ -190,17 +178,23 @@
 			<!-- End row-->
 		</div>
 		<!-- End container -->
+		<input type="hidden" id="deleteBlogMsg" value="${deleteBlogMsg}">
 	</main>
 	<!-- End main -->
-
+	
+	
+	
 	<!-- Footer================================================== -->
 	<jsp:include page="WEB-INF/views/common_footer_2.jsp"/>
 	<!-- End Footer -->
 	
 	<script type="text/javascript">
-		function blog_post_right_sidebar() {
-			$("#blog_post_right_sidebar_submit").trigger("click");
-		}
+		$(function() {
+			var deleteMsg = $("#deleteBlogMsg").val();
+			if (deleteMsg != null && deleteMsg != "") {
+				alert(deleteMsg);
+			}
+		});
 	</script>
 	
 </body>

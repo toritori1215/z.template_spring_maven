@@ -3,13 +3,19 @@ package com.itwill.hotel.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itwill.hotel.domain.RestaurantDTO;
+import com.itwill.hotel.exception.WrongRestaurantDataException;
 import com.itwill.hotel.service.RestaurantService;
 import com.itwill.hotel.util.PageInputDto;
 import com.itwill.hotel.util.RestaurantBoardListPageDto;
@@ -106,19 +112,56 @@ public class RestaurantViewResolverController {
 		
 		return "restaurants_all_list";
 	}
-	
-	@RequestMapping("cart_fixed_sidebar")
-	public String cart_fixed_sidebar() {
-		return "cart_fixed_sidebar";
-	}
 	@RequestMapping("restaurant_cart_fixed_sidebar")
-	public String restaurant_cart() {
+	public String restaurant_cart_fixed_sidebar(HttpSession session,
+			@RequestParam(required =false) Integer pno) {
+		
 		return "restaurant_cart_fixed_sidebar";
 	}
-	@RequestMapping("restaurant_single_with_gallery")
-	public String single_restaurant_with_gallery() {
-		return "restaurant_single_with_gallery";
+	
+	@RequestMapping("restaurant_single_food_detail")
+	public String single_restaurant_with_gallery(Model model,
+												 @RequestParam(value="pno",required = false) Integer pno) throws WrongRestaurantDataException {
+		System.out.println("pno ::->" + pno);
+		if(pno==null || pno <= -1) {
+			throw new WrongRestaurantDataException("잘못된 레스토랑 관련 데이터 입력");
+		}
+		
+		RestaurantDTO product = restService.get_Restaurant_Product(pno);
+		RestaurantDTO deposit_cost= restService.get_Restaurant_Product_name_select("BPPP");
+		
+		System.out.println("deposit_cost.pprice ->"+ deposit_cost.getPprice());
+		
+		model.addAttribute("restaurantProduct",product);
+		model.addAttribute("deposit_cost",deposit_cost);
+		return "restaurant_single_food_detail";
+	}
+	
+	@RequestMapping("restaurant_payment_fixed_sidebar")
+	public String restaurant_payment_fixed_sidebar() {
+		
+		return "restaurant_payment_fixed_sidebar";
+	}
+	
+	@RequestMapping("restaurant_confirmation_fixed_sidebar")
+	public String restaurant_confirmation_fixed_sidebar() {
+	
+		return "restaurant_confirmation_fixed_sidebar";
 	}
 	
 	
+	
+	
+	/*
+	@RequestMapping("restaurant_single_restaurant_detail")
+	public String restaurant_single_restaurant_detail() {
+		
+		return "restaurant_single_restaurant_detail";
+	}
+	*/
+	@ExceptionHandler(WrongRestaurantDataException.class)
+	public String restaurant_Controll_Exception(WrongRestaurantDataException e) {
+		System.out.println(e);
+		return "common_404";
+	}
 }

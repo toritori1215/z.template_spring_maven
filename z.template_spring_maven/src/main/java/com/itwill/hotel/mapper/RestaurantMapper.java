@@ -13,6 +13,8 @@ import com.itwill.hotel.domain.RestaurantDTO;
 public interface RestaurantMapper {
 	public int registerProduct(RestaurantDTO restDto);
 	public RestaurantDTO get_Restaurant_Product(int pNo);
+	public RestaurantDTO get_Restaurant_Product_name_select(String pname);
+	
 	public int restEntireProductCnt();
 	public int restCategoryProductCnt(String category);
 	public int foodCategoryDessertCnt();

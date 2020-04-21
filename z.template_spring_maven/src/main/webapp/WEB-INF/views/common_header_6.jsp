@@ -44,6 +44,7 @@
 	
 	<!-- CUSTOM CSS -->
 	<link href="${pageContext.request.contextPath}/resources/z.SiliconVillage/css/member.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/z.SiliconVillage/gu-upload/css/guupload.css"/>
 
 </head>
 
@@ -236,49 +237,13 @@
 								<li><a href="confirmation_restaurant.html">Confirmation transfers</a></li>
 							</ul>
 						</li>
-						<li class="megamenu submenu">
-							<a href="javascript:void(0);" class="show-submenu-mega">Bonus<i class="icon-down-open-mini"></i></a>
-							<div class="menu-wrapper">
-								<div class="row">
-									<div class="col-lg-4">
-										<h3>Header styles</h3>
-										<ul>
-											<li><a href="index.html">Default transparent</a></li>
-											<li><a href="header_2.html">Plain color</a></li>
-											<li><a href="header_3.html">Plain color on scroll</a></li>
-											<li><a href="header_4.html">With socials on top</a></li>
-											<li><a href="header_5.html">With language selection</a></li>
-											<li><a href="header_6.html">With lang and conversion</a></li>
-											<li><a href="header_7.html">With full horizontal menu</a></li>
-										</ul>
-									</div>
-									<div class="col-lg-4">
-										<h3>Footer styles</h3>
-										<ul>
-											<li><a href="index.html">Footer default</a></li>
-											<li><a href="footer_2.html">Footer style 2</a></li>
-											<li><a href="footer_3.html">Footer style 3</a></li>
-											<li><a href="footer_4.html">Footer style 4</a></li>
-											<li><a href="footer_5.html">Footer style 5</a></li>
-											<li><a href="footer_6.html">Footer style 6</a></li>
-											<li><a href="footer_7.html">Footer style 7</a></li>
-										</ul>
-									</div>
-									<div class="col-lg-4">
-										<h3>Shop section</h3>
-										<ul>
-											<li><a href="shop.html">Shop</a></li>
-											<li><a href="shop-single.html">Shop single</a></li>
-											<li><a href="shopping-cart.html">Shop cart</a></li>
-											<li><a href="checkout.html">Shop Checkout</a></li>
-										</ul>
-									</div>
-								</div>
-								<!-- End row -->
-							</div>
-							<!-- End menu-wrapper -->
+						<li class="submenu">
+							<a href="javascript:void(0);" class="show-submenu">Blog<i class="icon-down-open-mini"></i></a>
+							<ul>
+								<li><a href="blog_right_sidebar">Blog List</a></li>
+							</ul>
 						</li>
-						
+												
 						<li class="megamenu submenu">
 							<a href="javascript:void(0);" class="show-submenu-mega">Pages<i class="icon-down-open-mini"></i></a>
 							<div class="menu-wrapper">
@@ -341,7 +306,6 @@
 				
 				<!-- cart icon -->
 				<ul id="top_tools">
-					<li><a href="javascript:void(0);" class="search-overlay-menu-btn"><i class="icon_search"></i></a></li>
 					<li>
 						<div class="dropdown dropdown-cart">
 							<a href="#" data-toggle="dropdown" class="cart_bt">

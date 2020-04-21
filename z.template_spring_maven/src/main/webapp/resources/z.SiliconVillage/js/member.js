@@ -111,8 +111,26 @@ function updateEmail() {
 
 /* member_admin.jsp : updateMember */
 function updateMember() {
-	alert("!!!");
-	var fileName = $("#js-upload-files").val();
-	console.log("fileName:" + fileName);
-	console.log(fileName);
+	var firstName = $("#first_name").val();
+	var lastName = $("#last_name").val();
+	var tel = $("#tel").val();
+	var birth = $("#birth").val();
+	if (firstName == null || firstName.trim() == "") {
+		alert("Input Your First Name Please");
+		return;
+	}
+	if (lastName == null || lastName.trim() == "") {
+		alert("Input Your last Name Please");
+		return;
+	}
+	if (tel == null || tel.trim() == "") {
+		alert("Input Your Phone Number Please");
+		return;
+	}
+	if (birth == null || birth.trim() == "") {
+		alert("Input Your BirthDay Please");
+		return;
+	}
+	$("#f4").attr("action", "member_update");
+	$("#f4").submit();
 }

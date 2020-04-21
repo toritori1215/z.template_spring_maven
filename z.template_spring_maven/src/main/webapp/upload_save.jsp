@@ -15,14 +15,6 @@
         <col width="15%"/>
         <col/>
         </colgroup>
-        <tr>
-			<td>Title</td>
-			<td><%=request.getParameter("brd_title")%></td>
-		</tr>
-        <tr>
-			<td>Contents</td>
-			<td><%=request.getParameter("brd_contents")%></td>
-		</tr>
 		<tr>
 			<td>Attach File</td>
 			<td>

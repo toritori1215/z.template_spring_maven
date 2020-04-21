@@ -73,11 +73,11 @@
 										</li>
 									</ul>
 								</div>
-								<div class="post-right"><i class="icon-comment"></i><a href="#">25 </a>Comments</div>
+								<div class="post-right"><i class="icon-comment"></i><a href="#">25</a>Comments</div>
 							</div>
-							<h2>Duis aute irure dolor in reprehenderit</h2>
+							<h2>${blogView.bTitle}</h2>
 							<p>
-								Praesent vestibulum molestie lacus. Aenean nonummy hendrerit mauris. Phasellus porta. Fusce suscipit varius mi nascetur ridiculus mus. Nulla dui. Fusce feugiat malesuada odio. Morbi nunc odio, gravida at, cursus nec, luctus a, lorem.....
+								${blogView.bContent}
 							</p>
 							<p>
 								Aenean iaculis sodales dui, non hendrerit lorem rhoncus ut. Pellentesque ullamcorper venenatis elit idaipiscingi Duis tellus neque, tincidunt eget pulvinar sit amet, rutrum nec urna. Suspendisse pretium laoreet elit vel ultricies. Maecenas ullamcorper ultricies rhoncus. Aliquam erat volutpat.
@@ -87,7 +87,15 @@
 								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>
 								<small>Someone famous in <cite title="">Body of work</cite></small>
 							</blockquote>
+								<form action="blog_right_sidebar">
+									<c:if test="${blogView.mNo == sUser.mNo}">
+									<input type="submit" id="update_blog_post" class="btn_1" value="Update">
+									<input type="button" id="insert_blog_post" class="btn_1" value="Insert">
+									<input type="button" id="delete_blog_post" class="btn_1" value="Delete">
+									</c:if>
+								</form>
 						</div>
+						
 						<!-- end post -->
 					</div>
 					<!-- end box_style_1 -->
