@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwill.hotel.domain.Cart;
 import com.itwill.hotel.domain.Member;
@@ -40,11 +41,12 @@ public class CartController {
 	}
 	
 	@RequestMapping(value = "/cart_insert")
-	public String cartAddAction(@RequestParam(value="newVal") String newVal,
-								@RequestParam(value="pNo") String pNo,
-								@RequestParam(value="pPrice") String pPrice,
-								@RequestParam(value="selectDate") String selectDate,
-								HttpSession session, Model model) throws ParseException {
+	public String cartInsert(@RequestParam(value="newVal") String newVal,
+							 @RequestParam(value="pNo") String pNo,
+							 @RequestParam(value="pPrice") String pPrice,
+							 @RequestParam(value="selectDate") String selectDate,
+							 @RequestParam(value="selectTime") String selectTime,
+							 HttpSession session, Model model) throws ParseException {
 		
 		Member member = (Member) session.getAttribute("sUser");
 		int mNo = member.getmNo();
@@ -54,12 +56,30 @@ public class CartController {
 		Date date = new SimpleDateFormat("yyyy/MMMM/dd", Locale.US).parse(selectDate);
 		String strDate = new SimpleDateFormat("yyyy/MM/dd").format(date);
 		
-		Cart cart = new Cart(0, newVal_int, newVal_int*pPrice_int, null, strDate, 
+		Cart cart = new Cart(0, newVal_int, newVal_int*pPrice_int, selectTime, strDate, 
 							 null, null, null, newVal_int, mNo, pNo_int);
 		int count = cartService.insertCart(cart);
-		List<Cart> cartList = cartService.selectByNo(mNo);
-		model.addAttribute("cartList", cartList);
-		return "cart_fixed_sidebar"; 
+		if (count == 1) {
+			List<Cart> cartList = cartService.selectByNo(mNo);
+			model.addAttribute("cartList", cartList);
+			return "redirect:/cart_services";
+			//return "cart_fixed_sidebar";
+			// 카트에 갯수 확인하기
+		} else {
+			return "redirect:/common_404";
+		}
+	}
+	
+	@RequestMapping(value = "/cart_delete")
+	@ResponseBody
+	public int cartDelete (@RequestParam(value="cNo") Integer cNo,
+							  HttpSession session) {
+		Member member = (Member) session.getAttribute("sUser");
+		if (member == null) {
+			return 0;
+		} else {
+			return cartService.deleteCart(cNo);
+		}
 	}
 	
 }

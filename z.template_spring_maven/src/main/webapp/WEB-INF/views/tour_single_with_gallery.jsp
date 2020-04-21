@@ -448,7 +448,7 @@
 							<div class="col-sm-6">
 								<div class="form-group">
 									<label><i class=" icon-clock"></i> Time</label>
-									<input disabled class="time-pick form-control" value="08:00 AM" type="text">
+									<input disabled id="timePicker" class="time-pick form-control" value="08:00 AM" type="text">
 								</div>
 							</div>
 						</div>
@@ -499,6 +499,7 @@
 							<input type="hidden" name="pNo" value="${product.pNo}">
 							<input type="hidden" name="pPrice" value="${product.pPrice}">
 							<input type="hidden" name="selectDate" value="">
+							<input type="hidden" name="selectTime" value="">
 							<c:if test="${sUser != null}">
 								<input type="submit" class="btn_full" value="Book now" />
 							</c:if>
@@ -1001,6 +1002,7 @@
 	<script>
 		$(function() {
 			$("input[name='selectDate']").attr("value", $("#datePicker").val());
+			$("input[name='selectTime']").attr("value", $("#timePicker").attr("value"));
 		});
 	
 		$("#datePicker").change(function () {

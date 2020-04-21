@@ -24,4 +24,9 @@ public class CartDaoImpl implements CartDao {
 		return cartMapper.insertCart(cart);
 	}
 
+	@Override
+	public int deleteCart(Integer cNo) {
+		return cartMapper.deleteCart(cNo);
+	}
+
 }

@@ -48,11 +48,10 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="#">Home</a>
+					<li><a href="main">Home</a>
 					</li>
-					<li><a href="#">Category</a>
+					<li>Cart Services</a>
 					</li>
-					<li>Page active</li>
 				</ul>
 			</div>
 		</div>
@@ -71,7 +70,7 @@
 									Quantity
 								</th>
 								<th>
-									Discount
+									Date / Time
 								</th>
 								<th>
 									Total
@@ -82,72 +81,33 @@
 							</tr>
 						</thead>
 						<tbody>
+							<c:forEach var="cart" items="${cartList}">
 							<tr>
 								<td>
 									<div class="thumb_cart">
-										<img src="${pageContext.request.contextPath}/resources/img/thumb_cart_1.jpg" alt="Image">
+										<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${cart.pName}1.jpg" alt="Image">
 									</div>
-									<span class="item_cart">Louvre Museum tickets</span>
+									<span class="item_cart">${cart.pName}</span>
 								</td>
 								<td>
 									<div class="numbers-row">
-										<input type="text" value="1" id="quantity_1" class="qty2 form-control" name="quantity_1">
+										<input type="text" value="${cart.cProductQty}" id="quantity_1" class="qty2 form-control" name="quantity_1">
 									</div>
 								</td>
 								<td>
-									0%
+									<strong>${cart.cCheckin.substring(0,10)}</strong><br>(${cart.cCheckinTime})
 								</td>
 								<td>
-									<strong>€24,71</strong>
+									<strong>￦${cart.cProductTypePay}</strong>
 								</td>
 								<td class="options">
-									<a href="#"><i class=" icon-trash"></i></a><a href="#"><i class="icon-ccw-2"></i></a>
+									<input class="sUser" type="hidden" value="${sUser}">
+									<input class="cNo" type="hidden" value="${cart.cNo}">
+									<a class="cartItemDelete" href="#"><i class=" icon-trash"></i></a>
+									<a class="cartItemRefresh" href="#"><i class="icon-ccw-2"></i></a>
 								</td>
 							</tr>
-							<tr>
-								<td>
-									<div class="thumb_cart">
-										<img src="${pageContext.request.contextPath}/resources/img/thumb_cart_1.jpg" alt="Image">
-									</div>
-									<span class="item_cart">Eiffell tour</span>
-								</td>
-								<td>
-									<div class="numbers-row">
-										<input type="text" value="0" id="quantity_2" class="qty2 form-control" name="quantity_2">
-									</div>
-								</td>
-								<td>
-									0%
-								</td>
-								<td>
-									<strong>€0,0</strong>
-								</td>
-								<td class="options">
-									<a href="#"><i class=" icon-trash"></i></a><a href="#"><i class="icon-ccw-2"></i></a>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<div class="thumb_cart">
-										<img src="${pageContext.request.contextPath}/resources/img/thumb_cart_1.jpg" alt="Image">
-									</div>
-									<span class="item_cart">Senna river Tour</span>
-								</td>
-								<td>
-									<div class="numbers-row">
-										<input type="text" value="1" id="quantity_3" class="qty2 form-control" name="quantity_3">
-									</div>
-								</td>
-								<td>
-									0%
-								</td>
-								<td>
-									<strong>€24,71</strong>
-								</td>
-								<td class="options">
-									<a href="#"><i class=" icon-trash"></i></a><a href="#"><i class="icon-ccw-2"></i></a>
-								</td>
-							</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 					<table class="table table-striped options_cart">
@@ -371,6 +331,42 @@
 		jQuery('#sidebar').theiaStickySidebar({
 			additionalMarginTop: 80
 		});
+	</script>
+	
+	<script>
+	/* Cart Delete Item */
+	$(".cartItemDelete").on("click", function (e) {
+		var sUser = $(this).prev().prev().attr("value");
+		var cNo = $(this).prev().attr("value");
+		
+		if (sUser != null) {
+			$(this).parent().parent().fadeOut("slow", function (c) {
+				$.ajax({
+					url : "cart_delete",
+					data : "cNo="+cNo,
+					method : "POST",
+					dataType : "json",
+					success : function() {
+					}
+				});
+			});
+		} else {
+			
+		}
+	});
+	
+	$(".cartItemRefresh").on("click", function (e) {
+		$(this).parent().parent().fadeOut("slow", function (c) {
+			$.ajax({
+				url : "cart_update",
+				data : "cNo="+cNo,
+				method : "POST",
+				dataType : "json",
+				success : function() {
+				}
+			});
+		});
+	});
 	</script>
 	
 </body>

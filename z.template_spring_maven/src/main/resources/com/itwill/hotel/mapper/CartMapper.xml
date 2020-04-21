@@ -4,11 +4,11 @@
 	
 	<select id="selectByNo" parameterType="java.lang.Integer" resultType="Cart">
 		select c.cNo, c.cProductQty, c.cProductTypePay, c.cCheckinTime, c.cCheckin, 
-			   c.cCheckout, c.cPickupPos, c.cDropoffPos, c.cOrderCnt, c.mNo, c.pNo 
+			   c.cCheckout, c.cPickupPos, c.cDropoffPos, c.cOrderCnt, c.mNo, c.pNo, p.pName 
 		from cart c inner join product p
 		on c.pNo = p.pNo
 		and c.mNo = #{mNo}
-		order by p.pType
+		order by p.pType, c.cCheckin, c.cCheckinTime, c.cCheckout
 	</select>
 	
 	<insert id="insertCart" parameterType="Cart">
@@ -18,5 +18,10 @@
 				#{cCheckin}, #{cCheckout, jdbcType=VARCHAR}, #{cPickupPos, jdbcType=VARCHAR}, 
 				#{cDropoffPos, jdbcType=VARCHAR}, #{cOrderCnt}, #{mNo}, #{pNo})
 	</insert>
+	
+	<delete id ="deleteCart" parameterType="java.lang.Integer">
+		delete from cart
+		where cNo=#{cNo}
+	</delete>
 	
 </mapper>

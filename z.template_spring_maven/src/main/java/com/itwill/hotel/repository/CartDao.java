@@ -8,6 +8,8 @@ public interface CartDao {
 	
 	public List<Cart> selectByNo(Integer mNo);
 	
+	public int deleteCart(Integer cNo);
+	
 	public int insertCart(Cart cart);
 	
 }

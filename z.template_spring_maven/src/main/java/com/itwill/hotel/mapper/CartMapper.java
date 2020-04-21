@@ -10,4 +10,6 @@ public interface CartMapper {
 
 	public int insertCart(Cart cart);
 	
+	public int deleteCart(Integer cNo);
+	
 }

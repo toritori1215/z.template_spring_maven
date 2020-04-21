@@ -12,6 +12,7 @@ public class Cart {
 	private int cOrderCnt;
 	private int mNo;
 	private int pNo;
+	private String pName;
 	
 	public Cart() {
 		
@@ -119,6 +120,14 @@ public class Cart {
 
 	public void setpNo(int pNo) {
 		this.pNo = pNo;
+	}
+
+	public String getpName() {
+		return pName;
+	}
+
+	public void setpName(String pName) {
+		this.pName = pName;
 	}
 
 	@Override
