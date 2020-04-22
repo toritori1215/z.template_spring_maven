@@ -56,7 +56,7 @@ public class BlogController {
 	}
 	
 	
-	@RequestMapping(value = "/blog_delete")
+	@RequestMapping(value = "/blog_delete",method = RequestMethod.GET)
 	public String delete(@RequestParam(value = "bNo") String bNo, Model model) {
 		int deleteBlog = blogService.deleteBlog(Integer.parseInt(bNo));
 		if (deleteBlog == 1) {

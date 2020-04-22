@@ -91,7 +91,7 @@
 									<c:if test="${blogView.mNo == sUser.mNo}">
 									<a href="#" class="btn_1" data-toggle="modal"
 										data-target="#updateBlog">Update</a>
-									<input type="button" id="delete_blog_post" class="btn_1" value="Delete">
+									<input type="submit" id="delete_blog_post" class="btn_1" value="Delete">
 									</c:if>
 								</form>
 						</div>
@@ -310,26 +310,27 @@
 	<jsp:include page="z.references/common_footer_2.jsp"/>
 	<!-- End Footer -->
 	
-	<script>
-		
+	<script type="text/javascript">
 	
-		$('#delete_blog_post').click(function() {
-			var bNo = $('#blogView.bNo').val();
-			var params = "bNo"+bNo;
-			$.ajax({
-				type: "GET",
-				url: "blog_delete",
-				data: params,
-				success: function () {
-					alert('블로그를 삭제하였습니다.');
-				},
-				error: function () {
-					alert('블로그를 삭제 할 수 없습니다.');
-				}
-			
-			});
-		});
+	$('#delete_blog_post').click(function(){
 		
+		var bNo = $('#blogView.bNo').val();
+		var params="bNo="+bNo;	
+		$.ajax({
+			type: "GET",
+			url: "blog_delete",
+			data: params,
+			success : function() {
+				alert('게시글 삭제 성공');
+			},
+			error : function(){
+			alert('해당 게시글을 삭제 할 수 없습니다.');
+			}
+		});
+	});
+	
+	
+	
 	</script>
 	
 
