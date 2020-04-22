@@ -321,6 +321,25 @@
 	<jsp:include page="z.references/common_footer_2.jsp"/>
 	<!-- End Footer -->
 	
+	<script>
+		$('#delete_blog_post').click(function() {
+			var bNo = $('#blogView.bNo').val();
+			var params = "bNo"+bNo;
+			$.ajax({
+				type: "GET",
+				url: "blog_delete",
+				data: params,
+				success: function () {
+					alert('블로그를 삭제하였습니다.');
+				},
+				error: function () {
+					alert('블로그를 삭제 할 수 없습니다.');
+				}
+			
+			});
+		});
+		
+	</script>
 
 </body>
 
