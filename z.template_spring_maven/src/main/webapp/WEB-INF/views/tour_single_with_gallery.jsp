@@ -552,8 +552,11 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title" id="myReviewLabel">Write your review</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 align="right" class="modal-title" id="myReviewLabel">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Write your review</h4>
 				</div>
 				<div class="modal-body">
 					<div id="message-review">
@@ -563,11 +566,13 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
+									<label>Your name</label>
 									<input name="name_review" id="name_review" type="text" placeholder="Your name" class="form-control">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
+									<label>Your lastname</label>
 									<input name="lastname_review" id="lastname_review" type="text" placeholder="Your last name" class="form-control">
 								</div>
 							</div>
@@ -576,6 +581,7 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
+									<label>Your email</label>
 									<input name="email_review" id="email_review" type="email" placeholder="Your email" class="form-control">
 								</div>
 							</div>
@@ -646,9 +652,6 @@
 						<!-- End row -->
 						<div class="form-group">
 							<textarea name="review_text" id="review_text" class="form-control" style="height:100px" placeholder="Write your review"></textarea>
-						</div>
-						<div class="form-group">
-							<input type="text" id="verify_review" class=" form-control" placeholder="Are you human? 3 + 1 =">
 						</div>
 						<input type="submit" value="Submit" class="btn_1" id="submit-review">
 					</form>
