@@ -159,7 +159,13 @@ public class RestaurantViewResolverController {
 			//3.입력 상품번호가 리스트에 존재하면 cartlist에 존재하는 cartDTO의 상품 수량 및 가격을 DB에 업데이트
 			for (RestaurantCartDTO restaurantCartDTO : restCartList) {
 				//카트에 중복되는 상품이 들어올경우
-				duplication = pno.equals(restaurantCartDTO.getPno()) ? true : false;
+				int localPno = pno.intValue();
+				int cartitemPno=restaurantCartDTO.getPno().intValue();
+				System.out.println("-------------");
+				System.out.println(localPno + "//" + cartitemPno);
+				System.out.println("-------------");
+				duplication = (pno.intValue() == restaurantCartDTO.getPno().intValue()) ? true : false;
+				System.out.println("duplication::"+ duplication);
 				if(duplication) {
 					int cartSaveFoodCnt = restaurantCartDTO.getCproductQty();
 					int cartSavePriceCnt = restaurantCartDTO.getCproductTypePay();
@@ -170,6 +176,7 @@ public class RestaurantViewResolverController {
 							new RestaurantCartDTO(user_info.getmNo(), updateFoodCnt, updatefoodsPrice, pno, null);
 					int updateCnt = restService.updateCartInfo(updateCartDto);
 					System.out.println("update 행:"+updateCnt);
+					break;
 				}
 			}
 			

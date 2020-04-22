@@ -410,7 +410,7 @@
 							
 							
 							<a class="btn_full" href="restaurant_payment_fixed_sidebar" >BUY NOW</a>
-							<a class="btn_full_outline" href="restaurants_all_list" id="addToCartBtn"><i class=" icon-right"></i> ADD TO CART</a>
+							<a class="btn_full_outline" href="restaurants_all_list"><i class=" icon-right"></i> CONTINUE SHOPPING</a>
 						</div>
 						<div class="box_style_4">
 						<i class="icon_set_1_icon-57"></i>
@@ -720,13 +720,13 @@
 				//보여줄때 false 가나옴.
 				
 				if(show_reservation_window){
-					$('#addToCartBtn').show();
+					
 					$('.reservation_info').hide();
 					////console.log("hideReservationinfoSumCalcul");
 					
 					
 				}else{
-					$('#addToCartBtn').hide();
+				
 					$('.reservation_info').show();
 					////console.log("showReservationinfoSumCalcul");
 					
