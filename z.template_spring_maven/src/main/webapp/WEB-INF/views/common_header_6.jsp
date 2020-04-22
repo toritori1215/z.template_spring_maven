@@ -171,7 +171,7 @@
 								<li><a href="index_11.html">Popup Advertising</a></li>
 							</ul></li>
 						<li class="submenu">
-							<a href="tour_list" class="show-submenu">Tours<i class="icon-down-open-mini"></i></a>
+							<a href="#" class="show-submenu">Tours<i class="icon-down-open-mini"></i></a>
 							<ul>
 								<li><a href="tour_list">All tours list</a></li>
 								<li><a href="all_tours_grid.html">All tours grid</a></li>
