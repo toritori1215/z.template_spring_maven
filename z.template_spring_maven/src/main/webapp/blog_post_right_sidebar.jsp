@@ -250,6 +250,7 @@
 		<!-- End container -->
 	</main>
 	<!-- End main -->
+<<<<<<< HEAD
 	<!-- Modal Update -->
 <div class="modal fade" id="myReview" tabindex="-1" role="dialog"
 	aria-labelledby="myReviewLabel" aria-hidden="true">
@@ -284,46 +285,63 @@
 									placeholder="Your last name" class="form-control"  value="${sUser.mLastName}" readonly="readonly">
 							</div>
 						</div>
+=======
+	
+	<!-- Modal Review -->
+	<div class="modal fade" id="updateBlog" tabindex="-1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 align="right" class="modal-title" id="myReviewLabel">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Modify Your Blog</h4>
+				</div>
+				<div class="modal-body">
+					<div id="message-review">
+>>>>>>> branch 'master' of https://github.com/toritori1215/z.template_spring_maven.git
 					</div>
-
-					<!-- End row -->
-
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label>Email Address</label>
-								<input name="email_review" id="email_review" type="email"
-									placeholder="Your email" class="form-control" value="${sUser.mEmail}" readonly="readonly">
+					<form method="post" action="${pageContext.request.contextPath}/resources/assets/review_tour.php" name="review_tour" id="review_tour">
+						<input name="tour_name" id="tour_name" type="hidden" value="Paris Arch de Triomphe Tour">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Your name</label>
+									<input name="name_review" id="name_review" type="text" readonly="readonly" 
+											class="form-control" value="${sUser.mFirstName}">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Your lastname</label>
+									<input name="lastname_review" id="lastname_review" type="text" readonly="readonly" 
+											class="form-control" value="${sUser.mLastName}">
+								</div>
 							</div>
 						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label>Room Type</label>
-								<!--  <input name="email_review" id="email_review" type="email"
-									placeholder="Your email" class="form-control" value="" readonly="readonly">
-								-->
-								<select class="form-control" name="room_type_review"
-									id="room_type_review">
-									<option value="">Select room type</option>
-									<option value="Single room">Single Room</option>
-									<option value="Double Room">Double Room</option>
-									<option value="King double room">King Double Room</option>
-								</select>
+						<!-- End row -->
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Your email</label>
+									<input name="email_review" id="email_review" type="email" readonly="readonly" 
+											class="form-control" value="${sUser.mEmail}">
+								</div>
 							</div>
 						</div>
-					</div>
-
-					<!-- End row -->
-
-					<hr>
-					
-					<div class="col-md-6">
-							<div class="form-group">
-								<label>Blog Title</label>
-								<input type="text" name="update_blogTitle"
-									 class="form-control" value="" >
+						<!-- End row -->
+						<hr>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Blog title</label>
+									<input name="blog_title" id="blog_title" type="text" placeholder="Your blog title" 
+											style="width: 465px;" class="form-control">
+								</div>
 							</div>
 						</div>
+<<<<<<< HEAD
 				
 					
 							<div class="form-group">
@@ -344,11 +362,20 @@
 					<input type="submit" value="Submit" class="btn_1"
 						   id="submit-review">
 				</form>
+=======
+						<!-- End row -->
+						<div class="form-group">
+							<label>Blog text</label>
+							<textarea name="blog_text" id="blog_text" class="form-control" style="height:100px" placeholder="Write your blog text"></textarea>
+						</div>
+						<input type="submit" value="Submit" class="btn_1" id="submit-review">
+					</form>
+				</div>
+>>>>>>> branch 'master' of https://github.com/toritori1215/z.template_spring_maven.git
 			</div>
 		</div>
 	</div>
-</div>
-<!-- End modal review -->
+	<!-- End modal review -->
 
 	<!-- Footer================================================== -->
 	<jsp:include page="z.references/common_footer_2.jsp"/>
