@@ -448,7 +448,7 @@
 							<div class="col-sm-6">
 								<div class="form-group">
 									<label><i class=" icon-clock"></i> Time</label>
-									<input disabled class="time-pick form-control" value="08:00 AM" type="text">
+									<input disabled id="timePicker" class="time-pick form-control" value="08:00 AM" type="text">
 								</div>
 							</div>
 						</div>
@@ -499,6 +499,7 @@
 							<input type="hidden" name="pNo" value="${product.pNo}">
 							<input type="hidden" name="pPrice" value="${product.pPrice}">
 							<input type="hidden" name="selectDate" value="">
+							<input type="hidden" name="selectTime" value="">
 							<c:if test="${sUser != null}">
 								<input type="submit" class="btn_full" value="Book now" />
 							</c:if>
@@ -991,22 +992,26 @@
 
 	<!-- Date and time pickers -->
 	<script>
-		$('input.date-pick').datepicker('setDate', 'today');
+		$('input.date-pick').datepicker('setDate', '+2d');
+		$('input.date-pick').datepicker('setStartDate', '+2d');
+		$('input.date-pick').datepicker('setEndDate', '+3m');
 		$('input.time-pick').timepicker({
 			minuteStep: 30,
 			showInputs: false
-		})
+		});
 	</script>
 	
 	<script>
 		$(function() {
 			$("input[name='selectDate']").attr("value", $("#datePicker").val());
+			$("input[name='selectTime']").attr("value", $("#timePicker").attr("value"));
 		});
 	
 		$("#datePicker").change(function () {
 			$("input[name='selectDate']").attr("value", $("#datePicker").val());
 		});
-	
+		
+		/* Qty Update Button */
 		$(".button_inc1").click(function () {
 			var $button = $(this);
 			var oldValue = $button.parent().find("input").val();
@@ -1015,10 +1020,10 @@
 				var newVal = parseFloat(oldValue) + 1;
 			} else {
 				// Don't allow decrementing below zero
-				if (oldValue > 1) {
+				if (oldValue > 2) {
 					var newVal = parseFloat(oldValue) - 1;
 				} else {
-					newVal = 0;
+					newVal = 1;
 				}
 			}
 			
@@ -1031,10 +1036,9 @@
 				url:"tour_detail_travellers?",
 				data:"newVal="+newVal,
 				async:true,
-				contentType:"application/x-www-form-urlencoded;charset=utf-8",
 				success:function(d) {
-					$("#travellers_cnt").html(d.cProductQty);
-					$("#total_cost").html("￦ "+d.cProductQty*pPrice/10000+"만");
+					$("#travellers_cnt").html(d);
+					$("#total_cost").html("￦ "+d*pPrice/10000+"만");
 				}
 			});
 		});
@@ -1049,7 +1053,6 @@
 				data:"pNo="+pNo,
 				async:true,
 				success:function(d) {
-					
 				}
 			});
 		});

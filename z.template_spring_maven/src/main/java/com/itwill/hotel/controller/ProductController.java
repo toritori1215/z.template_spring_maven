@@ -64,20 +64,17 @@ public class ProductController {
 	@RequestMapping(value = "/tour_list_json", produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public List<Product> productList(@RequestParam(value="ratingArray[]") ArrayList<Integer> ratingArray) {
-		
 		HashMap parameterMap = new HashMap();
 		for (int i = 0; i < ratingArray.size(); i++) {
 			Integer rating = ratingArray.get(i);
 			parameterMap.put("pType", "tour");
 			parameterMap.put("pRate"+rating, rating);
 		}
-		
 		return productService.selectByType(parameterMap);
 	}
 	
 	@RequestMapping(value = "/tour_detail")
 	public String tourDetail(@RequestParam(value="pNo") String pNo, HttpSession session, Model model) {
-		
 		Member member = (Member) session.getAttribute("sUser");
 		int ifExist = 0;
 		
@@ -95,10 +92,8 @@ public class ProductController {
 	
 	@RequestMapping(value = "/tour_detail_travellers", produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public Cart tourTravellers(@RequestParam(value="newVal") String newVal) {
-		int newVal_int = Integer.parseInt(newVal);
-		Cart cart = new Cart(0, newVal_int, 0, null, null, null, null, null, 0, 0, 0);
-		return cart;
+	public int tourTravellers(@RequestParam(value="newVal") String newVal) {
+		return Integer.parseInt(newVal);
 	}
 	
 	@RequestMapping(value = "/tour_grid")

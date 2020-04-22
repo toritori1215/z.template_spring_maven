@@ -7,6 +7,9 @@
 	<!-- Header================================================== -->
 	<jsp:include page="common_header_6.jsp"/>
 	<!-- End Header -->
+	
+	<!-- CUSTOM CSS -->
+	<link href="${pageContext.request.contextPath}/resources/z.SiliconVillage/css/cart.css" rel="stylesheet">
 
 	<section id="hero_2">
 		<div class="intro_title">
@@ -48,11 +51,10 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="#">Home</a>
+					<li><a href="main">Home</a>
 					</li>
-					<li><a href="#">Category</a>
+					<li>Cart Services</a>
 					</li>
-					<li>Page active</li>
 				</ul>
 			</div>
 		</div>
@@ -71,7 +73,7 @@
 									Quantity
 								</th>
 								<th>
-									Discount
+									Date / Time
 								</th>
 								<th>
 									Total
@@ -82,72 +84,36 @@
 							</tr>
 						</thead>
 						<tbody>
+							<c:forEach var="cart" items="${cartList}">
 							<tr>
 								<td>
 									<div class="thumb_cart">
-										<img src="${pageContext.request.contextPath}/resources/img/thumb_cart_1.jpg" alt="Image">
+										<a href="tour_detail?pNo=${cart.pNo}">
+											<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${cart.pName}_cart.jpg" alt="Image">
+										</a>
 									</div>
-									<span class="item_cart">Louvre Museum tickets</span>
+									&nbsp;<span class="item_cart"><a href="tour_detail?pNo=${cart.pNo}"><strong>${cart.pName}<strong></a></span>
 								</td>
 								<td>
-									<div class="numbers-row">
-										<input type="text" value="1" id="quantity_1" class="qty2 form-control" name="quantity_1">
+									<div class="numbers-row2">
+										<input type="text" value="${cart.cProductQty}" id="quantity_1" class="qty2 form-control" name="quantity_1">
+										<div class="inc button_inc2">+</div>
+										<div class="dec button_inc2">-</div>
 									</div>
 								</td>
 								<td>
-									0%
+									<strong>${cart.cCheckin.substring(0,10)}</strong><br>(${cart.cCheckinTime})
 								</td>
 								<td>
-									<strong>€24,71</strong>
+									<strong>￦${cart.cProductTypePay}</strong>
 								</td>
-								<td class="options">
-									<a href="#"><i class=" icon-trash"></i></a><a href="#"><i class="icon-ccw-2"></i></a>
+								<td class="options" id="${cart.cProductQty}">
+									<input class="cNo" type="hidden" value="${cart.cNo}">
+									<a class="cartItemDelete" href="#"><i class=" icon-trash"></i></a>
+									<a class="cartItemRefresh" href="#"><i class="icon-ccw-2"></i></a>
 								</td>
 							</tr>
-							<tr>
-								<td>
-									<div class="thumb_cart">
-										<img src="${pageContext.request.contextPath}/resources/img/thumb_cart_1.jpg" alt="Image">
-									</div>
-									<span class="item_cart">Eiffell tour</span>
-								</td>
-								<td>
-									<div class="numbers-row">
-										<input type="text" value="0" id="quantity_2" class="qty2 form-control" name="quantity_2">
-									</div>
-								</td>
-								<td>
-									0%
-								</td>
-								<td>
-									<strong>€0,0</strong>
-								</td>
-								<td class="options">
-									<a href="#"><i class=" icon-trash"></i></a><a href="#"><i class="icon-ccw-2"></i></a>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<div class="thumb_cart">
-										<img src="${pageContext.request.contextPath}/resources/img/thumb_cart_1.jpg" alt="Image">
-									</div>
-									<span class="item_cart">Senna river Tour</span>
-								</td>
-								<td>
-									<div class="numbers-row">
-										<input type="text" value="1" id="quantity_3" class="qty2 form-control" name="quantity_3">
-									</div>
-								</td>
-								<td>
-									0%
-								</td>
-								<td>
-									<strong>€24,71</strong>
-								</td>
-								<td class="options">
-									<a href="#"><i class=" icon-trash"></i></a><a href="#"><i class="icon-ccw-2"></i></a>
-								</td>
-							</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 					<table class="table table-striped options_cart">
@@ -371,6 +337,91 @@
 		jQuery('#sidebar').theiaStickySidebar({
 			additionalMarginTop: 80
 		});
+	</script>
+	
+	<script>
+	/* Qty Update Button */
+	$(".button_inc2").click(function () {
+		var $button = $(this);
+		var oldValue = $button.parent().find("input").val();
+
+		if ($button.text() == "+") {
+			var newVal = parseFloat(oldValue) + 1;
+		} else {
+			// Don't allow decrementing below one
+			if (oldValue > 2) {
+				var newVal = parseFloat(oldValue) - 1;
+			} else {
+				newVal = 1;
+			}
+		}
+		$button.parent().find("input").val(newVal);
+	});
+	
+	
+	/* Cart Delete Item */
+	$(".cartItemDelete").on("click", function (e) {
+		var $button = $(this);
+		// var sUser = $(this).prev().prev().prev().attr("value");
+		var cNo = $(this).prev().attr("value");
+		
+		$.ajax({
+			url: "session_check",
+			dataType: "json",
+			success: function(d) {
+				if (d != null) {
+					$button.parent().parent().fadeOut("slow", function (c) {
+						$.ajax({
+							url : "cart_delete",
+							data : "cNo="+cNo,
+							method : "POST",
+							dataType : "json",
+							success : function() {
+							}
+						});
+					});
+					
+				} else {
+					//alert("Your session has expired. Please sign in again.");
+				}
+			}
+		});
+		e.preventDefault();
+	});
+	
+	
+	/* Cart Refresh Item */
+	$(".cartItemRefresh").on("click", function (e) {
+		var $button = $(this);
+		var cNo = $(this).prev().prev().attr("value");
+		var newQty = $button.parent().prev().prev().prev().children(':first').children(':first').val();
+		
+		$.ajax({
+			url: "session_check",
+			dataType: "json",
+			success: function(d) {
+				if (d != null) {
+					$.ajax({
+						url : "cart_update",
+						data : "cNo="+cNo+"&cProductQty="+newQty,
+						method : "POST",
+						dataType : "json",
+						success : function(p) {
+							$button.parent().prev().html("<strong>￦"+p+"</strong>");
+						}
+					});
+				} else {
+					//alert("Your session has expired. Please sign in again.");
+				}
+			}
+		});
+		e.preventDefault();
+	});
+	/*
+	<td>
+		<strong>￦${cart.cProductTypePay}</strong>
+	</td>
+	*/
 	</script>
 	
 </body>
