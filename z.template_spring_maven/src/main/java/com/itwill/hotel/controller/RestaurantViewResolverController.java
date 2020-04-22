@@ -1,7 +1,9 @@
 package com.itwill.hotel.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -23,6 +25,8 @@ import com.itwill.hotel.exception.WrongRestaurantDataException;
 import com.itwill.hotel.service.RestaurantService;
 import com.itwill.hotel.util.PageInputDto;
 import com.itwill.hotel.util.RestaurantBoardListPageDto;
+
+import net.sf.json.JSONArray;
 
 
 
@@ -240,11 +244,24 @@ public class RestaurantViewResolverController {
 	}
 	
 	@LoginCheck
-	@RequestMapping("restaurant_payment_fixed_sidebar")
-	public String restaurant_payment_fixed_sidebar() {
+	@RequestMapping(value = "restaurant_payment_fixed_sidebar",method = RequestMethod.POST)
+	public String restaurant_payment_fixed_sidebar(@RequestParam(value="itemObjectJSONList",required = false) 
+												   String itemObjectJSONList) {
+		System.out.println(itemObjectJSONList);
+		List<Map<String,Object>> resultMap = new ArrayList<Map<String,Object>>();
+	    resultMap = JSONArray.fromObject(itemObjectJSONList);
+
+	    System.out.println("pno =" +resultMap.get(0).get("pno"));
+
+		
+		
+		
+		
 		
 		return "restaurant_payment_fixed_sidebar";
 	}
+	
+	
 	
 	@LoginCheck
 	@RequestMapping("restaurant_confirmation_fixed_sidebar")

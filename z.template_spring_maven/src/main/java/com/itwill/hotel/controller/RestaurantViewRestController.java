@@ -155,7 +155,7 @@ public class RestaurantViewRestController {
 			System.out.println("maxTime ::" + maxTime);
 			
 			HashMap<String, String> dateAndtime = new HashMap<String, String>();
-			
+		
 			dateAndtime.put("date", dateText);
 			dateAndtime.put("minTime", minTime);
 			dateAndtime.put("maxTime", maxTime);

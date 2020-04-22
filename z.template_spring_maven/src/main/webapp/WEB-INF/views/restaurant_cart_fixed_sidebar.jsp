@@ -84,14 +84,14 @@
 								</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id="listBody">
 						
 							
 							<c:forEach var="cartItem" items="${restCartList}" varStatus="st"> 
 								<c:forEach var="productItem" items="${cartItem.restproductList}" varStatus="st2">
 									<c:set var="fileImg" value="${fn:split(productItem.pimg,'/')}"/>
 								
-									<tr id="${st.index}">
+									<tr id="${st.index}" itemNo="${productItem.pno}" >
 										<td>
 											<div class="thumb_cart">
 												<img src="${pageContext.request.contextPath}/resources/css/images/restaurant_Product_img/${fileImg[0]}" alt="Image">
@@ -404,13 +404,14 @@
 								 
 								<input type="hidden" name="bookingTime" id="bookingTime" value= "">					
 								<input type="hidden" name="bookingdate" id="bookingdate" value= "">
-								<input type="hidden" id="PeoplePerPrice" value="${deposit_cost}">
-								<input type="hidden" name="seatCapacity" id="seatCapacity" value="${restaurant_prod.pavailable}">						
+								<input type="hidden" id="PeoplePerPrice" name="PeoplePerPrice" value="${deposit_cost}">
+								<input type="hidden" name="seatCapacity" id="seatCapacity" value="${restaurant_prod.pavailable}">
+								<input type="hidden" id="itemObjectJSONList" name="itemObjectJSONList" value="">					
 							</form>
 							
 							
 							
-							<a class="btn_full" href="restaurant_payment_fixed_sidebar" >BUY NOW</a>
+							<a class="btn_full" id="checkOutBtn" href="restaurant_payment_fixed_sidebar" >BUY NOW</a>
 							<a class="btn_full_outline" href="restaurants_all_list"><i class=" icon-right"></i> CONTINUE SHOPPING</a>
 						</div>
 						<div class="box_style_4">
@@ -767,8 +768,113 @@
 			});
 			
 			
+			$('#checkOutBtn').click(function(e){
+				let show_reservation_window = $('#reservation_div_space').is(':visible');
+				//보내야할 정보 정리
+				// 1.상품리스트를 json데이터화 -> [[pno, jdproductqty, jdproducttot],[....]
+				// 2.상품 총금액 -> $(#sumPrice)
+				// 3.예약의 경우 -> jdorderdate ,jdordertime, jdorderqty 정보를 전송 {총 7개 데이터를 다뤄야함}
+				
+				if(show_reservation_window){
+					console.log("창이 열려있는경우");
+					//deposit가격을 포함시켜야함
+					
+					
+				}else{
+					console.log("창이 닫혀있는경우");
+					//deposit가격을 포함시키지 말아야함.
+					
+					/* json 객체 만들기 참조
+					let contact = new Object();
+					contact.firstname = "Jesper";
+					contact.surname = "Aaberg";
+					contact.phone = ["555-0100", "555-0120"];
+					console.log(contact);
+					
+					let memberfilter = new Array();
+					memberfilter[0] = "surname";
+					memberfilter[1] = "phone";
+					//memberfilter[2] = "firstname";
+					let jsonText = JSON.stringify(contact, memberfilter, "\t");
+					console.log(jsonText);
+					//결과
+					{
+						"surname": "Aaberg",
+						"phone": [
+							"555-0100",
+							"555-0120"
+						],
+						"firstname": "Jesper"
+					}
+					
+					*/
+					
+					//1.카트 tbody의 모든 item 정보를 리스트로
+					let allList =$('#listBody > tr').get();
+					//2.안보이는 리스트를 제거한 배열 생성
+					let itemObjectList = new Array(); 
+					
+					
+					$.each(allList, function(i, elt) {
+						let visibleItem = $(elt).is(":visible")
+						if(visibleItem){
+							//console.log("보이는 아이템 갯수 :"+ i);
+							///////////////////////////////////
+							let pno = $(elt).attr('itemNo');
+							//console.log("아이템 번호::"+ pno);
+							
+							///////////////////////////////////
+							let jdproductqty = $(elt).find('td:nth-child(2) > div > input').val();
+							//console.log("아이템 수량::"+ jdproductqty);
+							
+							//////////////////////////////////////////
+							let numberChange = $(elt).find('td:nth-child(4) > strong').text();
+							let numberChange1 = numberChange.replace(/,/g,"");
+							let jdproducttot = numberChange1.replace("￦","");
+							//console.log("아이템 별 총액::"+ jdproducttot);
+							
+							//console.log("-------------------");
+							// 1.상품리스트를 json데이터화 -> [[pno, jdproductqty, jdproducttot],[....]
+							// 1-1 객체 생성
+							let itemObject = new Object();
+							itemObject.pno = pno;
+							itemObject.jdproductqty = jdproductqty;
+							itemObject.jdproducttot = jdproducttot;
+							
+							// 1-2 배열에 객체를 mapping 할 키값을 선언
+							let itemList = new Array();
+							itemList[0] = "pno";
+							itemList[1] = "jdproductqty";
+							itemList[2] = "jdproducttot";
+							
+							// 2. 배열과 객체의 값을 매핑
+							let jsonText = JSON.stringify(itemObject, itemList, "\t");
+							console.log(jsonText);
+							itemObjectList.push(jsonText);
+						}
+					});
+					console.log(itemObjectList);
+					document.getElementById('itemObjectJSONList').value = "["+itemObjectList+"]";
+					console.log("$(itemObjectJSONList).val()::"+$('#itemObjectJSONList').val());
+					
+				}
+				requestCheckout();
+		
+				e.preventDefault();
+			});
+			
+			
+			
 		});
 		//on load end
+		
+		function requestCheckout(){
+			document.f.action = 'restaurant_payment_fixed_sidebar';
+			document.f.method = "POST";
+			document.f.submit();
+		}
+		
+		
 		
 	</script>
 		
