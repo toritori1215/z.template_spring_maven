@@ -307,16 +307,16 @@
 											</div>
 										</div>
 									</div>
-									<!-- 
+									
 									<div class="col-6">
 										<div class="form-group">
-											<label>Children</label>
-											<div class="numbers-row">
-												<input type="text" value="0" id="children" class="qty2 form-control" name="quantity">
+											<label>Seating Capacity</label>
+											<div class="my-numbers-row">
+												<label id="seatCapacity">dddd</label>
 											</div>
 										</div>
 									</div>
-									 -->
+									 
 									</div>
 									<hr>
 									Deposit per person<br>
@@ -570,8 +570,6 @@
 				});
 			}
 			
-			
-			
 			$('#person_increaseBtn').on('click',function(e){
 				//let foodCnt = document.getElementById('foodCnt').value;
 				let personsCntVal = document.getElementById('personsCntId').value;
@@ -613,8 +611,6 @@
 				document.getElementById('depositPrice').firstChild.nodeValue = "￦"+numberWithCommas(depositPrice);
 				
 			}
-			
-			
 			//가격 원화 표시
 			var abc = document.querySelectorAll( 'td[price_list="price"]');
 			var valueProd;
@@ -633,10 +629,9 @@
 				let completeVal = numberWithCommas(subValue);
 				abc2[i].firstChild.nodeValue = "￦"+ completeVal;
 			}
-			
-			
 			//화요일 ban
 			$('#datePicker').datepicker({
+				format: "yyyy/mm/dd",
 				beforeShowDay : function(date) {
 					////console.log("date.getDay::"+date.getDay());
 					let day = date.getDay();
@@ -646,25 +641,20 @@
 			});
 			
 			$('input.date-pick').datepicker('setDate', 'today');
-			
 			$('#datePicker').datepicker().on('change', function(e) {
 				let dayStr = document.getElementById('datePicker').value;
 				//console.log("day::"+ dayStr);
 				let daycustom = dayStr.substring(dayStr.indexOf(',')+1).trim();
 				//console.log('daycustom ::' + daycustom);
-				
 				//요일 변경이 되었을시 input (#datePicker) 값 변경
 				//$('#timePicker').timepicker('setDay',daycustom); timepicker가 클릭되었을시에 setDay값 셋팅으로 바꾸어주어 필요 없어짐
 				$('#timePicker').val('9:00 AM');
-				
 				//$('#timePicker').timepicker('setHour','9');
 				//$('#timePicker').timepicker('setMeridian','AM');
-
    			 });
 			
 			
 			$('#timePicker').timepicker({
-			
 				minuteStep: 60,
 				showInpunts: false,
 				weekendstTime : 9,
@@ -711,7 +701,6 @@
 			
 			
 			$('a[collapseBtn="BookingState"]').on("click", function(e) {
-				
 				let show_reservation_window = $('#reservation_div_space').is(':visible');
 				//console.log('show_reservation_window::'+ show_reservation_window);
 				let depositPrice = calculDepositPrice();
@@ -719,21 +708,14 @@
 				let totalPrice =0;
 				//보여줄때 false 가나옴.
 				
-				if(show_reservation_window){
-					
+				if(show_reservation_window){	
 					$('.reservation_info').hide();
 					////console.log("hideReservationinfoSumCalcul");
-					
-					
 				}else{
-				
 					$('.reservation_info').show();
 					////console.log("showReservationinfoSumCalcul");
-					
 				}
-				
 				document.getElementById('sumPrice').firstChild.nodeValue="￦"+numberWithCommas(calculTotalPrice());
-				
 			});
 			
 			

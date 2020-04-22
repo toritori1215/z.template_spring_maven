@@ -442,16 +442,16 @@
 										</div>
 									</div>
 								</div>
-								<!-- 
+								
 								<div class="col-6">
 									<div class="form-group">
-										<label>Children</label>
-										<div class="numbers-row">
-											<input type="text" value="0" id="children" class="qty2 form-control" name="quantity">
+										<label>Seating Capacity</label>
+										<div class="my-numbers-row">
+											<label id="seatCapacity">dddd</label>
 										</div>
 									</div>
 								</div>
-								 -->
+								
 							</div>
 							<hr>							
 							Deposit per person <br>
@@ -819,7 +819,27 @@
 			}
 			
 		}
-	
+		
+		function seatCapacityCalcul_Ajax(){
+			let dateText = document.getElementById('datePicker').value;
+			let timeText = document.getElementById('timePicker').value;
+			let persons = document.getElementById('persons').value;
+			
+			let param = "dateText="+dateText+"&timeText="+timeText+"&persons="+persons;
+			$.ajax({
+				
+				url :  'seatCapacityCalcul',
+				data : param,
+				dataType : 'String',
+				async : false,
+				success : function(result){
+					
+				}
+				
+			});
+			
+		}
+		
 		
 		$(function(){
 			
@@ -909,6 +929,9 @@
 			
 			
 			$('#datePicker').datepicker({
+				
+				//format: "dd/mm/yyyy",
+				format: "yyyy/mm/dd",
 				beforeShowDay: function (date) {
 					//console.log("date::"+date);
 					//console.log("date.getDay::"+date.getDay());
@@ -926,15 +949,14 @@
 				let dayStr = document.getElementById('datePicker').value;
 				console.log("day::"+ dayStr);
 				let daycustom = dayStr.substring(dayStr.indexOf(',')+1).trim();
-				console.log('daycustom ::' + daycustom);
-				
+				console.log('daycustom ::' + daycustom);				
 				//요일 변경이 되었을시 input (#datePicker) 값 변경
 				//$('#timePicker').timepicker('setDay',daycustom); timepicker가 클릭되었을시에 setDay값 셋팅으로 바꾸어주어 필요 없어짐
 				$('#timePicker').val('9:00 AM');
-				
 				//$('#timePicker').timepicker('setHour','9');
 				//$('#timePicker').timepicker('setMeridian','AM');
-
+				
+				seatCapacityCalcul_Ajax();
    			 });
 			
 
