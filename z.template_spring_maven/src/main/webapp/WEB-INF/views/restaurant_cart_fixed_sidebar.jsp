@@ -745,17 +745,25 @@
 				//console.log('show_reservation_window::'+ show_reservation_window);
 				let depositPrice = calculDepositPrice();
 				let foodsPrice = calculAllFoodSumPrice();
-				let totalPrice =0;
+				let totalPrice = 0;
+				
+				console.log("totalPrice ::" +totalPrice);
+				console.log("foodsPrice ::" +foodsPrice);
+				//console.log("depositPrice ::" +depositPrice);
+				
+				
 				//보여줄때 false 가나옴.
 				
 				if(show_reservation_window){	
 					$('.reservation_info').hide();
-					////console.log("hideReservationinfoSumCalcul");
+					totalPrice = foodsPrice;
+					document.getElementById('sumPrice').firstChild.nodeValue="￦"+numberWithCommas(totalPrice);
 				}else{
 					$('.reservation_info').show();
-					////console.log("showReservationinfoSumCalcul");
+					totalPrice = foodsPrice + depositPrice;
+					document.getElementById('sumPrice').firstChild.nodeValue="￦"+numberWithCommas(totalPrice);
+					
 				}
-				document.getElementById('sumPrice').firstChild.nodeValue="￦"+numberWithCommas(calculTotalPrice());
 			});
 			
 			
