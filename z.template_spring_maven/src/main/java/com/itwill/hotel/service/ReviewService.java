@@ -10,6 +10,8 @@ public interface ReviewService {
 	
 	public Review selectOne(Integer rNo);
 	
+	public int reviewCount(int pNo);
+	
 	public int createReview(Review review);
 	
 	public int deleteReview(Integer rNo);

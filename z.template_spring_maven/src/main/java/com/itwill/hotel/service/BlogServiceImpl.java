@@ -28,6 +28,11 @@ public class BlogServiceImpl implements BlogService {
 	}
 
 	@Override
+	public List<Blog> selectRecentBlog() {
+		return blogDao.selectRecentBlog();
+	}
+
+	@Override
 	public int insertBlog(Blog blog) {
 		return blogDao.insertBlog(blog);
 	}

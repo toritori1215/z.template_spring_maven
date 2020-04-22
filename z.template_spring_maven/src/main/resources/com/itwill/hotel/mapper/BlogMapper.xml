@@ -9,6 +9,13 @@
 		order by bDate desc
 	</select>
 	
+	<select id="selectRecentBlog" resultType="Blog">
+		select bNo, bTitle, bDate, bContent, bReadCount, bCategory, mNo
+		from blog
+        where <![CDATA[ ROWNUM <= 3 ]]>
+		order by bDate desc
+	</select>
+	
 	<select id="selectOneBlog" resultType="Blog">
 		select bNo, bTitle, bDate, bContent, bReadCount, bCategory, mNo
 		from blog
@@ -34,25 +41,15 @@
 	
 	<!-- Blog Review -->
 	<select id="selectBlogReview" parameterType="_int" resultType="BlogReview">
-		select brNo, brDate, brContent, brGroup, brStep, brDepth, mNo, bNo
-		from blog_review
-		where bNo=#{bNo}
-		order by brStep, brDepth, brDate desc
+		select br.brNo, br.brDate, br.brContent, br.brGroup, br.brStep, br.brDepth, br.mNo, br.bNo, m.mId, m.mImg
+		from blog_review br inner join member m
+		on bNo=#{bNo} and br.mNo=m.mNo
+		order by brDate desc
 	</select>
 	
-	<insert id="insertBlogReviewDepth1" parameterType="java.util.HashMap">
-		insert into blog_review(brNo, brDate, brContent, brStep, brGroup, brDepth, mNo)
-		values (blog_review_SEQ.nextval, sysdate, #{brContent}, 1, #{brGroup}, 1, #{mNo})
-	</insert>
-	
-	<insert id="insertBlogReviewDepth2" parameterType="java.util.HashMap">
-		insert into blog_review(brNo, brDate, brContent, brStep, brGroup, brDepth, mNo)
-		values (blog_review_SEQ.nextval, sysdate, #{brContent}, #{brStep}, #{brGroup}, 2, #{mNo})
-	</insert>
-	
-	<insert id="insertBlogReviewDepth3" parameterType="java.util.HashMap">
-		insert into blog_review(brNo, brDate, brContent, brStep, brGroup, brDepth, mNo)
-		values (blog_review_SEQ.nextval, sysdate, #{brContent}, #{brStep}, #{brGroup}, 3, #{mNo})
+	<insert id="insertBlogReview" parameterType="java.util.HashMap">
+		insert into blog_review(brNo, brDate, brContent, brGroup, brStep, brDepth, mNo)
+		values (blog_review_SEQ.nextval, sysdate, #{brContent}, 1, 1, 1, #{mNo})
 	</insert>
 	
 	<update id="updateBlogReview" parameterType="java.util.HashMap">

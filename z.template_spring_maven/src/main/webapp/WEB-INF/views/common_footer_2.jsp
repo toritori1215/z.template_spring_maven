@@ -302,6 +302,10 @@
 </div>
 <!-- Change Password Popup -->
 
+<!-- common_modal.jsp -->
+<jsp:include page="common_modals.jsp"></jsp:include>
+
+
 <!-- Common scripts -->
 <script src="${pageContext.request.contextPath}/resources/js/jquery-2.2.4.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/common_scripts_min.js"></script>

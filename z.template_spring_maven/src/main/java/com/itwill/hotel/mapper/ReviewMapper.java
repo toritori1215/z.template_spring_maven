@@ -11,6 +11,8 @@ public interface ReviewMapper {
 	
 	public Review selectOne(Integer rNo);
 	
+	public int reviewCount(int pNo);
+	
 	public int reviewWrite(Review review);
 	
 	public int deleteReview(Integer rNo);

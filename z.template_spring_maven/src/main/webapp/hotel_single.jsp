@@ -31,7 +31,7 @@
 		  rel="stylesheet">
 	
 	<!-- Header================================================== -->
-	<jsp:include page="z.references/common_header_6.jsp" />
+	<jsp:include page="WEB-INF/views/common_header_6.jsp" />
 	<!-- End Header -->
 	
 	<section class="parallax-window" data-parallax="scroll"
@@ -861,7 +861,7 @@
 <!-- End modal review -->
 
 <!-- Footer================================================== -->
-<jsp:include page="z.references/common_footer_2.jsp" />
+<jsp:include page="WEB-INF/views/common_footer_2.jsp" />
 <!-- End Footer -->
 
 <!-- Date and time pickers -->

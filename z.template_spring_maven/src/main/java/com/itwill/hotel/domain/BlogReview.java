@@ -10,15 +10,19 @@ public class BlogReview {
 	private int mNo; 			// 회원 번호
 	private int bNo; 			// 블로그 번호
 
-	private Integer brStep; 		// 댓글 정렬 순서
-	private Integer brGroup; 		// 원글과 댓글을 같은 그룹으로 묶음
-	private Integer brDepth; 		// 몇 번째 댓글인가 판단하는 값
-
+	private int brStep; 		// 댓글 정렬 순서
+	private int brGroup; 		// 원글과 댓글을 같은 그룹으로 묶음
+	private int brDepth; 		// 몇 번째 댓글인가 판단하는 값
+	
+	private String mId;
+	private String mImg;
+	
 	public BlogReview() {
-
+		// TODO Auto-generated constructor stub
 	}
 
-	public BlogReview(int brNo, String brDate, String brContent, int mNo, int bNo, Integer brStep, Integer brGroup, Integer brDepth) {
+	public BlogReview(int brNo, String brDate, String brContent, int mNo, int bNo, int brStep, int brGroup, int brDepth,
+			String mId, String mImg) {
 		super();
 		this.brNo = brNo;
 		this.brDate = brDate;
@@ -28,6 +32,8 @@ public class BlogReview {
 		this.brStep = brStep;
 		this.brGroup = brGroup;
 		this.brDepth = brDepth;
+		this.mId = mId;
+		this.mImg = mImg;
 	}
 
 	public int getBrNo() {
@@ -70,28 +76,44 @@ public class BlogReview {
 		this.bNo = bNo;
 	}
 
-	public Integer getBrStep() {
+	public int getBrStep() {
 		return brStep;
 	}
 
-	public void setBrStep(Integer brStep) {
+	public void setBrStep(int brStep) {
 		this.brStep = brStep;
 	}
 
-	public Integer getBrGroup() {
+	public int getBrGroup() {
 		return brGroup;
 	}
 
-	public void setBrGroup(Integer brGroup) {
+	public void setBrGroup(int brGroup) {
 		this.brGroup = brGroup;
 	}
 
-	public Integer getBrDepth() {
+	public int getBrDepth() {
 		return brDepth;
 	}
 
-	public void setBrDepth(Integer brDepth) {
+	public void setBrDepth(int brDepth) {
 		this.brDepth = brDepth;
 	}
 
+	public String getmId() {
+		return mId;
+	}
+
+	public void setmId(String mId) {
+		this.mId = mId;
+	}
+
+	public String getmImg() {
+		return mImg;
+	}
+
+	public void setmImg(String mImg) {
+		this.mImg = mImg;
+	}
+	
 }

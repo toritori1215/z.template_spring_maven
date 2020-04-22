@@ -134,8 +134,9 @@
 				<span>Menu mobile</span></a>
 				<div class="main-menu">
 					<div id="header_menu">
-						<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/SiliconVillage1.png" 
-								width="160" height="34" alt="City tours" data-retina="true">
+						<a href="main">
+						<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/SiliconVillage_S_Black.png" 
+								width="210" height="90" alt="City tours" data-retina="true"></a>
 					</div>
 					<a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
 					<ul>
@@ -171,7 +172,7 @@
 								<li><a href="index_11.html">Popup Advertising</a></li>
 							</ul></li>
 						<li class="submenu">
-							<a href="tour_list" class="show-submenu">Tours<i class="icon-down-open-mini"></i></a>
+							<a href="#" class="show-submenu">Tours<i class="icon-down-open-mini"></i></a>
 							<ul>
 								<li><a href="tour_list">All tours list</a></li>
 								<li><a href="all_tours_grid.html">All tours grid</a></li>
@@ -212,7 +213,7 @@
 							</ul>
 						</li>
 						<li class="submenu">
-							<a href="javascript:void(0);" class="show-submenu">Facility<i class="icon-down-open-mini"></i></a>
+							<a href="javascript:void(0);" class="show-submenu">Facilities<i class="icon-down-open-mini"></i></a>
 							<ul>
 								<li><a href="all_transfer_list.html">All transfers list</a></li>
 								<li><a href="all_transfer_grid.html">All transfers grid</a></li>
