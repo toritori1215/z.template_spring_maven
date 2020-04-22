@@ -218,19 +218,24 @@ public class RestaurantViewResolverController {
 	
 	@RequestMapping("restaurant_single_food_detail")
 	public String single_restaurant_with_gallery(Model model,
+												 HttpSession session,
 												 @RequestParam(value="pno",required = false) Integer pno) throws WrongRestaurantDataException {
 		System.out.println("pno ::->" + pno);
 		if(pno==null || pno <= -1) {
 			throw new WrongRestaurantDataException("잘못된 레스토랑 관련 데이터 입력");
 		}
 		
+		
+		
 		RestaurantDTO product = restService.get_Restaurant_Product(pno);
-		RestaurantDTO deposit_cost= restService.get_Restaurant_Product_name_select("BPPP");
+		RestaurantDTO restaurant_book= restService.get_Restaurant_Product_name_select("BPPP");
 		
-		System.out.println("deposit_cost.pprice ->"+ deposit_cost.getPprice());
-		
+		System.out.println("deposit_cost.pprice ->"+ restaurant_book.getPprice());
 		model.addAttribute("restaurantProduct",product);
-		model.addAttribute("deposit_cost",deposit_cost);
+		model.addAttribute("deposit_cost",restaurant_book);
+		//추가: 여러 페이지들을 작성해보니 레스토랑 예약 상품은 세션에 등록해두면 편함...에휴
+		session.setAttribute("restaurant_prod", restaurant_book);
+		
 		return "restaurant_single_food_detail";
 	}
 	

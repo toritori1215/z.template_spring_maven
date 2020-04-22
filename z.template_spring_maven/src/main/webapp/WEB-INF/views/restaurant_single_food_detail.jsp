@@ -443,11 +443,11 @@
 									</div>
 								</div>
 								
-								<div class="col-6">
+								<div class="col-6" id="seatingDiv">
 									<div class="form-group">
 										<label>Seating Capacity</label>
 										<div class="my-numbers-row">
-											<label id="seatCapacity">dddd</label>
+											<label id="seatCapacityLabel">dddd</label>
 										</div>
 									</div>
 								</div>
@@ -541,7 +541,9 @@
 								<input type="hidden" name="foodCount" id="foodCount" value= "">					
 								<input type="hidden" name="bookingTime" id="bookingTime" value= "">					
 								<input type="hidden" name="bookingdate" id="bookingdate" value= "">						
-								<input type="hidden" name="deposit_cost_ori" id="deposit_cost_ori" value= "${deposit_cost.pprice}">						
+								<input type="hidden" name="leftSeat" id="leftSeat" value= "">						
+								<input type="hidden" name="deposit_cost_ori" id="deposit_cost_ori" value= "${deposit_cost.pprice}">
+								<input type="hidden" name="seatCapacity" id="seatCapacity" value="${restaurant_prod.pavailable}">						
 							</form>
 							<a class="btn_full" href="restaurant_payment_fixed_sidebar" >BUY NOW</a>
 							<a class="btn_full_outline" href="restaurant_cart_fixed_sidebar" id="addToCartBtn"><i class=" icon-cart"></i> ADD TO CART</a>
@@ -825,7 +827,7 @@
 			let timeText = document.getElementById('timePicker').value;
 			let persons = document.getElementById('persons').value;
 			
-			let param = "dateText="+dateText+"&timeText="+timeText+"&persons="+persons;
+			let param = "dateText="+dateText+"&timeText="+timeText;
 			$.ajax({
 				
 				url : 'seatCapacityCalcul',
@@ -833,10 +835,13 @@
 				dataType : 'json',
 				async : false,
 				success : function(result){
-					//console.log("왜 안들어 오냐고!!!!");
 					//console.log("result ----->>>>>>>"+result);
+					let capacity =Number(document.getElementById('seatCapacity').value);
+					let bookedSeat = Number(result);
+					let bookingSeat = Number(document.getElementById('persons').value);
 					
-					//document.getElementById('seatCapacity').firstChild.nodeValue = result;
+					let leftSeat = capacity - bookedSeat - bookingSeat;
+					document.getElementById('seatCapacityLabel').firstChild.nodeValue = leftSeat;
 				}
 				
 			});
@@ -845,6 +850,9 @@
 		
 		
 		$(function(){
+			//시간위젯이 한번 보이고 사라졌을때 show하도록 만든다.
+			$('#seatingDiv').hide();
+			
 			
 			//$('td.text-right > div > div.dec.button_inc').text("");
 			//$('td.text-right > div > div.inc.button_inc').text("");
@@ -855,12 +863,20 @@
 				//let foodCnt = document.getElementById('foodCnt').value;
 				let personsCntVal = document.getElementById('persons').value;
 				if(personsCntVal==''){
-					console.log("여긴 들어오니?");
+					//console.log("여긴 들어오니?");
 					personsCntVal='1';
 				}
 				console.log('personsCntVal :: ' + personsCntVal);
-				let personsCntNumber = Number(personsCntVal)+1;
 				
+				////////
+				let personsCntNumber = Number(personsCntVal)+1;
+				let capacity = Number(document.getElementById('seatCapacityLabel').firstChild.nodeValue)-1;
+				if(capacity==-1){
+					capacity=0;
+					personsCntNumber=personsCntNumber-1;
+				}
+				document.getElementById('seatCapacityLabel').firstChild.nodeValue=capacity;
+				//////////
 				common_Person_Cnt(personsCntNumber);
 				
 			});
@@ -868,12 +884,16 @@
 			$('#person_decreaseBtn').on('click',function(e){
 				//let foodCnt = document.getElementById('foodCnt').value;
 				let personsCntVal = document.getElementById('persons').value;
-				console.log('personsCntVal :: ' + personsCntVal);
+				//console.log('personsCntVal :: ' + personsCntVal);
+				////////
 				let personsCntNumber = Number(personsCntVal)-1;
 				if(personsCntVal=='1'){
 					personsCntNumber =1;
+				}else{
+					let capacity = Number(document.getElementById('seatCapacityLabel').firstChild.nodeValue)+1;
+					document.getElementById('seatCapacityLabel').firstChild.nodeValue=capacity;
 				}	
-				
+				////////
 				common_Person_Cnt(personsCntNumber);
 				
 			});
@@ -1001,6 +1021,7 @@
 			
 			$('#timePicker').timepicker().on('hide.timepicker', function(e) {
 			    seatCapacityCalcul_Ajax();
+			    $('#seatingDiv').show();
 			  });
 			
 			$('#timePicker').on("click", function(e) {

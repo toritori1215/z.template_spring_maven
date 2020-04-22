@@ -308,11 +308,11 @@
 										</div>
 									</div>
 									
-									<div class="col-6">
+									<div class="col-6" id="seatingDiv">
 										<div class="form-group">
 											<label>Seating Capacity</label>
 											<div class="my-numbers-row">
-												<label id="seatCapacity">dddd</label>
+												<label id="seatCapacityLabel">dddd</label>
 											</div>
 										</div>
 									</div>
@@ -404,7 +404,8 @@
 								 
 								<input type="hidden" name="bookingTime" id="bookingTime" value= "">					
 								<input type="hidden" name="bookingdate" id="bookingdate" value= "">
-								<input type="hidden" id="PeoplePerPrice" value="${deposit_cost}">						
+								<input type="hidden" id="PeoplePerPrice" value="${deposit_cost}">
+								<input type="hidden" name="seatCapacity" id="seatCapacity" value="${restaurant_prod.pavailable}">						
 							</form>
 							
 							
@@ -501,11 +502,37 @@
 			return totalPrice;
 		}
 		
+		function seatCapacityCalcul_Ajax(){
+			let dateText = document.getElementById('datePicker').value;
+			let timeText = document.getElementById('timePicker').value;
+			let persons = document.getElementById('personsCntId').value;
+			
+			let param = "dateText="+dateText+"&timeText="+timeText;
+			$.ajax({
+				
+				url : 'seatCapacityCalcul',
+				data : param,
+				dataType : 'json',
+				async : false,
+				success : function(result){
+					//console.log("result ----->>>>>>>"+result);
+					let capacity =Number(document.getElementById('seatCapacity').value);
+					let bookedSeat = Number(result);
+					let bookingSeat = Number(document.getElementById('personsCntId').value);
+					
+					let leftSeat = capacity - bookedSeat - bookingSeat;
+					document.getElementById('seatCapacityLabel').firstChild.nodeValue = leftSeat;
+				}
+				
+			});
+			
+		}
+		
 		//on load Start
 		$(function(){
 			//예약창 닫혀있을시 reservation_info'는 숨겨져야함 
 			$('.reservation_info').hide();
-			
+			$('#seatingDiv').hide();
 			//상품별 증감버튼에 대한 처리
 			let listCntSize = Number(document.getElementById('cartListLength').value);
 			//console.log("listCntSize ::" + listCntSize);
@@ -578,10 +605,16 @@
 					personsCntVal='1';
 				}
 				//console.log('personsCntVal :: ' + personsCntVal);
+				
+				//////////
 				let personsCntNumber = Number(personsCntVal)+1;
-				for(let j =1 ; j <2;j++){
-					console.log($('tbody > tr:nth-child('+j+')').is(":visible"));
+				let capacity = Number(document.getElementById('seatCapacityLabel').firstChild.nodeValue)-1;
+				if(capacity==-1){
+					capacity=0;
+					personsCntNumber=personsCntNumber-1;
 				}
+				document.getElementById('seatCapacityLabel').firstChild.nodeValue=capacity;
+				////////////
 				common_Person_Cnt(personsCntNumber);
 				let totalPrice = calculTotalPrice();
 				$('#sumPrice').text("￦"+numberWithCommas(totalPrice));
@@ -591,15 +624,17 @@
 				//let foodCnt = document.getElementById('foodCnt').value;
 				let personsCntVal = document.getElementById('personsCntId').value;
 				//console.log('personsCntVal :: ' + personsCntVal);
+				///////
 				let personsCntNumber = Number(personsCntVal)-1;
 				if(personsCntVal=='1'){
 					personsCntNumber =1;
-				}	
+				}else{
+					let capacity = Number(document.getElementById('seatCapacityLabel').firstChild.nodeValue)+1;
+					document.getElementById('seatCapacityLabel').firstChild.nodeValue=capacity;
+				}
+				///////
 				common_Person_Cnt(personsCntNumber);
 				let totalPrice = calculTotalPrice();
-				for(let j =1 ; j <2;j++){
-					console.log($('tbody > tr:nth-child('+j+')').is(":visible"));
-				}
 				$('#sumPrice').text("￦"+numberWithCommas(totalPrice));
 			});
 			
@@ -666,6 +701,10 @@
 				
 			});
 			
+			$('#timePicker').timepicker().on('hide.timepicker', function(e) {
+			    seatCapacityCalcul_Ajax();
+			    $('#seatingDiv').show();
+			  });
 			
 			$('#timePicker').on("click", function(e) {
 				//# 1, 3번은 이어진다.

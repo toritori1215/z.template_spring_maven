@@ -141,12 +141,10 @@ public class RestaurantViewRestController {
 	
 	@RequestMapping(value="seatCapacityCalcul", produces = "text/xml;charset=UTF-8")
 	public String seatCapacityCalcul(@RequestParam(value="dateText",required=false) String dateText,
-									 @RequestParam(value="timeText",required=false) String timeText,
-									 @RequestParam(value="persons",required=false) Integer persons
-									 ) {
+									 @RequestParam(value="timeText",required=false) String timeText) {
 			System.out.println("dateText -->" +dateText);
 			System.out.println("timeText -->" +timeText);
-			System.out.println("persons -->" +persons);
+			
 			
 			//타임 24시간 처리로 바꿔야함.
 			String time = TimeCalculator.timeCalculatorMethod(timeText);
