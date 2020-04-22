@@ -119,6 +119,18 @@ public class RestaurantViewResolverController {
 	
 	
 	@LoginCheck
+	@RequestMapping(value="restaurant_cart_fixed_sidebar",method = RequestMethod.GET)//,method = RequestMethod.POST
+	public String restaurant_cart_fixed_sidebar_get(HttpSession session,
+												Model model,
+												@RequestParam(required =false) Integer pno,
+												@RequestParam(required =false) Integer foodCount,
+												@RequestParam(required =false) Integer foodsPrice,
+												@RequestParam(required =false) Integer deposit_cost_ori) {
+		return "restaurants_all_list";
+	}
+	
+	
+	@LoginCheck
 	@RequestMapping(value="restaurant_cart_fixed_sidebar",method = RequestMethod.POST)//,method = RequestMethod.POST
 	public String restaurant_cart_fixed_sidebar(HttpSession session,
 												Model model,

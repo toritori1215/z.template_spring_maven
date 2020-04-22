@@ -74,7 +74,7 @@
 									Quantity
 								</th>
 								<th>
-									Discount
+									Price
 								</th>
 								<th>
 									Total
@@ -88,59 +88,40 @@
 						
 							
 							<c:forEach var="cartItem" items="${restCartList}" varStatus="st"> 
-								<c:forEach var="productItem" items="${cartItem.restproductList}">
-									<tr>
+								<c:forEach var="productItem" items="${cartItem.restproductList}" varStatus="st2">
+									<c:set var="fileImg" value="${fn:split(productItem.pimg,'/')}"/>
+								
+									<tr id="${st.index}">
 										<td>
 											<div class="thumb_cart">
-												<img src="${pageContext.request.contextPath}/resources/img/thumb_cart_1.jpg" alt="Image">
+												<img src="${pageContext.request.contextPath}/resources/css/images/restaurant_Product_img/${fileImg[0]}" alt="Image">
 											</div>
-											<span class="item_cart">Louvre Museum tickets</span>
+											<span class="item_cart">${productItem.pname}</span>
 										</td>
 										<td>
 											<div class="numbers-row">
-												<input type="text" value="1" id="quantity_1" class="qty2 form-control" name="quantity_1">
+												<input type="text" value="${cartItem.cproductQty}" class="qty2 form-control" name="quantity_1">
 											</div>
 										</td>
-										<td>
-											0%
+										<td class="priceDisplay">
+											${productItem.pprice}
+											<input type="hidden" value="${productItem.pprice}">
 										</td>
 										<td>
-											<strong>€24,71</strong>
+											<strong class="priceDisplay"> ${cartItem.cproductTypePay}</strong>
 										</td>
 										<td class="options">
-											<a href="#"><i class=" icon-trash"></i></a><a href="#"><i class="icon-ccw-2"></i></a>
+											<a href="#"><i class=" icon-trash"></i></a>
 										</td>
 									</tr>
 								</c:forEach>
 							</c:forEach>
-							
-							<!-- 
-							<tr>
-								<td>
-									<div class="thumb_cart">
-										<img src="${pageContext.request.contextPath}/resources/img/thumb_cart_1.jpg" alt="Image">
-									</div>
-									<span class="item_cart">Senna river Tour</span>
-								</td>
-								<td>
-									<div class="numbers-row">
-										<input type="text" value="1" id="quantity_3" class="qty2 form-control" name="quantity_3">
-									</div>
-								</td>
-								<td>
-									0%
-								</td>
-								<td>
-									<strong>€24,71</strong>
-								</td>
-								<td class="options">
-									<a href="#"><i class=" icon-trash"></i></a><a href="#"><i class="icon-ccw-2"></i></a>
-								</td>
-							</tr>
-							 -->
 						</tbody>
 					</table>
-					<table class="table table-striped options_cart">
+					<!--   안사용한다!!!!! -->
+					<table class="table table-striped options_cart" style="display:none;"> <!-- display:none visibility:hidden; -->
+						<!-- 
+						
 						<thead>
 							<tr>
 								<th colspan="3">
@@ -276,10 +257,13 @@
 								</td>
 							</tr>
 						</tbody>
+						 -->
 					</table>
-					<div class="add_bottom_15"><small>* Prices for person.</small>
+					<!--   안사용한다!!!!! end -->
+					<div class="add_bottom_15">
 					</div>
 				</div>
+				 
 				<!-- End col-md-8 -->
 				
 				<aside class="col-lg-4" id="sidebar">
@@ -317,7 +301,7 @@
 											<label>persons</label>
 										
 											<div class="my-numbers-row">
-												<input type="text" value="1" id="persons" class="qty2 form-control" name="quantity">
+												<input type="text" value="1" id="personsCntId" class="qty2 form-control" name="quantity">
 												<div id="person_increaseBtn" class="inc my-button_inc"></div>
 												<div id="person_decreaseBtn" class="dec my-button_inc"></div>
 											</div>
@@ -379,8 +363,8 @@
 											Deposit cost
 										</td>
 										<td class="text-right" id="depositPrice" price_list='price'>
-											10,000
-											<input type="hidden" id="PeoplePerPrice" value="${deposit_cost}">
+											${deposit_cost}
+											
 										</td>
 									</tr>
 									<tr>
@@ -396,20 +380,35 @@
 											Total cost
 										</td>
 										<td class="text-right" price_list='price' id="sumPrice">
-											${restaurantProduct.pprice}
+											${sumprice}
 										</td>
 									</tr>
 								</tbody>
 							</table>
+							
+							<!-- 받아올 정보를 유용하게 사용하기 위한 form이자 유용하게 보내고자하는 form -->
 							<form name="f" id="f">
-							<!-- 
-								<input type="hidden" name="pno" id="pno" value= "${restaurantProduct.pno}">
-							 -->
-								<input type="hidden" name="foodsPrice" id="foodsPrice" value= "${sumprice}">							
-								<input type="hidden" name="foodCount" id="foodCount" value= "">					
+							 	<!-- 음식 총액 -->
+								<input type="hidden" name="foodsPrice" id="foodsPrice" value= "${sumprice}">
+							 	<!-- 예약좌석 수량별 합계 -->
+								<input type="hidden" name="depositSumCost" id="depositSumCost" value= "">
+							 	<!-- 카트 리스트의 길이-->
+								<input type="hidden" name="cartListLength" id="cartListLength" value= "${restCartList.size()}">
+															
+								<!-- 
+								음식별 수량이 되어야함
+								<input type="hidden" name="foodCount" id="foodCount" value= "">
+								음식별 가격이 되어야함					
+								<input type="hidden" name="foodPrice" id="foodPrice" value= "">					
+								 -->
+								 
 								<input type="hidden" name="bookingTime" id="bookingTime" value= "">					
-								<input type="hidden" name="bookingdate" id="bookingdate" value= "">						
+								<input type="hidden" name="bookingdate" id="bookingdate" value= "">
+								<input type="hidden" id="PeoplePerPrice" value="${deposit_cost}">						
 							</form>
+							
+							
+							
 							<a class="btn_full" href="restaurant_payment_fixed_sidebar" >BUY NOW</a>
 							<a class="btn_full_outline" href="restaurants_all_list" id="addToCartBtn"><i class=" icon-right"></i> ADD TO CART</a>
 						</div>
@@ -450,67 +449,165 @@
 		    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		}	
 
-		function showReservationinfoSumCalcul(){
-			
-			/*
-			let depositPrice = calculDepositPrice();
-			let foodsPrice = calculfoodPrice();
-			let sumPrice = foodsPrice + depositPrice;
-			document.getElementById('sumPrice').firstChild.nodeValue ="￦" +numberWithCommas(sumPrice);	
-			*/
-		}
-		
-		function hideReservationinfoSumCalcul(){
-			/*
-			let foodsPrice = calculfoodPrice();
-			let sumPrice = foodsPrice;
-			document.getElementById('sumPrice').firstChild.nodeValue ="￦" +numberWithCommas(sumPrice);	
-			*/
-		}	
 		
 		function calculDepositPrice(){
-			let personsCntNumber= Number(document.getElementById('personCntTd').firstChild.nodeValue);
+			let personsCntNumber= Number($('#personsCntId').val());
+			console.log("personsCntNumber::" + personsCntNumber);
 			let depositPriceStr = $('#PeoplePerPrice').val();
 			console.log("depositPrice ::" + depositPriceStr);
 			let depositPriceStr1 = depositPriceStr.replace('￦', "");
-			let depositPrice = Number(depositPriceStr1.replace(',', "")) * personsCntNumber;
-			console.log("depositPrice ::"+ depositPrice);
+			let depositPrice = Number(depositPriceStr1.replace(/,/gi,"")) * personsCntNumber;
+			////console.log("depositPrice ::"+ depositPrice);
+			document.getElementById("depositSumCost").value = depositPrice;
 			return depositPrice;
+		}
+		
+		function calculAllFoodSumPrice(){
+			let listCntSize = Number(document.getElementById('cartListLength').value);
+			let sumFoodTotal = 0;
+			let visibleitem = false;
+			for (let k = 1; k <= listCntSize; k++) {
+				visibleitem = $('#'+(k-1)).is(":visible");
+				console.log('#'+(k-1)+'=' + visibleitem)
+				
+				//console.log('K =' + k);
+				if(visibleitem){
+					let foodTypeSumPrice_str =$('tr:nth-child('+k+') > td:nth-child(4) > strong').text();
+					//console.log("foodTypeSumPrice_str ::" + foodTypeSumPrice_str);
+					let foodTypeSumPrice_str1=foodTypeSumPrice_str.replace(/,/gi,"");
+					//console.log("foodTypeSumPrice_str1 ::" + foodTypeSumPrice_str1);
+					let foodTypeSumPrice=Number(foodTypeSumPrice_str1.replace("￦",""));
+					
+					sumFoodTotal += foodTypeSumPrice;
+					//console.log("sumFoodTotal for내부::" + sumFoodTotal);
+				}
+			}
+			//console.log("sumFoodTotal::" + sumFoodTotal);
+			return sumFoodTotal;
+		}
+		
+		function calculTotalPrice(){
+			
+			let foodsPrice = calculAllFoodSumPrice();
+			let depositPrice = calculDepositPrice();
+			let totalPrice =0;
+			//console.log("$('#reservation_div_space').is(:visible)'" + $('#reservation_div_space').is(":visible"))
+			//닫혀있으면 false
+			if($('#reservation_div_space').is(":visible")){
+				totalPrice = foodsPrice + depositPrice;
+			}else{
+				totalPrice = foodsPrice;
+			}
+			return totalPrice;
 		}
 		
 		//on load Start
 		$(function(){
+			//예약창 닫혀있을시 reservation_info'는 숨겨져야함 
+			$('.reservation_info').hide();
+			
+			//상품별 증감버튼에 대한 처리
+			let listCntSize = Number(document.getElementById('cartListLength').value);
+			//console.log("listCntSize ::" + listCntSize);
+			for (let j = 1; j <= listCntSize; j++) {
+				//console.log('j ::'+ j);
+				//감소 버튼 event 정의
+				$('tbody > tr:nth-child('+j+')' ).on('click','td:nth-child(2) > div > div.dec.button_inc',function(e){
+					//console.log('감소 버튼 i ::'+ j);
+					let productprice = Number($('tr:nth-child('+j+') > td.priceDisplay > input').val());
+					let inputCnt = Number($('tr:nth-child('+j+') > td:nth-child(2) > div > input').val());
+					if(inputCnt==0){
+						$('tr:nth-child('+j+') > td:nth-child(2) > div > input').val(1);
+						inputCnt =1;
+					}
+					//resultTypeSumPrice 는 DB 주문상세에 저장되어야함. <input>타입을 f에 append해줘야함  name속성으로 하여 request를 받자 
+					let resultTypeSumPrice = inputCnt * productprice;						
+					$('tr:nth-child('+j+') > td:nth-child(4) > strong').text("￦"+numberWithCommas(resultTypeSumPrice));
+					
+					let foodTotalPrice = calculAllFoodSumPrice();
+					document.getElementById('foodsPriceTd').firstChild.nodeValue= "￦"+numberWithCommas(foodTotalPrice);
+					
+					let totPrice = calculTotalPrice();
+					$('#sumPrice').text("￦"+numberWithCommas(totPrice));
+				
+				});
+				//증가 버튼 event 정의
+				$('tbody > tr:nth-child('+j+')' ).on('click','td:nth-child(2) > div > div.inc.button_inc',function(e){
+					//console.log('증가 버튼 j ::'+ j);
+					//문자열 처리시 참고 주석
+					//let foodTypeSumPrice_str=$('tr:nth-child('+i+') > td:nth-child(4) > strong').text();
+					//let foodTypeSumPrice_str=document.querySelector('tr:nth-child('+j+') > td:nth-child(4)> strong').firstChild.nodeValue;
+					////console.log("foodTypeSumPrice_str:"+ foodTypeSumPrice_str);
+					//let foodTypeSumPrice_str1=foodTypeSumPrice_str.replace(",","");
+					//let foodTypeSumPrice=Number(foodTypeSumPrice_str1.replace("￦",""));
+					////console.log("foodTypeSumPrice ::" + foodTypeSumPrice);
+					//let productprice = Number($('tr:nth-child('+j+') > td.priceDisplay > input').val());
+					////console.log("productprice ::" + productprice);
+					//let inputCnt = Number($('tr:nth-child('+j+') > td:nth-child(2) > div > input').val());
+					//let resultTypeSumPrice = foodTypeSumPrice + productprice;						
+					//$('tr:nth-child('+j+') > td:nth-child(4) > strong').text(numberWithCommas(resultTypeSumPrice));
+					let productprice = Number($('tr:nth-child('+j+') > td.priceDisplay > input').val());
+					let inputCnt = Number($('tr:nth-child('+j+') > td:nth-child(2) > div > input').val());
+					let resultTypeSumPrice = inputCnt * productprice;						
+					$('tr:nth-child('+j+') > td:nth-child(4) > strong').text("￦"+numberWithCommas(resultTypeSumPrice));
+					
+					let foodTotalPrice = calculAllFoodSumPrice();
+					document.getElementById('foodsPriceTd').firstChild.nodeValue= "￦"+numberWithCommas(foodTotalPrice);
+					
+					let totPrice = calculTotalPrice();
+					$('#sumPrice').text("￦"+numberWithCommas(totPrice));
+				});
+				//버리기 아이콘 정의(trash)
+				$('tr:nth-child('+j+') > td.options > a > i').on('click',function(e){
+					$('#'+(j-1)).hide();
+					let lengthSetting = Number(document.getElementById('cartListLength').value);
+					document.getElementById('cartListLength').value = lengthSetting;
+					let totPrice = calculTotalPrice();
+					let allFoodSumPrice = calculAllFoodSumPrice();
+					$('#sumPrice').text("￦"+numberWithCommas(totPrice));
+					$('#foodsPriceTd').text("￦"+numberWithCommas(allFoodSumPrice));
+					e.preventDefault();
+				});
+			}
+			
+			
 			
 			$('#person_increaseBtn').on('click',function(e){
 				//let foodCnt = document.getElementById('foodCnt').value;
-				let personsCntVal = document.getElementById('persons').value;
+				let personsCntVal = document.getElementById('personsCntId').value;
 				if(personsCntVal==''){
-					console.log("여긴 들어오니?");
+					//console.log("여긴 들어오니?");
 					personsCntVal='1';
 				}
-				console.log('personsCntVal :: ' + personsCntVal);
+				//console.log('personsCntVal :: ' + personsCntVal);
 				let personsCntNumber = Number(personsCntVal)+1;
-				
+				for(let j =1 ; j <2;j++){
+					console.log($('tbody > tr:nth-child('+j+')').is(":visible"));
+				}
 				common_Person_Cnt(personsCntNumber);
-				
+				let totalPrice = calculTotalPrice();
+				$('#sumPrice').text("￦"+numberWithCommas(totalPrice));
 			});
 			
 			$('#person_decreaseBtn').on('click',function(e){
 				//let foodCnt = document.getElementById('foodCnt').value;
-				let personsCntVal = document.getElementById('persons').value;
-				console.log('personsCntVal :: ' + personsCntVal);
+				let personsCntVal = document.getElementById('personsCntId').value;
+				//console.log('personsCntVal :: ' + personsCntVal);
 				let personsCntNumber = Number(personsCntVal)-1;
 				if(personsCntVal=='1'){
 					personsCntNumber =1;
 				}	
-				
 				common_Person_Cnt(personsCntNumber);
-				
+				let totalPrice = calculTotalPrice();
+				for(let j =1 ; j <2;j++){
+					console.log($('tbody > tr:nth-child('+j+')').is(":visible"));
+				}
+				$('#sumPrice').text("￦"+numberWithCommas(totalPrice));
 			});
 			
 			function common_Person_Cnt(personsCntNumber){
-				console.log('personsCntNumber ::' + personsCntNumber);
-				document.getElementById('persons').value = personsCntNumber;
+				//console.log('personsCntNumber ::' + personsCntNumber);
+				document.getElementById('personsCntId').value = personsCntNumber;
 				document.getElementById('personCntTd').firstChild.nodeValue = personsCntNumber;
 				let depositPrice = calculDepositPrice();
 				document.getElementById('depositPrice').firstChild.nodeValue = "￦"+numberWithCommas(depositPrice);
@@ -522,25 +619,26 @@
 			var abc = document.querySelectorAll( 'td[price_list="price"]');
 			var valueProd;
 			for (var i = 0; i < abc.length; i++) {
-			
-				//abc[i].style.color='green';
 				valueProd = abc[i].firstChild.nodeValue;
-				//console.log("valueProd="+valueProd);
-				let subValue = valueProd.substr(1).trim();
-				//console.log("subValue="+subValue);
-				//console.log("subValue numberWithCommas="+numberWithCommas(subValue));
+				let subValue = valueProd.substr(1).trim();			
 				let completeVal = numberWithCommas(subValue);
-				//console.log("valueProd="+valueProd);
-				//console.log("valueProd.firstChild.nodeValue="+valueProd.firstChild.nodeValue);
-				
 				abc[i].firstChild.nodeValue = "￦"+ completeVal;
+			}
+			//가격 원화 표시2
+			var abc2 = document.querySelectorAll( '.priceDisplay');
+			var valueProd;
+			for (var i = 0; i < abc2.length; i++) {
+				valueProd = abc2[i].firstChild.nodeValue;
+				let subValue = valueProd.substr(1).trim();			
+				let completeVal = numberWithCommas(subValue);
+				abc2[i].firstChild.nodeValue = "￦"+ completeVal;
 			}
 			
 			
 			//화요일 ban
 			$('#datePicker').datepicker({
 				beforeShowDay : function(date) {
-					console.log("date.getDay::"+date.getDay());
+					////console.log("date.getDay::"+date.getDay());
 					let day = date.getDay();
 					return day ==2 ? false:true;
 				} 	
@@ -551,9 +649,9 @@
 			
 			$('#datePicker').datepicker().on('change', function(e) {
 				let dayStr = document.getElementById('datePicker').value;
-				console.log("day::"+ dayStr);
+				//console.log("day::"+ dayStr);
 				let daycustom = dayStr.substring(dayStr.indexOf(',')+1).trim();
-				console.log('daycustom ::' + daycustom);
+				//console.log('daycustom ::' + daycustom);
 				
 				//요일 변경이 되었을시 input (#datePicker) 값 변경
 				//$('#timePicker').timepicker('setDay',daycustom); timepicker가 클릭되었을시에 setDay값 셋팅으로 바꾸어주어 필요 없어짐
@@ -582,9 +680,9 @@
 				//# 1, 3번은 이어진다.
 				//1.날짜가 변경되면 timePicker Input 데이터도 9:00AM으로 초기화 된다.
 				let timeStr = this.value; 
-				console.log('timeStr->'+timeStr);
+				//console.log('timeStr->'+timeStr);
 				let time = timeStr.substring(0,1);
-				console.log('time->'+time);
+				//console.log('time->'+time);
 
 				//2.위젯 필요없는 노드 삭제
 				$('a[data-action="incrementMinute"]').parent().remove();
@@ -599,9 +697,9 @@
 				
 				//4.요일 계산 및 timepicker setDay 셋팅
 				let dayStr = document.getElementById('datePicker').value;
-				console.log("day::"+ dayStr);
+				//console.log("day::"+ dayStr);
 				let daycustom = dayStr.substring(dayStr.indexOf(',')+1).trim();
-				console.log('daycustom ::' + daycustom);
+				//console.log('daycustom ::' + daycustom);
 				
 				//timepicker에 Day seting
 				$('#timePicker').timepicker('setDay',daycustom);
@@ -615,19 +713,27 @@
 			$('a[collapseBtn="BookingState"]').on("click", function(e) {
 				
 				let show_reservation_window = $('#reservation_div_space').is(':visible');
-				console.log('show_reservation_window::'+ show_reservation_window);
+				//console.log('show_reservation_window::'+ show_reservation_window);
+				let depositPrice = calculDepositPrice();
+				let foodsPrice = calculAllFoodSumPrice();
+				let totalPrice =0;
 				//보여줄때 false 가나옴.
+				
 				if(show_reservation_window){
 					$('#addToCartBtn').show();
 					$('.reservation_info').hide();
-					console.log("hideReservationinfoSumCalcul");
-					hideReservationinfoSumCalcul();
+					////console.log("hideReservationinfoSumCalcul");
+					
+					
 				}else{
 					$('#addToCartBtn').hide();
 					$('.reservation_info').show();
-					console.log("showReservationinfoSumCalcul");
-					showReservationinfoSumCalcul();
+					////console.log("showReservationinfoSumCalcul");
+					
 				}
+				
+				document.getElementById('sumPrice').firstChild.nodeValue="￦"+numberWithCommas(calculTotalPrice());
+				
 			});
 			
 			
