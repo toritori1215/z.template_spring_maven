@@ -29,6 +29,11 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 	@Override
+	public int reviewCount(int pNo) {
+		return reviewMapper.reviewCount(pNo);
+	}
+
+	@Override
 	public int reviewWrite(Review review) {
 		int rowCount = reviewMapper.reviewWrite(review);
 		return rowCount;

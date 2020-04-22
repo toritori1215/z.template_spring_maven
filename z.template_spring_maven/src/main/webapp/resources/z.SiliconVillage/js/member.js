@@ -26,6 +26,18 @@ $('#access_link3').magnificPopup({
 	mainClass: 'my-mfp-zoom-in'
 });
 
+$('#access_link4').magnificPopup({
+	type: 'inline',
+	fixedContentPos: true,
+	fixedBgPos: true,
+	overflowY: 'auto',
+	closeBtnInside: true,
+	preloader: false,
+	midClick: true,
+	removalDelay: 300,
+	mainClass: 'my-mfp-zoom-in'
+});
+
 /* member_admin.jsp : wishlistDelete */
 $(".wishlist_close_admin").on("click", function (e) {
 	$(this).parent().parent().parent().fadeOut("slow", function (c) {

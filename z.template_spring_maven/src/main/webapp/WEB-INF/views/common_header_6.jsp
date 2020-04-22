@@ -134,8 +134,9 @@
 				<span>Menu mobile</span></a>
 				<div class="main-menu">
 					<div id="header_menu">
+						<a href="main">
 						<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/SiliconVillage_S_Black.png" 
-								width="210" height="90" alt="City tours" data-retina="true">
+								width="210" height="90" alt="City tours" data-retina="true"></a>
 					</div>
 					<a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
 					<ul>
@@ -212,7 +213,7 @@
 							</ul>
 						</li>
 						<li class="submenu">
-							<a href="javascript:void(0);" class="show-submenu">Facility<i class="icon-down-open-mini"></i></a>
+							<a href="javascript:void(0);" class="show-submenu">Facilities<i class="icon-down-open-mini"></i></a>
 							<ul>
 								<li><a href="all_transfer_list.html">All transfers list</a></li>
 								<li><a href="all_transfer_grid.html">All transfers grid</a></li>

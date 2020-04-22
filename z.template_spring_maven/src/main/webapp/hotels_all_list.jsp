@@ -25,7 +25,7 @@
 	
 	
 	<!-- Header================================================== -->
-	<jsp:include page="z.references/common_header_6.jsp"/>
+	<jsp:include page="WEB-INF/views/common_header_6.jsp"/>
 	<!-- End Header -->
 	
 	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/img/hotels_bg.jpg" data-natural-width="1400" data-natural-height="470">
@@ -375,7 +375,7 @@
 	<!-- End main -->
 	
 	<!-- Footer================================================== -->
-	<jsp:include page="z.references/common_footer_2.jsp"/>
+	<jsp:include page="WEB-INF/views/common_footer_2.jsp"/>
 	<!-- End Footer -->
 
 	<!-- Map -->

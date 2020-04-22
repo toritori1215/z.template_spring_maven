@@ -12,6 +12,8 @@ public interface BlogDao {
 	
 	public Blog selectOneBlog(int bNo);
 	
+	public List<Blog> selectRecentBlog();
+	
 	public int insertBlog(Blog blog);
 	
 	public int deleteBlog(int bNo);

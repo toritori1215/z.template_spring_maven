@@ -105,7 +105,7 @@
 	
 	
 	<!-- Header================================================== -->
-	<jsp:include page="z.references/common_header_6.jsp"/>
+	<jsp:include page="WEB-INF/views/common_header_6.jsp"/>
 	<!-- End Header -->
 	
 	<!-- Main================================================== -->
@@ -827,7 +827,7 @@
 	<!-- End main -->
     
 	<!-- Footer================================================== -->
-	<jsp:include page="z.references/common_footer_2.jsp"/>
+	<jsp:include page="WEB-INF/views/common_footer_2.jsp"/>
 	<!-- End Footer -->
 
     <!-- SLIDER REVOLUTION SCRIPTS  -->

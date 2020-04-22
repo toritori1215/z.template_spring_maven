@@ -133,13 +133,13 @@
 					<div class="widget" id="cat_blog">
 						<h4>Categories</h4>
 						<ul>
-							<li><a href="#">Places to visit</a>
+							<li><a href="#">Tour</a>
 							</li>
-							<li><a href="#">Top tours</a>
+							<li><a href="#">Hotel</a>
 							</li>
-							<li><a href="#">Tips for travellers</a>
+							<li><a href="#">Facility</a>
 							</li>
-							<li><a href="#">Events</a>
+							<li><a href="#">Restaurant</a>
 							</li>
 						</ul>
 					</div>
@@ -149,21 +149,13 @@
 					<div class="widget">
 						<h4>Recent post</h4>
 						<ul class="recent_post">
-							<li>
-								<i class="icon-calendar-empty"></i> 16th July, 2020
-								<div><a href="#">It is a long established fact that a reader will be distracted </a>
-								</div>
-							</li>
-							<li>
-								<i class="icon-calendar-empty"></i> 16th July, 2020
-								<div><a href="#">It is a long established fact that a reader will be distracted </a>
-								</div>
-							</li>
-							<li>
-								<i class="icon-calendar-empty"></i> 16th July, 2020
-								<div><a href="#">It is a long established fact that a reader will be distracted </a>
-								</div>
-							</li>
+							<c:forEach var="recentBlog" items="${recentBlogList}">
+								<li>
+									<i class="icon-calendar-empty"></i> ${recentBlog.bDate}
+									<div><a href="blog_post_right_sidebar?bNo=${recentBlog.bNo}">${recentBlog.bTitle}</a>
+									</div>
+								</li>
+							</c:forEach>
 						</ul>
 					</div>
 					<!-- End widget -->

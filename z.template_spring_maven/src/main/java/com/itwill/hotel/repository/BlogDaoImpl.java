@@ -30,6 +30,11 @@ public class BlogDaoImpl implements BlogDao {
 	}
 
 	@Override
+	public List<Blog> selectRecentBlog() {
+		return blogMapper.selectRecentBlog();
+	}
+
+	@Override
 	public int insertBlog(Blog blog) {
 		int insertResult = blogMapper.insertBlog(blog);
 		return insertResult;
@@ -53,7 +58,7 @@ public class BlogDaoImpl implements BlogDao {
 	public List<BlogReview> selectBlogReview(int bNo) {
 		return blogMapper.selectBlogReview(bNo);
 	}
-
+	
 	@Override
 	public int insertBlogReview(BlogReview blogReview) {
 		return blogMapper.insertBlogReview(blogReview);
@@ -68,6 +73,5 @@ public class BlogDaoImpl implements BlogDao {
 	public int updateBlogReview(BlogReview blogReview) {
 		return blogMapper.updateBlogReview(blogReview);
 	}
-	
 	
 }

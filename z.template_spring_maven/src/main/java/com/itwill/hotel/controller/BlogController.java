@@ -27,7 +27,9 @@ public class BlogController {
 	@RequestMapping(value = "/blog_right_sidebar")
 	public String blogList(Model model) {
 		List<Blog> blogList = blogService.selectAllBlog();
+		List<Blog> recentBlogList = blogService.selectRecentBlog();
 		model.addAttribute("blogList", blogList);
+		model.addAttribute("recentBlogList", recentBlogList);
 		return "forward:blog_right_sidebar.jsp";
 	}
 	
@@ -37,12 +39,13 @@ public class BlogController {
 		if (bNo == null || bNo.trim().equals("")) {
 			return "forward:blog_right_sidebar";
 		}
-		
 		Blog blogView = blogService.selectOneBlog(Integer.parseInt(bNo));
 		List<BlogReview> blogReviewList = blogService.selectBlogReview(Integer.parseInt(bNo));
+		List<Blog> recentBlogList = blogService.selectRecentBlog();
 		int size = blogReviewList.size();
 		model.addAttribute("blogView", blogView);
 		model.addAttribute("blogReviewList", blogReviewList);
+		model.addAttribute("recentBlogList", recentBlogList);
 		model.addAttribute("size", size);
 		return "forward:blog_post_right_sidebar.jsp";
 	}
