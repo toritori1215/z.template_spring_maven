@@ -992,8 +992,8 @@
 
 	<!-- Date and time pickers -->
 	<script>
-		$('input.date-pick').datepicker('setDate', '+2d');
-		$('input.date-pick').datepicker('setStartDate', '+2d');
+		$('input.date-pick').datepicker('setDate', '+1d');
+		$('input.date-pick').datepicker('setStartDate', '+1d');
 		$('input.date-pick').datepicker('setEndDate', '+3m');
 		$('input.time-pick').timepicker({
 			minuteStep: 30,

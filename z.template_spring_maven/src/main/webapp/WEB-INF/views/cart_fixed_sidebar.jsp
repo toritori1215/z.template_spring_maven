@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
@@ -105,7 +105,7 @@
 									<strong>${cart.cCheckin.substring(0,10)}</strong><br>(${cart.cCheckinTime})
 								</td>
 								<td>
-									<strong>￦${cart.cProductTypePay}</strong>
+									<strong>￦${cart.cProductTypePay/10000.0}만</strong>
 								</td>
 								<td class="options" id="${cart.cProductQty}">
 									<input class="cNo" type="hidden" value="${cart.cNo}">
@@ -266,7 +266,7 @@
 								<tbody>
 									<tr>
 										<td>
-											Adults
+											Dates
 										</td>
 										<td class="text-right">
 											2
@@ -274,7 +274,7 @@
 									</tr>
 									<tr>
 										<td>
-											Children
+											Tour Total
 										</td>
 										<td class="text-right">
 											0
@@ -407,7 +407,7 @@
 						method : "POST",
 						dataType : "json",
 						success : function(p) {
-							$button.parent().prev().html("<strong>￦"+p+"</strong>");
+							$button.parent().prev().html("<strong>￦"+p/10000+".0만</strong>");
 						}
 					});
 				} else {

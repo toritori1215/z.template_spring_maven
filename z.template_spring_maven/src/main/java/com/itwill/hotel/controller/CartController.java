@@ -2,6 +2,8 @@ package com.itwill.hotel.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -38,6 +40,15 @@ public class CartController {
 			
 			List<Cart> cartList = cartService.selectBymNo(mNo);
 			model.addAttribute(cartList);
+			
+			List dateList = new ArrayList();
+			for (Cart cart: cartList) {
+				dateList.add(cart.getcCheckin());
+			}
+			Collections.sort(dateList);
+			int length = dateList.size();
+			
+			
 			return "cart_fixed_sidebar";
 		} else {
 			return "redirect:/member_login_form";
