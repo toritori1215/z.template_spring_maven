@@ -2,8 +2,10 @@ package com.itwill.hotel.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -248,13 +250,19 @@ public class RestaurantViewResolverController {
 	public String restaurant_payment_fixed_sidebar(@RequestParam(value="itemObjectJSONList",required = false) 
 												   String itemObjectJSONList) {
 		System.out.println(itemObjectJSONList);
-		List<Map<String,Object>> resultMap = new ArrayList<Map<String,Object>>();
-	    resultMap = JSONArray.fromObject(itemObjectJSONList);
+		List<Map<String,Object>> resultMapArray = new ArrayList<Map<String,Object>>();
+	    resultMapArray = JSONArray.fromObject(itemObjectJSONList);
 
-	    System.out.println("pno =" +resultMap.get(0).get("pno"));
-
-		
-		
+	    
+	    for (int i = 0; i < resultMapArray.size(); i++) {
+	    	Iterator keyiter = resultMapArray.get(i).keySet().iterator();
+	    	while(keyiter.hasNext()) {
+	    		String key = (String)keyiter.next();
+	    		System.out.println("key ::" + key);
+	    		System.out.println("key value ::" + resultMapArray.get(i).get(key));
+	    		
+	    	}
+		}
 		
 		
 		
