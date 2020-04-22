@@ -91,7 +91,7 @@
 									<c:if test="${blogView.mNo == sUser.mNo}">
 									<a href="#" class="btn_1" data-toggle="modal"
 										data-target="#updateBlog">Update</a>
-									<input type="button" id="delete_blog_post" class="btn_1" value="Delete">
+									<input type="submit" id="delete_blog_post" class="btn_1" value="Delete">
 									</c:if>
 								</form>
 							</div>

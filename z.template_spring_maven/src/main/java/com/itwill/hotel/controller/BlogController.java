@@ -62,6 +62,7 @@ public class BlogController {
 	@RequestMapping(value = "/blog_delete")
 	public String delete(@RequestParam(value = "bNo") String bNo, Model model) {
 		int deleteBlog = blogService.deleteBlog(Integer.parseInt(bNo));
+		List<Blog> blogList = blogService.selectAllBlog();
 		if (deleteBlog == 1) {
 			model.addAttribute("deleteBlogMsg", "삭제되었습니다.");
 			return "forward:blog_right_sidebar";
