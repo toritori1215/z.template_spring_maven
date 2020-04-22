@@ -354,6 +354,7 @@
 	<jsp:include page="z.references/common_footer_2.jsp"/>
 	<!-- End Footer -->
 	
+<<<<<<< HEAD
 	<script>
 	
 	$('#delete_blog_post').click(function(){
@@ -376,6 +377,9 @@
 	
 		
 	</script>
+=======
+
+>>>>>>> branch 'master' of https://github.com/toritori1215/z.template_spring_maven.git
 </body>
 
 </html>
