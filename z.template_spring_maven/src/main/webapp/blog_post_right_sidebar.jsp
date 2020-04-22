@@ -311,7 +311,7 @@
 	<!-- End Footer -->
 	
 	<script>
-		$('#update_blog')
+		
 	
 		$('#delete_blog_post').click(function() {
 			var bNo = $('#blogView.bNo').val();
