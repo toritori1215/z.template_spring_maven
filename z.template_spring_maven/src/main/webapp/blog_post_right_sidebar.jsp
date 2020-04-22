@@ -58,7 +58,7 @@
 		<div class="container margin_60">
 			<div class="row">
 				<c:choose>
-					<c:when test="${size != 0}">
+					<c:when test="${blogReviewSize != 0}">
 						<div class="col-lg-9">
 						<div class="box_style_1">
 						<input type="hidden" name="bNo" id="bNo" value="${blogView}">
@@ -75,7 +75,7 @@
 											</li>
 										</ul>
 									</div>
-									<div class="post-right"><i class="icon-comment"></i> ${size} Comments</div>
+									<div class="post-right"><i class="icon-comment"></i> ${blogReviewSize} Comments</div>
 								</div>
 								<h2>${blogView.bTitle}</h2>
 								<p>
@@ -99,7 +99,7 @@
 						</div>
 						<!-- end box_style_1 -->
 	
-						<h4>${size} comments</h4>
+						<h4>${blogReviewSize} comments</h4>
 						<div id="comments">
 							<ol>
 							<c:forEach var="blogReview" items="${blogReviewList}">
@@ -114,7 +114,7 @@
 								</li>
 								<hr>
 							</c:forEach>
-							<c:if test="${size==0}">
+							<c:if test="${blogReviewSize==0}">
 								<br><br><br>
 								<li>
 									<div class="avatar"></div>
@@ -258,7 +258,7 @@
 													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Leave a comment
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Leave the first comment
 												<p>
 											</blockquote>
 										</div>

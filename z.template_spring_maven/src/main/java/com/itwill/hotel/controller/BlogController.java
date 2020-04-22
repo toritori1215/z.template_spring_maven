@@ -42,11 +42,11 @@ public class BlogController {
 		Blog blogView = blogService.selectOneBlog(Integer.parseInt(bNo));
 		List<BlogReview> blogReviewList = blogService.selectBlogReview(Integer.parseInt(bNo));
 		List<Blog> recentBlogList = blogService.selectRecentBlog();
-		int size = blogReviewList.size();
+		int blogReviewSize = blogReviewList.size();
 		model.addAttribute("blogView", blogView);
 		model.addAttribute("blogReviewList", blogReviewList);
 		model.addAttribute("recentBlogList", recentBlogList);
-		model.addAttribute("size", size);
+		model.addAttribute("blogReviewSize", blogReviewSize);
 		return "forward:blog_post_right_sidebar.jsp";
 	}
 	

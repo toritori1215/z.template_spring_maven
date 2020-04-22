@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 import javax.xml.bind.ParseConversionEvent;
 
 import org.apache.ibatis.annotations.Param;
@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.tags.form.PasswordInputTag;
 
+import com.itwill.hotel.domain.Member;
 import com.itwill.hotel.domain.Review;
 import com.itwill.hotel.service.MemberService;
 import com.itwill.hotel.service.ReviewService;
@@ -30,52 +31,55 @@ public class ReviewController {
 	@Autowired
 	private ReviewService reviewService;
 	
-	@Autowired
-	private MemberService memberService;
-	
-	
-	@RequestMapping(value = "/hotel_single")
-	public String hotelreviewList(HttpServletRequest request,Model model) {
-		System.out.println("list컨트롤러");
-		List<Review>hotelreviewList =reviewService.selectAll();
-		System.out.println("@@@@@@@@@"+hotelreviewList);
-		model.addAttribute("hotelreviewList",hotelreviewList);
-		return "forward:hotel_single.jsp";
+	@RequestMapping(value = "/insert_review")
+	public String insertReview(@RequestParam(value = "position_review", defaultValue = "0") String rate1, 
+								@RequestParam(value = "guide_review", defaultValue = "0") String rate2, 
+								@RequestParam(value = "price_review", defaultValue = "0") String rate3, 
+								@RequestParam(value = "quality_review", defaultValue = "0") String rate4, 
+								@RequestParam(value = "insertPNo") String pNo, 
+								@RequestParam(value = "review_text") String cotent, 
+								@RequestParam(value = "insertPtype") String pType, 
+								HttpSession session, Model model) {
+		Member member = (Member) session.getAttribute("sUser");
+		int rowCount = reviewService.insertReview(new Review(0, Integer.parseInt(rate1), Integer.parseInt(rate2), 
+								Integer.parseInt(rate3), Integer.parseInt(rate4), cotent, null, member.getmNo(),
+								Integer.parseInt(pNo), null, null, null, 0));
+		if (rowCount == 1) {
+			if (pType.toLowerCase().equals("tour")) {
+				return "forward:tour_detail?pNo=" + pNo;
+			} else if (pType.toLowerCase().equals("hotel")) {
+				return "forward:hotel_detail?pNo=" + pNo;
+			} else if (pType.toLowerCase().equals("facility")) {
+				return "forward:facility_detail?pNo=" + pNo;
+			} else if (pType.toLowerCase().equals("restaurant")) {
+				return "forward:restaurant_detail?pNo=" + pNo;
+			} else {
+				return "common_404";
+			}
+		} else {
+			return "common_404";
+		}
 	}
 	
-	@RequestMapping(value = "/review_write", method=RequestMethod.POST)
-	@ResponseBody
-	public Integer write(@RequestParam(value = "rFirst") String rFirst,
-						@RequestParam(value = "rLast") String rLast,
-						@RequestParam(value = "rEmail") String rEmail,
-						@RequestParam(value = "rCleanliness") String rCleanliness,
-						@RequestParam(value = "rComfort") String rComfort,
-						@RequestParam(value = "rPrice") String rPrice,
-						@RequestParam(value = "rQuality") String rQuality,
-						@RequestParam(value = "rContent") String rContent,
-						@RequestParam(value = "pType") String pType, 
-						Model model){
-		int var1 = Integer.parseInt(rCleanliness);
-		int var2 = Integer.parseInt(rComfort);
-		int var3 = Integer.parseInt(rPrice);
-		int var4 = Integer.parseInt(rQuality);
-		int total_review = (var1+var2+var3+var4) /4;
-		//int reviewWrite = reviewService.createReview(new Review());
-	    List<Review> hotelreviewList = reviewService.selectAll();
-	    System.out.println("########total_review: " + total_review);
-	    model.addAttribute("total_review", total_review);
-		return total_review;
-	}
-	
-	
-	@RequestMapping(value = "/review_delete_action" ,method=RequestMethod.GET)
-	public String delete(@RequestParam(value = "rNo") String rNo,Model model) {
-		System.out.println("delete컨트롤러 도착");
-		System.out.println("rNo-->"+rNo);
-		int reviewDelete=reviewService.deleteReview(Integer.parseInt(rNo));
-		List<Review> reviewList =reviewService.selectAll();
-		model.addAttribute("reviewList",reviewList);
-		return "forward:hotel_single.jsp";
+	@RequestMapping(value = "/delete_review")
+	public String deleteReview(@RequestParam(value = "rNo") String rNo, 
+								@RequestParam(value = "pType") String pType) {
+		int rowCount = reviewService.deleteReview(Integer.parseInt(rNo));
+		if (rowCount == 1) {
+			if (pType.toLowerCase().equals("tour")) {
+				return "forward:tour_detail";
+			} else if (pType.toLowerCase().equals("hotel")) {
+				return "forward:hotel_detail";
+			} else if (pType.toLowerCase().equals("facility")) {
+				return "forward:facility_detail";
+			} else if (pType.toLowerCase().equals("restaurant")) {
+				return "forward:restaurant_detail";
+			} else {
+				return "common_404";
+			}
+		} else {
+			return "common_404";
+		}
 	}
 	
 }
