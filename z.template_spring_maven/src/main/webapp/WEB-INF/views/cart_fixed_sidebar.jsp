@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
@@ -105,10 +105,11 @@
 									<strong>${cart.cCheckin.substring(0,10)}</strong><br>(${cart.cCheckinTime})
 								</td>
 								<td>
-									<strong>￦${cart.cProductTypePay}</strong>
+									<strong>￦${cart.cProductTypePay/10000.0}만</strong>
 								</td>
 								<td class="options" id="${cart.cProductQty}">
 									<input class="cNo" type="hidden" value="${cart.cNo}">
+									<input class="cartItemBefore" type="hidden" value="${cart.cProductTypePay/10000.0}">
 									<a class="cartItemDelete" href="#"><i class=" icon-trash"></i></a>
 									<a class="cartItemRefresh" href="#"><i class="icon-ccw-2"></i></a>
 								</td>
@@ -266,18 +267,20 @@
 								<tbody>
 									<tr>
 										<td>
-											Adults
+											<strong>Dates</strong>
 										</td>
 										<td class="text-right">
-											2
+											${date_min} &nbsp; to&nbsp;  ${date_max}
 										</td>
 									</tr>
 									<tr>
 										<td>
-											Children
+											<strong>Tour Total</strong>
 										</td>
 										<td class="text-right">
-											0
+											<div id="cartTotal" value="${cartTotal/10000}">
+											￦&nbsp;${cartTotal/10000}만
+											</div>
 										</td>
 									</tr>
 									<tr>
@@ -362,8 +365,9 @@
 	/* Cart Delete Item */
 	$(".cartItemDelete").on("click", function (e) {
 		var $button = $(this);
-		// var sUser = $(this).prev().prev().prev().attr("value");
-		var cNo = $(this).prev().attr("value");
+		var cNo = $(this).prev().prev().attr("value");
+		var cartItemBefore = $button.prev().attr("value");
+		var cartTotal = $("#cartTotal").attr("value");
 		
 		$.ajax({
 			url: "session_check",
@@ -377,6 +381,8 @@
 							method : "POST",
 							dataType : "json",
 							success : function() {
+								var cartTotalNew = +cartTotal - +cartItemBefore;
+								$("#cartTotal").html("￦&nbsp;"+cartTotalNew+".0만");
 							}
 						});
 					});
@@ -393,8 +399,10 @@
 	/* Cart Refresh Item */
 	$(".cartItemRefresh").on("click", function (e) {
 		var $button = $(this);
-		var cNo = $(this).prev().prev().attr("value");
+		var cNo = $button.prev().prev().prev().attr("value");
 		var newQty = $button.parent().prev().prev().prev().children(':first').children(':first').val();
+		var cartItemBefore = $button.prev().prev().attr("value");
+		var cartTotal = $("#cartTotal").attr("value");
 		
 		$.ajax({
 			url: "session_check",
@@ -407,7 +415,10 @@
 						method : "POST",
 						dataType : "json",
 						success : function(p) {
-							$button.parent().prev().html("<strong>￦"+p+"</strong>");
+							var cartNet = (p/10000)-cartItemBefore;
+							var cartTotalNew = +cartTotal + +cartNet;
+							$button.parent().prev().html("<strong>￦"+p/10000+".0만</strong>");
+							$("#cartTotal").html("￦&nbsp;"+cartTotalNew+".0만");
 						}
 					});
 				} else {

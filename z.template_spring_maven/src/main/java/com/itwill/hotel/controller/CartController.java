@@ -2,6 +2,8 @@ package com.itwill.hotel.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -37,7 +39,24 @@ public class CartController {
 			cartService.deleteOutdatedCart(parameterMap);
 			
 			List<Cart> cartList = cartService.selectBymNo(mNo);
-			model.addAttribute(cartList);
+			session.setAttribute("cartList", cartList);
+			
+			List dateList = new ArrayList();
+			for (Cart cart: cartList) {
+				dateList.add(cart.getcCheckin());
+			}
+			Collections.sort(dateList);
+			int length = dateList.size();
+			int index_max = length - 1;
+			session.setAttribute("date_min", ((String) dateList.get(0)).substring(5,10));
+			session.setAttribute("date_max", ((String) dateList.get(index_max)).substring(5,10));
+			
+			int cartTotal = 0;
+			for (Cart cart: cartList) {
+				cartTotal += cart.getcProductTypePay();
+			}
+			session.setAttribute("cartTotal", cartTotal);
+			
 			return "cart_fixed_sidebar";
 		} else {
 			return "redirect:/member_login_form";
@@ -62,9 +81,9 @@ public class CartController {
 			Date date = new SimpleDateFormat("yyyy/MMMM/dd", Locale.US).parse(selectDate);
 			String strDate = new SimpleDateFormat("yyyy/MM/dd").format(date);
 			
-			Cart cart = new Cart(0, newVal_int, newVal_int*pPrice_int, selectTime, strDate, 
+			Cart newCart = new Cart(0, newVal_int, newVal_int*pPrice_int, selectTime, strDate, 
 								 null, null, null, newVal_int, mNo, pNo_int, pPrice_int);
-			Cart cartExist = cartService.checkCartProduct(cart);
+			Cart cartExist = cartService.checkCartProduct(newCart);
 			
 			if (cartExist != null) {
 				int cNo = cartExist.getcNo();
@@ -77,11 +96,28 @@ public class CartController {
 				parameterMap.put("cOrderCnt", cNewQty);
 				cartService.updateCart(parameterMap);
 			} else {
-				cartService.insertCart(cart);
+				cartService.insertCart(newCart);
 			}
 			
 			List<Cart> cartList = cartService.selectBymNo(mNo);
-			model.addAttribute("cartList", cartList);
+			session.setAttribute("cartList", cartList);
+			
+			List dateList = new ArrayList();
+			for (Cart cart: cartList) {
+				dateList.add(cart.getcCheckin());
+			}
+			Collections.sort(dateList);
+			int length = dateList.size();
+			int index_max = length - 1;
+			session.setAttribute("date_min", ((String) dateList.get(0)).substring(5,10));
+			session.setAttribute("date_max", ((String) dateList.get(index_max)).substring(5,10));
+			
+			int cartTotal = 0;
+			for (Cart cart: cartList) {
+				cartTotal += cart.getcProductTypePay();
+			}
+			session.setAttribute("cartTotal", cartTotal);
+			
 			return "redirect:/cart_services";
 		} else {
 			return "forward:member_login_form";
