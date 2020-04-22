@@ -38,6 +38,7 @@ public interface RestaurantMapper {
 	public int insertCartInfo(RestaurantCartDTO cartInsertInfo);
 	public int updateCartInfo(RestaurantCartDTO cartInsertInfo);
 	
+	public int seatCapacityCalcul(HashMap<String, String> dateAndtime);
 	
 	
 	

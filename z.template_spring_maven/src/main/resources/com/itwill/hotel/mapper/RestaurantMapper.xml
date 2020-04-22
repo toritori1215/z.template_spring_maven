@@ -217,4 +217,26 @@
 	
 	</update>
 	
+	<!-- 특정날 예약 시간에  주문된 좌석 수 한 시간 기준이면 (=) 으로 하는것이 나을수 있음 {결과는 동일}-->
+	<select id="seatCapacityCalcul"
+			parameterType="java.util.HashMap"
+			resultType="int">
+	<!-- 
+		select count(*) 
+		from jumun j inner join JUMUN_DETAIL jd
+		on j.jno = jd.jno
+		where jd.jdorderdate = to_date('#{date}','yyyy/mm/dd') and
+    <![CDATA[to_date(jd.jdordertime,'HH24:MI') > to_date(#{minTime},'HH24:MI')]]> and 
+    <![CDATA[to_date(jd.jdordertime,'HH24:MI') < to_date(#{maxTime},'HH24:MI')]]>
+	 -->	
+		select count(*) 
+		from jumun j inner join JUMUN_DETAIL jd
+		on j.jno = jd.jno
+		where jd.jdorderdate = to_date('${date}','yyyy/mm/dd') and
+	    to_date(jd.jdordertime,'HH24:MI') &gt; to_date('${minTime}','HH24:MI') and 
+	    to_date(jd.jdordertime,'HH24:MI') &lt; to_date('${maxTime}','HH24:MI')
+		 
+	</select>
+	
+	
 </mapper>

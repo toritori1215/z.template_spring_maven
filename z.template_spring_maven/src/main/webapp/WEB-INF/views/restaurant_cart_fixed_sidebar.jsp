@@ -641,7 +641,7 @@
 			});
 			
 			$('input.date-pick').datepicker('setDate', 'today');
-			$('#datePicker').datepicker().on('change', function(e) {
+			$('#datePicker').datepicker().on('changeDate', function(e) {
 				let dayStr = document.getElementById('datePicker').value;
 				//console.log("day::"+ dayStr);
 				let daycustom = dayStr.substring(dayStr.indexOf(',')+1).trim();
@@ -663,6 +663,7 @@
 				weekdayedTime : 7,
 				day :'Sat',
 				showInpunts: false
+				
 			});
 			
 			

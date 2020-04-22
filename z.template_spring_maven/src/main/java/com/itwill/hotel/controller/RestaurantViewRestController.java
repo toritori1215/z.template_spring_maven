@@ -1,5 +1,6 @@
 package com.itwill.hotel.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -21,6 +22,7 @@ import com.itwill.hotel.domain.RestaurantDTO;
 import com.itwill.hotel.service.RestaurantService;
 import com.itwill.hotel.util.PageInputDto;
 import com.itwill.hotel.util.RestaurantBoardListPageDto;
+import com.itwill.hotel.util.TimeCalculator;
 
 
 
@@ -145,10 +147,27 @@ public class RestaurantViewRestController {
 			System.out.println("dateText -->" +dateText);
 			System.out.println("timeText -->" +timeText);
 			System.out.println("persons -->" +persons);
-		
 			
-		return null;
+			//타임 24시간 처리로 바꿔야함.
+			String time = TimeCalculator.timeCalculatorMethod(timeText);
+			//비교할 조건 -> 예약 시간으로 부터  -1보다 크고 +1보다 작다(초과,미만) 
+			String minTime =  TimeCalculator.minTime(time);
+			String maxTime =  TimeCalculator.maxTime(time);
+			System.out.println("minTime ::" + minTime);
+			System.out.println("maxTime ::" + maxTime);
+			
+			HashMap<String, String> dateAndtime = new HashMap<String, String>();
+			
+			dateAndtime.put("date", dateText);
+			dateAndtime.put("minTime", minTime);
+			dateAndtime.put("maxTime", maxTime);
+			int seatCnt = restService.seatCapacityCalcul(dateAndtime);
+			String cnt =seatCnt +"";
+			System.out.println("cnt ::" + cnt);
+			
+		return cnt;
 	}
+	
 	
 	
 }

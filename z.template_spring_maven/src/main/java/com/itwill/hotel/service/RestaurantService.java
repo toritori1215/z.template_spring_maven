@@ -22,5 +22,5 @@ public interface RestaurantService {
 	public List<RestaurantCartDTO> findCartList(Integer mno);
 	public int insertCartInfo(RestaurantCartDTO cart_info);
 	public int updateCartInfo(RestaurantCartDTO cart_info);
-	
+	public int seatCapacityCalcul(HashMap<String, String> dateAndtime);
 }

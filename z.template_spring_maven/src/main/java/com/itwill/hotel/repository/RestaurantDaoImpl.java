@@ -192,6 +192,19 @@ public class RestaurantDaoImpl implements RestaurantDao{
 		return updateCartCnt;
 	}
 
+
+	@Override
+	public int seatCapacityCalcul(HashMap<String, String> dateAndtime) {
+		// TODO Auto-generated method stub
+		
+		System.out.println("date ==>>>" + dateAndtime.get("date"));
+		System.out.println("minTime ==>>>" + dateAndtime.get("minTime"));
+		System.out.println("maxTime ==>>>" + dateAndtime.get("maxTime"));
+		
+		int alreadyCapacity =  restMapper.seatCapacityCalcul(dateAndtime);
+		return alreadyCapacity;
+	}
+
 	
 	
 

@@ -152,6 +152,14 @@ public class RestaurantServiceImpl implements RestaurantService{
 		
 		return updateCartCnt;
 	}
+
+	@Override
+	public int seatCapacityCalcul(HashMap<String, String> dateAndtime) {
+		// TODO Auto-generated method stub
+		//public int seatCapacityCalcul(HashMap<String, String> dateAndtime)
+		int alreadyCapacity = restaurantdao.seatCapacityCalcul(dateAndtime);
+		return alreadyCapacity;
+	}
 	
 	
 }

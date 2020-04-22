@@ -828,12 +828,15 @@
 			let param = "dateText="+dateText+"&timeText="+timeText+"&persons="+persons;
 			$.ajax({
 				
-				url :  'seatCapacityCalcul',
+				url : 'seatCapacityCalcul',
 				data : param,
-				dataType : 'String',
+				dataType : 'json',
 				async : false,
 				success : function(result){
+					//console.log("왜 안들어 오냐고!!!!");
+					//console.log("result ----->>>>>>>"+result);
 					
+					//document.getElementById('seatCapacity').firstChild.nodeValue = result;
 				}
 				
 			});
@@ -945,18 +948,15 @@
 			$('#datePicker').datepicker("setDate",'today');
 			//console.log("bookState ::=>"+bookState);
 			
-			$('#datePicker').datepicker().on('change', function(e) {
+			$('#datePicker').datepicker().on('changeDate', function(e) {
 				let dayStr = document.getElementById('datePicker').value;
 				console.log("day::"+ dayStr);
 				let daycustom = dayStr.substring(dayStr.indexOf(',')+1).trim();
 				console.log('daycustom ::' + daycustom);				
-				//요일 변경이 되었을시 input (#datePicker) 값 변경
-				//$('#timePicker').timepicker('setDay',daycustom); timepicker가 클릭되었을시에 setDay값 셋팅으로 바꾸어주어 필요 없어짐
-				$('#timePicker').val('9:00 AM');
-				//$('#timePicker').timepicker('setHour','9');
-				//$('#timePicker').timepicker('setMeridian','AM');
 				
-				seatCapacityCalcul_Ajax();
+				$('#timePicker').val('9:00 AM');
+				
+				//seatCapacityCalcul_Ajax();
    			 });
 			
 
@@ -999,24 +999,9 @@
 				showInpunts: false
 			});
 			
-			/*
-			$('#timePicker').timepicker().on('click', function(e) {
-				let dayStr = document.getElementById('datePicker').value;
-				console.log("day::"+ dayStr);
-				let daycustom = dayStr.substring(dayStr.indexOf(',')+1).trim();
-				console.log('daycustom ::' + daycustom);
-				
-				//timepicker에 Day seting
-				$('#timePicker').timepicker('setDay',daycustom);
-				//console.log("e::"+$(e.target).attr('id'));
-				//console.log('The time is ' + e.time.value);
-			    //console.log('The hour is ' + e.time.hours);
-			    //console.log('The minute is ' + e.time.minutes);
-			    //console.log('The meridian is ' + e.time.meridian);
-					
-			 });
-			*/
-			
+			$('#timePicker').timepicker().on('hide.timepicker', function(e) {
+			    seatCapacityCalcul_Ajax();
+			  });
 			
 			$('#timePicker').on("click", function(e) {
 				//# 1, 3번은 이어진다.
@@ -1045,7 +1030,7 @@
 				
 				//timepicker에 Day seting
 				$('#timePicker').timepicker('setDay',daycustom);
-
+				
 			});
 			
 
