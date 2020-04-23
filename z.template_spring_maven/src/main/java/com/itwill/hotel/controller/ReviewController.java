@@ -57,23 +57,34 @@ public class ReviewController {
 	}
 
 	@RequestMapping(value = "/update_review")
-	public String updateReview(@RequestParam(value = "pNo") String pNo, 
-								@RequestParam(value = "rNo") String rNo, 
-								@RequestParam(value = "pType") String pType, 
-								HttpSession session) {
+	public String updateReview(@RequestParam(value = "position_review", defaultValue = "0") String rate1, 
+								@RequestParam(value = "guide_review", defaultValue = "0") String rate2, 
+								@RequestParam(value = "price_review", defaultValue = "0") String rate3, 
+								@RequestParam(value = "quality_review", defaultValue = "0") String rate4, 
+								@RequestParam(value = "updatePno") String pNo, 
+								@RequestParam(value = "review_text") String content, 
+								@RequestParam(value = "updatePtype") String pType, 
+								HttpSession session, Model model) {
 		Member member = (Member) session.getAttribute("sUser");
 		HashMap hashMap = new HashMap();
+		hashMap.put("rRate1", rate1);
+		hashMap.put("rRate2", rate2);
+		hashMap.put("rRate3", rate3);
+		hashMap.put("rRate4", rate4);
+		hashMap.put("rContent", content);
+		hashMap.put("pNo", pNo);
+		hashMap.put("mNo", member.getmNo());
 		int rowCount1 = reviewService.updateReview(hashMap);
 		int rowCount2 = productService.updateRate(Integer.parseInt(pNo));
 		if (rowCount1 == 1 && rowCount2 == 1) {
 			if (pType.toLowerCase().equals("tour")) {
-				return "forward:tour_detail";
+				return "forward:tour_detail?pNo=" + pNo;
 			} else if (pType.toLowerCase().equals("hotel")) {
-				return "forward:hotel_detail";
+				return "forward:hotel_detail?pNo=" + pNo;
 			} else if (pType.toLowerCase().equals("facility")) {
-				return "forward:facility_detail";
+				return "forward:facility_detail?pNo=" + pNo;
 			} else if (pType.toLowerCase().equals("restaurant")) {
-				return "forward:restaurant_detail";
+				return "forward:restaurant_detail?pNo=" + pNo;
 			} else {
 				return "common_404";
 			}
@@ -83,10 +94,14 @@ public class ReviewController {
 	}
 	
 	@RequestMapping(value = "/delete_review")
-	public String deleteReview(@RequestParam(value = "pNo") String pNo, 
-								@RequestParam(value = "rNo") String rNo, 
-								@RequestParam(value = "pType") String pType) {
-		int rowCount1 = reviewService.deleteReview(Integer.parseInt(rNo));
+	public String deleteReview(@RequestParam(value = "pNo") String pNo,
+								@RequestParam(value = "pType") String pType, 
+								HttpSession session) {
+		Member member = (Member) session.getAttribute("sUser");
+		HashMap hashMap = new HashMap();
+		hashMap.put("mNo", member.getmNo());
+		hashMap.put("pNo", Integer.parseInt(pNo));
+		int rowCount1 = reviewService.deleteReview(hashMap);
 		int rowCount2 = productService.updateRate(Integer.parseInt(pNo));
 		if (rowCount1 == 1 && rowCount2 == 1) {
 			if (pType.toLowerCase().equals("tour")) {

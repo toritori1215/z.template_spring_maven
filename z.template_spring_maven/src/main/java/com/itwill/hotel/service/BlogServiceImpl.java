@@ -1,5 +1,6 @@
 package com.itwill.hotel.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,18 +34,18 @@ public class BlogServiceImpl implements BlogService {
 	}
 
 	@Override
-	public int insertBlog(Blog blog) {
-		return blogDao.insertBlog(blog);
+	public int insertBlog(HashMap hashMap) {
+		return blogDao.insertBlog(hashMap);
 	}
 
 	@Override
-	public int deleteBlog(int bNo) {
-		return blogDao.deleteBlog(bNo);
+	public int deleteBlog(HashMap hashMap) {
+		return blogDao.deleteBlog(hashMap);
 	}
 
 	@Override
-	public int updateBlog(Blog blog) {
-		return blogDao.updateBlog(blog);
+	public int updateBlog(HashMap hashMap) {
+		return blogDao.updateBlog(hashMap);
 	}
 	
 	

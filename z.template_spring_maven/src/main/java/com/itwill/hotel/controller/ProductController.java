@@ -83,8 +83,12 @@ public class ProductController {
 			int mNo = member.getmNo();
 			Wishlist wishlist = new Wishlist(mNo, Integer.parseInt(pNo));
 			ifExist = productService.checkWishlist(wishlist);
+			HashMap hashMap = new HashMap();
+			hashMap.put("mNo", member.getmNo());
+			hashMap.put("pNo", pNo);
+			int ifReviewExisted = reviewService.ifExisted(hashMap);
+			model.addAttribute("ifReviewExisted", ifReviewExisted);
 		}
-		
 		Product product = productService.selectByNo(Integer.parseInt(pNo));
 		model.addAttribute("product", product);
 		model.addAttribute("ifExist", ifExist);
@@ -94,12 +98,6 @@ public class ProductController {
 		model.addAttribute("reviewSize", reviewSize);
 		ReviewRate reviewRate = reviewService.selectRate(Integer.parseInt(pNo));
 		model.addAttribute("reviewRate", reviewRate);
-		
-		HashMap hashMap = new HashMap();
-		hashMap.put("mNo", member.getmNo());
-		hashMap.put("pNo", pNo);
-		int ifReviewExisted = reviewService.ifExisted(hashMap);
-		model.addAttribute("ifReviewExisted", ifReviewExisted);
 		return "tour_single_with_gallery";
 	}
 	

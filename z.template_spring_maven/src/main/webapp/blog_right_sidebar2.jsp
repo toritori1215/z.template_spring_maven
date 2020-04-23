@@ -56,68 +56,42 @@
 
 		<div class="container margin_60">
 			<div class="row">
-
 				<div class="col-lg-9">
 					<div class="box_style_1">
-						<div class="post">
-						<c:forEach var ="blog" items = "${blogList}">
-							<form id="blogForm" method="post" action="blog_delete">
-							<input type="hidden" name="bNo" value="${blog.bNo}">
-							<a href="blog_post_right_sidebar?bNo=${blog.bNo}"><img src="${pageContext.request.contextPath}/resources/img/blog-3.jpg" alt="Image" class="img-fluid"></a>
+						<div class="post nopadding">
+							<img src="img/blog-1.jpg" alt="Image" class="img-fluid">
 							<div class="post_info clearfix">
 								<div class="post-left">
 									<ul>
-										<li><i class="icon-calendar-empty"></i> On <span>${blog.bDate}</span>
+										<li><i class="icon-calendar-empty"></i>On <span>12 Nov 2020</span>
 										</li>
-										<li><i class="icon-inbox-alt"></i> In ${blog.bCategory}
+										<li><i class="icon-inbox-alt"></i>In <a href="#">Top tours</a>
+										</li>
+										<li><i class="icon-tags"></i>Tags <a href="#">Works</a> <a href="#">Personal</a>
 										</li>
 									</ul>
 								</div>
-								<div class="post-right"><i class="icon-comment"></i><a href="#">${blog.bReadCount}</a>
-								</div>
+								<div class="post-right"><i class="icon-comment"></i><a href="#">25 </a>Comments</div>
 							</div>
-							<h2>${blog.bTitle}</h2>
-							<p>${blog.bContent}</p>
+							<h2>Duis aute irure dolor in reprehenderit</h2>
 							<p>
-								Ludus albucius adversarium eam eu. Sit eu reque tation aliquip. Quo no dolorum albucius lucilius, hinc eligendi ut sed. Ex nam quot ferri suscipit, mea ne legere alterum repudiandae. Ei pri quaerendum intellegebat, ut vel consequuntur voluptatibus. Et volumus sententiae adversarium duo......
+								Praesent vestibulum molestie lacus. Aenean nonummy hendrerit mauris. Phasellus porta. Fusce suscipit varius mi nascetur ridiculus mus. Nulla dui. Fusce feugiat malesuada odio. Morbi nunc odio, gravida at, cursus nec, luctus a, lorem.....
 							</p>
 							<p>
-								Ludus albucius adversarium eam eu. Sit eu reque tation aliquip. Quo no dolorum albucius lucilius, hinc eligendi ut sed. Ex nam quot ferri suscipit, mea ne legere alterum repudiandae. Ei pri quaerendum intellegebat, ut vel consequuntur voluptatibus. Et volumus sententiae adversarium duo......
+								Aenean iaculis sodales dui, non hendrerit lorem rhoncus ut. Pellentesque ullamcorper venenatis elit idaipiscingi Duis tellus neque, tincidunt eget pulvinar sit amet, rutrum nec urna. Suspendisse pretium laoreet elit vel ultricies. Maecenas ullamcorper ultricies rhoncus. Aliquam erat volutpat.
 							</p>
-							<input type="button" class="btn_1" value="Read More" onclick="location.href='blog_post_right_sidebar?bNo=${blog.bNo}'"> &nbsp;&nbsp;&nbsp;
-							</form>
-						<hr>
-						</c:forEach>
+							<blockquote class="styled">
+								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>
+								<small>Someone famous in <cite title="">Body of work</cite></small>
+							</blockquote>
 						</div>
 						<!-- end post -->
 					</div>
-
-					<nav aria-label="Page navigation">
-						<ul class="pagination justify-content-center">
-							<li class="page-item">
-								<a class="page-link" href="#" aria-label="Previous">
-									<span aria-hidden="true">&laquo;</span>
-									<span class="sr-only">Previous</span>
-								</a>
-							</li>
-							<li class="page-item active"><span class="page-link">1<span class="sr-only">(current)</span></span>
-							</li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item">
-								<a class="page-link" href="#" aria-label="Next">
-									<span aria-hidden="true">&raquo;</span>
-									<span class="sr-only">Next</span>
-								</a>
-							</li>
-						</ul>
-					</nav>
-					<!-- end pagination-->
-					
+					<!-- end box_style_1 -->
 				</div>
-				<!-- End col -->
+				<!-- End col-md-8-->
 
-				<aside class="col-lg-3">
+				<aside class="col-lg-3 add_bottom_30">
 
 					<div class="widget">
 						<div class="input-group">
@@ -133,45 +107,56 @@
 					<div class="widget" id="cat_blog">
 						<h4>Categories</h4>
 						<ul>
-							<li><a href="#">Tour</a>
+							<li><a href="#">Places to visit</a>
 							</li>
-							<li><a href="#">Hotel</a>
+							<li><a href="#">Top tours</a>
 							</li>
-							<li><a href="#">Facility</a>
+							<li><a href="#">Tips for travellers</a>
 							</li>
-							<li><a href="#">Restaurant</a>
+							<li><a href="#">Events</a>
 							</li>
 						</ul>
 					</div>
 					<!-- End widget -->
+
 					<hr>
 
 					<div class="widget">
 						<h4>Recent post</h4>
 						<ul class="recent_post">
-							<c:forEach var="recentBlog" items="${recentBlogList}">
-								<li>
-									<i class="icon-calendar-empty"></i> ${recentBlog.bDate}
-									<div><a href="blog_post_right_sidebar?bNo=${recentBlog.bNo}">${recentBlog.bTitle}</a>
-									</div>
-								</li>
-							</c:forEach>
-							<c:if test="${sUser != null and sUser != ''}">
-								<a href="#" class="btn_1" data-toggle="modal" data-target="#writeBlog">write a Blog</a>
-							</c:if>
-							<c:if test="${sUser == null or sUser == ''}">
-								If you want to write a blog<br>
-								Please <a href="#sign-in-dialog" id="access_link4"><font color="red">Sign in</font></a>	
-							</c:if>
+							<li>
+								<i class="icon-calendar-empty"></i> 16th July, 2020
+								<div><a href="#">It is a long established fact that a reader will be distracted </a>
+								</div>
+							</li>
+							<li>
+								<i class="icon-calendar-empty"></i> 16th July, 2020
+								<div><a href="#">It is a long established fact that a reader will be distracted </a>
+								</div>
+							</li>
+							<li>
+								<i class="icon-calendar-empty"></i> 16th July, 2020
+								<div><a href="#">It is a long established fact that a reader will be distracted </a>
+								</div>
+							</li>
 						</ul>
 					</div>
 					<!-- End widget -->
-
+					<hr>
+					<div class="widget tags">
+						<h4>Tags</h4>
+						<a href="#">Lorem ipsum</a>
+						<a href="#">Dolor</a>
+						<a href="#">Long established</a>
+						<a href="#">Sit amet</a>
+						<a href="#">Latin words</a>
+						<a href="#">Excepteur sint</a>
+					</div>
+					<!-- End widget -->
 				</aside>
 				<!-- End aside -->
 
 			</div>
-			<!-- End row-->
 		</div>
 		<!-- End container -->
 	</main>

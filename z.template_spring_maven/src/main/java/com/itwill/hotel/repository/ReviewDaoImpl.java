@@ -39,8 +39,8 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 	@Override
-	public int deleteReview(int rNo) {
-		return reviewMapper.deleteReview(rNo);
+	public int deleteReview(HashMap hashMap) {
+		return reviewMapper.deleteReview(hashMap);
 	}
 
 	@Override

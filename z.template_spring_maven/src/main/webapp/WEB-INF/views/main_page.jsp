@@ -838,6 +838,7 @@
 			}
 		});
 	</script>
+	
 	<!-- NOTIFY BUBBLES  -->
 	<script src="${pageContext.request.contextPath}/resources/js/notify_func.js"></script>
 

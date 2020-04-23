@@ -37,8 +37,8 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public int deleteReview(int rNo) {
-		return reviewDao.deleteReview(rNo);
+	public int deleteReview(HashMap hashMap) {
+		return reviewDao.deleteReview(hashMap);
 	}
 
 	@Override

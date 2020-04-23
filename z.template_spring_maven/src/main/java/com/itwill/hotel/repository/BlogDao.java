@@ -1,5 +1,6 @@
 package com.itwill.hotel.repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.itwill.hotel.domain.Blog;
@@ -14,11 +15,11 @@ public interface BlogDao {
 	
 	public List<Blog> selectRecentBlog();
 	
-	public int insertBlog(Blog blog);
+	public int insertBlog(HashMap hashMap);
 	
-	public int deleteBlog(int bNo);
+	public int deleteBlog(HashMap hashMap);
 	
-	public int updateBlog(Blog blog);
+	public int updateBlog(HashMap hashMap);
 	
 	
 	/****** Blog Review ******/

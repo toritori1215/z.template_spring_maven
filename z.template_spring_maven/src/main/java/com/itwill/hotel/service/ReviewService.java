@@ -16,7 +16,7 @@ public interface ReviewService {
 	
 	public int updateReview(HashMap hashMap);
 
-	public int deleteReview(int rNo);
+	public int deleteReview(HashMap hashMap);
 	
 	public Review selectOne(HashMap hashMap);
 	

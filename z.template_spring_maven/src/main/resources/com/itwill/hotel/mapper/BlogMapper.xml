@@ -23,19 +23,19 @@
 	</select>
 	
 	<insert id="insertBlog" parameterType="java.util.HashMap">
-		insert into blog(bNO, bTitle, bDate, bContent, bReadCount, bCategory, mNo) 
-		values (blog_SEQ.nextval, #{bTitle}, sysdate, #{bContent}, 0, #{bCategory}, #{mNo})
+		insert into blog(bNo, bTitle, bDate, bContent, bReadCount, bCategory, mNo, bImg) 
+		values(blog_SEQ.nextval, #{bTitle}, sysdate, #{bContent}, 0, #{bCategory}, #{mNo}, 'basic.jsp')
 	</insert>
 	
 	<update id="updateBlog" parameterType="java.util.HashMap">
 		update blog
-		set bTitle=#{bTitle}, bContent=#{bContent}, bDate=sysdate
+		set bTitle=#{bTitle}, bDate=sysdate, bContent=#{bContent}, bImg=#{bImg}
 		where bNo=#{bNo}
 	</update>
 	
-	<delete id="deleteBlog" parameterType="_int">
+	<delete id="deleteBlog" parameterType="java.util.HashMap">
 		delete from blog
-		where bNo=#{bNo}
+		where bNo=#{bNo} and mNo=#{mNo}
 	</delete>
 	
 	
