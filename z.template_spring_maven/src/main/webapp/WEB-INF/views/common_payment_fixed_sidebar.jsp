@@ -18,7 +18,7 @@
 					<div class="progress">
 						<div class="progress-bar"></div>
 					</div>
-					<a href="cart.html" class="bs-wizard-dot"></a>
+					<a href="cart_services" class="bs-wizard-dot"></a>
 				</div>
 
 				<div class="col-4 bs-wizard-step active">
@@ -26,7 +26,7 @@
 					<div class="progress">
 						<div class="progress-bar"></div>
 					</div>
-					<a href="#" class="bs-wizard-dot"></a>
+					<a href="#0" class="bs-wizard-dot"></a>
 				</div>
 
 				<div class="col-4 bs-wizard-step disabled">
@@ -48,11 +48,11 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="#">Home</a>
+					<li><a href="main">Home</a>
 					</li>
-					<li><a href="#">Category</a>
+					<li><a href="cart_services">Cart</a>
 					</li>
-					<li>Page active</li>
+					<li>Payment</li>
 				</ul>
 			</div>
 		</div>
@@ -65,7 +65,7 @@
 					<div class="form_title">
 						<h3><strong>1</strong>Your Details</h3>
 						<p>
-							Mussum ipsum cacilds, vidis litro abertis.
+							Please tell us the name of the guest staying at the hotel as it appears on the ID that they’ll present at check-in.
 						</p>
 					</div>
 					<div class="step">
@@ -111,7 +111,7 @@
 					<div class="form_title">
 						<h3><strong>2</strong>Payment Information</h3>
 						<p>
-							Mussum ipsum cacilds, vidis litro abertis.
+							Your booking is safe and secure.
 						</p>
 					</div>
 					<div class="step">
@@ -168,10 +168,14 @@
 
 						<h4>Or checkout with Paypal</h4>
 						<p>
-							Lorem ipsum dolor sit amet, vim id accusata sensibus, id ridens quaeque qui. Ne qui vocent ornatus molestie, reque fierent dissentiunt mel ea.
+							You will be redirected to a third party website to complete the payment process.
 						</p>
 						<p>
-							<img src="${pageContext.request.contextPath}/resources/img/paypal_bt.png" alt="Image">
+							<a href="https://www.paypal.com/signin">
+						    	<img src="${pageContext.request.contextPath}/resources/img/paypal_bt.png" alt="Image">
+							</a>
+						<!-- 
+							<img src="${pageContext.request.contextPath}/resources/img/paypal_bt.png" alt="Image">  -->
 						</p>
 					</div>
 					<!--End step -->
@@ -179,7 +183,7 @@
 					<div class="form_title">
 						<h3><strong>3</strong>Billing Address</h3>
 						<p>
-							Mussum ipsum cacilds, vidis litro abertis.
+							We’ll use this to verify your credit card details.
 						</p>
 					</div>
 					<div class="step">
@@ -293,7 +297,7 @@
 								</tbody>
 							</table>
 							<a class="btn_full" href="confirmation_fixed_sidebar.html">Book now</a>
-							<a class="btn_full_outline" href="#"><i class="icon-right"></i> Continue shopping</a>
+							<a class="btn_full_outline" href="tour_list"><i class="icon-right"></i> Continue shopping</a>
 						</div>
 						<div class="box_style_4">
 							<i class="icon_set_1_icon-57"></i>

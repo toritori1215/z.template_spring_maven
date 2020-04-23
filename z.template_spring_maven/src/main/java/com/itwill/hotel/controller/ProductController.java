@@ -53,10 +53,12 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/tour_list")
-	public String tourList(Model model) {
+	public String tourList(Model model, HttpSession session) {
+		Member member = (Member) session.getAttribute("sUser");
 		HashMap parameterMap = new HashMap();
 		parameterMap.put("pType", "tour");
 		model.addAttribute("productList", productService.selectByType(parameterMap));
+		
 		return "tour_all_list";
 	}
 	
@@ -92,6 +94,12 @@ public class ProductController {
 		model.addAttribute("reviewSize", reviewSize);
 		ReviewRate reviewRate = reviewService.selectRate(Integer.parseInt(pNo));
 		model.addAttribute("reviewRate", reviewRate);
+		
+		HashMap hashMap = new HashMap();
+		hashMap.put("mNo", member.getmNo());
+		hashMap.put("pNo", pNo);
+		int ifReviewExisted = reviewService.ifExisted(hashMap);
+		model.addAttribute("ifReviewExisted", ifReviewExisted);
 		return "tour_single_with_gallery";
 	}
 	
@@ -100,6 +108,31 @@ public class ProductController {
 	public int tourTravellers(@RequestParam(value="newVal") String newVal) {
 		return Integer.parseInt(newVal);
 	}
+	
+	
+	@RequestMapping(value = "/hotel_single")
+	public String hotelDetail(@RequestParam(value="pNo") String pNo, 
+								HttpSession session, Model model) {
+		Member member = (Member) session.getAttribute("sUser");
+		int ifExist = 0;
+		if (member != null) {
+			int mNo = member.getmNo();
+			Wishlist wishlist = new Wishlist(mNo, Integer.parseInt(pNo));
+			ifExist = productService.checkWishlist(wishlist);
+		}
+		
+		Product product = productService.selectByNo(Integer.parseInt(pNo));
+		model.addAttribute("product", product);
+		model.addAttribute("ifExist", ifExist);
+		List<Review> reviewList = reviewService.selectAll(Integer.parseInt(pNo));
+		model.addAttribute("reviewList", reviewList);
+		int reviewSize = reviewList.size();
+		model.addAttribute("reviewSize", reviewSize);
+		ReviewRate reviewRate = reviewService.selectRate(Integer.parseInt(pNo));
+		model.addAttribute("reviewRate", reviewRate);
+		return "hotel_single";
+	}
+	
 	
 	@RequestMapping(value = "/tour_grid")
 	public String tourListGrid() {
@@ -201,4 +234,5 @@ public class ProductController {
 	public String errorPage() {
 		return "common_404";
 	}
+	
 }

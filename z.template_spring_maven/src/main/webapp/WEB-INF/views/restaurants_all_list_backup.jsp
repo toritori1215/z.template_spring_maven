@@ -237,22 +237,27 @@
 									
 										<div class="rating">
 										<c:choose>
-											<c:when test="${restListPage.list[st.index].prate==0}">
+											<c:when test="${restListPage.list[st.index].prate ==0}">
 													<i class="icon-smile"></i> <i class="icon-smile"></i> <i class="icon-smile"></i> <i class="icon-smile"></i> <i class="icon-smile"></i> <small>(${restListPage.list[st.index].prate})</small>
 											</c:when>
-											<c:when test="${restListPage.list[st.index].prate==1}">
+											<c:when test="${restListPage.list[st.index].prate >0 
+													&& restListPage.list[st.index].prate <=2}">
 													<i class="icon-smile voted"></i> <i class="icon-smile"></i> <i class="icon-smile"></i> <i class="icon-smile"></i> <i class="icon-smile"></i> <small>(${restListPage.list[st.index].prate})</small>
 											</c:when>
-											<c:when test="${restListPage.list[st.index].prate==2}">
+											<c:when test="${restListPage.list[st.index].prate >2 
+													&& restListPage.list[st.index].prate <=4}">
 													<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i><i class="icon-smile"></i><small>(${restListPage.list[st.index].prate})</small>
 											</c:when>
-											<c:when test="${restListPage.list[st.index].prate==3}">
+											<c:when test="${restListPage.list[st.index].prate >4 
+													&& restListPage.list[st.index].prate <=6}">
 													<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i><small>(${restListPage.list[st.index].prate})</small>
 											</c:when>
-											<c:when test="${restListPage.list[st.index].prate==4}">
+											<c:when test="${restListPage.list[st.index].prate >6 
+													&& restListPage.list[st.index].prate <=8}">
 													<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(${restListPage.list[st.index].prate})</small>
 											</c:when>
-											<c:when test="${restListPage.list[st.index].prate==5}">
+											<c:when test="${restListPage.list[st.index].prate >8 
+													&& restListPage.list[st.index].prate <=10}">
 													<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><small>(${restListPage.list[st.index].prate})</small>
 											</c:when>
 										
@@ -680,6 +685,8 @@
 				e.preventDefault();
 				
 			});
+				
+			
 			
 			$('#sort_price').on('change',function(){
 				//console.log($('#sort_price > option:selected').attr('value'));
@@ -704,7 +711,7 @@
 					data : param ,
 					dataType : 'json',
 					async: false,
-					success: function(result) {
+					success: function(result){
 						restRequestCallback(result);
 					}
 					
@@ -837,7 +844,7 @@
 						eltParentNode.appendChild(Itag);
 					}
 					
-				}else if(prate==1){
+				}else if(prate>0 && prate<=2){
 					for (var j = 0; j < 5; j++) {
 						if(j<1){
 							let Itag = document.createElement("i");
@@ -850,7 +857,7 @@
 						}
 					}
 					
-				}else if(prate==2){
+				}else if(prate>2 && prate<=4){
 					for (var j = 0; j < 5; j++) {
 						if(j<2){
 							let Itag = document.createElement("i");
@@ -863,7 +870,7 @@
 						}
 					}
 					
-				}else if(prate==3){
+				}else if(prate>4 && prate<=6){
 					for (var j = 0; j < 5; j++) {
 						if(j<3){
 							let Itag = document.createElement("i");
@@ -877,7 +884,7 @@
 					}
 					
 				
-				}else if(prate==4){
+				}else if(prate>6 && prate<=8){
 					for (var j = 0; j < 5; j++) {
 						if(j<4){
 							let Itag = document.createElement("i");
@@ -890,7 +897,7 @@
 						}
 					}
 					
-				}else if(prate==5){
+				}else if(prate>8 && prate<=10){
 					for (var j = 0; j < 5; j++) {
 						let Itag = document.createElement("i");
 						Itag.setAttribute('class','icon-smile voted');

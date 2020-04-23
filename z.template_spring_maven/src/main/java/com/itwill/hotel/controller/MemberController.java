@@ -45,6 +45,11 @@ public class MemberController {
 		return "main_page";
 	}
 	
+	@RequestMapping(value = "/member_faq")
+	public String memberFaq() {
+		return "common_faq_2";
+	}
+	
 	@RequestMapping(value = "/member_mypage")
 	public String mypage(Model model, HttpSession session) {
 		Member member = (Member) session.getAttribute("sUser");

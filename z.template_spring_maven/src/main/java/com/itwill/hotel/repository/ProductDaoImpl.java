@@ -46,4 +46,9 @@ public class ProductDaoImpl implements ProductDao {
 		return productMapper.countBookedTourQty(parameterMap);
 	}
 
+	@Override
+	public int updateRate(int pNo) {
+		return productMapper.updateRate(pNo);
+	}
+
 }

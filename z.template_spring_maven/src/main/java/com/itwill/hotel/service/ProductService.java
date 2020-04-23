@@ -20,4 +20,7 @@ public interface ProductService {
 	public Integer countBookedRoomQty(HashMap parameterMap);
 	
 	public Integer countBookedTourQty(HashMap parameterMap);
+	
+	public int updateRate(int pNo);
+	
 }
