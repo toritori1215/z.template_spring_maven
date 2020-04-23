@@ -101,6 +101,31 @@ public class ProductController {
 		return Integer.parseInt(newVal);
 	}
 	
+	
+	@RequestMapping(value = "/hotel_single")
+	public String hotelDetail(@RequestParam(value="pNo") String pNo, 
+								HttpSession session, Model model) {
+		Member member = (Member) session.getAttribute("sUser");
+		int ifExist = 0;
+		if (member != null) {
+			int mNo = member.getmNo();
+			Wishlist wishlist = new Wishlist(mNo, Integer.parseInt(pNo));
+			ifExist = productService.checkWishlist(wishlist);
+		}
+		
+		Product product = productService.selectByNo(Integer.parseInt(pNo));
+		model.addAttribute("product", product);
+		model.addAttribute("ifExist", ifExist);
+		List<Review> reviewList = reviewService.selectAll(Integer.parseInt(pNo));
+		model.addAttribute("reviewList", reviewList);
+		int reviewSize = reviewList.size();
+		model.addAttribute("reviewSize", reviewSize);
+		ReviewRate reviewRate = reviewService.selectRate(Integer.parseInt(pNo));
+		model.addAttribute("reviewRate", reviewRate);
+		return "hotel_single";
+	}
+	
+	
 	@RequestMapping(value = "/tour_grid")
 	public String tourListGrid() {
 		return "tour_all_grid";

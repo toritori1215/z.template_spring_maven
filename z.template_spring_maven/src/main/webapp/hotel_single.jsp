@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,8 +36,12 @@
 	<jsp:include page="WEB-INF/views/common_header_6.jsp" />
 	<!-- End Header -->
 	
+	<!-- 사용자 지정 CSS -->
+	<link href="${pageContext.request.contextPath}/resources/z.SiliconVillage/css/hbkMy.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/resources/z.SiliconVillage/css/product.css" rel="stylesheet">
+	
 	<section class="parallax-window" data-parallax="scroll"
-	data-image-src="${pageContext.request.contextPath}/resources/img/single_hotel_bg_1.jpg"
+	data-image-src="${pageContext.request.contextPath}/resources/img/single_hotel_bg.jpg"
 	data-natural-width="1400" data-natural-height="470">
 	<div class="parallax-content-2">
 		<div class="container">
@@ -44,12 +50,12 @@
 					<span class="rating"><i class="icon-star voted"></i><i
 						class="icon-star voted"></i><i class="icon-star voted"></i><i
 						class="icon-star voted"></i><i class=" icon-star-empty"></i></span>
-					<h1>Mariott Hotel</h1>
+					<h1>${product.pNo}</h1>
 					<span>Champ de Mars, 5 Avenue Anatole, 75007 Paris.</span>
 				</div>
 				<div class="col-md-4">
 					<div id="price_single_main" class="hotel">
-						from/per night <span><sup>$</sup>95</span>
+						from/per night <span><sup>￦</sup>${product.pPrice}</span>
 					</div>
 				</div>
 			</div>
@@ -62,9 +68,11 @@
 	<div id="position">
 		<div class="container">
 			<ul>
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Category</a></li>
-				<li>Page active</li>
+				<li><a href="${pageContext.request.contextPath}/main">Home</a>
+				</li>
+				<li><a href="#">Hotel</a>
+				</li>
+				<li>Hotel list</li>
 			</ul>
 		</div>
 	</div>
@@ -80,7 +88,7 @@
 			<div class="col-lg-8" id="single_tour_desc">
 				<div id="single_tour_feat">
 					<ul>
-						<li><i class="icon_set_2_icon-116"></i>Plasma TV</li>
+						<li><i class="icon_set_2_icon-116"></i>LED TV</li>
 						<li><i class="icon_set_1_icon-86"></i>Free Wifi</li>
 						<li><i class="icon_set_2_icon-110"></i>Poll</li>
 						<li><i class="icon_set_1_icon-59"></i>Breakfast</li>
@@ -98,7 +106,8 @@
 				<!-- Map button for tablets/mobiles -->
 				<div id="Img_carousel" class="slider-pro">
 					<div class="sp-slides">
-
+						
+						<!-- 
 						<div class="sp-slide">
 							<img alt="Image" class="sp-image"
 								src="${pageContext.request.contextPath}/resources/css/images/blank.gif"
@@ -187,6 +196,19 @@
 								data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/9_large.jpg"
 								data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/9_large.jpg">
 						</div>
+						 -->
+						 
+						<div class="sp-slide">
+							<img alt="Image" class="sp-image"
+								src="${pageContext.request.contextPath}/resources/css/images/blank.gif"
+								data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/1_medium.jpg"
+								data-small="${pageContext.request.contextPath}/resources/img/slider_single_tour/1_small.jpg"
+								data-medium="${pageContext.request.contextPath}/resources/img/slider_single_tour/1_medium.jpg"
+								data-large="img/slider_single_tour/1_large.jpg"
+								data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/1_large.jpg">
+						</div>
+						
+						
 					</div>
 					<div class="sp-thumbnails">
 						<img alt="Image" class="sp-thumbnail"
@@ -217,32 +239,31 @@
 						<h3>Description</h3>
 					</div>
 					<div class="col-lg-9">
-						<p>Lorem ipsum dolor sit amet, at omnes deseruisse pri. Quo
-							aeterno legimus insolens ad. Sit cu detraxit constituam, an mel
-							iudico constituto efficiendi. Eu ponderum mediocrem has, vitae
-							adolescens in pro. Mea liber ridens inermis ei, mei legendos
-							vulputate an, labitur tibique te qui.</p>
+						<p>${product.pDesc}</p>
 						<h4>Hotel facilities</h4>
-						<p>Lorem ipsum dolor sit amet, at omnes deseruisse pri. Quo
-							aeterno legimus insolens ad. Sit cu detraxit constituam, an mel
-							iudico constituto efficiendi.</p>
+						<p>Lorem ipsum dolor sit amet, but everyone has left the first. 
+							We read that, unaccustomed to whom it has to. 
+							When it is drafted to establish an efficient honey courts.</p>
+							 
 						<div class="row">
 							<div class="col-md-6">
 								<ul class="list_ok">
-									<li>Lorem ipsum dolor sit amet</li>
-									<li>No scripta electram necessitatibus sit</li>
-									<li>Quidam percipitur instructior an eum</li>
-									<li>Ut est saepe munere ceteros</li>
-									<li>No scripta electram necessitatibus sit</li>
-									<li>Quidam percipitur instructior an eum</li>
+									<li>Room Safe</li>
+									<li>Bathrobes Provided</li>
+									<li>Shower - separate</li>
+									<li>Heating</li>									
+									<li>Lounge Area</li>
+									
 								</ul>
 							</div>
 							<div class="col-md-6">
 								<ul class="list_ok">
-									<li>Lorem ipsum dolor sit amet</li>
-									<li>No scripta electram necessitatibus sit</li>
-									<li>Quidam percipitur instructior an eum</li>
-									<li>No scripta electram necessitatibus sit</li>
+									<li>Balcony</li>
+									<li>Cable/Satellite TV</li>
+									<li>Wireless Internet</li>
+									<li>Lift/Elevator Access</li>
+									<li>Outdoor Setting</li>
+									
 								</ul>
 							</div>
 						</div>
@@ -260,23 +281,22 @@
 					</div>
 					<div class="col-lg-9">
 						<h4>Single Room</h4>
-						<p>Lorem ipsum dolor sit amet, at omnes deseruisse pri. Quo
-							aeterno legimus insolens ad. Sit cu detraxit constituam, an mel
-							iudico constituto efficiendi.</p>
+						<p>Chic, contemporary designed non-lake view Superior Hotel Rooms each offer a large lounge area that opens onto a tiled balcony. 
+							Approximately 40 sq m in size. Featuring a super king Rees bed (or twin king single beds) with a generous bathroom featuring an Italian designed spa bath.</p>
 
 						<div class="row">
 							<div class="col-md-6">
 								<ul class="list_icons">
 									<li><i class="icon_set_1_icon-86"></i> Free wifi</li>
-									<li><i class="icon_set_2_icon-116"></i> Plasma Tv</li>
+									<li><i class="icon_set_2_icon-116"></i> LED Tv</li>
 									<li><i class="icon_set_2_icon-106"></i> Safety box</li>
 								</ul>
 							</div>
 							<div class="col-md-6">
 								<ul class="list_ok">
-									<li>Lorem ipsum dolor sit amet</li>
-									<li>No scripta electram necessitatibus sit</li>
-									<li>Quidam percipitur instructior an eum</li>
+									<li> Tea/Coffee Maker</li>
+									<li> Terrace</li>
+									<li> Linen and Towels Provided</li>
 								</ul>
 							</div>
 						</div>
@@ -318,23 +338,23 @@
 						<hr>
 
 						<h4>Double Room</h4>
-						<p>Lorem ipsum dolor sit amet, at omnes deseruisse pri. Quo
-							aeterno legimus insolens ad. Sit cu detraxit constituam, an mel
-							iudico constituto efficiendi.</p>
+						<p>Chic, contemporary designed Executive Lake View Hotel Rooms each offer a large lounge area that opens out onto a tiled balcony with views of Lake Wakatipu to the Remarkable Mountains. Approximately 40 sq m in size. Featuring a super king Rees bed (or twin king single beds) with a generous bathroom featuring an Italian designed spa bath. 
+							This room type comes with Breakfast included for 2 people.
+							Please note breakfast will not be included in combination with any Promotion code.</p>
 
 						<div class="row">
 							<div class="col-md-6">
 								<ul class="list_icons">
 									<li><i class="icon_set_1_icon-86"></i> Free wifi</li>
-									<li><i class="icon_set_2_icon-116"></i> Plasma Tv</li>
+									<li><i class="icon_set_2_icon-116"></i> LED Tv</li>
 									<li><i class="icon_set_2_icon-106"></i> Safety box</li>
 								</ul>
 							</div>
 							<div class="col-md-6">
 								<ul class="list_ok">
-									<li>Lorem ipsum dolor sit amet</li>
-									<li>No scripta electram necessitatibus sit</li>
-									<li>Quidam percipitur instructior an eum</li>
+									<li> Cots Available</li>
+									<li> Bath</li>
+									<li> Linen and Towels Provided</li>
 								</ul>
 							</div>
 						</div>
@@ -988,8 +1008,6 @@
 <!--Review modal validation -->
 
 <script src="${pageContext.request.contextPath}/resources/assets/validate.js"></script>
-
-<script	src="${pageContext.request.contextPath}/resources/assets/validate.js"></script>
 
 </body>
 
