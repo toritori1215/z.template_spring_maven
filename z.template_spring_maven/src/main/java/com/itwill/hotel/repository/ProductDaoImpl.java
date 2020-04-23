@@ -25,6 +25,11 @@ public class ProductDaoImpl implements ProductDao {
 	public List<Product> selectByType(HashMap parameterMap) {
 		return productMapper.selectByType(parameterMap);
 	}
+
+	@Override
+	public List<Product> selectByCategory(String category) {
+		return productMapper.selectByCategory(category);
+	}
 	
 	@Override
 	public Integer checkWishlist(Wishlist wishlist) {
