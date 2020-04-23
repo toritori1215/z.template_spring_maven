@@ -235,7 +235,7 @@
 										</td>
 										<td class="text-right">
 											<div id="cartTotal" value="${cartTotal/10000}">
-											￦&nbsp;${cartTotal/10000}만
+												￦&nbsp;${cartTotal/10000}만
 											</div>
 										</td>
 									</tr>
@@ -244,7 +244,7 @@
 											<strong>Options</strong>
 										</td>
 										<td class="text-right">
-											$34
+											$0
 										</td>
 									</tr>
 									<tr>
@@ -268,15 +268,12 @@
 							
 							<div id="cartCheckoutButton">
 								<c:if test="${(sUser != null) && (fn:length(cartList) != 0)}">
-									<a class="btn_full" href="cart_checkout">Check out</a>
+									<a class="btn_full" href="jumun_checkout">Check out</a>
 								</c:if>
 						 		<c:if test="${(sUser != null) && (fn:length(cartList) == 0)}">
 									<a class='btn_full'>Check out</a>
 								</c:if>
 							</div>
-							
-							<!-- 
-							<a class="btn_full" href="cart_checkout">Check out</a>  -->
 							<a class="btn_full_outline" href="tour_list"><i class="icon-right"></i> Continue shopping</a>
 						</div>
 						<div class="box_style_4">

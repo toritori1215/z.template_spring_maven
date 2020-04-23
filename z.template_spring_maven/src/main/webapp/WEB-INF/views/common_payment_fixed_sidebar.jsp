@@ -58,7 +58,7 @@
 		</div>
 		<!-- End position -->
 
-
+		<form id="payment_form" method="POST" action="jumun_action">
 		<div class="container margin_60">
 			<div class="row">
 				<div class="col-lg-8 add_bottom_15">
@@ -117,7 +117,7 @@
 					<div class="step">
 						<div class="form-group">
 							<label>Name on card</label>
-							<input type="text" class="form-control" id="name_card_bookign" name="name_card_bookign">
+							<input type="text" class="form-control" id="name_card_bookign" name="name_card_booking">
 						</div>
 						<div class="row">
 							<div class="col-md-6 col-sm-12">
@@ -136,12 +136,12 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<input type="text" id="expire_month" name="expire_month" class="form-control" placeholder="MM">
+											<input type="text" id="expire_month" name="expiry_date" class="form-control" placeholder="MM">
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<input type="text" id="expire_year" name="expire_year" class="form-control" placeholder="Year">
+											<input type="text" id="expire_year" name="expiry_date" class="form-control" placeholder="Year">
 										</div>
 									</div>
 								</div>
@@ -152,7 +152,7 @@
 									<div class="row">
 										<div class="col-4">
 											<div class="form-group">
-												<input type="text" id="ccv" name="ccv" class="form-control" placeholder="CCV">
+												<input type="text" id="cvv" name="cvv" class="form-control" placeholder="CVV">
 											</div>
 										</div>
 										<div class="col-8">
@@ -183,7 +183,8 @@
 					<div class="form_title">
 						<h3><strong>3</strong>Billing Address</h3>
 						<p>
-							We’ll use this to verify your credit card details.
+							We’ll use this to verify your credit card details.<br>
+							※ We only accept credit cards in USA and the counties of Asian and European continents.
 						</p>
 					</div>
 					<div class="step">
@@ -244,7 +245,8 @@
 							<label>
 								<input type="checkbox" name="policy_terms" id="policy_terms">I accept terms and conditions and general policy.</label>
 						</div>
-						<a href="confirmation_fixed_sidebar.html" class="btn_1 green medium">Book now</a>
+						<a href="jumun_action" class="btn_1 green medium">Book now</a>
+						<input type="button" class="btn_1 green medium" value="Book now" id="submitPayment">
 					</div>
 				</div>
 
@@ -256,26 +258,35 @@
 								<tbody>
 									<tr>
 										<td>
-											Adults
+											Dates
+										</td>
+										<c:if test="${(date_min != date_max)}">
+											<td class="text-right" id = "datePeriod">
+												${date_min} &nbsp; to&nbsp;  ${date_max}
+											</td>
+										</c:if>
+										<c:if test="${(date_min != null) and (date_min != '') and (date_min == date_max)}">
+											<td class="text-right" id = "datePeriod">
+												${date_min}
+											</td>
+										</c:if>
+									</tr>
+									<tr>
+										<td>
+											Tour Total
 										</td>
 										<td class="text-right">
-											2
+											<div id="cartTotal" value="${cartTotal/10000}">
+												￦&nbsp;${cartTotal/10000}만
+											</div>
 										</td>
 									</tr>
 									<tr>
 										<td>
-											Children
+											Options
 										</td>
 										<td class="text-right">
-											0
-										</td>
-									</tr>
-									<tr>
-										<td>
-											Dedicated tour guide
-										</td>
-										<td class="text-right">
-											$34
+											$0
 										</td>
 									</tr>
 									<tr>
@@ -283,7 +294,7 @@
 											Insurance
 										</td>
 										<td class="text-right">
-											$34
+											$0
 										</td>
 									</tr>
 									<tr class="total">
@@ -291,12 +302,12 @@
 											Total cost
 										</td>
 										<td class="text-right">
-											$154
+											$0
 										</td>
 									</tr>
 								</tbody>
 							</table>
-							<a class="btn_full" href="confirmation_fixed_sidebar.html">Book now</a>
+							<a class="btn_full" href="jumun_action">Book now</a>
 							<a class="btn_full_outline" href="tour_list"><i class="icon-right"></i> Continue shopping</a>
 						</div>
 						<div class="box_style_4">
@@ -312,6 +323,7 @@
 			</div>
 			<!--End row -->
 		</div>
+		</form>
 		<!--End container -->
 	</main>
 	<!-- End main -->
@@ -336,6 +348,192 @@
 		 });
 	</script>
 	
+	<script>
+		$(document).ready(function () {
+		
+			$.validator.addMethod("cardExp", function(value, element, params) {
+				var minMonth = new Date().getMonth() + 1;
+				var minYear = new Date().getFullYear();
+				var month = parseInt($(params.month).val(), 10);
+				var year = parseInt($(params.year).val(), 10);
+				return (!month || !year || year > minYear || (year === minYear && month >= minMonth));
+			}, 'Your credit card expiration date is invalid.');
+			
+			$.validator.addMethod("letters", function(value, element) {
+				return this.optional(element) || /^[a-z]+$/i.test(value);
+			}, "Please enter alphabet characters only.");
+			
+			$.validator.addMethod("creditCard", function (value, element) {
+				if (/^[0-9\-]+$/i.test(value)) {
+					return true;
+				} else {
+					return false;
+				};
+			}, "Please enter numbers and '-' only.");
+			
+			$.validator.addMethod("phone", function (value, element) {
+				if (/^[0-9\+\-]+$/i.test(value)) {
+					return true;
+				} else {
+					return false;
+				};
+			}, "Please enter numbers, '+', and '-' only.");
+				
+			$('#payment_form').validate({
+	            // 테스트를 위하여 유효성 검사가 완료되어 submit을 처리하지 않음.(값이 true일경우)
+	            debug : true,
+	            //검사할 필드와 검사 항목의 나열
+	            rules: {
+	            	firstname_booking: {
+	                    required:true,
+	                    letters:true
+	                },
+	                lastname_booking: {
+	                    required:true,
+	                    letters:true
+	                },
+	                email_booking: {
+	                	required:true,
+	                	email:true  // email 체크해주는 플러그인 있어야함
+	                },
+	                email_booking_2: {
+	                    required:true,
+	                    equalTo:'#email_booking'
+	                },               
+	                telephone_booking: {
+	                    required:true,
+	                    rangelength: [8,20],  // 길이범위: 8~20
+	                    phone:true
+	                },
+	                name_card_booking: {
+	                    required:true,
+	                    letters:true
+	                },
+	                card_number: {
+	                    required:true, 
+	                    rangelength:[13,19],
+	                    creditCard: true
+	                },
+	                expire_month: {
+	                    required:true, 
+	                    range:[01,12],
+	                	rangelength:[2,2]
+	                },
+	                expire_year: {
+	                    required:true, 
+	                    range:[00,99],
+	                	rangelength:[2,2]
+	                },
+	                expiry_date: {
+	                	cardExp: {
+	                		month: '#expire_month',
+	                		year: '#expire_year'
+	                	}
+	                },
+	                cvv: {
+						required: true,
+	                    range:[001,999],
+	                	rangelength:[3,3]
+	                },
+	                country: {
+	                    required: true
+	                },
+	                street_1: {
+	                    required: true,
+	                    minlength:5
+	                },
+	                city_booking: {
+	                	required: true
+	                },
+	                postal_code: {
+	                    required: true
+	                },
+	                policy_terms: {
+	                    required: true
+	                }
+				},
+	            messages:  {
+	            	firstname_booking: {
+	                    required:"Please enter your first name."
+	                },
+	                lastname_booking: {
+	                    required:"Please enter your last name."
+	                },
+	                email_booking: {
+	                	required:"Please enter your email.",
+	                	email:"Please enter a valid format of an email address."
+	                },
+	                email_booking_2: {
+	                    equalTo:"Your email address doesn't match."
+	                },               
+	                telephone_booking: {
+	                    required:"Please enter your phone number.",
+	                    rangelength:"Your phone number must be 8-20 digits.",
+	                    phone:"Phone number can only include 0-9, +, and -."
+	                },
+	                name_card_booking: {
+	                    required:"Please enter the name on your credit card."
+	                },
+	                card_number: {
+	                    required:"Please enter your credit card number.",
+	                    rangelength:"Your card number must be 13-19 digits.",
+	                    creditCard:"Credit card number can only include 0-9 and -."
+	                },
+	                expire_month: {
+	                    required:"Please enter the expiration month of your credit card.", 
+	                    range:"Please enter a valid month.",
+	                	rangelength:"The expiration month must be a two-digit number."
+	                },
+	                expire_year: {
+	                    required:"Please enter the expiration year of your credit card.",
+	                    range:"Please enter a valid year.",
+	                	rangelength:"The expiration year must be a two-digit number."
+	                },
+	                cvv: {
+						required:"Please enter the CVV.",
+	                    range:"Please enter a valid CVV.",
+	                	rangelength:"CVV must be a three-digit number."
+	                },
+	                country: {
+	                    required:"Please select the country of issue for your credit card."
+	                },
+	                street_1: {
+	                    required:"Please enter your street address.",
+	                    minlength:"Your street address seems invalid. Please check again."
+	                },
+	                city_booking: {
+	                	required:"Please enter your city."
+	                },
+	                postal_code: {
+	                    required:"Please enter your postal code."
+	                },
+	                policy_terms: {
+	                    required: "Please agree to our cancellation policy in order to proceed."
+	                }
+				},
+	
+	            /*alert 대화상자를 통한 에러메시지 표시를 위한 옵션설정*/
+	            
+	            //키보드에 의한 검사 해제
+	            onkeyup : false,
+	            //체크박스나 라디오 버튼 클릭시마다 검사 해제
+	            onclick : false,
+	            // 포커스가 빠져나올 경우의 검사 해제
+	            onfocusout : false, 
+	            // 에러 발생시 이벤트를 가로 챔
+	            showErrors : function(errorMap, errorList) {
+	                //에러메시지 출력
+	                //console.log(errorMap);
+	                //console.log(errorList);
+	                if(errorList.length) {
+	                    alert(errorList[0].message);
+	                }
+	
+	            }           
+	        });
+			
+		});
+	</script>
 
 </body>
 

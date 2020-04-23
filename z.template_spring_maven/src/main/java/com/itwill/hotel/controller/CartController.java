@@ -40,9 +40,6 @@ public class CartController {
 		Member member = (Member) session.getAttribute("sUser");
 		if (member != null) {
 			int mNo = member.getmNo();
-			HashMap parameterMap = new HashMap();
-			parameterMap.put("mNo", mNo);
-			
 			List<Cart> cartList = cartService.selectBymNo(mNo);
 			session.setAttribute("cartList", cartList);
 			
@@ -98,7 +95,6 @@ public class CartController {
 				cartTotal += cart.getcProductTypePay();
 			}
 			session.setAttribute("cartTotal", cartTotal);
-			
 			return "cart_fixed_sidebar";
 		} else {
 			return "redirect:/member_login_form";
