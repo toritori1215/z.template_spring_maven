@@ -156,6 +156,9 @@
 									</div>
 								</li>
 							</c:forEach>
+							
+							<a href="#" class="btn_1" data-toggle="modal"
+							data-target="#writeBlog">write a Blog</a>
 						</ul>
 					</div>
 					<!-- End widget -->
@@ -176,6 +179,33 @@
 	<jsp:include page="WEB-INF/views/common_footer_2.jsp"/>
 	<!-- End Footer -->
 	
+	<script type="text/javascript">
+	$('#submit-blog').click(function() {
+		var bTitle = $("#write_blog_title").val();
+		var bContent = $("#write_blog_content").val();
+		
+		alert(bTitle);
+		alert(bContent);
+		
+		
+		$.ajax({
+				type : "POST",
+				url : "blog_insert",
+				data : {
+
+					"bTitle" : $("#write_blog_title").val(),
+					"bContent" : $("#write_blog_content").val()
+				},
+				success : function() {
+					alert('게시글 등록 성공');
+					location.reload();
+				},
+				error : function() {
+					alert('게시글 등록 실패');
+				}
+			});
+		})
+	</script>
 	
 	
 </body>
