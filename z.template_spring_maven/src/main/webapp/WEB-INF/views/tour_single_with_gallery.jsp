@@ -56,7 +56,7 @@
 									<i class="icon-smile"></i>
 								</c:when>
 								<c:otherwise>
-									No Data
+									No Rating Data
 									<i class="icon-smile"></i>
 									<i class="icon-smile"></i>
 									<i class="icon-smile"></i>
@@ -402,6 +402,7 @@
 										<c:when test="${reviewSize != 0}">${reviewSize} Reviews</c:when>
 										<c:otherwise>No Reviews</c:otherwise>
 									</c:choose>
+									<span> | </span>
 								<div class="rating">
 									<c:choose>
 										<c:when test="${reviewRate.rTotRate == 5}">
@@ -440,12 +441,12 @@
 											<i class="icon-smile"></i>
 										</c:when>
 										<c:otherwise>
-											No Data
 											<i class="icon-smile"></i>
 											<i class="icon-smile"></i>
 											<i class="icon-smile"></i>
 											<i class="icon-smile"></i>
 											<i class="icon-smile"></i>
+											No Rating Data
 										</c:otherwise>
 									</c:choose>
 								</div>
@@ -493,17 +494,17 @@
 													<i class="icon-smile"></i>
 												</c:when>
 												<c:otherwise>
-													No Data
 													<i class="icon-smile"></i>
 													<i class="icon-smile"></i>
 													<i class="icon-smile"></i>
 													<i class="icon-smile"></i>
 													<i class="icon-smile"></i>
+													No Rating Data
 												</c:otherwise>
 											</c:choose>
 											</div>
 										</li>
-										<li>Tour guide
+										<li>Guide
 											<div class="rating">
 											<c:choose>
 												<c:when test="${reviewRate.rTotRate2 == 5}">
@@ -542,12 +543,12 @@
 													<i class="icon-smile"></i>
 												</c:when>
 												<c:otherwise>
-													No Data
 													<i class="icon-smile"></i>
 													<i class="icon-smile"></i>
 													<i class="icon-smile"></i>
 													<i class="icon-smile"></i>
 													<i class="icon-smile"></i>
+													No Rating Data
 												</c:otherwise>
 											</c:choose>
 											</div>
@@ -595,12 +596,12 @@
 													<i class="icon-smile"></i>
 												</c:when>
 												<c:otherwise>
-													No Data
 													<i class="icon-smile"></i>
 													<i class="icon-smile"></i>
 													<i class="icon-smile"></i>
 													<i class="icon-smile"></i>
 													<i class="icon-smile"></i>
+													No Rating Data
 												</c:otherwise>
 											</c:choose>
 											</div>
@@ -644,12 +645,12 @@
 													<i class="icon-smile"></i>
 												</c:when>
 												<c:otherwise>
-													No Data
 													<i class="icon-smile"></i>
 													<i class="icon-smile"></i>
 													<i class="icon-smile"></i>
 													<i class="icon-smile"></i>
 													<i class="icon-smile"></i>
+													No Rating Data
 												</c:otherwise>
 											</c:choose>
 											</div>
@@ -708,12 +709,12 @@
 													<i class="icon-smile"></i>
 												</c:when>
 												<c:otherwise>
-													No Data
 													<i class="icon-smile"></i>
 													<i class="icon-smile"></i>
 													<i class="icon-smile"></i>
 													<i class="icon-smile"></i>
 													<i class="icon-smile"></i>
+													No Rating Data
 												</c:otherwise>
 											</c:choose>
 											</div>
