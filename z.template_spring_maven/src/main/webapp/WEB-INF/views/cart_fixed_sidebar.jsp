@@ -352,9 +352,20 @@
 										<td>
 											<strong>Dates</strong>
 										</td>
-										<td class="text-right">
-											${date_min} &nbsp; to&nbsp;  ${date_max}
-										</td>
+										<c:if test="${(date_min != date_max)}">
+											<td class="text-right" id = "datePeriod">
+												${date_min} &nbsp; to&nbsp;  ${date_max}
+											</td>
+										</c:if>
+										<c:if test="${(date_min != null) and (date_min != '') and (date_min == date_max)}">
+											<td class="text-right" id = "datePeriod">
+												${date_min}
+											</td>
+										</c:if>
+										<c:if test="${((date_min == null) or (date_min == '')) and ((date_max == null) or (date_max == ''))}">
+											<td class="text-right" id = "datePeriod">
+											</td>
+										</c:if>
 									</tr>
 									<tr>
 										<td>
@@ -379,7 +390,7 @@
 											<strong>Insurance</strong>
 										</td>
 										<td class="text-right">
-											$34
+											$0
 										</td>
 									</tr>
 									<tr class="total">
@@ -387,12 +398,28 @@
 											Total cost
 										</td>
 										<td class="text-right">
-											$154
+											$0
 										</td>
 									</tr>
 								</tbody>
 							</table>
-							<a class="btn_full" href="checkout_payment">Check out</a>
+							
+							<div id="cartCheckoutButton">
+								<c:if test="${(sUser != null) && (fn:length(cartList) != 0)}">
+									<a class="btn_full" href="cart_checkout">Check out</a>
+								</c:if>
+						 		<c:if test="${(sUser != null) && (fn:length(cartList) == 0)}">
+									<a class='btn_full'>Check out</a>
+								</c:if>
+								<c:if test="${sUser == null}">
+									<a class="btn_full" data-toggle="modal" data-target="#signInAlert" href="#">
+										Check out</a>
+									</a>
+								</c:if>
+							</div>
+							
+							
+							<a class="btn_full" href="cart_checkout">Check out</a>
 							<a class="btn_full_outline" href="tour_list"><i class="icon-right"></i> Continue shopping</a>
 						</div>
 						<div class="box_style_4">
@@ -446,26 +473,55 @@
 	
 	
 	/* Cart Delete Item */
-	$(".cartItemDelete").on("click", function (e) {
+	$(".cartItemDelete").on("click", function (d) {
 		var $button = $(this);
 		var cNo = $(this).prev().prev().attr("value");
-		var cartItemBefore = $button.prev().attr("value");
-		var cartTotal = $("#cartTotal").attr("value");
+		var cartItemBefore = $button.prev().attr("value");  // 아래 작동하면 지워도 됨
+		var cartTotal = $("#cartTotal").attr("value");  // 아래 작동하면 지워도 됨
 		
 		$.ajax({
 			url: "session_check",
 			dataType: "json",
-			success: function(d) {
-				if (d != null) {
-					$button.parent().parent().fadeOut("slow", function (c) {
+			success: function(e) {
+				if (e != null) {
+					$button.parent().parent().fadeOut("slow", function (f) {
 						$.ajax({
 							url : "cart_delete",
 							data : "cNo="+cNo,
 							method : "POST",
 							dataType : "json",
-							success : function() {
+							success : function(g) {
+								var cartTotalNew = 0;
+								for (var i=0; i < g.length; i++) {
+									cartTotalNew += g[i].cProductTypePay;
+									console.log(g[i]);
+								}
+								$("#cartTotal").html("￦&nbsp;"+cartTotalNew/10000+".0만");
+								
+								if (g.length == 0) {
+									$('#datePeriod').html(" ");
+								} else if (g.length == 1) {
+									$('#datePeriod').html(g[0].cCheckin.substr(5,6));
+								} else {
+									var date_min = g[0].cCheckin.substr(5,6);
+									var date_max = g[0].cCheckin.substr(5,6);
+									for (var i=0; i < g.length; i++) {
+										if (g[i].cCheckin.substr(5,6) < date_min) {
+											date_min = g[i].cCheckin.substr(5,6);
+										}
+										if (g[i].cCheckin.substr(5,6) > date_max) {
+											date_max = g[i].cCheckin.substr(5,6);
+										}
+									}
+									$('#datePeriod').html(date_min+"&nbsp; to&nbsp;"+date_max);
+								}
+								/*
 								var cartTotalNew = +cartTotal - +cartItemBefore;
 								$("#cartTotal").html("￦&nbsp;"+cartTotalNew+".0만");
+								if (g == 0) {
+									$('#datePeriod').html("<td class='text-right'></td>");
+								}
+								*/
 							}
 						});
 					});
@@ -475,12 +531,12 @@
 				}
 			}
 		});
-		e.preventDefault();
+		d.preventDefault();
 	});
 	
 	
 	/* Cart Refresh Item */
-	$(".cartItemRefresh").on("click", function (e) {
+	$(".cartItemRefresh").on("click", function (d) {
 		var $button = $(this);
 		var cNo = $button.prev().prev().prev().attr("value");
 		var newQty = $button.parent().prev().prev().prev().children(':first').children(':first').val();
@@ -490,18 +546,18 @@
 		$.ajax({
 			url: "session_check",
 			dataType: "json",
-			success: function(d) {
+			success: function(e) {
 				if (d != null) {
 					$.ajax({
 						url : "cart_update",
 						data : "cNo="+cNo+"&cProductQty="+newQty,
 						method : "POST",
 						dataType : "json",
-						success : function(p) {
-							var cartNet = p-cartItemBefore;
+						success : function(f) {
+							var cartNet = f-cartItemBefore;
 							var cartTotalNew = +cartTotal + +cartNet;
-							$button.parent().prev().html("<strong>￦"+p+".0만</strong>");
-							$button.prev().prev().attr("value", p);
+							$button.parent().prev().html("<strong>￦"+f+".0만</strong>");
+							$button.prev().prev().attr("value", f);
 							$("#cartTotal").html("￦&nbsp;"+cartTotalNew+".0만");
 							$("#cartTotal").attr("value", cartTotalNew);
 						}
