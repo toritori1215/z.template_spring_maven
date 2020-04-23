@@ -34,40 +34,33 @@ public class BlogServiceImpl implements BlogService {
 	}
 
 	@Override
+	public int selectNewBlog() {
+		return blogDao.selectNewBlog();
+	}
+
+	@Override
 	public int insertBlog(HashMap hashMap) {
 		return blogDao.insertBlog(hashMap);
 	}
 
 	@Override
-	public int deleteBlog(HashMap hashMap) {
-		return blogDao.deleteBlog(hashMap);
+	public int insertBlogImg(String bImg) {
+		return blogDao.insertBlogImg(bImg);
 	}
 
 	@Override
 	public int updateBlog(HashMap hashMap) {
 		return blogDao.updateBlog(hashMap);
 	}
-	
-	
-	/****** Blog Review ******/
+
 	@Override
-	public List<BlogReview> selectBlogReview(int bNo) {
-		return blogDao.selectBlogReview(bNo);
+	public int updateBlogImg(HashMap hashMap) {
+		return blogDao.updateBlog(hashMap);
 	}
-	
+
 	@Override
-	public int insertBlogReview(BlogReview blogReview) {
-		return blogDao.insertBlogReview(blogReview);
-	}
-	
-	@Override
-	public int deleteBlogReview(int brNo) {
-		return blogDao.deleteBlogReview(brNo);
-	}
-	
-	@Override
-	public int updateBlogReview(BlogReview blogReview) {
-		return blogDao.updateBlogReview(blogReview);
+	public int deleteBlog(HashMap hashMap) {
+		return blogDao.deleteBlog(hashMap);
 	}
 	
 }

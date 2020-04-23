@@ -10,15 +10,16 @@ public class Blog {
 	private String bContent; 		// 블로그 내용
 	private Integer bReadCount; 	// 블로그 조회수
 	private String bCategory; 		// 블로그 카테고리
+	private String bImg;			// 블로그 이미지
 	private int mNo; 				// 회원 번호
-	private String bImg;
+	
 	
 	public Blog() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Blog(int bNo, String bTitle, String bDate, String bContent, Integer bReadCount, String bCategory, int mNo,
-			String bImg) {
+	public Blog(int bNo, String bTitle, String bDate, String bContent, Integer bReadCount, String bCategory, String bImg, 
+			int mNo) {
 		super();
 		this.bNo = bNo;
 		this.bTitle = bTitle;
@@ -26,8 +27,8 @@ public class Blog {
 		this.bContent = bContent;
 		this.bReadCount = bReadCount;
 		this.bCategory = bCategory;
-		this.mNo = mNo;
 		this.bImg = bImg;
+		this.mNo = mNo;
 	}
 
 	public int getbNo() {
@@ -77,6 +78,14 @@ public class Blog {
 	public void setbCategory(String bCategory) {
 		this.bCategory = bCategory;
 	}
+	
+	public String getbImg() {
+		return bImg;
+	}
+	
+	public void setbImg(String bImg) {
+		this.bImg = bImg;
+	}
 
 	public int getmNo() {
 		return mNo;
@@ -84,14 +93,6 @@ public class Blog {
 
 	public void setmNo(int mNo) {
 		this.mNo = mNo;
-	}
-
-	public String getbImg() {
-		return bImg;
-	}
-
-	public void setbImg(String bImg) {
-		this.bImg = bImg;
 	}
 
 }
