@@ -166,6 +166,13 @@ public class RestaurantViewRestController {
 		return cnt;
 	}
 	
-	
+	@RequestMapping(value = "emailCheck")
+	public boolean emailCheck(String email1,String email2) {
+		boolean result = false;
+		if(email1.equals(email2)) {
+			result = true;
+		}
+		return result;
+	}
 	
 }

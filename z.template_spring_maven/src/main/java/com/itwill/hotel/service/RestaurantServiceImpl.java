@@ -2,6 +2,7 @@ package com.itwill.hotel.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,6 +15,7 @@ import com.itwill.hotel.domain.Member;
 import com.itwill.hotel.domain.RestaurantCartDTO;
 import com.itwill.hotel.domain.RestaurantDTO;
 import com.itwill.hotel.domain.Restaurant_JD_DTO;
+import com.itwill.hotel.domain.Restaurant_J_DTO;
 import com.itwill.hotel.repository.RestaurantDao;
 import com.itwill.hotel.util.PageCalculator;
 import com.itwill.hotel.util.PageInputDto;
@@ -198,6 +200,23 @@ public class RestaurantServiceImpl implements RestaurantService{
 	    }
 	    
 		return transactionSucceed;
+	}
+
+	@Override
+	public boolean all_jumun_Info_Insert(Restaurant_J_DTO jumundto, List<Restaurant_JD_DTO> jd_list) {
+		// TODO Auto-generated method stub
+		boolean transaction_succ = false;
+		int insertJCnt = restaurantdao.insertJumunTable(jumundto);
+		int insertJDCnt =0; 
+		for (Restaurant_JD_DTO restaurant_JD_DTO : jd_list) {
+			insertJDCnt = restaurantdao.insertJumunDetailTable(restaurant_JD_DTO);
+		}
+		
+		
+		if(insertJCnt > 0 && insertJDCnt>0) {
+			transaction_succ = true;
+		}
+		return transaction_succ;
 	}
 
 	

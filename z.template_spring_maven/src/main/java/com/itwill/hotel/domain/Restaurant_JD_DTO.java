@@ -8,13 +8,16 @@ public class Restaurant_JD_DTO {
 	private Integer jdproducttot;
 	private Integer jdorderqty;
 	private Integer pno;
+	private Integer pdno;
 	
 	public Restaurant_JD_DTO() {
 		// TODO Auto-generated constructor stub
 	}
 	
+	
+
 	public Restaurant_JD_DTO(Integer jno, String jdorderdate, String jdordertime, Integer jdproductqty,
-			Integer jdproducttot, Integer jdorderqty, Integer pno) {
+			Integer jdproducttot, Integer jdorderqty, Integer pno, Integer pdno) {
 		super();
 		this.jno = jno;
 		this.jdorderdate = jdorderdate;
@@ -23,7 +26,10 @@ public class Restaurant_JD_DTO {
 		this.jdproducttot = jdproducttot;
 		this.jdorderqty = jdorderqty;
 		this.pno = pno;
+		this.pdno = pdno;
 	}
+
+
 
 	public Integer getJno() {
 		return jno;
@@ -81,13 +87,28 @@ public class Restaurant_JD_DTO {
 		this.pno = pno;
 	}
 
-	
+
+
+	public Integer getPdno() {
+		return pdno;
+	}
+
+
+
+	public void setPdno(Integer pdno) {
+		this.pdno = pdno;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "Restaurant_JD_DTO [jno=" + jno + ", jdorderdate=" + jdorderdate + ", jdordertime=" + jdordertime
 				+ ", jdproductqty=" + jdproductqty + ", jdproducttot=" + jdproducttot + ", jdorderqty=" + jdorderqty
-				+ ", pno=" + pno + "]";
+				+ ", pno=" + pno + ", pdno=" + pdno + "]";
 	}
+
+	
 	
 	
 	

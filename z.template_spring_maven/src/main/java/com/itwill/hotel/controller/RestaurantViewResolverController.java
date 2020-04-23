@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +25,7 @@ import com.itwill.hotel.domain.Member;
 import com.itwill.hotel.domain.RestaurantCartDTO;
 import com.itwill.hotel.domain.RestaurantDTO;
 import com.itwill.hotel.domain.Restaurant_JD_DTO;
+import com.itwill.hotel.domain.Restaurant_J_DTO;
 import com.itwill.hotel.exception.WrongRestaurantDataException;
 import com.itwill.hotel.service.RestaurantService;
 import com.itwill.hotel.util.PageInputDto;
@@ -283,7 +285,7 @@ public class RestaurantViewResolverController {
 			Integer jdproductqty = Integer.parseInt((String)resultMap.get("jdproductqty"));
 			Integer jdproducttot = Integer.parseInt((String)resultMap.get("jdproducttot"));
 			Restaurant_JD_DTO jd_dto = new Restaurant_JD_DTO(null, null, null,
-															 jdproductqty, jdproducttot, null, pno);
+															 jdproductqty, jdproducttot, null, pno,null);
 			jd_list.add(jd_dto);
 		}
 	    
@@ -338,7 +340,7 @@ public class RestaurantViewResolverController {
 			Integer jdproductqty = Integer.parseInt((String)resultMap.get("jdproductqty"));
 			Integer jdproducttot = Integer.parseInt((String)resultMap.get("jdproducttot"));
 			Restaurant_JD_DTO jd_dto = new Restaurant_JD_DTO(null, null, null,
-															 jdproductqty, jdproducttot, null, pno);
+															 jdproductqty, jdproducttot, null, pno,null);
 			jd_list.add(jd_dto);
 		}
 	    if(isCart != null && isCart.equals("no")) {
@@ -361,14 +363,60 @@ public class RestaurantViewResolverController {
 		return "restaurant_payment_fixed_sidebar";
 	}
 	
-	
-	
 	@LoginCheck
-	@RequestMapping("restaurant_confirmation_fixed_sidebar")
-	public String restaurant_confirmation_fixed_sidebar() {
-	
+	@RequestMapping(value= "restaurant_confirmation_fixed_sidebar",method= RequestMethod.POST)
+	public String restaurant_confirmation_fixed_sidebar(@RequestParam Integer totalFoodPrice,
+														@RequestParam(required=false) Integer totalDepositCost,
+														@RequestParam(required=false) Integer totalSeatBookingCnt,
+														@RequestParam(required=false) String bookingDate,
+														@RequestParam(required=false) String bookingTime,
+														@RequestParam String expire_month,//유효 월
+														@RequestParam String expire_year,//유효 년
+														@ModelAttribute Restaurant_J_DTO jumundto,
+														HttpSession session,
+														Model model) {
+		//주문 상세 정보 셋팅
+		List<Restaurant_JD_DTO> jd_list = (List<Restaurant_JD_DTO>)session.getAttribute("jumunList");
+		//예약정보가 있다면 예약또한 상품임으로 jd_list에 추가
+		if(totalDepositCost!=null &&totalDepositCost!=0) {
+			RestaurantDTO prod = (RestaurantDTO)session.getAttribute("restaurant_prod");
+			
+			Restaurant_JD_DTO jumunDetail_reservation = 
+						new Restaurant_JD_DTO(null,bookingDate,
+											  bookingTime,totalSeatBookingCnt,
+											  totalDepositCost,totalSeatBookingCnt,prod.getPno(),null);
+			
+			jd_list.add(jumunDetail_reservation);
+		}
+		
+		//Map<String,List<Restaurant_JD_DTO>> insertMap = new HashMap<String, List<Restaurant_JD_DTO>>();
+		//insertMap.put("list", jd_list);
+		
+		for (Restaurant_JD_DTO restaurant_JD_DTO : jd_list) {
+			System.out.println("restaurant_JD_DTO ="+ restaurant_JD_DTO);
+			
+		}
+		
+		//주문 테이블 dto 정보 셋팅
+		Member member = (Member) session.getAttribute("sUser");
+		Integer totalprice =(Integer)session.getAttribute("totalPrice");
+		jumundto.setJifcancel(1);
+		jumundto.setMno(member.getmNo());
+		jumundto.setJvaliddate(expire_month+'/'+expire_year);
+		jumundto.setJtotpay(totalprice);
+		System.out.println("jumundto ::"+jumundto);
+		
+		//주문 테이블 삽입즉시 주문 상세도 삽입해야함
+		//boolean success =restService.all_jumun_Info_Insert(jumundto,insertMap);
+		boolean success =restService.all_jumun_Info_Insert(jumundto,jd_list);
+		if(success) {
+			System.out.println("삽입 성공!!!");
+		}
+		
+		
 		return "restaurant_confirmation_fixed_sidebar";
 	}
+	
 	
 	
 	
@@ -385,4 +433,5 @@ public class RestaurantViewResolverController {
 		System.out.println(e);
 		return "common_404";
 	}
+	
 }

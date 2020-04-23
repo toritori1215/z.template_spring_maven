@@ -2,11 +2,14 @@ package com.itwill.hotel.mapper;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
 import com.itwill.hotel.domain.RestaurantCartDTO;
 import com.itwill.hotel.domain.RestaurantDTO;
+import com.itwill.hotel.domain.Restaurant_JD_DTO;
+import com.itwill.hotel.domain.Restaurant_J_DTO;
 
 
 
@@ -40,7 +43,8 @@ public interface RestaurantMapper {
 	
 	public int seatCapacityCalcul(HashMap<String, String> dateAndtime);
 	public int deleteMemberCart(int mno);
-	
+	public int insertJumunTable(Restaurant_J_DTO jumundto);
+	public int insertJumunDetailTable(Restaurant_JD_DTO jd_list);
 	
 	
 }

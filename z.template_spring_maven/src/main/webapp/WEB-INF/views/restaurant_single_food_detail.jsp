@@ -1213,6 +1213,11 @@
 			console.log("$(itemObjectJSONList).val()::"+$('#itemObjectJSONList').val());
 		}
 		
+		
+		
+		
+		
+		
 	</script>
 	
 	

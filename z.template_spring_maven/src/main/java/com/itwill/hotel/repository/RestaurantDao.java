@@ -2,9 +2,12 @@ package com.itwill.hotel.repository;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.itwill.hotel.domain.RestaurantCartDTO;
 import com.itwill.hotel.domain.RestaurantDTO;
+import com.itwill.hotel.domain.Restaurant_JD_DTO;
+import com.itwill.hotel.domain.Restaurant_J_DTO;
 
 public interface RestaurantDao {
 	public int registerProduct(RestaurantDTO restDto);
@@ -21,5 +24,6 @@ public interface RestaurantDao {
 	public int updateCartInfo(RestaurantCartDTO cart_info);
 	public int seatCapacityCalcul(HashMap<String, String> dateAndtime);
 	public int deleteMemberCart(int mno);
-	
+	public int insertJumunTable(Restaurant_J_DTO jumundto);
+	public int insertJumunDetailTable(Restaurant_JD_DTO jd_list);
 }

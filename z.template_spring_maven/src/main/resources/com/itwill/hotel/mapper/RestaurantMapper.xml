@@ -244,5 +244,63 @@
 		WHERE MNO = #{mno}
 	</delete>
 	
+	<insert id="insertJumunTable"
+			parameterType="com.itwill.hotel.domain.Restaurant_J_DTO">
+			
+			INSERT INTO JUMUN(JNO,JTOTPAY,JDATE,JCARDOWNER,JEMAIL,
+                  JPHONENO,JCARDNO,JVALIDDATE,JCARDCVC,JSTREETADDR,
+                  JSTREETNMG,JCITY,JCOUNTRY,JSTATE,JZIPCODE,
+                  JGUEST,JIFCANCEL,MNO)
+			VALUES(JUMUN_SEQ.NEXTVAL , #{jtotpay}, sysdate, #{jcardowner}, #{jemail},
+        			#{jphoneno},#{jcardno}, #{jvaliddate} , #{jcardcvc}, #{jstreetaddr},
+        			#{jstreetnmg}, #{jcity}, #{jcountry}, #{jstate}, #{jzipcode}, 
+        			NULL, #{jifcancel}, #{mno})
+	</insert>
 	
+	<insert id="insertJumunDetailTable"
+			parameterType="com.itwill.hotel.domain.Restaurant_JD_DTO">
+		
+			INSERT INTO JUMUN_DETAIL(JNO, JDORDERDATE, JDORDERTIME, JDPRODUCTQTY, JDPRODUCTTOT, JDORDERQTY, PNO ,JDNO)
+			VALUES (JUMUN_SEQ.CURRVAL , TO_DATE('${jdorderdate}','YYYY/MM/DD'),
+		 			TO_CHAR('${jdordertime}'), #{jdproductqty,jdbcType=NUMERIC}, #{jdproducttot}, 
+					 #{jdorderqty,jdbcType=NUMERIC}, #{pno}, JUMUNDETAIL_SEQ.NEXTVAL)
+
+	</insert>
+		<!-- 
+		insert into JUMUN_DETAIL(JNO, JDORDERDATE, JDORDERTIME, JDPRODUCTQTY, JDPRODUCTTOT, JDORDERQTY, PNO ,JDNO)
+			select JUMUN_SEQ.CURRVAL, A.* 
+			from(
+			 <foreach item="item" collection="list" separator="UNION ALL " >
+			   select TO_DATE('${item,jdbcType=VARCHAR}','YYYY/MM/DD') as JDORDERDATE,
+			          TO_CHAR('${item.jdordertime,jdbcType=VARCHAR}') as JDORDERTIME,
+			          #{item.jdproductqty,jdbcType=NUMERIC} as JDPRODUCTQTY,
+			           #{item.jdproducttot} as JDPRODUCTTOT,
+			           #{item.jdorderqty,jdbcType=NUMERIC} as JDORDERQTY,
+			           #{item.pno} as PNO,
+			           JUMUNDETAIL_SEQ.NEXTVAL as JDNO
+			   from dual
+			 </foreach>) A
+		
+		
+		INSERT INTO JUMUN_DETAIL(JNO, JDORDERDATE, JDORDERTIME, JDPRODUCTQTY, JDPRODUCTTOT, JDORDERQTY, PNO ,JDNO)
+		VALUES 
+			<foreach collection="list" item="item" separator=",">
+			(JUMUN_SEQ.CURRVAL , TO_DATE('${item,jdbcType=VARCHAR}','YYYY/MM/DD'), 
+			TO_CHAR('${item.jdordertime,jdbcType=VARCHAR}'), #{item.jdproductqty,jdbcType=NUMERIC},
+			 #{item.jdproducttot}, #{item.jdorderqty,jdbcType=NUMERIC}, #{item.pno}, JUMUNDETAIL_SEQ.NEXTVAL)
+			</foreach>
+		 -->	
+		<!-- 
+		INSERT ALL
+		<foreach collection="list" item="item" separator="" index="1">
+			 INTO JUMUN_DETAIL(JNO, JDORDERDATE, JDORDERTIME, JDPRODUCTQTY, JDPRODUCTTOT, 
+             JDORDERQTY, PNO ,JDNO)
+		VALUES
+		(JUMUN_SEQ.CURRVAL , TO_DATE('${item,jdbcType=VARCHAR}','YYYY/MM/DD'),
+		 TO_CHAR('${item.jdordertime,jdbcType=VARCHAR}'), #{item.jdproductqty,jdbcType=NUMERIC}, #{item.jdproducttot}, 
+		 #{item.jdorderqty,jdbcType=NUMERIC}, #{item.pno}, JUMUNDETAIL_SEQ.NEXTVAL)
+		</foreach>
+		SELECT * FROM DUAL
+		 -->
+		
 </mapper>

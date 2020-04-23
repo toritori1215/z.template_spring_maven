@@ -8,13 +8,13 @@ public class restaurantRuntimeException {
 	
 	@ExceptionHandler(IllegalArgumentException.class)
 	public String handle_IllegalArgumentException(IllegalArgumentException e) {
-		 System.out.println(e);
+		 e.printStackTrace();
 		 return "common_404";
 	}
 	
 	@ExceptionHandler(RuntimeException.class)
 	public String handle_RuntimeException(RuntimeException e) {
-		System.out.println(e);
+		e.printStackTrace();
 		return "common_404";
 	}
 

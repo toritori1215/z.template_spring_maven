@@ -4,23 +4,23 @@ public class Restaurant_J_DTO {
 	private Integer jno;
 	private Integer jtotpay;
 	private String jdate;
-	private String jcardowner;
-	private String jemail;
+	private String jcardowner;//1
+	private String jemail; //1
 	
-	private String jphoneno;
-	private String jcardno;
-	private String javaliddate;
-	private String jcardcvc;
-	private String jstreetaddr;
+	private String jphoneno; //1
+	private String jcardno; //1
+	private String jvaliddate; //2 -일딴 보자
+	private String jcardcvc;//1
+	private String jstreetaddr; //1
 	
-	private String jstreetnmg;
-	private String jcity;
-	private String jcountry;
-	private String jstate;
-	private String jzipcode;
+	private String jstreetnmg; //1
+	private String jcity; //1
+	private String jcountry; //1
+	private String jstate; //1
+	private String jzipcode; //1
 	
-	private String jguest;
-	private Integer jifcancel;
+	private String jguest; 
+	private Integer jifcancel; 
 	private Integer mno;
 	
 	private Restaurant_JD_DTO jd_dto;
@@ -30,7 +30,7 @@ public class Restaurant_J_DTO {
 	}
 	
 	public Restaurant_J_DTO(Integer jno, Integer jtotpay, String jdate, String jcardowner, String jemail,
-			String jphoneno, String jcardno, String javaliddate, String jcardcvc, String jstreetaddr, String jstreetnmg,
+			String jphoneno, String jcardno, String jvaliddate, String jcardcvc, String jstreetaddr, String jstreetnmg,
 			String jcity, String jcountry, String jstate, String jzipcode, String jguest, Integer jifcancel,
 			Integer mno, Restaurant_JD_DTO jd_dto) {
 		super();
@@ -41,7 +41,7 @@ public class Restaurant_J_DTO {
 		this.jemail = jemail;
 		this.jphoneno = jphoneno;
 		this.jcardno = jcardno;
-		this.javaliddate = javaliddate;
+		this.jvaliddate = jvaliddate;
 		this.jcardcvc = jcardcvc;
 		this.jstreetaddr = jstreetaddr;
 		this.jstreetnmg = jstreetnmg;
@@ -115,12 +115,12 @@ public class Restaurant_J_DTO {
 		this.jcardno = jcardno;
 	}
 
-	public String getJavaliddate() {
-		return javaliddate;
+	public String getJvaliddate() {
+		return jvaliddate;
 	}
 
-	public void setJavaliddate(String javaliddate) {
-		this.javaliddate = javaliddate;
+	public void setJvaliddate(String jvaliddate) {
+		this.jvaliddate = jvaliddate;
 	}
 
 	public String getJcardcvc() {
@@ -215,7 +215,7 @@ public class Restaurant_J_DTO {
 	public String toString() {
 		return "Restaurant_J_DTO [jno=" + jno + ", jtotpay=" + jtotpay + ", jdate=" + jdate + ", jcardowner="
 				+ jcardowner + ", jemail=" + jemail + ", jphoneno=" + jphoneno + ", jcardno=" + jcardno
-				+ ", javaliddate=" + javaliddate + ", jcardcvc=" + jcardcvc + ", jstreetaddr=" + jstreetaddr
+				+ ", jvaliddate=" + jvaliddate + ", jcardcvc=" + jcardcvc + ", jstreetaddr=" + jstreetaddr
 				+ ", jstreetnmg=" + jstreetnmg + ", jcity=" + jcity + ", jcountry=" + jcountry + ", jstate=" + jstate
 				+ ", jzipcode=" + jzipcode + ", jguest=" + jguest + ", jifcancel=" + jifcancel + ", mno=" + mno
 				+ ", jd_dto=" + jd_dto + "]";
