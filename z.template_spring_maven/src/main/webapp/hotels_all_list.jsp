@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,6 +30,9 @@
 	<jsp:include page="WEB-INF/views/common_header_6.jsp"/>
 	<!-- End Header -->
 	
+	<!-- 사용자 지정 CSS -->
+	<link href="${pageContext.request.contextPath}/resources/z.SiliconVillage/css/hbkMy.css" rel="stylesheet">
+	
 	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/img/hotels_bg.jpg" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
@@ -42,7 +47,7 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/main_page.jsp">Home</a>
+					<li><a href="${pageContext.request.contextPath}/main">Home</a>
 					</li>
 					<li><a href="#">Hotel</a>
 					</li>
@@ -61,7 +66,7 @@
 
 			<div class="row">
 				<aside class="col-lg-3">
-					<p>
+					<p >
 						<a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="Hide map" data-text-original="View on map">View on map</a>
 					</p>
 
@@ -249,12 +254,14 @@
 								<div class="styled-select-filters">
 									<select name="sort_price" id="sort_price">
 										<option value="" selected>Sort by price</option>
-										<option value="lower">Lowest price</option>
-										<option value="higher">Highest price</option>
+										<option value="ASC" >Lowest price</option>
+										<option value="DESC">Highest price</option>
+										<option value="LOWER">Lowest ranking</option>
+										<option value="HIGHER">Highest ranking</option>
 									</select>
 								</div>
 							</div>
-							<div class="col-md-3 col-sm-4 col-6">
+							<div class="col-md-3 col-sm-4 col-6" style="visibility: hidden;">
 								<div class="styled-select-filters">
 									<select name="sort_rating" id="sort_rating">
 										<option value="" selected>Sort by ranking</option>
@@ -282,7 +289,7 @@
 									 -->
 									<div class="ribbon_3 popular"><span>Popular</span>
 									</div>
-									<div class="wishlist">
+									<div class="wishlist" style="visibility: hidden;">
 										<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 									</div>
 									<div class="img_list">
@@ -290,7 +297,7 @@
 										<a href="single_hotel.html"><img src="${pageContext.request.contextPath}/resources/img/hotel_1.jpg" alt="Image">
 											<div class="short_info"></div>
 										 -->
-										<a href="hotel_single?pNo=${product.pNo}"><img src="${pageContext.request.contextPath}/resources/z.SiliconVilage/img/${product.pName}1.jpg" alt="Image">
+										<a href="hotel_single?pNo=${product.pNo}"><img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg" alt="Image">
 											<div class="short_info"></div>
 										</a>
 									</div>
@@ -305,19 +312,19 @@
 										<p>${product.pDesc}</p>
 										<ul class="add_info">
 											<li>
-												<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Free Wifi"><i class="icon_set_1_icon-86"></i></a>
+												<a class="tooltip-1" data-placement="top" title="Free Wifi"><i class="icon_set_1_icon-86"></i></a>
 											</li>
 											<li>
-												<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Plasma TV with cable channels"><i class="icon_set_2_icon-116"></i></a>
+												<a class="tooltip-1" data-placement="top" title="Plasma TV with cable channels"><i class="icon_set_2_icon-116"></i></a>
 											</li>
 											<li>
-												<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Swimming pool"><i class="icon_set_2_icon-110"></i></a>
+												<a class="tooltip-1" data-placement="top" title="Swimming pool"><i class="icon_set_2_icon-110"></i></a>
 											</li>
 											<li>
-												<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Fitness Center"><i class="icon_set_2_icon-117"></i></a>
+												<a class="tooltip-1" data-placement="top" title="Fitness Center"><i class="icon_set_2_icon-117"></i></a>
 											</li>
 											<li>
-												<a href="javascript:void(0);" class="tooltip-1" data-placement="top" title="Restaurant"><i class="icon_set_1_icon-58"></i></a>
+												<a class="tooltip-1" data-placement="top" title="Restaurant"><i class="icon_set_1_icon-58"></i></a>
 											</li>
 										</ul>
 									</div>
@@ -327,8 +334,8 @@
 										<!-- 
 										<div><sup>$</sup>89*<span class="normal_price_list">$99</span><small>*From/Per night</small>
 										 -->
-										<div><sup>￦</sup>${product.pPrice}<span class="normal_price_list">${product.pPrice*1.3}</span><small>*From/Per night</small>
-											<p><a href="hotel_single.jsp" class="btn_1">Details</a>
+										<div><sup>￦</sup>${product.pPrice}<span class="normal_price_list">${product.pPrice*1.5}</span><small>*From/Per night</small>
+											<p><a href="hotel_single?pNo=${product.pNo}" class="btn_1">Details</a>
 											</p>
 										</div>
 									</div>
