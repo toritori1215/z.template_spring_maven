@@ -40,5 +40,10 @@ public class ProductServiceImpl implements ProductService {
 	public Integer countBookedTourQty(HashMap parameterMap) {
 		return productDao.countBookedTourQty(parameterMap);
 	}
+
+	@Override
+	public int updateRate(int pNo) {
+		return productDao.updateRate(pNo);
+	}
 	
 }

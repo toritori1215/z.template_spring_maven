@@ -67,4 +67,12 @@
 		and jdOrderTime = #{jdOrderTime}
 	</select>
 	
+	<update id="updateRate" parameterType="_int">
+		update product 
+		set pRate=(select round((sum(rRate1)+sum(rRate2)+sum(rRate3)+sum(rRate4))/4/count(rNo)) 
+		             from review 
+		            where pNo=#{pNo}) 
+		where pNo=#{pNo}
+	</update>
+	
 </mapper>
