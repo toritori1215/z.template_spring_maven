@@ -23,6 +23,7 @@ import com.itwill.hotel.controller.interceptors.LoginCheck;
 import com.itwill.hotel.domain.Member;
 import com.itwill.hotel.domain.RestaurantCartDTO;
 import com.itwill.hotel.domain.RestaurantDTO;
+import com.itwill.hotel.domain.Restaurant_JD_DTO;
 import com.itwill.hotel.exception.WrongRestaurantDataException;
 import com.itwill.hotel.service.RestaurantService;
 import com.itwill.hotel.util.PageInputDto;
@@ -246,26 +247,98 @@ public class RestaurantViewResolverController {
 	}
 	
 	@LoginCheck
-	@RequestMapping(value = "restaurant_payment_fixed_sidebar",method = RequestMethod.POST)
-	public String restaurant_payment_fixed_sidebar(@RequestParam(value="itemObjectJSONList",required = false) 
-												   String itemObjectJSONList) {
+	@RequestMapping(value = "restaurant_payment_fixed_sidebar1",method = RequestMethod.POST)
+	public String restaurant_payment_fixed_sidebar1(@RequestParam(value="itemObjectJSONList",required = false) 
+												   String itemObjectJSONList,
+												   @RequestParam(value="totalPrice") Integer totalPrice,
+												   @RequestParam(value="bookingTime") String bookingTime,
+												   @RequestParam(value="bookingDate") String bookingDate,
+												   @RequestParam(value="totalSeatBookingCnt") Integer totalSeatBookingCnt, 
+												   Model model,
+												   HttpSession session) {
 		System.out.println(itemObjectJSONList);
+		System.out.println("totalPrice >>>>>" + totalPrice);
+		System.out.println("bookingTime >>>>>" + bookingTime);
+		System.out.println("bookingDate >>>>>" + bookingDate);
+		System.out.println("totalSeatBookingCnt >>>>>" + totalSeatBookingCnt);
+		
+		
+		//JSON 형태의 문자열 List<Map> 파싱
 		List<Map<String,Object>> resultMapArray = new ArrayList<Map<String,Object>>();
 	    resultMapArray = JSONArray.fromObject(itemObjectJSONList);
-
 	    
-	    for (int i = 0; i < resultMapArray.size(); i++) {
-	    	Iterator keyiter = resultMapArray.get(i).keySet().iterator();
-	    	while(keyiter.hasNext()) {
-	    		String key = (String)keyiter.next();
-	    		System.out.println("key ::" + key);
-	    		System.out.println("key value ::" + resultMapArray.get(i).get(key));
-	    		
-	    	}
+	    List<Restaurant_JD_DTO> jd_list = new ArrayList<Restaurant_JD_DTO>(); 
+	   
+	    //밑작업(중요) : 카트에서 넘어온 item들의 정보를 리스트 객채로 받아  리스트 주문 상세 dto정보에 Insert
+	    for (Map<String,Object> resultMap : resultMapArray) {
+			Integer pno = Integer.parseInt((String) resultMap.get("pno"));
+			Integer jdproductqty = Integer.parseInt((String)resultMap.get("jdproductqty"));
+			Integer jdproducttot = Integer.parseInt((String)resultMap.get("jdproducttot"));
+			Restaurant_JD_DTO jd_dto = new Restaurant_JD_DTO(null, null, null,
+															 jdproductqty, jdproducttot, null, pno);
+			jd_list.add(jd_dto);
 		}
-		
-		
-		
+	    
+	    //1.아직 결재가 완료 된것이 아니고 결제창으로 넘어가는 과정이다.
+	    //  카트에서 상품의 수량과 가격 총합계가 바뀌었을 경우를 생각하여 해당 회원의 카트테이블을 카트View에서 조정한 리스트 항목으로 변경해주어야한다.
+	    //  카트의 기존 내용 삭제와 동시에 새로운 카트리스트를 카트테이블에 등록하는 것임으로 하나의 트랜잭션으로 처리하기 위해 서비스에서 작업이 이루어지게 한다.
+	    Member member = (Member)session.getAttribute("sUser");
+	    boolean cartReDefindSucc =restService.cartReDefindTransaction(jd_list, member);
+	    if(cartReDefindSucc) {
+	    	System.out.println("카트 정보 초기화 성공!!!");
+	    }
+	    
+	    //2. 해당 컨트롤러는 주문할 항목을 확정짓는 단계의 과정임으로 세션으로 처리하면 결제 뷰에서 유용하게 사용가능하다. (혹시 모르니 결재완료시 해당세션을 지우도록 한다!)
+	    //totalPrice, jumunList 는 restaurant_payment_fixed_sidebar로 이동하는 어느 경로든 재 setting이 됨으로 session에 저장 하자.
+	    session.setAttribute("jumunList", jd_list);
+	    session.setAttribute("totalPrice",totalPrice);
+	    //bookingTime, bookingDate, totalSeatBookingCnt 는 
+	    //session에 남아있을 경우 예약 안했을시 restaurant_payment_fixed_sidebar에 예약을 했다고 뜰수 있음으로 model로 보내고 주문결과로 다시 전달해야함.
+	    model.addAttribute("bookingTime", bookingTime);
+	    model.addAttribute("bookingDate", bookingDate);
+	    model.addAttribute("totalSeatBookingCnt", totalSeatBookingCnt);
+	    
+		return "restaurant_payment_fixed_sidebar";
+	}
+	
+	
+	@LoginCheck
+	@RequestMapping(value = "restaurant_payment_fixed_sidebar2",method = RequestMethod.POST)
+	public String restaurant_payment_fixed_sidebar2(@RequestParam(value="itemObjectJSONList",required = false) 
+												   String itemObjectJSONList,
+												   @RequestParam(value="totalPrice") Integer totalPrice,
+												   Model model,
+												   HttpSession session) {
+		System.out.println(itemObjectJSONList);
+		System.out.println("totalPrice >>>>>" + totalPrice);
+		List<Map<String,Object>> resultMapArray = new ArrayList<Map<String,Object>>();
+	    resultMapArray = JSONArray.fromObject(itemObjectJSONList);
+	    
+	    List<Restaurant_JD_DTO> jd_list = new ArrayList<Restaurant_JD_DTO>(); 
+	   
+	    //밑작업(중요) : 카트에서 넘어온 item들의 정보를 리스트 객채로 받아  리스트 주문 상세 dto정보에 Insert
+	    for (Map<String,Object> resultMap : resultMapArray) {
+			Integer pno = Integer.parseInt((String) resultMap.get("pno"));
+			Integer jdproductqty = Integer.parseInt((String)resultMap.get("jdproductqty"));
+			Integer jdproducttot = Integer.parseInt((String)resultMap.get("jdproducttot"));
+			Restaurant_JD_DTO jd_dto = new Restaurant_JD_DTO(null, null, null,
+															 jdproductqty, jdproducttot, null, pno);
+			jd_list.add(jd_dto);
+		}
+	    
+	    //1.아직 결재가 완료 된것이 아니고 결제창으로 넘어가는 과정이다.
+	    //  카트에서 상품의 수량과 가격 총합계가 바뀌었을 경우를 생각하여 해당 회원의 카트테이블을 카트View에서 조정한 리스트 항목으로 변경해주어야한다.
+	    //  카트의 기존 내용 삭제와 동시에 새로운 카트리스트를 카트테이블에 등록하는 것임으로 하나의 트랜잭션으로 처리하기 위해 서비스에서 작업이 이루어지게 한다.
+	    Member member = (Member)session.getAttribute("sUser");
+	    boolean cartReDefindSucc =restService.cartReDefindTransaction(jd_list, member);
+	    if(cartReDefindSucc) {
+	    	System.out.println("카트 정보 초기화 성공!!!");
+	    }
+	    
+	    //2. 해당 컨트롤러는 주문할 항목을 확정짓는 단계의 과정임으로 세션으로 처리하면 결제 뷰에서 유용하게 사용가능하다. (혹시 모르니 결재완료시 해당세션을 지우도록 한다!)
+	    session.setAttribute("jumunList", jd_list);
+	    session.setAttribute("totalPrice",totalPrice);
+	    
 		return "restaurant_payment_fixed_sidebar";
 	}
 	

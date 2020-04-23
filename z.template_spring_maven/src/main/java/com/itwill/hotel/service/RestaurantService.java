@@ -3,8 +3,10 @@ package com.itwill.hotel.service;
 import java.util.HashMap;
 import java.util.List;
 
+import com.itwill.hotel.domain.Member;
 import com.itwill.hotel.domain.RestaurantCartDTO;
 import com.itwill.hotel.domain.RestaurantDTO;
+import com.itwill.hotel.domain.Restaurant_JD_DTO;
 import com.itwill.hotel.util.PageInputDto;
 import com.itwill.hotel.util.RestaurantBoardListPageDto;
 
@@ -23,4 +25,7 @@ public interface RestaurantService {
 	public int insertCartInfo(RestaurantCartDTO cart_info);
 	public int updateCartInfo(RestaurantCartDTO cart_info);
 	public int seatCapacityCalcul(HashMap<String, String> dateAndtime);
+	public int deleteMemberCart(int mno);
+	public boolean cartReDefindTransaction(List<Restaurant_JD_DTO> jd_list,Member member);
+	
 }

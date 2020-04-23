@@ -238,5 +238,11 @@
 		 
 	</select>
 	
+	<delete id="deleteMemberCart"
+			parameterType="int">
+		DELETE FROM CART
+		WHERE MNO = #{mno}
+	</delete>
+	
 	
 </mapper>

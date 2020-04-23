@@ -20,5 +20,6 @@ public interface RestaurantDao {
 	public int insertCartInfo(RestaurantCartDTO cart_info);
 	public int updateCartInfo(RestaurantCartDTO cart_info);
 	public int seatCapacityCalcul(HashMap<String, String> dateAndtime);
+	public int deleteMemberCart(int mno);
 	
 }

@@ -395,18 +395,18 @@
 							 	<!-- 카트 리스트의 길이-->
 								<input type="hidden" name="cartListLength" id="cartListLength" value= "${restCartList.size()}">
 															
-								<!-- 
-								음식별 수량이 되어야함
-								<input type="hidden" name="foodCount" id="foodCount" value= "">
-								음식별 가격이 되어야함					
-								<input type="hidden" name="foodPrice" id="foodPrice" value= "">					
-								 -->
-								 
-								<input type="hidden" name="bookingTime" id="bookingTime" value= "">					
-								<input type="hidden" name="bookingdate" id="bookingdate" value= "">
-								<input type="hidden" id="PeoplePerPrice" name="PeoplePerPrice" value="${deposit_cost}">
-								<input type="hidden" name="seatCapacity" id="seatCapacity" value="${restaurant_prod.pavailable}">
+								<!-- 전송 데이터 -->
+								<input type="hidden" name= "totalSeatBookingCnt" id="totalSeatBookingCnt" value="">
+								<input type="hidden" name="totalPrice" id="totalPrice" value= "">					
+								<input type="hidden" name="bookingTime" id="bookingTime" value="">					
+								<input type="hidden" name="bookingDate" id="bookingDate" value="">
 								<input type="hidden" id="itemObjectJSONList" name="itemObjectJSONList" value="">					
+								<!-- 전송 데이터 -->
+								
+								<!-- 웹용 -->
+								<input type="hidden" id="PeoplePerPrice" name="PeoplePerPrice" value="${deposit_cost}">
+								<!-- 웹용 -->
+								<input type="hidden" name="seatCapacity" id="seatCapacity" value="${restaurant_prod.pavailable}">
 							</form>
 							
 							
@@ -769,17 +769,34 @@
 			
 			
 			$('#checkOutBtn').click(function(e){
+				
 				let show_reservation_window = $('#reservation_div_space').is(':visible');
 				//보내야할 정보 정리
 				// 1.상품리스트를 json데이터화 -> [[pno, jdproductqty, jdproducttot],[....]
 				// 2.상품 총금액 -> $(#sumPrice)
 				// 3.예약의 경우 -> jdorderdate ,jdordertime, jdorderqty 정보를 전송 {총 7개 데이터를 다뤄야함}
-				
+				e.preventDefault();
 				if(show_reservation_window){
 					console.log("창이 열려있는경우");
 					//deposit가격을 포함시켜야함
+					let totalSeatBookingCnt = document.getElementById('personsCntId').value;
+					let bookingDate = document.getElementById('datePicker').value;
+					let bookingTime = document.getElementById('timePicker').value;
+					//console.log('totalSeatBookingCnt ::' + totalSeatBookingCnt);
+					//console.log('bookingDate ::' + bookingDate);
+					//console.log('bookingTime ::' + bookingTime);
 					
+					document.getElementById('totalSeatBookingCnt').value = totalSeatBookingCnt;
+					document.getElementById('bookingDate').value = bookingDate;
+					document.getElementById('bookingTime').value = bookingTime;
 					
+					console.log('totalSeatBookingCnt ==>'+ totalSeatBookingCnt);
+					console.log('bookingDate ==>'+ bookingDate);
+					console.log('bookingTime ==>'+ bookingTime);
+					
+					requestSettingCartList();
+					document.getElementById('totalPrice').value = totalPrice_ChangeNumber();
+					requestCheckout1();
 				}else{
 					console.log("창이 닫혀있는경우");
 					//deposit가격을 포함시키지 말아야함.
@@ -808,59 +825,12 @@
 					}
 					
 					*/
-					
-					//1.카트 tbody의 모든 item 정보를 리스트로
-					let allList =$('#listBody > tr').get();
-					//2.안보이는 리스트를 제거한 배열 생성
-					let itemObjectList = new Array(); 
-					
-					
-					$.each(allList, function(i, elt) {
-						let visibleItem = $(elt).is(":visible")
-						if(visibleItem){
-							//console.log("보이는 아이템 갯수 :"+ i);
-							///////////////////////////////////
-							let pno = $(elt).attr('itemNo');
-							//console.log("아이템 번호::"+ pno);
-							
-							///////////////////////////////////
-							let jdproductqty = $(elt).find('td:nth-child(2) > div > input').val();
-							//console.log("아이템 수량::"+ jdproductqty);
-							
-							//////////////////////////////////////////
-							let numberChange = $(elt).find('td:nth-child(4) > strong').text();
-							let numberChange1 = numberChange.replace(/,/g,"");
-							let jdproducttot = numberChange1.replace("￦","");
-							//console.log("아이템 별 총액::"+ jdproducttot);
-							
-							//console.log("-------------------");
-							// 1.상품리스트를 json데이터화 -> [[pno, jdproductqty, jdproducttot],[....]
-							// 1-1 객체 생성
-							let itemObject = new Object();
-							itemObject.pno = pno;
-							itemObject.jdproductqty = jdproductqty;
-							itemObject.jdproducttot = jdproducttot;
-							
-							// 1-2 배열에 객체를 mapping 할 키값을 선언
-							let itemList = new Array();
-							itemList[0] = "pno";
-							itemList[1] = "jdproductqty";
-							itemList[2] = "jdproducttot";
-							
-							// 2. 배열과 객체의 값을 매핑
-							let jsonText = JSON.stringify(itemObject, itemList, "\t");
-							console.log(jsonText);
-							itemObjectList.push(jsonText);
-						}
-					});
-					console.log(itemObjectList);
-					document.getElementById('itemObjectJSONList').value = "["+itemObjectList+"]";
-					console.log("$(itemObjectJSONList).val()::"+$('#itemObjectJSONList').val());
-					
+					requestSettingCartList();
+					document.getElementById('totalPrice').value = totalPrice_ChangeNumber();
+					requestCheckout2();
 				}
-				requestCheckout();
-		
-				e.preventDefault();
+				
+				//e.preventDefault();
 			});
 			
 			
@@ -868,13 +838,73 @@
 		});
 		//on load end
 		
-		function requestCheckout(){
-			document.f.action = 'restaurant_payment_fixed_sidebar';
+		function requestCheckout1(){
+			document.f.action = 'restaurant_payment_fixed_sidebar1';
+			document.f.method = "POST";
+			document.f.submit();
+		}
+		function requestCheckout2(){
+			document.f.action = 'restaurant_payment_fixed_sidebar2';
 			document.f.method = "POST";
 			document.f.submit();
 		}
 		
+		function totalPrice_ChangeNumber(){
+			let totalChange1 = $('#sumPrice').text().replace(/,/g,'');
+			let total = Number(totalChange1.replace('￦',''));
+			//console.log("total::" + total);
+			return total;
+		}
 		
+		function requestSettingCartList(){
+			//1.카트 tbody의 모든 item 정보를 리스트로
+			let allList =$('#listBody > tr').get();
+			//2.안보이는 리스트를 제거한 배열 생성
+			let itemObjectList = new Array(); 
+			
+			
+			$.each(allList, function(i, elt) {
+				let visibleItem = $(elt).is(":visible")
+				if(visibleItem){
+					//console.log("보이는 아이템 갯수 :"+ i);
+					///////////////////////////////////
+					let pno = $(elt).attr('itemNo');
+					//console.log("아이템 번호::"+ pno);
+					
+					///////////////////////////////////
+					let jdproductqty = $(elt).find('td:nth-child(2) > div > input').val();
+					//console.log("아이템 수량::"+ jdproductqty);
+					
+					//////////////////////////////////////////
+					let numberChange = $(elt).find('td:nth-child(4) > strong').text();
+					let numberChange1 = numberChange.replace(/,/g,"");
+					let jdproducttot = numberChange1.replace("￦","");
+					//console.log("아이템 별 총액::"+ jdproducttot);
+					
+					//console.log("-------------------");
+					// 1.상품리스트를 json데이터화 -> [[pno, jdproductqty, jdproducttot],[....]
+					// 1-1 객체 생성
+					let itemObject = new Object();
+					itemObject.pno = pno;
+					itemObject.jdproductqty = jdproductqty;
+					itemObject.jdproducttot = jdproducttot;
+					
+					// 1-2 배열에 객체를 mapping 할 키값을 선언
+					let itemList = new Array();
+					itemList[0] = "pno";
+					itemList[1] = "jdproductqty";
+					itemList[2] = "jdproducttot";
+					
+					// 2. 배열과 객체의 값을 매핑
+					let jsonText = JSON.stringify(itemObject, itemList, "\t");
+					//console.log(jsonText);
+					itemObjectList.push(jsonText);
+				}
+			});
+			//console.log(itemObjectList);
+			document.getElementById('itemObjectJSONList').value = "["+itemObjectList+"]";
+			console.log("$(itemObjectJSONList).val()::"+$('#itemObjectJSONList').val());
+		}
 		
 	</script>
 		

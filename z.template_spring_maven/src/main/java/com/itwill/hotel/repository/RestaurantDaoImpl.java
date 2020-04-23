@@ -205,6 +205,15 @@ public class RestaurantDaoImpl implements RestaurantDao{
 		return alreadyCapacity;
 	}
 
+
+	@Override
+	public int deleteMemberCart(int mno) {
+		// TODO Auto-generated method stub
+		int deleteCnt = restMapper.deleteMemberCart(mno);
+		
+		return deleteCnt;
+	}
+
 	
 	
 
