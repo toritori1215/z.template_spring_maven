@@ -310,6 +310,7 @@
 				
 			</div>
 			<!--End row -->
+		<input type="hidden" id= "isCart" name = "isCart" value= "${isCart}">
 		</div>
 		</form>
 		<!--End container -->
