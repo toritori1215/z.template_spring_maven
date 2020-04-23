@@ -28,7 +28,7 @@
 	
 	
 	<!-- Header================================================== -->
-	<jsp:include page="z.references/common_header_6.jsp"/>
+	<jsp:include page="WEB-INF/views/common_header_6.jsp"/>
 	<!-- End Header -->
 
 	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/img/bg_blog.jpg" data-natural-width="1400" data-natural-height="470">
@@ -59,124 +59,34 @@
 			<div class="row">
 				<div class="col-lg-9">
 					<div class="box_style_1">
-					<input type="hidden" name="bNo" id="bNo" value="${blogView}">
+						<input type="hidden" name="bNo" id="bNo" value="${blog.bNo}">
 						<div class="post nopadding">
-							<img src="${pageContext.request.contextPath}/resources/img/blog-1.jpg" alt="Image" class="img-fluid">
+							<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/blog/${blog.bImg}" alt="Image" class="img-fluid">
 							<div class="post_info clearfix">
 								<div class="post-left">
 									<ul>
-										<li><i class="icon-calendar-empty"></i>On <span>${blogView.bDate}</span>
+										<li><i class="icon-calendar-empty"></i>On <span>${blog.bDate}</span>
 										</li>
 										<li><i class="icon-inbox-alt"></i>In <a href="#">Top tours</a>
 										</li>
-										<li><i class="icon-tags"></i>Tags <a href="#">Works</a> <a href="#">Personal</a>
-										</li>
 									</ul>
 								</div>
-								<div class="post-right"><i class="icon-comment"></i><a href="#">25</a>Comments</div>
 							</div>
-							<h2>${blogView.bTitle}</h2>
-							<p>
-								${blogView.bContent}
-							</p>
-							<p>
-								Aenean iaculis sodales dui, non hendrerit lorem rhoncus ut. Pellentesque ullamcorper venenatis elit idaipiscingi Duis tellus neque, tincidunt eget pulvinar sit amet, rutrum nec urna. Suspendisse pretium laoreet elit vel ultricies. Maecenas ullamcorper ultricies rhoncus. Aliquam erat volutpat.
-							</p>
-							
-							<blockquote class="styled">
-								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>
-								<small>Someone famous in <cite title="">Body of work</cite></small>
-							</blockquote>
-								<form action="blog_right_sidebar">
-									<c:if test="${blogView.mNo == sUser.mNo}">
-									<input type="submit" id="update_blog_post" class="btn_1" value="Update">
-									<input type="button" id="delete_blog_post" class="btn_1" value="Delete">
-									</c:if>
-								</form>
+							<h2>${blog.bTitle}</h2>
+							<p>${blog.bContent}</p>
+							<c:if test="${blog.mNo == sUser.mNo}">
+								<a href="#" class="btn_1" data-toggle="modal" data-target="#updateBlogImg">Update</a>&nbsp;&nbsp;&nbsp;
+								<a href="#" class="btn_1" data-toggle="modal" data-target="#updateBlog">Update</a>&nbsp;&nbsp;&nbsp;
+								<a href="blog_delete?bNo=${blog.bNo}" class="btn_1">Delete</a>
+							</c:if>
 						</div>
-						
 						<!-- end post -->
 					</div>
 					<!-- end box_style_1 -->
-
-
-
-					<h4>${size} comments</h4>
-
-					<div id="comments">
-						<ol>
-						<c:forEach var="i" begin="1" end="${size}">
-						<c:forEach var="blogReview" items="${blogReviewList}">
-						<c:if test="${blogReview.brGroup == i}">
-							
-							<c:if test="${blogReview.brDepth == 1}">
-								<li>
-									brGroup: ${blogReview.brGroup}, brStep: ${blogReview.brStep}, brDepth: ${blogReview.brDepth}
-									<div class="avatar"><a href="#"><img src="${pageContext.request.contextPath}/resources/img/avatar1.jpg" alt="Image"></a></div>
-									<div class="comment_right clearfix">
-										<div class="comment_info">
-											Posted by: <a href="#">ToriTori</a><span>|</span> ${blogReview.brDate} <span>|</span><a href="#">Reply</a>
-										</div><p>${blogReview.brContent}</p>
-									</div>
-								</li>
-							</c:if>
-							
-							<c:forEach var="j" begin="2" end="${size}">
-								<c:if test="${blogReview.brStep == j}">
-									<c:if test="${blogReview.brDepth == 2}">
-										<li style="padding-left: 70px">
-											brGroup: ${blogReview.brGroup}, brStep: ${blogReview.brStep}, brDepth: ${blogReview.brDepth}
-											<div class="avatar"><a href="#"><img src="${pageContext.request.contextPath}/resources/img/avatar2.jpg" alt="Image"></a></div>
-											<div class="comment_right clearfix">
-												<div class="comment_info">
-													Posted by: <a href="#">ToriTori</a><span>|</span> ${blogReview.brDate} <span>|</span><a href="#">Reply</a>
-												</div><p>${blogReview.brContent}</p>
-											</div>
-										</li>
-									</c:if>
-									
-									<c:if test="${blogReview.brDepth == 3}">
-									<li style="padding-left: 140px">
-										brGroup: ${blogReview.brGroup}, brStep: ${blogReview.brStep}, brDepth: ${blogReview.brDepth}
-										<div class="avatar"><a href="#"><img src="${pageContext.request.contextPath}/resources/img/avatar3.jpg" alt="Image"></a></div>
-										<div class="comment_right clearfix">
-											<div class="comment_info">
-												Posted by: <a href="#">ToriTori</a><span>|</span> ${blogReview.brDate} 
-											</div><p>${blogReview.brContent}</p>
-										</div>
-									</li>
-								</c:if>
-								</c:if>
-							</c:forEach>
-							
-						</c:if>
-						</c:forEach>
-						</c:forEach>
-						</ol>
-					</div>
-					<!-- End Comments -->
-
-					<h4>Leave a comment</h4>
-					<form action="#" method="post">
-						<div class="form-group">
-							<input class="form-control style_2" type="text" name="name" placeholder="Enter name">
-						</div>
-						<div class="form-group">
-							<input class="form-control style_2" type="text" name="mail" placeholder="Enter email">
-						</div>
-						<div class="form-group">
-							<textarea name="message" class="form-control style_2" style="height:150px;" placeholder="Message"></textarea>
-						</div>
-						<div class="form-group">
-							<input type="reset" class="btn_1" value="Clear form" />
-							<input type="submit" class="btn_1" value="Post Comment" />
-						</div>
-					</form>
 				</div>
 				<!-- End col-md-8-->
-
+				
 				<aside class="col-lg-3 add_bottom_30">
-
 					<div class="widget">
 						<div class="input-group">
 							<input type="text" class="form-control" placeholder="Search...">
@@ -191,67 +101,89 @@
 					<div class="widget" id="cat_blog">
 						<h4>Categories</h4>
 						<ul>
-							<li><a href="#">Places to visit</a>
+							<li><a href="#">Tour</a>
 							</li>
-							<li><a href="#">Top tours</a>
+							<li><a href="#">Hotel</a>
 							</li>
-							<li><a href="#">Tips for travellers</a>
+							<li><a href="#">Facility</a>
 							</li>
-							<li><a href="#">Events</a>
+							<li><a href="#">Restaurant</a>
 							</li>
 						</ul>
 					</div>
 					<!-- End widget -->
-
 					<hr>
 
 					<div class="widget">
 						<h4>Recent post</h4>
 						<ul class="recent_post">
-							<li>
-								<i class="icon-calendar-empty"></i> 16th July, 2020
-								<div><a href="#">It is a long established fact that a reader will be distracted </a>
-								</div>
-							</li>
-							<li>
-								<i class="icon-calendar-empty"></i> 16th July, 2020
-								<div><a href="#">It is a long established fact that a reader will be distracted </a>
-								</div>
-							</li>
-							<li>
-								<i class="icon-calendar-empty"></i> 16th July, 2020
-								<div><a href="#">It is a long established fact that a reader will be distracted </a>
-								</div>
-							</li>
+							<c:forEach var="recentBlog" items="${recentBlogList}">
+								<li>
+									<i class="icon-calendar-empty"></i> ${recentBlog.bDate}
+									<div><a href="blog_post_right_sidebar?bNo=${recentBlog.bNo}">${recentBlog.bTitle}</a></div>
+								</li>
+							</c:forEach>
 						</ul>
 					</div>
 					<!-- End widget -->
-					<hr>
-					<div class="widget tags">
-						<h4>Tags</h4>
-						<a href="#">Lorem ipsum</a>
-						<a href="#">Dolor</a>
-						<a href="#">Long established</a>
-						<a href="#">Sit amet</a>
-						<a href="#">Latin words</a>
-						<a href="#">Excepteur sint</a>
-					</div>
-					<!-- End widget -->
-
 				</aside>
 				<!-- End aside -->
-
 			</div>
 			<!-- End row-->
 		</div>
 		<!-- End container -->
+		<input type="hidden" id="blogViewMsg" value="${blogViewMsg}">
 	</main>
 	<!-- End main -->
-
+	
 	<!-- Footer================================================== -->
-	<jsp:include page="z.references/common_footer_2.jsp"/>
+	<jsp:include page="WEB-INF/views/common_footer_2.jsp"/>
 	<!-- End Footer -->
-
+	
+	<script type="text/javascript">
+		$(function() {
+			var blogViewMsg = $("#blogViewMsg").val()
+			if (blogViewMsg != null && blogViewMsg != "") {
+				alert(blogViewMsg);
+			}
+		})
+	</script>
+	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/gu-upload/guuploadManager.js"></script>
+	<script type="text/javascript">
+		var guManager = null;
+		
+		window.onload = function() {
+			var option = {
+				fileid: "attachFile",
+				listtype: "thumbnail",
+				uploadURL: "upload",
+				maxFileSize: 100,
+				maxFileCount: 1,
+				useButtons: true,
+				afterFileTransfer: afterFileTransfer
+			}
+			guManager = new guUploadManager(option);
+		}	
+		
+		function formSubmit() {
+			guManager.uploadFiles();
+		}
+		
+		function afterFileTransfer(realname, filename, filesize) {
+			var realname9 = document.getElementById("realname");
+			var filename9 = document.getElementById("filename");
+			var filesize9 = document.getElementById("filesize");
+			
+			realname9.value = realname;
+			filename9.value = filename;
+			filesize9.value = filesize;
+			
+			document.form1.submit();
+		}
+	</script>
+	
+	
 </body>
 
 </html>

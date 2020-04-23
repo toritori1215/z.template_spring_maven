@@ -3,6 +3,7 @@ package com.itwill.hotel.controller.exception;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+/*
 @ControllerAdvice
 public class restaurantRuntimeException {
 	
@@ -22,3 +23,4 @@ public class restaurantRuntimeException {
 	
 	
 }
+*/

@@ -7,118 +7,81 @@ import org.apache.ibatis.type.Alias;
 @Alias("Review")
 public class Review {
  
-	private Integer rNo;
-	private String rFirst;
-	private String rLast;
-	private String rEmail;
-	private Integer rCleanliness;
-	private Integer rComfort;
-	private Integer rPrice;
-	private Integer rQuality;
+	private int rNo;
+	private Integer rRate1;
+	private Integer rRate2;
+	private Integer rRate3;
+	private Integer rRate4;
 	private String rContent;
-	private String rRegdate;
+	private String rRegDate;
+	private int mNo;
+	private int pNo;
+
+	private String mId;
+	private String mImg;
 	private String pType;
-	private Integer pNo;
-	private Integer mId;
-	private String mNo;
-	private Integer rRate;
+	private int rRate;
 	
-	
-	public Integer getrRate() {
-		return rRate;
+	public Review() {
+		// TODO Auto-generated constructor stub
 	}
 
-	public void setrRate(Integer rRate) {
+	public Review(int rNo, Integer rRate1, Integer rRate2, Integer rRate3, Integer rRate4, String rContent, String rRegDate,
+			int mNo, int pNo, String mId, String mImg, String pType, int rRate) {
+		super();
+		this.rNo = rNo;
+		this.rRate1 = rRate1;
+		this.rRate2 = rRate2;
+		this.rRate3 = rRate3;
+		this.rRate4 = rRate4;
+		this.rContent = rContent;
+		this.rRegDate = rRegDate;
+		this.mNo = mNo;
+		this.pNo = pNo;
+		this.mId = mId;
+		this.mImg = mImg;
+		this.pType = pType;
 		this.rRate = rRate;
 	}
 
-	public Review(Integer rNo, String rFirst, String rLast, String rEmail, Integer rCleanliness, Integer rComfort,
-			Integer rPrice, Integer rQuality, String rContent, String rRegdate, String pType, Integer pNo, Integer mId,
-			String mNo  ) {
-		super();
-		this.rNo = rNo;
-		this.rFirst = rFirst;
-		this.rLast = rLast;
-		this.rEmail = rEmail;
-		this.rCleanliness = rCleanliness;
-		this.rComfort = rComfort;
-		this.rPrice = rPrice;
-		this.rQuality = rQuality;
-		this.rContent = rContent;
-		this.rRegdate = rRegdate;
-		this.pType = pType;
-		this.pNo = pNo;
-		this.mId = mId;
-		this.mNo = mNo;
-		
-	}
-
-	public Review() {
-		super();
-	}
-
-	public Integer getrNo() {
+	public int getrNo() {
 		return rNo;
 	}
 
-	public void setrNo(Integer rNo) {
+	public void setrNo(int rNo) {
 		this.rNo = rNo;
 	}
 
-	public String getrFirst() {
-		return rFirst;
+	public Integer getrRate1() {
+		return rRate1;
 	}
 
-	public void setrFirst(String rFirst) {
-		this.rFirst = rFirst;
+	public void setrRate1(Integer rRate1) {
+		this.rRate1 = rRate1;
 	}
 
-	public String getrLast() {
-		return rLast;
+	public Integer getrRate2() {
+		return rRate2;
 	}
 
-	public void setrLast(String rLast) {
-		this.rLast = rLast;
+	public void setrRate2(Integer rRate2) {
+		this.rRate2 = rRate2;
 	}
 
-	public String getrEmail() {
-		return rEmail;
+	public Integer getrRate3() {
+		return rRate3;
 	}
 
-	public void setrEmail(String rEmail) {
-		this.rEmail = rEmail;
+	public void setrRate3(Integer rRate3) {
+		this.rRate3 = rRate3;
 	}
 
-	public Integer getrCleanliness() {
-		return rCleanliness;
+	public Integer getrRate4() {
+		return rRate4;
 	}
 
-	public void setrCleanliness(Integer rCleanliness) {
-		this.rCleanliness = rCleanliness;
-	}
-
-	public Integer getrComfort() {
-		return rComfort;
-	}
-
-	public void setrComfort(Integer rComfort) {
-		this.rComfort = rComfort;
-	}
-
-	public Integer getrPrice() {
-		return rPrice;
-	}
-
-	public void setrPrice(Integer rPrice) {
-		this.rPrice = rPrice;
-	}
-
-	public Integer getrQuality() {
-		return rQuality;
-	}
-
-	public void setrQuality(Integer rQuality) {
-		this.rQuality = rQuality;
+	public void setrRate4(Integer rRate4) {
+		this.rRate4 = rRate4;
 	}
 
 	public String getrContent() {
@@ -129,12 +92,44 @@ public class Review {
 		this.rContent = rContent;
 	}
 
-	public String getrRegdate() {
-		return rRegdate;
+	public String getrRegDate() {
+		return rRegDate;
 	}
 
-	public void setrRegdate(String rRegdate) {
-		this.rRegdate = rRegdate;
+	public void setrRegDate(String rRegDate) {
+		this.rRegDate = rRegDate;
+	}
+
+	public int getmNo() {
+		return mNo;
+	}
+
+	public void setmNo(int mNo) {
+		this.mNo = mNo;
+	}
+
+	public int getpNo() {
+		return pNo;
+	}
+
+	public void setpNo(int pNo) {
+		this.pNo = pNo;
+	}
+
+	public String getmId() {
+		return mId;
+	}
+
+	public void setmId(String mId) {
+		this.mId = mId;
+	}
+
+	public String getmImg() {
+		return mImg;
+	}
+
+	public void setmImg(String mImg) {
+		this.mImg = mImg;
 	}
 
 	public String getpType() {
@@ -145,41 +140,12 @@ public class Review {
 		this.pType = pType;
 	}
 
-	public Integer getpNo() {
-		return pNo;
+	public int getrRate() {
+		return rRate;
 	}
 
-	public void setpNo(Integer pNo) {
-		this.pNo = pNo;
+	public void setrRate(int rRate) {
+		this.rRate = rRate;
 	}
-
-	public Integer getmId() {
-		return mId;
-	}
-
-	public void setmId(Integer mId) {
-		this.mId = mId;
-	}
-
-	public String getmNo() {
-		return mNo;
-	}
-
-	public void setmNo(String mNo) {
-		this.mNo = mNo;
-	}
-
-	@Override
-	public String toString() {
-		return "Review [rNo=" + rNo + ", rFirst=" + rFirst + ", rLast=" + rLast + ", rEmail=" + rEmail
-				+ ", rCleanliness=" + rCleanliness + ", rComfort=" + rComfort + ", rPrice=" + rPrice + ", rQuality="
-				+ rQuality + ", rContent=" + rContent + ", rRegdate=" + rRegdate + ", pType=" + pType + ", pNo=" + pNo
-				+ ", mId=" + mId + ", mNo=" + mNo + ", rRate=" + rRate + "]";
-	}
-
-	
-
-	
-	
 
 }

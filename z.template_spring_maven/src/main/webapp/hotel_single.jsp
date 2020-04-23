@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,11 +33,15 @@
 		  rel="stylesheet">
 	
 	<!-- Header================================================== -->
-	<jsp:include page="z.references/common_header_6.jsp" />
+	<jsp:include page="WEB-INF/views/common_header_6.jsp" />
 	<!-- End Header -->
 	
+	<!-- 사용자 지정 CSS -->
+	<link href="${pageContext.request.contextPath}/resources/z.SiliconVillage/css/hbkMy.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/resources/z.SiliconVillage/css/product.css" rel="stylesheet">
+	
 	<section class="parallax-window" data-parallax="scroll"
-	data-image-src="${pageContext.request.contextPath}/resources/img/single_hotel_bg_1.jpg"
+	data-image-src="${pageContext.request.contextPath}/resources/img/single_hotel_bg.jpg"
 	data-natural-width="1400" data-natural-height="470">
 	<div class="parallax-content-2">
 		<div class="container">
@@ -44,12 +50,12 @@
 					<span class="rating"><i class="icon-star voted"></i><i
 						class="icon-star voted"></i><i class="icon-star voted"></i><i
 						class="icon-star voted"></i><i class=" icon-star-empty"></i></span>
-					<h1>Mariott Hotel</h1>
+					<h1>${product.pNo}</h1>
 					<span>Champ de Mars, 5 Avenue Anatole, 75007 Paris.</span>
 				</div>
 				<div class="col-md-4">
 					<div id="price_single_main" class="hotel">
-						from/per night <span><sup>$</sup>95</span>
+						from/per night <span><sup>￦</sup>${product.pPrice}</span>
 					</div>
 				</div>
 			</div>
@@ -62,9 +68,11 @@
 	<div id="position">
 		<div class="container">
 			<ul>
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Category</a></li>
-				<li>Page active</li>
+				<li><a href="${pageContext.request.contextPath}/main">Home</a>
+				</li>
+				<li><a href="#">Hotel</a>
+				</li>
+				<li>Hotel list</li>
 			</ul>
 		</div>
 	</div>
@@ -80,7 +88,7 @@
 			<div class="col-lg-8" id="single_tour_desc">
 				<div id="single_tour_feat">
 					<ul>
-						<li><i class="icon_set_2_icon-116"></i>Plasma TV</li>
+						<li><i class="icon_set_2_icon-116"></i>LED TV</li>
 						<li><i class="icon_set_1_icon-86"></i>Free Wifi</li>
 						<li><i class="icon_set_2_icon-110"></i>Poll</li>
 						<li><i class="icon_set_1_icon-59"></i>Breakfast</li>
@@ -98,7 +106,8 @@
 				<!-- Map button for tablets/mobiles -->
 				<div id="Img_carousel" class="slider-pro">
 					<div class="sp-slides">
-
+						
+						<!-- 
 						<div class="sp-slide">
 							<img alt="Image" class="sp-image"
 								src="${pageContext.request.contextPath}/resources/css/images/blank.gif"
@@ -187,6 +196,19 @@
 								data-large="${pageContext.request.contextPath}/resources/img/slider_single_tour/9_large.jpg"
 								data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/9_large.jpg">
 						</div>
+						 -->
+						 
+						<div class="sp-slide">
+							<img alt="Image" class="sp-image"
+								src="${pageContext.request.contextPath}/resources/css/images/blank.gif"
+								data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/1_medium.jpg"
+								data-small="${pageContext.request.contextPath}/resources/img/slider_single_tour/1_small.jpg"
+								data-medium="${pageContext.request.contextPath}/resources/img/slider_single_tour/1_medium.jpg"
+								data-large="img/slider_single_tour/1_large.jpg"
+								data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/1_large.jpg">
+						</div>
+						
+						
 					</div>
 					<div class="sp-thumbnails">
 						<img alt="Image" class="sp-thumbnail"
@@ -217,32 +239,31 @@
 						<h3>Description</h3>
 					</div>
 					<div class="col-lg-9">
-						<p>Lorem ipsum dolor sit amet, at omnes deseruisse pri. Quo
-							aeterno legimus insolens ad. Sit cu detraxit constituam, an mel
-							iudico constituto efficiendi. Eu ponderum mediocrem has, vitae
-							adolescens in pro. Mea liber ridens inermis ei, mei legendos
-							vulputate an, labitur tibique te qui.</p>
+						<p>${product.pDesc}</p>
 						<h4>Hotel facilities</h4>
-						<p>Lorem ipsum dolor sit amet, at omnes deseruisse pri. Quo
-							aeterno legimus insolens ad. Sit cu detraxit constituam, an mel
-							iudico constituto efficiendi.</p>
+						<p>Lorem ipsum dolor sit amet, but everyone has left the first. 
+							We read that, unaccustomed to whom it has to. 
+							When it is drafted to establish an efficient honey courts.</p>
+							 
 						<div class="row">
 							<div class="col-md-6">
 								<ul class="list_ok">
-									<li>Lorem ipsum dolor sit amet</li>
-									<li>No scripta electram necessitatibus sit</li>
-									<li>Quidam percipitur instructior an eum</li>
-									<li>Ut est saepe munere ceteros</li>
-									<li>No scripta electram necessitatibus sit</li>
-									<li>Quidam percipitur instructior an eum</li>
+									<li>Room Safe</li>
+									<li>Bathrobes Provided</li>
+									<li>Shower - separate</li>
+									<li>Heating</li>									
+									<li>Lounge Area</li>
+									
 								</ul>
 							</div>
 							<div class="col-md-6">
 								<ul class="list_ok">
-									<li>Lorem ipsum dolor sit amet</li>
-									<li>No scripta electram necessitatibus sit</li>
-									<li>Quidam percipitur instructior an eum</li>
-									<li>No scripta electram necessitatibus sit</li>
+									<li>Balcony</li>
+									<li>Cable/Satellite TV</li>
+									<li>Wireless Internet</li>
+									<li>Lift/Elevator Access</li>
+									<li>Outdoor Setting</li>
+									
 								</ul>
 							</div>
 						</div>
@@ -260,23 +281,22 @@
 					</div>
 					<div class="col-lg-9">
 						<h4>Single Room</h4>
-						<p>Lorem ipsum dolor sit amet, at omnes deseruisse pri. Quo
-							aeterno legimus insolens ad. Sit cu detraxit constituam, an mel
-							iudico constituto efficiendi.</p>
+						<p>Chic, contemporary designed non-lake view Superior Hotel Rooms each offer a large lounge area that opens onto a tiled balcony. 
+							Approximately 40 sq m in size. Featuring a super king Rees bed (or twin king single beds) with a generous bathroom featuring an Italian designed spa bath.</p>
 
 						<div class="row">
 							<div class="col-md-6">
 								<ul class="list_icons">
 									<li><i class="icon_set_1_icon-86"></i> Free wifi</li>
-									<li><i class="icon_set_2_icon-116"></i> Plasma Tv</li>
+									<li><i class="icon_set_2_icon-116"></i> LED Tv</li>
 									<li><i class="icon_set_2_icon-106"></i> Safety box</li>
 								</ul>
 							</div>
 							<div class="col-md-6">
 								<ul class="list_ok">
-									<li>Lorem ipsum dolor sit amet</li>
-									<li>No scripta electram necessitatibus sit</li>
-									<li>Quidam percipitur instructior an eum</li>
+									<li> Tea/Coffee Maker</li>
+									<li> Terrace</li>
+									<li> Linen and Towels Provided</li>
 								</ul>
 							</div>
 						</div>
@@ -318,23 +338,23 @@
 						<hr>
 
 						<h4>Double Room</h4>
-						<p>Lorem ipsum dolor sit amet, at omnes deseruisse pri. Quo
-							aeterno legimus insolens ad. Sit cu detraxit constituam, an mel
-							iudico constituto efficiendi.</p>
+						<p>Chic, contemporary designed Executive Lake View Hotel Rooms each offer a large lounge area that opens out onto a tiled balcony with views of Lake Wakatipu to the Remarkable Mountains. Approximately 40 sq m in size. Featuring a super king Rees bed (or twin king single beds) with a generous bathroom featuring an Italian designed spa bath. 
+							This room type comes with Breakfast included for 2 people.
+							Please note breakfast will not be included in combination with any Promotion code.</p>
 
 						<div class="row">
 							<div class="col-md-6">
 								<ul class="list_icons">
 									<li><i class="icon_set_1_icon-86"></i> Free wifi</li>
-									<li><i class="icon_set_2_icon-116"></i> Plasma Tv</li>
+									<li><i class="icon_set_2_icon-116"></i> LED Tv</li>
 									<li><i class="icon_set_2_icon-106"></i> Safety box</li>
 								</ul>
 							</div>
 							<div class="col-md-6">
 								<ul class="list_ok">
-									<li>Lorem ipsum dolor sit amet</li>
-									<li>No scripta electram necessitatibus sit</li>
-									<li>Quidam percipitur instructior an eum</li>
+									<li> Cots Available</li>
+									<li> Bath</li>
+									<li> Linen and Towels Provided</li>
 								</ul>
 							</div>
 						</div>
@@ -443,58 +463,53 @@
 									alt="Image" class="rounded-circle"> <small> -
 									${review.rRegdate } -</small>
 								<h4>${review.mId}</h4>
-								<p>${review.rContent}, ${total_review}</p>
+								<p>${review.rContent}</p>
 								<input type="hidden" id="total_review" value="${total_review}">
 								
 								<div class="rating">
-								<c:choose>
-									<c:when test="${total_review ge 0 and total_review lt 2}">
+								
+									<c:if test="${review.rTotal eq 1}">
 										<i class="icon-smile voted"></i>
 										<i class="icon-smile"></i>
 										<i class="icon-smile"></i>
 										<i class="icon-smile"></i>
 										<i class="icon-smile"></i>
-									</c:when>
-									<c:when test="${total_review ge 2 and total_review le 4}">
+									</c:if>
+									<c:if test="${review.rTotal eq 2}">
+										<i class="icon-smile voted"></i>
 										<i class="icon-smile voted"></i>
 										<i class="icon-smile"></i>
 										<i class="icon-smile"></i>
 										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-									</c:when>
-									<c:when test="${total_review ge 4 and total_review le 6}">
+									</c:if>
+									<c:if test="${review.rTotal eq 3}">
+										<i class="icon-smile voted"></i>
+										<i class="icon-smile voted"></i>
 										<i class="icon-smile voted"></i>
 										<i class="icon-smile"></i>
 										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-									</c:when>
-									<c:when test="${total_review ge 6 and total_review le 8}">
+									</c:if>
+									<c:if test="${review.rTotal eq 4}">
+										<i class="icon-smile voted"></i>
+										<i class="icon-smile voted"></i>
+										<i class="icon-smile voted"></i>
 										<i class="icon-smile voted"></i>
 										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-									</c:when>
-									<c:when test="${total_review ge 8 and total_review le 10}">
+									</c:if>
+									<c:if test="${review.rTotal eq 5}">
 										<i class="icon-smile voted"></i>
-										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-									</c:when>
-									<c:otherwise>
-										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-										<i class="icon-smile"></i>
-									</c:otherwise>
-								</c:choose>							
+										<i class="icon-smile voted"></i>
+										<i class="icon-smile voted"></i>
+										<i class="icon-smile voted"></i>
+										<i class="icon-smile voted"></i>
+									</c:if>
+															
 								<div align="right">
-									<input id="reviweUpdate" type="submit" 
+									<!--  <input id="reviweUpdate" type="submit" 
 										value="수정" >&nbsp;
-									<input id="reviewDelete" type="submit" 
+										-->
+									<a class="btn btn-outline-warning btn-sm update" data-toggle="modal" data-id="${review.rNo}">수정</a>
+									<input  class="btn btn-outline-danger btn-sm" id="reviewDelete" type="submit" 
 										value="삭제" >&nbsp; 
 								</div>
 
@@ -598,7 +613,7 @@
 			<div class="modal-body">
 				<div id="message-review"></div>
 				<form method="post"
-					action="${pageContext.request.contextPath}/resources/vassets/review_hotel.php"
+					action="review_write"
 					name="review_hotel" id="review_hotel">
 					<input name="hotel_name" id="hotel_name" type="hidden"
 						value="Mariott Hotel Paris">
@@ -711,13 +726,151 @@
 					<!-- End row -->
 					<div class="form-group">
 						<textarea name="rContent" id="rContent" class="form-control"
-								  style="height: 100px" placeholder="Write your review">
-						</textarea>
+								  style="height: 100px" placeholder="Write your review"></textarea>
 					</div>
+					<br>
+					<input type="submit" value="Submit" class="btn_1"
+						   id="submit-review">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End modal review -->
+
+
+<!-- Modal UpdateReview -->
+<div class="modal fade" id="updateReview" tabindex="-1" role="dialog"
+	aria-labelledby="myReviewLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="myReviewLabel">Update your review</h4>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div id="message-review"></div>
+				<form method="post"
+					action="review_update_action"
+					name="review_hotel" id="review_hotel">
+					<input name="hotel_name" id="hotel_name" type="hidden"
+						value="Mariott Hotel Paris">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<input name="name_review" id="name_review" type="text"
+									placeholder="Your name" class="form-control" value="${sUser.mFirstName}" readonly="readonly">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<input name="lastname_review" id="lastname_review" type="text"
+									placeholder="Your last name" class="form-control"  value="${sUser.mLastName}" readonly="readonly">
+							</div>
+						</div>
+					</div>
+
+					<!-- End row -->
+
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<input name="email_review" id="email_review" type="email"
+									placeholder="Your email" class="form-control" value="${sUser.mEmail}" readonly="readonly">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<!--  
+								<input name="pType_review" id="pType_review" type="pType"
+									class="form-control" value="${product.pType}" readonly="readonly">
+								-->
+								<select class="form-control" name="room_type_review"
+									id="room_type_review">
+									<option value="">Select room type</option>
+									<option value="Single room">Single Room</option>
+									<option value="Double Room">Double Room</option>
+									<option value="King double room">King Double Room</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<!-- End row -->
+
+					<hr>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Cleanliness</label> <select class="form-control"
+									name="cleanliness_review" id="cleanliness_review"  >
+									<option value="">Please review</option>
+									<option value="1">Low</option>
+									<option value="2">Sufficient</option>
+									<option value="3">Good</option>
+									<option value="4">Excellent</option>
+									<option value="5">Super</option>
+									<option value="1">I don't know</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Comfort</label> <select class="form-control"
+									name="comfort_review" id="comfort_review">
+									<option value="">Please review</option>
+									<option value="1">Low</option>
+									<option value="2">Sufficient</option>
+									<option value="3">Good</option>
+									<option value="4">Excellent</option>
+									<option value="5">Super</option>
+									<option value="1">I don't know</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<!-- End row -->
+
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Price</label> <select class="form-control"
+									name="price_review" id="price_review">
+									<option value="">Please review</option>
+									<option value="1">Low</option>
+									<option value="2">Sufficient</option>
+									<option value="3">Good</option>
+									<option value="4">Excellent</option>
+									<option value="5">Super</option>
+									<option value="1">I don't know</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Quality</label> <select class="form-control"
+									name="quality_review" id="quality_review">
+									<option value="">Please review</option>
+									<option value="1">Low</option>
+									<option value="2">Sufficient</option>
+									<option value="3">Good</option>
+									<option value="4">Excellent</option>
+									<option value="5">Super</option>
+									<option value="1">I don't know</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<!-- End row -->
 					<div class="form-group">
-						<input type="text" id="verify_review" class=" form-control"
-							   placeholder="Are you human? 3 + 1 =">
+						<textarea name="rContent" id="rContent" class="form-control" 
+								style="height: 100px" placeholder="Write your review">${review.rContent}</textarea>
 					</div>
+					<br>
 					<input type="submit" value="Submit" class="btn_1"
 						   id="submit-review">
 				</form>
@@ -728,7 +881,7 @@
 <!-- End modal review -->
 
 <!-- Footer================================================== -->
-<jsp:include page="z.references/common_footer_2.jsp" />
+<jsp:include page="WEB-INF/views/common_footer_2.jsp" />
 <!-- End Footer -->
 
 <!-- Date and time pickers -->
@@ -764,11 +917,7 @@
 
 <!-- Carousel -->
 <script>
-	$(function() {
-		var total_review = $("#total_review").val();
-		alert(total_review);
-		console.log(total_review);
-	})
+	
 
 	$('.carousel-thumbs-2').owlCarousel({
 		loop : false,
@@ -831,7 +980,7 @@
 	});
 	
 	$('#reviewDelete').click(function(){
-		alert($('#review_rNo').val());
+		//alert($('#review_rNo').val());
 		
 		var rNo = $('#review_rNo').val();
 		var params="rNo="+rNo;	
@@ -840,21 +989,25 @@
 			url: "review_delete_action",
 			data: params,
 			success : function() {
-				alert('게시글 삭제 성공 ');
+				alert('게시글 삭제 성공');
 			},
 			error : function(){
-				alert('해당 게시글을 삭제 할 수 없습니다.');
+			alert('해당 게시글을 삭제 할 수 없습니다.');
 			}
 		});
 	});
+	
+		 $(".update").click(function(){ 
+		     $('#updateReview').modal('show');
+		   });
+		
+	
 	
 </script>
 
 <!--Review modal validation -->
 
 <script src="${pageContext.request.contextPath}/resources/assets/validate.js"></script>
-
-<script	src="${pageContext.request.contextPath}/resources/assets/validate.js"></script>
 
 </body>
 

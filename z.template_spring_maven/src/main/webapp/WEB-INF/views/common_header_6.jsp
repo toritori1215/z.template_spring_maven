@@ -10,7 +10,7 @@
     <title>Silicon Village</title>
 
     <!-- Favicons-->
-    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/SiliconVillage.png" type="image/x-icon">
     <link rel="apple-touch-icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-57x57-precomposed.png">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-72x72-precomposed.png">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-114x114-precomposed.png">
@@ -83,34 +83,6 @@
 								<li><a href="#sign-in-dialog" id="access_link">Sign in</a></li>
 							</c:otherwise>
 						</c:choose>
-						<li>
-							<div class="dropdown dropdown-mini">
-								<a href="#" data-toggle="dropdown" id="lang_link">English</a>
-								<div class="dropdown-menu">
-									<ul id="lang_menu">
-										<li><a href="#0">English</a></li>
-										<li><a href="#0">Korean</a></li>
-										<li><a href="#0">Chinese</a></li>
-									</ul>
-								</div>
-							</div>
-							<!-- End Dropdown access -->
-						</li>
-						<li>
-							<div class="dropdown dropdown-mini">
-								<a href="#" data-toggle="dropdown" id="currency_link">USD</a>
-								<div class="dropdown-menu">
-									<ul id="lang_menu">
-										<li><a href="#0">USD</a></li>
-										<li><a href="#0">EUR</a></li>
-										<li><a href="#0">GBP</a></li>
-										<li><a href="#0">KRW</a></li>
-										<li><a href="#0">CNY</a></li>
-									</ul>
-								</div>
-							</div>
-							<!-- End Dropdown access -->
-						</li>
 					</ul>
 				</div>
 			</div>
@@ -125,7 +97,7 @@
 			<div class="col-3">
 				<div id="logo_home">
 					<h1>
-						<a href="main" title="City tours travel template">Silicon Village</a>
+						<a href="main" title="Silicon Village Hotel & Tours">Silicon Village</a>
 					</h1>
 				</div>
 			</div>
@@ -134,8 +106,9 @@
 				<span>Menu mobile</span></a>
 				<div class="main-menu">
 					<div id="header_menu">
-						<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/SiliconVillage.png" 
-								width="160" height="34" alt="City tours" data-retina="true">
+						<a href="main">
+						<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/SiliconVillage_S_Black.png" 
+								width="210" height="90" alt="City tours" data-retina="true"></a>
 					</div>
 					<a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
 					<ul>
@@ -171,115 +144,36 @@
 								<li><a href="index_11.html">Popup Advertising</a></li>
 							</ul></li>
 						<li class="submenu">
-							<a href="javascript:void(0);" class="show-submenu">Tours<i class="icon-down-open-mini"></i></a>
+							<a href="#" class="show-submenu">Tours<i class="icon-down-open-mini"></i></a>
 							<ul>
-								<li><a href="all_tours_list.html">All tours list</a></li>
-								<li><a href="all_tours_grid.html">All tours grid</a></li>
-								<li><a href="all_tours_grid_masonry.html">All tours Sort Masonry</a></li>
-								<li><a href="all_tours_map_listing.html">All tours map listing</a></li>
-								<li><a href="single_tour.html">Single tour page</a></li>
-								<li><a href="single_tour_with_gallery.html">Single tour with gallery</a></li>
-								<li class="third-level"><a href="javascript:void(0);">Single tour fixed sidebar</a>
-									<ul>
-										<li><a href="single_tour_fixed_sidebar.html">Single tour fixed sidebar</a></li>
-										<li><a href="single_tour_with_gallery_fixed_sidebar.html">Single tour 2 Fixed Sidebar</a></li>
-										<li><a href="cart_fixed_sidebar.html">Cart Fixed Sidebar</a></li>
-										<li><a href="payment_fixed_sidebar.html">Payment Fixed Sidebar</a></li>
-										<li><a href="confirmation_fixed_sidebar.html">Confirmation Fixed Sidebar</a></li>
-									</ul>
-								</li>
-								<li><a href="single_tour_working_booking.php">Single tour working booking</a></li>
-								<li><a href="single_tour_datepicker_v2.html">Date and time picker V2</a></li>
-								<li><a href="cart.html">Single tour cart</a></li>
-								<li><a href="payment.html">Single tour booking</a></li>
+								<li><a href="tour_list">All tours list</a></li>
 							</ul>
 						</li>
 						<li class="submenu">
 							<a href="javascript:void(0);" class="show-submenu">Hotels<i class="icon-down-open-mini"></i></a>
 							<ul>
 								<li><a href="all_hotels_list.html">All hotels list</a></li>
-								<li><a href="all_hotels_grid.html">All hotels grid</a></li>
-								<li><a href="all_hotels_grid_masonry.html">All hotels Sort Masonry</a></li>
-								<li><a href="all_hotels_map_listing.html">All hotels map listing</a></li>
-								<li><a href="single_hotel.html">Single hotel page</a></li>
-								<li><a href="single_hotel_datepicker_adv.html">Single hotel datepicker adv</a></li>
-								<li><a href="single_hotel_datepicker_v2.html">Date and time picker V2</a></li>
-								<li><a href="single_hotel_working_booking.php">Single hotel working booking</a></li>
-								<li><a href="single_hotel_contact.php">Single hotel contact working</a></li>
-								<li><a href="cart_hotel.html">Cart hotel</a></li>
-								<li><a href="payment_hotel.html">Booking hotel</a></li>
-								<li><a href="confirmation_hotel.html">Confirmation hotel</a></li>
 							</ul>
 						</li>
 						<li class="submenu">
-							<a href="javascript:void(0);" class="show-submenu">Facility<i class="icon-down-open-mini"></i></a>
+							<a href="javascript:void(0);" class="show-submenu">Facilities<i class="icon-down-open-mini"></i></a>
 							<ul>
 								<li><a href="all_transfer_list.html">All transfers list</a></li>
-								<li><a href="all_transfer_grid.html">All transfers grid</a></li>
-								<li><a href="all_transfer_grid_masonry.html">All transfers Sort Masonry</a></li>
-								<li><a href="single_transfer.html">Single transfer page</a></li>
-								<li><a href="single_transfer_datepicker_v2.html">Date and time picker V2</a></li>
-								<li><a href="cart_transfer.html">Cart transfers</a></li>
-								<li><a href="payment_transfer.html">Booking transfers</a></li>
-								<li><a href="confirmation_transfer.html">Confirmation transfers</a></li>
 							</ul>
 						</li>
 						<li class="submenu">
 							<a href="javascript:void(0);" class="show-submenu">Restaurants<i class="icon-down-open-mini"></i></a>
 							<ul>
-								<li><a href="all_restaurants_list.html">All restaurants list</a></li>
-								<li><a href="all_restaurants_grid.html">All restaurants grid</a></li>
-								<li><a href="all_restaurants_grid_masonry.html">All restaurants Sort Masonry</a></li>
-								<li><a href="all_restaurants_map_listing.html">All restaurants map listing</a></li>
-								<li><a href="single_restaurant.html">Single restaurant page</a></li>
-								<li><a href="single_restaurant_datepicker_v2.html">Date and time picker V2</a></li>
-								<li><a href="payment_restaurant.html">Booking restaurant</a></li>
-								<li><a href="confirmation_restaurant.html">Confirmation transfers</a></li>
+								<li><a href="restaurants_all_list">Restaurants list</a></li>
 							</ul>
 						</li>
-						<li class="megamenu submenu">
-							<a href="javascript:void(0);" class="show-submenu-mega">Bonus<i class="icon-down-open-mini"></i></a>
-							<div class="menu-wrapper">
-								<div class="row">
-									<div class="col-lg-4">
-										<h3>Header styles</h3>
-										<ul>
-											<li><a href="index.html">Default transparent</a></li>
-											<li><a href="header_2.html">Plain color</a></li>
-											<li><a href="header_3.html">Plain color on scroll</a></li>
-											<li><a href="header_4.html">With socials on top</a></li>
-											<li><a href="header_5.html">With language selection</a></li>
-											<li><a href="header_6.html">With lang and conversion</a></li>
-											<li><a href="header_7.html">With full horizontal menu</a></li>
-										</ul>
-									</div>
-									<div class="col-lg-4">
-										<h3>Footer styles</h3>
-										<ul>
-											<li><a href="index.html">Footer default</a></li>
-											<li><a href="footer_2.html">Footer style 2</a></li>
-											<li><a href="footer_3.html">Footer style 3</a></li>
-											<li><a href="footer_4.html">Footer style 4</a></li>
-											<li><a href="footer_5.html">Footer style 5</a></li>
-											<li><a href="footer_6.html">Footer style 6</a></li>
-											<li><a href="footer_7.html">Footer style 7</a></li>
-										</ul>
-									</div>
-									<div class="col-lg-4">
-										<h3>Shop section</h3>
-										<ul>
-											<li><a href="shop.html">Shop</a></li>
-											<li><a href="shop-single.html">Shop single</a></li>
-											<li><a href="shopping-cart.html">Shop cart</a></li>
-											<li><a href="checkout.html">Shop Checkout</a></li>
-										</ul>
-									</div>
-								</div>
-								<!-- End row -->
-							</div>
-							<!-- End menu-wrapper -->
+						<li class="submenu">
+							<a href="javascript:void(0);" class="show-submenu">Blog<i class="icon-down-open-mini"></i></a>
+							<ul>
+								<li><a href="blog_right_sidebar">Blog List</a></li>
+							</ul>
 						</li>
-						
+												
 						<li class="megamenu submenu">
 							<a href="javascript:void(0);" class="show-submenu-mega">Pages<i class="icon-down-open-mini"></i></a>
 							<div class="menu-wrapper">
@@ -291,7 +185,7 @@
 											<li><a href="general_page.html">General page</a></li>
 											<li><a href="tourist_guide.html">Tourist guide</a></li>
 											<li><a href="wishlist.html">Wishlist page</a></li>
-											<li><a href="faq.html">Faq</a></li>
+											<li><a href="member_faq">Faq</a></li>
 											<li><a href="faq_2.html">Faq smooth scroll</a></li>
 											<li><a href="pricing_tables.html">Pricing tables</a></li>
 											<li><a href="gallery_3_columns.html">Gallery 3 columns</a></li>
@@ -342,7 +236,6 @@
 				
 				<!-- cart icon -->
 				<ul id="top_tools">
-					<li><a href="javascript:void(0);" class="search-overlay-menu-btn"><i class="icon_search"></i></a></li>
 					<li>
 						<div class="dropdown dropdown-cart">
 							<a href="#" data-toggle="dropdown" class="cart_bt">

@@ -302,6 +302,10 @@
 </div>
 <!-- Change Password Popup -->
 
+<!-- common_modal.jsp -->
+<jsp:include page="common_modals.jsp"></jsp:include>
+
+
 <!-- Common scripts -->
 <script src="${pageContext.request.contextPath}/resources/js/jquery-2.2.4.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/common_scripts_min.js"></script>
@@ -309,6 +313,9 @@
 
 <!-- Specific scripts: validation for the footer newsletter -->
 <script src="${pageContext.request.contextPath}/resources/assets/validate.js"></script>
+
+<!-- Fixed sidebar -->
+<script src="${pageContext.request.contextPath}/resources/js/theia-sticky-sidebar.js"></script>
 
 <!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
 <script src="${pageContext.request.contextPath}/resources/rs-plugin/js/jquery.themepunch.tools.min.js"></script>

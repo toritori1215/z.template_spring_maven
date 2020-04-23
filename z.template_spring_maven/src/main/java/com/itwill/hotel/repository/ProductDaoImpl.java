@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.itwill.hotel.domain.Product;
+import com.itwill.hotel.domain.Wishlist;
 import com.itwill.hotel.mapper.ProductMapper;
 
 @Repository
@@ -26,6 +27,16 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
+	public List<Product> selectByCategory(String category) {
+		return productMapper.selectByCategory(category);
+	}
+	
+	@Override
+	public Integer checkWishlist(Wishlist wishlist) {
+		return productMapper.checkWishlist(wishlist);
+	}
+
+	@Override
 	public Integer countBookedRoomQty(HashMap parameterMap) {
 		return productMapper.countBookedRoomQty(parameterMap);
 	}
@@ -33,6 +44,11 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public Integer countBookedTourQty(HashMap parameterMap) {
 		return productMapper.countBookedTourQty(parameterMap);
+	}
+
+	@Override
+	public int updateRate(int pNo) {
+		return productMapper.updateRate(pNo);
 	}
 
 }

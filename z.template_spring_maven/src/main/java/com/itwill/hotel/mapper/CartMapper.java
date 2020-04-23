@@ -1,13 +1,24 @@
 package com.itwill.hotel.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.itwill.hotel.domain.Cart;
 
 public interface CartMapper {
 	
-	public List<Cart> selectByNo(Integer mNo);
+	public List<Cart> selectBymNo(Integer mNo);
+	
+	public Cart selectByCartNo(Integer cNo);
+	
+	public Cart checkCartProduct(Cart cart);
 
 	public int insertCart(Cart cart);
+	
+	public int deleteCart(Integer cNo);
+	
+	public int deleteOutdatedCart(HashMap parameterMap);
+	
+	public int updateCart(HashMap parameterMap);
 	
 }

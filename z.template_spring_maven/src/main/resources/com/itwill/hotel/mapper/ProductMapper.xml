@@ -41,6 +41,19 @@
 		</trim>
 	</select>
 	
+	<select id="selectByCategory" parameterType="String" resultType="Product">
+		select pNo, pName, pPrice, pType, pAvailable, pImg, pCapacity, pRate, pDesc, foodCategory 
+		from product
+		where foodCategory = #{foodCategory}
+		order by pName, pNo
+	</select>
+	
+	<select id="checkWishlist" parameterType="Wishlist" resultType="java.lang.Integer">
+		select count(pNo)
+		from wish_list
+		where mNo = #{mNo} and pNo=#{pNo}
+	</select>
+	
 	<select id="countBookedRoomQty"
 			parameterType="java.util.HashMap"
 			resultType="java.lang.Integer">
@@ -60,5 +73,13 @@
 		and jdCheckOut = ANY(TO_DATE(#{jdOrderDate}))
 		and jdOrderTime = #{jdOrderTime}
 	</select>
+	
+	<update id="updateRate" parameterType="_int">
+		update product 
+		set pRate=(select round((sum(rRate1)+sum(rRate2)+sum(rRate3)+sum(rRate4))/4/count(rNo)) 
+		             from review 
+		            where pNo=#{pNo}) 
+		where pNo=#{pNo}
+	</update>
 	
 </mapper>

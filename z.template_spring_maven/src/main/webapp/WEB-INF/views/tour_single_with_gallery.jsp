@@ -19,13 +19,52 @@
 						<h1>${product.pName}</h1>
 						<span>${product.rCount} of our fellow travellers rate this tour as... &nbsp;&nbsp;</span>
 						<span class="rating">
-							<c:forEach var="index" begin="1" end="${Math.round(product.pRate/2)}">
-								<i class="icon-smile voted"></i>
-							</c:forEach>
-							<c:forEach var="index" begin="1" end="${5-Math.round(product.pRate/2)}">
-								<i class="icon-smile"></i>
-							</c:forEach>
-							<small>(${product.pRate})</small>
+							<c:choose>
+								<c:when test="${reviewRate.rTotRate == 5}">
+									<i class="icon-smile voted"></i>
+									<i class="icon-smile voted"></i>
+									<i class="icon-smile voted"></i>
+									<i class="icon-smile voted"></i>
+									<i class="icon-smile voted"></i>
+								</c:when>
+								<c:when test="${reviewRate.rTotRate == 4}">
+									<i class="icon-smile voted"></i>
+									<i class="icon-smile voted"></i>
+									<i class="icon-smile voted"></i>
+									<i class="icon-smile voted"></i>
+									<i class="icon-smile"></i>
+								</c:when>
+								<c:when test="${reviewRate.rTotRate == 3}">
+									<i class="icon-smile voted"></i>
+									<i class="icon-smile voted"></i>
+									<i class="icon-smile voted"></i>
+									<i class="icon-smile"></i>
+									<i class="icon-smile"></i>
+								</c:when>
+								<c:when test="${reviewRate.rTotRate == 2}">
+									<i class="icon-smile voted"></i>
+									<i class="icon-smile voted"></i>
+									<i class="icon-smile"></i>
+									<i class="icon-smile"></i>
+									<i class="icon-smile"></i>
+								</c:when>
+								<c:when test="${reviewRate.rTotRate == 1}">
+									<i class="icon-smile voted"></i>
+									<i class="icon-smile"></i>
+									<i class="icon-smile"></i>
+									<i class="icon-smile"></i>
+									<i class="icon-smile"></i>
+								</c:when>
+								<c:otherwise>
+									No Rating Data
+									<i class="icon-smile"></i>
+									<i class="icon-smile"></i>
+									<i class="icon-smile"></i>
+									<i class="icon-smile"></i>
+									<i class="icon-smile"></i>
+								</c:otherwise>
+							</c:choose>
+							<small>(${reviewRate.rTotRate*2}.0)</small>
 						</span>
 					</div>
 					<div class="col-md-4">
@@ -58,7 +97,7 @@
 			<div id="map" class="map"></div>
 		</div>
 		<!-- End Map -->
- 
+	 	
 		<div class="container margin_60">
 			<div class="row">
 				<div class="col-lg-8" id="single_tour_desc">
@@ -348,12 +387,73 @@
 					<div class="row">
 						<div class="col-lg-3">
 							<h3>Reviews </h3>
-							<a href="#" class="btn_1 add_bottom_30" data-toggle="modal" data-target="#myReview">Leave a review</a>
+							<c:choose>
+								<c:when test="${sUser != null and sUser != ''}">
+									<c:if test="${ifReviewExisted == 0}">
+										<a href="#" id="insertReviewHref" pNo="${product.pNo}" class="btn_1 add_bottom_30" data-toggle="modal" data-target="#myReview">Leave a review</a>
+									</c:if>
+									<c:if test="${ifReviewExisted == 1}">
+										You already commented
+									</c:if>
+								</c:when>
+								<c:otherwise>
+									If you want to leave comments<br> Please <a href="#sign-in-dialog" id="access_link4"><font color="red">Sign in</font></a> 
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<div class="col-lg-9">
-							<div id="general_rating">11 Reviews
+							<div id="general_rating">
+									<c:choose>
+										<c:when test="${reviewSize != 0}">${reviewSize} Reviews</c:when>
+										<c:otherwise>No Reviews</c:otherwise>
+									</c:choose>
+									<span> | </span>
 								<div class="rating">
-									<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
+									<c:choose>
+										<c:when test="${reviewRate.rTotRate == 5}">
+											<i class="icon-smile voted"></i>
+											<i class="icon-smile voted"></i>
+											<i class="icon-smile voted"></i>
+											<i class="icon-smile voted"></i>
+											<i class="icon-smile voted"></i>
+										</c:when>
+										<c:when test="${reviewRate.rTotRate == 4}">
+											<i class="icon-smile voted"></i>
+											<i class="icon-smile voted"></i>
+											<i class="icon-smile voted"></i>
+											<i class="icon-smile voted"></i>
+											<i class="icon-smile"></i>
+										</c:when>
+										<c:when test="${reviewRate.rTotRate == 3}">
+											<i class="icon-smile voted"></i>
+											<i class="icon-smile voted"></i>
+											<i class="icon-smile voted"></i>
+											<i class="icon-smile"></i>
+											<i class="icon-smile"></i>
+										</c:when>
+										<c:when test="${reviewRate.rTotRate == 2}">
+											<i class="icon-smile voted"></i>
+											<i class="icon-smile voted"></i>
+											<i class="icon-smile"></i>
+											<i class="icon-smile"></i>
+											<i class="icon-smile"></i>
+										</c:when>
+										<c:when test="${reviewRate.rTotRate == 1}">
+											<i class="icon-smile voted"></i>
+											<i class="icon-smile"></i>
+											<i class="icon-smile"></i>
+											<i class="icon-smile"></i>
+											<i class="icon-smile"></i>
+										</c:when>
+										<c:otherwise>
+											<i class="icon-smile"></i>
+											<i class="icon-smile"></i>
+											<i class="icon-smile"></i>
+											<i class="icon-smile"></i>
+											<i class="icon-smile"></i>
+											No Rating Data
+										</c:otherwise>
+									</c:choose>
 								</div>
 							</div>
 							<!-- End general_rating -->
@@ -362,12 +462,100 @@
 									<ul>
 										<li>Position
 											<div class="rating">
-												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
+											<c:choose>
+												<c:when test="${reviewRate.rTotRate1 == 5}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+												</c:when>
+												<c:when test="${reviewRate.rTotRate1 == 4}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:when test="${reviewRate.rTotRate1 == 3}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:when test="${reviewRate.rTotRate1 == 2}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:when test="${reviewRate.rTotRate1 == 1}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:otherwise>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													No Rating Data
+												</c:otherwise>
+											</c:choose>
 											</div>
 										</li>
-										<li>Tour guide
+										<li>Guide
 											<div class="rating">
-												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i>
+											<c:choose>
+												<c:when test="${reviewRate.rTotRate2 == 5}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+												</c:when>
+												<c:when test="${reviewRate.rTotRate2 == 4}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:when test="${reviewRate.rTotRate2 == 3}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:when test="${reviewRate.rTotRate2 == 2}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:when test="${reviewRate.rTotRate2 == 1}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:otherwise>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													No Rating Data
+												</c:otherwise>
+											</c:choose>
 											</div>
 										</li>
 									</ul>
@@ -376,12 +564,100 @@
 									<ul>
 										<li>Price
 											<div class="rating">
-												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
+											<c:choose>
+												<c:when test="${reviewRate.rTotRate3 == 5}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+												</c:when>
+												<c:when test="${reviewRate.rTotRate3 == 4}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:when test="${reviewRate.rTotRate3 == 3}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:when test="${reviewRate.rTotRate3 == 2}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:when test="${reviewRate.rTotRate3 == 1}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:otherwise>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													No Rating Data
+												</c:otherwise>
+											</c:choose>
 											</div>
 										</li>
 										<li>Quality
 											<div class="rating">
-												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i>
+											<c:choose>
+												<c:when test="${reviewRate.rTotRate4 == 5}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+												</c:when>
+												<c:when test="${reviewRate.rTotRate4 == 4}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:when test="${reviewRate.rTotRate4 == 3}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:when test="${reviewRate.rTotRate4 == 2}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:when test="${reviewRate.rTotRate4 == 1}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:otherwise>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													No Rating Data
+												</c:otherwise>
+											</c:choose>
 											</div>
 										</li>
 									</ul>
@@ -389,49 +665,87 @@
 							</div>
 							<!-- End row -->
 							<hr>
-							<div class="review_strip_single">
-								<img src="${pageContext.request.contextPath}/resources/img/avatar1.jpg" alt="Image" class="rounded-circle">
-								<small> - 10 March 2015 - </small>
-								<h4>Jhon Doe</h4>
-								<p>
-									"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
-								</p>
-								<div class="rating">
-									<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
-								</div>
-							</div>
-							<!-- End review strip -->
-
-							<div class="review_strip_single">
-								<img src="${pageContext.request.contextPath}/resources/img/avatar3.jpg" alt="Image" class="rounded-circle">
-								<small> - 10 March 2015 -</small>
-								<h4>Jhon Doe</h4>
-								<p>
-									"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
-								</p>
-								<div class="rating">
-									<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
-								</div>
-							</div>
-							<!-- End review strip -->
-
-							<div class="review_strip_single last">
-								<img src="${pageContext.request.contextPath}/resources/img/avatar2.jpg" alt="Image" class="rounded-circle">
-								<small> - 10 March 2015 -</small>
-								<h4>Jhon Doe</h4>
-								<p>
-									"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
-								</p>
-								<div class="rating">
-									<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
-								</div>
-							</div>
+							<c:choose>
+								<c:when test="${reviewSize!=0}">
+									<c:forEach var="review" items="${reviewList}">
+										<div class="review_strip_single">
+											<img height="100px" width="80px" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/member/${review.mImg}" alt="Image" class="rounded-circle">
+											<small> - ${review.rRegDate} - </small>
+											<h4 align="center">${review.mId}</h4>
+											<br>
+											<p>${review.rContent}</p>
+											<input type="hidden" id="review_${review.mId}" value="${review.mId}">
+											<c:if test="${review.mNo == sUser.mNo}">
+												<h6 align="right">
+												<a href="#" class="update_Review" rNo="${review.rNo}" pNo="${review.pNo}" mNo="${review.mNo}" data-toggle="modal" data-target="#updateReview">Modify</a>
+												<span> | </span>
+												<a href="delete_review?pNo=${product.pNo}&pType=${product.pType}">Delete</a>
+												</h6>
+											</c:if>
+											<div class="rating">
+												<c:choose>
+												<c:when test="${review.rRate == 5}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+												</c:when>
+												<c:when test="${review.rRate == 4}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:when test="${review.rRate == 3}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:when test="${review.rRate == 2}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:when test="${review.rRate == 1}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:otherwise>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													No Rating Data
+												</c:otherwise>
+											</c:choose>
+											</div>
+										</div>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<blockquote class="styled">
+										<p align="center" style="font-size: 25px;">
+											Leave the first comment
+										<p>
+									</blockquote>
+								</c:otherwise>
+							</c:choose>
 							<!-- End review strip -->
 						</div>
 					</div>
 				</div>
 				<!--End  single_tour_desc-->
-
+				
 				<aside class="col-lg-4">
 					<p class="d-none d-xl-block d-lg-block d-xl-none">
 						<a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="Hide map" data-text-original="View on map">View on map</a>
@@ -442,13 +756,13 @@
 							<div class="col-sm-6">
 								<div class="form-group">
 									<label><i class="icon-calendar-7"></i> Select a date</label>
-									<input class="date-pick form-control" data-date-format="yyyy/MM/dd" type="text" name="date">
+									<input id="datePicker" class="date-pick form-control" data-date-format="yyyy/MM/dd" type="text" name="date">
 								</div>
 							</div>
 							<div class="col-sm-6">
 								<div class="form-group">
 									<label><i class=" icon-clock"></i> Time</label>
-									<input disabled class="time-pick form-control" value="08:00 AM" type="text">
+									<input disabled id="timePicker" class="time-pick form-control" value="08:00 AM" type="text">
 								</div>
 							</div>
 						</div>
@@ -461,7 +775,6 @@
 										<div class="inc button_inc1">+</div>
 										<div class="dec button_inc1">-</div>
 									</div>
-									<input type="hidden" id="pNo" value="${product.pNo}">
 								</div>
 							</div>
 						</div>
@@ -494,14 +807,37 @@
 								</tr>
 							</tbody>
 						</table>
-						<form id="cart_add" method="post" action="cart_add_action">
-							<input type="hidden" name=cart value="${cart}">
-							<input type="submit" class="btn_full" value="Book now" />
-						</form> 
-						<div id="addWishlistParam" data-pNo="${product.pNo}">
-							<button class="btn_full_outline" type="button" data-toggle="modal" data-target="#addWishlist">
-								<i class=" icon-heart"></i> Add to wishlist
-							</button>
+						<form id="cart_add" name="f" method="post" action="cart_insert">
+							<input type="hidden" name="sUser" value="${sUser}">
+							<input type="hidden" name="newVal" value="1">
+							<input type="hidden" name="pNo" value="${product.pNo}">
+							<input type="hidden" name="pPrice" value="${product.pPrice}">
+							<input type="hidden" name="selectDate" value="">
+							<input type="hidden" name="selectTime" value="">
+							<c:if test="${sUser != null and sUser != ''}">
+								<input type="submit" class="btn_full" value="Book now" />
+							</c:if>
+							<c:if test="${sUser == null or sUser == ''}">
+								<a class="btn_full" data-toggle="modal" data-target="#signInAlert" href="#">
+									BOOK NOW
+								</a>
+							</c:if>
+						</form>
+						
+						<div id="addWishlistButton">
+							<c:if test="${(sUser != null) && (ifExist == 0)}">
+								<a id="addToWishlist" class="btn_full_outline" data-toggle="modal" data-target="#addWishlist" href="#">
+									<i class=" icon-heart"></i> Add to wishlist
+								</a>
+							</c:if>
+					 		<c:if test="${(sUser != null) && (ifExist == 1)}">
+								<a class='btn_full_outline' disabled><i class='icon-check'></i>&nbsp;Already in Wishlist</a>
+							</c:if>
+							<c:if test="${sUser == null}">
+								<a class="btn_full_outline" data-toggle="modal" data-target="#signInAlert" href="#">
+									<i class=" icon-heart"></i> Add to wishlist
+								</a>
+							</c:if>
 						</div>
 					</div>
 					<!--/box_style_1 -->
@@ -521,385 +857,13 @@
 
         <div id="overlay"></div>
 		<!-- Mask on input focus -->
-        
 	</main>
 	<!-- End main -->
-
-	<!-- Modal Review -->
-	<div class="modal fade" id="myReview" tabindex="-1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="myReviewLabel">Write your review</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				</div>
-				<div class="modal-body">
-					<div id="message-review">
-					</div>
-					<form method="post" action="${pageContext.request.contextPath}/resources/assets/review_tour.php" name="review_tour" id="review_tour">
-						<input name="tour_name" id="tour_name" type="hidden" value="Paris Arch de Triomphe Tour">
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
-									<input name="name_review" id="name_review" type="text" placeholder="Your name" class="form-control">
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<input name="lastname_review" id="lastname_review" type="text" placeholder="Your last name" class="form-control">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
-									<input name="email_review" id="email_review" type="email" placeholder="Your email" class="form-control">
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-						<hr>
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Position</label>
-									<select class="form-control" name="position_review" id="position_review">
-										<option value="">Please review</option>
-										<option value="Low">Low</option>
-										<option value="Sufficient">Sufficient</option>
-										<option value="Good">Good</option>
-										<option value="Excellent">Excellent</option>
-										<option value="Superb">Super</option>
-										<option value="Not rated">I don't know</option>
-									</select>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Tourist guide</label>
-									<select class="form-control" name="guide_review" id="guide_review">
-										<option value="">Please review</option>
-										<option value="Low">Low</option>
-										<option value="Sufficient">Sufficient</option>
-										<option value="Good">Good</option>
-										<option value="Excellent">Excellent</option>
-										<option value="Superb">Super</option>
-										<option value="Not rated">I don't know</option>
-									</select>
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Price</label>
-									<select class="form-control" name="price_review" id="price_review">
-										<option value="">Please review</option>
-										<option value="Low">Low</option>
-										<option value="Sufficient">Sufficient</option>
-										<option value="Good">Good</option>
-										<option value="Excellent">Excellent</option>
-										<option value="Superb">Super</option>
-										<option value="Not rated">I don't know</option>
-									</select>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<label>Quality</label>
-									<select class="form-control" name="quality_review" id="quality_review">
-										<option value="">Please review</option>
-										<option value="Low">Low</option>
-										<option value="Sufficient">Sufficient</option>
-										<option value="Good">Good</option>
-										<option value="Excellent">Excellent</option>
-										<option value="Superb">Super</option>
-										<option value="Not rated">I don't know</option>
-									</select>
-								</div>
-							</div>
-						</div>
-						<!-- End row -->
-						<div class="form-group">
-							<textarea name="review_text" id="review_text" class="form-control" style="height:100px" placeholder="Write your review"></textarea>
-						</div>
-						<div class="form-group">
-							<input type="text" id="verify_review" class=" form-control" placeholder="Are you human? 3 + 1 =">
-						</div>
-						<input type="submit" value="Submit" class="btn_1" id="submit-review">
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- End modal review -->
-	
-	<!-- Modal Timeline -->
-	<div class="modal fade" id="timeline" tabindex="-1" role="dialog" aria-labelledby="timelineLabel" aria-hidden="true">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<div class="container margin_60">
-						<div class="main_title">
-							<h2><span>TIMELINE</span> for ${product.pName} Tour</h2>
-							<p>Quisque at tortor a libero posuere laoreet vitae sed arcu. Curabitur consequat.</p>
-						</div>
-					</div>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				</div>
-				<div class="modal-body">
-					<div class="container margin_60">
-						<ul class="cbp_tmtimeline">
-							<li>
-								<time class="cbp_tmtime" datetime="09:30"><span>30 minutes</span> <span>09:30</span></time>
-								<div class="cbp_tmicon timeline_icon_point"></div>
-									<div class="cbp_tmlabel">
-										<div class="float-right d-none d-md-block">Guide <strong>John Doe</strong><img src="${pageContext.request.contextPath}/resources/img/guide_1.jpg" alt="Image" class="rounded-circle speaker">
-										</div>
-										<h2><span>Lorem ipsum</span>Meeting point</h2>
-										<p>Winter purslane courgette pumpkin quandong komatsuna fennel green bean cucumber watercress. Pea sprouts wattle seed rutabaga okra yarrow cress avocado grape radish bush tomato ricebean black-eyed pea maize eggplant. </p>
-									</div>
-							</li>
-							<li>
-								<time class="cbp_tmtime" datetime="11:30"><span>2 hours</span> <span>11:30</span>
-								</time>
-								<div class="cbp_tmicon timeline_icon_pic"></div>
-								<div class="cbp_tmlabel">
-									<div class="float-right d-none d-md-block">Guide <strong>John Doe</strong><img src="${pageContext.request.contextPath}/resources/img/guide_2.jpg" alt="Image" class="rounded-circle speaker">
-									</div>
-									<h2><span>Lorem ipsum</span>Exhibitions</h2>
-									<p>Caulie dandelion maize lentil collard greens radish arugula sweet pepper water spinach kombu courgette lettuce. Celery coriander bitterleaf epazote radicchio shallot winter purslane collard greens spring onion squash lentil. Artichoke salad bamboo shoot black-eyed pea brussels sprout garlic kohlrabi.</p>
-								</div>
-							</li>
-							<li>
-								<time class="cbp_tmtime" datetime="13:30"><span>1 hour</span> <span>13:30</span>
-								</time>
-								<div class="cbp_tmicon timeline_icon_break"></div>
-								<div class="cbp_tmlabel">
-									<h2><span>Lorem ipsum</span>Lunch and coffee break</h2>
-									<p>Parsnip lotus root celery yarrow seakale tomato collard greens tigernut epazote ricebean melon tomatillo soybean chicory broccoli beet greens peanut salad. </p>
-								</div>
-							</li>
-							<li>
-								<time class="cbp_tmtime" datetime="14:30"><span>2 hours</span> <span>14:30</span>
-								</time>
-								<div class="cbp_tmicon timeline_icon_audio"></div>
-								<div class="cbp_tmlabel">
-									<div class="float-right d-none d-md-block">Guide <strong>John Doe</strong><img src="${pageContext.request.contextPath}/resources/img/guide_1.jpg" alt="Image" class="rounded-circle speaker">
-									</div>
-									<h2><span>Lorem ipsum</span>The auditorium Louvre</h2>
-									<p>Peanut gourd nori welsh onion rock melon mustard jícama. Desert raisin amaranth kombu aubergine kale seakale brussels sprout pea. Black-eyed pea celtuce bamboo shoot salad kohlrabi leek squash prairie turnip catsear rock melon chard taro broccoli turnip greens. Fennel quandong potato watercress ricebean swiss chard garbanzo. Endive daikon brussels sprout lotus root silver beet epazote melon shallot.</p>
-								</div>
-							</li>
-							<li>
-								<time class="cbp_tmtime" datetime="16:30"><span>2 hours</span> <span>16:30</span>
-								</time>
-								<div class="cbp_tmicon timeline_icon_pic"></div>
-								<div class="cbp_tmlabel">
-									<div class="float-right d-none d-md-block">Guide <strong>John Doe</strong><img src="${pageContext.request.contextPath}/resources/img/guide_2.jpg" alt="Image" class="rounded-circle speaker">
-									</div>
-									<h2><span>Lorem ipsum</span>Modern art</h2>
-									<p>Parsley amaranth tigernut silver beet maize fennel spinach. Ricebean black-eyed pea maize scallion green bean spinach cabbage jícama bell pepper carrot onion corn plantain garbanzo. Sierra leone bologi komatsuna celery peanut swiss chard silver beet squash dandelion maize chicory burdock tatsoi dulse radish wakame beetroot.</p>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- End Modal Timeline -->
-	
-	<!-- Modal Tour Guide -->
-	<div class="modal fade" id="tourGuide" tabindex="-1" role="dialog" aria-labelledby="tourGuideLabel" aria-hidden="true">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<div class="container margin_60">
-						<div class="main_title">
-							<h1>I am Madlene</h1>
-							<p>Ridiculus sociosqu cursus neque cursus curae ante scelerisque vehicula.</p>
-						</div>
-					</div>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				</div>
-				<div class="modal-body">
-					<div class="margin_60 container">
-						<div id="tour_guide">
-							<p>
-								<img src="${pageContext.request.contextPath}/resources/img/tourist_guide_pic.jpg" alt="Image" class="rounded-circle styled">
-							</p>
-							<h2>Madlene - Certified tourist guide</h2>
-							<p class="lead add_bottom_30">
-								"Eu tota moderatius usu, ad putant aliquando constituam ius, <strong>commodo sententiae</strong> suscipiantur nam eu. Tamquam nominati abhorreant at vis, has id harum melius petentium. Mea wisi debet omnium ne, est ea graecis noluisse recusabo, denique deterruisset ius et."
-							</p>
-						</div>
-						<div class="row">
-							<div class="col-md-8">
-								<h3>Some words about me</h3>
-								<p>
-									Lorem ipsum dolor sit amet, ex justo nominavi eum, cu veniam salutatus reprimique quo, nisl virtute meliore ei eos. Quaestio consequat sed no, urbanitas honestatis ei usu. Ex nec aliquid appetere petentium, ei eum soleat possim. Has ea omnes prompta. Vel te magna voluptaria, cu nec fabulas voluptatum, has et dictas quaeque labores. Qui ex mazim sadipscing.
-								</p>
-								<h5>Education</h5>
-								<p>
-									Lorem ipsum dolor sit amet, ex justo nominavi eum, cu veniam salutatus reprimique quo, nisl virtute meliore ei eos. Quaestio consequat sed no, urbanitas honestatis ei usu. Ex nec aliquid appetere petentium, ei eum soleat possim. Has ea omnes prompta. Vel te magna voluptaria, cu nec fabulas voluptatum, has et dictas quaeque labores. Qui ex mazim sadipscing.
-								</p>
-								<h5>Past experiences</h5>
-								<p>
-									Lorem ipsum dolor sit amet, ex justo nominavi eum, cu veniam salutatus reprimique quo, nisl virtute meliore ei eos. Quaestio consequat sed no, urbanitas honestatis ei usu. Ex nec aliquid appetere petentium, ei eum soleat possim. Has ea omnes prompta. Vel te magna voluptaria, cu nec fabulas voluptatum, has et dictas quaeque labores. Qui ex mazim sadipscing.
-								</p>
-							</div>
-							<div class="col-md-4">
-								<h3>Spoken languages</h3>
-								<p>
-									Eu tota moderatius usu, ad putant aliquando constituam ius, commodo sententiae suscipiantur nam eu.
-								</p>
-								<p>
-									<img src="${pageContext.request.contextPath}/resources/img/lang_en.png" width="40" height="26" alt="Image" data-retina="true"> <img src="${pageContext.request.contextPath}/resources/img/lang_fr.png" width="40" height="26" alt="Image" data-retina="true">
-									<img src="${pageContext.request.contextPath}/resources/img/lang_de.png" width="40" height="26" alt="Image" data-retina="true"> <img src="${pageContext.request.contextPath}/resources/img/lang_es.png" width="40" height="26" alt="Image" data-retina="true">
-								</p>
-								<h3><i class=""></i>Certificates</h3>
-								<p>
-									Eu tota moderatius usu, ad putant aliquando constituam ius, commodo sententiae suscipiantur nam eu.
-								</p>
-								<ul class="list_ok">
-									<li>Putant aliquando constituam</li>
-									<li>Commodo sententiae</li>
-									<li>Denique deterruisset</li>
-									<li>Putant aliquando constituam</li>
-								</ul>
-							</div>
-						</div>
-						<!-- end row -->
-					</div>
-					<!-- end container -->
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-lg-6 nopadding features-intro-img">
-								<div class="features-bg">
-									<div class="features-img">
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6 nopadding">
-								<div class="features-content">
-									<h3>"Ex vero mediocrem"</h3>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-									</p>
-									<p>
-										<a href="#" class=" btn_1 white">Read more</a>
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="container margin_60">
-						<div class="main_title">
-							<h2>What <span>customers </span>says</h2>
-							<p>
-								Quisque at tortor a libero posuere laoreet vitae sed arcu. Curabitur consequat.
-							</p>
-						</div>
-			
-						<div class="row">
-							<div class="col-md-6">
-								<div class="review_strip">
-									<img src="${pageContext.request.contextPath}/resources/img/avatar1.jpg" alt="Image" class="rounded-circle">
-									<h4>Jhon Doe</h4>
-									<p>
-										"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
-									</p>
-									<div class="rating">
-										<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class=" icon-star-empty"></i><i class=" icon-star-empty"></i>
-									</div>
-								</div>
-								<!-- End review strip -->
-							</div>
-			
-							<div class="col-md-6">
-								<div class="review_strip">
-									<img src="${pageContext.request.contextPath}/resources/img/avatar2.jpg" alt="Image" class="rounded-circle">
-									<h4>Mark Schulz</h4>
-									<p>
-										"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
-									</p>
-									<div class="rating">
-										<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class=" icon-star-empty"></i><i class=" icon-star-empty"></i>
-									</div>
-								</div>
-								<!-- End review strip -->
-							</div>
-						</div>
-						<!-- End row -->
-			
-						<div class="row">
-							<div class="col-md-6">
-								<div class="review_strip">
-									<img src="${pageContext.request.contextPath}/resources/img/avatar3.jpg" alt="Image" class="rounded-circle">
-									<h4>Tony Costello</h4>
-									<p>
-										"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
-									</p>
-									<div class="rating">
-										<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class=" icon-star-empty"></i><i class=" icon-star-empty"></i>
-									</div>
-								</div>
-								<!-- End review strip -->
-							</div>
-			
-							<div class="col-md-6">
-								<div class="review_strip">
-									<img src="${pageContext.request.contextPath}/resources/img/avatar1.jpg" alt="Image" class="rounded-circle">
-									<h4>Peter Gabriel</h4>
-									<p>
-										"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
-									</p>
-									<div class="rating">
-										<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class=" icon-star-empty"></i><i class=" icon-star-empty"></i>
-									</div>
-								</div>
-								<!-- End review strip -->
-							</div>
-						</div>
-						<!-- End row -->
-					</div>
-					<!-- End container -->
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- End Modal Tour Guide -->
-	
-	<!-- Modal add wishlist -->
-	<div class="modal fade" id="addWishlist" tabindex="-1" role="dialog" aria-labelledby="addWishlistLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="addWishlistLabel">Successfully Added!</h4>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				</div>
-				<div class="modal-body" align="center">
-					<div id="addWishlistBody">
-						<i class="icon-heart-3"></i><br>
-						<a href="wishlist_list" class="btn_1">VIEW WISHLIST</a>
-						<button type="button" class="btn_1 outline" data-dismiss="modal">
-							<i class="icon-cancel-circled2-1"></i>&nbsp;CLOSE
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- End Modal add wishlist -->
-	
 	
 	<!-- Footer================================================== -->
 	<jsp:include page="/WEB-INF/views/common_footer_2.jsp"/>
 	<!-- End Footer -->
-
+	
 	<!-- Date and time pickers -->
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.sliderPro.min.js"></script>
 	<script type="text/javascript">
@@ -923,16 +887,27 @@
 
 	<!-- Date and time pickers -->
 	<script>
-		$('input.date-pick').datepicker('setDate', 'today');
+		$('input.date-pick').datepicker('setDate', '+1d');
+		$('input.date-pick').datepicker('setStartDate', '+1d');
+		$('input.date-pick').datepicker('setEndDate', '+3m');
 		$('input.time-pick').timepicker({
 			minuteStep: 30,
 			showInputs: false
-		})
+		});
 	</script>
 	
 	<script>
+		$(function() {
+			$("input[name='selectDate']").attr("value", $("#datePicker").val());
+			$("input[name='selectTime']").attr("value", $("#timePicker").attr("value"));
+		});
+	
+		$("#datePicker").change(function () {
+			$("input[name='selectDate']").attr("value", $("#datePicker").val());
+		});
+		
+		/* Qty Update Button */
 		$(".button_inc1").click(function () {
-
 			var $button = $(this);
 			var oldValue = $button.parent().find("input").val();
 
@@ -940,50 +915,57 @@
 				var newVal = parseFloat(oldValue) + 1;
 			} else {
 				// Don't allow decrementing below zero
-				if (oldValue > 1) {
+				if (oldValue > 2) {
 					var newVal = parseFloat(oldValue) - 1;
 				} else {
-					newVal = 0;
+					newVal = 1;
 				}
 			}
-			$button.parent().find("input").val(newVal);
 			
-			var pNo = $button.parent().next().attr("value");
+			$button.parent().find("input").val(newVal);
+			$("input[name='newVal']").attr("value", newVal);
+			var pPrice = $("input[name='pPrice']").attr("value");
 			
 			$.ajax({
 				type:"GET",
 				url:"tour_detail_travellers?",
-				data:"newVal="+newVal+"&pNo="+pNo,
+				data:"newVal="+newVal,
 				async:true,
-				contentType:"application/x-www-form-urlencoded;charset=utf-8",
 				success:function(d) {
-					$("#travellers_cnt").html(d.cProductQty);
-					$("#total_cost").html("￦"+d.cProductTypePay/10000+"만");
-					// line 498:  input의 value값을 "cart" 객체로 교체하기 (tour_single_with_gallery.jsp)
-					console.log(d);
-					$("#cart_add").firstChild.attr("value", d)
+					$("#travellers_cnt").html(d);
+					$("#total_cost").html("￦ "+d*pPrice/10000+"만");
 				}
 			});
 		});
 		
-		
-		$(".btn_full_outline").click(function () {
-
+		$("#addToWishlist").click(function (e) {
 			var $button = $(this);
-			var pNo = $button.parent().data("pNo");
+			var pNo = $("input[name='pNo']").attr("value");
 			
 			$.ajax({
 				type:"POST",
 				url:"wishlist_insert?",
-				data:"&pNo="+pNo,
+				data:"pNo="+pNo,
 				async:true,
 				success:function(d) {
-					var new_html = "<button class='btn_full_outline' disabled><i class='icon-ok-circled2-1'>Already in Wishlist</i></button>"
-					$('#addWishlistParam').html(new_html);
 				}
 			});
 		});
-		
+	</script>
+	<script type="text/javascript">
+		$("#updateReview").on("show.bs.modal", function(e) {
+			var rNo = $(".update_Review").attr("rNo");
+			var pNo = $(".update_Review").attr("pNo");
+			var mNo = $(".update_Review").attr("mNo");
+			$.ajax({
+				url: "review_selectOne",
+				data: {"pNo" : pNo, "mNo" : mNo},
+				type: "post",
+				success: function(review) {
+					$(e.target).find("#review_text").html(review.rContent);
+				}
+			});
+		});
 	</script>
 	
 	<script src="${pageContext.request.contextPath}/resources/z.SiliconVillage/js/product.js"></script>

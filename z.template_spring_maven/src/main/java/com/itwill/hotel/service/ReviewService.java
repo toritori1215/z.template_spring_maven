@@ -1,19 +1,25 @@
 package com.itwill.hotel.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.itwill.hotel.domain.Review;
+import com.itwill.hotel.domain.ReviewRate;
 
 public interface ReviewService {
 	
-	public List<Review> selectAll();
+	public List<Review> selectAll(int pNo);
 	
-	public Review selectOne(Integer rNo);
+	public ReviewRate selectRate(int pNo);
 	
-	public int createReview(Review review);
+	public int insertReview(Review review);
 	
-	public int deleteReview(Integer rNo);
+	public int updateReview(HashMap hashMap);
+
+	public int deleteReview(HashMap hashMap);
 	
-	public int updateReview (Review reviewUpdate);
+	public Review selectOne(HashMap hashMap);
+	
+	public int ifExisted(HashMap hashMap);
 	
 }

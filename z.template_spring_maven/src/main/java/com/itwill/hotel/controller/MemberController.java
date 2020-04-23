@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.itwill.hotel.domain.Jumun;
 import com.itwill.hotel.domain.Member;
 import com.itwill.hotel.domain.Product;
+import com.itwill.hotel.service.JumunService;
 import com.itwill.hotel.service.MemberService;
 import com.itwill.hotel.service.WishlistService;
 
@@ -34,10 +36,18 @@ public class MemberController {
 	@Autowired
 	private WishlistService wishlistService;
 	
+	@Autowired
+	private JumunService jumunService;
+	
 	@RequestMapping(value = "/main")
 	public String mainPage() {
 		memberService.deleteInactiveMember();
 		return "main_page";
+	}
+	
+	@RequestMapping(value = "/member_faq")
+	public String memberFaq() {
+		return "common_faq_2";
 	}
 	
 	@RequestMapping(value = "/member_mypage")
@@ -45,7 +55,20 @@ public class MemberController {
 		Member member = (Member) session.getAttribute("sUser");
 		List<Product> wishlistList = wishlistService.selectWishlist(member.getmNo());
 		session.setAttribute("wishlistList", wishlistList);
+		List<Jumun> jumunList = jumunService.selectJumun(member.getmNo());
+		session.setAttribute("jumunList", jumunList);
 		model.addAttribute("inputMsg", "3");
+		return "member_admin";
+	}
+
+	@RequestMapping(value = "/wishlist_list")
+	public String wishlistList(HttpSession session, Model model) {
+		Member member = (Member) session.getAttribute("sUser");
+		List<Product> wishlistList = wishlistService.selectWishlist(member.getmNo());
+		session.setAttribute("wishlistList", wishlistList);
+		List<Jumun> jumunList = jumunService.selectJumun(member.getmNo());
+		session.setAttribute("jumunList", jumunList);
+		model.addAttribute("inputMsg", "1");
 		return "member_admin";
 	}
 	
@@ -81,6 +104,8 @@ public class MemberController {
 					model.addAttribute("alertMsg", "임시비밀번호로 등록 하셨습니다.\n 비밀번호 변경 추천드립니다");
 					List<Product> wishlistList = wishlistService.selectWishlist(tempMember.getmNo());
 					session.setAttribute("wishlistList", wishlistList);
+					List<Jumun> jumunList = jumunService.selectJumun(tempMember.getmNo());
+					session.setAttribute("jumunList", jumunList);
 					model.addAttribute("inputMsg", 2);
 					return "member_admin";
 				} else {
@@ -380,7 +405,7 @@ public class MemberController {
 		session.setAttribute("sUser", memberService.selectOne(member.getmId()));
 		if (rowCount == 1) {
 			model.addAttribute("inputMsg", "3");
-			return "member_admin";			
+			return "member_admin";
 		} else {
 			return "common_404";
 		}
@@ -392,10 +417,11 @@ public class MemberController {
 						HttpSession session, Model model) {
 	   	SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 	   	String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10)) + ".jpg";
-	   	
-		File f = new File("C:\\Users\\STU\\git\\z.template_spring_maven\\z.template_spring_maven\\src\\main\\webapp\\resources\\z.SiliconVillage\\img\\member\\" + newfilename);
+	   	File f = new File("C:\\Users\\STU\\Desktop\\eclipse\\STS3-4.14.0\\spring-tool-suite-3.9.11.RELEASE-e4.14.0-win32-x86_64\\sts-bundle\\pivotal-tc-server\\instances\\base-instance\\wtpwebapps\\z.template_spring_maven\\resources\\z.SiliconVillage\\img\\member\\" + newfilename);
+	   	File f2 = new File("C:\\Users\\STU\\git\\z.template_spring_maven\\z.template_spring_maven\\src\\main\\webapp\\resources\\z.SiliconVillage\\img\\member\\" + newfilename);
 		try { 
 			Filedata.transferTo(f);
+			Filedata.transferTo(f2);
 		   	response.getWriter().write(newfilename);
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();

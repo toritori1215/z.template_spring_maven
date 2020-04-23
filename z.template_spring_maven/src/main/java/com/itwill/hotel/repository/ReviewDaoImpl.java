@@ -1,5 +1,6 @@
 package com.itwill.hotel.repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 
 import com.itwill.hotel.domain.Review;
+import com.itwill.hotel.domain.ReviewRate;
 import com.itwill.hotel.mapper.ReviewMapper;
 
 
@@ -17,31 +19,38 @@ public class ReviewDaoImpl implements ReviewDao {
 	private ReviewMapper reviewMapper;
 
 	@Override
-	public List<Review> selectAll() {
-		List<Review> reviewList = reviewMapper.selectAll();
-		return reviewList;
-	}
-	
-	@Override
-	public Review selectOne(Integer rNo) {
-		Review reviewView = reviewMapper.selectOne(rNo);
-		return reviewView;
+	public List<Review> selectAll(int pNo) {
+		return reviewMapper.selectAll(pNo);
 	}
 
 	@Override
-	public int reviewWrite(Review review) {
-		int rowCount = reviewMapper.reviewWrite(review);
-		return rowCount;
+	public ReviewRate selectRate(int pNo) {
+		return reviewMapper.selectRate(pNo);
 	}
+
 	@Override
-	public int deleteReview(Integer rNo) {
-		int deleteReview = reviewMapper.deleteReview(rNo);
-		return deleteReview;
+	public int insertReview(Review review) {
+		return reviewMapper.insertReview(review);
 	}
+
 	@Override
-	public int updateReview(Review updateReview) {
-		int updateRowCount = reviewMapper.updateReview(updateReview);
-		return updateRowCount;
+	public int updateReview(HashMap hashMap) {
+		return reviewMapper.updateReview(hashMap);
+	}
+
+	@Override
+	public int deleteReview(HashMap hashMap) {
+		return reviewMapper.deleteReview(hashMap);
+	}
+
+	@Override
+	public Review selectOne(HashMap hashMap) {
+		return reviewMapper.selectOne(hashMap);
+	}
+
+	@Override
+	public int ifExisted(HashMap hashMap) {
+		return reviewMapper.ifExisted(hashMap);
 	}
 	
 }

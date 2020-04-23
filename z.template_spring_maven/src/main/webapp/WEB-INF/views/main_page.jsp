@@ -338,7 +338,7 @@
 			<!-- End row -->
 			
 			<p class="text-center add_bottom_30">
-				<a href="all_tours_list.html" class="btn_1 medium"><i class="icon-eye-7"></i>View all tours (144) </a>
+				<a href="tour_list" class="btn_1 medium"><i class="icon-eye-7"></i>View all tours</a>
 			</p>
 
 			<hr>
@@ -522,7 +522,7 @@
 			<!-- End row -->
 			
 			<p class="text-center nopadding">
-				<a href="all_hotels_list.html" class="btn_1 medium"><i class="icon-eye-7"></i>View all hotels (70) </a>
+				<a href="restaurants_all_list" class="btn_1 medium"><i class="icon-eye-7"></i>View restaurant</a>
 			</p>
 			
 		</div>
@@ -724,10 +724,10 @@
 
 		</div>
 		<!-- End container -->
+    	<input type="hidden" id="DeleteMsg" value="${DeleteMsg}">
 	</main>
 	<!-- End main -->
     
-    <input type="hidden" id="DeleteMsg" value="${DeleteMsg}">
     
 	<!-- Footer================================================== -->
 	<jsp:include page="common_footer_2.jsp"/>
@@ -838,6 +838,7 @@
 			}
 		});
 	</script>
+	
 	<!-- NOTIFY BUBBLES  -->
 	<script src="${pageContext.request.contextPath}/resources/js/notify_func.js"></script>
 

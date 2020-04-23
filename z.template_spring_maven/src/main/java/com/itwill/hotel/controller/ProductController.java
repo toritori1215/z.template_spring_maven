@@ -1,18 +1,18 @@
 package com.itwill.hotel.controller;
 
+import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,14 +21,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.itwill.hotel.domain.Cart;
 import com.itwill.hotel.domain.Member;
 import com.itwill.hotel.domain.Product;
+import com.itwill.hotel.domain.Review;
+import com.itwill.hotel.domain.ReviewRate;
+import com.itwill.hotel.domain.Wishlist;
 import com.itwill.hotel.service.ProductService;
-import com.itwill.hotel.service.WishlistService;
+import com.itwill.hotel.service.ReviewService;
 
 @Controller
 public class ProductController {
 	
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private ReviewService reviewService;
 	
 	@RequestMapping(value = "/hotel_list")
 	public String hotelList(Model model) {
@@ -46,70 +52,85 @@ public class ProductController {
 		return "forward:hotels_all_grid.jsp";
 	}
 	
-	
-	
-	
-	
-	
-	
-	
 	@RequestMapping(value = "/tour_list")
-	public String tourList(Model model) {
+	public String tourList(Model model, HttpSession session) {
+		Member member = (Member) session.getAttribute("sUser");
 		HashMap parameterMap = new HashMap();
 		parameterMap.put("pType", "tour");
 		model.addAttribute("productList", productService.selectByType(parameterMap));
-		return "forward:tour_all_list.jsp";
+		
+		return "tour_all_list";
 	}
 	
 	@RequestMapping(value = "/tour_list_json", produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public List<Product> productList(@RequestParam(value="ratingArray[]") ArrayList<Integer> ratingArray) {
-		
 		HashMap parameterMap = new HashMap();
 		for (int i = 0; i < ratingArray.size(); i++) {
 			Integer rating = ratingArray.get(i);
 			parameterMap.put("pType", "tour");
 			parameterMap.put("pRate"+rating, rating);
 		}
-		
 		return productService.selectByType(parameterMap);
 	}
 	
 	@RequestMapping(value = "/tour_detail")
-	public String tourDetail(@RequestParam(value="pNo") String pNo, HttpSession session, Model model) {
-		
-		Product product = productService.selectByNo(Integer.parseInt(pNo));
-		int pPrice = product.getpPrice();
+	public String tourDetail(@RequestParam(value="pNo") String pNo, 
+								HttpSession session, Model model) {
 		Member member = (Member) session.getAttribute("sUser");
-		int mNo = member.getmNo();
-		// 주문 default에 날짜는 오늘 날짜로 지정
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-		Date date = new Date();
-		System.out.println(dateFormat.format(date));
-		Cart cart = new Cart(mNo, 1, pPrice, null, dateFormat.format(date), null, null, null, 1, Integer.parseInt(pNo));
-		
+		int ifExist = 0;
+		if (member != null) {
+			int mNo = member.getmNo();
+			Wishlist wishlist = new Wishlist(mNo, Integer.parseInt(pNo));
+			ifExist = productService.checkWishlist(wishlist);
+			HashMap hashMap = new HashMap();
+			hashMap.put("mNo", member.getmNo());
+			hashMap.put("pNo", pNo);
+			int ifReviewExisted = reviewService.ifExisted(hashMap);
+			model.addAttribute("ifReviewExisted", ifReviewExisted);
+		}
+		Product product = productService.selectByNo(Integer.parseInt(pNo));
 		model.addAttribute("product", product);
-		model.addAttribute("cart", cart);
+		model.addAttribute("ifExist", ifExist);
+		List<Review> reviewList = reviewService.selectAll(Integer.parseInt(pNo));
+		model.addAttribute("reviewList", reviewList);
+		int reviewSize = reviewList.size();
+		model.addAttribute("reviewSize", reviewSize);
+		ReviewRate reviewRate = reviewService.selectRate(Integer.parseInt(pNo));
+		model.addAttribute("reviewRate", reviewRate);
 		return "tour_single_with_gallery";
 	}
 	
 	@RequestMapping(value = "/tour_detail_travellers", produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public Cart tourTravellers(@RequestParam(value="newVal") String newVal,
-							   @RequestParam(value="pNo") String pNo,
-							   @RequestParam(value="date") String date,
-							   HttpSession session) {		
-		Member member = (Member) session.getAttribute("sUser");
-		int mNo = member.getmNo();
-		int newVal_int = Integer.parseInt(newVal);
-		int pNo_int = Integer.parseInt(pNo);
-		int pPrice = productService.selectByNo(Integer.parseInt(pNo)).getpPrice();
-		// line 445: date 받아오는 포맷과 제대로 오는지 확인 (tour_single_with_gallery.jsp)
-		System.out.println(date);
-		Cart cart = new Cart(mNo, newVal_int, newVal_int*pPrice, null, date,
-							 null, null, null, newVal_int, pNo_int);
-		return cart;
+	public int tourTravellers(@RequestParam(value="newVal") String newVal) {
+		return Integer.parseInt(newVal);
 	}
+	
+	
+	@RequestMapping(value = "/hotel_single")
+	public String hotelDetail(@RequestParam(value="pNo") String pNo, 
+								HttpSession session, Model model) {
+		Member member = (Member) session.getAttribute("sUser");
+		int ifExist = 0;
+		if (member != null) {
+			int mNo = member.getmNo();
+			Wishlist wishlist = new Wishlist(mNo, Integer.parseInt(pNo));
+			ifExist = productService.checkWishlist(wishlist);
+		}
+		
+		Product product = productService.selectByNo(Integer.parseInt(pNo));
+		model.addAttribute("product", product);
+		model.addAttribute("ifExist", ifExist);
+		List<Review> reviewList = reviewService.selectAll(Integer.parseInt(pNo));
+		model.addAttribute("reviewList", reviewList);
+		int reviewSize = reviewList.size();
+		model.addAttribute("reviewSize", reviewSize);
+		ReviewRate reviewRate = reviewService.selectRate(Integer.parseInt(pNo));
+		model.addAttribute("reviewRate", reviewRate);
+		return "hotel_single";
+	}
+	
 	
 	@RequestMapping(value = "/tour_grid")
 	public String tourListGrid() {
@@ -211,4 +232,5 @@ public class ProductController {
 	public String errorPage() {
 		return "common_404";
 	}
+	
 }

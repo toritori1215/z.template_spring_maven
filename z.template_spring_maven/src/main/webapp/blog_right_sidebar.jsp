@@ -3,28 +3,6 @@
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
-	<meta name="author" content="Ansonika">
-	<title>CITY TOURS - City tours and travel site template by Ansonika</title>
-
-	<!-- Favicons-->
-	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico" type="image/x-icon">
-	<link rel="apple-touch-icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-57x57-precomposed.png">
-	<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-72x72-precomposed.png">
-	<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-114x114-precomposed.png">
-	<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-144x144-precomposed.png">
-
-    <!-- GOOGLE WEB FONT -->
-    <link href="https://fonts.googleapis.com/css?family=Gochi+Hand|Montserrat:300,400,700" rel="stylesheet">
-	
-	<!-- CSS -->
-	<link href="${pageContext.request.contextPath}/resources/css/blog.css" rel="stylesheet">
-	
 
 	<!-- Header================================================== -->
 	<jsp:include page="WEB-INF/views/common_header_6.jsp"/>
@@ -61,22 +39,19 @@
 					<div class="box_style_1">
 						<div class="post">
 						<c:forEach var ="blog" items = "${blogList}">
-							<form method="post" action="blog_post_right_sidebar">
-							<input type = "hidden" name="bNo" id="bNo" value="${blog.bNo}">
-							<a href="javascript:blog_post_right_sidebar();"><img src="${pageContext.request.contextPath}/resources/img/blog-3.jpg" alt="Image" class="img-fluid">
-							</a>
+							<form id="blogForm" method="post" action="blog_delete">
+							<input type="hidden" name="bNo" value="${blog.bNo}">
+							<a href="blog_post_right_sidebar?bNo=${blog.bNo}"><img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/blog/${blog.bImg}" alt="Image" class="img-fluid"></a>
 							<div class="post_info clearfix">
 								<div class="post-left">
 									<ul>
 										<li><i class="icon-calendar-empty"></i> On <span>${blog.bDate}</span>
 										</li>
-										<li><i class="icon-inbox-alt"></i> In <a href="#">Top tours</a>
-										</li>
-										<li><i class="icon-tags"></i> Tags <a href="#">Works</a>, <a href="#">Personal</a>
+										<li><i class="icon-inbox-alt"></i> In ${blog.bCategory}
 										</li>
 									</ul>
 								</div>
-								<div class="post-right"><i class="icon-comment"></i><a href="#">25 </a>
+								<div class="post-right"><i class="icon-comment"></i><a href="#">${blog.bReadCount}</a>
 								</div>
 							</div>
 							<h2>${blog.bTitle}</h2>
@@ -87,10 +62,7 @@
 							<p>
 								Ludus albucius adversarium eam eu. Sit eu reque tation aliquip. Quo no dolorum albucius lucilius, hinc eligendi ut sed. Ex nam quot ferri suscipit, mea ne legere alterum repudiandae. Ei pri quaerendum intellegebat, ut vel consequuntur voluptatibus. Et volumus sententiae adversarium duo......
 							</p>
-							<input type="submit" id="blog_post_right_sidebar_submit" class="btn_1" value="Read more"> &nbsp;&nbsp;&nbsp;
-							<c:if test="${blog.mNo == sUser.mNo}">
-								<input type="button" id="delete" class="btn_1" value="delete">
-							</c:if>
+							<input type="button" class="btn_1" value="Read More" onclick="location.href='blog_post_right_sidebar?bNo=${blog.bNo}'"> &nbsp;&nbsp;&nbsp;
 							</form>
 						<hr>
 						</c:forEach>
@@ -139,50 +111,37 @@
 					<div class="widget" id="cat_blog">
 						<h4>Categories</h4>
 						<ul>
-							<li><a href="#">Places to visit</a>
+							<li><a href="#">Tour</a>
 							</li>
-							<li><a href="#">Top tours</a>
+							<li><a href="#">Hotel</a>
 							</li>
-							<li><a href="#">Tips for travellers</a>
+							<li><a href="#">Facility</a>
 							</li>
-							<li><a href="#">Events</a>
+							<li><a href="#">Restaurant</a>
 							</li>
 						</ul>
 					</div>
 					<!-- End widget -->
-
 					<hr>
 
 					<div class="widget">
 						<h4>Recent post</h4>
 						<ul class="recent_post">
-							<li>
-								<i class="icon-calendar-empty"></i> 16th July, 2020
-								<div><a href="#">It is a long established fact that a reader will be distracted </a>
-								</div>
-							</li>
-							<li>
-								<i class="icon-calendar-empty"></i> 16th July, 2020
-								<div><a href="#">It is a long established fact that a reader will be distracted </a>
-								</div>
-							</li>
-							<li>
-								<i class="icon-calendar-empty"></i> 16th July, 2020
-								<div><a href="#">It is a long established fact that a reader will be distracted </a>
-								</div>
-							</li>
+							<c:forEach var="recentBlog" items="${recentBlogList}">
+								<li>
+									<i class="icon-calendar-empty"></i> ${recentBlog.bDate}
+									<div><a href="blog_post_right_sidebar?bNo=${recentBlog.bNo}">${recentBlog.bTitle}</a>
+									</div>
+								</li>
+							</c:forEach>
+							<c:if test="${sUser != null and sUser != ''}">
+								<a href="#" class="btn_1" data-toggle="modal" data-target="#writeBlog">write a Blog</a>
+							</c:if>
+							<c:if test="${sUser == null or sUser == ''}">
+								If you want to write a blog<br>
+								Please <a href="#sign-in-dialog" id="access_link4"><font color="red">Sign in</font></a>	
+							</c:if>
 						</ul>
-					</div>
-					<!-- End widget -->
-					<hr>
-					<div class="widget tags">
-						<h4>Tags</h4>
-						<a href="#">Lorem ipsum</a>
-						<a href="#">Dolor</a>
-						<a href="#">Long established</a>
-						<a href="#">Sit amet</a>
-						<a href="#">Latin words</a>
-						<a href="#">Excepteur sint</a>
 					</div>
 					<!-- End widget -->
 
@@ -193,17 +152,23 @@
 			<!-- End row-->
 		</div>
 		<!-- End container -->
+		<input type="hidden" id="blogMsg" value="${blogMsg}">
 	</main>
 	<!-- End main -->
-
+	
+	
+	
 	<!-- Footer================================================== -->
 	<jsp:include page="WEB-INF/views/common_footer_2.jsp"/>
 	<!-- End Footer -->
 	
 	<script type="text/javascript">
-		function blog_post_right_sidebar() {
-			$("#blog_post_right_sidebar_submit").trigger("click");
-		}
+		$(function() {
+			var blogMsg = $("#blogMsg").val()
+			if (blogMsg != null && blogMsg != "") {
+				alert(blogMsg);
+			}
+		})
 	</script>
 	
 </body>

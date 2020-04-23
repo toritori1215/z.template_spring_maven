@@ -1,5 +1,6 @@
 package com.itwill.hotel.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.itwill.hotel.domain.Blog;
@@ -12,20 +13,18 @@ public interface BlogMapper {
 	
 	public Blog selectOneBlog(int bNo);
 	
-	public int insertBlog(Blog blog);
+	public List<Blog> selectRecentBlog();
 	
-	public int deleteBlog(int bNo);
+	public int selectNewBlog();
 	
-	public int updateBlog(Blog blog);
+	public int insertBlog(HashMap hashMap);
 	
+	public int insertBlogImg(String bImg);
 	
-	/****** Blog Review ******/
-	public List<BlogReview> selectBlogReview(int bNo);
+	public int updateBlog(HashMap hashMap);
 	
-	public int insertBlogReview(BlogReview blogReview);
+	public int updateBlogImg(HashMap hashMap);
 	
-	public int deleteBlogReview(int brNo);
-	
-	public int updateBlogReview(BlogReview blogReview);
+	public int deleteBlog(HashMap hashMap);
 
 }
