@@ -397,7 +397,7 @@
 									</c:if>
 								</c:when>
 								<c:otherwise>
-									If you want to leave comments, pealse <a href="#sign-in-dialog" id="access_link4"><font color="red">Sign in</font></a> 
+									If you want to leave comments<br> pealse <a href="#sign-in-dialog" id="access_link4"><font color="red">Sign in</font></a> 
 								</c:otherwise>
 							</c:choose>
 						</div>
@@ -672,13 +672,14 @@
 											<img height="100px" width="80px" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/member/${review.mImg}" alt="Image" class="rounded-circle">
 											<small> - ${review.rRegDate} - </small>
 											<h4 align="center">${review.mId}</h4>
-											<p align="center">${review.rContent}</p>
+											<br>
+											<p>${review.rContent}</p>
 											<input type="hidden" id="review_${review.mId}" value="${review.mId}">
 											<c:if test="${review.mNo == sUser.mNo}">
 												<h6 align="right">
 												<a href="#" class="update_Review" rNo="${review.rNo}" pNo="${review.pNo}" mNo="${review.mNo}" data-toggle="modal" data-target="#updateReview">Modify</a>
 												<span> | </span>
-												<a href="delete_review?rNo=${review.rNo}&pNo=${product.pNo}&pType=${product.pType}">Delete</a>
+												<a href="delete_review?pNo=${product.pNo}&pType=${product.pType}">Delete</a>
 												</h6>
 											</c:if>
 											<div class="rating">

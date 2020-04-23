@@ -409,7 +409,7 @@
 			<div class="modal-body">
 				<div id="message-review">
 				</div>
-				<form method="post" action="insert_review">
+				<form method="post" action="update_review">
 					<input name="tour_name" id="tour_name" type="hidden" value="Paris Arch de Triomphe Tour">
 					<div class="row">
 						<div class="col-md-6">
@@ -505,8 +505,8 @@
 						<textarea name="review_text" id="review_text" class="form-control" style="height:100px" placeholder="Write your review"></textarea>
 					</div>
 					<input type="submit" value="Submit" class="btn_1" id="submit-review">
-					<input type="hidden" name="insertPNo" value="${product.pNo}">
-					<input type="hidden" name="insertPtype" value="${product.pType}">
+					<input type="hidden" name="updatePno" value="${product.pNo}">
+					<input type="hidden" name="updatePtype" value="${product.pType}">
 				</form>
 			</div>
 		</div>
