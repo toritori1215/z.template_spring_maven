@@ -3,19 +3,19 @@ package com.itwill.hotel.repository;
 import java.util.List;
 
 import com.itwill.hotel.domain.Review;
+import com.itwill.hotel.domain.ReviewRate;
 
 
 public interface ReviewDao {
 
-	public List<Review> selectAll();
+	public List<Review> selectAll(int pNo);
+	
+	public ReviewRate selectRate(int pNo);
+	
+	public int insertReview(Review review);
+	
+	public int updateReview(Review updateReview);
 
-	public Review selectOne(Integer rNo);
+	public int deleteReview(int rNo);
 	
-	public int reviewCount(int pNo);
-	
-	public int reviewWrite(Review review);
-
-	public int deleteReview(Integer rNo);
-	
-	public int updateReview(Review reviewUpdate);
 }

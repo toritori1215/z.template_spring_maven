@@ -58,10 +58,10 @@
 		<div class="container margin_60">
 			<div class="row">
 				<c:choose>
-					<c:when test="${size != 0}">
+					<c:when test="${blogReviewSize != 0}">
 						<div class="col-lg-9">
 						<div class="box_style_1">
-						<input type="hidden" name="bNo" id="bNo" value="${blogView}">
+						<input type="hidden" name="bNo" id="bNo" value="${blog.bNo}">
 							<div class="post nopadding">
 								<img src="${pageContext.request.contextPath}/resources/img/blog-1.jpg" alt="Image" class="img-fluid">
 								<div class="post_info clearfix">
@@ -75,7 +75,7 @@
 											</li>
 										</ul>
 									</div>
-									<div class="post-right"><i class="icon-comment"></i> ${size} Comments</div>
+									<div class="post-right"><i class="icon-comment"></i> ${blogReviewSize} Comments</div>
 								</div>
 								<h2>${blogView.bTitle}</h2>
 								<p>
@@ -91,6 +91,7 @@
 									<c:if test="${blogView.mNo == sUser.mNo}">
 									<a href="#" class="btn_1" data-toggle="modal"
 										data-target="#updateBlog">Update</a>
+										
 									<input type="submit" id="delete_blog_post" class="btn_1" value="Delete">
 									</c:if>
 								</form>
@@ -99,7 +100,7 @@
 						</div>
 						<!-- end box_style_1 -->
 	
-						<h4>${size} comments</h4>
+						<h4>${blogReviewSize} comments</h4>
 						<div id="comments">
 							<ol>
 							<c:forEach var="blogReview" items="${blogReviewList}">
@@ -114,7 +115,7 @@
 								</li>
 								<hr>
 							</c:forEach>
-							<c:if test="${size==0}">
+							<c:if test="${blogReviewSize==0}">
 								<br><br><br>
 								<li>
 									<div class="avatar"></div>
@@ -212,7 +213,7 @@
 					<c:otherwise>
 						<div class="col-lg-9">
 							<div class="box_style_1">
-							<input type="hidden" name="bNo" id="bNo" value="${blogView}">
+							<input type="hidden" name="bNo" id="bNo" value="${blogView.bNo}">
 								<div class="post nopadding">
 									<img src="${pageContext.request.contextPath}/resources/img/blog-1.jpg" alt="Image" class="img-fluid">
 									<div class="post_info clearfix">
@@ -232,10 +233,11 @@
 									<p>
 										${blogView.bContent}
 									</p>
-									<form action="blog_right_sidebar">
+									<form action="blog_right_sidebar" method="post">
 										<c:if test="${blogView.mNo == sUser.mNo}">
 										<a href="#" class="btn_1" data-toggle="modal"
 											data-target="#updateBlog">Update</a>
+											<input type="hidden" name="bNo" value="${blogView.bNo}">
 										<input type="button" id="delete_blog_post" class="btn_1" value="Delete">
 										</c:if>
 									</form>
@@ -258,7 +260,7 @@
 													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Leave a comment
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Leave the first comment
 												<p>
 											</blockquote>
 										</div>
@@ -352,5 +354,32 @@
 	<!-- End Footer -->
 
 </body>
+
+<script type="text/javascript">
+
+$('#delete_blog_post').click(function(){
+	//alert($('#bNo').val());
+	//alert($('#review_rNo').val());
+	
+	var bNo = $('#bNo').val();
+	var params="bNo="+bNo;	
+	$.ajax({
+		type: "GET",
+		url: "blog_delete",
+		data: params,
+		success : function() {
+			alert("삭제 되었습니다");
+		},
+		error : function(){
+			alert("삭제 실패 하였습니다")
+		}
+	});
+});
+
+
+
+</script>
+
+
 
 </html>

@@ -3,19 +3,19 @@ package com.itwill.hotel.mapper;
 import java.util.List;
 
 import com.itwill.hotel.domain.Review;
+import com.itwill.hotel.domain.ReviewRate;
 
 
 public interface ReviewMapper {
 	
-	public List<Review> selectAll();
+	public List<Review> selectAll(int pNo);
 	
-	public Review selectOne(Integer rNo);
+	public ReviewRate selectRate(int pNo);
 	
-	public int reviewCount(int pNo);
-	
-	public int reviewWrite(Review review);
-	
-	public int deleteReview(Integer rNo);
+	public int insertReview(Review review);
 	
 	public int updateReview(Review updateReview);
+
+	public int deleteReview(int rNo);
+	
 }

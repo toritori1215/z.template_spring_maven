@@ -42,11 +42,11 @@ public class BlogController {
 		Blog blogView = blogService.selectOneBlog(Integer.parseInt(bNo));
 		List<BlogReview> blogReviewList = blogService.selectBlogReview(Integer.parseInt(bNo));
 		List<Blog> recentBlogList = blogService.selectRecentBlog();
-		int size = blogReviewList.size();
+		int blogReviewSize = blogReviewList.size();
 		model.addAttribute("blogView", blogView);
 		model.addAttribute("blogReviewList", blogReviewList);
 		model.addAttribute("recentBlogList", recentBlogList);
-		model.addAttribute("size", size);
+		model.addAttribute("blogReviewSize", blogReviewSize);
 		return "forward:blog_post_right_sidebar.jsp";
 	}
 	
@@ -61,11 +61,13 @@ public class BlogController {
 	
 	@RequestMapping(value = "/blog_delete")
 	public String delete(@RequestParam(value = "bNo") String bNo, Model model) {
+		System.out.println("@@@@@@@@@@@@ 삭제 컨트롤러");
 		int deleteBlog = blogService.deleteBlog(Integer.parseInt(bNo));
-		List<Blog> blogList = blogService.selectAllBlog();
 		if (deleteBlog == 1) {
-			model.addAttribute("deleteBlogMsg", "삭제되었습니다.");
-			return "forward:blog_right_sidebar";
+			System.out.println("삭제성공");
+			//model.addAttribute("deleteBlogMsg", "삭제되었습니다.");
+			return "redirect:blog_right_sidebar";
+			//List<Blog> blogList = blogService.selectAllBlog();
 		} else {
 			model.addAttribute("deleteBlogMsg", "삭제 실패하였습니다.");
 			return "common_404";

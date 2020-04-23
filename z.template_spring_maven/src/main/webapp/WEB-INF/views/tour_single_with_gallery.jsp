@@ -19,13 +19,52 @@
 						<h1>${product.pName}</h1>
 						<span>${product.rCount} of our fellow travellers rate this tour as... &nbsp;&nbsp;</span>
 						<span class="rating">
-							<c:forEach var="index" begin="1" end="${Math.round(product.pRate/2)}">
-								<i class="icon-smile voted"></i>
-							</c:forEach>
-							<c:forEach var="index" begin="1" end="${5-Math.round(product.pRate/2)}">
-								<i class="icon-smile"></i>
-							</c:forEach>
-							<small>(${product.pRate})</small>
+							<c:choose>
+								<c:when test="${reviewRate.rTotRate == 5}">
+									<i class="icon-smile voted"></i>
+									<i class="icon-smile voted"></i>
+									<i class="icon-smile voted"></i>
+									<i class="icon-smile voted"></i>
+									<i class="icon-smile voted"></i>
+								</c:when>
+								<c:when test="${reviewRate.rTotRate == 4}">
+									<i class="icon-smile voted"></i>
+									<i class="icon-smile voted"></i>
+									<i class="icon-smile voted"></i>
+									<i class="icon-smile voted"></i>
+									<i class="icon-smile"></i>
+								</c:when>
+								<c:when test="${reviewRate.rTotRate == 3}">
+									<i class="icon-smile voted"></i>
+									<i class="icon-smile voted"></i>
+									<i class="icon-smile voted"></i>
+									<i class="icon-smile"></i>
+									<i class="icon-smile"></i>
+								</c:when>
+								<c:when test="${reviewRate.rTotRate == 2}">
+									<i class="icon-smile voted"></i>
+									<i class="icon-smile voted"></i>
+									<i class="icon-smile"></i>
+									<i class="icon-smile"></i>
+									<i class="icon-smile"></i>
+								</c:when>
+								<c:when test="${reviewRate.rTotRate == 1}">
+									<i class="icon-smile voted"></i>
+									<i class="icon-smile"></i>
+									<i class="icon-smile"></i>
+									<i class="icon-smile"></i>
+									<i class="icon-smile"></i>
+								</c:when>
+								<c:otherwise>
+									No Rating Data
+									<i class="icon-smile"></i>
+									<i class="icon-smile"></i>
+									<i class="icon-smile"></i>
+									<i class="icon-smile"></i>
+									<i class="icon-smile"></i>
+								</c:otherwise>
+							</c:choose>
+							<small>(${reviewRate.rTotRate*2}.0)</small>
 						</span>
 					</div>
 					<div class="col-md-4">
@@ -358,9 +397,58 @@
 							</c:choose>
 						</div>
 						<div class="col-lg-9">
-							<div id="general_rating">11 Reviews
+							<div id="general_rating">
+									<c:choose>
+										<c:when test="${reviewSize != 0}">${reviewSize} Reviews</c:when>
+										<c:otherwise>No Reviews</c:otherwise>
+									</c:choose>
+									<span> | </span>
 								<div class="rating">
-									<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
+									<c:choose>
+										<c:when test="${reviewRate.rTotRate == 5}">
+											<i class="icon-smile voted"></i>
+											<i class="icon-smile voted"></i>
+											<i class="icon-smile voted"></i>
+											<i class="icon-smile voted"></i>
+											<i class="icon-smile voted"></i>
+										</c:when>
+										<c:when test="${reviewRate.rTotRate == 4}">
+											<i class="icon-smile voted"></i>
+											<i class="icon-smile voted"></i>
+											<i class="icon-smile voted"></i>
+											<i class="icon-smile voted"></i>
+											<i class="icon-smile"></i>
+										</c:when>
+										<c:when test="${reviewRate.rTotRate == 3}">
+											<i class="icon-smile voted"></i>
+											<i class="icon-smile voted"></i>
+											<i class="icon-smile voted"></i>
+											<i class="icon-smile"></i>
+											<i class="icon-smile"></i>
+										</c:when>
+										<c:when test="${reviewRate.rTotRate == 2}">
+											<i class="icon-smile voted"></i>
+											<i class="icon-smile voted"></i>
+											<i class="icon-smile"></i>
+											<i class="icon-smile"></i>
+											<i class="icon-smile"></i>
+										</c:when>
+										<c:when test="${reviewRate.rTotRate == 1}">
+											<i class="icon-smile voted"></i>
+											<i class="icon-smile"></i>
+											<i class="icon-smile"></i>
+											<i class="icon-smile"></i>
+											<i class="icon-smile"></i>
+										</c:when>
+										<c:otherwise>
+											<i class="icon-smile"></i>
+											<i class="icon-smile"></i>
+											<i class="icon-smile"></i>
+											<i class="icon-smile"></i>
+											<i class="icon-smile"></i>
+											No Rating Data
+										</c:otherwise>
+									</c:choose>
 								</div>
 							</div>
 							<!-- End general_rating -->
@@ -369,12 +457,100 @@
 									<ul>
 										<li>Position
 											<div class="rating">
-												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
+											<c:choose>
+												<c:when test="${reviewRate.rTotRate1 == 5}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+												</c:when>
+												<c:when test="${reviewRate.rTotRate1 == 4}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:when test="${reviewRate.rTotRate1 == 3}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:when test="${reviewRate.rTotRate1 == 2}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:when test="${reviewRate.rTotRate1 == 1}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:otherwise>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													No Rating Data
+												</c:otherwise>
+											</c:choose>
 											</div>
 										</li>
-										<li>Tour guide
+										<li>Guide
 											<div class="rating">
-												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i>
+											<c:choose>
+												<c:when test="${reviewRate.rTotRate2 == 5}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+												</c:when>
+												<c:when test="${reviewRate.rTotRate2 == 4}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:when test="${reviewRate.rTotRate2 == 3}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:when test="${reviewRate.rTotRate2 == 2}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:when test="${reviewRate.rTotRate2 == 1}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:otherwise>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													No Rating Data
+												</c:otherwise>
+											</c:choose>
 											</div>
 										</li>
 									</ul>
@@ -383,12 +559,100 @@
 									<ul>
 										<li>Price
 											<div class="rating">
-												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
+											<c:choose>
+												<c:when test="${reviewRate.rTotRate3 == 5}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+												</c:when>
+												<c:when test="${reviewRate.rTotRate3 == 4}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:when test="${reviewRate.rTotRate3 == 3}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:when test="${reviewRate.rTotRate3 == 2}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:when test="${reviewRate.rTotRate3 == 1}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:otherwise>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													No Rating Data
+												</c:otherwise>
+											</c:choose>
 											</div>
 										</li>
 										<li>Quality
 											<div class="rating">
-												<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i>
+											<c:choose>
+												<c:when test="${reviewRate.rTotRate4 == 5}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+												</c:when>
+												<c:when test="${reviewRate.rTotRate4 == 4}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:when test="${reviewRate.rTotRate4 == 3}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:when test="${reviewRate.rTotRate4 == 2}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:when test="${reviewRate.rTotRate4 == 1}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:otherwise>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													No Rating Data
+												</c:otherwise>
+											</c:choose>
 											</div>
 										</li>
 									</ul>
@@ -396,43 +660,75 @@
 							</div>
 							<!-- End row -->
 							<hr>
-							<div class="review_strip_single">
-								<img src="${pageContext.request.contextPath}/resources/img/avatar1.jpg" alt="Image" class="rounded-circle">
-								<small> - 10 March 2015 - </small>
-								<h4>Jhon Doe</h4>
-								<p>
-									"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
-								</p>
-								<div class="rating">
-									<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
-								</div>
-							</div>
-							<!-- End review strip -->
-
-							<div class="review_strip_single">
-								<img src="${pageContext.request.contextPath}/resources/img/avatar3.jpg" alt="Image" class="rounded-circle">
-								<small> - 10 March 2015 -</small>
-								<h4>Jhon Doe</h4>
-								<p>
-									"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
-								</p>
-								<div class="rating">
-									<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
-								</div>
-							</div>
-							<!-- End review strip -->
-
-							<div class="review_strip_single last">
-								<img src="${pageContext.request.contextPath}/resources/img/avatar2.jpg" alt="Image" class="rounded-circle">
-								<small> - 10 March 2015 -</small>
-								<h4>Jhon Doe</h4>
-								<p>
-									"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lorem quis neque interdum consequat ut sed sem. Duis quis tempor nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus."
-								</p>
-								<div class="rating">
-									<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i>
-								</div>
-							</div>
+							<c:choose>
+								<c:when test="${reviewSize!=0}">
+									<c:forEach var="review" items="${reviewList}">
+										<div class="review_strip_single">
+											<img height="100px" width="80px" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/member/${review.mImg}" alt="Image" class="rounded-circle">
+											<small> - ${review.rRegDate} - </small>
+											<h4 align="center">${review.mId}</h4>
+											<p align="center">${review.rContent}</p>
+											<c:if test="${review.mNo == sUser.mNo}">
+												<h6 align="right"><a href="#" data-toggle="modal" data-target="#updateReview">Modify</a><span> | </span><a href="delete_review?rNo=${review.rNo}&pNo=${product.pNo}&pType=${product.pType}">Delete</a></h6>
+											</c:if>
+											<div class="rating">
+												<c:choose>
+												<c:when test="${review.rRate == 5}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+												</c:when>
+												<c:when test="${review.rRate == 4}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:when test="${review.rRate == 3}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:when test="${review.rRate == 2}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:when test="${review.rRate == 1}">
+													<i class="icon-smile voted"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+												</c:when>
+												<c:otherwise>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													<i class="icon-smile"></i>
+													No Rating Data
+												</c:otherwise>
+											</c:choose>
+											</div>
+										</div>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<blockquote class="styled">
+										<p align="center" style="font-size: 25px;">
+											Leave the first comment
+										<p>
+									</blockquote>
+								</c:otherwise>
+							</c:choose>
 							<!-- End review strip -->
 						</div>
 					</div>
