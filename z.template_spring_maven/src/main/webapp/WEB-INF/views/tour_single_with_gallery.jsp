@@ -397,7 +397,7 @@
 									</c:if>
 								</c:when>
 								<c:otherwise>
-									If you want to leave comments<br> pealse <a href="#sign-in-dialog" id="access_link4"><font color="red">Sign in</font></a> 
+									If you want to leave comments<br> Please <a href="#sign-in-dialog" id="access_link4"><font color="red">Sign in</font></a> 
 								</c:otherwise>
 							</c:choose>
 						</div>
