@@ -15,6 +15,11 @@ public class JumunController {
 	@Autowired
 	JumunService jumunService;
 	
+	@RequestMapping(value = "/cart_checkout")
+	public String cartPayment() {
+		return "common_payment_fixed_sidebar";
+	}
+	
 	@RequestMapping(value = "/checkout_payment")
 	public String checkoutPayment() {
 		return "common_payment_fixed_sidebar";

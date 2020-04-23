@@ -48,11 +48,11 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="#">Home</a>
+					<li><a href="main">Home</a>
 					</li>
-					<li><a href="#">Category</a>
+					<li><a href="cart_services">Cart</a>
 					</li>
-					<li>Page active</li>
+					<li>Payment</li>
 				</ul>
 			</div>
 		</div>
@@ -65,7 +65,7 @@
 					<div class="form_title">
 						<h3><strong>1</strong>Your Details</h3>
 						<p>
-							Mussum ipsum cacilds, vidis litro abertis.
+							Please tell us the name of the guest staying at the hotel as it appears on the ID that they’ll present at check-in.
 						</p>
 					</div>
 					<div class="step">
@@ -293,7 +293,7 @@
 								</tbody>
 							</table>
 							<a class="btn_full" href="confirmation_fixed_sidebar.html">Book now</a>
-							<a class="btn_full_outline" href="#"><i class="icon-right"></i> Continue shopping</a>
+							<a class="btn_full_outline" href="tour_list"><i class="icon-right"></i> Continue shopping</a>
 						</div>
 						<div class="box_style_4">
 							<i class="icon_set_1_icon-57"></i>

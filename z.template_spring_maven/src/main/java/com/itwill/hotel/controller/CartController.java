@@ -42,46 +42,57 @@ public class CartController {
 			int mNo = member.getmNo();
 			HashMap parameterMap = new HashMap();
 			parameterMap.put("mNo", mNo);
-			cartService.deleteOutdatedCart(parameterMap);
 			
 			List<Cart> cartList = cartService.selectBymNo(mNo);
 			session.setAttribute("cartList", cartList);
+			System.out.println(cartList.size());
 			
-			List<HashMap> optionList = new ArrayList();
-			for (Cart cart: cartList) {
-				HashMap optionMap = new HashMap();
-				optionMap.put("foodCategory", cart.getpName());
-				optionMap.put("cCheckin", cart.getcCheckin());
-				optionMap.put("cProductQty", cart.getcProductQty());
-				List<Product> optionItemList = productService.selectByCategory(cart.getpName());
-				List<HashMap> optionInnerList = new ArrayList();
-				for (Product optionItem: optionItemList) {
-					HashMap optionInnerMap = new HashMap();
-					optionInnerMap.put("pDesc", optionItem.getpDesc());
-					optionInnerMap.put("pName", optionItem.getpName());
-					optionInnerMap.put("pPrice", optionItem.getpPrice());
-					optionInnerList.add(optionInnerMap);
+			if (cartList.size() != 0) {
+				List<HashMap> optionList = new ArrayList();
+				for (Cart cart: cartList) {
+					HashMap optionMap = new HashMap();
+					optionMap.put("foodCategory", cart.getpName());
+					optionMap.put("cCheckin", cart.getcCheckin());
+					optionMap.put("cProductQty", cart.getcProductQty());
+					List<Product> optionItemList = productService.selectByCategory(cart.getpName());
+					List<HashMap> optionInnerList = new ArrayList();
+					for (Product optionItem: optionItemList) {
+						HashMap optionInnerMap = new HashMap();
+						optionInnerMap.put("pDesc", optionItem.getpDesc());
+						optionInnerMap.put("pName", optionItem.getpName());
+						optionInnerMap.put("pPrice", optionItem.getpPrice());
+						optionInnerList.add(optionInnerMap);
+					}
+					List<Product> insurance = productService.selectByCategory("Insurance");
+					HashMap insuranceMap = new HashMap();
+					insuranceMap.put("pDesc", insurance.get(0).getpDesc());
+					insuranceMap.put("pName", insurance.get(0).getpName());
+					insuranceMap.put("pPrice", insurance.get(0).getpPrice());
+					optionInnerList.add(insuranceMap);
+					optionMap.put("optionInnerList", optionInnerList);
+					optionList.add(optionMap);
 				}
-				List<Product> insurance = productService.selectByCategory("Insurance");
-				HashMap insuranceMap = new HashMap();
-				insuranceMap.put("pDesc", insurance.get(0).getpDesc());
-				insuranceMap.put("pName", insurance.get(0).getpName());
-				insuranceMap.put("pPrice", insurance.get(0).getpPrice());
-				optionInnerList.add(insuranceMap);
-				optionMap.put("optionInnerList", optionInnerList);
-				optionList.add(optionMap);
+				session.setAttribute("optionList", optionList);
+				
+				List dateList = new ArrayList();
+				for (Cart cart: cartList) {
+					dateList.add(cart.getcCheckin());
+				}
+				Collections.sort(dateList);
+				int length = dateList.size();
+				if (length == 1) {
+					session.setAttribute("date_min", ((String) dateList.get(0)).substring(5,10));
+					session.setAttribute("date_max", ((String) dateList.get(0)).substring(5,10));
+				} else {
+					int index_max = length - 1;
+					session.setAttribute("date_min", ((String) dateList.get(0)).substring(5,10));
+					session.setAttribute("date_max", ((String) dateList.get(index_max)).substring(5,10));
+				}
+			} else {
+				session.setAttribute("optionList", null);
+				session.setAttribute("date_min", "");
+				session.setAttribute("date_max", "");
 			}
-			session.setAttribute("optionList", optionList);
-			
-			List dateList = new ArrayList();
-			for (Cart cart: cartList) {
-				dateList.add(cart.getcCheckin());
-			}
-			Collections.sort(dateList);
-			int length = dateList.size();
-			int index_max = length - 1;
-			session.setAttribute("date_min", ((String) dateList.get(0)).substring(5,10));
-			session.setAttribute("date_max", ((String) dateList.get(index_max)).substring(5,10));
 			
 			int cartTotal = 0;
 			for (Cart cart: cartList) {
@@ -130,16 +141,28 @@ public class CartController {
 			} else {
 				cartService.insertCart(newCart);
 			}
+			List<Cart> cartList = cartService.selectBymNo(mNo);
+			session.setAttribute("cartList", cartList);
 			return "redirect:/cart_services";
 		} else {
 			return "forward:member_login_form";
 		}
 	}
 	
-	@RequestMapping(value = "/cart_delete")
+	@RequestMapping(value = "/cart_delete", produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public int cartDelete (@RequestParam(value="cNo") String cNo) {
-		return cartService.deleteCart(Integer.parseInt(cNo));
+	public List<Cart> cartDelete (@RequestParam(value="cNo") String cNo,
+						   HttpSession session) {
+		Member member = (Member) session.getAttribute("sUser");
+		if (member != null) {
+			int mNo = member.getmNo();
+			cartService.deleteCart(Integer.parseInt(cNo));
+			List<Cart> cartList = cartService.selectBymNo(mNo);
+			session.setAttribute("cartList", cartList);
+			return cartList;
+		} else {
+			return null;
+		}
 	}
 	
 	@RequestMapping(value = "/cart_update")
