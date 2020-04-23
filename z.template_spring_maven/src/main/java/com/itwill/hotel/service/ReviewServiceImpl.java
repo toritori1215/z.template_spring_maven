@@ -1,5 +1,6 @@
 package com.itwill.hotel.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +32,23 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public int updateReview(Review updateReview) {
-		return reviewDao.updateReview(updateReview);
+	public int updateReview(HashMap hashMap) {
+		return reviewDao.updateReview(hashMap);
 	}
 
 	@Override
 	public int deleteReview(int rNo) {
 		return reviewDao.deleteReview(rNo);
+	}
+
+	@Override
+	public Review selectOne(HashMap hashMap) {
+		return reviewDao.selectOne(hashMap);
+	}
+
+	@Override
+	public int ifExisted(HashMap hashMap) {
+		return reviewDao.ifExisted(hashMap);
 	}
 
 }

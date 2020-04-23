@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +29,9 @@
 	<!-- Header================================================== -->
 	<jsp:include page="WEB-INF/views/common_header_6.jsp"/>
 	<!-- End Header -->
+	
+	<!-- 사용자 지정 CSS -->
+	<link href="${pageContext.request.contextPath}/resources/z.SiliconVillage/css/hbkMy.css" rel="stylesheet">
 
 	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/img/hotels_bg.jpg" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-1">
@@ -42,11 +47,11 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="#">Home</a>
+					<li><a href="${pageContext.request.contextPath}/main">Home</a>
 					</li>
-					<li><a href="#">Category</a>
+					<li><a href="#">Hotel</a>
 					</li>
-					<li>Page active</li>
+					<li>Hotel list</li>
 				</ul>
 			</div>
 		</div>
@@ -228,14 +233,16 @@
 								<div class="styled-select-filters">
 									<select name="sort_price" id="sort_price">
 										<option value="" selected>Sort by price</option>
-										<option value="lower">Lowest price</option>
-										<option value="higher">Highest price</option>
+										<option value="ASC" >Lowest price</option>
+										<option value="DESC">Highest price</option>
+										<option value="LOWER">Lowest ranking</option>
+										<option value="HIGHER">Highest ranking</option>
 									</select>
 								</div>
 							</div>
 							<div class="col-md-3 col-sm-4 col-6">
 								<div class="styled-select-filters">
-									<select name="sort_rating" id="sort_rating">
+									<select name="sort_rating" id="sort_rating" style="visibility: hidden;">
 										<option value="" selected>Sort by ranking</option>
 										<option value="lower">Lowest ranking</option>
 										<option value="higher">Highest ranking</option>
@@ -250,8 +257,8 @@
 					<!--End tools -->
 
 					<!-- List start -->
-					<c:forEach var="product" items="${productList}"> 
 					<div class="row">
+						<c:forEach var="product" items="${productList}"> 
 						<div class="col-md-6 wow zoomIn" data-wow-delay="0.1s">
 							<div class="hotel_container">
 								<!-- 
@@ -260,11 +267,11 @@
 								<div class="ribbon_3 popular"><span>Popular</span>
 								</div>
 								<div class="img_container">
-									<a href="hotel_single.jsp?pNo=${product.pNo}">
-										<img src="${pageContext.request.contextPath}/resources/z.SiliconVilage/img/${product.pName}_thumb.jpg" width="800" height="533" class="img-fluid" alt="Image">
+									<a href="hotel_single?pNo=${product.pNo}">
+										<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg" width="800" height="533" class="img-fluid" alt="Image">
 										<div class="score"><span>7.5</span>Good</div>
 										<div class="short_info hotel">
-											From/Per night<span class="price"><sup>$</sup>59</span>
+											From/Per night<span class="price"><sup>￦</sup>${product.pPrice}</span>
 										</div>
 									</a>
 								</div>
@@ -285,6 +292,7 @@
 						<!-- End col-md-6 -->
 						<!-- List end -->
 						</c:forEach>
+					</div>
 
 						
 
@@ -340,6 +348,10 @@
 	</script>
 	
 
+
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/z.SiliconVillage/js/product.js"></script>
+	
 </body>
 
 </html>
