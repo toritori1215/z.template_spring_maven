@@ -272,7 +272,6 @@ a#mypage-link {
   border-width: 2px;
   margin-bottom: 20px;
 }
-
 .upload-drop-zone {
   color: #ccc;
   border-style: dashed;
@@ -286,4 +285,49 @@ a#mypage-link {
 }
 .upload_1 {
 	margin:20px 0;
+}
+
+/* Modal Header Close button */
+.closeAlert:hover {
+  color: #000;
+  text-decoration: none;
+}
+.closeAlert:not(:disabled):not(.disabled):hover, .close:not(:disabled):not(.disabled):focus {
+  opacity: .75;
+}
+button.closeAlert {
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+a.closeAlert.disabled {
+  pointer-events: none;
+}
+.alert-dismissible .closeAlert {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.75rem 1.25rem;
+  color: inherit;
+}
+.customized_notify .closeAlert {
+    font-weight: 500;
+    opacity: .2;
+}
+.closeAlert {
+  float: right;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  opacity: .5;
+}
+.modal-header .closeAlert {
+  position: absolute;
+  padding: 1rem 1rem;
+  margin: -1rem -1rem -1rem auto;
 }

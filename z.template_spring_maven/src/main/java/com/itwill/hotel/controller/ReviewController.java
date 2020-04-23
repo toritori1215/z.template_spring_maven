@@ -60,6 +60,27 @@ public class ReviewController {
 			return "common_404";
 		}
 	}
+
+	@RequestMapping(value = "/update_review")
+	public String updateReview(@RequestParam(value = "rNo") String rNo, 
+								@RequestParam(value = "pType") String pType) {
+		int rowCount = reviewService.deleteReview(Integer.parseInt(rNo));
+		if (rowCount == 1) {
+			if (pType.toLowerCase().equals("tour")) {
+				return "forward:tour_detail";
+			} else if (pType.toLowerCase().equals("hotel")) {
+				return "forward:hotel_detail";
+			} else if (pType.toLowerCase().equals("facility")) {
+				return "forward:facility_detail";
+			} else if (pType.toLowerCase().equals("restaurant")) {
+				return "forward:restaurant_detail";
+			} else {
+				return "common_404";
+			}
+		} else {
+			return "common_404";
+		}
+	}
 	
 	@RequestMapping(value = "/delete_review")
 	public String deleteReview(@RequestParam(value = "rNo") String rNo, 
