@@ -9,9 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.itwill.hotel.domain.Blog;
 import com.itwill.hotel.domain.BlogReview;
@@ -51,26 +54,41 @@ public class BlogController {
 	}
 	
 	@RequestMapping(value = "/blog_insert", method = RequestMethod.POST)
-	public String insert(HttpServletRequest request, Blog blog, Model model) {
-		int insertBlog = blogService.insertBlog(blog);
-		List<Blog> blogList = blogService.selectAllBlog();
-		model.addAttribute("blogList", blogList);
-		return "blog_right_sidebar";
+	public String insert(HttpServletRequest request,@RequestParam(value= "bTitle") String bTitle,
+											@RequestParam(value= "bContent") String bContent
+											,Blog blog, Model model,HttpSession httpSession) {
+		System.out.println("도착");
+		System.out.println("도착"+bTitle);
+		System.out.println("도착"+bContent);
+		Member member = (Member)httpSession.getAttribute("sUser");
+		
+		int insertBlog = blogService.insertBlog(new Blog(0, bTitle, null, bContent, 0, "hotel", member.getmNo()));
+		if (insertBlog == 1) {
+			System.out.println("쓰기성공");
+			List<Blog> blogList = blogService.selectAllBlog();
+			model.addAttribute("blogList", blogList);
+			System.out.println("!!!!!!!!!!!!!!!!!");
+			return "success";
+			
+		} else {
+			System.out.println("@@@@@@@@@@@@@@@");
+			return "fail";
+		}
 	}
 	
 	
 	@RequestMapping(value = "/blog_delete")
+	@ResponseBody
 	public String delete(@RequestParam(value = "bNo") String bNo, Model model) {
-		System.out.println("@@@@@@@@@@@@ 삭제 컨트롤러");
 		int deleteBlog = blogService.deleteBlog(Integer.parseInt(bNo));
 		if (deleteBlog == 1) {
 			System.out.println("삭제성공");
 			//model.addAttribute("deleteBlogMsg", "삭제되었습니다.");
-			return "redirect:blog_right_sidebar";
+			return "success";
 			//List<Blog> blogList = blogService.selectAllBlog();
 		} else {
 			model.addAttribute("deleteBlogMsg", "삭제 실패하였습니다.");
-			return "common_404";
+			return "fail";
 		}
 	}
 	
