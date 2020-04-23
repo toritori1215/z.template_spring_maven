@@ -61,11 +61,13 @@ public class BlogController {
 	
 	@RequestMapping(value = "/blog_delete")
 	public String delete(@RequestParam(value = "bNo") String bNo, Model model) {
+		System.out.println("@@@@@@@@@@@@ 삭제 컨트롤러");
 		int deleteBlog = blogService.deleteBlog(Integer.parseInt(bNo));
-		List<Blog> blogList = blogService.selectAllBlog();
 		if (deleteBlog == 1) {
-			model.addAttribute("deleteBlogMsg", "삭제되었습니다.");
-			return "forward:blog_right_sidebar";
+			System.out.println("삭제성공");
+			//model.addAttribute("deleteBlogMsg", "삭제되었습니다.");
+			return "redirect:blog_right_sidebar";
+			//List<Blog> blogList = blogService.selectAllBlog();
 		} else {
 			model.addAttribute("deleteBlogMsg", "삭제 실패하였습니다.");
 			return "common_404";
