@@ -389,10 +389,15 @@
 							<h3>Reviews </h3>
 							<c:choose>
 								<c:when test="${sUser != null and sUser != ''}">
-									<a href="#" class="btn_1 add_bottom_30" data-toggle="modal" data-target="#myReview">Leave a review</a>
+									<c:if test="${ifReviewExisted == 0}">
+										<a href="#" id="insertReviewHref" pNo="${product.pNo}" class="btn_1 add_bottom_30" data-toggle="modal" data-target="#myReview">Leave a review</a>
+									</c:if>
+									<c:if test="${ifReviewExisted == 1}">
+										You already commented
+									</c:if>
 								</c:when>
 								<c:otherwise>
-									If you want to leave comments, pealse <a href="#sign-in-dialog" id="access_link4"><font color="red">Sign in</font></a> 
+									If you want to leave comments<br> Please <a href="#sign-in-dialog" id="access_link4"><font color="red">Sign in</font></a> 
 								</c:otherwise>
 							</c:choose>
 						</div>
@@ -667,9 +672,15 @@
 											<img height="100px" width="80px" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/member/${review.mImg}" alt="Image" class="rounded-circle">
 											<small> - ${review.rRegDate} - </small>
 											<h4 align="center">${review.mId}</h4>
-											<p align="center">${review.rContent}</p>
+											<br>
+											<p>${review.rContent}</p>
+											<input type="hidden" id="review_${review.mId}" value="${review.mId}">
 											<c:if test="${review.mNo == sUser.mNo}">
-												<h6 align="right"><a href="#" data-toggle="modal" data-target="#updateReview">Modify</a><span> | </span><a href="delete_review?rNo=${review.rNo}&pNo=${product.pNo}&pType=${product.pType}">Delete</a></h6>
+												<h6 align="right">
+												<a href="#" class="update_Review" rNo="${review.rNo}" pNo="${review.pNo}" mNo="${review.mNo}" data-toggle="modal" data-target="#updateReview">Modify</a>
+												<span> | </span>
+												<a href="delete_review?pNo=${product.pNo}&pType=${product.pType}">Delete</a>
+												</h6>
 											</c:if>
 											<div class="rating">
 												<c:choose>
@@ -849,8 +860,6 @@
 	</main>
 	<!-- End main -->
 	
-
-	
 	<!-- Footer================================================== -->
 	<jsp:include page="/WEB-INF/views/common_footer_2.jsp"/>
 	<!-- End Footer -->
@@ -939,6 +948,21 @@
 				data:"pNo="+pNo,
 				async:true,
 				success:function(d) {
+				}
+			});
+		});
+	</script>
+	<script type="text/javascript">
+		$("#updateReview").on("show.bs.modal", function(e) {
+			var rNo = $(".update_Review").attr("rNo");
+			var pNo = $(".update_Review").attr("pNo");
+			var mNo = $(".update_Review").attr("mNo");
+			$.ajax({
+				url: "review_selectOne",
+				data: {"pNo" : pNo, "mNo" : mNo},
+				type: "post",
+				success: function(review) {
+					$(e.target).find("#review_text").html(review.rContent);
 				}
 			});
 		});

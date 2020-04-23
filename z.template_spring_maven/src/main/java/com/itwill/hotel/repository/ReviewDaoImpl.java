@@ -1,5 +1,6 @@
 package com.itwill.hotel.repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,13 +34,23 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 	@Override
-	public int updateReview(Review updateReview) {
-		return reviewMapper.updateReview(updateReview);
+	public int updateReview(HashMap hashMap) {
+		return reviewMapper.updateReview(hashMap);
 	}
 
 	@Override
-	public int deleteReview(int rNo) {
-		return reviewMapper.deleteReview(rNo);
+	public int deleteReview(HashMap hashMap) {
+		return reviewMapper.deleteReview(hashMap);
+	}
+
+	@Override
+	public Review selectOne(HashMap hashMap) {
+		return reviewMapper.selectOne(hashMap);
+	}
+
+	@Override
+	public int ifExisted(HashMap hashMap) {
+		return reviewMapper.ifExisted(hashMap);
 	}
 	
 }

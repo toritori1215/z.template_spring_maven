@@ -1,5 +1,6 @@
 package com.itwill.hotel.repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.itwill.hotel.domain.Review;
@@ -14,8 +15,12 @@ public interface ReviewDao {
 	
 	public int insertReview(Review review);
 	
-	public int updateReview(Review updateReview);
+	public int updateReview(HashMap hashMap);
 
-	public int deleteReview(int rNo);
+	public int deleteReview(HashMap hashMap);
+	
+	public Review selectOne(HashMap hashMap);
+	
+	public int ifExisted(HashMap hashMap);
 	
 }

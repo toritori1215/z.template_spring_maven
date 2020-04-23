@@ -1,5 +1,6 @@
 package com.itwill.hotel.repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,20 +36,19 @@ public class BlogDaoImpl implements BlogDao {
 	}
 
 	@Override
-	public int insertBlog(Blog blog) {
-		int insertResult = blogMapper.insertBlog(blog);
-		return insertResult;
+	public int insertBlog(HashMap hashMap) {
+		return blogMapper.insertBlog(hashMap);
 	}
 
 	@Override
-	public int deleteBlog(int bNo) {
-		int deleteResult = blogMapper.deleteBlog(bNo);
+	public int deleteBlog(HashMap hashMap) {
+		int deleteResult = blogMapper.deleteBlog(hashMap);
 		return deleteResult;
 	}
 
 	@Override
-	public int updateBlog(Blog blog) {
-		int updateResult = blogMapper.updateBlog(blog);
+	public int updateBlog(HashMap hashMap) {
+		int updateResult = blogMapper.updateBlog(hashMap);
 		return updateResult;
 	}
 	

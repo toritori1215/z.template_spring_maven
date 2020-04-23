@@ -53,10 +53,12 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/tour_list")
-	public String tourList(Model model) {
+	public String tourList(Model model, HttpSession session) {
+		Member member = (Member) session.getAttribute("sUser");
 		HashMap parameterMap = new HashMap();
 		parameterMap.put("pType", "tour");
 		model.addAttribute("productList", productService.selectByType(parameterMap));
+		
 		return "tour_all_list";
 	}
 	
@@ -81,8 +83,12 @@ public class ProductController {
 			int mNo = member.getmNo();
 			Wishlist wishlist = new Wishlist(mNo, Integer.parseInt(pNo));
 			ifExist = productService.checkWishlist(wishlist);
+			HashMap hashMap = new HashMap();
+			hashMap.put("mNo", member.getmNo());
+			hashMap.put("pNo", pNo);
+			int ifReviewExisted = reviewService.ifExisted(hashMap);
+			model.addAttribute("ifReviewExisted", ifReviewExisted);
 		}
-		
 		Product product = productService.selectByNo(Integer.parseInt(pNo));
 		model.addAttribute("product", product);
 		model.addAttribute("ifExist", ifExist);
@@ -226,4 +232,5 @@ public class ProductController {
 	public String errorPage() {
 		return "common_404";
 	}
+	
 }

@@ -142,35 +142,35 @@
 										<h3><strong>${wishlist.pName}</strong> ${wishlist.pType}</h3>
 										<div class="rating">
 											<c:choose>
-												<c:when test="${wishlist.pRate > 0 and wishlist.pRate <= 2}">
+												<c:when test="${wishlist.pRate == 1}">
 													<i class="icon-star voted"></i>
 													<i class="icon-star-empty"></i>
 													<i class="icon-star-empty"></i>
 													<i class="icon-star-empty"></i>
 													<i class="icon-star-empty"></i>
 												</c:when>
-												<c:when test="${wishlist.pRate > 2 and wishlist.pRate <= 4}">
+												<c:when test="${wishlist.pRate == 2}">
 													<i class="icon-star voted"></i>
 													<i class="icon-star voted"></i>
 													<i class="icon-star-empty"></i>
 													<i class="icon-star-empty"></i>
 													<i class="icon-star-empty"></i>
 												</c:when>
-												<c:when test="${wishlist.pRate > 4 and wishlist.pRate <= 6}">
+												<c:when test="${wishlist.pRate == 3}">
 													<i class="icon-star voted"></i>
 													<i class="icon-star voted"></i>
 													<i class="icon-star voted"></i>
 													<i class="icon-star-empty"></i>
 													<i class="icon-star-empty"></i>
 												</c:when>
-												<c:when test="${wishlist.pRate > 6 and wishlist.pRate <= 8}">
+												<c:when test="${wishlist.pRate == 4}">
 													<i class="icon-star voted"></i>
 													<i class="icon-star voted"></i>
 													<i class="icon-star voted"></i>
 													<i class="icon-star voted"></i>
 													<i class="icon-star-empty"></i>
 												</c:when>
-												<c:when test="${wishlist.pRate > 8 and wishlist.pRate <= 10}">
+												<c:when test="${wishlist.pRate == 5}">
 													<i class="icon-star voted"></i>
 													<i class="icon-star voted"></i>
 													<i class="icon-star voted"></i>
@@ -433,7 +433,8 @@
 
 	<!-- Specific scripts -->
 	<script src="${pageContext.request.contextPath}/resources/js/tabs.js"></script>
-
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/gu-upload/guuploadManager.js"></script>
+	
 	<script>
 		var inputMsg = $("#inputMsg").val();
 		if (inputMsg == 1) {
@@ -473,7 +474,6 @@
 		});
 	</script>
 	
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/gu-upload/guuploadManager.js"></script>
 	<script type="text/javascript">
 		var guManager = null;
 		
@@ -506,6 +506,7 @@
 			document.form1.submit();
 		}
 	</script>
+	
 </body>
 
 </html>

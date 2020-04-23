@@ -18,7 +18,7 @@
 					<div class="progress">
 						<div class="progress-bar"></div>
 					</div>
-					<a href="cart.html" class="bs-wizard-dot"></a>
+					<a href="cart_services" class="bs-wizard-dot"></a>
 				</div>
 
 				<div class="col-4 bs-wizard-step active">
@@ -26,7 +26,7 @@
 					<div class="progress">
 						<div class="progress-bar"></div>
 					</div>
-					<a href="#" class="bs-wizard-dot"></a>
+					<a href="#0" class="bs-wizard-dot"></a>
 				</div>
 
 				<div class="col-4 bs-wizard-step disabled">
@@ -111,7 +111,7 @@
 					<div class="form_title">
 						<h3><strong>2</strong>Payment Information</h3>
 						<p>
-							Mussum ipsum cacilds, vidis litro abertis.
+							Your booking is safe and secure.
 						</p>
 					</div>
 					<div class="step">
@@ -168,10 +168,14 @@
 
 						<h4>Or checkout with Paypal</h4>
 						<p>
-							Lorem ipsum dolor sit amet, vim id accusata sensibus, id ridens quaeque qui. Ne qui vocent ornatus molestie, reque fierent dissentiunt mel ea.
+							You will be redirected to a third party website to complete the payment process.
 						</p>
 						<p>
-							<img src="${pageContext.request.contextPath}/resources/img/paypal_bt.png" alt="Image">
+							<a href="https://www.paypal.com/signin">
+						    	<img src="${pageContext.request.contextPath}/resources/img/paypal_bt.png" alt="Image">
+							</a>
+						<!-- 
+							<img src="${pageContext.request.contextPath}/resources/img/paypal_bt.png" alt="Image">  -->
 						</p>
 					</div>
 					<!--End step -->
@@ -179,7 +183,7 @@
 					<div class="form_title">
 						<h3><strong>3</strong>Billing Address</h3>
 						<p>
-							Mussum ipsum cacilds, vidis litro abertis.
+							We’ll use this to verify your credit card details.
 						</p>
 					</div>
 					<div class="step">
