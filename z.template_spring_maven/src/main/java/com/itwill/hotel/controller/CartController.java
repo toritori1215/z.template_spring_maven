@@ -45,7 +45,6 @@ public class CartController {
 			
 			List<Cart> cartList = cartService.selectBymNo(mNo);
 			session.setAttribute("cartList", cartList);
-			System.out.println(cartList.size());
 			
 			if (cartList.size() != 0) {
 				List<HashMap> optionList = new ArrayList();

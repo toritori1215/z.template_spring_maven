@@ -63,7 +63,7 @@
 						<div class="box_style_1">
 						<input type="hidden" name="bNo" id="bNo" value="${blog.bNo}">
 							<div class="post nopadding">
-								<img src="${pageContext.request.contextPath}/resources/img/blog-1.jpg" alt="Image" class="img-fluid">
+								<img src="${pageContext.request.contextPath}/resources/img/blog${blog.bno}.png" alt="Image" class="img-fluid">
 								<div class="post_info clearfix">
 									<div class="post-left">
 										<ul>
