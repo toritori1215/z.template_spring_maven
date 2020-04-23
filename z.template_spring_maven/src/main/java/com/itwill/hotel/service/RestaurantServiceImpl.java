@@ -168,7 +168,8 @@ public class RestaurantServiceImpl implements RestaurantService{
 	@Override
 	public int deleteMemberCart(int mno) {
 		// TODO Auto-generated method stub
-		return 0;
+		int deleteCnt = restaurantdao.deleteMemberCart(mno);
+		return deleteCnt;
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRED,

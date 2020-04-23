@@ -313,6 +313,7 @@ public class RestaurantViewResolverController {
 	    model.addAttribute("totalSeatBookingCnt", totalSeatBookingCnt);
 	    model.addAttribute("totalFoodPrice", totalFoodPrice);
 	    model.addAttribute("totalDepositCost",totaldeposit);
+	    model.addAttribute("isCart",isCart);
 		return "restaurant_payment_fixed_sidebar";
 	}
 	
@@ -359,7 +360,7 @@ public class RestaurantViewResolverController {
 	    session.setAttribute("jumunList", jd_list);
 	    session.setAttribute("totalPrice",totalPrice);
 	    model.addAttribute("totalFoodPrice",totalFoodPrice);
-	    
+	    model.addAttribute("isCart",isCart);
 		return "restaurant_payment_fixed_sidebar";
 	}
 	
@@ -372,7 +373,9 @@ public class RestaurantViewResolverController {
 														@RequestParam(required=false) String bookingTime,
 														@RequestParam String expire_month,//유효 월
 														@RequestParam String expire_year,//유효 년
+														@RequestParam(required=false) String isCart,
 														@ModelAttribute Restaurant_J_DTO jumundto,
+														
 														HttpSession session,
 														Model model) {
 		//주문 상세 정보 셋팅
@@ -412,7 +415,15 @@ public class RestaurantViewResolverController {
 		if(success) {
 			System.out.println("삽입 성공!!!");
 		}
-		
+		System.out.println("isCart ::" + isCart);
+		if(isCart != null && isCart.equals("no")){
+			
+		}else {
+			int deleteCnt = restService.deleteMemberCart(member.getmNo());
+			if(deleteCnt>0) {
+				System.out.println("삭제 성공");
+			}
+		}
 		
 		return "restaurant_confirmation_fixed_sidebar";
 	}

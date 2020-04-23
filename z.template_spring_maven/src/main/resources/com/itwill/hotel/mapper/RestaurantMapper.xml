@@ -216,6 +216,8 @@
 			where pno = #{pno} and mno=#{mno}
 	
 	</update>
+
+	
 	
 	<!-- 특정날 예약 시간에  주문된 좌석 수 한 시간 기준이면 (=) 으로 하는것이 나을수 있음 {결과는 동일}-->
 	<select id="seatCapacityCalcul"

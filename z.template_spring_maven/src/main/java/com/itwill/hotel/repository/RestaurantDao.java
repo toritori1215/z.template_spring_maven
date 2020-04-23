@@ -26,4 +26,5 @@ public interface RestaurantDao {
 	public int deleteMemberCart(int mno);
 	public int insertJumunTable(Restaurant_J_DTO jumundto);
 	public int insertJumunDetailTable(Restaurant_JD_DTO jd_list);
+	
 }
