@@ -68,11 +68,11 @@ public class BlogController {
 			List<Blog> blogList = blogService.selectAllBlog();
 			model.addAttribute("blogList", blogList);
 			System.out.println("!!!!!!!!!!!!!!!!!");
-			return "success";
+			return "forward:blog_right_sidebar";
 			
 		} else {
 			System.out.println("@@@@@@@@@@@@@@@");
-			return "fail";
+			return "common_404";
 		}
 	}
 	
