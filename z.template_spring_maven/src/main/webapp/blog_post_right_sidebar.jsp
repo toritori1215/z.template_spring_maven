@@ -369,9 +369,10 @@ $('#delete_blog_post').click(function(){
 		data: params,
 		success : function() {
 			alert("삭제 되었습니다");
+			location.href="blog_right_sidebar";
 		},
 		error : function(){
-			alert("삭제 실패 하였습니다")
+		
 		}
 	});
 });
