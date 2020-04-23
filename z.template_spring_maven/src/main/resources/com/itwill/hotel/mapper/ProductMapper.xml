@@ -41,6 +41,13 @@
 		</trim>
 	</select>
 	
+	<select id="selectByCategory" parameterType="String" resultType="Product">
+		select pNo, pName, pPrice, pType, pAvailable, pImg, pCapacity, pRate, pDesc, foodCategory 
+		from product
+		where foodCategory = #{foodCategory}
+		order by pName, pNo
+	</select>
+	
 	<select id="checkWishlist" parameterType="Wishlist" resultType="java.lang.Integer">
 		select count(pNo)
 		from wish_list

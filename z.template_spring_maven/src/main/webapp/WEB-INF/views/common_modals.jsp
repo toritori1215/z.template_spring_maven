@@ -520,7 +520,7 @@
 		<div class="modal-content">
 			<div class="modal-header" align="center">
 				<h4 class="col-12 modal-title text-center" id="addWishlistLabel">Successfully Added!</h4>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<button type="button" class="closeAlert" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			</div>
 			<div class="modal-body" align="center">
 				<div id="addWishlistBody">
@@ -603,6 +603,7 @@
 </div>
 <!-- End modal review -->
 
+<<<<<<< HEAD
 <!-- Modal BlogWrite -->
 <div class="modal fade" id="writeBlog" tabindex="-1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
 	<div class="modal-dialog">
@@ -665,3 +666,36 @@
 	</div>
 </div>
 <!-- End modal review -->
+=======
+<!-- ======================================== member_admin.jsp ======================================== -->
+<div class="modal fade" id="memberAddWishlist" tabindex="-1" role="dialog" aria-labelledby="addWishlistLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header" align="center">
+				<h4 class="col-12 modal-title text-center" id="addWishlistLabel">Choose One You Want to See</h4>
+				<button type="button" class="closeAlert" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			</div>
+			<div class="modal-body" align="center">
+				<div id="addWishlistBody">
+					<a href="tour_list" class="btn_1 white" style="width: 200px">Tours</a>
+				</div>
+			</div>
+			<div class="modal-body" align="center">
+				<div id="addWishlistBody">
+					<a href="hotel_list" class="btn_1 white" data-dismiss="modal">Hotels</a>
+				</div>
+			</div>
+			<div class="modal-body" align="center">
+				<div id="addWishlistBody">
+					<a href="facility_list" class="btn_1 white" style="width: 200px">Facilities</a>
+				</div>
+			</div>
+			<div class="modal-body" align="center">
+				<div id="addWishlistBody">
+					<a href="restaurant_list" class="btn_1 white" data-dismiss="modal">Restaurants</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+>>>>>>> branch 'master' of https://github.com/toritori1215/z.template_spring_maven.git

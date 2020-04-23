@@ -8,6 +8,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,19 +17,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwill.hotel.domain.Cart;
 import com.itwill.hotel.domain.Member;
+import com.itwill.hotel.domain.Product;
 import com.itwill.hotel.service.CartService;
+import com.itwill.hotel.service.ProductService;
 
 @Controller
 public class CartController {
 	
 	@Autowired
 	private CartService cartService;
+	
+	@Autowired
+	private ProductService productService;
 	
 	@RequestMapping(value = "/cart_services")
 	public String cartServices(HttpSession session, Model model) {
@@ -40,6 +46,32 @@ public class CartController {
 			
 			List<Cart> cartList = cartService.selectBymNo(mNo);
 			session.setAttribute("cartList", cartList);
+			
+			List<HashMap> optionList = new ArrayList();
+			for (Cart cart: cartList) {
+				HashMap optionMap = new HashMap();
+				optionMap.put("foodCategory", cart.getpName());
+				optionMap.put("cCheckin", cart.getcCheckin());
+				optionMap.put("cProductQty", cart.getcProductQty());
+				List<Product> optionItemList = productService.selectByCategory(cart.getpName());
+				List<HashMap> optionInnerList = new ArrayList();
+				for (Product optionItem: optionItemList) {
+					HashMap optionInnerMap = new HashMap();
+					optionInnerMap.put("pDesc", optionItem.getpDesc());
+					optionInnerMap.put("pName", optionItem.getpName());
+					optionInnerMap.put("pPrice", optionItem.getpPrice());
+					optionInnerList.add(optionInnerMap);
+				}
+				List<Product> insurance = productService.selectByCategory("Insurance");
+				HashMap insuranceMap = new HashMap();
+				insuranceMap.put("pDesc", insurance.get(0).getpDesc());
+				insuranceMap.put("pName", insurance.get(0).getpName());
+				insuranceMap.put("pPrice", insurance.get(0).getpPrice());
+				optionInnerList.add(insuranceMap);
+				optionMap.put("optionInnerList", optionInnerList);
+				optionList.add(optionMap);
+			}
+			session.setAttribute("optionList", optionList);
 			
 			List dateList = new ArrayList();
 			for (Cart cart: cartList) {
@@ -98,26 +130,6 @@ public class CartController {
 			} else {
 				cartService.insertCart(newCart);
 			}
-			
-			List<Cart> cartList = cartService.selectBymNo(mNo);
-			session.setAttribute("cartList", cartList);
-			
-			List dateList = new ArrayList();
-			for (Cart cart: cartList) {
-				dateList.add(cart.getcCheckin());
-			}
-			Collections.sort(dateList);
-			int length = dateList.size();
-			int index_max = length - 1;
-			session.setAttribute("date_min", ((String) dateList.get(0)).substring(5,10));
-			session.setAttribute("date_max", ((String) dateList.get(index_max)).substring(5,10));
-			
-			int cartTotal = 0;
-			for (Cart cart: cartList) {
-				cartTotal += cart.getcProductTypePay();
-			}
-			session.setAttribute("cartTotal", cartTotal);
-			
 			return "redirect:/cart_services";
 		} else {
 			return "forward:member_login_form";
@@ -142,9 +154,9 @@ public class CartController {
 		parameterMap.put("cProductQty", cProductQty_int);
 		parameterMap.put("cProductTypePay", cProductQty_int*pPrice);
 		parameterMap.put("cOrderCnt", cProductQty_int);
-		int count = cartService.updateCart(parameterMap);
-		return cProductQty_int*pPrice;
-	}
+		cartService.updateCart(parameterMap);
+		return cProductQty_int*pPrice/10000;
+	}	
 	
 	@RequestMapping(value = "/session_check")
 	@ResponseBody

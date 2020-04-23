@@ -197,7 +197,7 @@
 							</c:forEach>
 						</div>
 						<!-- End row -->
-						<a href="tour_list" class="btn_1 green">Update wishlist</a>
+						<a href="#" class="btn_1 green" data-toggle="modal" data-target="#memberAddWishlist">Update wishlist</a>
 					</section>
 					<!-- End section 2 -->
 
