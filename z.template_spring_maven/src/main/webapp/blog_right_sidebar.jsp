@@ -30,6 +30,7 @@
 	<jsp:include page="WEB-INF/views/common_header_6.jsp"/>
 	<!-- End Header -->
 
+
 	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/img/bg_blog.jpg" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
