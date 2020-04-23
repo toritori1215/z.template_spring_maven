@@ -357,6 +357,7 @@
 
 <script type="text/javascript">
 
+
 $('#delete_blog_post').click(function(){
 	//alert($('#bNo').val());
 	//alert($('#review_rNo').val());
