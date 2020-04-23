@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>   
 
@@ -250,44 +252,41 @@
 							<h3 class="inner">- Summary -</h3>
 							<table class="table table_summary">
 								<tbody>
+									<c:if test="${not empty bookingDate ||not empty bookingTime ||not empty totalSeatBookingCnt}">
+										
+											<tr>
+												<td>
+													Reservation Persons
+												</td>
+												<td class="text-right">
+													${totalSeatBookingCnt}
+												</td>
+											</tr>
+											<tr>
+												<td>
+													Deposit cost
+												</td>
+												<td class="text-right" price_list="price">
+													${totalDepositCost}
+												</td>
+											</tr>
+										
+									</c:if>
+									
 									<tr>
 										<td>
-											Adults
+											Total Food Price
 										</td>
-										<td class="text-right">
-											2
-										</td>
-									</tr>
-									<tr>
-										<td>
-											Children
-										</td>
-										<td class="text-right">
-											0
-										</td>
-									</tr>
-									<tr>
-										<td>
-											Dedicated tour guide
-										</td>
-										<td class="text-right">
-											$34
-										</td>
-									</tr>
-									<tr>
-										<td>
-											Insurance
-										</td>
-										<td class="text-right">
-											$34
+										<td class="text-right" price_list="price">
+											${totalFoodPrice}
 										</td>
 									</tr>
 									<tr class="total">
 										<td>
 											Total cost
 										</td>
-										<td class="text-right">
-											$154
+										<td class="text-right" price_list="price">
+											${totalPrice}
 										</td>
 									</tr>
 								</tbody>
@@ -331,7 +330,34 @@
 		   radioClass: 'iradio_square-grey'
 		 });
 		
+		function numberWithCommas(x) {
+		    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}	
 		
+		
+		$(function(){
+			
+			//가격 원화 표시
+			var abc = document.querySelectorAll( 'td[price_list="price"]');
+			var valueProd;
+			for (var i = 0; i < abc.length; i++) {
+			
+				//abc[i].style.color='green';
+				valueProd = abc[i].firstChild.nodeValue;
+				//console.log("valueProd="+valueProd);
+				let subValue = valueProd.substr(1).trim();
+				//console.log("subValue="+subValue);
+				//console.log("subValue numberWithCommas="+numberWithCommas(subValue));
+				let completeVal = numberWithCommas(subValue);
+				//console.log("valueProd="+valueProd);
+				//console.log("valueProd.firstChild.nodeValue="+valueProd.firstChild.nodeValue);
+				
+				abc[i].firstChild.nodeValue = "￦"+ completeVal;
+			}
+			
+			
+			
+		});
 		
 		
 		

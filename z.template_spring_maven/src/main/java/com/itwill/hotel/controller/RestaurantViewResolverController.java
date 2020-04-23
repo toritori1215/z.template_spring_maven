@@ -254,14 +254,22 @@ public class RestaurantViewResolverController {
 												   @RequestParam(value="bookingTime") String bookingTime,
 												   @RequestParam(value="bookingDate") String bookingDate,
 												   @RequestParam(value="totalSeatBookingCnt") Integer totalSeatBookingCnt, 
+												   @RequestParam(value="totalFoodPrice") Integer totalFoodPrice,
+												   @RequestParam(value="isCart",required=false) String isCart,
 												   Model model,
 												   HttpSession session) {
 		System.out.println(itemObjectJSONList);
 		System.out.println("totalPrice >>>>>" + totalPrice);
 		System.out.println("bookingTime >>>>>" + bookingTime);
 		System.out.println("bookingDate >>>>>" + bookingDate);
+		System.out.println("totalFoodPrice >>>>>" + totalFoodPrice);
 		System.out.println("totalSeatBookingCnt >>>>>" + totalSeatBookingCnt);
 		
+		//deposit total cost 계산.
+		RestaurantDTO bookProduct = (RestaurantDTO)session.getAttribute("restaurant_prod");
+		
+		int totaldeposit = bookProduct.getPprice() * totalSeatBookingCnt;
+		//System.out.println("여기가 안찍히면 여서 null포인트란 건데..");
 		
 		//JSON 형태의 문자열 List<Map> 파싱
 		List<Map<String,Object>> resultMapArray = new ArrayList<Map<String,Object>>();
@@ -279,15 +287,19 @@ public class RestaurantViewResolverController {
 			jd_list.add(jd_dto);
 		}
 	    
-	    //1.아직 결재가 완료 된것이 아니고 결제창으로 넘어가는 과정이다.
-	    //  카트에서 상품의 수량과 가격 총합계가 바뀌었을 경우를 생각하여 해당 회원의 카트테이블을 카트View에서 조정한 리스트 항목으로 변경해주어야한다.
-	    //  카트의 기존 내용 삭제와 동시에 새로운 카트리스트를 카트테이블에 등록하는 것임으로 하나의 트랜잭션으로 처리하기 위해 서비스에서 작업이 이루어지게 한다.
-	    Member member = (Member)session.getAttribute("sUser");
-	    boolean cartReDefindSucc =restService.cartReDefindTransaction(jd_list, member);
-	    if(cartReDefindSucc) {
-	    	System.out.println("카트 정보 초기화 성공!!!");
+	    //0. 카트에서 요청이 들어온것이 아니라면 카트를 초기화줄 필요가 없다.
+	    if(isCart != null && isCart.equals("no")) {
+	    	System.out.println("카트에서의 요청이 아닙니다.");
+	    }else {
+		    //1.아직 결재가 완료 된것이 아니고 결제창으로 넘어가는 과정이다.
+		    //  카트에서 상품의 수량과 가격 총합계가 바뀌었을 경우를 생각하여 해당 회원의 카트테이블을 카트View에서 조정한 리스트 항목으로 변경해주어야한다.
+		    //  카트의 기존 내용 삭제와 동시에 새로운 카트리스트를 카트테이블에 등록하는 것임으로 하나의 트랜잭션으로 처리하기 위해 서비스에서 작업이 이루어지게 한다.
+		    Member member = (Member)session.getAttribute("sUser");
+		    boolean cartReDefindSucc =restService.cartReDefindTransaction(jd_list, member);
+		    if(cartReDefindSucc) {
+		    	System.out.println("카트 정보 초기화 성공!!!");
+		    }
 	    }
-	    
 	    //2. 해당 컨트롤러는 주문할 항목을 확정짓는 단계의 과정임으로 세션으로 처리하면 결제 뷰에서 유용하게 사용가능하다. (혹시 모르니 결재완료시 해당세션을 지우도록 한다!)
 	    //totalPrice, jumunList 는 restaurant_payment_fixed_sidebar로 이동하는 어느 경로든 재 setting이 됨으로 session에 저장 하자.
 	    session.setAttribute("jumunList", jd_list);
@@ -297,7 +309,8 @@ public class RestaurantViewResolverController {
 	    model.addAttribute("bookingTime", bookingTime);
 	    model.addAttribute("bookingDate", bookingDate);
 	    model.addAttribute("totalSeatBookingCnt", totalSeatBookingCnt);
-	    
+	    model.addAttribute("totalFoodPrice", totalFoodPrice);
+	    model.addAttribute("totalDepositCost",totaldeposit);
 		return "restaurant_payment_fixed_sidebar";
 	}
 	
@@ -307,10 +320,13 @@ public class RestaurantViewResolverController {
 	public String restaurant_payment_fixed_sidebar2(@RequestParam(value="itemObjectJSONList",required = false) 
 												   String itemObjectJSONList,
 												   @RequestParam(value="totalPrice") Integer totalPrice,
+												   @RequestParam(value="totalFoodPrice") Integer totalFoodPrice,
+												   @RequestParam(value="isCart",required = false) String isCart,
 												   Model model,
 												   HttpSession session) {
 		System.out.println(itemObjectJSONList);
 		System.out.println("totalPrice >>>>>" + totalPrice);
+		System.out.println("totalFoodPrice >>>>>" + totalFoodPrice);
 		List<Map<String,Object>> resultMapArray = new ArrayList<Map<String,Object>>();
 	    resultMapArray = JSONArray.fromObject(itemObjectJSONList);
 	    
@@ -325,19 +341,22 @@ public class RestaurantViewResolverController {
 															 jdproductqty, jdproducttot, null, pno);
 			jd_list.add(jd_dto);
 		}
-	    
-	    //1.아직 결재가 완료 된것이 아니고 결제창으로 넘어가는 과정이다.
-	    //  카트에서 상품의 수량과 가격 총합계가 바뀌었을 경우를 생각하여 해당 회원의 카트테이블을 카트View에서 조정한 리스트 항목으로 변경해주어야한다.
-	    //  카트의 기존 내용 삭제와 동시에 새로운 카트리스트를 카트테이블에 등록하는 것임으로 하나의 트랜잭션으로 처리하기 위해 서비스에서 작업이 이루어지게 한다.
-	    Member member = (Member)session.getAttribute("sUser");
-	    boolean cartReDefindSucc =restService.cartReDefindTransaction(jd_list, member);
-	    if(cartReDefindSucc) {
-	    	System.out.println("카트 정보 초기화 성공!!!");
+	    if(isCart != null && isCart.equals("no")) {
+	    	System.out.println("카트에서의 요청이 아닙니다.");
+	    }else {
+		    //1.아직 결재가 완료 된것이 아니고 결제창으로 넘어가는 과정이다.
+		    //  카트에서 상품의 수량과 가격 총합계가 바뀌었을 경우를 생각하여 해당 회원의 카트테이블을 카트View에서 조정한 리스트 항목으로 변경해주어야한다.
+		    //  카트의 기존 내용 삭제와 동시에 새로운 카트리스트를 카트테이블에 등록하는 것임으로 하나의 트랜잭션으로 처리하기 위해 서비스에서 작업이 이루어지게 한다.
+		    Member member = (Member)session.getAttribute("sUser");
+		    boolean cartReDefindSucc =restService.cartReDefindTransaction(jd_list, member);
+		    if(cartReDefindSucc) {
+		    	System.out.println("카트 정보 초기화 성공!!!");
+		    }
 	    }
-	    
 	    //2. 해당 컨트롤러는 주문할 항목을 확정짓는 단계의 과정임으로 세션으로 처리하면 결제 뷰에서 유용하게 사용가능하다. (혹시 모르니 결재완료시 해당세션을 지우도록 한다!)
 	    session.setAttribute("jumunList", jd_list);
 	    session.setAttribute("totalPrice",totalPrice);
+	    model.addAttribute("totalFoodPrice",totalFoodPrice);
 	    
 		return "restaurant_payment_fixed_sidebar";
 	}

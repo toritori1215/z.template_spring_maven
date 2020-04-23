@@ -537,15 +537,23 @@
 							</table>
 							<form name="f" id="f">
 								<input type="hidden" name="pno" id="pno" value= "${restaurantProduct.pno}">
+								
+								<!--전송할 데이터  -->
+								<input type="hidden" name= "totalSeatBookingCnt" id="totalSeatBookingCnt" value="">
+								<input type="hidden" name= "totalFoodPrice" id="totalFoodPrice" value="">
+								<input type="hidden" name="totalPrice" id="totalPrice" value= "">					
+								<input type="hidden" name="bookingTime" id="bookingTime" value="">					
+								<input type="hidden" name="bookingDate" id="bookingDate" value="">
+								<input type="hidden" id="itemObjectJSONList" name="itemObjectJSONList" value="">
+								<input type="hidden" id="isCart" name="isCart" value="no">
+								<!-- 웹용-->
 								<input type="hidden" name="foodsPrice" id="foodsPrice" value= "">							
-								<input type="hidden" name="foodCount" id="foodCount" value= "">					
-								<input type="hidden" name="bookingTime" id="bookingTime" value= "">					
-								<input type="hidden" name="bookingdate" id="bookingdate" value= "">						
+								<input type="hidden" name="foodCount" id="foodCount" value= "">										
 								<input type="hidden" name="leftSeat" id="leftSeat" value= "">						
 								<input type="hidden" name="deposit_cost_ori" id="deposit_cost_ori" value= "${deposit_cost.pprice}">
 								<input type="hidden" name="seatCapacity" id="seatCapacity" value="${restaurant_prod.pavailable}">						
 							</form>
-							<a class="btn_full" href="restaurant_payment_fixed_sidebar" >BUY NOW</a>
+							<a class="btn_full" href="restaurant_payment_fixed_sidebar" id="checkOutBtn" >BUY NOW</a>
 							<a class="btn_full_outline" href="restaurant_cart_fixed_sidebar" id="addToCartBtn"><i class=" icon-cart"></i> ADD TO CART</a>
 					</div>
 					
@@ -752,13 +760,15 @@
 			let depositPrice = calculDepositPrice();
 			let foodsPrice = calculfoodPrice();
 			let sumPrice = foodsPrice + depositPrice;
-			document.getElementById('sumPrice').firstChild.nodeValue ="￦" +numberWithCommas(sumPrice);	
+			document.getElementById('sumPrice').firstChild.nodeValue ="￦" +numberWithCommas(sumPrice);
+			return sumPrice;
 		}	
 		
 		function hideReservationinfoSumCalcul(){
 			let foodsPrice = calculfoodPrice();
 			let sumPrice = foodsPrice;
 			document.getElementById('sumPrice').firstChild.nodeValue ="￦" +numberWithCommas(sumPrice);	
+			return sumPrice;
 		}	
 	
 	
@@ -1100,6 +1110,109 @@
 			document.f.submit();
 			
 		}
+		
+		
+		$('#checkOutBtn').click(function(e){
+			let show_reservation_window = $('#reservation_div_space').is(':visible');
+			//보내야할 정보 정리
+			// 1.상품리스트를 json데이터화 -> [[pno, jdproductqty, jdproducttot],[....]
+			// 2.상품 총금액 -> $(#sumPrice)
+			// 3.예약의 경우 -> jdorderdate ,jdordertime, jdorderqty 정보를 전송 {총 7개 데이터를 다뤄야함}
+			e.preventDefault();
+			if(show_reservation_window){
+				console.log("창이 열려있는경우");
+				//deposit가격을 포함시켜야함
+				let totalSeatBookingCnt = document.getElementById('persons').value;
+				let bookingDate = document.getElementById('datePicker').value;
+				let bookingTime = document.getElementById('timePicker').value;
+				//console.log('totalSeatBookingCnt ::' + totalSeatBookingCnt);
+				//console.log('bookingDate ::' + bookingDate);
+				//console.log('bookingTime ::' + bookingTime);
+				
+				document.getElementById('totalSeatBookingCnt').value = totalSeatBookingCnt;
+				document.getElementById('bookingDate').value = bookingDate;
+				document.getElementById('bookingTime').value = bookingTime;
+				
+				console.log('totalSeatBookingCnt ==>'+ totalSeatBookingCnt);
+				console.log('bookingDate ==>'+ bookingDate);
+				console.log('bookingTime ==>'+ bookingTime);
+				
+				requestSettingCartList();
+				document.getElementById('totalFoodPrice').value = calculfoodPrice();
+				document.getElementById('totalPrice').value = showReservationinfoSumCalcul();
+				requestCheckout1();
+			}else{
+				console.log("창이 닫혀있는경우");
+				//deposit가격을 포함시키지 말아야함.
+				requestSettingCartList();
+				document.getElementById('totalPrice').value = hideReservationinfoSumCalcul();
+				document.getElementById('totalFoodPrice').value = calculfoodPrice();
+				requestCheckout2();
+			}
+			
+			//e.preventDefault();
+		});
+		
+		function requestCheckout1(){
+			document.f.action = 'restaurant_payment_fixed_sidebar1';
+			document.f.method = "POST";
+			document.f.submit();
+		}
+		function requestCheckout2(){
+			document.f.action = 'restaurant_payment_fixed_sidebar2';
+			document.f.method = "POST";
+			document.f.submit();
+		}
+		/*
+		function totalPrice_ChangeNumber(){
+			let totalChange1 = $('#sumPrice').text().replace(/,/g,'');
+			let total = Number(totalChange1.replace('￦',''));
+			//console.log("total::" + total);
+			return total;
+		}
+		*/
+		function requestSettingCartList(){
+			
+			let itemObjectList = new Array();
+			//1.상품 번호 얻기
+			let pno = document.getElementById('pno').value;
+			
+			///////////////////////////////////
+			//2.상품의 수량 얻기
+			let jdproductqty = document.getElementById('foodCnt').value;
+			//console.log("아이템 수량::"+ jdproductqty);
+			
+			//////////////////////////////////////////
+			//3.상품의 총액 얻기
+			let numberChange = $('#sumPrice').text();
+			let numberChange1 = numberChange.replace(/,/g,"");
+			let jdproducttot = numberChange1.replace("￦","");
+			//console.log("아이템 별 총액::"+ jdproducttot);
+			
+			//console.log("-------------------");
+			// 1.상품리스트를 json데이터화 -> [[pno, jdproductqty, jdproducttot],[....]
+			// 1-1 객체 생성
+			let itemObject = new Object();
+			itemObject.pno = pno;
+			itemObject.jdproductqty = jdproductqty;
+			itemObject.jdproducttot = jdproducttot;
+			
+			// 1-2 배열에 객체를 mapping 할 키값을 선언
+			let itemList = new Array();
+			itemList[0] = "pno";
+			itemList[1] = "jdproductqty";
+			itemList[2] = "jdproducttot";
+			
+			// 2. 배열과 객체의 값을 매핑
+			let jsonText = JSON.stringify(itemObject, itemList, "\t");
+			//console.log(jsonText);
+			itemObjectList.push(jsonText);
+			
+			//console.log(itemObjectList);
+			document.getElementById('itemObjectJSONList').value = "["+itemObjectList+"]";
+			console.log("$(itemObjectJSONList).val()::"+$('#itemObjectJSONList').val());
+		}
+		
 	</script>
 	
 	

@@ -397,6 +397,7 @@
 															
 								<!-- 전송 데이터 -->
 								<input type="hidden" name= "totalSeatBookingCnt" id="totalSeatBookingCnt" value="">
+								<input type="hidden" name= "totalFoodPrice" id="totalFoodPrice" value="">
 								<input type="hidden" name="totalPrice" id="totalPrice" value= "">					
 								<input type="hidden" name="bookingTime" id="bookingTime" value="">					
 								<input type="hidden" name="bookingDate" id="bookingDate" value="">
@@ -648,8 +649,8 @@
 				
 			}
 			//가격 원화 표시
-			var abc = document.querySelectorAll( 'td[price_list="price"]');
-			var valueProd;
+			let abc = document.querySelectorAll( 'td[price_list="price"]');
+			let valueProd;
 			for (var i = 0; i < abc.length; i++) {
 				valueProd = abc[i].firstChild.nodeValue;
 				let subValue = valueProd.substr(1).trim();			
@@ -657,11 +658,11 @@
 				abc[i].firstChild.nodeValue = "￦"+ completeVal;
 			}
 			//가격 원화 표시2
-			var abc2 = document.querySelectorAll( '.priceDisplay');
-			var valueProd;
+			let abc2 = document.querySelectorAll( '.priceDisplay');
+			let valueProd2;
 			for (var i = 0; i < abc2.length; i++) {
-				valueProd = abc2[i].firstChild.nodeValue;
-				let subValue = valueProd.substr(1).trim();			
+				valueProd2 = abc2[i].firstChild.nodeValue;
+				let subValue = valueProd2.substr(1).trim();			
 				let completeVal = numberWithCommas(subValue);
 				abc2[i].firstChild.nodeValue = "￦"+ completeVal;
 			}
@@ -795,6 +796,7 @@
 					console.log('bookingTime ==>'+ bookingTime);
 					
 					requestSettingCartList();
+					document.getElementById('totalFoodPrice').value = calculAllFoodSumPrice();
 					document.getElementById('totalPrice').value = totalPrice_ChangeNumber();
 					requestCheckout1();
 				}else{
@@ -827,6 +829,7 @@
 					*/
 					requestSettingCartList();
 					document.getElementById('totalPrice').value = totalPrice_ChangeNumber();
+					document.getElementById('totalFoodPrice').value = calculAllFoodSumPrice();
 					requestCheckout2();
 				}
 				
