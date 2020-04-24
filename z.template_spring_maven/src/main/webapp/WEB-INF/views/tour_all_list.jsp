@@ -202,7 +202,9 @@
 								</div>
 							</div>
 							<div class="col-md-6 col-sm-4 d-none d-sm-block text-right">
+								<!-- 
 								<a href="tour_grid" class="bt_filters"><i class=" icon-th"></i></a> 
+								 -->
 								<a href="tour_list" class="bt_filters"><i class=" icon-list"></i></a>
 							</div>
 
