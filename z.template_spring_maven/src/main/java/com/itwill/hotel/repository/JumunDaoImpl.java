@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.itwill.hotel.domain.Jumun;
+import com.itwill.hotel.domain.JumunDetail;
 import com.itwill.hotel.mapper.JumunMapper;
 
 @Repository
@@ -21,6 +22,11 @@ public class JumunDaoImpl implements JumunDao {
 	}
 
 	@Override
+	public int selectRecentJumun(int mNo) {
+		return jumunMapper.selectRecentJumun(mNo);
+	}
+
+	@Override
 	public int insertJumun(Jumun jumun) {
 		return jumunMapper.insertJumun(jumun);
 	}
@@ -28,6 +34,11 @@ public class JumunDaoImpl implements JumunDao {
 	@Override
 	public int cancelJumun(HashMap hashMap) {
 		return jumunMapper.cancelJumun(hashMap);
+	}
+
+	@Override
+	public int insertJumunDetail(JumunDetail jumunDetail) {
+		return jumunMapper.insertJumunDetail(jumunDetail);
 	}
 	
 }

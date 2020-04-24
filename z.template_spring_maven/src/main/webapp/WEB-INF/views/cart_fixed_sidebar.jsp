@@ -121,7 +121,7 @@
 					<table class="table table-striped options_cart">
 						<thead>
 							<tr>
-								<th colspan="3">
+								<th colspan="6">
 									Add options / Services
 								</th>
 							</tr>

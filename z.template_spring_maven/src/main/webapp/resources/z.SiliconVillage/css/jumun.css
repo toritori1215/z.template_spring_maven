@@ -1,3 +1,9 @@
 @charset "UTF-8";
 /* CSS Document */
 
+/* Error validate style */
+div.error {
+	color: red;
+	font-weight: bold;
+	font-size: 12px;
+}
