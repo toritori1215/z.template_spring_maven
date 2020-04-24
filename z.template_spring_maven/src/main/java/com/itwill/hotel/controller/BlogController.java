@@ -37,6 +37,16 @@ public class BlogController {
 		return "blog_right_sidebar";
 	}
 	
+	@RequestMapping(value = "/blog_right_sidebar_byType")
+	public String blogListType(@RequestParam(value = "type") String type,
+								Model model) {
+		List<Blog> blogList = blogService.selectBlogByType(type);
+		model.addAttribute("blogList", blogList);
+		List<Blog> recentBlogList = blogService.selectRecentBlog();
+		model.addAttribute("recentBlogList", recentBlogList);
+		return "blog_right_sidebar";
+	}
+	
 	@RequestMapping(value = "/blog_post_right_sidebar")
 	public String viewBlog(@RequestParam(value = "bNo", defaultValue = "") String bNo, 
 							HttpSession session, Model model) {

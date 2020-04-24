@@ -12,7 +12,7 @@
 	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/img/bg_blog.jpg" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
-				<h1>Tour Blog</h1>
+				<h1>Customer Blog</h1>
 				<p>Ridiculus sociosqu cursus neque cursus curae ante scelerisque vehicula.</p>
 			</div>
 		</div>
@@ -57,12 +57,6 @@
 							</div>
 							<h2>${blog.bTitle}</h2>
 							<p>${blog.bContent}</p>
-							<p>
-								Ludus albucius adversarium eam eu. Sit eu reque tation aliquip. Quo no dolorum albucius lucilius, hinc eligendi ut sed. Ex nam quot ferri suscipit, mea ne legere alterum repudiandae. Ei pri quaerendum intellegebat, ut vel consequuntur voluptatibus. Et volumus sententiae adversarium duo......
-							</p>
-							<p>
-								Ludus albucius adversarium eam eu. Sit eu reque tation aliquip. Quo no dolorum albucius lucilius, hinc eligendi ut sed. Ex nam quot ferri suscipit, mea ne legere alterum repudiandae. Ei pri quaerendum intellegebat, ut vel consequuntur voluptatibus. Et volumus sententiae adversarium duo......
-							</p>
 							<input type="button" class="btn_1" value="Read More" onclick="location.href='blog_post_right_sidebar?bNo=${blog.bNo}'"> &nbsp;&nbsp;&nbsp;
 							</form>
 						<hr>
@@ -112,13 +106,11 @@
 					<div class="widget" id="cat_blog">
 						<h4>Categories</h4>
 						<ul>
-							<li><a href="#">Tour</a>
+							<li><a href="blog_right_sidebar">All blogs</a>
 							</li>
-							<li><a href="#">Hotel</a>
+							<li><a href="blog_right_sidebar_byType?type=Tour">Tour</a>
 							</li>
-							<li><a href="#">Facility</a>
-							</li>
-							<li><a href="#">Restaurant</a>
+							<li><a href="blog_right_sidebar_byType?type=Restaurant">Restaurant</a>
 							</li>
 						</ul>
 					</div>

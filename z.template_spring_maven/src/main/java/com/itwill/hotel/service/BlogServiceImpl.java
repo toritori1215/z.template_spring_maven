@@ -24,6 +24,11 @@ public class BlogServiceImpl implements BlogService {
 	}
 
 	@Override
+	public List<Blog> selectBlogByType(String type) {
+		return blogDao.selectBlogByType(type);
+	}
+
+	@Override
 	public Blog selectOneBlog(int bNo) {
 		return blogDao.selectOneBlog(bNo);
 	}
@@ -45,7 +50,7 @@ public class BlogServiceImpl implements BlogService {
 
 	@Override
 	public int updateBlogImg(HashMap hashMap) {
-		return blogDao.updateBlog(hashMap);
+		return blogDao.updateBlogImg(hashMap);
 	}
 
 	@Override

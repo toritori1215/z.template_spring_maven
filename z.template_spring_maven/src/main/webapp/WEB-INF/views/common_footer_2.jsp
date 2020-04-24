@@ -21,8 +21,8 @@
 			<div class="col-lg-2 col-md-3 ml-md-auto">
 				<h3>About</h3>
 				<ul>
-					<li><a href="common_about_us">About us</a></li>
-					<li><a href="common_faq_2">FAQ</a></li>
+					<li><a href="member_about">About us</a></li>
+					<li><a href="member_faq">FAQ</a></li>
 					<li><a href="blog_right_sidebar">Blog</a></li>
 					<li><a href="member_login_form">Login</a></li>
 					<li><a href="member_insert_form">Register</a></li>
@@ -79,12 +79,6 @@
 				<label>Password</label>
 				<input type="password" class="form-control" name="mPassword" id="password" value="" placeholder="Password">
 				<i class="icon_lock_alt"></i>
-			</div>
-			<div class="clearfix add_bottom_15">
-				<div class="checkboxes float-left">
-					<input id="remember-me" type="checkbox" name="check">
-					<label for="remember-me">Remember Me</label>
-				</div>
 			</div>
 			<p>
                 <a href="#forgot-password" id="access_link2" style="text-align: left;">Forgot Password?</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
