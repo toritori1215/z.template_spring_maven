@@ -165,7 +165,7 @@
 
 			<div class="main_title">
 				<h2>Best <span>Top</span> Tours</h2>
-				<p>Unforgettable package.</p>
+				<p>Unforgettable tours.</p>
 			</div>
 
 			<div class="row">
@@ -174,7 +174,7 @@
 					<div class="tour_container">
 						<div class="ribbon_3 popular"><span>Popular</span></div>
 						<div class="img_container">
-							<a href="tour_list">
+							<a href="tour_detail?pNo=1">
 								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/tour1.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="short_info">
 									<i class="icon-tree"></i>FIELD<span class="price"><sup>￦</sup>10.0</span>
@@ -189,9 +189,11 @@
 							<i class="icon-star-empty"></i><small>(99)</small>
 							</div>
 							<!-- end rating -->
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
 						</div>
 					</div>
@@ -203,7 +205,7 @@
 					<div class="tour_container">
 						<div class="ribbon_3 popular"><span>Popular</span></div>
 						<div class="img_container">
-							<a href="tour_list">
+							<a href="tour_detail?pNo=2">
 								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/tour2.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="short_info">
 									<i class="icon-snow"></i>ICE<span class="price"><sup>￦</sup>25.0</span>
@@ -216,9 +218,11 @@
 								<i class="icon-star voted"></i> <i class="icon-star voted"></i> <i class="icon-star voted"></i> <i class="icon-star voted"></i> <i class="icon-star-empty"></i><small>(75)</small>
 						</div>
 							<!-- end rating -->
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
 						</div>
 					</div>
@@ -230,7 +234,7 @@
 					<div class="tour_container">
 						<div class="ribbon_3 popular"><span>Popular</span></div>
 						<div class="img_container">
-							<a href="tour_list">
+							<a href="tour_detail?pNo=3">
 								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/tour3.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="badge_save">Save<strong>30%</strong></div>
 								<div class="short_info">
@@ -261,7 +265,7 @@
 					<div class="tour_container">
 						<div class="ribbon_3"><span>Top rated</span></div>
 						<div class="img_container">
-							<a href="tour_list">
+							<a href="tour_detail?pNo=4">
 								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/tour4.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="badge_save">Save<strong>20%</strong></div>
 								<div class="short_info">
@@ -278,11 +282,11 @@
 						</div>
 				
 							<!-- end rating -->
-							 
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
-							
+							 -->
 							<!-- End wish list-->
 							 
 						</div>
@@ -299,7 +303,7 @@
 					<div class="tour_container">
 						<div class="ribbon_3"><span>Top rated</span></div>
 						<div class="img_container">
-							<a href="tour_list">
+							<a href="tour_detail?pNo=5">
 								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/tour5.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="short_info">
 				 
@@ -317,11 +321,11 @@
 						</div>
 									 
 							<!-- end rating -->
-							 
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
-							 
+							  -->
 							<!-- End wish list-->
 							 
 						</div>
@@ -337,7 +341,7 @@
 					<div class="tour_container">
 						<div class="ribbon_3"><span>Top rated</span></div>
 						<div class="img_container">
-							<a href="tour_list">
+							<a href="#">
 								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/tour6.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="short_info">
 									<i class="pe-7s-drop"></i>WATER<span class="price"><sup>￦</sup>30.0</span>
@@ -352,10 +356,11 @@
 							<i class="icon-star voted"></i><small>(12)</small>
 						</div>
 							<!-- end rating -->
-							
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
 						</div>
 					</div>
@@ -398,9 +403,11 @@
 							<i class="icon-star-empty"></i>
 						</div>
 							<!-- end rating -->
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
 						</div>
 					</div>
@@ -425,9 +432,11 @@
 								<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
 							</div>
 							<!-- end rating -->
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
 						</div>
 					</div>
@@ -452,9 +461,11 @@
 								<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
 							</div>
 							<!-- end rating -->
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
 						</div>
 					</div>
@@ -481,9 +492,11 @@
 							<i class="icon-star voted"></i>
 						</div>
 							<!-- end rating -->
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
 						</div>
 					</div>
@@ -510,9 +523,11 @@
 							<i class="icon-star voted"></i>
 						</div>
 							<!-- end rating -->
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
 						</div>
 					</div>
@@ -539,9 +554,11 @@
 							<i class="icon-star voted"></i>
 						</div>
 							<!-- end rating -->
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
 						</div>
 					</div>
@@ -705,7 +722,7 @@
 						<p>
 						 어디서 체험 할 수 없는 SILICON VILLAGE만의 투어 서비스를 통해 삶의 활력과 일상 생활의 스트레스를 한 번에 날려 버릴 수 있습니다. 봄,여름,가을,겨울 항상 자연과 어우러진 투어 상품을 즐기 실수 있습니다.
 						 </p>
-						<a href="about.html" class="btn_1 outline">Read more</a>
+						<a href="member_about" class="btn_1 outline">Read more</a>
 					</div>
 				</div>
 
@@ -716,7 +733,7 @@
 						<p>
 						 SILICON VILLAGE의 경우 새하얀 호텔식 침구를 제공하며  다양한 다이닝 서비스,실내 수영장,피트니스 등의 부대시설을 마음껏 이용할 수 있습니다.레스토랑 및 투어 상품의 경우 세계 최고임을 자부합니다. 
 						</p>
-						<a href="about.html" class="btn_1 outline">Read more</a>
+						<a href="member_about" class="btn_1 outline">Read more</a>
 					</div>
 				</div>
 
@@ -727,7 +744,7 @@
 						<p>
 							항상 최고의 서비스를 제공하기 위해 카운터 및 각 층별 호텔 직원이 대기중이며, 응급상황 및 긴급상황 발생시 항시 경호원 및 의료진이 대기하구 있어 편안하게 이용 하실 수 있습니다. 도움이 필요하시면 연락주세요.
 						</p>
-						<a href="about.html" class="btn_1 outline">Read more</a>
+						<a href="member_about" class="btn_1 outline">Read more</a>
 					</div>
 				</div>
 

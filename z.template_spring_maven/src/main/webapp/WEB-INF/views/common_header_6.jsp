@@ -115,7 +115,7 @@
 						<li class="submenu">
 							<a href="javascript:void(0);" class="show-submenu">Home<i class="icon-down-open-mini"></i></a>
 							<ul>
-								<li><a href="member_about">Main page</a></li>
+								<li><a href="main">Main page</a></li>
 							</ul>
 						</li>
 						<li class="submenu">
@@ -132,11 +132,7 @@
 						<li class="submenu">
 							<a href="javascript:void(0);" class="show-submenu">Restaurants<i class="icon-down-open-mini"></i></a>
 							<ul>
-								<li><a href="member_about">Main page</a></li>
-								<li><a href="member_about">Main page</a></li>
-								<li><a href="member_about">Main page</a></li>
-								<li><a href="member_about">Main page</a></li>
-								<li><a href="member_about">Main page</a></li>
+								<li><a href="restaurants_all_list">Food List</a></li>
 							</ul>
 						</li>
 						<li class="submenu">
@@ -164,8 +160,9 @@
 				<ul id="top_tools">
 					<li>
 						<div class="dropdown dropdown-cart">
-							<a href="cart_services" class="cart_bt"><i class="icon_bag_alt"></i> Go to my cart</a>
-						</div> <!-- End dropdown-cart-->
+							<a href="cart_services" class="cart_bt"><i class="icon_bag_alt"></i> Tour</a><font color="white">&nbsp;&nbsp; or &nbsp;&nbsp;</font><a href="restaurant_cart_fixed_sidebar" class="cart_bt"><i class="icon_bag_alt"></i> Restaurant</a>
+						</div>
+						<!-- End dropdown-cart-->
 					</li>
 				</ul>
 			</nav>

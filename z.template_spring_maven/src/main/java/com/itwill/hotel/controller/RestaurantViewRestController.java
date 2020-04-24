@@ -1,5 +1,6 @@
 package com.itwill.hotel.controller;
 
+import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,6 +15,7 @@ import com.itwill.hotel.domain.RestaurantDTO;
 import com.itwill.hotel.service.RestaurantService;
 import com.itwill.hotel.util.PageInputDto;
 import com.itwill.hotel.util.RestaurantBoardListPageDto;
+import com.itwill.hotel.util.TimeCalculator;
 
 @RestController
 public class RestaurantViewRestController {
@@ -126,6 +128,42 @@ public class RestaurantViewRestController {
 			e.printStackTrace();
 		}
 		return jsonStr;
+	}
+	
+	@RequestMapping(value="seatCapacityCalcul", produces = "text/xml;charset=UTF-8")
+	public String seatCapacityCalcul(@RequestParam(value="dateText",required=false) String dateText,
+									 @RequestParam(value="timeText",required=false) String timeText) {
+			System.out.println("dateText -->" +dateText);
+			System.out.println("timeText -->" +timeText);
+			
+			
+			//타임 24시간 처리로 바꿔야함.
+			String time = TimeCalculator.timeCalculatorMethod(timeText);
+			//비교할 조건 -> 예약 시간으로 부터  -1보다 크고 +1보다 작다(초과,미만) 
+			String minTime =  TimeCalculator.minTime(time);
+			String maxTime =  TimeCalculator.maxTime(time);
+			System.out.println("minTime ::" + minTime);
+			System.out.println("maxTime ::" + maxTime);
+			
+			HashMap<String, String> dateAndtime = new HashMap<String, String>();
+		
+			dateAndtime.put("date", dateText);
+			dateAndtime.put("minTime", minTime);
+			dateAndtime.put("maxTime", maxTime);
+			int seatCnt = restService.seatCapacityCalcul(dateAndtime);
+			String cnt =seatCnt +"";
+			System.out.println("cnt ::" + cnt);
+			
+		return cnt;
+	}
+	
+	@RequestMapping(value = "emailCheck")
+	public boolean emailCheck(String email1,String email2) {
+		boolean result = false;
+		if(email1.equals(email2)) {
+			result = true;
+		}
+		return result;
 	}
 	
 }
