@@ -2305,7 +2305,7 @@ input.qty2 {
 	position: relative;
 	padding: 11% 100px 10% 100px;
 	height: 400px;
-	background-color: #e04f67;
+	background-color: #0473ea;
 	color: #fff;
 	font-size: 14px;
 }
@@ -2409,7 +2409,7 @@ ul#contact-info {
 	display: block;
 	text-transform: none;
 	font-size: 12px;
-	background: url(../z.SiliconVillage/img/chaewon.jpg) no-repeat center center;
+	background: url(../z.SiliconVillage/img/join.jpg) no-repeat center center;
 	background-size: cover;
 }
 
@@ -2929,6 +2929,7 @@ ul.list_icons li i {
 }
 
 /* Error validate style */
+
 label.error {
 	font-size: 11px;
 	position: absolute;

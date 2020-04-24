@@ -2,6 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.hotel.mapper.JumunMapper">
 	
+	<!-- ======================== jumun ======================== -->
+	<!-- Jumun Start -->
 	<select id="selectJumun" parameterType="_int" resultType="Jumun">
 		select jNo, jTotPay, jDate, jCardOwner, jEmail, jPhoneNo, jCardNo, 
 				jValidDate, jCardCVC, jStreetAddr, jStreetNMG, jCity, jCountry, 
@@ -13,11 +15,31 @@
 		where mNo=#{mNo}
 	</select>
 	
+	<select id="selectJumunByNo" parameterType="_int" resultType="Jumun">
+		select jNo, jTotPay, jDate, jCardOwner, jEmail, jPhoneNo, jCardNo, 
+				jValidDate, jCardCVC, jStreetAddr, jStreetNMG, jCity, jCountry, 
+				jState, jZipCode, jGuest, jIfCancel, mNo, trunc(jDate-sysdate) as ifUse, 
+                UPPER(to_char(jDate, 'dy', 'NLS_DATE_LANGUAGE=english')) as jDy, 
+                to_char(jDate, 'dd', 'NLS_DATE_LANGUAGE=english') as jDd, 
+                UPPER(to_char(jDate, 'mon', 'NLS_DATE_LANGUAGE=english')) as jMon
+		from jumun
+		where jNo=#{jNo}
+	</select>
+	
+	<select id="selectRecentJumun" parameterType="_int" resultType="_int">
+		select jNo
+		from jumun
+		where mNo = #{mNo}
+		and jDate = (select max(jDate)
+					 from jumun
+					 where mNo = #{mNo})
+	</select>
+	
 	<insert id="insertJumun" parameterType="Jumun">
 		insert into 
 		jumun (jNo, jTotPay, jDate, jCardOwner, jEmail, jPhoneNo, jCardNo, 
 				jValidDate, jCardCVC, jStreetAddr, jStreetNMG, jCity, jCountry, 
-				jState, jZipCode, jGuest, jIfCancel, mNo
+				jState, jZipCode, jGuest, jIfCancel, mNo)
 		values (jumun_SEQ.nextval, #{jTotPay}, sysdate, #{jCardOwner}, #{jEmail}, #{jPhoneNo}, #{jCardNo}, 
 				#{jValidDate}, #{jCardCVC}, #{jStreetAddr}, #{jStreetNMG}, #{jCity}, #{jCountry}, 
 				#{jState}, #{jZipCode}, #{jGuest}, 1, #{mNo})
@@ -28,5 +50,25 @@
 		set jIfCancel=0 
 		where jNo=#{jNo} and mNo=#{mNo}
 	</update>
+	<!-- Jumun End -->
+	
+	<!-- ======================== jumun detail ======================== -->
+	<!-- JumunDetail Start -->
+	<insert id="insertJumunDetail" parameterType="JumunDetail">
+		insert into 
+		jumun_detail (jdNo, jdOrderDate, jdCheckout, jdOrderTime, jdPickupPos, jdDropoffPos, 
+					  jdProductQty, jdProductTot, jdOrderQty, jdStayDate, jNo, pNo)
+		values (jumunDetail_SEQ.nextval, TO_DATE(#{jdOrderDate}, 'YYYY-MM-DD HH24:MI:SS'), #{jdCheckout, jdbcType=DATE}, #{jdOrderTime, jdbcType=VARCHAR},
+				#{jdPickupPos, jdbcType=VARCHAR}, #{jdDropoffPos, jdbcType=VARCHAR}, #{jdProductQty},
+				#{jdProductTot}, #{jdOrderQty}, #{jdStayDate, jdbcType=VARCHAR}, #{jNo}, #{pNo})
+	</insert>
+	
+	<select id="selectJumunDetail" parameterType="_int" resultType="JumunDetailInvoice">
+		select j.jdNo, j.jdOrderDate, j.jdCheckout, j.jdOrderTime, j.jdPickupPos, j.jdDropoffPos, 
+				j.jdProductQty, j.jdProductTot, j.jdOrderQty, j.jdStayDate, j.jNo, j.pNo, p.pName
+		from jumun_detail j inner join product p
+		on j.pNo=p.pNo and jNo=#{jNo}
+	</select>
+	<!-- JumunDetail End -->
 	
 </mapper>

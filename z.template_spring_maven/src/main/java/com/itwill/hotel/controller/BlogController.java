@@ -34,7 +34,17 @@ public class BlogController {
 		model.addAttribute("blogList", blogList);
 		List<Blog> recentBlogList = blogService.selectRecentBlog();
 		model.addAttribute("recentBlogList", recentBlogList);
-		return "forward:blog_right_sidebar.jsp";
+		return "blog_right_sidebar";
+	}
+	
+	@RequestMapping(value = "/blog_right_sidebar_byType")
+	public String blogListType(@RequestParam(value = "type") String type,
+								Model model) {
+		List<Blog> blogList = blogService.selectBlogByType(type);
+		model.addAttribute("blogList", blogList);
+		List<Blog> recentBlogList = blogService.selectRecentBlog();
+		model.addAttribute("recentBlogList", recentBlogList);
+		return "blog_right_sidebar";
 	}
 	
 	@RequestMapping(value = "/blog_post_right_sidebar")
@@ -47,9 +57,8 @@ public class BlogController {
 		model.addAttribute("blog", blog);
 		List<Blog> recentBlogList = blogService.selectRecentBlog();
 		model.addAttribute("recentBlogList", recentBlogList);
-		int sessionBno = Integer.parseInt(bNo);
-		session.setAttribute("SessionBno", sessionBno);
-		return "forward:blog_post_right_sidebar.jsp";
+		session.setAttribute("SessionBlog", blog);
+		return "blog_post_right_sidebar";
 	}
 	
 	@RequestMapping(value = "/blog_insert")
@@ -64,30 +73,12 @@ public class BlogController {
 		hashMap.put("bCategory", category);
 		hashMap.put("mNo", member.getmNo());
 		int rowCount = blogService.insertBlog(hashMap);
-		int bNo = blogService.selectNewBlog();
-		session.setAttribute("SessionBno", bNo);
-		return "forward:blog_right_sidebar";
-	}
-	
-	@RequestMapping(value = "/uploadBlog")
-	public void uploadBlog(HttpServletResponse response, HttpServletRequest request, 
-								@RequestParam("Filedata") MultipartFile Filedata, 
-								HttpSession session, Model model) {
-		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS");
-		String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10)) + ".jpg";
-		File f = new File("C:\\Users\\user\\Desktop\\JAVA\\Spring Tool Suite\\spring-tool-suite-3.9.6.RELEASE-e4.9.0-win32\\sts-bundle\\pivotal-tc-server\\instances\\base-instance\\wtpwebapps\\z.template_spring_maven\\resources\\z.SiliconVillage\\img\\blog\\" + newfilename);
-		File f2 = new File("C:\\Users\\user\\git\\z.template_spring_maven\\z.template_spring_maven\\src\\main\\webapp\\resources\\z.SiliconVillage\\img\\blog\\" + newfilename);
-		try {
-			Filedata.transferTo(f);
-			Filedata.transferTo(f2);
-			response.getWriter().write(newfilename);
-		} catch (IllegalStateException | IOException e) {
-			e.printStackTrace();
+		if (rowCount == 1) {
+			model.addAttribute("blogViewMsg", "블로그 생성 성공했습니다");
+			return "forward:blog_right_sidebar";
+		} else {
+			return "common_404";
 		}
-		HashMap hashMap = new HashMap();
-		hashMap.put("bImg", newfilename);
-		hashMap.put("bNo", session.getAttribute("SessionBno"));
-		blogService.updateBlogImg(hashMap);
 	}
 	
 	@RequestMapping(value = "/blog_update")
@@ -100,11 +91,35 @@ public class BlogController {
 		hashMap.put("bNo", bNo);
 		int rowCount = blogService.updateBlog(hashMap);
 		if (rowCount == 1) {
-			model.addAttribute("blogViewMsg", "수정 성공했습니다");
+			model.addAttribute("blogViewMsg", "블로그 수정 성공했습니다");
 			return "forward:blog_post_right_sidebar";
 		} else {
 			return "common_404";
 		}
+	}
+	
+	@RequestMapping(value = "/uploadBlogImg")
+	public void uploadBlogImg(HttpServletResponse response, HttpServletRequest request, 
+						@RequestParam("Filedata") MultipartFile Filedata, 
+						HttpSession session) {
+	   	SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+	   	String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10)) + ".jpg";
+	   	File f = new File("C:\\Users\\STU\\Desktop\\eclipse\\STS3-4.14.0\\spring-tool-suite-3.9.11.RELEASE-e4.14.0-win32-x86_64\\sts-bundle\\pivotal-tc-server\\instances\\base-instance\\wtpwebapps\\z.template_spring_maven\\resources\\z.SiliconVillage\\img\\blog\\" + newfilename);
+	   	File f2 = new File("C:\\Users\\STU\\git\\z.template_spring_maven\\z.template_spring_maven\\src\\main\\webapp\\resources\\z.SiliconVillage\\img\\blog\\" + newfilename);
+		try { 
+			Filedata.transferTo(f);
+			Filedata.transferTo(f2);
+		   	response.getWriter().write(newfilename);
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+		}
+		Blog blog = (Blog) session.getAttribute("SessionBlog");
+		System.out.println(newfilename);
+		System.out.println(blog.getbNo());
+		HashMap hashMap = new HashMap();
+		hashMap.put("bImg", newfilename);
+		hashMap.put("bNo", blog.getbNo());
+		blogService.updateBlogImg(hashMap);
 	}
 	
 	@RequestMapping(value = "/blog_delete")
@@ -116,32 +131,11 @@ public class BlogController {
 		hashMap.put("mNo", member.getmNo());
 		int rowCount = blogService.deleteBlog(hashMap);
 		if (rowCount == 1) {
-			model.addAttribute("blogMsg", "삭제 성공했습니다");
+			model.addAttribute("blogMsg", "블로그 삭제 성공했습니다");
 			return "forward:blog_right_sidebar";
 		} else {
 			return "common_404";
 		}
-	}
-	
-	@RequestMapping(value = "/uploadBlogView")
-	public void uploadBlogView(HttpServletResponse response, HttpServletRequest request, 
-						@RequestParam("Filedata") MultipartFile Filedata, 
-						HttpSession session, Model model) {
-		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS");
-		String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10)) + ".jpg";
-		File f = new File("C:\\Users\\user\\Desktop\\JAVA\\Spring Tool Suite\\spring-tool-suite-3.9.6.RELEASE-e4.9.0-win32\\sts-bundle\\pivotal-tc-server\\instances\\base-instance\\wtpwebapps\\z.template_spring_maven\\resources\\z.SiliconVillage\\img\\blog\\" + newfilename);
-		File f2 = new File("C:\\Users\\user\\git\\z.template_spring_maven\\z.template_spring_maven\\src\\main\\webapp\\resources\\z.SiliconVillage\\img\\blog\\" + newfilename);
-		try {
-			Filedata.transferTo(f);
-			Filedata.transferTo(f2);
-			response.getWriter().write(newfilename);
-		} catch (IllegalStateException | IOException e) {
-			e.printStackTrace();
-		}
-		HashMap hashMap = new HashMap();
-		hashMap.put("bImg", newfilename);
-		hashMap.put("bNo", session.getAttribute("SessionBno"));
-		blogService.updateBlogImg(hashMap);
 	}
 	
 }

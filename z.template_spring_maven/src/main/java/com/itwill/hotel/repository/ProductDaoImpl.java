@@ -37,6 +37,11 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
+	public Integer countByCategory(String foodCategory) {
+		return productMapper.countByCategory(foodCategory);
+	}
+
+	@Override
 	public Integer countBookedRoomQty(HashMap parameterMap) {
 		return productMapper.countBookedRoomQty(parameterMap);
 	}

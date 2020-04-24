@@ -22,9 +22,9 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="#">Home</a>
+					<li><a href="main">Home</a>
 					</li>
-					<li><a href="#">Category</a>
+					<li><a href="">Category</a>
 					</li>
 					<li>Page active</li>
 				</ul>
@@ -155,11 +155,13 @@
 										<option value="" selected>Sort by price</option>
 										<option value="lower">Lowest price</option>
 										<option value="higher">Highest price</option>
+										<option value="lower">Lowest ranking</option>
+										<option value="higher">Highest ranking</option>
 									</select>
 								</div>
 							</div>
 							<div class="col-md-3 col-sm-4 col-6">
-								<div class="styled-select-filters">
+								<div class="styled-select-filters" style="visibility: hidden;">
 									<select name="sort_rating" id="sort_rating">
 										<option value="" selected>Sort by ranking</option>
 										<option value="lower">Lowest ranking</option>
@@ -412,7 +414,7 @@
 
 					<hr>
 
-					<nav aria-label="Page navigation">
+					<nav aria-label="Page navigation" style="visibility: hidden;">
 						<ul class="pagination justify-content-center">
 							<li class="page-item">
 								<a class="page-link" href="#" aria-label="Previous">
@@ -455,7 +457,7 @@
 	</script>
 	
 	<!-- Map -->
-	<script src="http://maps.googleapis.com/maps/api/js"></script>
+	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB4JNh6iELs0fU_OpkHc1sFUzYeR5Mtxk8"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/map_restaurants.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/infobox.js"></script>
 	

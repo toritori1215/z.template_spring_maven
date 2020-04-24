@@ -16,6 +16,8 @@ public interface ProductService {
 	public List<Product> selectByCategory(String category);
 	
 	public Integer checkWishlist(Wishlist wishlist);
+	
+	public Integer countByCategory(String foodCategory);
 
 	public Integer countBookedRoomQty(HashMap parameterMap);
 	

@@ -41,7 +41,7 @@
 				<ul>
 					<li><a href="main">Home</a>
 					</li>
-					<li>Tours</a>
+					<li><a href="tour_list">Tours</a>
 					</li>
 				</ul>
 			</div>
@@ -64,21 +64,31 @@
 
 					<div class="box_style_cat">
 						<ul id="cat_nav">
-							<li><a href="#" id="active"><i class="icon_set_1_icon-51"></i>All tours <span>(141)</span></a>
+							<li><a href="restaurants_all_list" id="active"><i class="icon_set_3_restaurant-10"></i>All restaurants <span>(${restListPage.totalRecordCount})</span></a>
 							</li>
-							<li><a href="#"><i class="icon_set_1_icon-3"></i>City sightseeing <span>(20)</span></a>
-							</li>
-							<li><a href="#"><i class="icon_set_1_icon-4"></i>Museum tours <span>(16)</span></a>
-							</li>
-							<li><a href="#"><i class="icon_set_1_icon-44"></i>Historic Buildings <span>(12)</span></a>
-							</li>
-							<li><a href="#"><i class="icon_set_1_icon-37"></i>Walking tours <span>(11)</span></a>
-							</li>
-							<li><a href="#"><i class="icon_set_1_icon-14"></i>Eat & Drink <span>(20)</span></a>
-							</li>
-							<li><a href="#"><i class="icon_set_1_icon-43"></i>Churces <span>(08)</span></a>
-							</li>
-							<li><a href="#"><i class="icon_set_1_icon-28"></i>Skyline tours <span>(11)</span></a>
+							<c:forEach var="category" items="${categoryList}" step="1" varStatus="st">
+								
+									<li>
+										<c:choose>
+											<c:when test='${category == "field"}'>
+												<a href="restaurants_all_list?category=America"><i class="icon_set_3_restaurant-2"></i>${category_Info.foodcategory}<span>(${category_Info.categoryCnt})</span></a>
+											</c:when>
+											<c:when test='${category =="Chinese"}'>
+												<a href="restaurants_all_list?category=Chinese"><i class="icon_set_3_restaurant-4"></i>${category_Info.foodcategory}<span>(${category_Info.categoryCnt})</span></a>
+											</c:when>
+											<c:when test='${category =="Japanese"}'>
+												<a href="restaurants_all_list?category=Japanese"><i class="icon_set_3_restaurant-3"></i>${category_Info.foodcategory}<span>(${category_Info.categoryCnt})</span></a>
+											</c:when>
+											<c:when test='${category =="European"}'>
+												<a href="restaurants_all_list?category=European"><i class="icon_set_3_restaurant-1"></i>${category_Info.foodcategory}<span>(${category_Info.categoryCnt})</span></a>
+											</c:when>
+
+										</c:choose>
+										
+									</li>
+							</c:forEach>
+							
+							<li><a href="restaurants_all_list?category=Dessert"><i class="icon_set_3_restaurant-8"></i>Dessert <span>(${foodCategoryDessertCnt})</span></a>
 							</li>
 						</ul>
 					</div>
@@ -177,11 +187,13 @@
 										<option value="" selected>Sort by price</option>
 										<option value="lower">Lowest price</option>
 										<option value="higher">Highest price</option>
+										<option value="lower">Lowest ranking</option>
+										<option value="higher">Highest ranking</option>
 									</select>
 								</div>
 							</div>
 							<div class="col-md-3 col-sm-4 col-6">
-								<div class="styled-select-filters">
+								<div class="styled-select-filters" style="visibility: hidden;">
 									<select name="sort_rating" id="sort_rating">
 										<option value="" selected>Sort by ranking</option>
 										<option value="lower">Lowest ranking</option>
@@ -190,14 +202,16 @@
 								</div>
 							</div>
 							<div class="col-md-6 col-sm-4 d-none d-sm-block text-right">
-								<a href="tour_grid" class="bt_filters"><i class="icon-th"></i></a> <a href="#" class="bt_filters"><i class=" icon-list"></i></a>
+								<!-- 
+								<a href="tour_grid" class="bt_filters"><i class=" icon-th"></i></a> 
+								 -->
+								<a href="tour_list" class="bt_filters"><i class=" icon-list"></i></a>
 							</div>
 
 						</div>
 					</div>
 					
-					<div id="helloo">
-					</div>
+					
 					
 					<!--/tools -->
 					<div id="productList">
@@ -205,9 +219,11 @@
 					<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
 						<div class="row">
 							<div class="col-lg-4 col-md-4">
+								<!-- 
 								<div class="wishlist">
 									<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 								</div>
+								 -->
 								<div class="img_list">
 									<a href="tour_detail?pNo=${product.pNo}"><img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg" alt="Image">
 										<div class="short_info">
@@ -313,7 +329,7 @@
 
 					<hr>
 
-					<nav aria-label="Page navigation">
+					<nav aria-label="Page navigation" style="visibility: hidden;">
 						<ul class="pagination justify-content-center">
 							<li class="page-item">
 								<a class="page-link" href="#" aria-label="Previous">
@@ -355,8 +371,8 @@
 		$('#cat_nav').mobileMenu();
 	</script>
 
-	<!-- Map -->
-	<script src="http://maps.googleapis.com/maps/api/js"></script>
+	<!-- Map -->		
+	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB4JNh6iELs0fU_OpkHc1sFUzYeR5Mtxk8"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/map.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/infobox.js"></script>
 	

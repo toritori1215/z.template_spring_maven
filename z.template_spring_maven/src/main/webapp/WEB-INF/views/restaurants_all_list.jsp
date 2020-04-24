@@ -191,10 +191,11 @@
 									</select>
 								</div>
 							</div>
+							<!-- 
 							<div class="col-md-6 col-sm-4 d-none d-sm-block text-right">
 								<a href="all_restaurants_grid.html" class="bt_filters"><i class="icon-th"></i></a> <a href="#" class="bt_filters"><i class="icon-list"></i></a>
 							</div>
-
+							 -->
 						</div>
 					</div>
 					<!--/tools -->
@@ -210,9 +211,11 @@
 								<div class="col-lg-4 col-md-4">
 									<div class="ribbon_3 popular"><span>Popular</span>
 									</div>
+									<!-- 
 									<div class="wishlist">
 										<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 									</div>
+									 -->
 									<div class="img_list">
 										<a href="restaurant_single_food_detail?pno=${restListPage.list[st.index].pno}">
 											
@@ -237,22 +240,27 @@
 									
 										<div class="rating">
 										<c:choose>
-											<c:when test="${restListPage.list[st.index].prate==0}">
+											<c:when test="${restListPage.list[st.index].prate ==0}">
 													<i class="icon-smile"></i> <i class="icon-smile"></i> <i class="icon-smile"></i> <i class="icon-smile"></i> <i class="icon-smile"></i> <small>(${restListPage.list[st.index].prate})</small>
 											</c:when>
-											<c:when test="${restListPage.list[st.index].prate==1}">
+											<c:when test="${restListPage.list[st.index].prate >0 
+													&& restListPage.list[st.index].prate <=2}">
 													<i class="icon-smile voted"></i> <i class="icon-smile"></i> <i class="icon-smile"></i> <i class="icon-smile"></i> <i class="icon-smile"></i> <small>(${restListPage.list[st.index].prate})</small>
 											</c:when>
-											<c:when test="${restListPage.list[st.index].prate==2}">
+											<c:when test="${restListPage.list[st.index].prate >2 
+													&& restListPage.list[st.index].prate <=4}">
 													<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i><i class="icon-smile"></i><small>(${restListPage.list[st.index].prate})</small>
 											</c:when>
-											<c:when test="${restListPage.list[st.index].prate==3}">
+											<c:when test="${restListPage.list[st.index].prate >4 
+													&& restListPage.list[st.index].prate <=6}">
 													<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><i class="icon-smile"></i><small>(${restListPage.list[st.index].prate})</small>
 											</c:when>
-											<c:when test="${restListPage.list[st.index].prate==4}">
+											<c:when test="${restListPage.list[st.index].prate >6 
+													&& restListPage.list[st.index].prate <=8}">
 													<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(${restListPage.list[st.index].prate})</small>
 											</c:when>
-											<c:when test="${restListPage.list[st.index].prate==5}">
+											<c:when test="${restListPage.list[st.index].prate >8 
+													&& restListPage.list[st.index].prate <=10}">
 													<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><small>(${restListPage.list[st.index].prate})</small>
 											</c:when>
 										
@@ -680,6 +688,8 @@
 				e.preventDefault();
 				
 			});
+				
+			
 			
 			$('#sort_price').on('change',function(){
 				//console.log($('#sort_price > option:selected').attr('value'));
@@ -704,7 +714,7 @@
 					data : param ,
 					dataType : 'json',
 					async: false,
-					success: function(result) {
+					success: function(result){
 						restRequestCallback(result);
 					}
 					
@@ -837,7 +847,7 @@
 						eltParentNode.appendChild(Itag);
 					}
 					
-				}else if(prate==1){
+				}else if(prate>0 && prate<=2){
 					for (var j = 0; j < 5; j++) {
 						if(j<1){
 							let Itag = document.createElement("i");
@@ -850,7 +860,7 @@
 						}
 					}
 					
-				}else if(prate==2){
+				}else if(prate>2 && prate<=4){
 					for (var j = 0; j < 5; j++) {
 						if(j<2){
 							let Itag = document.createElement("i");
@@ -863,7 +873,7 @@
 						}
 					}
 					
-				}else if(prate==3){
+				}else if(prate>4 && prate<=6){
 					for (var j = 0; j < 5; j++) {
 						if(j<3){
 							let Itag = document.createElement("i");
@@ -877,7 +887,7 @@
 					}
 					
 				
-				}else if(prate==4){
+				}else if(prate>6 && prate<=8){
 					for (var j = 0; j < 5; j++) {
 						if(j<4){
 							let Itag = document.createElement("i");
@@ -890,7 +900,7 @@
 						}
 					}
 					
-				}else if(prate==5){
+				}else if(prate>8 && prate<=10){
 					for (var j = 0; j < 5; j++) {
 						let Itag = document.createElement("i");
 						Itag.setAttribute('class','icon-smile voted');

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
+
 <!DOCTYPE html>
 <html>
 
@@ -11,31 +13,31 @@
 
 	<section id="hero_2">
 		<div class="intro_title">
-			<h1>Place your order</h1>
+			<h1>Booking Confirmed</h1>
 			<div class="bs-wizard row">
 
 				<div class="col-4 bs-wizard-step complete">
-					<div class="text-center bs-wizard-stepnum">Your cart</div>
+					<div class="text-center bs-wizard-stepnum">More Shopping</div>
 					<div class="progress">
 						<div class="progress-bar"></div>
 					</div>
-					<a href="cart.html" class="bs-wizard-dot"></a>
+					<a href="tour_list" class="bs-wizard-dot"></a>
 				</div>
 
 				<div class="col-4 bs-wizard-step complete">
-					<div class="text-center bs-wizard-stepnum">Your details</div>
+					<div class="text-center bs-wizard-stepnum">My Page</div>
 					<div class="progress">
 						<div class="progress-bar"></div>
 					</div>
-					<a href="payment.html" class="bs-wizard-dot"></a>
+					<a href="member_mypage" class="bs-wizard-dot"></a>
 				</div>
 
 				<div class="col-4 bs-wizard-step complete">
-					<div class="text-center bs-wizard-stepnum">Finish!</div>
+					<div class="text-center bs-wizard-stepnum">Done!</div>
 					<div class="progress">
 						<div class="progress-bar"></div>
 					</div>
-					<a href="#" class="bs-wizard-dot"></a>
+					<a href="#0" class="bs-wizard-dot"></a>
 				</div>
 
 			</div>
@@ -49,11 +51,11 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="#">Home</a>
+					<li><a href="main">Home</a>
 					</li>
-					<li><a href="#">Category</a>
+					<li><a href="tour_list">Tours</a>
 					</li>
-					<li>Page active</li>
+					<li>Confirmation</li>
 				</ul>
 			</div>
 		</div>
@@ -66,12 +68,14 @@
 					<div class="form_title">
 						<h3><strong><i class="icon-ok"></i></strong>Thank you!</h3>
 						<p>
-							Mussum ipsum cacilds, vidis litro abertis.
+							Your booking is confirmed. We look forward to seeing you.
 						</p>
 					</div>
 					<div class="step">
 						<p>
-							Lorem ipsum dolor sit amet, nostrud nominati vis ex, essent conceptam eam ad. Cu etiam comprehensam nec. Cibo delicata mei an, eum porro legere no. Te usu decore omnium, quem brute vis at, ius esse officiis legendos cu. Dicunt voluptatum at cum. Vel et facete equidem deterruisset, mei graeco cetero labores et. Accusamus inciderint eu mea.
+							Dear ${sUser.mFirstName} ${sUser.mLastName},<br>
+							It is our pleasure to have you as our guest in Silicon Village. You can now always modify or cancel your booking at <a href="member_mypage">My Page</a> no later than 24 hours before the scheduled departure time.
+							Should you have any inquiries or special requests, please do not hesitate to contact our customer service team for assistance. You may want to prepare your reference number so that we can find you in our system quicker!
 						</p>
 					</div>
 					<!--End step -->
@@ -79,96 +83,55 @@
 					<div class="form_title">
 						<h3><strong><i class="icon-tag-1"></i></strong>Booking summary</h3>
 						<p>
-							Mussum ipsum cacilds, vidis litro abertis.
+							Tours booked under name '${gName}' are as follows.
 						</p>
 					</div>
 					<div class="step">
-						<table class="table table-striped confirm">
-							<thead>
-								<tr>
-									<th colspan="2">
-										Item 1
-									</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>
-										<strong>Louvre musuem tickets</strong>
-									</td>
-									<td>
-										2x
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<strong>Date</strong>
-									</td>
-									<td>
-										25 Febraury 2015
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<strong>To</strong>
-									</td>
-									<td>
-										Jhon Doe
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<strong>Payment type</strong>
-									</td>
-									<td>
-										Credit card
-									</td>
-								</tr>
-							</tbody>
-						</table>
-						<table class="table table-striped confirm">
-							<thead>
-								<tr>
-									<th colspan="2">
-										Item 2
-									</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>
-										<strong>Senna river tour</strong>
-									</td>
-									<td>
-										2x
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<strong>Date</strong>
-									</td>
-									<td>
-										27 Febraury 2015
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<strong>To</strong>
-									</td>
-									<td>
-										Jhon Doe
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<strong>Payment type</strong>
-									</td>
-									<td>
-										Credit card
-									</td>
-								</tr>
-							</tbody>
-						</table>
+						<c:forEach var="i" begin="0" end="${fn:length(cartList)-1}">
+							<table class="table table-striped confirm">
+								<thead>
+									<tr>
+										<th colspan="2">
+											Item ${i+1}
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<strong>Date</strong>
+										</td>
+										<td>
+											<i>${fn:substring(cartList[i].cCheckin, 0, 10)} </i>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<strong>Tour</strong>
+										</td>
+										<td>
+											<u><b>${cartList[i].pName}</b></u>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<strong>Order Count</strong>
+										</td>
+										<td>
+											x&nbsp;${cartList[i].cProductQty}
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<strong>Item Total</strong>
+										</td>
+										<td>
+											￦${cartList[i].cProductTypePay/10000}만
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</c:forEach>
 					</div>
 					<!--End step -->
 				</div>
@@ -177,12 +140,13 @@
 				<aside class="col-lg-4" id="sidebar">
 					<div class="theiaStickySidebar">
 						<div class="box_style_1" id="booking_box">
-							<h3 class="inner">Thank you!</h3>
+							<h3 class="inner">Ref# ${refNo}</h3>
 							<p>
-								Nihil inimicus ex nam, in ipsum dignissim duo. Tale principes interpretaris vim ei, has posidonium definitiones ut. Duis harum fuisset ut his, duo an dolor epicuri appareat.
+								You may find more information about your reservation, including payment details, from your invoice. 
+								We've sent you a confirmation email to <u>${sUser.mEmail}</u> where you can find your invoice as well.
 							</p>
 							<hr>
-							<a class="btn_full_outline" href="invoice.html" target="_blank">View your invoice</a>
+							<a class="btn_full_outline" href="invoice" target="_blank">View your invoice</a>
 						</div>
 						<div class="box_style_4">
 							<i class="icon_set_1_icon-89"></i>

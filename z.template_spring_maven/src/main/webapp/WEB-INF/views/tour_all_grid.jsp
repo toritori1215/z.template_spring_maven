@@ -8,11 +8,11 @@
 	<jsp:include page="common_header_6.jsp"/>
 	<!-- End Header -->
 
-	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/img/home_bg_1.jpg" data-natural-width="1400" data-natural-height="470">
+	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/tour.jpg" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
-				<h1>Paris tours</h1>
-				<p>Ridiculus sociosqu cursus neque cursus curae ante scelerisque vehicula.</p>
+				<h1>Daily Tours</h1>
+				<p>from spectacular adventures to leisurely time in nature...</p>
 			</div>
 		</div>
 	</section>
@@ -22,9 +22,9 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="#">Home</a>
+					<li><a href="main">Home</a>
 					</li>
-					<li><a href="#">Category</a>
+					<li><a href="tour_grid">Tours</a>
 					</li>
 					<li>Page active</li>
 				</ul>
@@ -160,11 +160,13 @@
 										<option value="" selected>Sort by price</option>
 										<option value="lower">Lowest price</option>
 										<option value="higher">Highest price</option>
+										<option value="lower">Lowest ranking</option>
+										<option value="higher">Highest ranking</option>
 									</select>
 								</div>
 							</div>
 							<div class="col-md-3 col-sm-4 col-6">
-								<div class="styled-select-filters">
+								<div class="styled-select-filters" style="visibility: hidden;">
 									<select name="sort_rating" id="sort_rating">
 										<option value="" selected>Sort by ranking</option>
 										<option value="lower">Lowest ranking</option>
@@ -173,27 +175,33 @@
 								</div>
 							</div>
 							<div class="col-md-6 col-sm-4 d-none d-sm-block text-right">
-								<a href="#" class="bt_filters"><i class="icon-th"></i></a> <a href="all_tours_list.html" class="bt_filters"><i class=" icon-list"></i></a>
+								<a href="tour_grid" class="bt_filters"><i class="icon-th"></i></a> 
+								<a href="tour_list" class="bt_filters"><i class=" icon-list"></i></a>
 							</div>
 						</div>
 					</div>
 					<!--End tools -->
 
 					<div class="row">
+					<c:forEach var="product" items="${productList}">
 						<div class="col-md-6 wow zoomIn" data-wow-delay="0.1s">
 							<div class="tour_container">
-								<div class="ribbon_3 popular"><span>Popular</span>
+								<!-- 								
+								<div class="ribbon_3 popular">
+									<span>Popular</span>
 								</div>
+								 -->
 								<div class="img_container">
-									<a href="single_tour.html">
-										<img src="${pageContext.request.contextPath}/resources/img/tour_box_1.jpg" width="800" height="533" class="img-fluid" alt="Image">
+									<a href="tour_detail?pNo=${product.pNo}">
+										<src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg" width="800" height="533" class="img-fluid" alt="Image">
 										<div class="short_info">
-											<i class="icon_set_1_icon-44"></i>Historic Buildings<span class="price"><sup>$</sup>45</span>
+											<i class="icon_set_1_icon-44"></i>Historic Buildings
+											<span class="price"><sup>￦</sup>${product.pPrice/10000}*<small></span>
 										</div>
 									</a>
 								</div>
 								<div class="tour_title">
-									<h3><strong>Arc Triomphe</strong> tour</h3>
+									<h3><strong>${product.pName}</strong> tour</h3>
 									<div class="rating">
 										<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
 									</div>
@@ -207,218 +215,16 @@
 							<!-- End box tour -->
 						</div>
 						<!-- End col-md-6 -->
+						</c:forEach>
 
-						<div class="col-md-6 wow zoomIn" data-wow-delay="0.2s">
-							<div class="tour_container">
-								<div class="ribbon_3 popular"><span>Popular</span>
-								</div>
-								<div class="img_container">
-									<a href="single_tour.html">
-										<img src="${pageContext.request.contextPath}/resources/img/tour_box_2.jpg" width="800" height="533" class="img-fluid" alt="Image">
-										<div class="short_info">
-											<i class="icon_set_1_icon-43"></i>Churches<span class="price"><sup>$</sup>45</span>
-										</div>
-									</a>
-								</div>
-								<div class="tour_title">
-									<h3><strong>Notredame</strong> tour</h3>
-									<div class="rating">
-										<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
-									</div>
-									<!-- end rating -->
-									<div class="wishlist">
-										<a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-									</div>
-									<!-- End wish list-->
-								</div>
-							</div>
-							<!-- End box tour -->
-						</div>
-						<!-- End col-md-6 -->
-					</div>
-					<!-- End row -->
-
-					<div class="row">
-						<div class="col-md-6 wow zoomIn" data-wow-delay="0.3s">
-							<div class="tour_container">
-								<div class="ribbon_3 popular"><span>Popular</span>
-								</div>
-								<div class="img_container">
-									<a href="single_tour.html">
-										<img src="${pageContext.request.contextPath}/resources/img/tour_box_3.jpg" width="800" height="533" class="img-fluid" alt="Image">
-										<div class="short_info">
-											<i class="icon_set_1_icon-44"></i>Historic Buildings<span class="price"><sup>$</sup>45</span>
-										</div>
-									</a>
-								</div>
-								<div class="tour_title">
-									<h3><strong>Versailles</strong> tour</h3>
-									<div class="rating">
-										<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
-									</div>
-									<!-- end rating -->
-									<div class="wishlist">
-										<a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-									</div>
-									<!-- End wish list-->
-								</div>
-							</div>
-							<!-- End box tour -->
-						</div>
-						<!-- End col-md-6 -->
-
-						<div class="col-md-6 wow zoomIn" data-wow-delay="0.4s">
-							<div class="tour_container">
-								<div class="ribbon_3 popular"><span>Popular</span>
-								</div>
-								<div class="img_container">
-									<a href="single_tour.html">
-										<img src="${pageContext.request.contextPath}/resources/img/tour_box_4.jpg" width="800" height="533" class="img-fluid" alt="Image">
-										<div class="short_info">
-											<i class="icon_set_1_icon-30"></i>Walking tour<span class="price"><sup>$</sup>45</span>
-										</div>
-									</a>
-								</div>
-								<div class="tour_title">
-									<h3><strong>Pompidue</strong> tour</h3>
-									<div class="rating">
-										<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
-									</div>
-									<!-- end rating -->
-									<div class="wishlist">
-										<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-									</div>
-									<!-- End wish list-->
-								</div>
-							</div>
-							<!-- End box tour -->
-						</div>
-						<!-- End col-md-6 -->
-					</div>
-					<!-- End row -->
-
-					<div class="row">
-						<div class="col-md-6 wow zoomIn" data-wow-delay="0.5s">
-							<div class="tour_container">
-								<div class="ribbon_3 popular"><span>Popular</span>
-								</div>
-								<div class="img_container">
-									<a href="single_tour.html">
-										<img src="${pageContext.request.contextPath}/resources/img/tour_box_14.jpg" width="800" height="533" class="img-fluid" alt="Image">
-										<div class="short_info">
-											<i class="icon_set_1_icon-28"></i>Skyline tours<span class="price"><sup>$</sup>45</span>
-										</div>
-									</a>
-								</div>
-								<div class="tour_title">
-									<h3><strong>Tour Eiffel</strong> tour</h3>
-									<div class="rating">
-										<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
-									</div>
-									<!-- end rating -->
-									<div class="wishlist">
-										<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-									</div>
-									<!-- End wish list-->
-								</div>
-							</div>
-							<!-- End box tour -->
-						</div>
-						<!-- End col-md-6 -->
-
-						<div class="col-md-6 wow zoomIn" data-wow-delay="0.6s">
-							<div class="tour_container">
-								<div class="ribbon_3"><span>Top rated</span>
-								</div>
-								<div class="img_container">
-									<a href="single_tour.html">
-										<img src="${pageContext.request.contextPath}/resources/img/tour_box_5.jpg" width="800" height="533" class="img-fluid" alt="Image">
-										<div class="short_info">
-											<i class="icon_set_1_icon-44"></i>Historic Buildings<span class="price"><sup>$</sup>45</span>
-										</div>
-									</a>
-								</div>
-								<div class="tour_title">
-									<h3><strong>Pantheon</strong> tour</h3>
-									<div class="rating">
-										<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
-									</div>
-									<!-- end rating -->
-									<div class="wishlist">
-										<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-									</div>
-									<!-- End wish list-->
-								</div>
-							</div>
-							<!-- End box tour -->
-						</div>
-						<!-- End col-md-6 -->
-					</div>
-					<!-- End row -->
-
-					<div class="row">
-						<div class="col-md-6 wow zoomIn" data-wow-delay="0.7s">
-							<div class="tour_container">
-								<div class="ribbon_3"><span>Top rated</span>
-								</div>
-								<div class="img_container">
-									<a href="single_tour.html">
-										<img src="${pageContext.request.contextPath}/resources/img/tour_box_8.jpg" width="800" height="533" class="img-fluid" alt="Image">
-										<div class="short_info">
-											<i class="icon_set_1_icon-3"></i>City sightseeing<span class="price"><sup>$</sup>45</span>
-										</div>
-									</a>
-								</div>
-								<div class="tour_title">
-									<h3><strong>Open Bus</strong> tour</h3>
-									<div class="rating">
-										<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
-									</div>
-									<!-- end rating -->
-									<div class="wishlist">
-										<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-									</div>
-									<!-- End wish list-->
-								</div>
-							</div>
-							<!-- End box tour -->
-						</div>
-						<!-- End col-md-6 -->
-
-						<div class="col-md-6 wow zoomIn" data-wow-delay="0.8s">
-							<div class="tour_container">
-								<div class="ribbon_3"><span>Top rated</span>
-								</div>
-								<div class="img_container">
-									<a href="single_tour.html">
-										<img src="${pageContext.request.contextPath}/resources/img/tour_box_9.jpg" width="800" height="533" class="img-fluid" alt="Image">
-										<div class="short_info">
-											<i class="icon_set_1_icon-4"></i>Museums<span class="price"><sup>$</sup>45</span>
-										</div>
-									</a>
-								</div>
-								<div class="tour_title">
-									<h3><strong>Louvre museum</strong> tour</h3>
-									<div class="rating">
-										<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
-									</div>
-									<!-- end rating -->
-									<div class="wishlist">
-										<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-									</div>
-									<!-- End wish list-->
-								</div>
-							</div>
-							<!-- End box tour -->
-						</div>
-						<!-- End col-md-6 -->
-					</div>
-					<!-- End row -->
+						
+						
+						
 
 					<hr>
 
 					<nav aria-label="Page navigation">
-						<ul class="pagination justify-content-center">
+						<ul class="pagination justify-content-center" style="visibility: hidden;">
 							<li class="page-item">
 								<a class="page-link" href="#" aria-label="Previous">
 									<span aria-hidden="true">&laquo;</span>
@@ -460,7 +266,7 @@
 	</script>
 	
 	<!-- Map -->
-	<script src="http://maps.googleapis.com/maps/api/js"></script>
+	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB4JNh6iELs0fU_OpkHc1sFUzYeR5Mtxk8"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/map.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/infobox.js"></script>
 	

@@ -271,15 +271,18 @@
 					
 						<p class="d-none d-xl-block d-lg-block d-xl-none">
 							<a class="btn_map" data-toggle="collapse" href="#reservation_div_space" 
+
 						   		aria-expanded="false" aria-controls="reservation_div_space" collapseBtn="BookingState"
 						   		data-text-swap="No restaurant reservation" data-text-original="Restaurant Reservation">
 						   			Restaurant Reservation
+
 							</a>
 						</p>
 					
 						<!-- 예약 div 시작 -->
 						<div class= "collapse" id="reservation_div_space">
 							<div class="box_style_1 expose" id="reservation_div">
+
 								<h3 class="inner">- Reservation -</h3>
 								<div class="row">
 									<div class="col-sm-6">
@@ -321,6 +324,7 @@
 									<hr>
 									Deposit per person<br>
 									￦  ${deposit_cost}
+
 									<hr>
 									  ※예약금은 레스토랑 도착 시 
 									결재카드 및 Invoice 제시시 
@@ -330,6 +334,7 @@
 									 in full provided that we receive
 									 your credit card or invoice upon
 									 your arrival to our restaurant.)
+
 									
 									<hr>
 								
@@ -341,7 +346,9 @@
 						</div>
 						<!-- 예약 div 끝 -->
 						<p class="d-none d-md-block d-block d-lg-none">
+
 							<a class="btn_map" data-toggle="collapse" href="#reservation_div_space" collapseBtn="BookingState" aria-expanded="false" aria-controls="reservation_div_space" data-text-swap="No restaurant reservation" data-text-original="Restaurant Reservation">Restaurant Reservation</a>
+
 						</p>
 						
 						
@@ -385,6 +392,7 @@
 									</tr>
 								</tbody>
 							</table>
+
 							
 							<!-- 받아올 정보를 유용하게 사용하기 위한 form이자 유용하게 보내고자하는 form -->
 							<form name="f" id="f">
@@ -414,6 +422,7 @@
 							
 							<a class="btn_full" id="checkOutBtn" href="restaurant_payment_fixed_sidebar" >BUY NOW</a>
 							<a class="btn_full_outline" href="restaurants_all_list"><i class=" icon-right"></i> CONTINUE SHOPPING</a>
+
 						</div>
 						<div class="box_style_4">
 						<i class="icon_set_1_icon-57"></i>
@@ -448,6 +457,7 @@
 			additionalMarginTop: 80
 		});
 		
+
 		function numberWithCommas(x) {
 		    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		}	
@@ -671,6 +681,7 @@
 				format: "yyyy/mm/dd",
 				beforeShowDay : function(date) {
 					////console.log("date.getDay::"+date.getDay());
+
 					let day = date.getDay();
 					return day ==2 ? false:true;
 				} 	
@@ -678,6 +689,7 @@
 			});
 			
 			$('input.date-pick').datepicker('setDate', 'today');
+
 			$('#datePicker').datepicker().on('changeDate', function(e) {
 				let dayStr = document.getElementById('datePicker').value;
 				//console.log("day::"+ dayStr);
@@ -688,16 +700,19 @@
 				$('#timePicker').val('9:00 AM');
 				//$('#timePicker').timepicker('setHour','9');
 				//$('#timePicker').timepicker('setMeridian','AM');
+
    			 });
 			
 			
 			$('#timePicker').timepicker({
+
 				minuteStep: 60,
 				showInpunts: false,
 				weekendstTime : 9,
 				weekendedTime : 1,
 				weekdaystTime : 9,
 				weekdayedTime : 7,
+
 				day :'Sat',
 				showInpunts: false
 				
@@ -707,14 +722,17 @@
 			    seatCapacityCalcul_Ajax();
 			    $('#seatingDiv').show();
 			  });
+
 			
 			$('#timePicker').on("click", function(e) {
 				//# 1, 3번은 이어진다.
 				//1.날짜가 변경되면 timePicker Input 데이터도 9:00AM으로 초기화 된다.
 				let timeStr = this.value; 
+
 				//console.log('timeStr->'+timeStr);
 				let time = timeStr.substring(0,1);
 				//console.log('time->'+time);
+
 
 				//2.위젯 필요없는 노드 삭제
 				$('a[data-action="incrementMinute"]').parent().remove();
@@ -729,9 +747,11 @@
 				
 				//4.요일 계산 및 timepicker setDay 셋팅
 				let dayStr = document.getElementById('datePicker').value;
+
 				//console.log("day::"+ dayStr);
 				let daycustom = dayStr.substring(dayStr.indexOf(',')+1).trim();
 				//console.log('daycustom ::' + daycustom);
+
 				
 				//timepicker에 Day seting
 				$('#timePicker').timepicker('setDay',daycustom);
@@ -742,6 +762,7 @@
 			
 			
 			
+
 			$('a[collapseBtn="BookingState"]').on("click", function(e) {
 				let show_reservation_window = $('#reservation_div_space').is(':visible');
 				//console.log('show_reservation_window::'+ show_reservation_window);
@@ -909,6 +930,7 @@
 			console.log("$(itemObjectJSONList).val()::"+$('#itemObjectJSONList').val());
 		}
 		
+
 	</script>
 		
 

@@ -121,7 +121,7 @@
 					<table class="table table-striped options_cart">
 						<thead>
 							<tr>
-								<th colspan="3">
+								<th colspan="6">
 									Add options / Services
 								</th>
 							</tr>
@@ -139,9 +139,6 @@
 									<td style="width:20%">
 										<strong>${option.optionInnerList[0].pName}</strong>
 									</td>
-									<td style="width:15%">
-										￦${option.optionInnerList[0].pPrice/10000}만 <sub>/person</sub>
-									</td>
 									<td style="width:10%">
 										<div class="dropdown">
 											<a href="#" class="dropdown-toggle" data-toggle="dropdown">0</a>
@@ -151,6 +148,9 @@
 										        </c:forEach>
 										    </div>
 										</div>
+									</td>
+									<td style="width:15%">
+										￦${option.optionInnerList[0].pPrice/10000}만 <sub>/person</sub>
 									</td>
 									<td style="width:15%">
 										<label class="switch-light switch-ios float-right">
@@ -171,9 +171,6 @@
 										<td style="width:20%">
 											<strong>${optionInner.pName}</strong>
 										</td>
-										<td style="width:20%">
-											￦${optionInner.pPrice/10000}만<sub>/person</sub>
-										</td>
 										<td style="width:5%">
 											<div class="dropdown">
 												<a href="#" class="dropdown-toggle" data-toggle="dropdown">0</a>
@@ -183,6 +180,9 @@
 											        </c:forEach>
 											    </div>
 											</div>
+										</td>
+										<td style="width:20%">
+											￦${optionInner.pPrice/10000}만<sub>/person</sub>
 										</td>
 										<td style="width:15%">
 											<label class="switch-light switch-ios float-right">

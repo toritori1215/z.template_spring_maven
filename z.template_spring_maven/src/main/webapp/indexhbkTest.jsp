@@ -2,6 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	response.sendRedirect("restaurant_test1");
+	response.sendRedirect("restaurants_all_list");
 %>
 

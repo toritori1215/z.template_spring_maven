@@ -164,8 +164,8 @@
 		<div class="container margin_60">
 
 			<div class="main_title">
-				<h2>Paris <span>Top</span> Tours</h2>
-				<p>Quisque at tortor a libero posuere laoreet vitae sed arcu. Curabitur consequat.</p>
+				<h2>Best <span>Top</span> Tours</h2>
+				<p>Unforgettable tours.</p>
 			</div>
 
 			<div class="row">
@@ -174,22 +174,26 @@
 					<div class="tour_container">
 						<div class="ribbon_3 popular"><span>Popular</span></div>
 						<div class="img_container">
-							<a href="single_tour.html">
-								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/youngae.jpg" width="800" height="533" class="img-fluid" alt="image">
+							<a href="tour_detail?pNo=1">
+								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/tour1.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="short_info">
-									<i class="icon_set_1_icon-44"></i>Historic Buildings<span class="price"><sup>$</sup>39</span>
+									<i class="icon-tree"></i>FIELD<span class="price"><sup>￦</sup>10.0</span>
 								</div>
 							</a>
 						</div>
 						<div class="tour_title">
-							<h3><strong>Arc Triomphe</strong> tour</h3>
+							<h3><strong>TREKKING </strong> tour</h3>
 							<div class="rating">
-								<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
+							<i class="icon-star voted"></i> <i class="icon-star voted"></i>
+							<i class="icon-star voted"></i> <i class="icon-star-empty"></i>
+							<i class="icon-star-empty"></i><small>(99)</small>
 							</div>
 							<!-- end rating -->
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
 						</div>
 					</div>
@@ -201,22 +205,24 @@
 					<div class="tour_container">
 						<div class="ribbon_3 popular"><span>Popular</span></div>
 						<div class="img_container">
-							<a href="single_tour.html">
-								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/chaewon2.jpg" width="800" height="533" class="img-fluid" alt="image">
+							<a href="tour_detail?pNo=2">
+								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/tour2.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="short_info">
-									<i class="icon_set_1_icon-43"></i>Churches<span class="price"><sup>$</sup>45</span>
+									<i class="icon-snow"></i>ICE<span class="price"><sup>￦</sup>25.0</span>
 								</div>
 							</a>
 						</div>
 						<div class="tour_title">
-							<h3><strong>Notredame</strong> tour</h3>
+							<h3><strong>GLACIER WALKING </strong> tour</h3>
 							<div class="rating">
-								<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
-							</div>
+								<i class="icon-star voted"></i> <i class="icon-star voted"></i> <i class="icon-star voted"></i> <i class="icon-star voted"></i> <i class="icon-star-empty"></i><small>(75)</small>
+						</div>
 							<!-- end rating -->
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
 						</div>
 					</div>
@@ -228,23 +234,27 @@
 					<div class="tour_container">
 						<div class="ribbon_3 popular"><span>Popular</span></div>
 						<div class="img_container">
-							<a href="single_tour.html">
-								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/taehee.jpg" width="800" height="533" class="img-fluid" alt="image">
+							<a href="tour_detail?pNo=3">
+								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/tour3.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="badge_save">Save<strong>30%</strong></div>
 								<div class="short_info">
-									<i class="icon_set_1_icon-44"></i>Historic Buildings<span class="price"><sup>$</sup>48</span>
+									<i class="icon-tree"></i>FIELD<span class="price"><sup>￦</sup>16.0</span>
 								</div>
 							</a>
 						</div>
 						<div class="tour_title">
-							<h3><strong>Versailles</strong> tour</h3>
+							<h3><strong>GOLF</strong> tour</h3>
 							<div class="rating">
-								<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
-							</div>
+							<i class="icon-star voted"></i> <i class="icon-star voted"></i>
+							<i class="icon-star voted"></i> <i class="icon-star voted"></i>
+							<i class="icon-star-empty"></i></i><small>(30)</small>
+						</div>
 							<!-- end rating -->
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
 						</div>
 					</div>
@@ -252,81 +262,107 @@
 				</div>
 				<!-- End col -->
 
+				  
 				<div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.4s">
 					<div class="tour_container">
 						<div class="ribbon_3"><span>Top rated</span></div>
 						<div class="img_container">
-							<a href="single_tour.html">
-								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/youngae_2x.jpg" width="800" height="533" class="img-fluid" alt="image">
+							<a href="tour_detail?pNo=4">
+								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/tour4.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="badge_save">Save<strong>20%</strong></div>
 								<div class="short_info">
-									<i class="icon_set_1_icon-30"></i>Walking tour<span class="price"><sup>$</sup>36</span>
+									<i class="pe-7s-drop"></i>WATER<span class="price"><sup>￦</sup>9.0</span>
 								</div>
 							</a>
 						</div>
 						<div class="tour_title">
-							<h3><strong>Pompidue</strong> tour</h3>
+							<h3><strong>FISHING</strong> tour</h3>
 							<div class="rating">
-								<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
-							</div>
+							<i class="icon-star voted"></i> <i class="icon-star voted"></i>
+							<i class="icon-star voted"></i> <i class="icon-star voted"></i>
+							<i class="icon-star-empty"></i></i><small>(77)</small>
+						</div>
+				
 							<!-- end rating -->
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
+							 
 						</div>
 					</div>
+							
 					<!-- End box tour -->
+					 
 				</div>
+					
 				<!-- End col -->
-
+				
+				 
 				<div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.5s">
 					<div class="tour_container">
 						<div class="ribbon_3"><span>Top rated</span></div>
 						<div class="img_container">
-							<a href="single_tour.html">
-								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/donggun.jpg" width="800" height="533" class="img-fluid" alt="image">
+							<a href="tour_detail?pNo=5">
+								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/tour5.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="short_info">
-									<i class="icon_set_1_icon-28"></i>Skyline tours<span class="price"><sup>$</sup>42</span>
+				 
+									<i class="icon-snow"></i>ICE<span class="price"><sup>￦</sup>65.0</span>-->
+									 
 								</div>
 							</a>
 						</div>
 						<div class="tour_title">
-							<h3><strong>Tour Eiffel</strong> tour</h3>
+							<h3><strong>HELI-SKIING</strong> tour</h3>
 							<div class="rating">
-								<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
-							</div>
+							<i class="icon-star voted"></i> <i class="icon-star voted"></i>
+							<i class="icon-star voted"></i> <i class="icon-star voted"></i>
+							<i class="icon-star voted"></i><small>(42)</small>
+						</div>
+									 
 							<!-- end rating -->
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							  -->
 							<!-- End wish list-->
+							 
 						</div>
 					</div>
+							 
 					<!-- End box tour -->
+					 
 				</div>
+					 
 				<!-- End col -->
 
 				<div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.6s">
 					<div class="tour_container">
 						<div class="ribbon_3"><span>Top rated</span></div>
 						<div class="img_container">
-							<a href="single_tour.html">
-								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/taehee2.jpg" width="800" height="533" class="img-fluid" alt="image">
+							<a href="#">
+								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/tour6.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="short_info">
-									<i class="icon_set_1_icon-44"></i>Historic Buildings<span class="price"><sup>$</sup>40</span>
+									<i class="pe-7s-drop"></i>WATER<span class="price"><sup>￦</sup>30.0</span>
 								</div>
 							</a>
 						</div>
 						<div class="tour_title">
-							<h3><strong>Pantheon</strong> tour</h3>
+							<h3><strong>SPA</strong> tour</h3>
 							<div class="rating">
-								<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
-							</div>
+							<i class="icon-star voted"></i> <i class="icon-star voted"></i>
+							<i class="icon-star voted"></i> <i class="icon-star voted"></i>
+							<i class="icon-star voted"></i><small>(12)</small>
+						</div>
 							<!-- end rating -->
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
 						</div>
 					</div>
@@ -344,8 +380,8 @@
 			<hr>
 
 			<div class="main_title">
-				<h2>Paris <span>Top</span> Hotels</h2>
-				<p>Quisque at tortor a libero posuere laoreet vitae sed arcu. Curabitur consequat.</p>
+				<h2>Best <span>Top</span> Menu</h2>
+				<p>We will provide the best taste.</p>
 			</div>
 
 			<div class="row">
@@ -354,23 +390,26 @@
 					<div class="hotel_container">
 						<div class="ribbon_3 popular"><span>Popular</span></div>
 						<div class="img_container">
-							<a href="single_hotel.html">
-								<img src="${pageContext.request.contextPath}/resources/img/hotel_1.jpg" width="800" height="533" class="img-fluid" alt="image">
-								<div class="score"><span>7.5</span>Good</div>
+							<a href="restaurant_single_food_detail?pno=11">
+								<img src="${pageContext.request.contextPath}/resources/img/food1.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="short_info hotel">
-									From/Per night<span class="price"><sup>$</sup>59</span>
+								<i class="icon_set_3_restaurant-2"></i>	Per food<span class="price"><sup>￦</sup>2.4</span>
 								</div>
 							</a>
 						</div>
 						<div class="hotel_title">
-							<h3><strong>Park Hyatt</strong> Hotel</h3>
+							<h3><strong>Lasagna</strong> European</h3>
 							<div class="rating">
-								<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
-							</div>
+							<i class="icon-star voted"></i> <i class="icon-star voted"></i>
+							<i class="icon-star voted"></i> <i class="icon-star-empty"></i>
+							<i class="icon-star-empty"></i>
+						</div>
 							<!-- end rating -->
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
 						</div>
 					</div>
@@ -382,23 +421,24 @@
 					<div class="hotel_container">
 						<div class="ribbon_3 popular"><span>Popular</span></div>
 						<div class="img_container">
-							<a href="single_hotel.html">
-								<img src="${pageContext.request.contextPath}/resources/img/hotel_2.jpg" width="800" height="533" class="img-fluid" alt="image">
-								<div class="score"><span>9.0</span>Superb</div>
+							<a href="restaurant_single_food_detail?pno=12">
+								<img src="${pageContext.request.contextPath}/resources/img/food2.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="short_info hotel">
-									From/Per night<span class="price"><sup>$</sup>45</span>
+									<i class="icon_set_3_restaurant-2"></i>Per food<span class="price"><sup>￦</sup>2.5</span>
 								</div>
 							</a>
 						</div>
 						<div class="hotel_title">
-							<h3><strong>Mariott</strong> Hotel</h3>
+							<h3><strong>Pizza</strong> European</h3>
 							<div class="rating">
 								<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
 							</div>
 							<!-- end rating -->
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
 						</div>
 					</div>
@@ -410,23 +450,24 @@
 					<div class="hotel_container">
 						<div class="ribbon_3"><span>Top rated</span></div>
 						<div class="img_container">
-							<a href="single_hotel.html">
-								<img src="${pageContext.request.contextPath}/resources/img/hotel_3.jpg" width="800" height="533" class="img-fluid" alt="image">
-								<div class="score"><span>9.5</span>Superb</div>
+							<a href="restaurant_single_food_detail?pno=83">
+								<img src="${pageContext.request.contextPath}/resources/img/food3.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="short_info hotel">
-									From/Per night<span class="price"><sup>$</sup>39</span>
+								<i class="icon_set_3_restaurant-2"></i>Per food<span class="price"><sup>￦</sup>2.0</span>
 								</div>
 							</a>
 						</div>
 						<div class="hotel_title">
-							<h3><strong>Lumiere</strong> Hotel</h3>
+							<h3><strong>Sashimi</strong> Japanese</h3>
 							<div class="rating">
 								<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
 							</div>
 							<!-- end rating -->
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
 						</div>
 					</div>
@@ -438,23 +479,26 @@
 					<div class="hotel_container">
 						<div class="ribbon_3"><span>Top rated</span></div>
 						<div class="img_container">
-							<a href="single_hotel.html">
-								<img src="${pageContext.request.contextPath}/resources/img/hotel_4.jpg" width="800" height="533" class="img-fluid" alt="image">
-								<div class="score"><span>7.5</span>Good</div>
+							<a href="restaurant_single_food_detail?pno=90">
+								<img src="${pageContext.request.contextPath}/resources/img/food4.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="short_info hotel">
-									From/Per night<span class="price"><sup>$</sup>45</span>
+									<i class="icon_set_3_restaurant-2"></i>Per food<span class="price"><sup>￦</sup>2.0</span>
 								</div>
 							</a>
 						</div>
 						<div class="hotel_title">
-							<h3><strong>Novelle</strong> Hotel</h3>
+							<h3><strong>Kku Lao Lou</strong> Chinese</h3>
 							<div class="rating">
-								<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
-							</div>
+							<i class="icon-star voted"></i> <i class="icon-star voted"></i>
+							<i class="icon-star voted"></i> <i class="icon-star voted"></i>
+							<i class="icon-star voted"></i>
+						</div>
 							<!-- end rating -->
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
 						</div>
 					</div>
@@ -466,23 +510,26 @@
 					<div class="hotel_container">
 						<div class="ribbon_3"><span>Top rated</span></div>
 						<div class="img_container">
-							<a href="single_hotel.html">
-								<img src="${pageContext.request.contextPath}/resources/img/hotel_5.jpg" width="800" height="533" class="img-fluid" alt="image">
-								<div class="score"><span>8.0</span>Good</div>
+							<a href="restaurant_single_food_detail?pno=100">
+								<img src="${pageContext.request.contextPath}/resources/img/food5.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="short_info hotel">
-									From/Per night<span class="price"><sup>$</sup>39</span>
+								<i class="icon_set_3_restaurant-2"></i>Per food<span class="price"><sup>￦</sup>1.5</span>
 								</div>
 							</a>
 						</div>
 						<div class="hotel_title">
-							<h3><strong>Louvre</strong> Hotel</h3>
+							<h3><strong>Hamburger</strong> American</h3>
 							<div class="rating">
-								<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
-							</div>
+							<i class="icon-star voted"></i> <i class="icon-star voted"></i>
+							<i class="icon-star voted"></i> <i class="icon-star voted"></i>
+							<i class="icon-star voted"></i>
+						</div>
 							<!-- end rating -->
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
 						</div>
 					</div>
@@ -494,23 +541,26 @@
 					<div class="hotel_container">
 						<div class="ribbon_3"><span>Top rated</span></div>
 						<div class="img_container">
-							<a href="single_hotel.html">
-								<img src="${pageContext.request.contextPath}/resources/img/hotel_6.jpg" width="800" height="533" class="img-fluid" alt="image">
-								<div class="score"><span>8.5</span>Superb</div>
+							<a href="restaurant_single_food_detail?pno=110">
+								<img src="${pageContext.request.contextPath}/resources/img/food6.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="short_info hotel">
-									From/Per night<span class="price"><sup>$</sup>45</span>
+									<i class="icon_set_3_restaurant-2"></i>Per food<span class="price"><sup>￦</sup>0.4</span>
 								</div>
 							</a>
 						</div>
 						<div class="hotel_title">
-							<h3><strong>Concorde</strong> Hotel</h3>
+							<h3><strong>Mochi</strong> Japanese</h3>
 							<div class="rating">
-								<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
-							</div>
+							<i class="icon-star voted"></i> <i class="icon-star voted"></i>
+							<i class="icon-star voted"></i> <i class="icon-star voted"></i>
+							<i class="icon-star voted"></i>
+						</div>
 							<!-- end rating -->
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
 						</div>
 					</div>
@@ -524,16 +574,15 @@
 			<p class="text-center nopadding">
 				<a href="restaurants_all_list" class="btn_1 medium"><i class="icon-eye-7"></i>View restaurant</a>
 			</p>
-			
-		</div>
+			</div>
 		<!-- End container -->
-
+	<!--  
 		<div class="white_bg">
 			<div class="container margin_60">
 				<div class="main_title">
 					<h2>Other <span>Popular</span> tours</h2>
 					<p>
-						Quisque at tortor a libero posuere laoreet vitae sed arcu. Curabitur consequat.
+						Choose the product that's right for you
 					</p>
 				</div>
 				<div class="row add_bottom_45">
@@ -586,8 +635,9 @@
 						</ul>
 					</div>
 				</div>
+				-->
 				<!-- End row -->
-
+		<!-- 
 				<div class="banner colored">
 					<h4>Discover our Top tours <span>from $34</span></h4>
 					<p>
@@ -634,14 +684,18 @@
 						</p>
 					</div>
 				</div>
+				-->
 				<!-- End row -->
-				
+				<!--  
 			</div>
+			 -->
 			<!-- End container -->
+			<!-- 
 		</div>
+		-->
 		<!-- End white_bg -->
 
-		<section class="promo_full">
+		<!--  <section class="promo_full">
 			<div class="promo_full_wp magnific">
 				<div>
 					<h3>BELONG ANYWHERE</h3>
@@ -652,15 +706,13 @@
 				</div>
 			</div>
 		</section>
+		-->
 		<!-- End section -->
-
 		<div class="container margin_60">
-
+			<hr>
 			<div class="main_title">
-				<h2>Some <span>good</span> reasons</h2>
-				<p>
-					Quisque at tortor a libero posuere laoreet vitae sed arcu. Curabitur consequat.
-				</p>
+				<h2>SILICON <span>VILLAGE가 </span>좋은 몇 가지 이유들</h2>
+				<p>당신께 최고의 경험과 서비스를 제공해 드리겠습니다.</p>
 			</div>
 
 			<div class="row">
@@ -668,33 +720,33 @@
 				<div class="col-lg-4 wow zoomIn" data-wow-delay="0.2s">
 					<div class="feature_home">
 						<i class="icon_set_1_icon-41"></i>
-						<h3><span>+120</span> Premium tours</h3>
+						<h3><span>+10</span> Premium tours</h3>
 						<p>
-							Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in. Nec id tempor imperdiet deterruisset.
-						</p>
-						<a href="about.html" class="btn_1 outline">Read more</a>
+						 어디서 체험 할 수 없는 SILICON VILLAGE만의 투어 서비스를 통해 삶의 활력과 일상 생활의 스트레스를 한 번에 날려 버릴 수 있습니다. 봄,여름,가을,겨울 항상 자연과 어우러진 투어 상품을 즐기 실수 있습니다.
+						 </p>
+						<a href="member_about" class="btn_1 outline">Read more</a>
 					</div>
 				</div>
 
 				<div class="col-lg-4 wow zoomIn" data-wow-delay="0.4s">
 					<div class="feature_home">
 						<i class="icon_set_1_icon-30"></i>
-						<h3><span>+1000</span> Customers</h3>
+						<h3><span>+ 1000</span> Guests</h3>
 						<p>
-							Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in. Nec id tempor imperdiet deterruisset.
+						 SILICON VILLAGE의 경우 새하얀 호텔식 침구를 제공하며  다양한 다이닝 서비스,실내 수영장,피트니스 등의 부대시설을 마음껏 이용할 수 있습니다.레스토랑 및 투어 상품의 경우 세계 최고임을 자부합니다. 
 						</p>
-						<a href="about.html" class="btn_1 outline">Read more</a>
+						<a href="member_about" class="btn_1 outline">Read more</a>
 					</div>
 				</div>
 
 				<div class="col-lg-4 wow zoomIn" data-wow-delay="0.6s">
 					<div class="feature_home">
 						<i class="icon_set_1_icon-57"></i>
-						<h3><span>H24 </span> Support</h3>
+						<h3><span>H24</span> Hotel staff</h3>
 						<p>
-							Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in. Nec id tempor imperdiet deterruisset.
+							항상 최고의 서비스를 제공하기 위해 카운터 및 각 층별 호텔 직원이 대기중이며, 응급상황 및 긴급상황 발생시 항시 경호원 및 의료진이 대기하구 있어 편안하게 이용 하실 수 있습니다. 도움이 필요하시면 연락주세요.
 						</p>
-						<a href="about.html" class="btn_1 outline">Read more</a>
+						<a href="member_about" class="btn_1 outline">Read more</a>
 					</div>
 				</div>
 
@@ -708,16 +760,16 @@
 					<img src="${pageContext.request.contextPath}/resources/img/laptop.png" alt="Laptop" class="img-fluid laptop">
 				</div>
 				<div class="col-md-6">
-					<h3><span>Get started</span> with CityTours</h3>
+					<h3><span>Get started</span> with SILICON VILLAGE </h3>
 					<p>
-						Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in. Nec id tempor imperdiet deterruisset.
+						최고의 서비스와 품질을 위해 항상 최선을 다하겠습니다.
 					</p>
 					<ul class="list_order">
 						<li><span>1</span>Select your preferred tours</li>
-						<li><span>2</span>Purchase tickets and options</li>
-						<li><span>3</span>Pick them directly from your office</li>
+						<li><span>2</span>Purchase hotel room and options</li>
+						<li><span>3</span>Pick them directly from your home</li>
 					</ul>
-					<a href="all_tour_list.html" class="btn_1">Start now</a>
+					<a href="member_insert_form" class="btn_1">Start now</a>
 				</div>
 			</div>
 			<!-- End row -->

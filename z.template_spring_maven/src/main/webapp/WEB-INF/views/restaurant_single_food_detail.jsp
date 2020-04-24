@@ -65,11 +65,11 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="#">Home</a>
+					<li><a href="main">Home</a>
 					</li>
-					<li><a href="#">Category</a>
+					<li><a href="restaurants_all_list">Restaurants List</a>
 					</li>
-					<li>Page active</li>
+					<li>${restaurantProduct.pname}</li>
 				</ul>
 			</div>
 		</div>
@@ -98,6 +98,7 @@
 					<p class="d-none d-md-block d-block d-lg-none"><a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="Hide map" data-text-original="View on map">View on map</a></p>
 					 -->
 					<p class="d-none d-md-block d-block d-lg-none">
+
 						<a class="btn_map" data-toggle="collapse" href="#reservation_div_space" collapseBtn="BookingState" aria-expanded="false" aria-controls="reservation_div_space" data-text-swap="No restaurant reservation" data-text-original="Restaurant Reservation">Restaurant Reservation</a>
 					</p>
 					<!-- Map button for tablets/mobiles -->
@@ -407,7 +408,9 @@
 					
 					<p class="d-none d-xl-block d-lg-block d-xl-none">
 						<a class="btn_map" data-toggle="collapse" href="#reservation_div_space" 
+
 						   aria-expanded="false" aria-controls="reservation_div_space" collapseBtn="BookingState"
+
 						   data-text-swap="No restaurant reservation" data-text-original="Restaurant Reservation">
 						   		Restaurant Reservation
 						</a>
@@ -442,6 +445,7 @@
 										</div>
 									</div>
 								</div>
+
 								
 								<div class="col-6" id="seatingDiv">
 									<div class="form-group">
@@ -452,6 +456,7 @@
 									</div>
 								</div>
 								
+
 							</div>
 							<hr>							
 							Deposit per person <br>
@@ -535,6 +540,7 @@
 									</tr>
 								</tbody>
 							</table>
+
 							<form name="f" id="f">
 								<input type="hidden" name="pno" id="pno" value= "${restaurantProduct.pno}">
 								
@@ -768,6 +774,7 @@
 			let foodsPrice = calculfoodPrice();
 			let sumPrice = foodsPrice;
 			document.getElementById('sumPrice').firstChild.nodeValue ="￦" +numberWithCommas(sumPrice);	
+
 			return sumPrice;
 		}	
 	
@@ -831,6 +838,7 @@
 			}
 			
 		}
+
 		
 		function seatCapacityCalcul_Ajax(){
 			let dateText = document.getElementById('datePicker').value;
@@ -866,6 +874,7 @@
 			
 			//$('td.text-right > div > div.dec.button_inc').text("");
 			//$('td.text-right > div > div.inc.button_inc').text("");
+
 			$('.reservation_info').hide();
 			//$(".my-numbers-row").append('<div class="inc button_inc"></div><div class="dec button_inc"></div>');
 
@@ -873,6 +882,7 @@
 				//let foodCnt = document.getElementById('foodCnt').value;
 				let personsCntVal = document.getElementById('persons').value;
 				if(personsCntVal==''){
+
 					//console.log("여긴 들어오니?");
 					personsCntVal='1';
 				}
@@ -887,6 +897,7 @@
 				}
 				document.getElementById('seatCapacityLabel').firstChild.nodeValue=capacity;
 				//////////
+
 				common_Person_Cnt(personsCntNumber);
 				
 			});
@@ -894,6 +905,7 @@
 			$('#person_decreaseBtn').on('click',function(e){
 				//let foodCnt = document.getElementById('foodCnt').value;
 				let personsCntVal = document.getElementById('persons').value;
+
 				//console.log('personsCntVal :: ' + personsCntVal);
 				////////
 				let personsCntNumber = Number(personsCntVal)-1;
@@ -904,6 +916,7 @@
 					document.getElementById('seatCapacityLabel').firstChild.nodeValue=capacity;
 				}	
 				////////
+
 				common_Person_Cnt(personsCntNumber);
 				
 			});
@@ -965,6 +978,8 @@
 				
 				//format: "dd/mm/yyyy",
 				format: "yyyy/mm/dd",
+
+        
 				beforeShowDay: function (date) {
 					//console.log("date::"+date);
 					//console.log("date.getDay::"+date.getDay());
@@ -978,6 +993,7 @@
 			$('#datePicker').datepicker("setDate",'today');
 			//console.log("bookState ::=>"+bookState);
 			
+
 			$('#datePicker').datepicker().on('changeDate', function(e) {
 				let dayStr = document.getElementById('datePicker').value;
 				console.log("day::"+ dayStr);
@@ -987,6 +1003,7 @@
 				$('#timePicker').val('9:00 AM');
 				
 				//seatCapacityCalcul_Ajax();
+
    			 });
 			
 
@@ -1025,6 +1042,7 @@
 				weekendedTime : 1,
 				weekdaystTime : 9,
 				weekdayedTime : 7,
+
 				day : 'Sat',
 				showInpunts: false
 			});
@@ -1033,6 +1051,7 @@
 			    seatCapacityCalcul_Ajax();
 			    $('#seatingDiv').show();
 			  });
+
 			
 			$('#timePicker').on("click", function(e) {
 				//# 1, 3번은 이어진다.
@@ -1061,7 +1080,7 @@
 				
 				//timepicker에 Day seting
 				$('#timePicker').timepicker('setDay',daycustom);
-				
+
 			});
 			
 
@@ -1083,10 +1102,12 @@
 					$('.reservation_info').show();
 					console.log("showReservationinfoSumCalcul");
 					showReservationinfoSumCalcul();
+
 				}
 			});
 			
 			
+
 			$('#addToCartBtn').on('click',function(e){
 				e.preventDefault();
 				let foodCount = $('#foodCnt').val();
@@ -1104,6 +1125,7 @@
 				
 		});
 	
+
 		function move_restaurant_cart_fixed_sidebar(){
 			document.f.action = "restaurant_cart_fixed_sidebar";
 			document.f.method ="POST";
