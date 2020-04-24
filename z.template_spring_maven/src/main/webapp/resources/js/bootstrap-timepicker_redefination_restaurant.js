@@ -100,6 +100,7 @@
         },
         /***** 내입맛에 맞게 수정!!! start *****/
         setDay : function(day){
+
         	//console.log('day:'+ day);
         	this.day = day;
         },
@@ -109,6 +110,7 @@
         },
         setMeridian : function(meridian){
         	//console.log('meridian:'+ meridian);
+
         	this.meridian = meridian;
         },
         
@@ -146,7 +148,9 @@
         
         decrementHour: function() {
         	
+
     		//console.log("decrementHour This->"+this);
+
     		if(this.day.toUpperCase()=='SAT' || this.day.toUpperCase()=='SUN'){
     			this.setdecrementhourrange(this.weekendstTime,this.weekendedTime);
     		}else{
@@ -545,9 +549,11 @@
        
         incrementHour: function() {
         	
+
         	//console.log("incrementHour This day->"+this.day);
         	//console.log("incrementHour This weekendstTime->"+this.weekendstTime);
         	//console.log("incrementHour This weekendedTime->"+this.weekendedTime);
+
     		if(this.day.toUpperCase()=='SAT' || this.day.toUpperCase()=='SUN'){
     			this.setincrementhourrange(this.weekendstTime,this.weekendedTime);
     		}else{

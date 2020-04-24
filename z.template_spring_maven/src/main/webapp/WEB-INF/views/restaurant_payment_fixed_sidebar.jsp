@@ -3,6 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <html>   
 
@@ -59,6 +60,7 @@
 			</div>
 		</div>
 		<!-- End position -->
+
 
 		<form id="checkForm" name="checkForm" action="restaurant_confirmation_fixed_sidebar" method="POST">
 		<div class="container margin_60">
@@ -150,10 +152,12 @@
 											<div class="col-8">
 												<img src="${pageContext.request.contextPath}/resources/img/icon_jcardcvc.gif" width="50" height="29" alt="jcardcvc"><small>Last 3 digits</small>
 											</div>
+
 										</div>
 									</div>
 								</div>
 							</div>
+
 							<!--End row -->
 	
 							<hr>
@@ -238,12 +242,14 @@
 				
 				
 				
+
 				<aside class="col-lg-4" id="sidebar">
 					<div class="theiaStickySidebar">
 						<div class="box_style_1" id="booking_box">
 							<h3 class="inner">- Summary -</h3>
 							<table class="table table_summary">
 								<tbody>
+
 											<input type = "hidden" name = "jcountry" id="jcountry" value="">
 											<input type = "hidden" name = "totalFoodPrice" id="totalFoodPrice" value="${totalFoodPrice}">
 									<c:if test="${not empty bookingDate ||not empty bookingTime ||not empty totalSeatBookingCnt}">
@@ -279,12 +285,14 @@
 										<td class="text-right" price_list="price">
 											${totalFoodPrice}
 											
+
 										</td>
 									</tr>
 									<tr class="total">
 										<td>
 											Total cost
 										</td>
+
 										<td class="text-right" price_list="price">
 											${totalPrice}
 											
@@ -292,10 +300,12 @@
 									</tr>
 								</tbody>
 							</table>
+
 							<!-- 
 							<a class="btn_full" href="restaurant_confirmation_fixed_sidebar">Book now</a>
 							 -->
 							<input type="submit" id="submit" class="btn_full" value = "Book now">
+
 							<a class="btn_full_outline" href="restaurants_all_list"><i class="icon-right"></i> Continue shopping</a>
 						</div>
 						<div class="box_style_4">
@@ -307,12 +317,14 @@
 					</div>
 					<!--End sticky -->
 				</aside>
+
 				
 			</div>
 			<!--End row -->
 		<input type="hidden" id= "isCart" name = "isCart" value= "${isCart}">
 		</div>
 		</form>
+
 		<!--End container -->
 	</main>
 	<!-- End main -->
@@ -323,7 +335,9 @@
 
 	<!-- Fixed sidebar -->
 	<script src="${pageContext.request.contextPath}/resources/js/theia-sticky-sidebar.js"></script>
+
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.validate.js"></script>
+
 	<script>
 		jQuery('#sidebar').theiaStickySidebar({
 			additionalMarginTop: 80
@@ -337,6 +351,7 @@
 		   radioClass: 'iradio_square-grey'
 		 });
 		
+
 		function numberWithCommas(x) {
 		    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		}	
@@ -476,6 +491,7 @@
 			
 		});
 		
+
 		
 		
 	</script>

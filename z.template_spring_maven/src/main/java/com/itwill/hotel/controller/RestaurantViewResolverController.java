@@ -9,6 +9,8 @@ import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -16,9 +18,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+mework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 import com.itwill.hotel.controller.interceptors.LoginCheck;
 import com.itwill.hotel.domain.Member;
@@ -26,6 +29,7 @@ import com.itwill.hotel.domain.RestaurantCartDTO;
 import com.itwill.hotel.domain.RestaurantDTO;
 import com.itwill.hotel.domain.Restaurant_JD_DTO;
 import com.itwill.hotel.domain.Restaurant_J_DTO;
+
 import com.itwill.hotel.exception.WrongRestaurantDataException;
 import com.itwill.hotel.service.RestaurantService;
 import com.itwill.hotel.util.PageInputDto;
@@ -125,6 +129,7 @@ public class RestaurantViewResolverController {
 		
 		return "restaurants_all_list";
 	}
+
 	
 	
 	@LoginCheck
@@ -228,12 +233,14 @@ public class RestaurantViewResolverController {
 	@RequestMapping("restaurant_single_food_detail")
 	public String single_restaurant_with_gallery(Model model,
 												 HttpSession session,
+
 												 @RequestParam(value="pno",required = false) Integer pno) throws WrongRestaurantDataException {
 		System.out.println("pno ::->" + pno);
 		if(pno==null || pno <= -1) {
 			throw new WrongRestaurantDataException("잘못된 레스토랑 관련 데이터 입력");
 		}
 		
+
 		
 		
 		RestaurantDTO product = restService.get_Restaurant_Product(pno);
@@ -425,13 +432,14 @@ public class RestaurantViewResolverController {
 			}
 		}
 		
+
 		return "restaurant_confirmation_fixed_sidebar";
 	}
 	
 	
 	
 	
-	
+
 	/*
 	@RequestMapping("restaurant_single_restaurant_detail")
 	public String restaurant_single_restaurant_detail() {
@@ -444,5 +452,5 @@ public class RestaurantViewResolverController {
 		System.out.println(e);
 		return "common_404";
 	}
-	
+
 }
