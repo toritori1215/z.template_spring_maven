@@ -20,14 +20,12 @@ public class BlogDaoImpl implements BlogDao {
 	/****** Blog ******/
 	@Override
 	public List<Blog> selectAllBlog() {
-		List<Blog> blogList = blogMapper.selectAllBlog();
-		return blogList;
+		return blogMapper.selectAllBlog();
 	}
 
 	@Override
 	public Blog selectOneBlog(int bNo) {
-		Blog blog = blogMapper.selectOneBlog(bNo);
-		return blog;
+		return blogMapper.selectOneBlog(bNo);
 	}
 
 	@Override
@@ -36,42 +34,33 @@ public class BlogDaoImpl implements BlogDao {
 	}
 
 	@Override
+	public int selectNewBlog() {
+		return blogMapper.selectNewBlog();
+	}
+
+	@Override
 	public int insertBlog(HashMap hashMap) {
 		return blogMapper.insertBlog(hashMap);
 	}
 
 	@Override
-	public int deleteBlog(HashMap hashMap) {
-		int deleteResult = blogMapper.deleteBlog(hashMap);
-		return deleteResult;
+	public int insertBlogImg(String bImg) {
+		return blogMapper.insertBlogImg(bImg);
 	}
 
 	@Override
 	public int updateBlog(HashMap hashMap) {
-		int updateResult = blogMapper.updateBlog(hashMap);
-		return updateResult;
-	}
-	
-	
-	/****** Blog Review ******/
-	@Override
-	public List<BlogReview> selectBlogReview(int bNo) {
-		return blogMapper.selectBlogReview(bNo);
-	}
-	
-	@Override
-	public int insertBlogReview(BlogReview blogReview) {
-		return blogMapper.insertBlogReview(blogReview);
+		return blogMapper.updateBlog(hashMap);
 	}
 
 	@Override
-	public int deleteBlogReview(int brNo) {
-		return blogMapper.deleteBlogReview(brNo);
+	public int updateBlogImg(HashMap hashMap) {
+		return blogMapper.updateBlogImg(hashMap);
 	}
 
 	@Override
-	public int updateBlogReview(BlogReview blogReview) {
-		return blogMapper.updateBlogReview(blogReview);
+	public int deleteBlog(HashMap hashMap) {
+		return blogMapper.deleteBlog(hashMap);
 	}
 	
 }

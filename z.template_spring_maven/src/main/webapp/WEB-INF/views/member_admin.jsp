@@ -404,7 +404,7 @@
 					</form>
 
 					<hr>
-						<form id="form1" name="form1" action="member_mypage" method="post">
+					<form id="form1" name="form1" action="member_mypage" method="post">
 						<h4>Upload profile photo</h4>
 						<!-- Drop Zone -->
 						<div id="attachFile" style="width: 100%;"></div>

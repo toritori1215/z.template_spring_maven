@@ -3,32 +3,11 @@
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
-	<meta name="author" content="Ansonika">
-	<title>CITY TOURS - City tours and travel site template by Ansonika</title>
-
-	<!-- Favicons-->
-	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico" type="image/x-icon">
-	<link rel="apple-touch-icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-57x57-precomposed.png">
-	<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-72x72-precomposed.png">
-	<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-114x114-precomposed.png">
-	<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-144x144-precomposed.png">
-
-    <!-- GOOGLE WEB FONT -->
-    <link href="https://fonts.googleapis.com/css?family=Gochi+Hand|Montserrat:300,400,700" rel="stylesheet">
-	
-	<!-- CSS -->
-	<link href="${pageContext.request.contextPath}/resources/css/blog.css" rel="stylesheet">
-	
 
 	<!-- Header================================================== -->
 	<jsp:include page="WEB-INF/views/common_header_6.jsp"/>
 	<!-- End Header -->
+
 
 	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/img/bg_blog.jpg" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-1">
@@ -63,7 +42,7 @@
 						<c:forEach var ="blog" items = "${blogList}">
 							<form id="blogForm" method="post" action="blog_delete">
 							<input type="hidden" name="bNo" value="${blog.bNo}">
-							<a href="blog_post_right_sidebar?bNo=${blog.bNo}"><img src="${pageContext.request.contextPath}/resources/img/blog-3.jpg" alt="Image" class="img-fluid"></a>
+							<a href="blog_post_right_sidebar?bNo=${blog.bNo}"><img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/blog/${blog.bImg}" alt="Image" class="img-fluid"></a>
 							<div class="post_info clearfix">
 								<div class="post-left">
 									<ul>
@@ -174,6 +153,7 @@
 			<!-- End row-->
 		</div>
 		<!-- End container -->
+		<input type="hidden" id="blogMsg" value="${blogMsg}">
 	</main>
 	<!-- End main -->
 	
@@ -183,7 +163,14 @@
 	<jsp:include page="WEB-INF/views/common_footer_2.jsp"/>
 	<!-- End Footer -->
 	
-	
+	<script type="text/javascript">
+		$(function() {
+			var blogMsg = $("#blogMsg").val()
+			if (blogMsg != null && blogMsg != "") {
+				alert(blogMsg);
+			}
+		})
+	</script>
 	
 </body>
 
