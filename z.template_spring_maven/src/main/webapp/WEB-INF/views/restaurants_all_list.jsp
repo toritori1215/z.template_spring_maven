@@ -191,10 +191,11 @@
 									</select>
 								</div>
 							</div>
+							<!-- 
 							<div class="col-md-6 col-sm-4 d-none d-sm-block text-right">
 								<a href="all_restaurants_grid.html" class="bt_filters"><i class="icon-th"></i></a> <a href="#" class="bt_filters"><i class="icon-list"></i></a>
 							</div>
-
+							 -->
 						</div>
 					</div>
 					<!--/tools -->

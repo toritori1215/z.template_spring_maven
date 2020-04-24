@@ -44,7 +44,7 @@
 	
 	<delete id="deleteInactiveMember">
 		delete from member
-		where sysdate - mRemoveDate > 1
+		where sysdate - mRemoveDate > 30
 	</delete>
 	
 	<update id="removeMember" parameterType="string">

@@ -132,11 +132,7 @@
 						<li class="submenu">
 							<a href="javascript:void(0);" class="show-submenu">Restaurants<i class="icon-down-open-mini"></i></a>
 							<ul>
-								<li><a href="member_about">Main page</a></li>
-								<li><a href="member_about">Main page</a></li>
-								<li><a href="member_about">Main page</a></li>
-								<li><a href="member_about">Main page</a></li>
-								<li><a href="member_about">Main page</a></li>
+								<li><a href="restaurants_all_list">Food List</a></li>
 							</ul>
 						</li>
 						<li class="submenu">

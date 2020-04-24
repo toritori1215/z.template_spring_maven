@@ -165,7 +165,7 @@
 
 			<div class="main_title">
 				<h2>Best <span>Top</span> Tours</h2>
-				<p>Unforgettable package.</p>
+				<p>Unforgettable tours.</p>
 			</div>
 
 			<div class="row">
@@ -174,7 +174,7 @@
 					<div class="tour_container">
 						<div class="ribbon_3 popular"><span>Popular</span></div>
 						<div class="img_container">
-							<a href="tour_list">
+							<a href="tour_detail?pNo=1">
 								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/tour1.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="short_info">
 									<i class="icon-tree"></i>FIELD<span class="price"><sup>￦</sup>10.0</span>
@@ -205,7 +205,7 @@
 					<div class="tour_container">
 						<div class="ribbon_3 popular"><span>Popular</span></div>
 						<div class="img_container">
-							<a href="tour_list">
+							<a href="tour_detail?pNo=2">
 								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/tour2.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="short_info">
 									<i class="icon-snow"></i>ICE<span class="price"><sup>￦</sup>25.0</span>
@@ -234,7 +234,7 @@
 					<div class="tour_container">
 						<div class="ribbon_3 popular"><span>Popular</span></div>
 						<div class="img_container">
-							<a href="tour_list">
+							<a href="tour_detail?pNo=3">
 								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/tour3.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="badge_save">Save<strong>30%</strong></div>
 								<div class="short_info">
@@ -250,9 +250,11 @@
 							<i class="icon-star-empty"></i></i><small>(30)</small>
 						</div>
 							<!-- end rating -->
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
 						</div>
 					</div>
@@ -265,7 +267,7 @@
 					<div class="tour_container">
 						<div class="ribbon_3"><span>Top rated</span></div>
 						<div class="img_container">
-							<a href="tour_list">
+							<a href="tour_detail?pNo=4">
 								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/tour4.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="badge_save">Save<strong>20%</strong></div>
 								<div class="short_info">
@@ -303,7 +305,7 @@
 					<div class="tour_container">
 						<div class="ribbon_3"><span>Top rated</span></div>
 						<div class="img_container">
-							<a href="tour_list">
+							<a href="tour_detail?pNo=5">
 								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/tour5.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="short_info">
 				 
@@ -341,7 +343,7 @@
 					<div class="tour_container">
 						<div class="ribbon_3"><span>Top rated</span></div>
 						<div class="img_container">
-							<a href="tour_list">
+							<a href="#">
 								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/tour6.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="short_info">
 									<i class="pe-7s-drop"></i>WATER<span class="price"><sup>￦</sup>30.0</span>
