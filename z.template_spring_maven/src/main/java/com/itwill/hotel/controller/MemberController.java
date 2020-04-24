@@ -464,7 +464,7 @@ public class MemberController {
 		jumunService.cancelJumun(hashMap);
 		List<Jumun> jumunList = jumunService.selectJumun(member.getmNo());
 		session.setAttribute("jumunList", jumunList);
-		model.addAttribute("inputMsg", "1");
+		model.addAttribute("inputMsg", "0");
 		return "member_admin";
 	}
 	
