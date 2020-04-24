@@ -8,11 +8,11 @@
 	<jsp:include page="common_header_6.jsp"/>
 	<!-- End Header -->
 
-	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/img/home_bg_1.jpg" data-natural-width="1400" data-natural-height="470">
+	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/img/Faq.jpg" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
-				<h1>Frequently questions</h1>
-				<p>Ridiculus sociosqu cursus neque cursus curae ante scelerisque vehicula.</p>
+				<h1>언제든 물어보세요 </h1>
+				<p>궁금한 사항이 있으시면 바로 내용을 남겨주세요. 빠른 답변 처리 해드리겠습니다</p>
 			</div>
 		</div>
 	</section>
@@ -22,11 +22,10 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="#">Home</a>
+					<li><a href="main">Home</a>
 					</li>
-					<li><a href="#">Category</a>
+					<li><a href="#">FAQ</a>
 					</li>
-					<li>Page active</li>
 				</ul>
 			</div>
 		</div>
