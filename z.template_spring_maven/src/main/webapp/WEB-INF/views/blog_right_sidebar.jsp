@@ -13,7 +13,7 @@
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
 				<h1>Blog</h1>
-				<p>Ridiculus sociosqu cursus neque cursus curae ante scelerisque vehicula.</p>
+				<p>블로그를 작성하세요.</p>
 			</div>
 		</div>
 	</section>
