@@ -34,7 +34,7 @@ public class BlogController {
 		model.addAttribute("blogList", blogList);
 		List<Blog> recentBlogList = blogService.selectRecentBlog();
 		model.addAttribute("recentBlogList", recentBlogList);
-		return "forward:blog_right_sidebar.jsp";
+		return "blog_right_sidebar";
 	}
 	
 	@RequestMapping(value = "/blog_post_right_sidebar")
@@ -48,7 +48,7 @@ public class BlogController {
 		List<Blog> recentBlogList = blogService.selectRecentBlog();
 		model.addAttribute("recentBlogList", recentBlogList);
 		session.setAttribute("SessionBlog", blog);
-		return "forward:blog_post_right_sidebar.jsp";
+		return "blog_post_right_sidebar";
 	}
 	
 	@RequestMapping(value = "/blog_insert")
