@@ -177,11 +177,13 @@
 										<option value="" selected>Sort by price</option>
 										<option value="lower">Lowest price</option>
 										<option value="higher">Highest price</option>
+										<option value="lower">Lowest ranking</option>
+										<option value="higher">Highest ranking</option>
 									</select>
 								</div>
 							</div>
 							<div class="col-md-3 col-sm-4 col-6">
-								<div class="styled-select-filters">
+								<div class="styled-select-filters" style="visibility: hidden;">
 									<select name="sort_rating" id="sort_rating">
 										<option value="" selected>Sort by ranking</option>
 										<option value="lower">Lowest ranking</option>
@@ -190,14 +192,14 @@
 								</div>
 							</div>
 							<div class="col-md-6 col-sm-4 d-none d-sm-block text-right">
-								<a href="tour_grid" class="bt_filters"><i class="icon-th"></i></a> <a href="#" class="bt_filters"><i class=" icon-list"></i></a>
+								<a href="tour_grid" class="bt_filters"><i class=" icon-th"></i></a> 
+								<a href="tour_list" class="bt_filters"><i class=" icon-list"></i></a>
 							</div>
 
 						</div>
 					</div>
 					
-					<div id="helloo">
-					</div>
+					
 					
 					<!--/tools -->
 					<div id="productList">
@@ -313,7 +315,7 @@
 
 					<hr>
 
-					<nav aria-label="Page navigation">
+					<nav aria-label="Page navigation" style="visibility: hidden;">
 						<ul class="pagination justify-content-center">
 							<li class="page-item">
 								<a class="page-link" href="#" aria-label="Previous">
