@@ -536,6 +536,7 @@
 	</div>
 </div>
 <!-- End Modal add wishlist -->
+<<<<<<< HEAD
 
 
 
@@ -667,6 +668,9 @@
 </div>
 <!-- End modal review -->
 =======
+=======
+
+>>>>>>> branch 'master' of https://github.com/toritori1215/z.template_spring_maven.git
 <!-- ======================================== member_admin.jsp ======================================== -->
 <div class="modal fade" id="memberAddWishlist" tabindex="-1" role="dialog" aria-labelledby="addWishlistLabel" aria-hidden="true">
 	<div class="modal-dialog">
@@ -698,4 +702,176 @@
 		</div>
 	</div>
 </div>
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/toritori1215/z.template_spring_maven.git
+=======
+
+
+<!-- ======================================== blog_right_sidebar.jsp ======================================== -->
+<!-- Modal Blog write -->
+<div class="modal fade" id="writeBlog" tabindex="-1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 align="right" class="modal-title" id="myReviewLabel">Write Your Blog</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			</div>
+			<div class="modal-body">
+				<form id="blogWriteForm" method="post" action="blog_insert">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Your name</label>
+								<input name="name_review" id="name_blog" type="text" readonly="readonly" class="form-control" value="${sUser.mFirstName}">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Your lastname</label>
+								<input name="lastname_review" id="lastname_blog" type="text" readonly="readonly" class="form-control" value="${sUser.mLastName}">
+							</div>
+						</div>
+					</div>
+					<!-- End row -->
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Your email</label>
+								<input name="email_review" id="email_blog" type="email" readonly="readonly" class="form-control" value="${sUser.mEmail}">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Category</label>
+								<select class="form-control" name="Category" id="Category">
+									<option value="Tour" selected="selected">Tour</option>
+									<option value="Hotel">Hotel</option>
+									<option value="Facility">Facility</option>
+									<option value="Restaurant">Restaurant</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<!-- End row -->
+					<hr>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Blog title</label>
+								<input name="write_blog_title" id="write_blog_title" type="text" placeholder="Your blog title" style="width: 465px;" class="form-control">
+							</div>
+						</div>
+					</div>
+					<!-- End row -->
+					<div class="form-group">
+						<label>Blog text</label>
+						<textarea name="write_blog_content" id="write_blog_content" class="form-control" style="height:100px" placeholder="Write your blog text"></textarea>
+					</div>
+					<hr>
+					<h4>Upload profile photo</h4>
+					<!-- Drop Zone -->
+					<div id="attachFile" style="width: 100%;"></div>
+					<br>
+					<button type="submit" class="btn_1" id="js-upload-submit" onclick="formSubmit()">Upload file</button>
+					<input type="submit" value="Write Blog" class="btn_1" id="submit-blog">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Blog write -->
+
+
+<!-- ======================================== blog_post_right_sidebar.jsp ======================================== -->
+<!-- Modal blog update -->
+<div class="modal fade" id="updateBlog" tabindex="-1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 align="right" class="modal-title" id="myReviewLabel">Modify Your Blog</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			</div>
+			<div class="modal-body">
+				<form id="blogUpdateForm" method="post" action="blog_update">
+					<input type="hidden" name="bNo" value="${blog.bNo}">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Your name</label>
+								<input name="name_review" id="name_blog" type="text" readonly="readonly" class="form-control" value="${sUser.mFirstName}">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Your lastname</label>
+								<input name="lastname_review" id="lastname_blog" type="text" readonly="readonly" class="form-control" value="${sUser.mLastName}">
+							</div>
+						</div>
+					</div>
+					<!-- End row -->
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Your email</label>
+								<input name="email_review" id="email_blog" type="email" readonly="readonly" class="form-control" value="${sUser.mEmail}">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Category</label>
+								<input name="Category" id="Category" type="text" readonly="readonly" class="form-control" value="${blog.bCategory}">
+							</div>
+						</div>
+					</div>
+					<!-- End row -->
+					<hr>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Blog title</label>
+								<input name="write_blog_title" id="write_blog_title" type="text" value="${blog.bTitle}" 
+										placeholder="Your blog title" style="width: 465px;" class="form-control">
+							</div>
+						</div>
+					</div>
+					<!-- End row -->
+					<div class="form-group">
+						<label>Blog text</label>
+						<textarea name="write_blog_content" id="write_blog_content" class="form-control" style="height:100px" placeholder="Write your blog text">${blog.bContent}</textarea>
+					</div>
+					<hr>
+					<h4>Upload profile photo</h4>
+					<!-- Drop Zone -->
+					<div id="attachFile" style="width: 100%;"></div>
+					<br>
+					<button type="submit" class="btn_1" id="js-upload-submit" onclick="formSubmit()">Upload file</button>
+					<input type="submit" value="Modify Blog" class="btn_1" id="submit-blog">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End blog update -->
+
+<!-- Modal blog Img -->
+<div class="modal fade" id="updateBlogImg" tabindex="-1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 align="right" class="modal-title" id="myReviewLabel">Upload your blog image</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			</div>
+			<div class="modal-body">
+				<form id="form1" name="form1" action="blog_post_right_sidebar" method="post">
+					<h4>Upload profile photo</h4>
+					<!-- Drop Zone -->
+					<div id="attachFile" style="width: 100%;"></div>
+					<br>
+					<button type="submit" class="btn_1" id="js-upload-submit" onclick="formSubmit()">Upload image</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End blog Img -->
 >>>>>>> branch 'master' of https://github.com/toritori1215/z.template_spring_maven.git

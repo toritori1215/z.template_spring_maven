@@ -4,62 +4,51 @@
 	
 	<!-- Blog -->
 	<select id="selectAllBlog" resultType="Blog">
-		select bNo, bTitle, bDate, bContent, bReadCount, bCategory, mNo
+		select bNo, bTitle, bDate, bContent, bReadCount, bCategory, bImg, mNo
 		from blog
 		order by bDate desc
 	</select>
 	
 	<select id="selectRecentBlog" resultType="Blog">
-		select bNo, bTitle, bDate, bContent, bReadCount, bCategory, mNo
+		select bNo, bTitle, bDate, bContent, bReadCount, bCategory, bImg, mNo
 		from blog
         where <![CDATA[ ROWNUM <= 3 ]]>
 		order by bDate desc
 	</select>
 	
-	<select id="selectOneBlog" resultType="Blog">
-		select bNo, bTitle, bDate, bContent, bReadCount, bCategory, mNo
+	<select id="selectOneBlog" resultType="Blog" parameterType="_int">
+		select bNo, bTitle, bDate, bContent, bReadCount, bCategory, bImg, mNo
 		from blog
 		where bNo=#{bNo}
 	</select>
 	
+	<select id="selectNewBlog" resultType="_int">
+		select bNo
+		from blog
+		where <![CDATA[ ROWNUM = 1 ]]>
+		order by bNo desc
+	</select>
+	
 	<insert id="insertBlog" parameterType="java.util.HashMap">
-		insert into blog(bNO, bTitle, bDate, bContent, bReadCount, bCategory, mNo) 
-		values (blog_SEQ.nextval, #{bTitle}, sysdate, #{bContent}, 0, #{bCategory}, #{mNo})
+		insert into blog(bNo, bTitle, bDate, bContent, bReadCount, bCategory, bImg, mNo) 
+		values(blog_SEQ.nextval, #{bTitle}, sysdate, #{bContent}, 0, #{bCategory}, 'basic.jsp', #{mNo})
 	</insert>
 	
 	<update id="updateBlog" parameterType="java.util.HashMap">
 		update blog
-		set bTitle=#{bTitle}, bContent=#{bContent}, bDate=sysdate
+		set bTitle=#{bTitle}, bDate=sysdate, bContent=#{bContent}
 		where bNo=#{bNo}
 	</update>
 	
-	<delete id="deleteBlog" parameterType="_int">
+	<update id="updateBlogImg" parameterType="java.util.HashMap">
+		update blog 
+		set bImg=#{bImg} 
+		where bNo=#{bNo}
+	</update>
+	
+	<delete id="deleteBlog" parameterType="java.util.HashMap">
 		delete from blog
-		where bNo=#{bNo}
+		where bNo=#{bNo} and mNo=#{mNo}
 	</delete>
 	
-	
-	<!-- Blog Review -->
-	<select id="selectBlogReview" parameterType="_int" resultType="BlogReview">
-		select br.brNo, br.brDate, br.brContent, br.brGroup, br.brStep, br.brDepth, br.mNo, br.bNo, m.mId, m.mImg
-		from blog_review br inner join member m
-		on bNo=#{bNo} and br.mNo=m.mNo
-		order by brDate desc
-	</select>
-	
-	<insert id="insertBlogReview" parameterType="java.util.HashMap">
-		insert into blog_review(brNo, brDate, brContent, brGroup, brStep, brDepth, mNo)
-		values (blog_review_SEQ.nextval, sysdate, #{brContent}, 1, 1, 1, #{mNo})
-	</insert>
-	
-	<update id="updateBlogReview" parameterType="java.util.HashMap">
-		update blog_review 
-		set brDate=sysdate, brContent, brStep, brGroup, brDepth, mNo 
-		where brNo=#{brNo}
-	</update>
-	
-	<delete id="deleteBlogReview" parameterType="_int">
-		delete from blog_review
-		where brNo=#{brNo} 
-	</delete>
 </mapper>

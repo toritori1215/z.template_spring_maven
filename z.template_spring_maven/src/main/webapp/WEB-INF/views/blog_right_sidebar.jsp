@@ -223,7 +223,41 @@
 	<!-- Footer================================================== -->
 	<jsp:include page="common_footer_2.jsp"/>
 	<!-- End Footer -->
-
+	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/gu-upload/guuploadManager.js"></script>
+	<script type="text/javascript">
+		var guManager = null;
+		
+		window.onload = function() {
+			var option = {
+				fileid: "attachFile",
+				listtype: "thumbnail",
+				uploadURL: "upload",
+				maxFileSize: 100,
+				maxFileCount: 1,
+				useButtons: true,
+				afterFileTransfer: afterFileTransfer
+			}
+			guManager = new guUploadManager(option);
+		}	
+		
+		function formSubmit() {
+			guManager.uploadFiles();
+		}
+		
+		function afterFileTransfer(realname, filename, filesize) {
+			var realname9 = document.getElementById("realname");
+			var filename9 = document.getElementById("filename");
+			var filesize9 = document.getElementById("filesize");
+			
+			realname9.value = realname;
+			filename9.value = filename;
+			filesize9.value = filesize;
+			
+			document.form1.submit();
+		}
+	</script>
+	
 </body>
 
 </html>

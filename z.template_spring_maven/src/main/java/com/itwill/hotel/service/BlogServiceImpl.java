@@ -1,5 +1,6 @@
 package com.itwill.hotel.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,40 +34,33 @@ public class BlogServiceImpl implements BlogService {
 	}
 
 	@Override
-	public int insertBlog(Blog blog) {
-		return blogDao.insertBlog(blog);
+	public int selectNewBlog() {
+		return blogDao.selectNewBlog();
 	}
 
 	@Override
-	public int deleteBlog(int bNo) {
-		return blogDao.deleteBlog(bNo);
+	public int insertBlog(HashMap hashMap) {
+		return blogDao.insertBlog(hashMap);
 	}
 
 	@Override
-	public int updateBlog(Blog blog) {
-		return blogDao.updateBlog(blog);
+	public int insertBlogImg(String bImg) {
+		return blogDao.insertBlogImg(bImg);
 	}
-	
-	
-	/****** Blog Review ******/
+
 	@Override
-	public List<BlogReview> selectBlogReview(int bNo) {
-		return blogDao.selectBlogReview(bNo);
+	public int updateBlog(HashMap hashMap) {
+		return blogDao.updateBlog(hashMap);
 	}
-	
+
 	@Override
-	public int insertBlogReview(BlogReview blogReview) {
-		return blogDao.insertBlogReview(blogReview);
+	public int updateBlogImg(HashMap hashMap) {
+		return blogDao.updateBlog(hashMap);
 	}
-	
+
 	@Override
-	public int deleteBlogReview(int brNo) {
-		return blogDao.deleteBlogReview(brNo);
-	}
-	
-	@Override
-	public int updateBlogReview(BlogReview blogReview) {
-		return blogDao.updateBlogReview(blogReview);
+	public int deleteBlog(HashMap hashMap) {
+		return blogDao.deleteBlog(hashMap);
 	}
 	
 }

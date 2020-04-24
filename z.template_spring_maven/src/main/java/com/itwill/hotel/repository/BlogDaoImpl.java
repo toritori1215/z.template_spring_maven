@@ -1,5 +1,6 @@
 package com.itwill.hotel.repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +20,12 @@ public class BlogDaoImpl implements BlogDao {
 	/****** Blog ******/
 	@Override
 	public List<Blog> selectAllBlog() {
-		List<Blog> blogList = blogMapper.selectAllBlog();
-		return blogList;
+		return blogMapper.selectAllBlog();
 	}
 
 	@Override
 	public Blog selectOneBlog(int bNo) {
-		Blog blog = blogMapper.selectOneBlog(bNo);
-		return blog;
+		return blogMapper.selectOneBlog(bNo);
 	}
 
 	@Override
@@ -35,43 +34,33 @@ public class BlogDaoImpl implements BlogDao {
 	}
 
 	@Override
-	public int insertBlog(Blog blog) {
-		int insertResult = blogMapper.insertBlog(blog);
-		return insertResult;
+	public int selectNewBlog() {
+		return blogMapper.selectNewBlog();
 	}
 
 	@Override
-	public int deleteBlog(int bNo) {
-		int deleteResult = blogMapper.deleteBlog(bNo);
-		return deleteResult;
+	public int insertBlog(HashMap hashMap) {
+		return blogMapper.insertBlog(hashMap);
 	}
 
 	@Override
-	public int updateBlog(Blog blog) {
-		int updateResult = blogMapper.updateBlog(blog);
-		return updateResult;
-	}
-	
-	
-	/****** Blog Review ******/
-	@Override
-	public List<BlogReview> selectBlogReview(int bNo) {
-		return blogMapper.selectBlogReview(bNo);
-	}
-	
-	@Override
-	public int insertBlogReview(BlogReview blogReview) {
-		return blogMapper.insertBlogReview(blogReview);
+	public int insertBlogImg(String bImg) {
+		return blogMapper.insertBlogImg(bImg);
 	}
 
 	@Override
-	public int deleteBlogReview(int brNo) {
-		return blogMapper.deleteBlogReview(brNo);
+	public int updateBlog(HashMap hashMap) {
+		return blogMapper.updateBlog(hashMap);
 	}
 
 	@Override
-	public int updateBlogReview(BlogReview blogReview) {
-		return blogMapper.updateBlogReview(blogReview);
+	public int updateBlogImg(HashMap hashMap) {
+		return blogMapper.updateBlogImg(hashMap);
+	}
+
+	@Override
+	public int deleteBlog(HashMap hashMap) {
+		return blogMapper.deleteBlog(hashMap);
 	}
 	
 }

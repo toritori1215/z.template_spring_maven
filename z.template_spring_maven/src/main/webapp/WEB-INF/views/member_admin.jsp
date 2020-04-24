@@ -404,7 +404,7 @@
 					</form>
 
 					<hr>
-						<form id="form1" name="form1" action="member_mypage" method="post">
+					<form id="form1" name="form1" action="member_mypage" method="post">
 						<h4>Upload profile photo</h4>
 						<!-- Drop Zone -->
 						<div id="attachFile" style="width: 100%;"></div>
@@ -433,7 +433,8 @@
 
 	<!-- Specific scripts -->
 	<script src="${pageContext.request.contextPath}/resources/js/tabs.js"></script>
-
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/gu-upload/guuploadManager.js"></script>
+	
 	<script>
 		var inputMsg = $("#inputMsg").val();
 		if (inputMsg == 1) {
@@ -473,7 +474,6 @@
 		});
 	</script>
 	
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/gu-upload/guuploadManager.js"></script>
 	<script type="text/javascript">
 		var guManager = null;
 		
@@ -506,6 +506,7 @@
 			document.form1.submit();
 		}
 	</script>
+	
 </body>
 
 </html>
