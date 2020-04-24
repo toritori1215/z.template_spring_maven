@@ -2,11 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.hotel.mapper.RestaurantMapper">
 
+	<resultMap id="RestaurantDTO" 
+				type="com.itwill.hotel.domain.RestaurantDTO"
+				autoMapping="true">
+	</resultMap>
+
 	<resultMap type="java.util.HashMap" id="foodCategory_Info">
 		<result column="foodcategory" property="foodcategory"/>
 		<result column="categoryCnt" property="categoryCnt"/>
 	</resultMap>
-
+	
+	<resultMap id="cartlist" 
+	           type="com.itwill.hotel.domain.RestaurantCartDTO" 
+			   autoMapping="true">
+		<collection property="restproductList"
+					resultMap="RestaurantDTO"/>
+	</resultMap>
+	
+	
 	<insert id="registerProduct" 
 			parameterType="com.itwill.hotel.domain.RestaurantDTO">
 			
@@ -178,5 +191,118 @@
 
 	</select>
 	
+	<!--   Cart   -->
+	<select id="findCartList"
+			parameterType="int"
+			resultMap="cartlist">
+			
+			SELECT mno,cproductQty,cproductTypePay,c.pno ,p.*
+			FROM cart c inner join product p
+			on c.pno = p.pno
+			where mno = #{mno}
+
+	</select>
 	
+	<insert id="insertCartInfo"
+			parameterType="com.itwill.hotel.domain.RestaurantCartDTO">
+			INSERT INTO CART(CNO,MNO,PNO,CPRODUCTQTY,CPRODUCTTYPEPAY)
+			VALUES(CART_SEQ.nextval,#{mno},#{pno},#{cproductQty},#{cproductTypePay})
+	</insert>
+	
+	<update id="updateCartInfo"
+			parameterType="com.itwill.hotel.domain.RestaurantCartDTO">
+			update cart
+			set CPRODUCTQTY = #{cproductQty}, CPRODUCTTYPEPAY=#{cproductTypePay}
+			where pno = #{pno} and mno=#{mno}
+	
+	</update>
+
+	
+	
+	<!-- 특정날 예약 시간에  주문된 좌석 수 한 시간 기준이면 (=) 으로 하는것이 나을수 있음 {결과는 동일}-->
+	<select id="seatCapacityCalcul"
+			parameterType="java.util.HashMap"
+			resultType="int">
+	<!-- 
+		select count(*) 
+		from jumun j inner join JUMUN_DETAIL jd
+		on j.jno = jd.jno
+		where jd.jdorderdate = to_date('#{date}','yyyy/mm/dd') and
+    <![CDATA[to_date(jd.jdordertime,'HH24:MI') > to_date(#{minTime},'HH24:MI')]]> and 
+    <![CDATA[to_date(jd.jdordertime,'HH24:MI') < to_date(#{maxTime},'HH24:MI')]]>
+	 -->	
+		select count(*) 
+		from jumun j inner join JUMUN_DETAIL jd
+		on j.jno = jd.jno
+		where jd.jdorderdate = to_date('${date}','yyyy/mm/dd') and
+	    to_date(jd.jdordertime,'HH24:MI') &gt; to_date('${minTime}','HH24:MI') and 
+	    to_date(jd.jdordertime,'HH24:MI') &lt; to_date('${maxTime}','HH24:MI')
+		 
+	</select>
+	
+	<delete id="deleteMemberCart"
+			parameterType="int">
+		DELETE FROM CART
+		WHERE MNO = #{mno}
+	</delete>
+	
+	<insert id="insertJumunTable"
+			parameterType="com.itwill.hotel.domain.Restaurant_J_DTO">
+			
+			INSERT INTO JUMUN(JNO,JTOTPAY,JDATE,JCARDOWNER,JEMAIL,
+                  JPHONENO,JCARDNO,JVALIDDATE,JCARDCVC,JSTREETADDR,
+                  JSTREETNMG,JCITY,JCOUNTRY,JSTATE,JZIPCODE,
+                  JGUEST,JIFCANCEL,MNO)
+			VALUES(JUMUN_SEQ.NEXTVAL , #{jtotpay}, sysdate, #{jcardowner}, #{jemail},
+        			#{jphoneno},#{jcardno}, #{jvaliddate} , #{jcardcvc}, #{jstreetaddr},
+        			#{jstreetnmg}, #{jcity}, #{jcountry}, #{jstate}, #{jzipcode}, 
+        			NULL, #{jifcancel}, #{mno})
+	</insert>
+	
+	<insert id="insertJumunDetailTable"
+			parameterType="com.itwill.hotel.domain.Restaurant_JD_DTO">
+		
+			INSERT INTO JUMUN_DETAIL(JNO, JDORDERDATE, JDORDERTIME, JDPRODUCTQTY, JDPRODUCTTOT, JDORDERQTY, PNO ,JDNO)
+			VALUES (JUMUN_SEQ.CURRVAL , TO_DATE('${jdorderdate}','YYYY/MM/DD'),
+		 			TO_CHAR('${jdordertime}'), #{jdproductqty,jdbcType=NUMERIC}, #{jdproducttot}, 
+					 #{jdorderqty,jdbcType=NUMERIC}, #{pno}, JUMUNDETAIL_SEQ.NEXTVAL)
+
+	</insert>
+		<!-- 
+		insert into JUMUN_DETAIL(JNO, JDORDERDATE, JDORDERTIME, JDPRODUCTQTY, JDPRODUCTTOT, JDORDERQTY, PNO ,JDNO)
+			select JUMUN_SEQ.CURRVAL, A.* 
+			from(
+			 <foreach item="item" collection="list" separator="UNION ALL " >
+			   select TO_DATE('${item,jdbcType=VARCHAR}','YYYY/MM/DD') as JDORDERDATE,
+			          TO_CHAR('${item.jdordertime,jdbcType=VARCHAR}') as JDORDERTIME,
+			          #{item.jdproductqty,jdbcType=NUMERIC} as JDPRODUCTQTY,
+			           #{item.jdproducttot} as JDPRODUCTTOT,
+			           #{item.jdorderqty,jdbcType=NUMERIC} as JDORDERQTY,
+			           #{item.pno} as PNO,
+			           JUMUNDETAIL_SEQ.NEXTVAL as JDNO
+			   from dual
+			 </foreach>) A
+		
+		
+		INSERT INTO JUMUN_DETAIL(JNO, JDORDERDATE, JDORDERTIME, JDPRODUCTQTY, JDPRODUCTTOT, JDORDERQTY, PNO ,JDNO)
+		VALUES 
+			<foreach collection="list" item="item" separator=",">
+			(JUMUN_SEQ.CURRVAL , TO_DATE('${item,jdbcType=VARCHAR}','YYYY/MM/DD'), 
+			TO_CHAR('${item.jdordertime,jdbcType=VARCHAR}'), #{item.jdproductqty,jdbcType=NUMERIC},
+			 #{item.jdproducttot}, #{item.jdorderqty,jdbcType=NUMERIC}, #{item.pno}, JUMUNDETAIL_SEQ.NEXTVAL)
+			</foreach>
+		 -->	
+		<!-- 
+		INSERT ALL
+		<foreach collection="list" item="item" separator="" index="1">
+			 INTO JUMUN_DETAIL(JNO, JDORDERDATE, JDORDERTIME, JDPRODUCTQTY, JDPRODUCTTOT, 
+             JDORDERQTY, PNO ,JDNO)
+		VALUES
+		(JUMUN_SEQ.CURRVAL , TO_DATE('${item,jdbcType=VARCHAR}','YYYY/MM/DD'),
+		 TO_CHAR('${item.jdordertime,jdbcType=VARCHAR}'), #{item.jdproductqty,jdbcType=NUMERIC}, #{item.jdproducttot}, 
+		 #{item.jdorderqty,jdbcType=NUMERIC}, #{item.pno}, JUMUNDETAIL_SEQ.NEXTVAL)
+		</foreach>
+		SELECT * FROM DUAL
+		 -->
+		
 </mapper>
