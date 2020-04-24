@@ -8,7 +8,7 @@
 	<jsp:include page="WEB-INF/views/common_header_6.jsp"/>
 	<!-- End Header -->
 
-	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/img/header_bg.jpg" data-natural-width="1400" data-natural-height="470">
+	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/img/common_about us.jpg" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
 				<h1>welcome you</h1>
@@ -145,7 +145,7 @@
 				<div class="col-lg-6 nopadding">
 					<div class="features-content">
 						<h3>" 최고의 추억을"</h3>
-						<p>가장 번화한 문화, 오락, 쇼핑 구역의 중심에 위치하고 도심 상업지역과 인접하여 비즈니스 및 레저 목적으로 대만에 온 여행객에게는 최고의 숙박 선택입니다. </p>
+						<p>가장 번화한 문화, 오락, 쇼핑 구역의 중심에 위치하고 도심 상업지역과 인접하여 비즈니스 및 레저 목적으로 온 여행객에게는 최고의 숙박 선택입니다. </p>
 						<p><a href="#" class=" btn_1 white">Read more</a>
 						</p>
 					</div>
@@ -155,12 +155,11 @@
 		<!-- End container-fluid  -->
 
 		<div class="container margin_60">
-
 			<div class="main_title">
-				<h2>What <span>Guests </span>says</h2>
-				<p>고객님의 의견에 감사드립니다.</p>
+				<h2>Thank <span>you </span>very much</h2>
+				<p>고객님의 관심과 사랑에 감사드립니다.</p>
 			</div>
-
+	<!--  
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="review_strip">
@@ -173,9 +172,10 @@
 							<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class=" icon-star-empty"></i><i class=" icon-star-empty"></i>
 						</div>
 					</div>
+	--> 
 					<!-- End review strip -->
+	<!-- 
 				</div>
-
 				<div class="col-lg-6">
 					<div class="review_strip">
 						<img src="${pageContext.request.contextPath}/resources/img/avatar2.jpg" alt="Image" class="rounded-circle">
@@ -187,10 +187,14 @@
 							<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class=" icon-star-empty"></i><i class=" icon-star-empty"></i>
 						</div>
 					</div>
+	--> 
 					<!-- End review strip -->
+	<!--  
 				</div>
 			</div>
+	-->
 			<!-- End row -->
+	<!--  
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="review_strip">
@@ -203,9 +207,10 @@
 							<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class=" icon-star-empty"></i><i class=" icon-star-empty"></i>
 						</div>
 					</div>
+	-->
 					<!-- End review strip -->
+	<!--
 				</div>
-
 				<div class="col-lg-6">
 					<div class="review_strip">
 						<img src="${pageContext.request.contextPath}/resources/img/avatar1.jpg" alt="Image" class="rounded-circle">
@@ -217,11 +222,13 @@
 							<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class=" icon-star-empty"></i><i class=" icon-star-empty"></i>
 						</div>
 					</div>
+    -->
 					<!-- End review strip -->
+	<!--
 				</div>
 			</div>
+   -->			
 			<!-- End row -->
-
 			<hr>
 
 			<div class="row">
