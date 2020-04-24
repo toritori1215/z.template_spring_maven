@@ -189,9 +189,11 @@
 							<i class="icon-star-empty"></i><small>(99)</small>
 							</div>
 							<!-- end rating -->
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
 						</div>
 					</div>
@@ -216,9 +218,11 @@
 								<i class="icon-star voted"></i> <i class="icon-star voted"></i> <i class="icon-star voted"></i> <i class="icon-star voted"></i> <i class="icon-star-empty"></i><small>(75)</small>
 						</div>
 							<!-- end rating -->
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
 						</div>
 					</div>
@@ -278,11 +282,11 @@
 						</div>
 				
 							<!-- end rating -->
-							 
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
-							
+							 -->
 							<!-- End wish list-->
 							 
 						</div>
@@ -317,11 +321,11 @@
 						</div>
 									 
 							<!-- end rating -->
-							 
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
-							 
+							  -->
 							<!-- End wish list-->
 							 
 						</div>
@@ -352,10 +356,11 @@
 							<i class="icon-star voted"></i><small>(12)</small>
 						</div>
 							<!-- end rating -->
-							
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
 						</div>
 					</div>
@@ -398,9 +403,11 @@
 							<i class="icon-star-empty"></i>
 						</div>
 							<!-- end rating -->
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
 						</div>
 					</div>
@@ -425,9 +432,11 @@
 								<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
 							</div>
 							<!-- end rating -->
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
 						</div>
 					</div>
@@ -452,9 +461,11 @@
 								<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
 							</div>
 							<!-- end rating -->
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
 						</div>
 					</div>
@@ -481,9 +492,11 @@
 							<i class="icon-star voted"></i>
 						</div>
 							<!-- end rating -->
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
 						</div>
 					</div>
@@ -510,9 +523,11 @@
 							<i class="icon-star voted"></i>
 						</div>
 							<!-- end rating -->
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
 						</div>
 					</div>
@@ -539,9 +554,11 @@
 							<i class="icon-star voted"></i>
 						</div>
 							<!-- end rating -->
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
 						</div>
 					</div>
