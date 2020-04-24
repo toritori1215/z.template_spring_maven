@@ -41,7 +41,7 @@ public class ProductController {
 		HashMap parameterMap = new HashMap();
 		parameterMap.put("pType", "hotel");
 		model.addAttribute("productList", productService.selectByType(parameterMap));
-		return "forward:hotels_all_list.jsp";
+		return "hotels_all_list";
 	}
 	
 	@RequestMapping(value = "/hotel_grid")
@@ -49,7 +49,7 @@ public class ProductController {
 		HashMap parameterMap = new HashMap();
 		parameterMap.put("pType", "hotel");
 		model.addAttribute("productList", productService.selectByType(parameterMap));
-		return "forward:hotels_all_grid.jsp";
+		return "hotels_all_grid";
 	}
 	
 	@RequestMapping(value = "/tour_list")
