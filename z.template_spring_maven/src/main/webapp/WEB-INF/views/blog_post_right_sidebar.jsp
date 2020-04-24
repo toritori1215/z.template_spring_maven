@@ -56,20 +56,22 @@
 								<a href="#" class="btn_1" data-toggle="modal" data-target="#updateBlog">Update</a>&nbsp;&nbsp;&nbsp;
 								<a href="blog_delete?bNo=${blog.bNo}" class="btn_1">Delete</a>
 							</c:if>
+							<c:if test="${blog.mNo == sUser.mNo}">
+							<hr>
+							${SessionBlog.bNo}
+							<form id="form1" name="form1" action="blog_right_sidebar" method="post">
+								<h4>Upload profile photo</h4>
+								<!-- Drop Zone -->
+								<div id="attachFile" style="width: 100%;"></div>
+								<br>
+								<button type="submit" class="btn_1 green" id="js-upload-submit" onclick="formSubmit()">Upload file</button>
+							</form>
+							<hr>
+							</c:if>
 						</div>
 						<!-- end post -->
 					</div>
 					<!-- end box_style_1 -->
-					<hr>
-					${Sessionblog.bNo}
-					<form id="form1" name="form1" action="blog_right_sidebar" method="post">
-						<h4>Upload profile photo</h4>
-						<!-- Drop Zone -->
-						<div id="attachFile" style="width: 100%;"></div>
-						<br>
-						<button type="submit" class="btn_1 green" id="js-upload-submit" onclick="formSubmit()">Upload file</button>
-					</form>
-					<hr>
 				</div>
 				<!-- End col-md-8-->
 				

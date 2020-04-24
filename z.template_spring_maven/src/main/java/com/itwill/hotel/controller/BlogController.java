@@ -94,8 +94,8 @@ public class BlogController {
 						HttpSession session) {
 	   	SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 	   	String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10)) + ".jpg";
-	   	File f = new File("C:\\Users\\STU\\Desktop\\eclipse\\STS3-4.14.0\\spring-tool-suite-3.9.11.RELEASE-e4.14.0-win32-x86_64\\sts-bundle\\pivotal-tc-server\\instances\\base-instance\\wtpwebapps\\z.template_spring_maven\\resources\\z.SiliconVillage\\img\\member\\" + newfilename);
-	   	File f2 = new File("C:\\Users\\STU\\git\\z.template_spring_maven\\z.template_spring_maven\\src\\main\\webapp\\resources\\z.SiliconVillage\\img\\member\\" + newfilename);
+	   	File f = new File("C:\\Users\\STU\\Desktop\\eclipse\\STS3-4.14.0\\spring-tool-suite-3.9.11.RELEASE-e4.14.0-win32-x86_64\\sts-bundle\\pivotal-tc-server\\instances\\base-instance\\wtpwebapps\\z.template_spring_maven\\resources\\z.SiliconVillage\\img\\blog\\" + newfilename);
+	   	File f2 = new File("C:\\Users\\STU\\git\\z.template_spring_maven\\z.template_spring_maven\\src\\main\\webapp\\resources\\z.SiliconVillage\\img\\blog\\" + newfilename);
 		try { 
 			Filedata.transferTo(f);
 			Filedata.transferTo(f2);
@@ -104,6 +104,8 @@ public class BlogController {
 			e.printStackTrace();
 		}
 		Blog blog = (Blog) session.getAttribute("SessionBlog");
+		System.out.println(newfilename);
+		System.out.println(blog.getbNo());
 		HashMap hashMap = new HashMap();
 		hashMap.put("bImg", newfilename);
 		hashMap.put("bNo", blog.getbNo());

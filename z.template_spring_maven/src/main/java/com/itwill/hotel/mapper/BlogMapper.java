@@ -15,11 +15,7 @@ public interface BlogMapper {
 	
 	public List<Blog> selectRecentBlog();
 	
-	public int selectNewBlog();
-	
 	public int insertBlog(HashMap hashMap);
-	
-	public int insertBlogImg(String bImg);
 	
 	public int updateBlog(HashMap hashMap);
 	

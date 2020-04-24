@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwill.hotel.domain.Jumun;
+import com.itwill.hotel.domain.JumunDetail;
+import com.itwill.hotel.domain.JumunDetailInvoice;
 import com.itwill.hotel.domain.Member;
 import com.itwill.hotel.domain.Product;
 import com.itwill.hotel.service.JumunService;
@@ -432,6 +434,30 @@ public class MemberController {
 		hashMap.put("mNo", member.getmNo());
 		int rowCount = memberService.updateImg(hashMap);
 		session.setAttribute("sUser", memberService.selectOne(member.getmId()));
+	}
+	
+	@RequestMapping(value = "member_jumunDetail")
+	public String memberJumunDetail(@RequestParam(value = "jNo") String jNo, HttpSession session, Model model) {
+		Member member = (Member) session.getAttribute("sUser");
+		if (member == null) {
+			return "common_404";
+		}
+		Jumun jumun = jumunService.selectJumunByNo(Integer.parseInt(jNo));
+		model.addAttribute("jumun", jumun);
+		List<JumunDetailInvoice> jumunDetailList = jumunService.selectJumunDetail(Integer.parseInt(jNo));
+		model.addAttribute("jumunDetailList", jumunDetailList);
+		return "common_invoice";
+	}
+	
+	@RequestMapping(value = "member_cancelJumun")
+	public String cancelJumun(@RequestParam(value = "jNo") String jNo, HttpSession session, Model model) {
+		Member member = (Member) session.getAttribute("sUser");
+		HashMap hashMap = new HashMap();
+		hashMap.put("jNo", jNo);
+		hashMap.put("mNo", member.getmNo());
+		jumunService.cancelJumun(hashMap);
+		model.addAttribute("inputMsg", "1");
+		return "member_admin";
 	}
 	
 }

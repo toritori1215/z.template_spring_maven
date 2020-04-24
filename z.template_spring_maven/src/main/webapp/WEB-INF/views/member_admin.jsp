@@ -49,21 +49,6 @@
 				<div class="content">
 
 					<section id="section-1">
-						<div id="tools">
-							<div class="row">
-								<div class="col-lg-2 col-md-3 col-6">
-									<div class="styled-select-filters">
-										<select name="sort_date" id="sort_date">
-											<option value="" selected>Sort by date</option>
-											<option value="oldest">Oldest</option>
-											<option value="recent">Recent</option>
-										</select>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!--/tools -->
-						
 						<c:forEach var="jumun" items="${jumunList}">
 							<div class="strip_booking">
 								<div class="row">
@@ -86,9 +71,9 @@
 											</div>
 											<div class="col-lg-2 col-md-2">
 												<div class="booking_buttons">
-													<a href="#0" class="btn_2">See Detail</a>
+													<a href="member_jumunDetail?jNo=${jumun.jNo}" class="btn_2">See Detail</a>
 													<c:if test="${jumun.ifUse != null}">
-														<a href="#0" class="btn_3">Cancel</a>
+														<a href="ca" class="btn_3">Cancel</a>
 													</c:if>
 												</div>
 											</div>
@@ -105,7 +90,7 @@
 											</div>
 											<div class="col-lg-2 col-md-2">
 												<div class="booking_buttons">
-													<a href="#0" class="btn_2">See Detail</a>
+													<a href="member_jumunDetail?jNo=${jumun.jNo}" class="btn_2">See Detail</a>
 												</div>
 											</div>
 										</c:otherwise>
