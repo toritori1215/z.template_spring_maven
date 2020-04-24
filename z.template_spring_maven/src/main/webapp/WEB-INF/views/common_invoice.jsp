@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,11 +13,11 @@
 	<title>Silicon Village</title>
 
 	<!-- Favicons-->
-	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico" type="image/x-icon">
-	<link rel="apple-touch-icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-57x57-precomposed.png">
-	<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-72x72-precomposed.png">
-	<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-114x114-precomposed.png">
-	<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-144x144-precomposed.png">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/SiliconVillage.png" type="image/x-icon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-57x57-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-144x144-precomposed.png">
 
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css?family=Gochi+Hand|Montserrat:300,400,700" rel="stylesheet">
@@ -55,41 +56,48 @@
     <div class="row">
         <div class="col-12">
     		<div class="invoice-title">
-    			<h2>Invoice</h2><h3 class="pull-right">Order # 12345</h3>
+    			<h2>Invoice</h2><br>
+    			<h3 class="pull-right"> Order # ${jumun.jNo}</h3>
+   				<h6 align="right"><a href="member_orderList" class="btn_1">Back to order List</a></h6>
     		</div>
     		<hr>
     		<div class="row">
     			<div class="col-6">
     				<address>
-    				<strong>Billed To:</strong><br>
-    					John Smith<br>
-    					1234 Main<br>
-    					Apt. 4B<br>
-    					Springfield, ST 54321
+	    				<strong>Billed To:</strong><br>
+	    				<div style="margin-left: 30px">
+	    				<strong>Guest:</strong> ${jumun.jCardOwner}
+	    				</div>
     				</address>
     			</div>
-    			<div class="col-6 text-right">
+    			<div class="col-6 text-left">
     				<address>
-        			<strong>Shipped To:</strong><br>
-    					Jane Smith<br>
-    					1234 Main<br>
-    					Apt. 4B<br>
-    					Springfield, ST 54321
+	    				<strong>Address:</strong><br>
+	    				<div style="margin-left: 30px">
+		    				<strong>Country:</strong> ${jumun.jCountry}<br>
+		    				<strong>State:</strong> ${jumun.jState}<br>
+		    				<strong>City:</strong> ${jumun.jCity}<br>
+		    				<strong>Detail Address:</strong> ${jumun.jStreetNMG}
+	    				</div>
     				</address>
     			</div>
     		</div>
     		<div class="row">
     			<div class="col-6">
-    				<address>
-    					<strong>Payment Method:</strong><br>
-    					Visa ending **** 4242<br>
-    					jsmith@email.com
+    				<address >
+    					<strong>Order Date:</strong><br>
+    					<div style="margin-left: 30px">
+    						${jumun.jDate}<br>
+    					</div>
     				</address>
     			</div>
-    			<div class="col-6 text-right">
+    			<div class="col-6 text-left">
     				<address>
-    					<strong>Order Date:</strong><br>
-    					March 7, 2014<br><br>
+    					<strong>Payment Method:</strong><br>
+	    				<div style="margin-left: 30px">
+    						<strong>Card No:</strong> ${jumun.jCardNo}<br>
+    						<strong>Email:</strong>   ${jumun.jEmail}
+    					</div>
     				</address>
     			</div>
     		</div>
@@ -115,41 +123,19 @@
     						</thead>
     						<tbody>
     							<!-- foreach ($order->lineItems as $line) or some such thing here -->
-    							<tr>
-    								<td>BS-200</td>
-    								<td class="text-center">$10.99</td>
-    								<td class="text-center">1</td>
-    								<td class="text-right">$10.99</td>
-    							</tr>
-                                <tr>
-        							<td>BS-400</td>
-    								<td class="text-center">$20.00</td>
-    								<td class="text-center">3</td>
-    								<td class="text-right">$60.00</td>
-    							</tr>
-                                <tr>
-            						<td>BS-1000</td>
-    								<td class="text-center">$600.00</td>
-    								<td class="text-center">1</td>
-    								<td class="text-right">$600.00</td>
-    							</tr>
-    							<tr>
-    								<td class="thick-line"></td>
-    								<td class="thick-line"></td>
-    								<td class="thick-line text-center"><strong>Subtotal</strong></td>
-    								<td class="thick-line text-right">$670.99</td>
-    							</tr>
+    							<c:forEach var="jumunDetail" items="${jumunDetailList}">
+	    							<tr>
+	    								<td>${jumunDetail.pName}</td>
+	    								<td class="text-center">${jumunDetail.jdProductTot/jumunDetail.jdProductQty}</td>
+	    								<td class="text-center">${jumunDetail.jdProductQty}</td>
+	    								<td class="text-right">${jumunDetail.jdProductTot}</td>
+	    							</tr>
+    							</c:forEach>
     							<tr>
     								<td class="no-line"></td>
     								<td class="no-line"></td>
-    								<td class="no-line text-center"><strong>Shipping</strong></td>
-    								<td class="no-line text-right">$15</td>
-    							</tr>
-    							<tr>
-    								<td class="no-line"></td>
-    								<td class="no-line"></td>
-    								<td class="no-line text-center"><strong>Total</strong></td>
-    								<td class="no-line text-right">$685.99</td>
+    								<td class="no-line text-center"><strong>Total Price</strong></td>
+    								<td class="no-line text-right">${jumun.jTotPay}</td>
     							</tr>
     						</tbody>
     					</table>

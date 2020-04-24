@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.itwill.hotel.domain.Jumun;
 import com.itwill.hotel.domain.JumunDetail;
+import com.itwill.hotel.domain.JumunDetailInvoice;
 import com.itwill.hotel.mapper.JumunMapper;
 
 @Repository
@@ -16,9 +17,16 @@ public class JumunDaoImpl implements JumunDao {
 	@Autowired
 	private JumunMapper jumunMapper;
 
+	
+	/************ jumun ************/
 	@Override
 	public List<Jumun> selectJumun(int mNo) {
 		return jumunMapper.selectJumun(mNo);
+	}
+
+	@Override
+	public Jumun selectJumunByNo(int jNo) {
+		return jumunMapper.selectJumunByNo(jNo);
 	}
 
 	@Override
@@ -39,6 +47,13 @@ public class JumunDaoImpl implements JumunDao {
 	@Override
 	public int insertJumunDetail(JumunDetail jumunDetail) {
 		return jumunMapper.insertJumunDetail(jumunDetail);
+	}
+	
+	
+	/************ jumun detail ************/
+	@Override
+	public List<JumunDetailInvoice> selectJumunDetail(int jNo) {
+		return jumunMapper.selectJumunDetail(jNo);
 	}
 	
 }

@@ -2,7 +2,7 @@ package com.itwill.hotel.domain;
 
 import org.apache.ibatis.type.Alias;
 
-@Alias("Member")
+@Alias(value = "Member")
 public class Member {
 	
 	private Integer mNo;

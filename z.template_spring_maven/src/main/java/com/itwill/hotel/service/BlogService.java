@@ -11,15 +11,13 @@ public interface BlogService {
 	/****** Blog ******/
 	public List<Blog> selectAllBlog();
 	
+	public List<Blog> selectBlogByType(String type);
+	
 	public Blog selectOneBlog(int bNo);
 	
 	public List<Blog> selectRecentBlog();
 	
-	public int selectNewBlog();
-	
 	public int insertBlog(HashMap hashMap);
-	
-	public int insertBlogImg(String bImg);
 	
 	public int updateBlog(HashMap hashMap);
 	

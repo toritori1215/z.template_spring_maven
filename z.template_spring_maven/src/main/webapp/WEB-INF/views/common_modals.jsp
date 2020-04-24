@@ -608,8 +608,6 @@
 								<label>Category</label>
 								<select class="form-control" name="Category" id="Category">
 									<option value="Tour" selected="selected">Tour</option>
-									<option value="Hotel">Hotel</option>
-									<option value="Facility">Facility</option>
 									<option value="Restaurant">Restaurant</option>
 								</select>
 							</div>
@@ -630,13 +628,7 @@
 						<label>Blog text</label>
 						<textarea name="write_blog_content" id="write_blog_content" class="form-control" style="height:100px" placeholder="Write your blog text"></textarea>
 					</div>
-					<hr>
-					<h4>Upload profile photo</h4>
-					<!-- Drop Zone -->
-					<div id="attachFile" style="width: 100%;"></div>
-					<br>
-					<button type="submit" class="btn_1" id="js-upload-submit" onclick="formSubmit()">Upload file</button>
-					<input type="submit" value="Write Blog" class="btn_1" id="submit-blog">
+					<input type="submit" class="btn_1" id="Write blog" value="Write blog">
 				</form>
 			</div>
 		</div>
@@ -702,38 +694,9 @@
 						<label>Blog text</label>
 						<textarea name="write_blog_content" id="write_blog_content" class="form-control" style="height:100px" placeholder="Write your blog text">${blog.bContent}</textarea>
 					</div>
-					<hr>
-					<h4>Upload profile photo</h4>
-					<!-- Drop Zone -->
-					<div id="attachFile" style="width: 100%;"></div>
-					<br>
-					<button type="submit" class="btn_1" id="js-upload-submit" onclick="formSubmit()">Upload file</button>
-					<input type="submit" value="Modify Blog" class="btn_1" id="submit-blog">
+					<input type="submit" class="btn_1" id="Modify blog" value="Modify blog">
 				</form>
 			</div>
 		</div>
 	</div>
 </div>
-<!-- End blog update -->
-
-<!-- Modal blog Img -->
-<div class="modal fade" id="updateBlogImg" tabindex="-1" role="dialog" aria-labelledby="myReviewLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 align="right" class="modal-title" id="myReviewLabel">Upload your blog image</h4>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			</div>
-			<div class="modal-body">
-				<form id="form1" name="form1" action="blog_post_right_sidebar" method="post">
-					<h4>Upload profile photo</h4>
-					<!-- Drop Zone -->
-					<div id="attachFile" style="width: 100%;"></div>
-					<br>
-					<button type="submit" class="btn_1" id="js-upload-submit" onclick="formSubmit()">Upload image</button>
-				</form>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- End blog Img -->

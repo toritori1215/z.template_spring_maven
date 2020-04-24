@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    
 <!DOCTYPE html>
 <html>
-
+	
 	<!-- Header================================================== -->
 	<jsp:include page="common_header_6.jsp"/>
 	<!-- End Header -->
@@ -22,129 +23,58 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="#">Home</a>
+					<li><a href="main">Home</a>
 					</li>
-					<li><a href="#">Category</a>
+					<li><a href="blog_right_sidebar">Blog List</a>
 					</li>
-					<li>Page active</li>
 				</ul>
 			</div>
 		</div>
 		<!-- End position -->
+		
 		<div class="container margin_60">
 			<div class="row">
-
 				<div class="col-lg-9">
 					<div class="box_style_1">
+						<input type="hidden" name="bNo" id="bNo" value="${blog.bNo}">
 						<div class="post nopadding">
-							<img src="${pageContext.request.contextPath}/resources/img/blog-1.jpg" alt="Image" class="img-fluid">
+							<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/blog/${blog.bImg}" alt="Image" class="img-fluid">
 							<div class="post_info clearfix">
 								<div class="post-left">
 									<ul>
-										<li><i class="icon-calendar-empty"></i>On <span>12 Nov 2020</span>
+										<li><i class="icon-calendar-empty"></i>On <span>${blog.bDate}</span>
 										</li>
 										<li><i class="icon-inbox-alt"></i>In <a href="#">Top tours</a>
 										</li>
-										<li><i class="icon-tags"></i>Tags <a href="#">Works</a> <a href="#">Personal</a>
-										</li>
 									</ul>
 								</div>
-								<div class="post-right"><i class="icon-comment"></i><a href="#">25 </a>Comments</div>
 							</div>
-							<h2>Duis aute irure dolor in reprehenderit</h2>
-							<p>
-								Praesent vestibulum molestie lacus. Aenean nonummy hendrerit mauris. Phasellus porta. Fusce suscipit varius mi nascetur ridiculus mus. Nulla dui. Fusce feugiat malesuada odio. Morbi nunc odio, gravida at, cursus nec, luctus a, lorem.....
-							</p>
-							<p>
-								Aenean iaculis sodales dui, non hendrerit lorem rhoncus ut. Pellentesque ullamcorper venenatis elit idaipiscingi Duis tellus neque, tincidunt eget pulvinar sit amet, rutrum nec urna. Suspendisse pretium laoreet elit vel ultricies. Maecenas ullamcorper ultricies rhoncus. Aliquam erat volutpat.
-							</p>
-							<blockquote class="styled">
-								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>
-								<small>Someone famous in <cite title="">Body of work</cite></small>
-							</blockquote>
+							<h2>${blog.bTitle}</h2>
+							<p>${blog.bContent}</p>
+							<c:if test="${blog.mNo == sUser.mNo}">
+								<a href="#" class="btn_1" data-toggle="modal" data-target="#updateBlog">Update</a>&nbsp;&nbsp;&nbsp;
+								<a href="blog_delete?bNo=${blog.bNo}" class="btn_1">Delete</a>
+							</c:if>
+							<c:if test="${blog.mNo == sUser.mNo}">
+							<hr>
+							${SessionBlog.bNo}
+							<form id="form1" name="form1" action="blog_right_sidebar" method="post">
+								<h4>Upload profile photo</h4>
+								<!-- Drop Zone -->
+								<div id="attachFile" style="width: 100%;"></div>
+								<br>
+								<button type="submit" class="btn_1 green" id="js-upload-submit" onclick="formSubmit()">Upload file</button>
+							</form>
+							<hr>
+							</c:if>
 						</div>
 						<!-- end post -->
 					</div>
 					<!-- end box_style_1 -->
-
-					<h4>3 comments</h4>
-
-					<div id="comments">
-						<ol>
-							<li>
-								<div class="avatar">
-									<a href="#"><img src="${pageContext.request.contextPath}/resources/img/avatar1.jpg" alt="Image">
-									</a>
-								</div>
-								<div class="comment_right clearfix">
-									<div class="comment_info">
-										Posted by <a href="#">Anna Smith</a><span>|</span> 25 apr 2019 <span>|</span><a href="#">Reply</a>
-									</div>
-									<p>
-										Nam cursus tellus quis magna porta adipiscing. Donec et eros leo, non pellentesque arcu. Curabitur vitae mi enim, at vestibulum magna. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed sit amet sem a urna rutrumeger fringilla. Nam vel enim ipsum, et congue ante.
-									</p>
-								</div>
-								<ul>
-									<li>
-										<div class="avatar">
-											<a href="#"><img src="${pageContext.request.contextPath}/resources/img/avatar2.jpg" alt="Image">
-											</a>
-										</div>
-
-										<div class="comment_right clearfix">
-											<div class="comment_info">
-												Posted by <a href="#">Tom Sawyer</a><span>|</span> 25 apr 2019 <span>|</span><a href="#">Reply</a>
-											</div>
-											<p>
-												Nam cursus tellus quis magna porta adipiscing. Donec et eros leo, non pellentesque arcu. Curabitur vitae mi enim, at vestibulum magna. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed sit amet sem a urna rutrumeger fringilla. Nam vel enim ipsum, et congue ante.
-											</p>
-											<p>
-												Aenean iaculis sodales dui, non hendrerit lorem rhoncus ut. Pellentesque ullamcorper venenatis elit idaipiscingi Duis tellus neque, tincidunt eget pulvinar sit amet, rutrum nec urna. Suspendisse pretium laoreet elit vel ultricies. Maecenas ullamcorper ultricies rhoncus. Aliquam erat volutpat.
-											</p>
-										</div>
-									</li>
-								</ul>
-							</li>
-							<li>
-								<div class="avatar">
-									<a href="#"><img src="${pageContext.request.contextPath}/resources/img/avatar3.jpg" alt="Image">
-									</a>
-								</div>
-
-								<div class="comment_right clearfix">
-									<div class="comment_info">
-										Posted by <a href="#">Adam White</a><span>|</span> 25 apr 2019 <span>|</span><a href="#">Reply</a>
-									</div>
-									<p>
-										Cursus tellus quis magna porta adipiscin
-									</p>
-								</div>
-							</li>
-						</ol>
-					</div>
-					<!-- End Comments -->
-
-					<h4>Leave a comment</h4>
-					<form action="#" method="post">
-						<div class="form-group">
-							<input class="form-control style_2" type="text" name="name" placeholder="Enter name">
-						</div>
-						<div class="form-group">
-							<input class="form-control style_2" type="text" name="mail" placeholder="Enter email">
-						</div>
-						<div class="form-group">
-							<textarea name="message" class="form-control style_2" style="height:150px;" placeholder="Message"></textarea>
-						</div>
-						<div class="form-group">
-							<input type="reset" class="btn_1" value="Clear form" />
-							<input type="submit" class="btn_1" value="Post Comment" />
-						</div>
-					</form>
 				</div>
 				<!-- End col-md-8-->
-
+				
 				<aside class="col-lg-3 add_bottom_30">
-
 					<div class="widget">
 						<div class="input-group">
 							<input type="text" class="form-control" placeholder="Search...">
@@ -159,67 +89,86 @@
 					<div class="widget" id="cat_blog">
 						<h4>Categories</h4>
 						<ul>
-							<li><a href="#">Places to visit</a>
+							<li><a href="blog_right_sidebar">All blogs</a>
 							</li>
-							<li><a href="#">Top tours</a>
+							<li><a href="blog_right_sidebar_byType?type=Tour">Tour</a>
 							</li>
-							<li><a href="#">Tips for travellers</a>
-							</li>
-							<li><a href="#">Events</a>
+							<li><a href="blog_right_sidebar_byType?type=Restaurant">Restaurant</a>
 							</li>
 						</ul>
 					</div>
 					<!-- End widget -->
-
 					<hr>
 
 					<div class="widget">
 						<h4>Recent post</h4>
 						<ul class="recent_post">
-							<li>
-								<i class="icon-calendar-empty"></i> 16th July, 2020
-								<div><a href="#">It is a long established fact that a reader will be distracted </a>
-								</div>
-							</li>
-							<li>
-								<i class="icon-calendar-empty"></i> 16th July, 2020
-								<div><a href="#">It is a long established fact that a reader will be distracted </a>
-								</div>
-							</li>
-							<li>
-								<i class="icon-calendar-empty"></i> 16th July, 2020
-								<div><a href="#">It is a long established fact that a reader will be distracted </a>
-								</div>
-							</li>
+							<c:forEach var="recentBlog" items="${recentBlogList}">
+								<li>
+									<i class="icon-calendar-empty"></i> ${recentBlog.bDate}
+									<div><a href="blog_post_right_sidebar?bNo=${recentBlog.bNo}">${recentBlog.bTitle}</a></div>
+								</li>
+							</c:forEach>
 						</ul>
 					</div>
 					<!-- End widget -->
-					<hr>
-					<div class="widget tags">
-						<h4>Tags</h4>
-						<a href="#">Lorem ipsum</a>
-						<a href="#">Dolor</a>
-						<a href="#">Long established</a>
-						<a href="#">Sit amet</a>
-						<a href="#">Latin words</a>
-						<a href="#">Excepteur sint</a>
-					</div>
-					<!-- End widget -->
-
 				</aside>
 				<!-- End aside -->
-
 			</div>
 			<!-- End row-->
 		</div>
 		<!-- End container -->
+		<input type="hidden" id="blogViewMsg" value="${blogViewMsg}">
 	</main>
 	<!-- End main -->
-
+	
 	<!-- Footer================================================== -->
 	<jsp:include page="common_footer_2.jsp"/>
 	<!-- End Footer -->
-
+	
+	<script type="text/javascript">
+		$(function() {
+			var blogViewMsg = $("#blogViewMsg").val()
+			if (blogViewMsg != null && blogViewMsg != "") {
+				alert(blogViewMsg);
+			}
+		})
+	</script>
+	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/gu-upload/guuploadManager.js"></script>
+	<script type="text/javascript">
+		var guManager = null;
+		
+		window.onload = function() {
+			var option = {
+				fileid: "attachFile",
+				listtype: "thumbnail",
+				uploadURL: "uploadBlogImg",
+				maxFileSize: 100,
+				maxFileCount: 1,
+				useButtons: true,
+				afterFileTransfer: afterFileTransfer
+			}
+			guManager = new guUploadManager(option);
+		}	
+		
+		function formSubmit() {
+			guManager.uploadFiles();
+		}
+		
+		function afterFileTransfer(realname, filename, filesize) {
+			var realname9 = document.getElementById("realname");
+			var filename9 = document.getElementById("filename");
+			var filesize9 = document.getElementById("filesize");
+			
+			realname9.value = realname;
+			filename9.value = filename;
+			filesize9.value = filesize;
+			
+			document.form1.submit();
+		}
+	</script>
+	
 </body>
 
 </html>
