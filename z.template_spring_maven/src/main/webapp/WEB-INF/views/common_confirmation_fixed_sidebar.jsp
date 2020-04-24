@@ -102,7 +102,7 @@
 											<strong>Date</strong>
 										</td>
 										<td>
-											${fn:substring(cartList[i].cCheckin, 0, 10)}  
+											<i>${fn:substring(cartList[i].cCheckin, 0, 10)} </i>
 										</td>
 									</tr>
 									<tr>
@@ -110,7 +110,7 @@
 											<strong>Tour</strong>
 										</td>
 										<td>
-											${cartList[i].pName}
+											<u><b>${cartList[i].pName}</b></u>
 										</td>
 									</tr>
 									<tr>
