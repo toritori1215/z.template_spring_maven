@@ -28,11 +28,10 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="#">Home</a>
+					<li><a href="main">Home</a>
 					</li>
-					<li><a href="#">Category</a>
+					<li><a href="restaurants_all_list">Restaurants List</a>
 					</li>
-					<li>Page active</li>
 				</ul>
 			</div>
 		</div>

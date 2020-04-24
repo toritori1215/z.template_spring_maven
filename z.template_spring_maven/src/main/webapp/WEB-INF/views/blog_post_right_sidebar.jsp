@@ -25,9 +25,8 @@
 				<ul>
 					<li><a href="main">Home</a>
 					</li>
-					<li><a href="blog_right_sidebar">Blog list</a>
+					<li><a href="blog_right_sidebar">Blog List</a>
 					</li>
-					<li>Page active</li>
 				</ul>
 			</div>
 		</div>
