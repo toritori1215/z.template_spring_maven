@@ -433,7 +433,6 @@
 
 	<!-- Specific scripts -->
 	<script src="${pageContext.request.contextPath}/resources/js/tabs.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/gu-upload/guuploadManager.js"></script>
 	
 	<script>
 		var inputMsg = $("#inputMsg").val();
@@ -474,6 +473,7 @@
 		});
 	</script>
 	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/gu-upload/guuploadManager.js"></script>
 	<script type="text/javascript">
 		var guManager = null;
 		
