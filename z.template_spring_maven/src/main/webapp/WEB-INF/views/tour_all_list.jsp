@@ -217,9 +217,11 @@
 					<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
 						<div class="row">
 							<div class="col-lg-4 col-md-4">
+								<!-- 
 								<div class="wishlist">
 									<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 								</div>
+								 -->
 								<div class="img_list">
 									<a href="tour_detail?pNo=${product.pNo}"><img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg" alt="Image">
 										<div class="short_info">
