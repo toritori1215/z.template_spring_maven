@@ -117,7 +117,7 @@
 							</tr>
 							</c:forEach>
 						</tbody>
-					</table>
+					</table><!-- 
 					<table class="table table-striped options_cart">
 						<thead>
 							<tr>
@@ -198,7 +198,7 @@
 								</c:forEach>
 							</c:forEach>
 						</tbody>
-					</table>
+					</table> -->
 					<div class="add_bottom_15"><small>* Prices for person.</small>
 					</div>
 				</div>
@@ -241,12 +241,12 @@
 									</tr>
 									<tr>
 										<td>
-											<strong>Options</strong>
+											<strong>Options Total</strong>
 										</td>
 										<td class="text-right">
 											$0
 										</td>
-									</tr>
+									</tr><!-- 
 									<tr>
 										<td>
 											<strong>Insurance</strong>
@@ -254,7 +254,7 @@
 										<td class="text-right">
 											$0
 										</td>
-									</tr>
+									</tr> -->
 									<tr class="total">
 										<td>
 											Total cost
