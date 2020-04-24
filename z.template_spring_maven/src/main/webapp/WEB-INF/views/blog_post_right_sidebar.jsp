@@ -12,7 +12,7 @@
 	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/img/bg_blog.jpg" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
-				<h1>Tour Blog</h1>
+				<h1>Blog List</h1>
 				<p>Ridiculus sociosqu cursus neque cursus curae ante scelerisque vehicula.</p>
 			</div>
 		</div>
@@ -26,6 +26,9 @@
 					<li><a href="main">Home</a>
 					</li>
 					<li><a href="blog_right_sidebar">Blog List</a>
+					</li>
+					<li>${blog.bTitle}</li>
+					<li><a href="#">${blog.bTitle}</a>
 					</li>
 				</ul>
 			</div>
@@ -44,7 +47,7 @@
 									<ul>
 										<li><i class="icon-calendar-empty"></i>On <span>${blog.bDate}</span>
 										</li>
-										<li><i class="icon-inbox-alt"></i>In <a href="#">Top tours</a>
+										<li><i class="icon-inbox-alt"></i>In <a href="blog_right_sidebar_byType?type=${blog.bCategory}">Top ${blog.bCategory}</a>
 										</li>
 									</ul>
 								</div>
@@ -75,17 +78,6 @@
 				<!-- End col-md-8-->
 				
 				<aside class="col-lg-3 add_bottom_30">
-					<div class="widget">
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Search...">
-							<span class="input-group-btn">
-						<button class="btn btn-default" type="button" style="margin-left:0;"><i class="icon-search"></i></button>
-						</span>
-						</div>
-						<!-- /input-group -->
-					</div>
-					<!-- End Search -->
-					<hr>
 					<div class="widget" id="cat_blog">
 						<h4>Categories</h4>
 						<ul>
@@ -134,7 +126,7 @@
 			}
 		})
 	</script>
-	
+	<c:if test="${blog.mNo == sUser.mNo}">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/gu-upload/guuploadManager.js"></script>
 	<script type="text/javascript">
 		var guManager = null;
@@ -168,7 +160,7 @@
 			document.form1.submit();
 		}
 	</script>
-	
+	</c:if>
 </body>
 
 </html>

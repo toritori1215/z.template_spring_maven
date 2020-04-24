@@ -9,10 +9,10 @@
 	<!-- End Header -->
 
 
-	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/img/bg_blog.jpg" data-natural-width="1400" data-natural-height="470">
+	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/img/blog_main.jpg" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
-				<h1>Customer Blog</h1>
+				<h1>Blog</h1>
 				<p>Ridiculus sociosqu cursus neque cursus curae ante scelerisque vehicula.</p>
 			</div>
 		</div>
@@ -25,9 +25,8 @@
 				<ul>
 					<li><a href="main">Home</a>
 					</li>
-					<li><a href="blog_right_sidebar">Blog List</a>
+					<li><a href="#">Blog List</a>
 					</li>
-					
 				</ul>
 			</div>
 		</div>
@@ -46,13 +45,11 @@
 							<div class="post_info clearfix">
 								<div class="post-left">
 									<ul>
-										<li><i class="icon-calendar-empty"></i> On <span>${blog.bDate}</span>
+										<li><i class="icon-calendar-empty"></i>On <span>${blog.bDate}</span>
 										</li>
-										<li><i class="icon-inbox-alt"></i> In ${blog.bCategory}
+										<li><i class="icon-inbox-alt"></i>In <a href="blog_right_sidebar_byType?type=${blog.bCategory}">Top ${blog.bCategory}</a>
 										</li>
 									</ul>
-								</div>
-								<div class="post-right"><i class="icon-comment"></i><a href="#">${blog.bReadCount}</a>
 								</div>
 							</div>
 							<h2>${blog.bTitle}</h2>
@@ -64,45 +61,10 @@
 						</div>
 						<!-- end post -->
 					</div>
-
-					<nav aria-label="Page navigation">
-						<ul class="pagination justify-content-center">
-							<li class="page-item">
-								<a class="page-link" href="#" aria-label="Previous">
-									<span aria-hidden="true">&laquo;</span>
-									<span class="sr-only">Previous</span>
-								</a>
-							</li>
-							<li class="page-item active"><span class="page-link">1<span class="sr-only">(current)</span></span>
-							</li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item">
-								<a class="page-link" href="#" aria-label="Next">
-									<span aria-hidden="true">&raquo;</span>
-									<span class="sr-only">Next</span>
-								</a>
-							</li>
-						</ul>
-					</nav>
-					<!-- end pagination-->
-					
 				</div>
 				<!-- End col -->
 
 				<aside class="col-lg-3">
-
-					<div class="widget">
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Search...">
-							<span class="input-group-btn">
-						<button class="btn btn-default" type="button" style="margin-left:0;"><i class="icon-search"></i></button>
-						</span>
-						</div>
-						<!-- /input-group -->
-					</div>
-					<!-- End Search -->
-					<hr>
 					<div class="widget" id="cat_blog">
 						<h4>Categories</h4>
 						<ul>
