@@ -68,7 +68,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6 col-5">
-					<i class="icon-phone"></i><strong>0045 043204434</strong>
+					<i class="icon-phone"></i><strong> 010-7141-6646</strong>
 				</div>
 				<div class="col-sm-6 col-7">
 					<ul id="top_links">
@@ -115,34 +115,16 @@
 						<li class="submenu">
 							<a href="javascript:void(0);" class="show-submenu">Home<i class="icon-down-open-mini"></i></a>
 							<ul>
-								<li><a href="index.html">Owl Carousel Slider</a></li>
-								<li><a href="index_22.html">Home items with Carousel</a></li>
-								<li><a href="index_23.html">Home with Search V2</a></li>
-								<li class="third-level"><a href="javascript:void(0);">Revolution slider</a>
+								<li><a href="main">Main page</a></li>
+								<li class="third-level"><a href="javascript:void(0);">Service</a>
 									<ul>
-										<li><a href="index_24.html">Default slider</a></li>
-										<li><a href="index_20.html">Basic slider</a></li>
-										<li><a href="index_14.html">Youtube Hero</a></li>
-										<li><a href="index_15.html">Vimeo Hero</a></li>
-										<li><a href="index_17.html">Youtube 4K</a></li>
-										<li><a href="index_16.html">Carousel</a></li>
-										<li><a href="index_19.html">Mailchimp Newsletter</a></li>
-										<li><a href="index_18.html">Fixed Caption</a></li>
+										<li><a href="index_24.html">Tour</a></li>
+										<li><a href="index_24.html">Restaurant</a></li>
 									</ul>
 								</li>
 								<li><a href="index_12.html">Layer slider</a></li>
-								<li><a href="index_2.html">With Only tours</a></li>
-								<li><a href="index_3.html">Single image</a></li>
-								<li><a href="index_4.html">Header video</a></li>
-								<li><a href="index_7.html">With search panel</a></li>
-								<li><a href="index_13.html">With tabs</a></li>
-								<li><a href="index_5.html">With map</a></li>
-								<li><a href="index_6.html">With search bar</a></li>
-								<li><a href="index_8.html">Search bar + Video</a></li>
-								<li><a href="index_9.html">With Text Rotator</a></li>
-								<li><a href="index_10.html">With Cookie Bar (EU law)</a></li>
-								<li><a href="index_11.html">Popup Advertising</a></li>
-							</ul></li>
+							</ul>
+						</li>
 						<li class="submenu">
 							<a href="#" class="show-submenu">Tours<i class="icon-down-open-mini"></i></a>
 							<ul>
@@ -173,62 +155,15 @@
 								<li><a href="blog_right_sidebar">Blog List</a></li>
 							</ul>
 						</li>
-												
-						<li class="megamenu submenu">
-							<a href="javascript:void(0);" class="show-submenu-mega">Pages<i class="icon-down-open-mini"></i></a>
-							<div class="menu-wrapper">
-								<div class="row">
-									<div class="col-lg-4">
-										<h3>Pages</h3>
-										<ul>
-											<li><a href="about.html">About us</a></li>
-											<li><a href="general_page.html">General page</a></li>
-											<li><a href="tourist_guide.html">Tourist guide</a></li>
-											<li><a href="wishlist.html">Wishlist page</a></li>
-											<li><a href="member_faq">Faq</a></li>
-											<li><a href="faq_2.html">Faq smooth scroll</a></li>
-											<li><a href="pricing_tables.html">Pricing tables</a></li>
-											<li><a href="gallery_3_columns.html">Gallery 3 columns</a></li>
-											<li><a href="gallery_4_columns.html">Gallery 4 columns</a></li>
-											<li><a href="grid_gallery_1.html">Grid gallery</a></li>
-											<li><a href="grid_gallery_2.html">Grid gallery with filters</a></li>
-										</ul>
-									</div>
-									<div class="col-lg-4">
-										<h3>Pages</h3>
-										<ul>
-											<li><a href="contact_us_1.html">Contact us 1</a></li>
-											<li><a href="contact_us_2.html">Contact us 2</a></li>
-											<li><a href="blog_right_sidebar.html">Blog</a></li>
-											<li><a href="blog.html">Blog left sidebar</a></li>
-											<li><a href="login.html">Login</a></li>
-											<li><a href="register.html">Register</a></li>
-											<li><a href="invoice.html" target="_blank">Invoice</a></li>
-											<li><a href="404.html">404 Error page</a></li>
-											<li><a href="site_launch/index.html">Site launch / Coming soon</a></li>
-											<li><a href="timeline.html">Tour timeline</a></li>
-											<li><a href="page_with_map.html"><i class="icon-map"></i>Full screen map</a></li>
-										</ul>
-									</div>
-									<div class="col-lg-4">
-										<h3>Elements</h3>
-										<ul>
-											<li><a href="footer_2.html"><i class="icon-columns"></i>Footer with working newsletter</a></li>
-											<li><a href="footer_5.html"><i class="icon-columns"></i>Footer with Twitter feed</a></li>
-											<li><a href="icon_pack_1.html"><i class="icon-inbox-alt"></i>Icon pack 1 (1900)</a></li>
-											<li><a href="icon_pack_2.html"><i class="icon-inbox-alt"></i>Icon pack 2 (100)</a></li>
-											<li><a href="icon_pack_3.html"><i class="icon-inbox-alt"></i>Icon pack 3 (30)</a></li>
-											<li><a href="icon_pack_4.html"><i class="icon-inbox-alt"></i>Icon pack 4 (200)</a></li>
-											<li><a href="icon_pack_5.html"><i class="icon-inbox-alt"></i>Icon pack 5 (360)</a></li>
-											<li><a href="shortcodes.html"><i class="icon-tools"></i> Shortcodes</a></li>
-											<li><a href="newsletter_template/newsletter.html" target="blank"><i class="icon-mail"></i>Responsive email template</a></li>
-											<li><a href="admin.html"><i class="icon-cog-1"></i>Admin area</a></li>
-										</ul>
-									</div>
-								</div>
-								<!-- End row -->
-							</div>
-							<!-- End menu-wrapper -->
+						<li class="submenu">
+							<a href="javascript:void(0);" class="show-submenu">Pages<i class="icon-down-open-mini"></i></a>
+							<ul>
+								<li><a href="about.html">About us</a></li>
+								<li><a href="common_faq_2">FAQ</a></li>
+								<li><a href="blog_right_sidebar">Blog</a></li>
+								<li><a href="member_login_form">Login</a></li>
+								<li><a href="member_insert_form">Register</a></li>
+							</ul>
 						</li>
 					</ul>
 				</div>
@@ -238,39 +173,7 @@
 				<ul id="top_tools">
 					<li>
 						<div class="dropdown dropdown-cart">
-							<a href="#" data-toggle="dropdown" class="cart_bt">
-								<i class="icon_bag_alt"></i><strong>3</strong>
-							</a>
-							<ul class="dropdown-menu" id="cart_items">
-								<li>
-									<div class="image">
-										<img src="${pageContext.request.contextPath}/resources/img/thumb_cart_1.jpg" alt="image">
-									</div>
-									<strong><a href="#">Louvre museum</a>1x $36.00</strong>
-									<a href="#" class="action"><i class="icon-trash"></i></a>
-								</li>
-								<li>
-									<div class="image">
-										<img src="${pageContext.request.contextPath}/resources/img/thumb_cart_2.jpg" alt="image">
-									</div>
-									<strong><a href="#">Versailles tour</a>2x $36.00</strong>
-									<a href="#" class="action"><i class="icon-trash"></i></a>
-								</li>
-								<li>
-									<div class="image">
-										<img src="${pageContext.request.contextPath}/resources/img/thumb_cart_3.jpg" alt="image">
-									</div>
-									<strong><a href="#">Versailles tour</a>1x $36.00</strong>
-									<a href="#" class="action"><i class="icon-trash"></i></a>
-								</li>
-								<li>
-									<div>
-										Total: <span>$120.00</span>
-									</div>
-									<a href="cart.html" class="button_drop">Go to cart</a>
-									<a href="payment.html" class="button_drop outline">Check out</a>
-								</li>
-							</ul>
+							<a href="cart_services" class="cart_bt"><i class="icon_bag_alt"></i> Go to my cart</a>
 						</div> <!-- End dropdown-cart-->
 					</li>
 				</ul>

@@ -20,11 +20,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.itwill.hotel.domain.Cart;
 import com.itwill.hotel.domain.Jumun;
 import com.itwill.hotel.domain.JumunDetail;
 import com.itwill.hotel.domain.JumunDetailInvoice;
 import com.itwill.hotel.domain.Member;
 import com.itwill.hotel.domain.Product;
+import com.itwill.hotel.service.CartService;
 import com.itwill.hotel.service.JumunService;
 import com.itwill.hotel.service.MemberService;
 import com.itwill.hotel.service.WishlistService;
@@ -40,6 +42,9 @@ public class MemberController {
 	
 	@Autowired
 	private JumunService jumunService;
+	
+	@Autowired
+	private CartService cartService;
 	
 	@RequestMapping(value = "/main")
 	public String mainPage() {
@@ -83,7 +88,6 @@ public class MemberController {
 	@RequestMapping(value = "/member_login_action", method=RequestMethod.POST)
 	public String memberLoginAction(@RequestParam(value = "mId") String mId,
 									@RequestParam(value = "mPassword") String mPassword,
-									@RequestParam(value = "mCheck", defaultValue = "") String mCheck,
 									HttpSession session,
 									Model model) {
 		memberService.deleteInactiveMember();
@@ -119,11 +123,7 @@ public class MemberController {
 				if (tempMember.getmIfActive() == 1) {
 					// 로그인
 					memberService.setTempPasswordNull(mId);
-					if (mCheck != null && !mCheck.trim().equals("")) {
-						// 쿠키
-					} else {
-						session.setAttribute("sUser", tempMember);
-					}
+					session.setAttribute("sUser", tempMember);
 					return "main_page";
 				} else {
 					// 아이디 휴면

@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwill.hotel.domain.RestaurantDTO;
+import com.itwill.hotel.domain.Review;
+import com.itwill.hotel.domain.ReviewRate;
 import com.itwill.hotel.exception.WrongRestaurantDataException;
 import com.itwill.hotel.service.RestaurantService;
+import com.itwill.hotel.service.ReviewService;
 import com.itwill.hotel.util.PageInputDto;
 import com.itwill.hotel.util.RestaurantBoardListPageDto;
 
@@ -28,6 +31,9 @@ public class RestaurantViewResolverController {
 	@Autowired
 	@Qualifier("restaurantService")
 	private RestaurantService restService;
+	
+	@Autowired
+	private ReviewService reviewService;
 	
 	@RequestMapping("restaurant_test1")
 	public String sample_ex1() {
@@ -134,6 +140,12 @@ public class RestaurantViewResolverController {
 		
 		model.addAttribute("restaurantProduct",product);
 		model.addAttribute("deposit_cost",deposit_cost);
+		List<Review> reviewList = reviewService.selectAll(pno);
+		model.addAttribute("reviewList", reviewList);
+		int reviewSize = reviewList.size();
+		model.addAttribute("reviewSize", reviewSize);
+		ReviewRate reviewRate = reviewService.selectRate(pno);
+		model.addAttribute("reviewRate", reviewRate);
 		return "restaurant_single_food_detail";
 	}
 	
@@ -148,9 +160,6 @@ public class RestaurantViewResolverController {
 	
 		return "restaurant_confirmation_fixed_sidebar";
 	}
-	
-	
-	
 	
 	/*
 	@RequestMapping("restaurant_single_restaurant_detail")

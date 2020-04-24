@@ -3,59 +3,33 @@
 <footer class="revealed">
 	<div class="container">
 		<div class="row">
+			<div class="col-lg-2 ml-lg-auto">
+				
+			</div>
 			<div class="col-lg-4 col-md-4">
 				<h3>Need help?</h3>
-				<a href="tel://004542344599" id="phone">+45 423 445 99</a>
-				<a href="mailto:help@citytours.com" id="email_footer">help@citytours.com</a>
+				<a href="#" id="phone">010-7141-6646</a>
+				<a href="#" id="email_footer">hyungu1215@naver.com</a>
 				<p>
 					<img src="${pageContext.request.contextPath}/resources/img/payments.png" width="231" height="30"
 							alt="Image" data-retina="true" class="img-fluid">
 				</p>
+			</div>
+			<div class="col-lg-1 ml-lg-auto">
+				
 			</div>
 			<div class="col-lg-2 col-md-3 ml-md-auto">
 				<h3>About</h3>
 				<ul>
 					<li><a href="common_about_us">About us</a></li>
 					<li><a href="common_faq_2">FAQ</a></li>
-					<li><a href="#">Blog</a></li>
-					<li><a href="#">Contacts</a></li>
+					<li><a href="blog_right_sidebar">Blog</a></li>
 					<li><a href="member_login_form">Login</a></li>
 					<li><a href="member_insert_form">Register</a></li>
-					<li><a href="#">Terms and condition</a></li>
 				</ul>
 			</div>
-			<div class="col-lg-3 col-md-4" id="newsletter">
-				<h3>Newsletter</h3>
-				<p>Join our newsletter to keep be informed about offers and news.</p>
-				<div id="message-newsletter_2"></div>
-				<form method="post" action="${pageContext.request.contextPath}/resources/assets/newsletter.php"
-					name="newsletter_2" id="newsletter_2">
-					<div class="form-group">
-						<input name="email_newsletter_2" id="email_newsletter_2" type="email" 
-								value="" placeholder="Your mail" class="form-control">
-					</div>
-					<input type="submit" value="Subscribe" class="btn_1" 
-							id="submit-newsletter_2">
-				</form>
-			</div>
-			<div class="col-lg-2 ml-lg-auto">
-				<h3>Settings</h3>
-				<div class="styled-select">
-					<select name="lang" id="lang">
-						<option value="English" selected>English</option>
-						<option value="French">Korean</option>
-						<option value="Spanish">Chinese</option>
-					</select>
-				</div>
-				<div class="styled-select">
-					<select name="currency" id="currency">
-						<option value="USD" selected>USD</option>
-						<option value="EUR">EUR</option>
-						<option value="GBP">GBP</option>
-						<option value="RUB">KRW</option>
-						<option value="RUB">CNY</option>
-					</select>
-				</div>
+			<div class="col-lg-2 col-md-4" id="newsletter">
+				
 			</div>
 		</div>
 		<!-- End row -->
@@ -83,18 +57,6 @@
 
 <div id="toTop"></div>
 <!-- Back to top button -->
-
-<!-- Search Menu -->
-<div class="search-overlay-menu">
-	<span class="search-overlay-close"><i class="icon_set_1_icon-77"></i></span>
-	<form role="search" id="searchform" method="get">
-		<input value="" name="q" type="search" placeholder="Search..." />
-		<button type="submit">
-			<i class="icon_set_1_icon-78"></i>
-		</button>
-	</form>
-</div>
-<!-- End Search Menu -->
 
 <!-- Sign In Popup -->
 <div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide">
