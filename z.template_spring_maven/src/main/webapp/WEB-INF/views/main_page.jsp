@@ -750,7 +750,7 @@
 						<li><span>2</span>Purchase hotel room and options</li>
 						<li><span>3</span>Pick them directly from your home</li>
 					</ul>
-					<a href="all_tour_list.html" class="btn_1">Start now</a>
+					<a href="member_insert_form" class="btn_1">Start now</a>
 				</div>
 			</div>
 			<!-- End row -->
