@@ -455,12 +455,15 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "member_cancelJumun")
-	public String cancelJumun(@RequestParam(value = "jNo") String jNo, HttpSession session, Model model) {
+	public String cancelJumun(@RequestParam(value = "jNo") String jNo, 
+								HttpSession session, Model model) {
 		Member member = (Member) session.getAttribute("sUser");
 		HashMap hashMap = new HashMap();
 		hashMap.put("jNo", jNo);
 		hashMap.put("mNo", member.getmNo());
 		jumunService.cancelJumun(hashMap);
+		List<Jumun> jumunList = jumunService.selectJumun(member.getmNo());
+		session.setAttribute("jumunList", jumunList);
 		model.addAttribute("inputMsg", "1");
 		return "member_admin";
 	}
