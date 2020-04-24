@@ -16,6 +16,8 @@ public interface ProductDao {
 	
 	public Integer checkWishlist(Wishlist wishlist);
 	
+	public Integer countByCategory(String foodCategory);
+	
 	public Integer countBookedRoomQty(HashMap parameterMap);
 	
 	public Integer countBookedTourQty(HashMap parameterMap);
