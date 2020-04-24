@@ -34,18 +34,8 @@ public class BlogDaoImpl implements BlogDao {
 	}
 
 	@Override
-	public int selectNewBlog() {
-		return blogMapper.selectNewBlog();
-	}
-
-	@Override
 	public int insertBlog(HashMap hashMap) {
 		return blogMapper.insertBlog(hashMap);
-	}
-
-	@Override
-	public int insertBlogImg(String bImg) {
-		return blogMapper.insertBlogImg(bImg);
 	}
 
 	@Override

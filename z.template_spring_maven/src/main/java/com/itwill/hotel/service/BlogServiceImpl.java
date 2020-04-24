@@ -34,18 +34,8 @@ public class BlogServiceImpl implements BlogService {
 	}
 
 	@Override
-	public int selectNewBlog() {
-		return blogDao.selectNewBlog();
-	}
-
-	@Override
 	public int insertBlog(HashMap hashMap) {
 		return blogDao.insertBlog(hashMap);
-	}
-
-	@Override
-	public int insertBlogImg(String bImg) {
-		return blogDao.insertBlogImg(bImg);
 	}
 
 	@Override

@@ -41,7 +41,19 @@ public class ProductController {
 		HashMap parameterMap = new HashMap();
 		parameterMap.put("pType", "hotel");
 		model.addAttribute("productList", productService.selectByType(parameterMap));
-		return "forward:hotels_all_list.jsp";
+		return "hotels_all_list";
+	}
+	
+	@RequestMapping(value = "/hotel_list_json", produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public List<Product> hotelList(@RequestParam(value="ratingArray[]") ArrayList<Integer> ratingArray) {
+		HashMap parameterMap = new HashMap();
+		for (int i = 0; i < ratingArray.size(); i++) {
+			Integer rating = ratingArray.get(i);
+			parameterMap.put("pType", "tour");
+			parameterMap.put("pRate"+rating, rating);
+		}
+		return productService.selectByType(parameterMap);
 	}
 	
 	@RequestMapping(value = "/hotel_grid")
@@ -49,7 +61,7 @@ public class ProductController {
 		HashMap parameterMap = new HashMap();
 		parameterMap.put("pType", "hotel");
 		model.addAttribute("productList", productService.selectByType(parameterMap));
-		return "forward:hotels_all_grid.jsp";
+		return "hotels_all_grid";
 	}
 	
 	@RequestMapping(value = "/tour_list")
@@ -131,19 +143,17 @@ public class ProductController {
 		return "hotel_single";
 	}
 	
+	@RequestMapping(value = "/hotel_single_details", produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public int hotel_checkin(@RequestParam(value="newVal") String newVal) {
+		return Integer.parseInt(newVal);
+	}
 	
 	@RequestMapping(value = "/tour_grid")
 	public String tourListGrid() {
 		return "tour_all_grid";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+		
 	
 	@RequestMapping(value = "/product_list_condition")
 	public String productListCondition() {

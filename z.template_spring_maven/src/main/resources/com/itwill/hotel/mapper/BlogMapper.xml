@@ -22,16 +22,9 @@
 		where bNo=#{bNo}
 	</select>
 	
-	<select id="selectNewBlog" resultType="_int">
-		select bNo
-		from blog
-		where <![CDATA[ ROWNUM = 1 ]]>
-		order by bNo desc
-	</select>
-	
 	<insert id="insertBlog" parameterType="java.util.HashMap">
 		insert into blog(bNo, bTitle, bDate, bContent, bReadCount, bCategory, bImg, mNo) 
-		values(blog_SEQ.nextval, #{bTitle}, sysdate, #{bContent}, 0, #{bCategory}, 'basic.jsp', #{mNo})
+		values(blog_SEQ.nextval, #{bTitle}, sysdate, #{bContent}, 0, #{bCategory}, 'blogBasic.jpg', #{mNo})
 	</insert>
 	
 	<update id="updateBlog" parameterType="java.util.HashMap">
@@ -43,7 +36,7 @@
 	<update id="updateBlogImg" parameterType="java.util.HashMap">
 		update blog 
 		set bImg=#{bImg} 
-		where bNo=#{bNo}
+		where bNo=#{bNo};
 	</update>
 	
 	<delete id="deleteBlog" parameterType="java.util.HashMap">
