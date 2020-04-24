@@ -38,7 +38,7 @@
 	
 	<!-- 사용자 지정 CSS -->
 	<link href="${pageContext.request.contextPath}/resources/z.SiliconVillage/css/hbkMy.css" rel="stylesheet">
-	<link href="${pageContext.request.contextPath}/resources/z.SiliconVillage/css/product.css" rel="stylesheet">
+	
 	
 	<section class="parallax-window" data-parallax="scroll"
 	data-image-src="${pageContext.request.contextPath}/resources/img/single_hotel_bg.jpg"
@@ -572,28 +572,28 @@
 			</div>
 			<!--End  single_tour_desc-->
  
+ 
+ 			
+ 			<!-- Check Out -->
 			<aside class="col-lg-4">
 				<p class="d-none d-xl-block d-lg-block d-xl-none">
 					<a class="btn_map" data-toggle="collapse" href="#collapseMap"
 						aria-expanded="false" aria-controls="collapseMap"
-						data-text-swap="Hide map" data-text-original="View on map">View
-						on map</a>
+						data-text-swap="Hide map" data-text-original="View on map">View on map</a>
 				</p>
 				<div class="box_style_1 expose">
 					<h3 class="inner">Check Availability</h3>
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label><i class="icon-calendar-7"></i> Check in</label> <input
-									class="date-pick form-control" data-date-format="M d, D"
-									type="text">
+								<label><i class="icon-calendar-7"></i> Check in</label> 
+								<input class="date-pick form-control" data-date-format="yyyy-mm-dd" type="text" name="check-in" id="datePick1">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label><i class="icon-calendar-7"></i> Check out</label> <input
-									class="date-pick form-control" data-date-format="M d, D"
-									type="text">
+								<label><i class="icon-calendar-7"></i> Check out</label> 
+								<input class="date-pick form-control" data-date-format="yyyy-mm-dd" type="text" name="check-out" id="datePick2">
 							</div>
 						</div>
 					</div>
@@ -602,8 +602,7 @@
 							<div class="form-group">
 								<label>Adults</label>
 								<div class="numbers-row">
-									<input type="text" value="1" id="adults"
-										class="qty2 form-control" name="quantity">
+									<input type="text" value="1" id="adults" class="qty2 form-control" name="quantity">
 								</div>
 							</div>
 						</div>
@@ -611,15 +610,49 @@
 							<div class="form-group">
 								<label>Children</label>
 								<div class="numbers-row">
-									<input type="text" value="0" id="children"
-										class="qty2 form-control" name="quantity">
+									<input type="text" value="0" id="children" class="qty2 form-control" name="quantity">
 								</div>
 							</div>
 						</div>
 					</div>
-					<br> <a class="btn_full" href="cart_hotel.html">Check now</a>
-					<a class="btn_full_outline" href="#"><i class=" icon-heart"></i>
-						Add to whislist</a>
+					<br> 
+					
+					
+					
+					<form id="cart_add" name="f" method="post" action="cart_insert">
+							<input type="hidden" name="sUser" value="${sUser}">
+							<input type="hidden" name="newVal" value="1">
+							<input type="hidden" name="pNo" value="${product.pNo}">
+							<input type="hidden" name="pPrice" value="${product.pPrice}">
+							<input type="hidden" name="check-in" value="">
+							<input type="hidden" name="check-out" value="">
+							<input type="hidden" name="quantity" value="">
+							<input type="hidden" name="select" value="">
+							<c:if test="${sUser != null and sUser != ''}">
+								<input type="submit" class="btn_full" value="CHECK NOW" />
+							</c:if>
+							<c:if test="${sUser == null or sUser == ''}">
+								<a class="btn_full" data-toggle="modal" data-target="#signInAlert" href="#">
+									CHECK NOW
+								</a>
+							</c:if>
+						</form>
+					
+					<div id="addWishlistButton">
+							<c:if test="${(sUser != null) && (ifExist == 0)}">
+								<a id="addToWishlist" class="btn_full_outline" data-toggle="modal" data-target="#addWishlist" href="#">
+									<i class=" icon-heart"></i> Add to wishlist
+								</a>
+							</c:if>
+					 		<c:if test="${(sUser != null) && (ifExist == 1)}">
+								<a class='btn_full_outline' disabled><i class='icon-check'></i>&nbsp;Already in Wishlist</a>
+							</c:if>
+							<c:if test="${sUser == null}">
+								<a class="btn_full_outline" data-toggle="modal" data-target="#signInAlert" href="#">
+									<i class=" icon-heart"></i> Add to wishlist
+								</a>
+							</c:if>
+						</div>
 				</div>
  
 				<!--/box_style_1 -->
@@ -645,6 +678,8 @@
 
 </main>
 <!-- End main -->
+
+
 
 <!-- Modal Review -->
 <div class="modal fade" id="myReview" tabindex="-1" role="dialog"
@@ -955,8 +990,80 @@
 
 <!-- Date and time pickers -->
 <script>
-	$('input.date-pick').datepicker('setDate', 'today');
+	$('input.date-pick').datepick1('setDate', 'today');
+	$('input.date-pick').datepick1('setStartDate', 'today');
+	$('input.date-pick').datepick2('setDate', '+1d');	
+	$('input.date-pick').datepick2('setEndDate', '+1d');	
 </script>
+
+
+<script>
+		$(function() {
+			$("input[name='check-in']").attr("value", $("#datePick1").val());
+			$("input[name='check-out']").attr("value", $("#datePick2").val();
+		});
+	
+		$("#datePick1").change(function () {
+			$("input[name='selectDate']").attr("value", $("#datePick1").val());
+		});
+		$("#datePick2").change(function () {
+			$("input[name='selectDate']").attr("value", $("#datePick2").val());
+		});
+		
+		/* Qty Update Button */
+		$(".button_inc1").click(function () {
+			var $button = $(this);
+			var oldValue = $button.parent().find("input").val();
+
+			if ($button.text() == "+") {
+				var newVal = parseFloat(oldValue) + 1;
+			} else {
+				// Don't allow decrementing below zero
+				if (oldValue > 2) {
+					var newVal = parseFloat(oldValue) - 1;
+				} else {
+					newVal = 1;
+				}
+			}
+			
+			$button.parent().find("input").val(newVal);
+			$("input[name='newVal']").attr("value", newVal);
+			var pPrice = $("input[name='pPrice']").attr("value");
+						
+		});
+		
+		$("#addToWishlist").click(function (e) {
+			var $button = $(this);
+			var pNo = $("input[name='pNo']").attr("value");
+			
+			$.ajax({
+				type:"POST",
+				url:"wishlist_insert?",
+				data:"pNo="+pNo,
+				async:true,
+				success:function(d) {
+				}
+			});
+		});
+	</script>
+	
+	<script type="text/javascript">
+		$("#updateReview").on("show.bs.modal", function(e) {
+			var rNo = $(".update_Review").attr("rNo");
+			var pNo = $(".update_Review").attr("pNo");
+			var mNo = $(".update_Review").attr("mNo");
+			$.ajax({
+				url: "review_selectOne",
+				data: {"pNo" : pNo, "mNo" : mNo},
+				type: "post",
+				success: function(review) {
+					$(e.target).find("#review_text").html(review.rContent);
+				}
+			});
+		});
+	</script>
+
+
 
 <!-- Map -->
 <script src="http://maps.googleapis.com/maps/api/js"></script>
@@ -1052,6 +1159,11 @@
 	
 	
 </script>
+
+
+
+<script src="${pageContext.request.contextPath}/resources/z.SiliconVillage/js/product.js"></script>
+
 
 <!--Review modal validation -->
 
