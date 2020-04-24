@@ -72,7 +72,7 @@
 											<div class="col-lg-2 col-md-2">
 												<div class="booking_buttons">
 													<a href="member_jumunDetail?jNo=${jumun.jNo}" class="btn_2">See Detail</a>
-													<c:if test="${jumun.ifUse != null}">
+													<c:if test="${jumun.ifUse > 7}">
 														<a href="member_cancelJumun?jNo=${jumun.jNo}" class="btn_3">Cancel</a>
 													</c:if>
 												</div>

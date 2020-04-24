@@ -87,44 +87,36 @@
 						<li class="submenu">
 							<a href="javascript:void(0);" class="show-submenu">Home<i class="icon-down-open-mini"></i></a>
 							<ul>
-								<li><a href="main">Main page</a></li>
-								<li class="third-level"><a href="javascript:void(0);">Service</a>
-									<ul>
-										<li><a href="index_24.html">Tour</a></li>
-										<li><a href="index_24.html">Restaurant</a></li>
-									</ul>
-								</li>
-								<li><a href="index_12.html">Layer slider</a></li>
+								<li><a href="member_about">Main page</a></li>
 							</ul>
 						</li>
 						<li class="submenu">
-							<a href="#" class="show-submenu">Tours<i class="icon-down-open-mini"></i></a>
+							<a href="javascript:void(0);" class="show-submenu">Tours<i class="icon-down-open-mini"></i></a>
 							<ul>
-								<li><a href="tour_list">All tours list</a></li>
-							</ul>
-						</li>
-						<li class="submenu">
-							<a href="javascript:void(0);" class="show-submenu">Hotels<i class="icon-down-open-mini"></i></a>
-							<ul>
-								<li><a href="all_hotels_list.html">All hotels list</a></li>
-							</ul>
-						</li>
-						<li class="submenu">
-							<a href="javascript:void(0);" class="show-submenu">Facilities<i class="icon-down-open-mini"></i></a>
-							<ul>
-								<li><a href="all_transfer_list.html">All transfers list</a></li>
+								<li><a href="tour_list">All Tours</a></li>
+								<li><a href="tour_detail?pNo=1">Trekking</a></li>
+								<li><a href="tour_detail?pNo=2">Glacier Walking</a></li>
+								<li><a href="tour_detail?pNo=3">Golf</a></li>
+								<li><a href="tour_detail?pNo=4">Fishing</a></li>
+								<li><a href="tour_detail?pNo=5">Ice Cave</a></li>
 							</ul>
 						</li>
 						<li class="submenu">
 							<a href="javascript:void(0);" class="show-submenu">Restaurants<i class="icon-down-open-mini"></i></a>
 							<ul>
-								<li><a href="restaurants_all_list">Restaurants list</a></li>
+								<li><a href="member_about">Main page</a></li>
+								<li><a href="member_about">Main page</a></li>
+								<li><a href="member_about">Main page</a></li>
+								<li><a href="member_about">Main page</a></li>
+								<li><a href="member_about">Main page</a></li>
 							</ul>
 						</li>
 						<li class="submenu">
 							<a href="javascript:void(0);" class="show-submenu">Blog<i class="icon-down-open-mini"></i></a>
 							<ul>
-								<li><a href="blog_right_sidebar">Blog List</a></li>
+								<li><a href="blog_right_sidebar">All Blogs</a></li>
+								<li><a href="blog_post_right_sidebar?type=Tour">Tour Blogs</a></li>
+								<li><a href="blog_post_right_sidebar?type=Restaurant">Restaurant Blogs</a></li>
 							</ul>
 						</li>
 						<li class="submenu">
@@ -132,7 +124,6 @@
 							<ul>
 								<li><a href="member_about">About us</a></li>
 								<li><a href="member_faq">FAQ</a></li>
-								<li><a href="blog_right_sidebar">Blog</a></li>
 								<li><a href="member_login_form">Login</a></li>
 								<li><a href="member_insert_form">Register</a></li>
 							</ul>
@@ -162,7 +153,7 @@
         	<div class="row justify-content-center">
             	<div class="col-xl-4 col-lg-5 col-md-6 col-sm-8">
                 	<div id="login">
-                   		<div class="text-center"><img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/youngae.jpg" width="120px" height="150px" alt="Image" data-retina="true" ></div>
+                   		<div class="text-center"><img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/SiliconVillage_S_Black.png" style="margin-left: 30px" width: 233px" height="100px" alt="Image" data-retina="true" ></div>
                         <c:if test="${(msg1 == null || msg1 eq '') && (msg2 == null || msg2 eq '') && (msg3 == null || msg3 eq '') && (msg4 == null || msg4 eq '')}">
 							<div class="divider"><span><font style="font-style: normal; font-size: 15px; color: red;">${msg}</font></span></div>
                         	<form id="login_form" method="post" action="member_login_action">

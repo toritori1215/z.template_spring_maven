@@ -56,35 +56,48 @@
     <div class="row">
         <div class="col-12">
     		<div class="invoice-title">
-    			<h2>Invoice</h2><h3 class="pull-right">Order # ${jumun.jNo}</h3>
+    			<h2>Invoice</h2><br>
+    			<h3 class="pull-right"> Order # ${jumun.jNo}</h3>
+   				<h6 align="right"><a href="member_orderList" class="btn_1">Back to order List</a></h6>
     		</div>
     		<hr>
     		<div class="row">
     			<div class="col-6">
     				<address>
-    				<strong>Billed To:</strong><br>
-    					${jumun.jCardOwner}<br>
-    					${jumun.jCountry}<br>
-    					${jumun.jCity}<br>
-    					${jumun.jStreetNMG}
+	    				<strong>Billed To:</strong><br>
+	    				<div style="margin-left: 30px">
+	    				<strong>Guest:</strong> ${jumun.jCardOwner}
+	    				</div>
     				</address>
     			</div>
-    			<div class="col-6 text-right">
-    				
+    			<div class="col-6 text-left">
+    				<address>
+	    				<strong>Address:</strong><br>
+	    				<div style="margin-left: 30px">
+		    				<strong>Country:</strong> ${jumun.jCountry}<br>
+		    				<strong>State:</strong> ${jumun.jState}<br>
+		    				<strong>City:</strong> ${jumun.jCity}<br>
+		    				<strong>Detail Address:</strong> ${jumun.jStreetNMG}
+	    				</div>
+    				</address>
     			</div>
     		</div>
     		<div class="row">
     			<div class="col-6">
-    				<address>
-    					<strong>Payment Method:</strong><br>
-    					${jumun.jCardNo}<br>
-    					${jumun.jEmail}
+    				<address >
+    					<strong>Order Date:</strong><br>
+    					<div style="margin-left: 30px">
+    						${jumun.jDate}<br>
+    					</div>
     				</address>
     			</div>
-    			<div class="col-6 text-right">
+    			<div class="col-6 text-left">
     				<address>
-    					<strong>Order Date:</strong><br>
-    					${jumun.jDate}<br><br>
+    					<strong>Payment Method:</strong><br>
+	    				<div style="margin-left: 30px">
+    						<strong>Card No:</strong> ${jumun.jCardNo}<br>
+    						<strong>Email:</strong>   ${jumun.jEmail}
+    					</div>
     				</address>
     			</div>
     		</div>
@@ -121,7 +134,7 @@
     							<tr>
     								<td class="no-line"></td>
     								<td class="no-line"></td>
-    								<td class="no-line text-center"><strong>Total</strong></td>
+    								<td class="no-line text-center"><strong>Total Price</strong></td>
     								<td class="no-line text-right">${jumun.jTotPay}</td>
     							</tr>
     						</tbody>
