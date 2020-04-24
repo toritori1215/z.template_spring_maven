@@ -18,7 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
-mework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -27,6 +27,8 @@ import com.itwill.hotel.controller.interceptors.LoginCheck;
 import com.itwill.hotel.domain.Member;
 import com.itwill.hotel.domain.RestaurantCartDTO;
 import com.itwill.hotel.domain.RestaurantDTO;
+import com.itwill.hotel.domain.Restaurant_JD_DTO;
+import com.itwill.hotel.domain.Restaurant_J_DTO;
 import com.itwill.hotel.domain.Review;
 import com.itwill.hotel.domain.ReviewRate;
 import com.itwill.hotel.exception.WrongRestaurantDataException;
