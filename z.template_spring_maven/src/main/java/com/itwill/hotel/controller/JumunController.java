@@ -101,7 +101,7 @@ public class JumunController {
 			int jNo = jumunService.selectRecentJumun(mNo);
 			model.addAttribute("gName", firstName+" "+lastName);
 			//model.addAttribute("cartList", cartList);
-			model.addAttribute("refNo", Integer.toString(mNo)+"-0"+phone.substring(3,5)+phone.substring(0,2)+phone.substring(5,7)+Integer.toString(jNo));
+			model.addAttribute("refNo", Integer.toString(mNo)+"-0"+phone.substring(3,4)+phone.substring(1,3)+phone.substring(4,6)+Integer.toString(jNo));
 			List<Cart> cartList = (List<Cart>) session.getAttribute("cartList");
 			for (Cart cart: cartList) {
 				JumunDetail jumunDetail = new JumunDetail(0, cart.getcCheckin(), null, null, null, null, 
