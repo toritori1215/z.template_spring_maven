@@ -27,6 +27,7 @@
 					</li>
 					<li><a href="blog_right_sidebar">Blog List</a>
 					</li>
+					<li>${blog.bTitle}</li>
 				</ul>
 			</div>
 		</div>

@@ -69,6 +69,7 @@
 					</li>
 					<li><a href="restaurants_all_list">Restaurants List</a>
 					</li>
+					<li>${restaurantProduct.pname}</li>
 				</ul>
 			</div>
 		</div>

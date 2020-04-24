@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-
+<!--  -->
 	<!-- Header================================================== -->
 	<jsp:include page="WEB-INF/views/common_header_6.jsp"/>
 	<!-- End Header -->
