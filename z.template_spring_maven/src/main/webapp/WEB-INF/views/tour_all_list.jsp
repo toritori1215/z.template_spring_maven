@@ -41,7 +41,7 @@
 				<ul>
 					<li><a href="main">Home</a>
 					</li>
-					<li>Tours</a>
+					<li><a href="tour_list">Tours</a>
 					</li>
 				</ul>
 			</div>
