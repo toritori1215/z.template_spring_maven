@@ -11,6 +11,8 @@ public interface BlogMapper {
 	/****** Blog ******/
 	public List<Blog> selectAllBlog();
 	
+	public List<Blog> selectBlogByType(String type);
+	
 	public Blog selectOneBlog(int bNo);
 	
 	public List<Blog> selectRecentBlog();

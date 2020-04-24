@@ -24,6 +24,11 @@ public class BlogDaoImpl implements BlogDao {
 	}
 
 	@Override
+	public List<Blog> selectBlogByType(String type) {
+		return blogMapper.selectBlogByType(type);
+	}
+
+	@Override
 	public Blog selectOneBlog(int bNo) {
 		return blogMapper.selectOneBlog(bNo);
 	}

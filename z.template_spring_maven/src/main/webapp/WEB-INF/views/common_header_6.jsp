@@ -158,8 +158,8 @@
 						<li class="submenu">
 							<a href="javascript:void(0);" class="show-submenu">Pages<i class="icon-down-open-mini"></i></a>
 							<ul>
-								<li><a href="about.html">About us</a></li>
-								<li><a href="common_faq_2">FAQ</a></li>
+								<li><a href="member_about">About us</a></li>
+								<li><a href="member_faq">FAQ</a></li>
 								<li><a href="blog_right_sidebar">Blog</a></li>
 								<li><a href="member_login_form">Login</a></li>
 								<li><a href="member_insert_form">Register</a></li>

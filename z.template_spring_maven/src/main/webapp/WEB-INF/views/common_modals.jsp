@@ -608,8 +608,6 @@
 								<label>Category</label>
 								<select class="form-control" name="Category" id="Category">
 									<option value="Tour" selected="selected">Tour</option>
-									<option value="Hotel">Hotel</option>
-									<option value="Facility">Facility</option>
 									<option value="Restaurant">Restaurant</option>
 								</select>
 							</div>

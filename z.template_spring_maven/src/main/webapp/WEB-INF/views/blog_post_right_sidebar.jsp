@@ -89,13 +89,11 @@
 					<div class="widget" id="cat_blog">
 						<h4>Categories</h4>
 						<ul>
-							<li><a href="#">Tour</a>
+							<li><a href="blog_right_sidebar">All blogs</a>
 							</li>
-							<li><a href="#">Hotel</a>
+							<li><a href="blog_right_sidebar_byType?type=Tour">Tour</a>
 							</li>
-							<li><a href="#">Facility</a>
-							</li>
-							<li><a href="#">Restaurant</a>
+							<li><a href="blog_right_sidebar_byType?type=Restaurant">Restaurant</a>
 							</li>
 						</ul>
 					</div>

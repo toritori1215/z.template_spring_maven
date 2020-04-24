@@ -9,6 +9,13 @@
 		order by bDate desc
 	</select>
 	
+	<select id="selectBlogByType" resultType="Blog">
+		select bNo, bTitle, bDate, bContent, bReadCount, bCategory, bImg, mNo
+		from blog
+		where bCategory=#{type}
+		order by bDate desc
+	</select>
+	
 	<select id="selectRecentBlog" resultType="Blog">
 		select bNo, bTitle, bDate, bContent, bReadCount, bCategory, bImg, mNo
 		from blog
@@ -35,8 +42,8 @@
 	
 	<update id="updateBlogImg" parameterType="java.util.HashMap">
 		update blog 
-		set bImg=#{bImg} 
-		where bNo=#{bNo};
+		set bImg=#{bImg}
+		where bNo=#{bNo}
 	</update>
 	
 	<delete id="deleteBlog" parameterType="java.util.HashMap">
