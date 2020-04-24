@@ -9,10 +9,10 @@
 	<!-- End Header -->
 
 
-	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/img/bg_blog.jpg" data-natural-width="1400" data-natural-height="470">
+	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/img/blog_main.jpg" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
-				<h1>Tour Blog</h1>
+				<h1>Blog</h1>
 				<p>Ridiculus sociosqu cursus neque cursus curae ante scelerisque vehicula.</p>
 			</div>
 		</div>
@@ -25,9 +25,8 @@
 				<ul>
 					<li><a href="main">Home</a>
 					</li>
-					<li><a href="blog_right_sidebar">Blog List</a>
+					<li><a href="#">Blog List</a>
 					</li>
-					
 				</ul>
 			</div>
 		</div>
@@ -46,23 +45,15 @@
 							<div class="post_info clearfix">
 								<div class="post-left">
 									<ul>
-										<li><i class="icon-calendar-empty"></i> On <span>${blog.bDate}</span>
+										<li><i class="icon-calendar-empty"></i>On <span>${blog.bDate}</span>
 										</li>
-										<li><i class="icon-inbox-alt"></i> In ${blog.bCategory}
+										<li><i class="icon-inbox-alt"></i>In <a href="blog_right_sidebar_byType?type=${blog.bCategory}">Top ${blog.bCategory}</a>
 										</li>
 									</ul>
-								</div>
-								<div class="post-right"><i class="icon-comment"></i><a href="#">${blog.bReadCount}</a>
 								</div>
 							</div>
 							<h2>${blog.bTitle}</h2>
 							<p>${blog.bContent}</p>
-							<p>
-								Ludus albucius adversarium eam eu. Sit eu reque tation aliquip. Quo no dolorum albucius lucilius, hinc eligendi ut sed. Ex nam quot ferri suscipit, mea ne legere alterum repudiandae. Ei pri quaerendum intellegebat, ut vel consequuntur voluptatibus. Et volumus sententiae adversarium duo......
-							</p>
-							<p>
-								Ludus albucius adversarium eam eu. Sit eu reque tation aliquip. Quo no dolorum albucius lucilius, hinc eligendi ut sed. Ex nam quot ferri suscipit, mea ne legere alterum repudiandae. Ei pri quaerendum intellegebat, ut vel consequuntur voluptatibus. Et volumus sententiae adversarium duo......
-							</p>
 							<input type="button" class="btn_1" value="Read More" onclick="location.href='blog_post_right_sidebar?bNo=${blog.bNo}'"> &nbsp;&nbsp;&nbsp;
 							</form>
 						<hr>
@@ -70,55 +61,18 @@
 						</div>
 						<!-- end post -->
 					</div>
-
-					<nav aria-label="Page navigation">
-						<ul class="pagination justify-content-center">
-							<li class="page-item">
-								<a class="page-link" href="#" aria-label="Previous">
-									<span aria-hidden="true">&laquo;</span>
-									<span class="sr-only">Previous</span>
-								</a>
-							</li>
-							<li class="page-item active"><span class="page-link">1<span class="sr-only">(current)</span></span>
-							</li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item">
-								<a class="page-link" href="#" aria-label="Next">
-									<span aria-hidden="true">&raquo;</span>
-									<span class="sr-only">Next</span>
-								</a>
-							</li>
-						</ul>
-					</nav>
-					<!-- end pagination-->
-					
 				</div>
 				<!-- End col -->
 
 				<aside class="col-lg-3">
-
-					<div class="widget">
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Search...">
-							<span class="input-group-btn">
-						<button class="btn btn-default" type="button" style="margin-left:0;"><i class="icon-search"></i></button>
-						</span>
-						</div>
-						<!-- /input-group -->
-					</div>
-					<!-- End Search -->
-					<hr>
 					<div class="widget" id="cat_blog">
 						<h4>Categories</h4>
 						<ul>
-							<li><a href="#">Tour</a>
+							<li><a href="blog_right_sidebar">All blogs</a>
 							</li>
-							<li><a href="#">Hotel</a>
+							<li><a href="blog_right_sidebar_byType?type=Tour">Tour</a>
 							</li>
-							<li><a href="#">Facility</a>
-							</li>
-							<li><a href="#">Restaurant</a>
+							<li><a href="blog_right_sidebar_byType?type=Restaurant">Restaurant</a>
 							</li>
 						</ul>
 					</div>

@@ -12,7 +12,7 @@
 	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/img/bg_blog.jpg" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
-				<h1>Tour Blog</h1>
+				<h1>Blog List</h1>
 				<p>Ridiculus sociosqu cursus neque cursus curae ante scelerisque vehicula.</p>
 			</div>
 		</div>
@@ -28,6 +28,8 @@
 					<li><a href="blog_right_sidebar">Blog List</a>
 					</li>
 					<li>${blog.bTitle}</li>
+					<li><a href="#">${blog.bTitle}</a>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -45,7 +47,7 @@
 									<ul>
 										<li><i class="icon-calendar-empty"></i>On <span>${blog.bDate}</span>
 										</li>
-										<li><i class="icon-inbox-alt"></i>In <a href="#">Top tours</a>
+										<li><i class="icon-inbox-alt"></i>In <a href="blog_right_sidebar_byType?type=${blog.bCategory}">Top ${blog.bCategory}</a>
 										</li>
 									</ul>
 								</div>
@@ -56,45 +58,34 @@
 								<a href="#" class="btn_1" data-toggle="modal" data-target="#updateBlog">Update</a>&nbsp;&nbsp;&nbsp;
 								<a href="blog_delete?bNo=${blog.bNo}" class="btn_1">Delete</a>
 							</c:if>
+							<c:if test="${blog.mNo == sUser.mNo}">
+							<hr>
+							${SessionBlog.bNo}
+							<form id="form1" name="form1" action="blog_right_sidebar" method="post">
+								<h4>Upload profile photo</h4>
+								<!-- Drop Zone -->
+								<div id="attachFile" style="width: 100%;"></div>
+								<br>
+								<button type="submit" class="btn_1 green" id="js-upload-submit" onclick="formSubmit()">Upload file</button>
+							</form>
+							<hr>
+							</c:if>
 						</div>
 						<!-- end post -->
 					</div>
 					<!-- end box_style_1 -->
-					<hr>
-					${Sessionblog.bNo}
-					<form id="form1" name="form1" action="blog_right_sidebar" method="post">
-						<h4>Upload profile photo</h4>
-						<!-- Drop Zone -->
-						<div id="attachFile" style="width: 100%;"></div>
-						<br>
-						<button type="submit" class="btn_1 green" id="js-upload-submit" onclick="formSubmit()">Upload file</button>
-					</form>
-					<hr>
 				</div>
 				<!-- End col-md-8-->
 				
 				<aside class="col-lg-3 add_bottom_30">
-					<div class="widget">
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Search...">
-							<span class="input-group-btn">
-						<button class="btn btn-default" type="button" style="margin-left:0;"><i class="icon-search"></i></button>
-						</span>
-						</div>
-						<!-- /input-group -->
-					</div>
-					<!-- End Search -->
-					<hr>
 					<div class="widget" id="cat_blog">
 						<h4>Categories</h4>
 						<ul>
-							<li><a href="#">Tour</a>
+							<li><a href="blog_right_sidebar">All blogs</a>
 							</li>
-							<li><a href="#">Hotel</a>
+							<li><a href="blog_right_sidebar_byType?type=Tour">Tour</a>
 							</li>
-							<li><a href="#">Facility</a>
-							</li>
-							<li><a href="#">Restaurant</a>
+							<li><a href="blog_right_sidebar_byType?type=Restaurant">Restaurant</a>
 							</li>
 						</ul>
 					</div>
@@ -135,7 +126,7 @@
 			}
 		})
 	</script>
-	
+	<c:if test="${blog.mNo == sUser.mNo}">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/gu-upload/guuploadManager.js"></script>
 	<script type="text/javascript">
 		var guManager = null;
@@ -169,7 +160,7 @@
 			document.form1.submit();
 		}
 	</script>
-	
+	</c:if>
 </body>
 
 </html>

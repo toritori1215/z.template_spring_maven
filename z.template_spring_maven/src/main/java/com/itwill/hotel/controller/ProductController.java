@@ -44,6 +44,18 @@ public class ProductController {
 		return "hotels_all_list";
 	}
 	
+	@RequestMapping(value = "/hotel_list_json", produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public List<Product> hotelList(@RequestParam(value="ratingArray[]") ArrayList<Integer> ratingArray) {
+		HashMap parameterMap = new HashMap();
+		for (int i = 0; i < ratingArray.size(); i++) {
+			Integer rating = ratingArray.get(i);
+			parameterMap.put("pType", "tour");
+			parameterMap.put("pRate"+rating, rating);
+		}
+		return productService.selectByType(parameterMap);
+	}
+	
 	@RequestMapping(value = "/hotel_grid")
 	public String hotelListGrid(Model model) {
 		HashMap parameterMap = new HashMap();
@@ -57,8 +69,22 @@ public class ProductController {
 		Member member = (Member) session.getAttribute("sUser");
 		HashMap parameterMap = new HashMap();
 		parameterMap.put("pType", "tour");
-		model.addAttribute("productList", productService.selectByType(parameterMap));
+		List<Product> productList = productService.selectByType(parameterMap);
+		model.addAttribute("productList", productList);
 		
+		List<HashMap> categoryInfoList = new ArrayList<HashMap>();
+		List<String> categoryList = new ArrayList<String>();
+		for (Product product: productList) {
+			if(!categoryList.contains(product.getFoodCategory())) {
+				categoryList.add(product.getFoodCategory());
+			}
+		}
+		for (String category: categoryList) {
+			
+			HashMap categoryMap = new HashMap();
+			//categoryMap.put("category", product.getFoodCategory());
+		}
+		model.addAttribute("categoryList", categoryList);		
 		return "tour_all_list";
 	}
 	
@@ -131,19 +157,17 @@ public class ProductController {
 		return "hotel_single";
 	}
 	
+	@RequestMapping(value = "/hotel_single_details", produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public int hotel_checkin(@RequestParam(value="newVal") String newVal) {
+		return Integer.parseInt(newVal);
+	}
 	
 	@RequestMapping(value = "/tour_grid")
 	public String tourListGrid() {
 		return "tour_all_grid";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+		
 	
 	@RequestMapping(value = "/product_list_condition")
 	public String productListCondition() {

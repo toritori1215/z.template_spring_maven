@@ -20,9 +20,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.itwill.hotel.domain.Cart;
 import com.itwill.hotel.domain.Jumun;
+import com.itwill.hotel.domain.JumunDetail;
+import com.itwill.hotel.domain.JumunDetailInvoice;
 import com.itwill.hotel.domain.Member;
 import com.itwill.hotel.domain.Product;
+import com.itwill.hotel.service.CartService;
 import com.itwill.hotel.service.JumunService;
 import com.itwill.hotel.service.MemberService;
 import com.itwill.hotel.service.WishlistService;
@@ -39,6 +43,9 @@ public class MemberController {
 	@Autowired
 	private JumunService jumunService;
 	
+	@Autowired
+	private CartService cartService;
+	
 	@RequestMapping(value = "/main")
 	public String mainPage() {
 		memberService.deleteInactiveMember();
@@ -48,6 +55,11 @@ public class MemberController {
 	@RequestMapping(value = "/member_faq")
 	public String memberFaq() {
 		return "common_faq_2";
+	}
+	
+	@RequestMapping(value = "/member_about")
+	public String memberAbout() {
+		return "common_about";
 	}
 	
 	@RequestMapping(value = "/member_mypage")
@@ -72,6 +84,12 @@ public class MemberController {
 		return "member_admin";
 	}
 	
+	@RequestMapping(value = "/member_orderList")
+	public String memberOrderList(Model model, HttpSession session) {
+		model.addAttribute("inputMsg", "0");
+		return "member_admin";
+	}
+	
 	@RequestMapping(value = "/member_login_form")
 	public String memberLogin() {
 		memberService.deleteInactiveMember();
@@ -81,7 +99,6 @@ public class MemberController {
 	@RequestMapping(value = "/member_login_action", method=RequestMethod.POST)
 	public String memberLoginAction(@RequestParam(value = "mId") String mId,
 									@RequestParam(value = "mPassword") String mPassword,
-									@RequestParam(value = "mCheck", defaultValue = "") String mCheck,
 									HttpSession session,
 									Model model) {
 		memberService.deleteInactiveMember();
@@ -117,11 +134,7 @@ public class MemberController {
 				if (tempMember.getmIfActive() == 1) {
 					// 로그인
 					memberService.setTempPasswordNull(mId);
-					if (mCheck != null && !mCheck.trim().equals("")) {
-						// 쿠키
-					} else {
-						session.setAttribute("sUser", tempMember);
-					}
+					session.setAttribute("sUser", tempMember);
 					return "main_page";
 				} else {
 					// 아이디 휴면
@@ -432,6 +445,33 @@ public class MemberController {
 		hashMap.put("mNo", member.getmNo());
 		int rowCount = memberService.updateImg(hashMap);
 		session.setAttribute("sUser", memberService.selectOne(member.getmId()));
+	}
+	
+	@RequestMapping(value = "member_jumunDetail")
+	public String memberJumunDetail(@RequestParam(value = "jNo") String jNo, HttpSession session, Model model) {
+		Member member = (Member) session.getAttribute("sUser");
+		if (member == null) {
+			return "common_404";
+		}
+		Jumun jumun = jumunService.selectJumunByNo(Integer.parseInt(jNo));
+		model.addAttribute("jumun", jumun);
+		List<JumunDetailInvoice> jumunDetailList = jumunService.selectJumunDetail(Integer.parseInt(jNo));
+		model.addAttribute("jumunDetailList", jumunDetailList);
+		return "common_invoice";
+	}
+	
+	@RequestMapping(value = "member_cancelJumun")
+	public String cancelJumun(@RequestParam(value = "jNo") String jNo, 
+								HttpSession session, Model model) {
+		Member member = (Member) session.getAttribute("sUser");
+		HashMap hashMap = new HashMap();
+		hashMap.put("jNo", jNo);
+		hashMap.put("mNo", member.getmNo());
+		jumunService.cancelJumun(hashMap);
+		List<Jumun> jumunList = jumunService.selectJumun(member.getmNo());
+		session.setAttribute("jumunList", jumunList);
+		model.addAttribute("inputMsg", "0");
+		return "member_admin";
 	}
 	
 }

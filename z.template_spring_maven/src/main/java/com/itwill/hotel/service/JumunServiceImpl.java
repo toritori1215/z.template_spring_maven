@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwill.hotel.domain.Jumun;
 import com.itwill.hotel.domain.JumunDetail;
+import com.itwill.hotel.domain.JumunDetailInvoice;
 import com.itwill.hotel.repository.JumunDao;
 
 @Service
@@ -16,6 +17,8 @@ public class JumunServiceImpl implements JumunService {
 	@Autowired
 	private JumunDao jumunDao;
 
+	
+	/************ jumun ************/
 	@Override
 	public List<Jumun> selectJumun(int mNo) {
 		return jumunDao.selectJumun(mNo);
@@ -24,6 +27,11 @@ public class JumunServiceImpl implements JumunService {
 	@Override
 	public int selectRecentJumun(int mNo) {
 		return jumunDao.selectRecentJumun(mNo);
+	}
+
+	@Override
+	public Jumun selectJumunByNo(int jNo) {
+		return jumunDao.selectJumunByNo(jNo);
 	}
 
 	@Override
@@ -40,5 +48,12 @@ public class JumunServiceImpl implements JumunService {
 	public int insertJumunDetail(JumunDetail jumunDetail) {
 		return jumunDao.insertJumunDetail(jumunDetail);
 	}
-
+	
+	
+	/************ jumun detail ************/
+	@Override
+	public List<JumunDetailInvoice> selectJumunDetail(int jNo) {
+		return jumunDao.selectJumunDetail(jNo);
+	}
+	
 }

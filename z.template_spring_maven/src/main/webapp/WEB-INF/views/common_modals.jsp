@@ -608,8 +608,6 @@
 								<label>Category</label>
 								<select class="form-control" name="Category" id="Category">
 									<option value="Tour" selected="selected">Tour</option>
-									<option value="Hotel">Hotel</option>
-									<option value="Facility">Facility</option>
 									<option value="Restaurant">Restaurant</option>
 								</select>
 							</div>
@@ -630,7 +628,7 @@
 						<label>Blog text</label>
 						<textarea name="write_blog_content" id="write_blog_content" class="form-control" style="height:100px" placeholder="Write your blog text"></textarea>
 					</div>
-					<input type="submit" class="btn_1" id="Write blog">Write blog</button>
+					<input type="submit" class="btn_1" id="Write blog" value="Write blog">
 				</form>
 			</div>
 		</div>
@@ -696,10 +694,9 @@
 						<label>Blog text</label>
 						<textarea name="write_blog_content" id="write_blog_content" class="form-control" style="height:100px" placeholder="Write your blog text">${blog.bContent}</textarea>
 					</div>
-					<input type="submit" class="btn_1" id="Modify blog">Modify blog</button>
+					<input type="submit" class="btn_1" id="Modify blog" value="Modify blog">
 				</form>
 			</div>
 		</div>
 	</div>
 </div>
-
