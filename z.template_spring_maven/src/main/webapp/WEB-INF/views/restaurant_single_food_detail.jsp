@@ -98,7 +98,8 @@
 					<p class="d-none d-md-block d-block d-lg-none"><a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="Hide map" data-text-original="View on map">View on map</a></p>
 					 -->
 					<p class="d-none d-md-block d-block d-lg-none">
-						<a class="btn_map" data-toggle="collapse" href="#reservation_div_space" aria-expanded="false" aria-controls="reservation_div_space" data-text-swap="No restaurant reservation" data-text-original="Restaurant Reservation">Restaurant Reservation</a>
+
+						<a class="btn_map" data-toggle="collapse" href="#reservation_div_space" collapseBtn="BookingState" aria-expanded="false" aria-controls="reservation_div_space" data-text-swap="No restaurant reservation" data-text-original="Restaurant Reservation">Restaurant Reservation</a>
 					</p>
 					<!-- Map button for tablets/mobiles -->
 					
@@ -407,7 +408,9 @@
 					
 					<p class="d-none d-xl-block d-lg-block d-xl-none">
 						<a class="btn_map" data-toggle="collapse" href="#reservation_div_space" 
-						   aria-expanded="false" aria-controls="reservation_div_space" id="BookingState"
+
+						   aria-expanded="false" aria-controls="reservation_div_space" collapseBtn="BookingState"
+
 						   data-text-swap="No restaurant reservation" data-text-original="Restaurant Reservation">
 						   		Restaurant Reservation
 						</a>
@@ -442,16 +445,18 @@
 										</div>
 									</div>
 								</div>
-								<!-- 
-								<div class="col-6">
+
+								
+								<div class="col-6" id="seatingDiv">
 									<div class="form-group">
-										<label>Children</label>
-										<div class="numbers-row">
-											<input type="text" value="0" id="children" class="qty2 form-control" name="quantity">
+										<label>Seating Capacity</label>
+										<div class="my-numbers-row">
+											<label id="seatCapacityLabel">dddd</label>
 										</div>
 									</div>
 								</div>
-								 -->
+								
+
 							</div>
 							<hr>							
 							Deposit per person <br>
@@ -535,7 +540,26 @@
 									</tr>
 								</tbody>
 							</table>
-							<a class="btn_full" href="restaurant_payment_fixed_sidebar">BUY NOW</a>
+
+							<form name="f" id="f">
+								<input type="hidden" name="pno" id="pno" value= "${restaurantProduct.pno}">
+								
+								<!--전송할 데이터  -->
+								<input type="hidden" name= "totalSeatBookingCnt" id="totalSeatBookingCnt" value="">
+								<input type="hidden" name= "totalFoodPrice" id="totalFoodPrice" value="">
+								<input type="hidden" name="totalPrice" id="totalPrice" value= "">					
+								<input type="hidden" name="bookingTime" id="bookingTime" value="">					
+								<input type="hidden" name="bookingDate" id="bookingDate" value="">
+								<input type="hidden" id="itemObjectJSONList" name="itemObjectJSONList" value="">
+								<input type="hidden" id="isCart" name="isCart" value="no">
+								<!-- 웹용-->
+								<input type="hidden" name="foodsPrice" id="foodsPrice" value= "">							
+								<input type="hidden" name="foodCount" id="foodCount" value= "">										
+								<input type="hidden" name="leftSeat" id="leftSeat" value= "">						
+								<input type="hidden" name="deposit_cost_ori" id="deposit_cost_ori" value= "${deposit_cost.pprice}">
+								<input type="hidden" name="seatCapacity" id="seatCapacity" value="${restaurant_prod.pavailable}">						
+							</form>
+							<a class="btn_full" href="restaurant_payment_fixed_sidebar" id="checkOutBtn" >BUY NOW</a>
 							<a class="btn_full_outline" href="restaurant_cart_fixed_sidebar" id="addToCartBtn"><i class=" icon-cart"></i> ADD TO CART</a>
 					</div>
 					
@@ -742,12 +766,16 @@
 			let depositPrice = calculDepositPrice();
 			let foodsPrice = calculfoodPrice();
 			let sumPrice = foodsPrice + depositPrice;
-			document.getElementById('sumPrice').firstChild.nodeValue ="￦" +numberWithCommas(sumPrice);	
+			document.getElementById('sumPrice').firstChild.nodeValue ="￦" +numberWithCommas(sumPrice);
+			return sumPrice;
 		}	
+		
 		function hideReservationinfoSumCalcul(){
 			let foodsPrice = calculfoodPrice();
 			let sumPrice = foodsPrice;
 			document.getElementById('sumPrice').firstChild.nodeValue ="￦" +numberWithCommas(sumPrice);	
+
+			return sumPrice;
 		}	
 	
 	
@@ -810,10 +838,43 @@
 			}
 			
 		}
-		$(function(){
+
+		
+		function seatCapacityCalcul_Ajax(){
+			let dateText = document.getElementById('datePicker').value;
+			let timeText = document.getElementById('timePicker').value;
+			let persons = document.getElementById('persons').value;
 			
-			$('td.text-right > div > div.dec.button_inc').text("");
-			$('td.text-right > div > div.inc.button_inc').text("");
+			let param = "dateText="+dateText+"&timeText="+timeText;
+			$.ajax({
+				
+				url : 'seatCapacityCalcul',
+				data : param,
+				dataType : 'json',
+				async : false,
+				success : function(result){
+					//console.log("result ----->>>>>>>"+result);
+					let capacity =Number(document.getElementById('seatCapacity').value);
+					let bookedSeat = Number(result);
+					let bookingSeat = Number(document.getElementById('persons').value);
+					
+					let leftSeat = capacity - bookedSeat - bookingSeat;
+					document.getElementById('seatCapacityLabel').firstChild.nodeValue = leftSeat;
+				}
+				
+			});
+			
+		}
+		
+		
+		$(function(){
+			//시간위젯이 한번 보이고 사라졌을때 show하도록 만든다.
+			$('#seatingDiv').hide();
+			
+			
+			//$('td.text-right > div > div.dec.button_inc').text("");
+			//$('td.text-right > div > div.inc.button_inc').text("");
+
 			$('.reservation_info').hide();
 			//$(".my-numbers-row").append('<div class="inc button_inc"></div><div class="dec button_inc"></div>');
 
@@ -821,12 +882,22 @@
 				//let foodCnt = document.getElementById('foodCnt').value;
 				let personsCntVal = document.getElementById('persons').value;
 				if(personsCntVal==''){
-					console.log("여긴 들어오니?");
+
+					//console.log("여긴 들어오니?");
 					personsCntVal='1';
 				}
 				console.log('personsCntVal :: ' + personsCntVal);
-				let personsCntNumber = Number(personsCntVal)+1;
 				
+				////////
+				let personsCntNumber = Number(personsCntVal)+1;
+				let capacity = Number(document.getElementById('seatCapacityLabel').firstChild.nodeValue)-1;
+				if(capacity==-1){
+					capacity=0;
+					personsCntNumber=personsCntNumber-1;
+				}
+				document.getElementById('seatCapacityLabel').firstChild.nodeValue=capacity;
+				//////////
+
 				common_Person_Cnt(personsCntNumber);
 				
 			});
@@ -834,12 +905,18 @@
 			$('#person_decreaseBtn').on('click',function(e){
 				//let foodCnt = document.getElementById('foodCnt').value;
 				let personsCntVal = document.getElementById('persons').value;
-				console.log('personsCntVal :: ' + personsCntVal);
+
+				//console.log('personsCntVal :: ' + personsCntVal);
+				////////
 				let personsCntNumber = Number(personsCntVal)-1;
 				if(personsCntVal=='1'){
 					personsCntNumber =1;
+				}else{
+					let capacity = Number(document.getElementById('seatCapacityLabel').firstChild.nodeValue)+1;
+					document.getElementById('seatCapacityLabel').firstChild.nodeValue=capacity;
 				}	
-				
+				////////
+
 				common_Person_Cnt(personsCntNumber);
 				
 			});
@@ -898,6 +975,11 @@
 			
 			
 			$('#datePicker').datepicker({
+				
+				//format: "dd/mm/yyyy",
+				format: "yyyy/mm/dd",
+
+        
 				beforeShowDay: function (date) {
 					//console.log("date::"+date);
 					//console.log("date.getDay::"+date.getDay());
@@ -911,18 +993,16 @@
 			$('#datePicker').datepicker("setDate",'today');
 			//console.log("bookState ::=>"+bookState);
 			
-			$('#datePicker').datepicker().on('change', function(e) {
+
+			$('#datePicker').datepicker().on('changeDate', function(e) {
 				let dayStr = document.getElementById('datePicker').value;
 				console.log("day::"+ dayStr);
 				let daycustom = dayStr.substring(dayStr.indexOf(',')+1).trim();
-				console.log('daycustom ::' + daycustom);
+				console.log('daycustom ::' + daycustom);				
 				
-				//요일 변경이 되었을시 input (#datePicker) 값 변경
-				//$('#timePicker').timepicker('setDay',daycustom); timepicker가 클릭되었을시에 setDay값 셋팅으로 바꾸어주어 필요 없어짐
 				$('#timePicker').val('9:00 AM');
 				
-				//$('#timePicker').timepicker('setHour','9');
-				//$('#timePicker').timepicker('setMeridian','AM');
+				//seatCapacityCalcul_Ajax();
 
    			 });
 			
@@ -962,27 +1042,16 @@
 				weekendedTime : 1,
 				weekdaystTime : 9,
 				weekdayedTime : 7,
+
+				day : 'Sat',
 				showInpunts: false
 			});
 			
-			/*
-			$('#timePicker').timepicker().on('click', function(e) {
-				let dayStr = document.getElementById('datePicker').value;
-				console.log("day::"+ dayStr);
-				let daycustom = dayStr.substring(dayStr.indexOf(',')+1).trim();
-				console.log('daycustom ::' + daycustom);
-				
-				//timepicker에 Day seting
-				$('#timePicker').timepicker('setDay',daycustom);
-				//console.log("e::"+$(e.target).attr('id'));
-				//console.log('The time is ' + e.time.value);
-			    //console.log('The hour is ' + e.time.hours);
-			    //console.log('The minute is ' + e.time.minutes);
-			    //console.log('The meridian is ' + e.time.meridian);
-					
-			 });
-			*/
-			
+			$('#timePicker').timepicker().on('hide.timepicker', function(e) {
+			    seatCapacityCalcul_Ajax();
+			    $('#seatingDiv').show();
+			  });
+
 			
 			$('#timePicker').on("click", function(e) {
 				//# 1, 3번은 이어진다.
@@ -1017,29 +1086,160 @@
 
 			
 			//let bookButton = document.getElementById("BookingState");
-			$('#BookingState').on("click", function(e) {
-				//console.log("들어오긴 하니?");
-				let bookState = document.getElementById("BookingState").firstChild.nodeValue;
-				console.log("bookState ::" + bookState);
-				if(bookState.toUpperCase()=='RESTAURANT RESERVATION'){
-					//console.log("들어오긴 하니2?");
-					hideReservationinfoSumCalcul();
+			
+			$('a[collapseBtn="BookingState"]').on("click", function(e) {
+				
+				let show_reservation_window = $('#reservation_div_space').is(':visible');
+				console.log('show_reservation_window::'+ show_reservation_window);
+				//보여줄때 false 가나옴.
+				if(show_reservation_window){
 					$('#addToCartBtn').show();
 					$('.reservation_info').hide();
-				}else{	
-					console.log("들어오긴 하니3?");
-					showReservationinfoSumCalcul();
+					console.log("hideReservationinfoSumCalcul");
+					hideReservationinfoSumCalcul();
+				}else{
 					$('#addToCartBtn').hide();
 					$('.reservation_info').show();
+					console.log("showReservationinfoSumCalcul");
+					showReservationinfoSumCalcul();
+
 				}
 			});
 			
 			
+
+			$('#addToCartBtn').on('click',function(e){
+				e.preventDefault();
+				let foodCount = $('#foodCnt').val();
+				let foodsPrice = calculfoodPrice();
+				//let pNo = document.getElementById('pno').value;
+				
+				
+				$('#foodsPrice').val(foodsPrice);
+				$('#foodCount').val(foodCount);
+				
+				move_restaurant_cart_fixed_sidebar();
+				
+			});
 			
 				
 		});
 	
-	
+
+		function move_restaurant_cart_fixed_sidebar(){
+			document.f.action = "restaurant_cart_fixed_sidebar";
+			document.f.method ="POST";
+			document.f.submit();
+			
+		}
+		
+		
+		$('#checkOutBtn').click(function(e){
+			let show_reservation_window = $('#reservation_div_space').is(':visible');
+			//보내야할 정보 정리
+			// 1.상품리스트를 json데이터화 -> [[pno, jdproductqty, jdproducttot],[....]
+			// 2.상품 총금액 -> $(#sumPrice)
+			// 3.예약의 경우 -> jdorderdate ,jdordertime, jdorderqty 정보를 전송 {총 7개 데이터를 다뤄야함}
+			e.preventDefault();
+			if(show_reservation_window){
+				console.log("창이 열려있는경우");
+				//deposit가격을 포함시켜야함
+				let totalSeatBookingCnt = document.getElementById('persons').value;
+				let bookingDate = document.getElementById('datePicker').value;
+				let bookingTime = document.getElementById('timePicker').value;
+				//console.log('totalSeatBookingCnt ::' + totalSeatBookingCnt);
+				//console.log('bookingDate ::' + bookingDate);
+				//console.log('bookingTime ::' + bookingTime);
+				
+				document.getElementById('totalSeatBookingCnt').value = totalSeatBookingCnt;
+				document.getElementById('bookingDate').value = bookingDate;
+				document.getElementById('bookingTime').value = bookingTime;
+				
+				console.log('totalSeatBookingCnt ==>'+ totalSeatBookingCnt);
+				console.log('bookingDate ==>'+ bookingDate);
+				console.log('bookingTime ==>'+ bookingTime);
+				
+				requestSettingCartList();
+				document.getElementById('totalFoodPrice').value = calculfoodPrice();
+				document.getElementById('totalPrice').value = showReservationinfoSumCalcul();
+				requestCheckout1();
+			}else{
+				console.log("창이 닫혀있는경우");
+				//deposit가격을 포함시키지 말아야함.
+				requestSettingCartList();
+				document.getElementById('totalPrice').value = hideReservationinfoSumCalcul();
+				document.getElementById('totalFoodPrice').value = calculfoodPrice();
+				requestCheckout2();
+			}
+			
+			//e.preventDefault();
+		});
+		
+		function requestCheckout1(){
+			document.f.action = 'restaurant_payment_fixed_sidebar1';
+			document.f.method = "POST";
+			document.f.submit();
+		}
+		function requestCheckout2(){
+			document.f.action = 'restaurant_payment_fixed_sidebar2';
+			document.f.method = "POST";
+			document.f.submit();
+		}
+		/*
+		function totalPrice_ChangeNumber(){
+			let totalChange1 = $('#sumPrice').text().replace(/,/g,'');
+			let total = Number(totalChange1.replace('￦',''));
+			//console.log("total::" + total);
+			return total;
+		}
+		*/
+		function requestSettingCartList(){
+			
+			let itemObjectList = new Array();
+			//1.상품 번호 얻기
+			let pno = document.getElementById('pno').value;
+			
+			///////////////////////////////////
+			//2.상품의 수량 얻기
+			let jdproductqty = document.getElementById('foodCnt').value;
+			//console.log("아이템 수량::"+ jdproductqty);
+			
+			//////////////////////////////////////////
+			//3.상품의 총액 얻기
+			let numberChange = $('#sumPrice').text();
+			let numberChange1 = numberChange.replace(/,/g,"");
+			let jdproducttot = numberChange1.replace("￦","");
+			//console.log("아이템 별 총액::"+ jdproducttot);
+			
+			//console.log("-------------------");
+			// 1.상품리스트를 json데이터화 -> [[pno, jdproductqty, jdproducttot],[....]
+			// 1-1 객체 생성
+			let itemObject = new Object();
+			itemObject.pno = pno;
+			itemObject.jdproductqty = jdproductqty;
+			itemObject.jdproducttot = jdproducttot;
+			
+			// 1-2 배열에 객체를 mapping 할 키값을 선언
+			let itemList = new Array();
+			itemList[0] = "pno";
+			itemList[1] = "jdproductqty";
+			itemList[2] = "jdproducttot";
+			
+			// 2. 배열과 객체의 값을 매핑
+			let jsonText = JSON.stringify(itemObject, itemList, "\t");
+			//console.log(jsonText);
+			itemObjectList.push(jsonText);
+			
+			//console.log(itemObjectList);
+			document.getElementById('itemObjectJSONList').value = "["+itemObjectList+"]";
+			console.log("$(itemObjectJSONList).val()::"+$('#itemObjectJSONList').val());
+		}
+		
+		
+		
+		
+		
+		
 	</script>
 	
 	
