@@ -552,16 +552,6 @@
 			</div>
 			<div class="modal-body" align="center">
 				<div id="addWishlistBody">
-					<a href="hotel_list" class="btn_1 white" data-dismiss="modal">Hotels</a>
-				</div>
-			</div>
-			<div class="modal-body" align="center">
-				<div id="addWishlistBody">
-					<a href="facility_list" class="btn_1 white" style="width: 200px">Facilities</a>
-				</div>
-			</div>
-			<div class="modal-body" align="center">
-				<div id="addWishlistBody">
 					<a href="restaurant_list" class="btn_1 white" data-dismiss="modal">Restaurants</a>
 				</div>
 			</div>
