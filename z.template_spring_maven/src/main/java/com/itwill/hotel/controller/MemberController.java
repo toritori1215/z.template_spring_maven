@@ -84,6 +84,12 @@ public class MemberController {
 		return "member_admin";
 	}
 	
+	@RequestMapping(value = "/member_orderList")
+	public String memberOrderList(Model model, HttpSession session) {
+		model.addAttribute("inputMsg", "0");
+		return "member_admin";
+	}
+	
 	@RequestMapping(value = "/member_login_form")
 	public String memberLogin() {
 		memberService.deleteInactiveMember();

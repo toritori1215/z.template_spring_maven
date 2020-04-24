@@ -58,6 +58,7 @@
     		<div class="invoice-title">
     			<h2>Invoice</h2><br>
     			<h3 class="pull-right"> Order # ${jumun.jNo}</h3>
+   				<h6 align="right"><a href="member_orderList" class="btn_1">Back to order List</a></h6>
     		</div>
     		<hr>
     		<div class="row">
@@ -65,7 +66,7 @@
     				<address>
 	    				<strong>Billed To:</strong><br>
 	    				<div style="margin-left: 30px">
-	    				Guest: ${jumun.jCardOwner}<br>
+	    				<strong>Guest:</strong> ${jumun.jCardOwner}
 	    				</div>
     				</address>
     			</div>
@@ -73,10 +74,10 @@
     				<address>
 	    				<strong>Address:</strong><br>
 	    				<div style="margin-left: 30px">
-		    				Country:        ${jumun.jCountry}<br>
-		    				State:          ${jumun.jState}<br>
-		    				City:           ${jumun.jCity}<br>
-		    				Detail Address: ${jumun.jStreetNMG}
+		    				<strong>Country:</strong> ${jumun.jCountry}<br>
+		    				<strong>State:</strong> ${jumun.jState}<br>
+		    				<strong>City:</strong> ${jumun.jCity}<br>
+		    				<strong>Detail Address:</strong> ${jumun.jStreetNMG}
 	    				</div>
     				</address>
     			</div>
@@ -94,8 +95,8 @@
     				<address>
     					<strong>Payment Method:</strong><br>
 	    				<div style="margin-left: 30px">
-    						Card No: ${jumun.jCardNo}<br>
-    						Email:   ${jumun.jEmail}
+    						<strong>Card No:</strong> ${jumun.jCardNo}<br>
+    						<strong>Email:</strong>   ${jumun.jEmail}
     					</div>
     				</address>
     			</div>
