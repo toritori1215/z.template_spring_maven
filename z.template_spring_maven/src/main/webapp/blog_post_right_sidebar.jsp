@@ -4,28 +4,6 @@
     
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
-	<meta name="author" content="Ansonika">
-	<title>CITY TOURS - City tours and travel site template by Ansonika</title>
-
-	<!-- Favicons-->
-	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/img/favicon.ico" type="image/x-icon">
-	<link rel="apple-touch-icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-57x57-precomposed.png">
-	<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-72x72-precomposed.png">
-	<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-114x114-precomposed.png">
-	
-
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="${pageContext.request.contextPath}/resources/img/apple-touch-icon-144x144-precomposed.png"><!-- GOOGLE WEB FONT -->
-    <link href="https://fonts.googleapis.com/css?family=Gochi+Hand|Montserrat:300,400,700" rel="stylesheet">
-	
-	<!-- CSS -->
-	<link href="${pageContext.request.contextPath}/resources/css/blog.css" rel="stylesheet">
-	
 	
 	<!-- Header================================================== -->
 	<jsp:include page="WEB-INF/views/common_header_6.jsp"/>
@@ -45,9 +23,9 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="#">Home</a>
+					<li><a href="main">Home</a>
 					</li>
-					<li><a href="#">Category</a>
+					<li><a href="blog_right_sidebar">Blog list</a>
 					</li>
 					<li>Page active</li>
 				</ul>
@@ -75,7 +53,6 @@
 							<h2>${blog.bTitle}</h2>
 							<p>${blog.bContent}</p>
 							<c:if test="${blog.mNo == sUser.mNo}">
-								<a href="#" class="btn_1" data-toggle="modal" data-target="#updateBlogImg">Update</a>&nbsp;&nbsp;&nbsp;
 								<a href="#" class="btn_1" data-toggle="modal" data-target="#updateBlog">Update</a>&nbsp;&nbsp;&nbsp;
 								<a href="blog_delete?bNo=${blog.bNo}" class="btn_1">Delete</a>
 							</c:if>
@@ -83,6 +60,16 @@
 						<!-- end post -->
 					</div>
 					<!-- end box_style_1 -->
+					<hr>
+					${Sessionblog.bNo}
+					<form id="form1" name="form1" action="blog_right_sidebar" method="post">
+						<h4>Upload profile photo</h4>
+						<!-- Drop Zone -->
+						<div id="attachFile" style="width: 100%;"></div>
+						<br>
+						<button type="submit" class="btn_1 green" id="js-upload-submit" onclick="formSubmit()">Upload file</button>
+					</form>
+					<hr>
 				</div>
 				<!-- End col-md-8-->
 				
@@ -157,7 +144,7 @@
 			var option = {
 				fileid: "attachFile",
 				listtype: "thumbnail",
-				uploadURL: "upload",
+				uploadURL: "uploadBlogImg",
 				maxFileSize: 100,
 				maxFileCount: 1,
 				useButtons: true,
@@ -182,7 +169,6 @@
 			document.form1.submit();
 		}
 	</script>
-	
 	
 </body>
 
