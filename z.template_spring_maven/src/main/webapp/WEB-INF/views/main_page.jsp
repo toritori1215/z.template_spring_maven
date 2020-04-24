@@ -175,7 +175,7 @@
 						<div class="ribbon_3 popular"><span>Popular</span></div>
 						<div class="img_container">
 							<a href="single_tour.html">
-								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/youngae.jpg" width="800" height="533" class="img-fluid" alt="image">
+								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/tour1.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="short_info">
 									<i class="icon_set_1_icon-44"></i>Historic Buildings<span class="price"><sup>$</sup>39</span>
 								</div>
@@ -202,7 +202,7 @@
 						<div class="ribbon_3 popular"><span>Popular</span></div>
 						<div class="img_container">
 							<a href="single_tour.html">
-								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/chaewon2.jpg" width="800" height="533" class="img-fluid" alt="image">
+								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/tour2.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="short_info">
 									<i class="icon_set_1_icon-43"></i>Churches<span class="price"><sup>$</sup>45</span>
 								</div>
@@ -229,7 +229,7 @@
 						<div class="ribbon_3 popular"><span>Popular</span></div>
 						<div class="img_container">
 							<a href="single_tour.html">
-								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/taehee.jpg" width="800" height="533" class="img-fluid" alt="image">
+								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/tour3.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="badge_save">Save<strong>30%</strong></div>
 								<div class="short_info">
 									<i class="icon_set_1_icon-44"></i>Historic Buildings<span class="price"><sup>$</sup>48</span>
@@ -252,12 +252,13 @@
 				</div>
 				<!-- End col -->
 
+				<!--  
 				<div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.4s">
 					<div class="tour_container">
 						<div class="ribbon_3"><span>Top rated</span></div>
 						<div class="img_container">
 							<a href="single_tour.html">
-								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/youngae_2x.jpg" width="800" height="533" class="img-fluid" alt="image">
+								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/tour4.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="badge_save">Save<strong>20%</strong></div>
 								<div class="short_info">
 									<i class="icon_set_1_icon-30"></i>Walking tour<span class="price"><sup>$</sup>36</span>
@@ -269,25 +270,35 @@
 							<div class="rating">
 								<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
 							</div>
+				-->
 							<!-- end rating -->
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
+							<!-- 
 						</div>
 					</div>
+							 -->
 					<!-- End box tour -->
+					<!-- 
 				</div>
+					 -->
 				<!-- End col -->
-
+				
+				<!-- 
 				<div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.5s">
 					<div class="tour_container">
 						<div class="ribbon_3"><span>Top rated</span></div>
 						<div class="img_container">
 							<a href="single_tour.html">
-								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/donggun.jpg" width="800" height="533" class="img-fluid" alt="image">
+								<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/tour5.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="short_info">
-									<i class="icon_set_1_icon-28"></i>Skyline tours<span class="price"><sup>$</sup>42</span>
+				 -->
+									<!--<i class="icon_set_1_icon-28"></i>Skyline tours<span class="price"><sup>$</sup>42</span>-->
+									<!-- 
 								</div>
 							</a>
 						</div>
@@ -296,18 +307,25 @@
 							<div class="rating">
 								<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
 							</div>
+									 -->
 							<!-- end rating -->
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
+							<!-- 
 						</div>
 					</div>
+							 -->
 					<!-- End box tour -->
+					<!-- 
 				</div>
+					 -->
 				<!-- End col -->
 
-				<div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.6s">
+				<!--<div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.6s">
 					<div class="tour_container">
 						<div class="ribbon_3"><span>Top rated</span></div>
 						<div class="img_container">
@@ -324,6 +342,7 @@
 								<i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
 							</div>
 							<!-- end rating -->
+							<!--  -->
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
@@ -331,7 +350,7 @@
 						</div>
 					</div>
 					<!-- End box tour -->
-				</div>
+				--></div>
 				<!-- End col -->
 
 			</div>
@@ -405,13 +424,14 @@
 					<!-- End box -->
 				</div>
 				<!-- End col -->
-
+				
+				
 				<div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.3s">
 					<div class="hotel_container">
 						<div class="ribbon_3"><span>Top rated</span></div>
 						<div class="img_container">
 							<a href="single_hotel.html">
-								<img src="${pageContext.request.contextPath}/resources/img/hotel_3.jpg" width="800" height="533" class="img-fluid" alt="image">
+								 <img src="${pageContext.request.contextPath}/resources/img/hotel_3.jpg" width="800" height="533" class="img-fluid" alt="image">
 								<div class="score"><span>9.5</span>Superb</div>
 								<div class="short_info hotel">
 									From/Per night<span class="price"><sup>$</sup>39</span>
@@ -423,15 +443,21 @@
 							<div class="rating">
 								<i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
 							</div>
+				 
 							<!-- end rating -->
+							 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 
 							<!-- End wish list-->
+							
 						</div>
 					</div>
+							 
 					<!-- End box -->
 				</div>
+					 
 				<!-- End col -->
 
 				<div class="col-lg-4 col-md-6 wow zoomIn" data-wow-delay="0.4s">
@@ -640,7 +666,7 @@
 			<!-- End container -->
 		</div>
 		<!-- End white_bg -->
-
+		<!-- 
 		<section class="promo_full">
 			<div class="promo_full_wp magnific">
 				<div>
@@ -652,6 +678,7 @@
 				</div>
 			</div>
 		</section>
+		 -->
 		<!-- End section -->
 
 		<div class="container margin_60">
