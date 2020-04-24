@@ -369,8 +369,8 @@
 		$('#cat_nav').mobileMenu();
 	</script>
 
-	<!-- Map -->
-	<script src="http://maps.googleapis.com/maps/api/js"></script>
+	<!-- Map -->		
+	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB4JNh6iELs0fU_OpkHc1sFUzYeR5Mtxk8"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/map.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/infobox.js"></script>
 	

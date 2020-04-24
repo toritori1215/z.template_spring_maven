@@ -335,7 +335,7 @@
 	<!-- End Footer -->
 
 	<!-- Map -->
-	<script src="http://maps.googleapis.com/maps/api/js"></script>
+	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB4JNh6iELs0fU_OpkHc1sFUzYeR5Mtxk8"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/map_hotels.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/infobox.js"></script>
 	
