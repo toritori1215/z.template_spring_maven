@@ -47,11 +47,15 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8">
-					<span class="rating"><i class="icon-star voted"></i><i
-						class="icon-star voted"></i><i class="icon-star voted"></i><i
-						class="icon-star voted"></i><i class=" icon-star-empty"></i></span>
-					<h1>${product.pNo}</h1>
-					<span>Champ de Mars, 5 Avenue Anatole, 75007 Paris.</span>
+					<span class="rating">
+						<i class="icon-star voted"></i>
+						<i class="icon-star voted"></i>
+						<i class="icon-star voted"></i>
+						<i class="icon-star voted"></i>
+						<i class=" icon-star-empty"></i>
+					</span>
+					<h1>${product.pName}</h1>
+					<span></span>
 				</div>
 				<div class="col-md-4">
 					<div id="price_single_main" class="hotel">
@@ -68,9 +72,9 @@
 	<div id="position">
 		<div class="container">
 			<ul>
-				<li><a href="${pageContext.request.contextPath}/main">Home</a>
+				<li><a href="main">Home</a>
 				</li>
-				<li><a href="#">Hotel</a>
+				<li><a href="hotel_list">Hotel</a>
 				</li>
 				<li>Hotel list</li>
 			</ul>
@@ -201,34 +205,78 @@
 						<div class="sp-slide">
 							<img alt="Image" class="sp-image"
 								src="${pageContext.request.contextPath}/resources/css/images/blank.gif"
-								data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/1_medium.jpg"
-								data-small="${pageContext.request.contextPath}/resources/img/slider_single_tour/1_small.jpg"
-								data-medium="${pageContext.request.contextPath}/resources/img/slider_single_tour/1_medium.jpg"
-								data-large="img/slider_single_tour/1_large.jpg"
-								data-retina="${pageContext.request.contextPath}/resources/img/slider_single_tour/1_large.jpg">
+								data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/${product.pName}1.jpg">								
+						</div>
+						
+						<div class="sp-slide">
+							<img alt="Image" class="sp-image"
+								src="${pageContext.request.contextPath}/resources/css/images/blank.gif"
+								data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/${product.pName}2.jpg">								
+						</div>
+						
+						<div class="sp-slide">
+							<img alt="Image" class="sp-image"
+								src="${pageContext.request.contextPath}/resources/css/images/blank.gif"
+								data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/${product.pName}3.jpg">								
+						</div>
+						
+						<div class="sp-slide">
+							<img alt="Image" class="sp-image"
+								src="${pageContext.request.contextPath}/resources/css/images/blank.gif"
+								data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/${product.pName}4.jpg">								
+						</div>
+						
+						<div class="sp-slide">
+							<img alt="Image" class="sp-image"
+								src="${pageContext.request.contextPath}/resources/css/images/blank.gif"
+								data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/${product.pName}5.jpg">								
+						</div>
+						
+						<div class="sp-slide">
+							<img alt="Image" class="sp-image"
+								src="${pageContext.request.contextPath}/resources/css/images/blank.gif"
+								data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/${product.pName}6.jpg">								
+						</div>
+						
+						<div class="sp-slide">
+							<img alt="Image" class="sp-image"
+								src="${pageContext.request.contextPath}/resources/css/images/blank.gif"
+								data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/${product.pName}7.jpg">								
+						</div>
+						
+						<div class="sp-slide">
+							<img alt="Image" class="sp-image"
+								src="${pageContext.request.contextPath}/resources/css/images/blank.gif"
+								data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/${product.pName}8.jpg">								
+						</div>
+						
+						<div class="sp-slide">
+							<img alt="Image" class="sp-image"
+								src="${pageContext.request.contextPath}/resources/css/images/blank.gif"
+								data-src="${pageContext.request.contextPath}/resources/img/slider_single_tour/${product.pName}9.jpg">								
 						</div>
 						
 						
 					</div>
 					<div class="sp-thumbnails">
 						<img alt="Image" class="sp-thumbnail"
-							src="${pageContext.request.contextPath}/resources/img/slider_single_tour/1_medium.jpg">
+							src="${pageContext.request.contextPath}/resources/img/slider_single_tour/${product.pName}1.jpg">
 						<img alt="Image" class="sp-thumbnail"
-							src="${pageContext.request.contextPath}/resources/img/slider_single_tour/2_medium.jpg">
+							src="${pageContext.request.contextPath}/resources/img/slider_single_tour/${product.pName}2.jpg">
 						<img alt="Image" class="sp-thumbnail"
-							src="${pageContext.request.contextPath}/resources/img/slider_single_tour/3_medium.jpg">
+							src="${pageContext.request.contextPath}/resources/img/slider_single_tour/${product.pName}3.jpg">
 						<img alt="Image" class="sp-thumbnail"
-							src="${pageContext.request.contextPath}/resources/img/slider_single_tour/4_medium.jpg">
+							src="${pageContext.request.contextPath}/resources/img/slider_single_tour/${product.pName}4.jpg">
 						<img alt="Image" class="sp-thumbnail"
-							src="${pageContext.request.contextPath}/resources/img/slider_single_tour/5_medium.jpg">
+							src="${pageContext.request.contextPath}/resources/img/slider_single_tour/${product.pName}5.jpg">
 						<img alt="Image" class="sp-thumbnail"
-							src="${pageContext.request.contextPath}/resources/img/slider_single_tour/6_medium.jpg">
+							src="${pageContext.request.contextPath}/resources/img/slider_single_tour/${product.pName}6.jpg">
 						<img alt="Image" class="sp-thumbnail"
-							src="${pageContext.request.contextPath}/resources/img/slider_single_tour/7_medium.jpg">
+							src="${pageContext.request.contextPath}/resources/img/slider_single_tour/${product.pName}7.jpg">
 						<img alt="Image" class="sp-thumbnail"
-							src="${pageContext.request.contextPath}/resources/img/slider_single_tour/8_medium.jpg">
+							src="${pageContext.request.contextPath}/resources/img/slider_single_tour/${product.pName}8.jpg">
 						<img alt="Image" class="sp-thumbnail"
-							src="${pageContext.request.contextPath}/resources/img/slider_single_tour/9_medium.jpg">
+							src="${pageContext.request.contextPath}/resources/img/slider_single_tour/${product.pName}9.jpg">
 					</div>
 				</div>
 

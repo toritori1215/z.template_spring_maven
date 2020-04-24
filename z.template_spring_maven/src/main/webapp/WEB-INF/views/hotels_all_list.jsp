@@ -47,9 +47,9 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/main">Home</a>
+					<li><a href="main">Home</a>
 					</li>
-					<li><a href="#">Hotel</a>
+					<li><a href="hotel_list">Hotel</a>
 					</li>
 					<li>Hotel list</li>
 				</ul>

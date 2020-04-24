@@ -47,9 +47,9 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/main">Home</a>
+					<li><a href="main">Home</a>
 					</li>
-					<li><a href="#">Hotel</a>
+					<li><a href="hotel_grid">Hotel</a>
 					</li>
 					<li>Hotel list</li>
 				</ul>
@@ -299,7 +299,7 @@
 					<hr>
 					
 					
-					<nav aria-label="Page navigation">
+					<nav aria-label="Page navigation" style="visibility: hidden;">
 						<ul class="pagination justify-content-center">
 							<li class="page-item">
 								<a class="page-link" href="#" aria-label="Previous">
