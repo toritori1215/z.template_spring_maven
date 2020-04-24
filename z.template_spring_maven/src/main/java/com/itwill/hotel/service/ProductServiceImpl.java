@@ -35,6 +35,11 @@ public class ProductServiceImpl implements ProductService {
 	public Integer checkWishlist(Wishlist wishlist) {
 		return productDao.checkWishlist(wishlist);
 	}
+
+	@Override
+	public Integer countByCategory(String foodCategory) {
+		return productDao.countByCategory(foodCategory);
+	}
 	
 	@Override
 	public Integer countBookedRoomQty(HashMap parameterMap) {

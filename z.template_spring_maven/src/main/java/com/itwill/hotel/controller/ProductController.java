@@ -57,8 +57,22 @@ public class ProductController {
 		Member member = (Member) session.getAttribute("sUser");
 		HashMap parameterMap = new HashMap();
 		parameterMap.put("pType", "tour");
-		model.addAttribute("productList", productService.selectByType(parameterMap));
+		List<Product> productList = productService.selectByType(parameterMap);
+		model.addAttribute("productList", productList);
 		
+		List<HashMap> categoryInfoList = new ArrayList<HashMap>();
+		List<String> categoryList = new ArrayList<String>();
+		for (Product product: productList) {
+			if(!categoryList.contains(product.getFoodCategory())) {
+				categoryList.add(product.getFoodCategory());
+			}
+		}
+		for (String category: categoryList) {
+			
+			HashMap categoryMap = new HashMap();
+			//categoryMap.put("category", product.getFoodCategory());
+		}
+		model.addAttribute("categoryList", categoryList);		
 		return "tour_all_list";
 	}
 	
