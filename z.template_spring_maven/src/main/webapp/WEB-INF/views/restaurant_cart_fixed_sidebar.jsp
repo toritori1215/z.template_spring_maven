@@ -109,6 +109,7 @@
 										</td>
 										<td>
 											<strong class="priceDisplay"> ${cartItem.cproductTypePay}</strong>
+											<input type ="hidden" id="cproductTypePay" value ="${cartItem.cproductTypePay}">
 										</td>
 										<td class="options">
 											<a href="#"><i class=" icon-trash"></i></a>
@@ -542,6 +543,11 @@
 		
 		//on load Start
 		$(function(){
+			
+			
+			console.log("cproductTypePay :: " +$('#cproductTypePay').val());
+			
+			
 			//예약창 닫혀있을시 reservation_info'는 숨겨져야함 
 			$('.reservation_info').hide();
 			//$('#seatingDiv').hide();

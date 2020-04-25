@@ -526,8 +526,8 @@
 											Food Price
 										</td>
 										<td class="text-right" price_list='price' id="perfoodPriceTd">
-											${restaurant_prod.pprice}
-											<input type="hidden" id="perfoodPrice" value="${restaurant_prod.pprice}">
+											${restaurantProduct.pprice}
+											<input type="hidden" id="perfoodPrice" value="${restaurantProduct.pprice}">
 										</td>
 									</tr>
 									<tr class="total">
