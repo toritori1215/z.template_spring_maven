@@ -422,7 +422,7 @@
 							
 							
 							<a class="btn_full" id="checkOutBtn" href="restaurant_payment_fixed_sidebar" >BUY NOW</a>
-							<a class="btn_full_outline" href="restaurants_all_list"><i class=" icon-right"></i> CONTINUE SHOPPING</a>
+							<a class="btn_full_outline" id="restaurants_all_list" href="restaurants_all_list"><i class=" icon-right"></i> CONTINUE SHOPPING</a>
 
 						</div>
 						<div class="box_style_4">
@@ -612,13 +612,22 @@
 					let allFoodSumPrice = calculAllFoodSumPrice();
 					$('#sumPrice').text("￦"+numberWithCommas(totPrice));
 					$('#foodsPriceTd').text("￦"+numberWithCommas(allFoodSumPrice));
+					cartUpdateAjaxRequestFunction();
 					/*
+					requestSettingCartList();
+					let json_data = document.getElementById('itemObjectJSONList').value;
+					console.log(json_data);
+					//let json_Array = JSON.stringify(json_data);
 					$.ajax({
-						url: ,
-						data : ,
-						dataType: "",
-						async : 
-						success :
+						url: 'cartUpdateAjax',
+						data : {'json_data':json_data},
+						dataType: "String",
+						async : true,
+						success : function(result){
+							if(result !=null){
+								console.log("카트 업데이트 성공");
+							}
+						}
 						
 					});
 					*/
@@ -824,7 +833,11 @@
 				
 			});
 			
-			
+			$('#restaurants_all_list').on('click',function(e){
+				e.preventDefault();
+				cartUpdateAjaxRequestFunction();
+				location.href ="restaurants_all_list";
+			});
 			
 		});
 		//on load end
@@ -973,7 +986,24 @@
 			console.log("$(itemObjectJSONList).val()::"+$('#itemObjectJSONList').val());
 		}
 		
-
+		function cartUpdateAjaxRequestFunction(){
+			requestSettingCartList();
+			let json_data = document.getElementById('itemObjectJSONList').value;
+			console.log(json_data);
+			//let json_Array = JSON.stringify(json_data);
+			$.ajax({
+				url: 'cartUpdateAjax',
+				data : {'json_data':json_data},
+				dataType: "String",
+				async : true,
+				success : function(result){
+					if(result !=null){
+						console.log("카트 업데이트 성공");
+					}
+				}
+				
+			});
+		}
 	</script>
 		
 
