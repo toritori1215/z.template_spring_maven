@@ -71,20 +71,25 @@ public class ProductController {
 		parameterMap.put("pType", "tour");
 		List<Product> productList = productService.selectByType(parameterMap);
 		model.addAttribute("productList", productList);
-		
-		List<HashMap> categoryInfoList = new ArrayList<HashMap>();
+		/*
 		List<String> categoryList = new ArrayList<String>();
 		for (Product product: productList) {
 			if(!categoryList.contains(product.getFoodCategory())) {
 				categoryList.add(product.getFoodCategory());
 			}
 		}
-		for (String category: categoryList) {
-			
+
+		List<HashMap> categoryInfoList = new ArrayList<HashMap>();
+		
+		for (String category2 : categoryList) {
 			HashMap categoryMap = new HashMap();
-			//categoryMap.put("category", product.getFoodCategory());
+			categoryMap.put("category", category2);
+			categoryMap.put("cCount", productService.countByCategory(category2));
+			categoryInfoList.add(categoryMap);
 		}
-		model.addAttribute("categoryList", categoryList);		
+		*/
+		//model.addAttribute("categoryInfoList", categoryInfoList);		
+		//model.addAttribute("allCount", productService.countByType("tour"));
 		return "tour_all_list";
 	}
 	

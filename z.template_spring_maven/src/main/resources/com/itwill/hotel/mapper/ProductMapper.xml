@@ -54,6 +54,12 @@
 		where mNo = #{mNo} and pNo=#{pNo}
 	</select>
 	
+	<select id="countByType" parameterType="String" resultType="_int">
+		select count(pNo)
+		from product
+		where pType = #{pType}
+	</select>
+	
 	<select id="countByCategory" parameterType="String" resultType="_int">
 		select count(pNo)
 		from product
