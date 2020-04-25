@@ -414,6 +414,8 @@
 								<!-- 전송 데이터 -->
 								
 								<!-- 웹용 -->
+								
+								<input type="hidden" id="day" name="day" value="">
 								<input type="hidden" id="PeoplePerPrice" name="PeoplePerPrice" value="${deposit_cost}">
 								<!-- 웹용 -->
 								<input type="hidden" name="seatCapacity" id="seatCapacity" value="${restaurant_prod.pavailable}">
@@ -717,13 +719,21 @@
 			$('input.date-pick').datepicker('setDate', 'today');
 
 			$('#datePicker').datepicker().on('changeDate', function(e) {
-				let dayStr = document.getElementById('datePicker').value;
+				//let dayStr = document.getElementById('datePicker').value;
 				//console.log("day::"+ dayStr);
-				let daycustom = dayStr.substring(dayStr.indexOf(',')+1).trim();
+				//let daycustom = dayStr.substring(dayStr.indexOf(',')+1).trim();
 				//console.log('daycustom ::' + daycustom);
 				//요일 변경이 되었을시 input (#datePicker) 값 변경
 				//$('#timePicker').timepicker('setDay',daycustom); timepicker가 클릭되었을시에 setDay값 셋팅으로 바꾸어주어 필요 없어짐
 				$('#timePicker').val('9:00 AM');
+				let dateStr = $('#datePicker').datepicker('getDate');
+				console.log(dateStr);
+				$('#day').val(dateStr);
+				let date = $('#day').val();
+				let day= date.substring(0,3);
+				document.getElementById('day').value = day;
+				//let daystr = $('day').val().substring(0,3);
+				//$('day').val(daystr);
 				//$('#timePicker').timepicker('setHour','9');
 				//$('#timePicker').timepicker('setMeridian','AM');
 
@@ -772,15 +782,15 @@
 				$('table > tbody > tr:nth-child(2) > td:nth-child(2) > input').val('AM');
 				
 				//4.요일 계산 및 timepicker setDay 셋팅
-				let dayStr = document.getElementById('datePicker').value;
+				let dayStr = document.getElementById('day').value;
 
 				//console.log("day::"+ dayStr);
-				let daycustom = dayStr.substring(dayStr.indexOf(',')+1).trim();
+				//let daycustom = dayStr.substring(dayStr.indexOf(',')+1).trim();
 				//console.log('daycustom ::' + daycustom);
 
 				
 				//timepicker에 Day seting
-				$('#timePicker').timepicker('setDay',daycustom);
+				$('#timePicker').timepicker('setDay',dayStr);
 
 			});
 			

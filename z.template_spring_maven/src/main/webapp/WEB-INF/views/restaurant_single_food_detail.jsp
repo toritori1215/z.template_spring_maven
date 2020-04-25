@@ -553,6 +553,7 @@
 								<input type="hidden" id="itemObjectJSONList" name="itemObjectJSONList" value="">
 								<input type="hidden" id="isCart" name="isCart" value="no">
 								<!-- 웹용-->
+								<input type="hidden" name = "day" id="day" value="">
 								<input type="hidden" name="foodsPrice" id="foodsPrice" value= "">							
 								<input type="hidden" name="foodCount" id="foodCount" value= "">										
 								<input type="hidden" name="leftSeat" id="leftSeat" value= "">						
@@ -730,24 +731,7 @@
 	</script>
 
 	<!-- Date and time pickers -->
-	<script>
-	/*
-		$('#datePicker').datepicker({
-				
-				setDate : 'today',
-				beforeShowDay: function(date) {
-					var day= date.getDay();
-					return [(day!=2)];
-				}
-		});
-		*/
-		/*
-		$('input.time-pick').timepicker({
-			minuteStep: 15,
-			showInpunts: false
-		})
-		*/
-	</script>
+	
 
 	<!--Review modal validation -->
 	<script src="${pageContext.request.contextPath}/resources/assets/validate.js"></script>
@@ -758,9 +742,9 @@
 	<script src="${pageContext.request.contextPath}/resources/js/infobox.js"></script>
 	<!-- 
 	 -->
+	
+	
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap-timepicker_redefination_restaurant.js"></script>
-	
-	
 	<script type="text/javascript">
 		function showReservationinfoSumCalcul(){
 			let depositPrice = calculDepositPrice();
@@ -975,35 +959,35 @@
 			
 			
 			$('#datePicker').datepicker({
-				
 				//format: "dd/mm/yyyy",
 				format: "yyyy/mm/dd",
-
-        
 				beforeShowDay: function (date) {
 					//console.log("date::"+date);
 					//console.log("date.getDay::"+date.getDay());
 					let day = date.getDay();
 					//console.log("[day !=2] -->"+[day !c=2]);
 					return day==2 ? false :true;
-
 				}
 			});
-			
 			$('#datePicker').datepicker("setDate",'today');
 			//console.log("bookState ::=>"+bookState);
 			
-
 			$('#datePicker').datepicker().on('changeDate', function(e) {
-				let dayStr = document.getElementById('datePicker').value;
-				console.log("day::"+ dayStr);
-				let daycustom = dayStr.substring(dayStr.indexOf(',')+1).trim();
-				console.log('daycustom ::' + daycustom);				
+				//let dayStr = document.getElementById('datePicker').value;
+				//console.log("day::"+ dayStr);
+				//let daycustom = dayStr.substring(dayStr.indexOf(',')+1).trim();
+				//console.log('daycustom ::' + daycustom);				
+				let date = $('#datePicker').datepicker('getDate');
+				console.log("e.date::"+ date);
+				$('#day').val(date);
+				//console.log($('#day').val());
+				let setday =$('#day').val().substring(0,3);
+				$('#day').val(setday);
+				//console.log('setday::'+ setday);
+				//console.log("e.day::"+ e.date.substring(0,3));
+				//$('#timePicker').timepicker('setDay',setday)
+				$('#timePicker').val('9:00 AM');	
 				
-				$('#timePicker').val('9:00 AM');
-				
-				//seatCapacityCalcul_Ajax();
-
    			 });
 			
 
@@ -1072,13 +1056,13 @@
 				$('table > tbody > tr:nth-child(2) > td:nth-child(2) > input').val('AM');
 				
 				//4.요일 계산 및 timepicker setDay 셋팅
-				let dayStr = document.getElementById('datePicker').value;
-				console.log("day::"+ dayStr);
-				let daycustom = dayStr.substring(dayStr.indexOf(',')+1).trim();
-				console.log('daycustom ::' + daycustom);
+				let dayStr = document.getElementById('day').value;
+				//console.log("day::"+ dayStr);
+				//let daycustom = dayStr.substring(dayStr.indexOf(',')+1).trim();
+				console.log('dayStr ::' + dayStr);
 				
 				//timepicker에 Day seting
-				$('#timePicker').timepicker('setDay',daycustom);
+				$('#timePicker').timepicker('setDay',dayStr);
 
 			});
 			
@@ -1234,11 +1218,7 @@
 			console.log("$(itemObjectJSONList).val()::"+$('#itemObjectJSONList').val());
 		}
 		
-		
-		
-		
-		
-		
+
 	</script>
 	
 	
