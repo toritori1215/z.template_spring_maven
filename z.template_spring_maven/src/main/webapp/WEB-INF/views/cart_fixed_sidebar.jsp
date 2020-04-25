@@ -111,7 +111,7 @@
 								<td class="options" id="${cart.cProductQty}">
 									<input class="cNo" type="hidden" value="${cart.cNo}">
 									<input class="cartItemBefore" type="hidden" value="${cart.cProductTypePay/10000.0}">
-									<a class="cartItemDelete" href="#"><i class=" icon-trash"></i></a>
+									<a class="cartItemDelete" href="#" pNo="${cart.pNo}"><i class=" icon-trash"></i></a>
 									<a class="cartItemRefresh" href="#"><i class="icon-ccw-2"></i></a>
 								</td>
 							</tr>

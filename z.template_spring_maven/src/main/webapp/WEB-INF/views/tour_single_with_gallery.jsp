@@ -906,6 +906,7 @@
 			$("input[name='selectDate']").attr("value", $("#datePicker").val());
 		});
 		
+		
 		/* Qty Update Button */
 		$(".button_inc1").click(function () {
 			var $button = $(this);
