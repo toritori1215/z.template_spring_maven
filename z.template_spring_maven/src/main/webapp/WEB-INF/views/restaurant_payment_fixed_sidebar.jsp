@@ -658,7 +658,7 @@
 	                },
 	                jemail_2: {
 	                    required:true,
-	                    equalTo:'#email_booking'
+	                    equalTo:'#jemail'
 	                },               
 	                jphoneno: {
 	                    required:true,
@@ -709,29 +709,24 @@
 	                }
 				},
 	            messages:  {
-	            	firstname_booking: {
-	                    required:'Please enter your first name.'
-	                },
-	                lastname_booking: {
-	                    required:"Please enter your last name."
-	                },
-	                email_booking: {
+	            	
+	                jemail: {
 	                	required:"Please enter your email.",
 	                	email:"Your email address format is invalid."
 	                },
-	                email_booking_2: {
+	                jemail_2: {
 	                	required:"Please confirm your email.",
 	                    equalTo:"Your email address doesn't match."
 	                },               
-	                telephone_booking: {
+	                jphoneno: {
 	                    required:"Please enter your phone number.",
 	                    rangelength:"Your phone number must be 8-20 digits.",
 	                    phone:"Please enter only 0-9, +, and -."
 	                },
-	                name_card_booking: {
+	                jcardowner: {
 	                    required:"Please enter your name on credit card."
 	                },
-	                card_number: {
+	                jcardno: {
 	                    required:"Please enter your credit card number.",
 	                    rangelength:"Your card number must be 13-19 digits.",
 	                    creditCard:"Please enter only 0-9 and -."
@@ -744,22 +739,22 @@
 	                    required:"Please enter the expiration year.",
 	                    range:"Please enter a valid year."
 	                },
-	                cvv: {
+	                jcardcvc: {
 						required:"Please enter the CVV.",
 	                    range:"Please enter a valid CVV.",
 	                	rangelength:"CVV must be a three-digit number."
 	                },
-	                country: {
+	                jCountryCheck: {
 	                    required:"Please select the country."
 	                },
-	                street_1: {
+	                jstreetaddr: {
 	                    required:"Please enter your street address.",
 	                    minlength:"Please enter a valid street address."
 	                },
-	                city_booking: {
+	                jcity: {
 	                	required:"Please enter your city."
 	                },
-	                postal_code: {
+	                jzipcode: {
 	                    required:"Please enter your postal code."
 	                },
 	                policy_terms: {
