@@ -297,18 +297,18 @@ public class MemberController {
 		hashMap.put("mTel", mTel);
 		hashMap.put("mEmail", mEmail);
 		hashMap.put("mBirth", mBirth);
-		if (memberService.ifActive(hashMap) == 0) {
-			if (memberService.reactiveAccountCheck(hashMap) == 1) {
+		if (memberService.reactiveAccountCheck(hashMap) == 1) {
+			if (memberService.ifActive(hashMap) == 0) {
 				HashMap hashMap1 = new HashMap();
 				memberService.reActivateAccount(mId);
 				model.addAttribute("msg4", "당신의 계정이 활성화 되었습니다");
 				return "member_login";
 			} else {
-				model.addAttribute("msg3", "입력하신 정보와 일치하는 계정이 없습니다");
+				model.addAttribute("msg4", "당신의 계정은 이미 활성화 상태입니다");
 				return "member_login";
 			}
 		} else {
-			model.addAttribute("msg4", "당신의 계정은 이미 활성화 상태입니다");
+			model.addAttribute("msg3", "입력하신 정보와 일치하는 계정이 없습니다");
 			return "member_login";
 		}
 	}

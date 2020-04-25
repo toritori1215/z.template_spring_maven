@@ -72,7 +72,9 @@ public class CartController {
 				
 				List dateList = new ArrayList();
 				for (Cart cart: cartList) {
-					dateList.add(cart.getcCheckin());
+					if (cart.getpNo() <= 5) {
+						dateList.add(cart.getcCheckin());
+					}
 				}
 				Collections.sort(dateList);
 				int length = dateList.size();
