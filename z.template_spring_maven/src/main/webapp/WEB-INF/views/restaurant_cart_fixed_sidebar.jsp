@@ -599,12 +599,23 @@
 				//버리기 아이콘 정의(trash)
 				$('tr:nth-child('+j+') > td.options > a > i').on('click',function(e){
 					$('#'+(j-1)).hide();
-					let lengthSetting = Number(document.getElementById('cartListLength').value);
-					document.getElementById('cartListLength').value = lengthSetting;
+					//let lengthSetting = Number(document.getElementById('cartListLength').value);
+					//document.getElementById('cartListLength').value = lengthSetting;
+					
 					let totPrice = calculTotalPrice();
 					let allFoodSumPrice = calculAllFoodSumPrice();
 					$('#sumPrice').text("￦"+numberWithCommas(totPrice));
 					$('#foodsPriceTd').text("￦"+numberWithCommas(allFoodSumPrice));
+					/*
+					$.ajax({
+						url: ,
+						data : ,
+						dataType: "",
+						async : 
+						success :
+						
+					});
+					*/
 					e.preventDefault();
 				});
 			}
@@ -798,69 +809,95 @@
 				// 2.상품 총금액 -> $(#sumPrice)
 				// 3.예약의 경우 -> jdorderdate ,jdordertime, jdorderqty 정보를 전송 {총 7개 데이터를 다뤄야함}
 				e.preventDefault();
-				if(show_reservation_window){
-					console.log("창이 열려있는경우");
-					//deposit가격을 포함시켜야함
-					let totalSeatBookingCnt = document.getElementById('personsCntId').value;
-					let bookingDate = document.getElementById('datePicker').value;
-					let bookingTime = document.getElementById('timePicker').value;
-					//console.log('totalSeatBookingCnt ::' + totalSeatBookingCnt);
-					//console.log('bookingDate ::' + bookingDate);
-					//console.log('bookingTime ::' + bookingTime);
+				let itemlistCheck = itemListCheckFunction();
 					
-					document.getElementById('totalSeatBookingCnt').value = totalSeatBookingCnt;
-					document.getElementById('bookingDate').value = bookingDate;
-					document.getElementById('bookingTime').value = bookingTime;
-					
-					console.log('totalSeatBookingCnt ==>'+ totalSeatBookingCnt);
-					console.log('bookingDate ==>'+ bookingDate);
-					console.log('bookingTime ==>'+ bookingTime);
-					
-					requestSettingCartList();
-					document.getElementById('totalFoodPrice').value = calculAllFoodSumPrice();
-					document.getElementById('totalPrice').value = totalPrice_ChangeNumber();
-					requestCheckout1();
-				}else{
-					console.log("창이 닫혀있는경우");
-					//deposit가격을 포함시키지 말아야함.
-					
-					/* json 객체 만들기 참조
-					let contact = new Object();
-					contact.firstname = "Jesper";
-					contact.surname = "Aaberg";
-					contact.phone = ["555-0100", "555-0120"];
-					console.log(contact);
-					
-					let memberfilter = new Array();
-					memberfilter[0] = "surname";
-					memberfilter[1] = "phone";
-					//memberfilter[2] = "firstname";
-					let jsonText = JSON.stringify(contact, memberfilter, "\t");
-					console.log(jsonText);
-					//결과
-					{
-						"surname": "Aaberg",
-						"phone": [
-							"555-0100",
-							"555-0120"
-						],
-						"firstname": "Jesper"
-					}
-					
-					*/
-					requestSettingCartList();
-					document.getElementById('totalPrice').value = totalPrice_ChangeNumber();
-					document.getElementById('totalFoodPrice').value = calculAllFoodSumPrice();
-					requestCheckout2();
+				if(itemlistCheck){
+					checkOutControllFunction(show_reservation_window);
 				}
+					
 				
-				//e.preventDefault();
 			});
 			
 			
 			
 		});
 		//on load end
+		function itemListCheckFunction(){
+			let isListExist = false;
+			let isVisableArray = $('#listBody > tr').get();
+			$.each(isVisableArray, function(index,elt){
+				isListExist = $(elt).is(":visible");
+				if(isListExist){
+					return false;
+				}
+			});
+			
+			if(isListExist==false){
+				window.alert("아이템 항목이 존재하지 않습니다.");
+			}
+			
+			return isListExist;
+		}
+		
+		function checkOutControllFunction(show_reservation_window){
+			if(show_reservation_window){
+				console.log("창이 열려있는경우");
+				//deposit가격을 포함시켜야함
+				let totalSeatBookingCnt = document.getElementById('personsCntId').value;
+				let bookingDate = document.getElementById('datePicker').value;
+				let bookingTime = document.getElementById('timePicker').value;
+				//console.log('totalSeatBookingCnt ::' + totalSeatBookingCnt);
+				//console.log('bookingDate ::' + bookingDate);
+				//console.log('bookingTime ::' + bookingTime);
+				
+				document.getElementById('totalSeatBookingCnt').value = totalSeatBookingCnt;
+				document.getElementById('bookingDate').value = bookingDate;
+				document.getElementById('bookingTime').value = bookingTime;
+				
+				console.log('totalSeatBookingCnt ==>'+ totalSeatBookingCnt);
+				console.log('bookingDate ==>'+ bookingDate);
+				console.log('bookingTime ==>'+ bookingTime);
+				
+				requestSettingCartList();
+				document.getElementById('totalFoodPrice').value = calculAllFoodSumPrice();
+				document.getElementById('totalPrice').value = totalPrice_ChangeNumber();
+				requestCheckout1();
+			}else{
+				console.log("창이 닫혀있는경우");
+				//deposit가격을 포함시키지 말아야함.
+				
+				/* json 객체 만들기 참조
+				let contact = new Object();
+				contact.firstname = "Jesper";
+				contact.surname = "Aaberg";
+				contact.phone = ["555-0100", "555-0120"];
+				console.log(contact);
+				
+				let memberfilter = new Array();
+				memberfilter[0] = "surname";
+				memberfilter[1] = "phone";
+				//memberfilter[2] = "firstname";
+				let jsonText = JSON.stringify(contact, memberfilter, "\t");
+				console.log(jsonText);
+				//결과
+				{
+					"surname": "Aaberg",
+					"phone": [
+						"555-0100",
+						"555-0120"
+					],
+					"firstname": "Jesper"
+				}
+				
+				*/
+				requestSettingCartList();
+				document.getElementById('totalPrice').value = totalPrice_ChangeNumber();
+				document.getElementById('totalFoodPrice').value = calculAllFoodSumPrice();
+				requestCheckout2();
+			}
+		}
+		
+		
 		
 		function requestCheckout1(){
 			document.f.action = 'restaurant_payment_fixed_sidebar1';
