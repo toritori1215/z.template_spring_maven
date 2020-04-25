@@ -146,7 +146,7 @@
 								We've sent you a confirmation email to <u>${sUser.mEmail}</u> where you can find your invoice as well.
 							</p>
 							<hr>
-							<a class="btn_full_outline" href="invoice" target="_blank">View your invoice</a>
+							<a class="btn_full_outline" href="member_jumunDetail?jNo=${jNo}" target="_blank">View your invoice</a>
 						</div>
 						<div class="box_style_4">
 							<i class="icon_set_1_icon-89"></i>

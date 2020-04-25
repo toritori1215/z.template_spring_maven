@@ -8,7 +8,7 @@
 		from cart c inner join product p
 		on c.pNo = p.pNo
 		and c.mNo = #{mNo}
-		order by p.pType, p.pName, c.cCheckin, c.cCheckinTime, c.cCheckout
+		order by p.pType, p.pNo, c.cCheckin, c.cCheckinTime
 	</select>
 	
 	<select id="selectByCartNo" parameterType="java.lang.Integer" resultType="Cart">

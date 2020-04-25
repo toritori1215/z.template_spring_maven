@@ -117,7 +117,7 @@
 							</tr>
 							</c:forEach>
 						</tbody>
-					</table><!-- 
+					</table>
 					<table class="table table-striped options_cart">
 						<thead>
 							<tr>
@@ -126,8 +126,8 @@
 								</th>
 							</tr>
 						</thead>
-						<tbody>
 							<c:forEach var="option" items="${optionList}">
+							<tbody class="${option.pNo}">
 								<tr>
 									<td style="width:25%; text-align:center" rowspan="${fn:length(option['optionInnerList'])}">
 										<strong><u>${option.foodCategory}</u></strong><br>
@@ -154,7 +154,7 @@
 									</td>
 									<td style="width:15%">
 										<label class="switch-light switch-ios float-right">
-											<input type="checkbox" name="option_1" id="option_1" checked value="">
+											<input type="checkbox" name="option_1" id="option_1" value="">
 											<span>
 	                    					<span>No</span>
 											<span>Yes</span>
@@ -186,7 +186,7 @@
 										</td>
 										<td style="width:15%">
 											<label class="switch-light switch-ios float-right">
-												<input type="checkbox" name="option_1" id="option_1" checked value="">
+												<input type="checkbox" name="option_1" id="option_1" value="">
 												<span>
 		                    					<span>No</span>
 												<span>Yes</span>
@@ -196,9 +196,9 @@
 										</td>
 									</tr>
 								</c:forEach>
+								</tbody>
 							</c:forEach>
-						</tbody>
-					</table> -->
+					</table>
 					<div class="add_bottom_15"><small>* Prices for person.</small>
 					</div>
 				</div>
@@ -241,12 +241,12 @@
 									</tr>
 									<tr>
 										<td>
-											<strong>Options Total</strong>
+											<strong>Options</strong>
 										</td>
 										<td class="text-right">
 											$0
 										</td>
-									</tr><!-- 
+									</tr>
 									<tr>
 										<td>
 											<strong>Insurance</strong>
@@ -254,7 +254,7 @@
 										<td class="text-right">
 											$0
 										</td>
-									</tr> -->
+									</tr>
 									<tr class="total">
 										<td>
 											Total cost
@@ -370,6 +370,7 @@
 									}
 									$('#datePeriod').html(date_min+"&nbsp; to&nbsp;"+date_max);
 								}
+								location.reload();
 							}
 						});
 					});

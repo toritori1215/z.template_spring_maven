@@ -35,6 +35,11 @@ public class ProductServiceImpl implements ProductService {
 	public Integer checkWishlist(Wishlist wishlist) {
 		return productDao.checkWishlist(wishlist);
 	}
+	
+	@Override
+	public Integer countByType(String pType) {
+		return productDao.countByType(pType);
+	}
 
 	@Override
 	public Integer countByCategory(String foodCategory) {
