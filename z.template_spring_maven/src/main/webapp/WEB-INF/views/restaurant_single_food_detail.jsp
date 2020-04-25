@@ -460,7 +460,7 @@
 							</div>
 							<hr>							
 							Deposit per person <br>
-							￦ ${deposit_cost.pprice}
+							￦  ${restaurant_prod.pprice}
 							<hr>
 							
 								※예약금은 레스토랑 도착 시 

@@ -324,7 +324,7 @@
 									</div>
 									<hr>
 									Deposit per person<br>
-									￦  ${deposit_cost}
+									￦  ${restaurant_prod.pprice}
 
 									<hr>
 									  ※예약금은 레스토랑 도착 시 
@@ -371,7 +371,7 @@
 											Deposit cost
 										</td>
 										<td class="text-right" id="depositPrice" price_list='price'>
-											${deposit_cost}
+											${restaurant_prod.pprice}
 											
 										</td>
 									</tr>
@@ -416,7 +416,7 @@
 								<!-- 웹용 -->
 								
 								<input type="hidden" id="day" name="day" value="">
-								<input type="hidden" id="PeoplePerPrice" name="PeoplePerPrice" value="${deposit_cost}">
+								<input type="hidden" id="PeoplePerPrice" name="PeoplePerPrice" value="${restaurant_prod.pprice}">
 								<!-- 웹용 -->
 								<input type="hidden" name="seatCapacity" id="seatCapacity" value="${restaurant_prod.pavailable}">
 							</form>
