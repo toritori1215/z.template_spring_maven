@@ -111,7 +111,7 @@
 								<td class="options" id="${cart.cProductQty}">
 									<input class="cNo" type="hidden" value="${cart.cNo}">
 									<input class="cartItemBefore" type="hidden" value="${cart.cProductTypePay/10000.0}">
-									<a class="cartItemDelete" href="#"><i class=" icon-trash"></i></a>
+									<a class="cartItemDelete" href="#" pNo="${cart.pNo}"><i class=" icon-trash"></i></a>
 									<a class="cartItemRefresh" href="#"><i class="icon-ccw-2"></i></a>
 								</td>
 							</tr>
@@ -126,8 +126,8 @@
 								</th>
 							</tr>
 						</thead>
-						<tbody>
 							<c:forEach var="option" items="${optionList}">
+							<tbody class="${option.pNo}">
 								<tr>
 									<td style="width:25%; text-align:center" rowspan="${fn:length(option['optionInnerList'])}">
 										<strong><u>${option.foodCategory}</u></strong><br>
@@ -154,7 +154,7 @@
 									</td>
 									<td style="width:15%">
 										<label class="switch-light switch-ios float-right">
-											<input type="checkbox" name="option_1" id="option_1" checked value="">
+											<input type="checkbox" name="option_1" id="option_1" value="">
 											<span>
 	                    					<span>No</span>
 											<span>Yes</span>
@@ -186,7 +186,7 @@
 										</td>
 										<td style="width:15%">
 											<label class="switch-light switch-ios float-right">
-												<input type="checkbox" name="option_1" id="option_1" checked value="">
+												<input type="checkbox" name="option_1" id="option_1" value="">
 												<span>
 		                    					<span>No</span>
 												<span>Yes</span>
@@ -196,8 +196,8 @@
 										</td>
 									</tr>
 								</c:forEach>
+								</tbody>
 							</c:forEach>
-						</tbody>
 					</table>
 					<div class="add_bottom_15"><small>* Prices for person.</small>
 					</div>
@@ -370,6 +370,7 @@
 									}
 									$('#datePeriod').html(date_min+"&nbsp; to&nbsp;"+date_max);
 								}
+								location.reload();
 							}
 						});
 					});
