@@ -99,6 +99,7 @@ public class JumunController {
 					  				firstName+" "+lastName, "1", Integer.toString(mNo), 0, null, null, null);
 			jumunService.insertJumun(jumun);
 			int jNo = jumunService.selectRecentJumun(mNo);
+			model.addAttribute("jNo", jNo);
 			model.addAttribute("gName", firstName+" "+lastName);
 			//model.addAttribute("cartList", cartList);
 			model.addAttribute("refNo", Integer.toString(mNo)+"-0"+phone.substring(3,4)+phone.substring(1,3)+phone.substring(4,6)+Integer.toString(jNo));
