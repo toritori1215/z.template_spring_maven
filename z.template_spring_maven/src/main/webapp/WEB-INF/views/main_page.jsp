@@ -250,9 +250,11 @@
 							<i class="icon-star-empty"></i></i><small>(30)</small>
 						</div>
 							<!-- end rating -->
+							<!-- 
 							<div class="wishlist">
 								<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
 							</div>
+							 -->
 							<!-- End wish list-->
 						</div>
 					</div>

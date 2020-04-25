@@ -202,7 +202,9 @@
 								</div>
 							</div>
 							<div class="col-md-6 col-sm-4 d-none d-sm-block text-right">
+								<!-- 
 								<a href="tour_grid" class="bt_filters"><i class=" icon-th"></i></a> 
+								 -->
 								<a href="tour_list" class="bt_filters"><i class=" icon-list"></i></a>
 							</div>
 
@@ -369,8 +371,8 @@
 		$('#cat_nav').mobileMenu();
 	</script>
 
-	<!-- Map -->
-	<script src="http://maps.googleapis.com/maps/api/js"></script>
+	<!-- Map -->		
+	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB4JNh6iELs0fU_OpkHc1sFUzYeR5Mtxk8"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/map.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/infobox.js"></script>
 	

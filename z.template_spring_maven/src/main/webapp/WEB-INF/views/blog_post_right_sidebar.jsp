@@ -125,6 +125,7 @@
 				alert(blogViewMsg);
 			}
 		})
+		
 	</script>
 	<c:if test="${blog.mNo == sUser.mNo}">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/gu-upload/guuploadManager.js"></script>

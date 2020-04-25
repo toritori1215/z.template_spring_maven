@@ -140,12 +140,31 @@ public class RestaurantViewResolverController {
 	@LoginCheck
 	@RequestMapping(value="restaurant_cart_fixed_sidebar",method = RequestMethod.GET)//,method = RequestMethod.POST
 	public String restaurant_cart_fixed_sidebar_get(HttpSession session,
-												Model model,
-												@RequestParam(required =false) Integer pno,
-												@RequestParam(required =false) Integer foodCount,
-												@RequestParam(required =false) Integer foodsPrice,
-												@RequestParam(required =false) Integer deposit_cost_ori) {
-		return "restaurants_all_list";
+													Model model) {
+		
+		Member member= (Member)session.getAttribute("sUser");
+		System.out.println("member.getmNo() ="+ member.getmNo());
+		RestaurantDTO restaurant_prod= restService.get_Restaurant_Product_name_select("BPPP");
+		
+		session.setAttribute("restaurant_prod", restaurant_prod);
+		System.out.println("여기까진 들어오는듯 한데???");
+		List<RestaurantCartDTO> restCartList = restService.findCartList(member.getmNo());
+		
+		for (RestaurantCartDTO restaurantCartDTO : restCartList) {
+			System.out.println(restaurantCartDTO);
+		}
+		
+		int sumprice =0;
+		for (RestaurantCartDTO restaurantCartDTO : restCartList) {
+			sumprice+= restaurantCartDTO.getCproductTypePay();
+		}
+		model.addAttribute("deposit_cost",restaurant_prod);
+		model.addAttribute("restCartList" , restCartList);
+		model.addAttribute("sumprice", sumprice);
+		
+		
+		
+		return "restaurant_cart_fixed_sidebar";
 	}
 	
 	
@@ -169,7 +188,7 @@ public class RestaurantViewResolverController {
 		boolean duplication = false;
 		int sumprice =0; 
 		//0.'BPPP'레스토랑 예약금 금액등록
-		model.addAttribute("deposit_cost",deposit_cost_ori);
+		model.addAttribute("deposit_cost",deposit_cost_ori);//3
 		
 		//1.회원의 카트에 저장되어있는  cart리스트를 먼저 가져온다.
 		List<RestaurantCartDTO> restCartList = restService.findCartList(user_info.getmNo());
@@ -211,9 +230,9 @@ public class RestaurantViewResolverController {
 			for (RestaurantCartDTO restaurantCartDTO : restCartList) {
 				sumprice+= restaurantCartDTO.getCproductTypePay();
 			}
-			model.addAttribute("sumprice", sumprice);
+			model.addAttribute("sumprice", sumprice);//2
 			System.out.println("sumprice 정보 :"+sumprice);
-			model.addAttribute("restCartList", restCartList);
+			model.addAttribute("restCartList", restCartList);//1
 			System.out.println("첫 검색 cartlist 정보 :"+restCartList);
 			return "restaurant_cart_fixed_sidebar";
 		}

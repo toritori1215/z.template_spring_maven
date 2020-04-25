@@ -451,7 +451,7 @@
 									<div class="form-group">
 										<label>Seating Capacity</label>
 										<div class="my-numbers-row">
-											<label id="seatCapacityLabel">dddd</label>
+											<label id="seatCapacityLabel">${restaurant_prod.pavailable}</label>
 										</div>
 									</div>
 								</div>
@@ -526,8 +526,8 @@
 											Food Price
 										</td>
 										<td class="text-right" price_list='price' id="perfoodPriceTd">
-											${restaurantProduct.pprice}
-											<input type="hidden" id="perfoodPrice" value="${restaurantProduct.pprice}">
+											${restaurant_prod.pprice}
+											<input type="hidden" id="perfoodPrice" value="${restaurant_prod.pprice}">
 										</td>
 									</tr>
 									<tr class="total">
@@ -869,7 +869,7 @@
 		
 		$(function(){
 			//시간위젯이 한번 보이고 사라졌을때 show하도록 만든다.
-			$('#seatingDiv').hide();
+			//$('#seatingDiv').hide();
 			
 			
 			//$('td.text-right > div > div.dec.button_inc').text("");

@@ -315,7 +315,7 @@
 										<div class="form-group">
 											<label>Seating Capacity</label>
 											<div class="my-numbers-row">
-												<label id="seatCapacityLabel">dddd</label>
+												<label id="seatCapacityLabel">${restaurant_prod.pavailable}</label>
 											</div>
 										</div>
 									</div>
@@ -544,7 +544,7 @@
 		$(function(){
 			//예약창 닫혀있을시 reservation_info'는 숨겨져야함 
 			$('.reservation_info').hide();
-			$('#seatingDiv').hide();
+			//$('#seatingDiv').hide();
 			//상품별 증감버튼에 대한 처리
 			let listCntSize = Number(document.getElementById('cartListLength').value);
 			//console.log("listCntSize ::" + listCntSize);
