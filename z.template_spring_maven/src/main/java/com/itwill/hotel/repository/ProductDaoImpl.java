@@ -35,6 +35,11 @@ public class ProductDaoImpl implements ProductDao {
 	public Integer checkWishlist(Wishlist wishlist) {
 		return productMapper.checkWishlist(wishlist);
 	}
+	
+	@Override
+	public Integer countByType(String pType) {
+		return productMapper.countByType(pType);
+	}
 
 	@Override
 	public Integer countByCategory(String foodCategory) {
@@ -55,5 +60,5 @@ public class ProductDaoImpl implements ProductDao {
 	public int updateRate(int pNo) {
 		return productMapper.updateRate(pNo);
 	}
-
+	
 }

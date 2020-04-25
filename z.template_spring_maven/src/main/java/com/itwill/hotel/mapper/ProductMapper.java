@@ -16,6 +16,8 @@ public interface ProductMapper {
 	
 	public Integer checkWishlist(Wishlist wishlist);
 	
+	public Integer countByType(String pType);
+	
 	public Integer countByCategory(String foodCategory);
 
 	public Integer countBookedRoomQty(HashMap parameterMap);
