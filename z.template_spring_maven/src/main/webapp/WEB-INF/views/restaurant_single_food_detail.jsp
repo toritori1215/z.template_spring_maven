@@ -983,6 +983,7 @@
 				//console.log($('#day').val());
 				let setday =$('#day').val().substring(0,3);
 				$('#day').val(setday);
+				$('#timePicker').timepicker('setDay',setday);
 				//console.log('setday::'+ setday);
 				//console.log("e.day::"+ e.date.substring(0,3));
 				//$('#timePicker').timepicker('setDay',setday)

@@ -734,7 +734,7 @@
 				document.getElementById('day').value = day;
 				//let daystr = $('day').val().substring(0,3);
 				//$('day').val(daystr);
-				//$('#timePicker').timepicker('setHour','9');
+				$('#timePicker').timepicker('setDay',day);
 				//$('#timePicker').timepicker('setMeridian','AM');
 
    			 });
