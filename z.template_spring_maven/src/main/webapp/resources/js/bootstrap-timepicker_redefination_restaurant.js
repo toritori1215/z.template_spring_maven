@@ -101,7 +101,7 @@
         /***** 내입맛에 맞게 수정!!! start *****/
         setDay : function(day){
 
-        	//console.log('day:'+ day);
+        	console.log('day:'+ day);
         	this.day = day;
         },
         setHour : function(hour){
@@ -147,9 +147,8 @@
         },
         
         decrementHour: function() {
-        	
-
-    		//console.log("decrementHour This->"+this);
+        	console.log("day---->" + this.day);
+    		console.log("decrementHour This->"+this);
 
     		if(this.day.toUpperCase()=='SAT' || this.day.toUpperCase()=='SUN'){
     			this.setdecrementhourrange(this.weekendstTime,this.weekendedTime);

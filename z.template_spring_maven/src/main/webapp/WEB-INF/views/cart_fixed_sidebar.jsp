@@ -80,81 +80,42 @@
 									Total
 								</th>
 								<th>
+									Options
+								</th>
+								<th>
 									Actions
 								</th>
 							</tr>
 						</thead>
-						<tbody>
-							<c:forEach var="cart" items="${cartList}">
-							<tr>
-								<td>
-									<div class="thumb_cart">
-										<a href="tour_detail?pNo=${cart.pNo}">
-											<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${cart.pName}_cart.jpg" alt="Image">
-										</a>
-									</div>
-									&nbsp;<span class="item_cart"><a href="tour_detail?pNo=${cart.pNo}"><strong>${cart.pName}<strong></a></span>
-								</td>
-								<td>
-									<div class="numbers-row2">
-										<input type="text" value="${cart.cProductQty}" id="quantity_1" class="qty2 form-control" name="quantity_1">
-										<div class="inc button_inc2">+</div>
-										<div class="dec button_inc2">-</div>
-									</div>
-								</td>
-								<td>
-									<strong>${cart.cCheckin.substring(0,10)}</strong><br>(${cart.cCheckinTime})
-								</td>
-								<td>
-									<strong>￦${cart.cProductTypePay/10000.0}만</strong>
-								</td>
-								<td class="options" id="${cart.cProductQty}">
-									<input class="cNo" type="hidden" value="${cart.cNo}">
-									<input class="cartItemBefore" type="hidden" value="${cart.cProductTypePay/10000.0}">
-									<a class="cartItemDelete" href="#" pNo="${cart.pNo}"><i class=" icon-trash"></i></a>
-									<a class="cartItemRefresh" href="#"><i class="icon-ccw-2"></i></a>
-								</td>
-							</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-					<table class="table table-striped options_cart">
-						<thead>
-							<tr>
-								<th colspan="6">
-									Add options / Services
-								</th>
-							</tr>
-						</thead>
-							<c:forEach var="option" items="${optionList}">
-							<tbody class="${option.pNo}">
+						<c:forEach var="i" begin="0" end="${fn:length(cartList)-1}">
+						<div>
+							<tbody>
 								<tr>
-									<td style="width:25%; text-align:center" rowspan="${fn:length(option['optionInnerList'])}">
-										<strong><u>${option.foodCategory}</u></strong><br>
-										${fn:substring(option.cCheckin, 0, 10)}  
+									<td>
+										<div class="thumb_cart">
+											<a href="tour_detail?pNo=${cartList[i].pNo}">
+												<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${cartList[i].pName}_cart.jpg" alt="Image">
+											</a>
+										</div>
+										&nbsp;<span class="item_cart"><a href="tour_detail?pNo=${cartList[i].pNo}"><strong>${cartList[i].pName}<strong></a></span>
 									</td>
-									<td style="width:10%">
-										<i class="${option.optionInnerList[0].pDesc}"></i>
-									</td>
-									<td style="width:20%">
-										<strong>${option.optionInnerList[0].pName}</strong>
-									</td>
-									<td style="width:10%">
-										<div class="dropdown">
-											<a href="#" class="dropdown-toggle" data-toggle="dropdown">0</a>
-										    <div class="dropdown-menu">
-										    	<c:forEach var="index" begin="1" end="${option.cProductQty}">
-										        	<a href="#" class="dropdown-item">${index}</a>
-										        </c:forEach>
-										    </div>
+									<td>
+										<div class="numbers-row2">
+											<input type="text" value="${cartList[i].cProductQty}" id="quantity_1" class="qty2 form-control" name="quantity_1">
+											<div class="inc button_inc2">+</div>
+											<div class="dec button_inc2">-</div>
 										</div>
 									</td>
-									<td style="width:15%">
-										￦${option.optionInnerList[0].pPrice/10000}만 <sub>/person</sub>
+									<td>
+										<strong>${cartList[i].cCheckin.substring(0,10)}</strong><br>(${cartList[i].cCheckinTime})
 									</td>
-									<td style="width:15%">
-										<label class="switch-light switch-ios float-right">
-											<input type="checkbox" name="option_1" id="option_1" value="">
+									<td>
+										<strong>￦${cartList[i].cProductTypePay/10000.0}만</strong>
+									</td>
+									<td>
+										<div id="emptyDiv"></div>
+										<label class="switch-light switch-ios float-left">
+											<input type="checkbox" data-toggle="toggle" name="option_2" id="option_1" value="">
 											<span>
 	                    					<span>No</span>
 											<span>Yes</span>
@@ -162,47 +123,60 @@
 											<a></a>
 										</label>
 									</td>
+									<td class="options" id="${cartList[i].cProductQty}">
+										<input class="cNo" type="hidden" value="${cartList[i].cNo}">
+										<input class="cartItemBefore" type="hidden" value="${cartList[i].cProductTypePay/10000.0}">
+										<a class="cartItemDelete" href="#" pNo="${cartList[i].pNo}"><i class=" icon-trash"></i></a>
+										<a class="cartItemRefresh" href="#"><i class="icon-ccw-2"></i></a>
+										<input class="cartIndex" type="hidden" value="${i}">
+										<input class="delete_pName" type="hidden" value="${cartList[i].pName}">
+										<input class="delete_cCheckin" type="hidden" value="${cartList[i].cCheckin}">
+									</td>
 								</tr>
-								<c:forEach var="optionInner" items="${option.optionInnerList}" begin="1">
+							</tbody>
+							<tbody col-lg-8>
+								<c:forEach var="j" begin="0" end="${fn:length(optionList[i])-1}">
 									<tr>
-										<td style="width:10%">
-											<i class="${optionInner.pDesc}"></i>
+										<td>
+											<i class="${optionList[i][j].pDesc} style="font-size:35px; font-style:bold""></i>
 										</td>
-										<td style="width:20%">
-											<strong>${optionInner.pName}</strong>
+										<td colspan="2">
+											<strong>${optionList[i][j].pName}</strong>
 										</td>
-										<td style="width:5%">
-											<div class="dropdown">
-												<a href="#" class="dropdown-toggle" data-toggle="dropdown">0</a>
-											    <div class="dropdown-menu">
-											    	<c:forEach var="index" begin="1" end="${option.cProductQty}">
-											        	<a href="#" class="dropdown-item">${index}</a>
-											        </c:forEach>
-											    </div>
+										<td>
+											<select class="form-control" id="dropdownSelect_${i}${j}" pPrice="${optionList[i][j].pPrice/10000}">
+												<c:forEach var="index" begin="0" end="${optionList[i][j].cProductQty}">
+													<c:if test="${index == optionList[i][j].pQty}">
+														<option id="option_${i}${j}" value="${index}" selected="selected">${index}</option>
+													</c:if>
+													<c:if test="${index != optionList[i][j].pQty}">
+														<option id="option_${i}${j}" value="${index}">${index}</option>
+													</c:if>
+												</c:forEach>
+											</select>
+											<input type="hidden" pNo="${optionList[i][j].pNo}">
+											<input type="hidden" cNo="${optionList[i][j].cNo}">
+											<input type="hidden" selectDate="${cartList[i].cCheckin.substring(0,10)}">
+											<input type="hidden" selectTime="${cartList[i].cCheckinTime}">
+											<input type="hidden" id="optionQty_${i}${j}" value="${optionList[i][j].pQty}">
+										</td>
+										<td>
+											￦${optionList[i][j].pPrice/10000}만<sub>/person</sub>
+										</td>
+										<td>
+											<div id="optionTotal_${i}${j}" value="">
+												=&nbsp;&nbsp;&nbsp;￦0.0만
 											</div>
-										</td>
-										<td style="width:20%">
-											￦${optionInner.pPrice/10000}만<sub>/person</sub>
-										</td>
-										<td style="width:15%">
-											<label class="switch-light switch-ios float-right">
-												<input type="checkbox" name="option_1" id="option_1" value="">
-												<span>
-		                    					<span>No</span>
-												<span>Yes</span>
-												</span>
-												<a></a>
-											</label>
 										</td>
 									</tr>
 								</c:forEach>
-								</tbody>
+							</tbody>
+							</div>
 							</c:forEach>
+						</tbody>
 					</table>
-					<div class="add_bottom_15"><small>* Prices for person.</small>
-					</div>
 				</div>
-				<!-- End col-md-8 -->
+				<!-- End col-lg-8 -->
 
 				<aside class="col-lg-4" id="sidebar">
 					<div class="theiaStickySidebar">
@@ -231,7 +205,7 @@
 									</tr>
 									<tr>
 										<td>
-											<strong>Tour Total</strong>
+											<strong>Tours</strong>
 										</td>
 										<td class="text-right">
 											<div id="cartTotal" value="${cartTotal/10000}">
@@ -244,29 +218,29 @@
 											<strong>Options</strong>
 										</td>
 										<td class="text-right">
-											$0
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<strong>Insurance</strong>
-										</td>
-										<td class="text-right">
-											$0
+											<div id="optionTotal" value="0">
+												￦&nbsp;0
+											</div>
 										</td>
 									</tr>
 									<tr class="total">
 										<td>
-											Total cost
+											Total
 										</td>
 										<td class="text-right">
-											$0
+											<div id="totalTotal" value="${cartTotal/10000}">
+												￦&nbsp;${cartTotal/10000}만
+											</div>
 										</td>
 									</tr>
 								</tbody>
 							</table>
-							
 							<div id="cartCheckoutButton">
+								<input type="hidden" id="cartListLength" value="${fn:length(cartList)}">
+								<input type="hidden" id="optionListLength" value="${fn:length(optionList[0])}">
+								<c:forEach var="k" begin="0" end="${fn:length(cartList)*fn:length(optionList[0])-1}">
+									<input type="hidden" id="oCount${k}" value="0">
+								</c:forEach>
 								<c:if test="${(sUser != null) && (fn:length(cartList) != 0)}">
 									<a class="btn_full" href="jumun_checkout">Check out</a>
 								</c:if>
@@ -330,51 +304,78 @@
 	$(".cartItemDelete").on("click", function (d) {
 		var $button = $(this);
 		var cNo = $(this).prev().prev().attr("value");
-		var cartItemBefore = $button.prev().attr("value");  // 아래 작동하면 지워도 됨
-		var cartTotal = $("#cartTotal").attr("value");  // 아래 작동하면 지워도 됨
+		var delete_pName = $button.next().next().next().attr("value");
+		var delete_cCheckin = $button.next().next().next().next().attr("value"); //삭제될 상품의 상품명
+		console.log("delete_pName="+delete_pName);
+		console.log("delete_cCheckin="+delete_cCheckin);
 		
 		$.ajax({
 			url: "session_check",
 			dataType: "json",
 			success: function(e) {
 				if (e != null) {
-					$button.parent().parent().fadeOut("slow", function (f) {
+					$fadeButton = $button.parent().parent().parent().next();
+					$fadeButton.fadeOut("slow", function(f) {
+						$.ajax({
+							url : "cart_search_options",
+							data : "foodCategory="+delete_pName+"&cCheckin="+delete_cCheckin,
+							method : "POST",
+							dataType : "json",
+							success : function(h) {
+								var oTotal_prev = $("#optionTotal").attr("value");
+								var oTotal_new = +oTotal_prev - (+h/10000);
+								$("#optionTotal").attr("value", oTotal_new);
+								var total_prev = $("#totalTotal").attr("value");
+								var total_new = +total_prev - (+h/10000);
+								$("#totalTotal").attr("value", total_new);
+								$("#optionTotal").html("￦"+oTotal_new+".0만");
+								$("#totalTotal").html("￦"+total_new+".0만");
+							}
+						});
+					});
+					
+					$button.parent().parent().parent().fadeOut("slow", function(g) {
 						$.ajax({
 							url : "cart_delete",
 							data : "cNo="+cNo,
 							method : "POST",
 							dataType : "json",
-							success : function(g) {
+							success : function(h) {
+								var cartTotalPrev = $("#cartTotal").attr("value");
 								var cartTotalNew = 0;
-								for (var i=0; i < g.length; i++) {
-									cartTotalNew += g[i].cProductTypePay;
-									console.log(g[i]);
+								for (var i=0; i < h.length; i++) {
+									cartTotalNew += h[i].cProductTypePay;
 								}
 								$("#cartTotal").html("￦&nbsp;"+cartTotalNew/10000+".0만");
+								$("#cartTotal").attr("value", cartTotalNew/10000);
 								
-								if (g.length == 0) {
+								var netAmount = +cartTotalNew - +cartTotalPrev;
+								var total_prev = $("#totalTotal").attr("value");
+								var total_new = +total_prev + +netAmount;
+								$("#totalTotal").attr("value", total_new/10000);
+								$("#totalTotal").html("￦"+total_new/10000+".0만");
+								
+								if (h == null) {
 									$('#datePeriod').html(" ");
 									$('#cartCheckoutButton').html("<a class='btn_full'>Check out</a>");
-								} else if (g.length == 1) {
-									$('#datePeriod').html(g[0].cCheckin.substr(5,6));
+								} else if (h.length == 1) {
+									$('#datePeriod').html(h[0].cCheckin.substr(5,6));
 								} else {
-									var date_min = g[0].cCheckin.substr(5,6);
-									var date_max = g[0].cCheckin.substr(5,6);
-									for (var i=0; i < g.length; i++) {
-										if (g[i].cCheckin.substr(5,6) < date_min) {
-											date_min = g[i].cCheckin.substr(5,6);
+									var date_min = h[0].cCheckin.substr(5,6);
+									var date_max = h[0].cCheckin.substr(5,6);
+									for (var i=0; i < h.length; i++) {
+										if (h[i].cCheckin.substr(5,6) < date_min) {
+											date_min = h[i].cCheckin.substr(5,6);
 										}
-										if (g[i].cCheckin.substr(5,6) > date_max) {
-											date_max = g[i].cCheckin.substr(5,6);
+										if (h[i].cCheckin.substr(5,6) > date_max) {
+											date_max = h[i].cCheckin.substr(5,6);
 										}
 									}
 									$('#datePeriod').html(date_min+"&nbsp; to&nbsp;"+date_max);
 								}
-								location.reload();
 							}
 						});
 					});
-					
 				} else {
 					//alert("Your session has expired. Please sign in again.");
 				}
@@ -388,7 +389,7 @@
 	$(".cartItemRefresh").on("click", function (d) {
 		var $button = $(this);
 		var cNo = $button.prev().prev().prev().attr("value");
-		var newQty = $button.parent().prev().prev().prev().children(':first').children(':first').val();
+		var newQty = $button.parent().prev().prev().prev().prev().children(':first').children(':first').val();
 		var cartItemBefore = $button.prev().prev().attr("value");
 		var cartTotal = $("#cartTotal").attr("value");
 		
@@ -403,9 +404,9 @@
 						method : "POST",
 						dataType : "json",
 						success : function(f) {
-							var cartNet = f-cartItemBefore;
+							var cartNet = +f - + cartItemBefore;
 							var cartTotalNew = +cartTotal + +cartNet;
-							$button.parent().prev().html("<strong>￦"+f+".0만</strong>");
+							$button.parent().prev().prev().html("<strong>￦"+f+".0만</strong>");
 							$button.prev().prev().attr("value", f);
 							$("#cartTotal").html("￦&nbsp;"+cartTotalNew+".0만");
 							$("#cartTotal").attr("value", cartTotalNew);
@@ -418,6 +419,89 @@
 		});
 		d.preventDefault();
 	});
+	
+	
+	/* Fade Toggle */
+	$("input[name='option_2']").on("click", function (d) {		
+		var $button = $(this);
+		$button.closest('tbody').next().fadeToggle("slow");
+	});
+	
+	var cartLength = $("#cartListLength").attr("value");
+	var optionLength = $("#optionListLength").attr("value");
+	
+	
+	$(function() {
+		for (var i = 0; i < cartLength; i++) {
+			for (var j = 0; j < optionLength; j++) {
+				$("#dropdownSelect_"+i+j).change(function() {
+					var $button = $(this);
+					var ind_i = $button.attr("id")[15];
+					var ind_j = $button.attr("id")[16];
+					var ind = (ind_i*3)+(ind_j*1);
+					var oPrice = $button.attr("pPrice");
+					var oCount_prev = $("#oCount"+ind).attr("value"); // select한 곳의 원래 count
+					var oCount_new = $(':selected').text()[ind];
+					$("#oCount"+ind).attr("value", oCount_new);
+					var oTotal_prev = $("#optionTotal").attr("value");
+					var oTotal_new = +oTotal_prev + (+oCount_new - +oCount_prev)*oPrice;
+					$("#optionTotal").attr("value", oTotal_new);
+					var total_prev = $("#totalTotal").attr("value");
+					var total_new = (+oTotal_new - +oTotal_prev) + +total_prev;
+					$("#totalTotal").attr("value", total_new);
+					$button.parent().next().next().children(':first').html("=&nbsp;&nbsp;&nbsp;￦"+oPrice*oCount_new+".0만");
+					$("#optionTotal").html("￦"+oTotal_new+".0만");
+					$("#totalTotal").html("￦"+total_new+".0만");
+					
+					var pNo = $button.next().attr("pNo");
+					var opt_cNo = $button.next().next().attr("cNo");
+					var selectDate = $button.next().next().next().attr("selectDate");
+					var selectTime = $button.next().next().next().next().attr("selectTime");
+					
+					$.ajax({
+						url: "session_check",
+						dataType: "json",
+						success: function(e) {
+							if (e != null) {
+								$.ajax({
+									url : "cart_insert",
+									data : "newVal="+oCount_new+"&pNo="+pNo+"&pPrice="+(oPrice*10000)+"&selectDate="+selectDate+"&selectTime="+selectTime+"&opt=1",
+									method : "POST",
+									dataType : "json",
+									success : function(g) {
+									}
+								});
+							} else {
+								//alert("Your session has expired. Please sign in again.");
+							}
+						}
+					});
+				});
+			}
+		}
+	});
+					
+					// console.log("ind"+i);  ind2 출력
+					
+					//=&nbsp;&nbsp;&nbsp;￦0
+					/*
+					console.log($(':selected').text());
+					console.log($(':selected').text()[0]);
+					console.log($(':selected').text()[1]);
+					console.log($(':selected').text()[2]);
+					console.log($(':selected').text()[3]);
+					console.log($(':selected').text()[4]);
+					console.log($(':selected').text()[5]);
+					*/
+					
+					/*
+					console.log($(this).children(':first'));
+					console.log($(this).children(':first').next());
+					console.log($(this).children(':first').next().attr("value"));
+					1에만 접근함
+					*/
+					//console.log("#option_"+i+j)  ij가 23으로 나옴
+					//$(this).parent().next().next().children(':first').html("");
 	</script>
 	
 </body>

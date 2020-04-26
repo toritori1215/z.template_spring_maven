@@ -64,6 +64,7 @@
 
 					<div class="box_style_cat">
 						<ul id="cat_nav">
+						<!-- 
 							<li><a href="restaurants_all_list" id="active"><i class="icon_set_3_restaurant-10"></i>All restaurants <span>(${restListPage.totalRecordCount})</span></a>
 							</li>
 							<c:forEach var="category" items="${categoryList}" step="1" varStatus="st">
@@ -90,6 +91,7 @@
 							
 							<li><a href="restaurants_all_list?category=Dessert"><i class="icon_set_3_restaurant-8"></i>Dessert <span>(${foodCategoryDessertCnt})</span></a>
 							</li>
+							 -->
 						</ul>
 					</div>
 

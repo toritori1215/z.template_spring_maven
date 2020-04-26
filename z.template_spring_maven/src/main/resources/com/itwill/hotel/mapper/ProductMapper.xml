@@ -82,8 +82,24 @@
 		select SUM(jdProductQty)
 		from jumun_detail
 		where pNo = #{pNo}
-		and jdCheckOut = ANY(TO_DATE(#{jdOrderDate}))
-		and jdOrderTime = #{jdOrderTime}
+		and jdOrderDate = ANY(TO_DATE(#{jdOrderDate}))
+	</select>
+	
+	<select id="countCartTourQty"
+			parameterType="java.util.HashMap"
+			resultType="java.lang.Integer">
+		select SUM(cProductQty)
+		from cart
+		where pNo = #{pNo}
+		and cCheckin = ANY(TO_DATE(#{cCheckin}))
+	</select>
+	
+	<select id="countCartOptionQty"
+			parameterType="_int"
+			resultType="java.lang.Integer">
+		select SUM(cProductQty)
+		from cart
+		where pNo = #{pNo}
 	</select>
 	
 	<update id="updateRate" parameterType="_int">
@@ -93,5 +109,10 @@
 		            where pNo=#{pNo}) 
 		where pNo=#{pNo}
 	</update>
+	
+	<delete id="deleteProduct" parameterType="_int">
+		delete from product
+		where pNo=#{pNo}
+	</delete>
 	
 </mapper>

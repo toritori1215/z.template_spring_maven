@@ -29,6 +29,11 @@ public class CartDaoImpl implements CartDao {
 	public Cart checkCartProduct(Cart cart) {
 		return cartMapper.checkCartProduct(cart);
 	}
+
+	@Override
+	public Integer productTotalCart(HashMap parameterMap) {
+		return cartMapper.productTotalCart(parameterMap);
+	}
 	
 	@Override
 	public int insertCart(Cart cart) {
@@ -43,6 +48,11 @@ public class CartDaoImpl implements CartDao {
 	@Override
 	public int deleteOutdatedCart(HashMap parameterMap) {
 		return cartMapper.deleteOutdatedCart(parameterMap);
+	}
+
+	@Override
+	public int deleteByMap(HashMap parameterMap) {
+		return cartMapper.deleteByMap(parameterMap);
 	}
 
 	@Override

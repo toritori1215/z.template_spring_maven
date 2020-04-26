@@ -83,92 +83,57 @@
 						</p>
 					</div>
 					<div class="step">
+						<c:forEach var="item" items="${jd_list}" varStatus="st">
 						<table class="table table-striped confirm">
 							<thead>
 								<tr>
 									<th colspan="2">
-										Item 1
+										Item ${st.index+1}
 									</th>
 								</tr>
 							</thead>
-							<tbody>
-								<tr>
-									<td>
-										<strong>Louvre musuem tickets</strong>
-									</td>
-									<td>
-										2x
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<strong>Date</strong>
-									</td>
-									<td>
-										25 Febraury 2015
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<strong>To</strong>
-									</td>
-									<td>
-										Jhon Doe
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<strong>Payment type</strong>
-									</td>
-									<td>
-										Credit card
-									</td>
-								</tr>
-							</tbody>
+								<tbody>
+									<tr>
+										<td>
+											<strong>${jd_product_list[st.index].pname}</strong>
+										</td>
+										<td>
+											x ${jd_list[st.index].jdproductqty}
+										</td>
+									</tr>
+									
+									<c:if test="${not empty item.jdorderdate}">
+										<tr>
+											<td>
+												<strong>Date</strong>
+											</td>
+											<td>
+												${item.jdorderdate}
+											</td>
+										</tr>
+									</c:if>
+									
+									
+									<tr>
+										<td>
+											<strong>To</strong>
+										</td>
+										<td>
+											${jumundto.jcardowner}
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<strong>Payment type</strong>
+										</td>
+										<td>
+											Credit card
+										</td>
+									</tr>
+								</tbody>
 						</table>
-						<table class="table table-striped confirm">
-							<thead>
-								<tr>
-									<th colspan="2">
-										Item 2
-									</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>
-										<strong>Senna river tour</strong>
-									</td>
-									<td>
-										2x
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<strong>Date</strong>
-									</td>
-									<td>
-										27 Febraury 2015
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<strong>To</strong>
-									</td>
-									<td>
-										Jhon Doe
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<strong>Payment type</strong>
-									</td>
-									<td>
-										Credit card
-									</td>
-								</tr>
-							</tbody>
-						</table>
+						</c:forEach>
+						
 					</div>
 					<!--End step -->
 				</div>
@@ -182,7 +147,7 @@
 								Nihil inimicus ex nam, in ipsum dignissim duo. Tale principes interpretaris vim ei, has posidonium definitiones ut. Duis harum fuisset ut his, duo an dolor epicuri appareat.
 							</p>
 							<hr>
-							<a class="btn_full_outline" href="invoice.html" target="_blank">View your invoice</a>
+							<a class="btn_full_outline" href="restaurants_all_list" target="_blank">Continue Shopping</a>
 						</div>
 						<div class="box_style_4">
 							<i class="icon_set_1_icon-89"></i>

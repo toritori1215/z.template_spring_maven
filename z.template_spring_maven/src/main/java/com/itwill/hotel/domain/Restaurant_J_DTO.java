@@ -1,5 +1,7 @@
 package com.itwill.hotel.domain;
 
+import java.util.List;
+
 public class Restaurant_J_DTO {
 	private Integer jno;
 	private Integer jtotpay;
@@ -23,7 +25,7 @@ public class Restaurant_J_DTO {
 	private Integer jifcancel; 
 	private Integer mno;
 	
-	private Restaurant_JD_DTO jd_dto;
+	private List<Restaurant_JD_DTO> jd_dto;
 
 	public Restaurant_J_DTO() {
 		// TODO Auto-generated constructor stub
@@ -32,7 +34,7 @@ public class Restaurant_J_DTO {
 	public Restaurant_J_DTO(Integer jno, Integer jtotpay, String jdate, String jcardowner, String jemail,
 			String jphoneno, String jcardno, String jvaliddate, String jcardcvc, String jstreetaddr, String jstreetnmg,
 			String jcity, String jcountry, String jstate, String jzipcode, String jguest, Integer jifcancel,
-			Integer mno, Restaurant_JD_DTO jd_dto) {
+			Integer mno, List<Restaurant_JD_DTO> jd_dto) {
 		super();
 		this.jno = jno;
 		this.jtotpay = jtotpay;
@@ -54,6 +56,7 @@ public class Restaurant_J_DTO {
 		this.mno = mno;
 		this.jd_dto = jd_dto;
 	}
+
 
 
 
@@ -203,11 +206,11 @@ public class Restaurant_J_DTO {
 		this.mno = mno;
 	}
 
-	public Restaurant_JD_DTO getJd_dto() {
+	public List<Restaurant_JD_DTO> getJd_dto() {
 		return jd_dto;
 	}
 
-	public void setJd_dto(Restaurant_JD_DTO jd_dto) {
+	public void setJd_dto(List<Restaurant_JD_DTO> jd_dto) {
 		this.jd_dto = jd_dto;
 	}
 
@@ -220,6 +223,7 @@ public class Restaurant_J_DTO {
 				+ ", jzipcode=" + jzipcode + ", jguest=" + jguest + ", jifcancel=" + jifcancel + ", mno=" + mno
 				+ ", jd_dto=" + jd_dto + "]";
 	}
+
 	
 	
 	

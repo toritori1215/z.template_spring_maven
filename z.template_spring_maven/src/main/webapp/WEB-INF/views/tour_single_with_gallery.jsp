@@ -767,7 +767,7 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-12">
+							<div class="col-6">
 								<div class="form-group">
 									<label><i class="icon-adult"></i> Travellers</label>
 									<div class="numbers-row1">
@@ -775,6 +775,10 @@
 										<div class="inc button_inc1">+</div>
 										<div class="dec button_inc1">-</div>
 									</div>
+								</div>
+							</div>
+							<div class="col-6">
+								<div class="noSpace">
 								</div>
 							</div>
 						</div>
@@ -807,7 +811,7 @@
 								</tr>
 							</tbody>
 						</table>
-						<form id="cart_add" name="f" method="post" action="cart_insert">
+						<form id="cart_add" name="f">
 							<input type="hidden" name="sUser" value="${sUser}">
 							<input type="hidden" name="newVal" value="1">
 							<input type="hidden" name="pNo" value="${product.pNo}">
@@ -815,7 +819,7 @@
 							<input type="hidden" name="selectDate" value="">
 							<input type="hidden" name="selectTime" value="">
 							<c:if test="${sUser != null and sUser != ''}">
-								<input type="submit" class="btn_full" value="Book now" />
+								<input type="button" class="btn_full" id="addToCart" value="Book now" pAvailable="${product.pAvailable}"/>
 							</c:if>
 							<c:if test="${sUser == null or sUser == ''}">
 								<a class="btn_full" data-toggle="modal" data-target="#signInAlert" href="#">
@@ -899,13 +903,15 @@
 	<script>
 		$(function() {
 			$("input[name='selectDate']").attr("value", $("#datePicker").val());
-			$("input[name='selectTime']").attr("value", $("#timePicker").attr("value"));
+			$("input[name='selectTime']").attr("value", $("#timePicker").val());
 		});
 	
 		$("#datePicker").change(function () {
 			$("input[name='selectDate']").attr("value", $("#datePicker").val());
 		});
-		
+
+		var pNo = $("input[name='pNo']").attr("value");
+		var pPrice= $("input[name='pPrice']").attr("value");
 		
 		/* Qty Update Button */
 		$(".button_inc1").click(function () {
@@ -923,9 +929,8 @@
 				}
 			}
 			
-			$button.parent().find("input").val(newVal);
+			$button.parent().find("input").val(newVal);  // newVal = 현재 인원수 섹션에 있는 숫자
 			$("input[name='newVal']").attr("value", newVal);
-			var pPrice = $("input[name='pPrice']").attr("value");
 			
 			$.ajax({
 				type:"GET",
@@ -939,9 +944,36 @@
 			});
 		});
 		
+		
+		/* Add to cart button */		
+		$("#addToCart").click(function () {
+			var $button = $(this);
+			var newVal = $("input[name='newVal']").attr("value");
+			var selectDate = $("input[name='selectDate']").attr("value");
+			var selectTime = $("input[name='selectTime']").attr("value");
+			var pAvailable = $("#addToCart").attr("pAvailable");
+			
+			$.ajax({
+				type:"POST",
+				url:"tour_spaces?",
+				data:"newVal="+newVal+"&pNo="+pNo+"&selectDate="+selectDate+"&pAvailable="+pAvailable,
+				async:true,
+				success:function(d) {
+					if (d >= 0) {
+						window.location.replace("cart_insert?newVal="+newVal+"&pNo="+pNo+"&pPrice="+pPrice+"&selectDate="+selectDate+"&selectTime="+selectTime+"&opt=0");
+					} else if ((d < 0) && ((+d + +newVal)==1)) {
+						$('.noSpace').html("<br><br>"+(+d + +newVal)+" spot left.");
+					}else {
+						$('.noSpace').html((+d + +newVal)+" spots left.");
+					}
+				}
+			});
+		});
+		
+		
+		/* Add to wishlist button */
 		$("#addToWishlist").click(function (e) {
 			var $button = $(this);
-			var pNo = $("input[name='pNo']").attr("value");
 			
 			$.ajax({
 				type:"POST",

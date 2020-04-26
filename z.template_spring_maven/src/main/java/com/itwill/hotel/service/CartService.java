@@ -13,11 +13,15 @@ public interface CartService {
 	
 	public Cart checkCartProduct(Cart cart);
 	
+	public Integer productTotalCart(HashMap parameterMap);
+	
 	public int insertCart(Cart cart);
 	
 	public int deleteCart(Integer cNo);
 	
 	public int deleteOutdatedCart(HashMap parameterMap);
+	
+	public int deleteByMap(HashMap parameterMap);
 	
 	public int updateCart(HashMap parameterMap);
 	

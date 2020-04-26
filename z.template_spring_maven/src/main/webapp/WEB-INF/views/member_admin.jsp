@@ -12,7 +12,7 @@
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
 				<h1>Hello ${sUser.mId}!</h1>
-				<p>Ridiculus sociosqu cursus neque cursus curae ante scelerisque vehicula.</p>
+				<p>HAVE A GOOD DAY!!</p>
 			</div>
 		</div>
 	</section>
