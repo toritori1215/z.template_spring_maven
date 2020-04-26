@@ -18,12 +18,30 @@ public interface JumunService {
 	
 	public int insertJumun(Jumun jumun);
 	
-	public int cancelJumun(HashMap hashMap);
-	
-	public int insertJumunDetail(JumunDetail jumunDetail);
+	public int deleteJumunMember(int mNo);
 	
 	
 	/************ jumun detail ************/
-	public List<JumunDetailInvoice> selectJumunDetail(int jNo);
+	public int insertJumunDetail(JumunDetail jumunDetail);
+	
+	public JumunDetail selectJumunDetail(int jNo);
+	
+	public List<JumunDetail> selectJumunDetailMember(int mNo);
+	
+	public List<JumunDetail> selectJumunDetailCancelMember(int mNo);
+	
+	public int deleteJumunDetail(HashMap hashMap);
+	
+	public int deleteJumunDetailCancel(HashMap hashMap);
+	
+	public JumunDetailInvoice selectOneJumunDetail(int jdNo);
+	
+	public JumunDetailInvoice selectOneJumunDetailCancel(int jdNo);
+	
+	public List<JumunDetailInvoice> selectJumunDetailOrderPage(int mNo);
+	
+	public List<JumunDetailInvoice> selectJumunDetailCancelOrderPage(int mNo);
+	
+	public int insertJumunDetailCancel(JumunDetail jumunDetail);
 	
 }

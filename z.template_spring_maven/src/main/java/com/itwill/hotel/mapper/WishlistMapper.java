@@ -13,4 +13,6 @@ public interface WishlistMapper {
 	
 	public int deleteWishlist(Wishlist wishlist);
 	
+	public int deleteWishlistMember(int mNo);
+	
 }

@@ -52,5 +52,10 @@ public class ReviewDaoImpl implements ReviewDao {
 	public int ifExisted(HashMap hashMap) {
 		return reviewMapper.ifExisted(hashMap);
 	}
+
+	@Override
+	public int deleteReviewMember(int mNo) {
+		return reviewMapper.deleteReviewMember(mNo);
+	}
 	
 }

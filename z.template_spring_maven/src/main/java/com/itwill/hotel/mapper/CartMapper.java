@@ -21,4 +21,6 @@ public interface CartMapper {
 	
 	public int updateCart(HashMap parameterMap);
 	
+	public int deleteCartMember(int mNo);
+	
 }

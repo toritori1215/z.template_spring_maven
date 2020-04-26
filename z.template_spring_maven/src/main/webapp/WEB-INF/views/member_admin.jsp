@@ -49,59 +49,65 @@
 				<div class="content">
 
 					<section id="section-1">
-						<c:forEach var="jumun" items="${jumunList}">
+						<c:forEach var="jumunDetail" items="${jumunDetailList}">
 							<div class="strip_booking">
 								<div class="row">
 									<div class="col-lg-2 col-md-2">
 										<div class="date">
-											<span class="month">${jumun.jDy}</span>
-											<span class="day"><strong>${jumun.jDd}</strong>${jumun.jMon}</span>
+											<span class="month">${jumunDetail.jdDy}</span>
+											<span class="day"><strong>${jumunDetail.jdDd}</strong>${jumunDetail.jdMon}</span>
 										</div>
 									</div>
-									<c:choose>
-										<c:when test="${jumun.jIfCancel == 1}">
-											<div class="col-lg-6 col-md-5">
-												<h3 class="hotel_booking">Guest Name: ${jumun.jGuest}<span>Total Price: ${jumun.jTotPay}</span></h3>
-											</div>
-											<div class="col-lg-2 col-md-3">
-												<ul class="info_booking">
-													<li><strong>Booking id</strong>${jumun.jNo}</li>
-													<li><strong>Booked on</strong> ${jumun.jDate}</li>
-												</ul>
-											</div>
-											<div class="col-lg-2 col-md-2">
-												<div class="booking_buttons">
-													<a href="member_jumunDetail?jNo=${jumun.jNo}" class="btn_2">See Detail</a>
-													<c:if test="${jumun.ifUse > 7}">
-														<a href="member_cancelJumun?jNo=${jumun.jNo}" class="btn_3">Cancel</a>
-													</c:if>
-												</div>
-											</div>
-										</c:when>
-										<c:otherwise>
-											<div class="col-lg-6 col-md-5">
-												<h1 class="hotel_booking" align="center">Canceled</h1>
-											</div>
-											<div class="col-lg-2 col-md-3">
-												<ul class="info_booking">
-													<li><strong>Booking id</strong>${jumun.jNo}</li>
-													<li><strong>Booked on</strong> ${jumun.jDate}</li>
-												</ul>
-											</div>
-											<div class="col-lg-2 col-md-2">
-												<div class="booking_buttons">
-													<a href="member_jumunDetail?jNo=${jumun.jNo}" class="btn_2">See Detail</a>
-												</div>
-											</div>
-										</c:otherwise>
-									</c:choose>
-									
+									<div class="col-lg-6 col-md-5">
+										<h3 class="hotel_booking">Guest Name: ${jumunDetail.jGuest}<span>Total Price: ${jumunDetail.jdProductTot}</span></h3>
+									</div>
+									<div class="col-lg-2 col-md-3">
+										<ul class="info_booking">
+											<li><strong>Booking id</strong>${jumunDetail.jdNo}</li>
+											<li><strong>Booked on</strong> ${jumunDetail.jdOrderDate}</li>
+										</ul>
+									</div>
+									<div class="col-lg-2 col-md-2">
+										<div class="booking_buttons">
+											<a href="member_jumunDetail_detail?jdNo=${jumunDetail.jdNo}" class="btn_2">See Detail</a>
+											<c:if test="${jumunDetail.jdIfCanCancel > 7}">
+												<a href="member_cancelJumunDetail?jdNo=${jumunDetail.jdNo}" class="btn_3">Cancel</a>
+											</c:if>
+										</div>
+									</div>
 								</div>
 								<!-- End row -->
 							</div>
 							<!-- End strip booking -->
 						</c:forEach>
-
+						<c:forEach var="jumunDetailCancel" items="${jumunDetailCancelList}">
+							<div class="strip_booking">
+								<div class="row">
+									<div class="col-lg-2 col-md-2">
+										<div class="date">
+											<span class="month">${jumunDetailCancel.jdDy}</span>
+											<span class="day"><strong>${jumunDetailCancel.jdDd}</strong>${jumunDetailCancel.jdMon}</span>
+										</div>
+									</div>
+									<div class="col-lg-6 col-md-5">
+										<h1 class="hotel_booking" align="center">Canceled</h1>
+									</div>
+									<div class="col-lg-2 col-md-3">
+										<ul class="info_booking">
+											<li><strong>Booking id</strong>${jumunDetailCancel.jdNo}</li>
+											<li><strong>Booked on</strong> ${jumunDetailCancel.jDate}</li>
+										</ul>
+									</div>
+									<div class="col-lg-2 col-md-2">
+										<div class="booking_buttons">
+											<a href="member_jumunDetailCancel_detail?jdNo=${jumunDetailCancel.jdNo}" class="btn_2">See Detail</a>
+										</div>
+									</div>
+								</div>
+								<!-- End row -->
+							</div>
+							<!-- End strip booking -->
+						</c:forEach>
 					</section>
 					<!-- End section 1 -->
 

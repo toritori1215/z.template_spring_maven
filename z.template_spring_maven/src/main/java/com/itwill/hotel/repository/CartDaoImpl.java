@@ -50,4 +50,9 @@ public class CartDaoImpl implements CartDao {
 		return cartMapper.updateCart(parameterMap);
 	}
 
+	@Override
+	public int deleteCartMember(int mNo) {
+		return cartMapper.deleteCartMember(mNo);
+	}
+
 }

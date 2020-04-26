@@ -57,16 +57,16 @@
         <div class="col-12">
     		<div class="invoice-title">
     			<h2>Invoice</h2><br>
-    			<h3 class="pull-right"> Order # ${jumun.jNo}</h3>
-   				<h6 align="right"><a href="member_orderList" class="btn_1">Back to order List</a></h6>
+    			<h3 class="pull-right"> Order #${jumunDetail.jdNo}</h3>
+   				<h6 align="right"><a href="member_orderList" class="btn_1">Back to order list</a></h6>
     		</div>
     		<hr>
     		<div class="row">
     			<div class="col-6">
     				<address>
-	    				<strong>Billed To:</strong><br>
+	    				<strong>Billed to:</strong><br>
 	    				<div style="margin-left: 30px">
-	    				<strong>Guest:</strong> ${jumun.jCardOwner}
+	    				<strong>Guest:</strong> ${jumunDetail.jCardOwner}
 	    				</div>
     				</address>
     			</div>
@@ -74,10 +74,10 @@
     				<address>
 	    				<strong>Address:</strong><br>
 	    				<div style="margin-left: 30px">
-		    				<strong>Country:</strong> ${jumun.jCountry}<br>
-		    				<strong>State:</strong> ${jumun.jState}<br>
-		    				<strong>City:</strong> ${jumun.jCity}<br>
-		    				<strong>Detail Address:</strong> ${jumun.jStreetNMG}
+		    				<strong>Country:</strong> ${jumunDetail.jCountry}<br>
+		    				<strong>State:</strong> ${jumunDetail.jState}<br>
+		    				<strong>City:</strong> ${jumunDetail.jCity}<br>
+		    				<strong>Detail address:</strong> ${jumunDetail.jStreetNMG}
 	    				</div>
     				</address>
     			</div>
@@ -85,9 +85,10 @@
     		<div class="row">
     			<div class="col-6">
     				<address >
-    					<strong>Order Date:</strong><br>
+    					<strong>Date:</strong><br>
     					<div style="margin-left: 30px">
-    						${jumun.jDate}<br>
+    						<strong>Order date:</strong> ${jumunDetail.jDate}<br>
+    						<strong>Booked on:</strong> ${jumunDetail.jdOrderDate}
     					</div>
     				</address>
     			</div>
@@ -95,8 +96,8 @@
     				<address>
     					<strong>Payment Method:</strong><br>
 	    				<div style="margin-left: 30px">
-    						<strong>Card No:</strong> ${jumun.jCardNo}<br>
-    						<strong>Email:</strong>   ${jumun.jEmail}
+    						<strong>Card No:</strong> ${jumunDetail.jCardNo}<br>
+    						<strong>Email:</strong>   ${jumunDetail.jEmail}
     					</div>
     				</address>
     			</div>
@@ -123,19 +124,17 @@
     						</thead>
     						<tbody>
     							<!-- foreach ($order->lineItems as $line) or some such thing here -->
-    							<c:forEach var="jumunDetail" items="${jumunDetailList}">
-	    							<tr>
-	    								<td>${jumunDetail.pName}</td>
-	    								<td class="text-center">${jumunDetail.jdProductTot/jumunDetail.jdProductQty}</td>
-	    								<td class="text-center">${jumunDetail.jdProductQty}</td>
-	    								<td class="text-right">${jumunDetail.jdProductTot}</td>
-	    							</tr>
-    							</c:forEach>
+    							<tr>
+    								<td>${jumunDetail.pName}</td>
+    								<td class="text-center">${jumunDetail.jdProductTot/jumunDetail.jdProductQty}</td>
+    								<td class="text-center">${jumunDetail.jdProductQty}</td>
+    								<td class="text-right">${jumunDetail.jdProductTot}</td>
+    							</tr>
     							<tr>
     								<td class="no-line"></td>
     								<td class="no-line"></td>
     								<td class="no-line text-center"><strong>Total Price</strong></td>
-    								<td class="no-line text-right">${jumun.jTotPay}</td>
+    								<td class="no-line text-right">${jumunDetail.jTotPay}</td>
     							</tr>
     						</tbody>
     					</table>

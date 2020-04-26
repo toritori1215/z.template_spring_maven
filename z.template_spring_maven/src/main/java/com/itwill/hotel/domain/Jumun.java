@@ -22,10 +22,6 @@ public class Jumun {
 	private String jGuest;
 	private String jIfCancel;
 	private String mNo;
-	private Integer ifUse;
-	private String jDy;
-	private String jDd;
-	private String jMon;
 	
 	public Jumun() {
 		// TODO Auto-generated constructor stub
@@ -33,8 +29,7 @@ public class Jumun {
 
 	public Jumun(int jNo, int jTotPay, String jDate, String jCardOwner, String jEmail, String jPhoneNo, String jCardNo,
 			String jValidDate, String jCardCVC, String jStreetAddr, String jStreetNMG, String jCity, String jCountry,
-			String jState, String jZipCode, String jGuest, String jIfCancel, String mNo, Integer ifUse, String jDy,
-			String jDd, String jMon) {
+			String jState, String jZipCode, String jGuest, String jIfCancel, String mNo) {
 		super();
 		this.jNo = jNo;
 		this.jTotPay = jTotPay;
@@ -54,10 +49,6 @@ public class Jumun {
 		this.jGuest = jGuest;
 		this.jIfCancel = jIfCancel;
 		this.mNo = mNo;
-		this.ifUse = ifUse;
-		this.jDy = jDy;
-		this.jDd = jDd;
-		this.jMon = jMon;
 	}
 
 	public int getjNo() {
@@ -202,38 +193,6 @@ public class Jumun {
 
 	public void setmNo(String mNo) {
 		this.mNo = mNo;
-	}
-
-	public int getIfUse() {
-		return ifUse;
-	}
-
-	public void setIfUse(Integer ifUse) {
-		this.ifUse = ifUse;
-	}
-
-	public String getjDy() {
-		return jDy;
-	}
-
-	public void setjDy(String jDy) {
-		this.jDy = jDy;
-	}
-
-	public String getjDd() {
-		return jDd;
-	}
-
-	public void setjDd(String jDd) {
-		this.jDd = jDd;
-	}
-
-	public String getjMon() {
-		return jMon;
-	}
-
-	public void setjMon(String jMon) {
-		this.jMon = jMon;
 	}
 	
 }

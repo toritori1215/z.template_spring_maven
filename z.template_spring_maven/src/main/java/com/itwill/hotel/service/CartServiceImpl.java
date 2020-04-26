@@ -49,5 +49,10 @@ public class CartServiceImpl implements CartService {
 	public int updateCart(HashMap parameterMap) {
 		return cartDao.updateCart(parameterMap);
 	}
+
+	@Override
+	public int deleteCartMember(int mNo) {
+		return cartDao.deleteCartMember(mNo);
+	}
 	
 }

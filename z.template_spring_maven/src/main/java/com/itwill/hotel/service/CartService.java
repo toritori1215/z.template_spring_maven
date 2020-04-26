@@ -20,5 +20,7 @@ public interface CartService {
 	public int deleteOutdatedCart(HashMap parameterMap);
 	
 	public int updateCart(HashMap parameterMap);
+	
+	public int deleteCartMember(int mNo);
 
 }

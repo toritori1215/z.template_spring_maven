@@ -30,4 +30,9 @@ public class WishlistServiceImpl implements WishlistService {
 		return wishlistDao.deleteWishlist(wishlist);
 	}
 
+	@Override
+	public int deleteWishlistMember(int mNo) {
+		return wishlistDao.deleteWishlistMember(mNo);
+	}
+
 }
