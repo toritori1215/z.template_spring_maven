@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,34 +65,16 @@
 
 					<div class="box_style_cat">
 						<ul id="cat_nav">
-						<!-- 
-							<li><a href="restaurants_all_list" id="active"><i class="icon_set_3_restaurant-10"></i>All restaurants <span>(${restListPage.totalRecordCount})</span></a>
+							<li><a href="#" id="active"><i class="icon_set_1_icon-51"></i>All tours <span>(141)</span></a>
 							</li>
-							<c:forEach var="category" items="${categoryList}" step="1" varStatus="st">
-								
-									<li>
-										<c:choose>
-											<c:when test='${category == "field"}'>
-												<a href="restaurants_all_list?category=America"><i class="icon_set_3_restaurant-2"></i>${category_Info.foodcategory}<span>(${category_Info.categoryCnt})</span></a>
-											</c:when>
-											<c:when test='${category =="Chinese"}'>
-												<a href="restaurants_all_list?category=Chinese"><i class="icon_set_3_restaurant-4"></i>${category_Info.foodcategory}<span>(${category_Info.categoryCnt})</span></a>
-											</c:when>
-											<c:when test='${category =="Japanese"}'>
-												<a href="restaurants_all_list?category=Japanese"><i class="icon_set_3_restaurant-3"></i>${category_Info.foodcategory}<span>(${category_Info.categoryCnt})</span></a>
-											</c:when>
-											<c:when test='${category =="European"}'>
-												<a href="restaurants_all_list?category=European"><i class="icon_set_3_restaurant-1"></i>${category_Info.foodcategory}<span>(${category_Info.categoryCnt})</span></a>
-											</c:when>
-
-										</c:choose>
-										
-									</li>
-							</c:forEach>
-							
-							<li><a href="restaurants_all_list?category=Dessert"><i class="icon_set_3_restaurant-8"></i>Dessert <span>(${foodCategoryDessertCnt})</span></a>
+							<li><a href="#"><i class="icon_set_1_icon-3"></i>All tours <span>(20)</span></a>
 							</li>
-							 -->
+							<li><a href="#"><i class="icon-tree"></i>Field <span>(16)</span></a>
+							</li>
+							<li><a href="#"><i class="icon-droplet"></i>Water <span>(12)</span></a>
+							</li>
+							<li><a href="#"><i class="icon-snow"></i>Ice <span>(11)</span></a>
+							</li>
 						</ul>
 					</div>
 
@@ -230,10 +213,10 @@
 									<a href="tour_detail?pNo=${product.pNo}"><img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${product.pName}1.jpg" alt="Image">
 										<div class="short_info">
 											<c:choose>
-											    <c:when test="${product.foodCategory eq 'water'}">
+											    <c:when test="${product.foodCategory eq 'Water'}">
 											       	<i class="pe-7s-drop"></i>WATER
 											    </c:when>
-											    <c:when test="${product.foodCategory eq 'ice'}">
+											    <c:when test="${product.foodCategory eq 'Ice'}">
 											       	<i class="icon-snow"></i>ICE
 											    </c:when>
 											    <c:otherwise>
@@ -255,8 +238,8 @@
 									</c:forEach>
 									<small>(${product.pRate})</small>
 									</div>
-									<h3><strong>${product.pName}</strong> tour</h3>
-									<p>${product.pDesc}</p>
+									<a href="tour_detail?pNo=${product.pNo}"><h3><strong>${product.pName}</strong> tour</h3></a>
+									<p>${fn:substring(product.pDesc, 0, 220)}.......</p>
 									<ul class="add_info">
 										<li>
 											<div class="tooltip_styled tooltip-effect-4">
