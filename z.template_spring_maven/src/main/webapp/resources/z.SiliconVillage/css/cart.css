@@ -34,3 +34,9 @@ input.qty2 {
 	height: 40px;
 	z-index: 9;
 }
+
+
+/* fadeToggle hidden */
+#hideandseek {
+	display: none;
+}

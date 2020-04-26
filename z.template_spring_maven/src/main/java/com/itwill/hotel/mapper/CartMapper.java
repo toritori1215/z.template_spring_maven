@@ -12,10 +12,14 @@ public interface CartMapper {
 	public Cart selectByCartNo(Integer cNo);
 	
 	public Cart checkCartProduct(Cart cart);
+	
+	public Integer productTotalCart(HashMap parameterMap);
 
 	public int insertCart(Cart cart);
 	
 	public int deleteCart(Integer cNo);
+	
+	public int deleteByMap(HashMap parameterMap);
 	
 	public int deleteOutdatedCart(HashMap parameterMap);
 	

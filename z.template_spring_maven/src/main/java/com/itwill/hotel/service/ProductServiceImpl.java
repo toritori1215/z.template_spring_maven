@@ -57,8 +57,23 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
+	public Integer countCartTourQty(HashMap parameterMap) {
+		return productDao.countCartTourQty(parameterMap);
+	}
+	
+	@Override
+	public Integer countCartOptionQty(int pNo) {
+		return productDao.countCartOptionQty(pNo);
+	}
+
+	@Override
 	public int updateRate(int pNo) {
 		return productDao.updateRate(pNo);
+	}
+
+	@Override
+	public int deleteProduct(int pNo) {
+		return productDao.deleteProduct(pNo);
 	}
 	
 }

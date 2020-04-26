@@ -22,7 +22,13 @@
 	<select id="checkCartProduct" parameterType="Cart" resultType="Cart">
 		select cNo, cProductQty
 		from cart
-		where mNo=#{mNo} and pNo=#{pNo} and cCheckin=#{cCheckin}
+		where mNo=#{mNo} and pNo=#{pNo} and cCheckin = TO_DATE(#{cCheckin}, 'YYYY-MM-DD HH24:MI:SS')
+	</select>
+	
+	<select id="productTotalCart" parameterType="java.util.HashMap" resultType="Integer">
+		select cProductTypePay
+		from cart
+		where mNo=#{mNo} and pNo=#{pNo} and cCheckin = TO_DATE(#{cCheckin}, 'YYYY-MM-DD HH24:MI:SS')
 	</select>
 	
 	<insert id="insertCart" parameterType="Cart">
@@ -36,6 +42,11 @@
 	<delete id="deleteCart" parameterType="java.lang.Integer">
 		delete from cart
 		where cNo=#{cNo}
+	</delete>
+	
+	<delete id="deleteByMap" parameterType="java.util.HashMap">
+		delete from cart
+		where mNo=#{mNo} and pNo=#{pNo} and cCheckin = TO_DATE(#{cCheckin}, 'YYYY-MM-DD HH24:MI:SS')
 	</delete>
 	
 	<delete id="deleteOutdatedCart" parameterType="java.util.HashMap">

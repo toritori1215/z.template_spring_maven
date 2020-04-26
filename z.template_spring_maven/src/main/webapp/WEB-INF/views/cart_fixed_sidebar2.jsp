@@ -304,10 +304,12 @@
 	$(".cartItemDelete").on("click", function (d) {
 		var $button = $(this);
 		var cNo = $(this).prev().prev().attr("value");
-		var delete_pName = $button.next().next().next().attr("value");
-		var delete_cCheckin = $button.next().next().next().next().attr("value"); //삭제될 상품의 상품명
-		console.log("delete_pName="+delete_pName);
-		console.log("delete_cCheckin="+delete_cCheckin);
+		var delete_i = $(".cartItemDelete").next().next().attr("value");
+		console.log(delete_i);
+		var delete_pName = $(".cartItemDelete").next().next().next().attr("value");
+		var delete_cCheckin = $(".cartItemDelete").next().next().next().next().attr("value");
+		console.log(delete_pName);
+		console.log(delete_cCheckin);
 		
 		$.ajax({
 			url: "session_check",
@@ -323,10 +325,10 @@
 							dataType : "json",
 							success : function(h) {
 								var oTotal_prev = $("#optionTotal").attr("value");
-								var oTotal_new = +oTotal_prev - (+h/10000);
+								var oTotal_new = +oTotal_prev - +h;
 								$("#optionTotal").attr("value", oTotal_new);
 								var total_prev = $("#totalTotal").attr("value");
-								var total_new = +total_prev - (+h/10000);
+								var total_new = +total_prev - +h;
 								$("#totalTotal").attr("value", total_new);
 								$("#optionTotal").html("￦"+oTotal_new+".0만");
 								$("#totalTotal").html("￦"+total_new+".0만");
@@ -341,21 +343,13 @@
 							method : "POST",
 							dataType : "json",
 							success : function(h) {
-								var cartTotalPrev = $("#cartTotal").attr("value");
 								var cartTotalNew = 0;
 								for (var i=0; i < h.length; i++) {
 									cartTotalNew += h[i].cProductTypePay;
 								}
 								$("#cartTotal").html("￦&nbsp;"+cartTotalNew/10000+".0만");
-								$("#cartTotal").attr("value", cartTotalNew/10000);
 								
-								var netAmount = +cartTotalNew - +cartTotalPrev;
-								var total_prev = $("#totalTotal").attr("value");
-								var total_new = +total_prev + +netAmount;
-								$("#totalTotal").attr("value", total_new/10000);
-								$("#totalTotal").html("￦"+total_new/10000+".0만");
-								
-								if (h == null) {
+								if (h.length == 0) {
 									$('#datePeriod').html(" ");
 									$('#cartCheckoutButton').html("<a class='btn_full'>Check out</a>");
 								} else if (h.length == 1) {
