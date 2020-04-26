@@ -1,5 +1,6 @@
 package com.itwill.hotel.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -205,7 +206,9 @@ public class RestaurantServiceImpl implements RestaurantService{
 	}
 
 	@Override
-	public boolean all_jumun_Info_Insert(Restaurant_J_DTO jumundto, List<Restaurant_JD_DTO> jd_list) {
+	public List<RestaurantDTO> all_jumun_Info_Insert(Restaurant_J_DTO jumundto, 
+												  List<Restaurant_JD_DTO> jd_list,
+												  int mno) {
 		// TODO Auto-generated method stub
 		boolean transaction_succ = false;
 		int insertJCnt = restaurantdao.insertJumunTable(jumundto);
@@ -213,12 +216,20 @@ public class RestaurantServiceImpl implements RestaurantService{
 		for (Restaurant_JD_DTO restaurant_JD_DTO : jd_list) {
 			insertJDCnt = restaurantdao.insertJumunDetailTable(restaurant_JD_DTO);
 		}
-		
-		
+
 		if(insertJCnt > 0 && insertJDCnt>0) {
 			transaction_succ = true;
 		}
-		return transaction_succ;
+		////// 주문 상세의 상품들 정보를 가져온다.
+		List<RestaurantDTO> jd_product_list = new ArrayList<RestaurantDTO>();
+		for (Restaurant_JD_DTO restaurant_JD_DTO : jd_list) {
+			RestaurantDTO jd_product = restaurantdao.get_Restaurant_Product(restaurant_JD_DTO.getPno());
+			jd_product_list.add(jd_product);
+		}
+		
+		
+		
+		return jd_product_list;
 	}
 
 	

@@ -19,6 +19,22 @@
 					resultMap="RestaurantDTO"/>
 	</resultMap>
 	
+	<resultMap id="jd_dto_info"
+			   type="com.itwill.hotel.domain.Restaurant_JD_DTO"
+			   autoMapping="true">
+		<association property="jdItemlist"
+					resultMap="RestaurantDTO"/>
+	</resultMap>
+	
+	<resultMap id="jumunDto" 
+	           type="com.itwill.hotel.domain.Restaurant_J_DTO" 
+			   autoMapping="true">
+		<collection property="jd_dto"
+					resultMap="jd_dto_info"/>
+	</resultMap>
+	
+	
+	
 	
 	<insert id="registerProduct" 
 			parameterType="com.itwill.hotel.domain.RestaurantDTO">
@@ -268,6 +284,20 @@
 					 #{jdorderqty,jdbcType=NUMERIC}, #{pno}, JUMUNDETAIL_SEQ.NEXTVAL)
 
 	</insert>
+	
+	<select id="selectJumunComplete"
+			parameterType="int"
+			resultMap="jumunDto">
+		select * 
+		from jumun j 
+		inner join JUMUN_DETAIL jd 
+		on j.jno=jd.jno 
+		inner join PRODUCT p
+		on jd.pno = p.pno
+		where j.jno= (select max(jno) from jumun j where j.mno = #{mno})
+	
+	</select>
+	
 		<!-- 
 		insert into JUMUN_DETAIL(JNO, JDORDERDATE, JDORDERTIME, JDPRODUCTQTY, JDPRODUCTTOT, JDORDERQTY, PNO ,JDNO)
 			select JUMUN_SEQ.CURRVAL, A.* 

@@ -712,7 +712,8 @@
 
 					let day = date.getDay();
 					return day ==2 ? false:true;
-				} 	
+				},
+				startDate: 'today'
 				
 			});
 			
