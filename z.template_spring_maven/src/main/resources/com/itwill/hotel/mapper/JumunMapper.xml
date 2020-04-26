@@ -66,7 +66,7 @@
 	
 	<select id="selectJumunDetailMember" parameterType="_int" resultType="JumunDetail">
 		select jd.jdNo, jd.jdOrderDate, jd.jdCheckout, jd.jdOrderTime, jd.jdPickupPos, jd.jdDropoffPos, 
-					  jd.jdProductQty, jd.jdProductTot, jd.jdOrderQty, jd.jdStayDate, j.jNo, jd.pNo
+				jd.jdProductQty, jd.jdProductTot, jd.jdOrderQty, jd.jdStayDate, j.jNo, jd.pNo
 		from jumun j inner join jumun_detail jd
 		on j.jNo=jd.jNo and j.mNo=#{mNo}
 	</select>
@@ -140,13 +140,10 @@
 	
 	<insert id="insertJumunDetailCancel" parameterType="JumunDetail">
 		insert into 
-		jumun_detail (jdNo, jdOrderDate, jdCheckout, jdOrderTime, jdPickupPos, jdDropoffPos, 
+		jumun_detail_cancel (jdNo, jdOrderDate, jdCheckout, jdOrderTime, jdPickupPos, jdDropoffPos, 
 					  jdProductQty, jdProductTot, jdOrderQty, jdStayDate, jNo, pNo)
-		values (jumunDetailCancel_SEQ.nextval, TO_DATE(#{jdOrderDate}, 'YYYY-MM-DD HH24:MI:SS'), 
-				#{jdCheckout, jdbcType=DATE}, #{jdOrderTime, jdbcType=VARCHAR},
-				#{jdPickupPos, jdbcType=VARCHAR}, #{jdDropoffPos, jdbcType=VARCHAR}, 
-				#{jdProductQty}, #{jdProductTot}, #{jdOrderQty}, 
-				#{jdStayDate, jdbcType=VARCHAR}, #{jNo}, #{pNo})
+		values (jumun_detail_cancel_SEQ.nextval, #{jdOrderDate}, null, TO_CHAR(#{jdOrderTime},'YYYY-MM-DD'), null, null, 
+				#{jdProductQty}, #{jdProductTot}, #{jdOrderQty}, 0, #{jNo}, #{pNo})
 	</insert>
 	<!-- JumunDetail End -->
 	
