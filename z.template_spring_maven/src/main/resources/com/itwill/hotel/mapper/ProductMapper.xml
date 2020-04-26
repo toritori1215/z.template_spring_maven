@@ -110,4 +110,9 @@
 		where pNo=#{pNo}
 	</update>
 	
+	<delete id="deleteProduct" parameterType="_int">
+		delete from product
+		where pNo=#{pNo}
+	</delete>
+	
 </mapper>

@@ -70,5 +70,10 @@ public class ProductDaoImpl implements ProductDao {
 	public int updateRate(int pNo) {
 		return productMapper.updateRate(pNo);
 	}
+
+	@Override
+	public int deleteProduct(int pNo) {
+		return productMapper.deleteProduct(pNo);
+	}
 	
 }
