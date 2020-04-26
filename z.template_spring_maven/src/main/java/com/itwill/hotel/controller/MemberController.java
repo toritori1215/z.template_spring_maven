@@ -26,9 +26,12 @@ import com.itwill.hotel.domain.JumunDetail;
 import com.itwill.hotel.domain.JumunDetailInvoice;
 import com.itwill.hotel.domain.Member;
 import com.itwill.hotel.domain.Product;
+import com.itwill.hotel.domain.Wishlist;
+import com.itwill.hotel.service.BlogService;
 import com.itwill.hotel.service.CartService;
 import com.itwill.hotel.service.JumunService;
 import com.itwill.hotel.service.MemberService;
+import com.itwill.hotel.service.ReviewService;
 import com.itwill.hotel.service.WishlistService;
 
 @Controller
@@ -45,6 +48,12 @@ public class MemberController {
 	
 	@Autowired
 	private CartService cartService;
+	
+	@Autowired
+	private BlogService blogService;
+	
+	@Autowired
+	private ReviewService reviewService;
 	
 	@RequestMapping(value = "/main")
 	public String mainPage() {
@@ -67,8 +76,10 @@ public class MemberController {
 		Member member = (Member) session.getAttribute("sUser");
 		List<Product> wishlistList = wishlistService.selectWishlist(member.getmNo());
 		session.setAttribute("wishlistList", wishlistList);
-		List<Jumun> jumunList = jumunService.selectJumun(member.getmNo());
-		session.setAttribute("jumunList", jumunList);
+		List<JumunDetailInvoice> jumunDetailList = jumunService.selectJumunDetailOrderPage(member.getmNo());
+		session.setAttribute("jumunDetailList", jumunDetailList);
+		List<JumunDetailInvoice> jumunDetailCancelList = jumunService.selectJumunDetailCancelOrderPage(member.getmNo());
+		session.setAttribute("jumunDetailCancelList", jumunDetailCancelList);
 		model.addAttribute("inputMsg", "3");
 		return "member_admin";
 	}
@@ -78,8 +89,10 @@ public class MemberController {
 		Member member = (Member) session.getAttribute("sUser");
 		List<Product> wishlistList = wishlistService.selectWishlist(member.getmNo());
 		session.setAttribute("wishlistList", wishlistList);
-		List<Jumun> jumunList = jumunService.selectJumun(member.getmNo());
-		session.setAttribute("jumunList", jumunList);
+		List<JumunDetailInvoice> jumunDetailList = jumunService.selectJumunDetailOrderPage(member.getmNo());
+		session.setAttribute("jumunDetailList", jumunDetailList);
+		List<JumunDetailInvoice> jumunDetailCancelList = jumunService.selectJumunDetailCancelOrderPage(member.getmNo());
+		session.setAttribute("jumunDetailCancelList", jumunDetailCancelList);
 		model.addAttribute("inputMsg", "1");
 		return "member_admin";
 	}
@@ -121,8 +134,10 @@ public class MemberController {
 					model.addAttribute("alertMsg", "임시비밀번호로 등록 하셨습니다.\n 비밀번호 변경 추천드립니다");
 					List<Product> wishlistList = wishlistService.selectWishlist(tempMember.getmNo());
 					session.setAttribute("wishlistList", wishlistList);
-					List<Jumun> jumunList = jumunService.selectJumun(tempMember.getmNo());
-					session.setAttribute("jumunList", jumunList);
+					List<JumunDetailInvoice> jumunDetailList = jumunService.selectJumunDetailOrderPage(tempMember.getmNo());
+					session.setAttribute("jumunDetailList", jumunDetailList);
+					List<JumunDetailInvoice> jumunDetailCancelList = jumunService.selectJumunDetailCancelOrderPage(tempMember.getmNo());
+					session.setAttribute("jumunDetailCancelList", jumunDetailCancelList);
 					model.addAttribute("inputMsg", 2);
 					return "member_admin";
 				} else {
@@ -369,12 +384,34 @@ public class MemberController {
 				model.addAttribute("DeleteMsg", "계정 비활성화 실패했습니다");
 			}
 		} else if (ifSave.equals("off")) {
-			int rowCount = memberService.deleteMember(member.getmId());
-			if (rowCount == 1) {
+			List<JumunDetail> jumunDetailList = jumunService.selectJumunDetailMember(member.getmNo());
+			for (JumunDetail jumunDetail : jumunDetailList) {
+				HashMap hashMap = new HashMap();
+				hashMap.put("jNo", jumunDetail.getjNo());
+				hashMap.put("mNo", member.getmNo());
+				jumunService.deleteJumunDetail(hashMap);
+			}
+			List<JumunDetail> jumunDetailCancelList = jumunService.selectJumunDetailCancelMember(member.getmNo());
+			for (JumunDetail jumunDetailCancel : jumunDetailCancelList) {
+				HashMap hashMap = new HashMap();
+				hashMap.put("jNo", jumunDetailCancel.getjNo());
+				hashMap.put("mNo", member.getmNo());
+				jumunService.deleteJumunDetailCancel(hashMap);
+			}
+			int rowCount = (memberService.deleteMember(member.getmId()) + 
+					blogService.deleteBlogMember(member.getmNo()) + 
+					cartService.deleteCartMember(member.getmNo()) + 
+					wishlistService.deleteWishlistMember(member.getmNo()) + 
+					blogService.deleteBlogMember(member.getmNo()) +
+					reviewService.deleteReviewMember(member.getmNo()) +
+					jumunService.deleteJumunMember(member.getmNo())
+					);
+			if (rowCount == 7) {
 				model.addAttribute("DeleteMsg", "계정 삭제 성공했습니다");
 				session.invalidate();
 			} else {
 				model.addAttribute("DeleteMsg", "계정 삭제 실패했습니다");
+				return "common_404";
 			}
 		}
 		return "main_page";
@@ -447,29 +484,43 @@ public class MemberController {
 		session.setAttribute("sUser", memberService.selectOne(member.getmId()));
 	}
 	
-	@RequestMapping(value = "member_jumunDetail")
-	public String memberJumunDetail(@RequestParam(value = "jNo") String jNo, HttpSession session, Model model) {
+	@RequestMapping(value = "member_jumunDetail_detail")
+	public String memberJumunDetailDetail(@RequestParam(value = "jdNo") String jdNo, HttpSession session, Model model) {
 		Member member = (Member) session.getAttribute("sUser");
 		if (member == null) {
 			return "common_404";
 		}
-		Jumun jumun = jumunService.selectJumunByNo(Integer.parseInt(jNo));
-		model.addAttribute("jumun", jumun);
-		List<JumunDetailInvoice> jumunDetailList = jumunService.selectJumunDetail(Integer.parseInt(jNo));
-		model.addAttribute("jumunDetailList", jumunDetailList);
+		JumunDetailInvoice jumunDetail = jumunService.selectOneJumunDetail(Integer.parseInt(jdNo));
+		model.addAttribute("jumunDetail", jumunDetail);
 		return "common_invoice";
 	}
 	
-	@RequestMapping(value = "member_cancelJumun")
-	public String cancelJumun(@RequestParam(value = "jNo") String jNo, 
+	@RequestMapping(value = "member_jumunDetailCancel_detail")
+	public String memberJumunDetailCancelDetail(@RequestParam(value = "jdNo") String jdNo, HttpSession session, Model model) {
+		Member member = (Member) session.getAttribute("sUser");
+		if (member == null) {
+			return "common_404";
+		}
+		JumunDetailInvoice jumunDetail = jumunService.selectOneJumunDetailCancel(Integer.parseInt(jdNo));
+		model.addAttribute("jumunDetail", jumunDetail);
+		return "common_invoice";
+	}
+	
+	@RequestMapping(value = "member_cancelJumunDetail")
+	public String cancelJumun(@RequestParam(value = "jdNo") String jdNo, 
 								HttpSession session, Model model) {
 		Member member = (Member) session.getAttribute("sUser");
 		HashMap hashMap = new HashMap();
-		hashMap.put("jNo", jNo);
+		hashMap.put("jdNo", jdNo);
 		hashMap.put("mNo", member.getmNo());
-		jumunService.cancelJumun(hashMap);
-		List<Jumun> jumunList = jumunService.selectJumun(member.getmNo());
-		session.setAttribute("jumunList", jumunList);
+		JumunDetail jumunDetail = new JumunDetail();
+		jumunDetail = jumunService.selectJumunDetail(Integer.parseInt(jdNo));
+		jumunService.insertJumunDetailCancel(jumunDetail);
+		jumunService.deleteJumunDetail(hashMap);
+		List<JumunDetailInvoice> jumunDetailList = jumunService.selectJumunDetailOrderPage(member.getmNo());
+		session.setAttribute("jumunDetailList", jumunDetailList);
+		List<JumunDetailInvoice> jumunDetailCancelList = jumunService.selectJumunDetailCancelOrderPage(member.getmNo());
+		session.setAttribute("jumunDetailCancelList", jumunDetailCancelList);
 		model.addAttribute("inputMsg", "0");
 		return "member_admin";
 	}

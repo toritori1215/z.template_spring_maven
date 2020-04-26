@@ -24,5 +24,7 @@ public interface CartService {
 	public int deleteByMap(HashMap parameterMap);
 	
 	public int updateCart(HashMap parameterMap);
+	
+	public int deleteCartMember(int mNo);
 
 }

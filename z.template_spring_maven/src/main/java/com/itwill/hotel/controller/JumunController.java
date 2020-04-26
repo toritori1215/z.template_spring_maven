@@ -96,7 +96,7 @@ public class JumunController {
 			int mNo = member.getmNo();
 			Jumun jumun = new Jumun(0, (int)session.getAttribute("cartTotal"), null, nameCard, email, phone, cardNumber,
 					  				expiryMonth+expiryYear, cvv, street1, street2, city, country, state, postalCode,
-					  				firstName+" "+lastName, "1", Integer.toString(mNo), 0, null, null, null);
+					  				firstName+" "+lastName, "1", Integer.toString(mNo));
 			jumunService.insertJumun(jumun);
 			int jNo = jumunService.selectRecentJumun(mNo);
 			model.addAttribute("jNo", jNo);

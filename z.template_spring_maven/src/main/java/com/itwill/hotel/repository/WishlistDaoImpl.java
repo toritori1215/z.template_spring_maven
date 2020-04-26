@@ -31,4 +31,9 @@ public class WishlistDaoImpl implements WishlistDao {
 		return wishlistMapper.deleteWishlist(wishlist);
 	}
 
+	@Override
+	public int deleteWishlistMember(int mNo) {
+		return wishlistMapper.deleteWishlistMember(mNo);
+	}
+
 }

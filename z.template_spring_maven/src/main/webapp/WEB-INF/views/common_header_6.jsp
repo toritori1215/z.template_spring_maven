@@ -132,7 +132,12 @@
 						<li class="submenu">
 							<a href="javascript:void(0);" class="show-submenu">Restaurants<i class="icon-down-open-mini"></i></a>
 							<ul>
-								<li><a href="restaurants_all_list">Food List</a></li>
+								<li><a href="restaurants_all_list">All Foods</a></li>
+								<li><a href="restaurants_all_list?category=America">American Food</a></li>
+								<li><a href="restaurants_all_list?category=Europe">European Food</a></li>
+								<li><a href="restaurants_all_list?category=Japanese">Japanese Food</a></li>
+								<li><a href="restaurants_all_list?category=Chinese">Chinese Food</a></li>
+								<li><a href="restaurants_all_list?category=Dessert">Dessert</a></li>
 							</ul>
 						</li>
 						<li class="submenu">

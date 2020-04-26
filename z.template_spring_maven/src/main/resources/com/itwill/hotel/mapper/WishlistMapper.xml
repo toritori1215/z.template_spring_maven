@@ -22,4 +22,8 @@
 		where mNo=#{mNo} and pNo=#{pNo}
 	</delete>
 	
+	<delete id="deleteWishlistMember" parameterType="_int">
+		delete wish_list
+		where mNo=#{mNo}
+	</delete>
 </mapper>

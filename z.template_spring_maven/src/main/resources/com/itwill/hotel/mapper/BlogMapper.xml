@@ -51,4 +51,9 @@
 		where bNo=#{bNo} and mNo=#{mNo}
 	</delete>
 	
+	<delete id="deleteBlogMember" parameterType="_int">
+		delete from blog
+		where mNo=#{mNo}
+	</delete>
+	
 </mapper>

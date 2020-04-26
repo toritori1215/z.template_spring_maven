@@ -60,4 +60,8 @@
 		where cNo=#{cNo}
 	</update>
 	
+	<delete id="deleteCartMember" parameterType="_int">
+		delete from cart
+		where mNo=#{mNo}
+	</delete>
 </mapper>

@@ -13,4 +13,6 @@ public interface WishlistDao {
 	
 	public int deleteWishlist(Wishlist wishlist);
 	
+	public int deleteWishlistMember(int mNo);
+	
 }

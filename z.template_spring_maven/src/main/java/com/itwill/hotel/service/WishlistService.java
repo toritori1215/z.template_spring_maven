@@ -13,4 +13,6 @@ public interface WishlistService {
 	
 	public int deleteWishlist(Wishlist wishlist);
 	
+	public int deleteWishlistMember(int mNo);
+	
 }

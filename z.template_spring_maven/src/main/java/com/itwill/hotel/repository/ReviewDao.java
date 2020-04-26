@@ -23,4 +23,6 @@ public interface ReviewDao {
 	
 	public int ifExisted(HashMap hashMap);
 	
+	public int deleteReviewMember(int mNo);
+	
 }

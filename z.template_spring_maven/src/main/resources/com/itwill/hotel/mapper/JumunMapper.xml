@@ -7,10 +7,7 @@
 	<select id="selectJumun" parameterType="_int" resultType="Jumun">
 		select jNo, jTotPay, jDate, jCardOwner, jEmail, jPhoneNo, jCardNo, 
 				jValidDate, jCardCVC, jStreetAddr, jStreetNMG, jCity, jCountry, 
-				jState, jZipCode, jGuest, jIfCancel, mNo, trunc(jDate-sysdate) as ifUse, 
-                UPPER(to_char(jDate, 'dy', 'NLS_DATE_LANGUAGE=english')) as jDy, 
-                to_char(jDate, 'dd', 'NLS_DATE_LANGUAGE=english') as jDd, 
-                UPPER(to_char(jDate, 'mon', 'NLS_DATE_LANGUAGE=english')) as jMon
+				jState, jZipCode, jGuest, jIfCancel, mNo
 		from jumun
 		where mNo=#{mNo}
 	</select>
@@ -18,10 +15,7 @@
 	<select id="selectJumunByNo" parameterType="_int" resultType="Jumun">
 		select jNo, jTotPay, jDate, jCardOwner, jEmail, jPhoneNo, jCardNo, 
 				jValidDate, jCardCVC, jStreetAddr, jStreetNMG, jCity, jCountry, 
-				jState, jZipCode, jGuest, jIfCancel, mNo, trunc(jDate-sysdate) as ifUse, 
-                UPPER(to_char(jDate, 'dy', 'NLS_DATE_LANGUAGE=english')) as jDy, 
-                to_char(jDate, 'dd', 'NLS_DATE_LANGUAGE=english') as jDd, 
-                UPPER(to_char(jDate, 'mon', 'NLS_DATE_LANGUAGE=english')) as jMon
+				jState, jZipCode, jGuest, jIfCancel, mNo
 		from jumun
 		where jNo=#{jNo}
 	</select>
@@ -45,12 +39,12 @@
 				#{jState}, #{jZipCode}, #{jGuest}, 1, #{mNo})
 	</insert>
 	
-	<update id="cancelJumun" parameterType="java.util.HashMap">
-		update jumun 
-		set jIfCancel=0 
-		where jNo=#{jNo} and mNo=#{mNo}
-	</update>
+	<delete id="deleteJumunMember" parameterType="_int">
+		delete from jumun
+		where mNo=#{mNo}
+	</delete>
 	<!-- Jumun End -->
+	
 	
 	<!-- ======================== jumun detail ======================== -->
 	<!-- JumunDetail Start -->
@@ -63,12 +57,97 @@
 				#{jdProductTot}, #{jdOrderQty}, #{jdStayDate, jdbcType=VARCHAR}, #{jNo}, #{pNo})
 	</insert>
 	
-	<select id="selectJumunDetail" parameterType="_int" resultType="JumunDetailInvoice">
-		select j.jdNo, j.jdOrderDate, j.jdCheckout, j.jdOrderTime, j.jdPickupPos, j.jdDropoffPos, 
-				j.jdProductQty, j.jdProductTot, j.jdOrderQty, j.jdStayDate, j.jNo, j.pNo, p.pName
-		from jumun_detail j inner join product p
-		on j.pNo=p.pNo and jNo=#{jNo}
+	<select id="selectJumunDetail" parameterType="_int" resultType="JumunDetail">
+		select jdNo, jdOrderDate, jdCheckout, jdOrderTime, jdPickupPos, jdDropoffPos, 
+        		jdProductQty, jdProductTot, jdOrderQty, jdStayDate, jNo, pNo
+		from jumun_detail
+		where jdNo=#{jdNo}
 	</select>
+	
+	<select id="selectJumunDetailMember" parameterType="_int" resultType="JumunDetail">
+		select jd.jdNo, jd.jdOrderDate, jd.jdCheckout, jd.jdOrderTime, jd.jdPickupPos, jd.jdDropoffPos, 
+					  jd.jdProductQty, jd.jdProductTot, jd.jdOrderQty, jd.jdStayDate, j.jNo, jd.pNo
+		from jumun j inner join jumun_detail jd
+		on j.jNo=jd.jNo and j.mNo=#{mNo}
+	</select>
+	
+	<select id="selectJumunDetailCancelMember" parameterType="_int" resultType="JumunDetail">
+		select jd.jdNo, jd.jdOrderDate, jd.jdCheckout, jd.jdOrderTime, jd.jdPickupPos, jd.jdDropoffPos, 
+					  jd.jdProductQty, jd.jdProductTot, jd.jdOrderQty, jd.jdStayDate, j.jNo, jd.pNo
+		from jumun j inner join jumun_detail_cancel jd
+		on j.jNo=jd.jNo and j.mNo=#{mNo}
+	</select>
+	
+	<delete id="deleteJumunDetail" parameterType="java.util.HashMap">
+		delete from jumun_detail 
+		where jNo=#{jNo} and mNo=#{mNo}
+	</delete>
+	
+	<delete id="deleteJumunDetailCancel" parameterType="java.util.HashMap">
+		delete from jumun_detail_cancel
+		where jNo=#{jNo} and mNo=#{mNo}
+	</delete>
+		
+	<select id="selectOneJumunDetail" resultType="JumunDetailInvoice" parameterType="_int">
+		select jd.jdNo, jd.jdOrderDate, jd.jdOrderTime, jd.jdProductQty, jd.jdProductTot, 
+		        jd.jdOrderQty,  jd.jdStayDate, jd.jNo, jd.pNo, 
+		        j.jCardOwner, j.jCardNo, j.jEmail, j.jStreetAddr, j.jStreetNMG, 
+		        j.jCity, j.jCountry, j.jState, j.jDate, j.jGuest, p.pName,
+		        trunc(jd.jdOrderDate-sysdate) as jdIfCanCancel, 
+		        UPPER(to_char(j.jDate, 'dy', 'NLS_DATE_LANGUAGE=english')) as jdDy, 
+		        to_char(j.jDate, 'dd', 'NLS_DATE_LANGUAGE=english') as jdDd, 
+		        UPPER(to_char(j.jDate, 'mon', 'NLS_DATE_LANGUAGE=english')) as jdMon
+		from jumun_detail jd inner join jumun j on jd.jNo=j.jNo inner join product p on jd.pNo= p.pNo and jd.jdNo=#{jdNo}
+	</select>
+	
+	<select id="selectOneJumunDetailCancel" resultType="JumunDetailInvoice" parameterType="_int">
+		select jd.jdNo, jd.jdOrderDate, jd.jdOrderTime, jd.jdProductQty, jd.jdProductTot, 
+		        jd.jdOrderQty,  jd.jdStayDate, jd.jNo, jd.pNo, 
+		        j.jCardOwner, j.jCardNo, j.jEmail, j.jStreetAddr, j.jStreetNMG, 
+		        j.jCity, j.jCountry, j.jState, j.jDate, j.jGuest, p.pName,
+		        trunc(jd.jdOrderDate-sysdate) as jdIfCanCancel, 
+		        UPPER(to_char(j.jDate, 'dy', 'NLS_DATE_LANGUAGE=english')) as jdDy, 
+		        to_char(j.jDate, 'dd', 'NLS_DATE_LANGUAGE=english') as jdDd, 
+		        UPPER(to_char(j.jDate, 'mon', 'NLS_DATE_LANGUAGE=english')) as jdMon
+		from jumun_detail_cancel jd inner join jumun j on jd.jNo=j.jNo inner join product p on jd.pNo= p.pNo and jd.jdNo=#{jdNo}
+	</select>
+	
+	<select id="selectJumunDetailOrderPage" resultType="JumunDetailInvoice" parameterType="_int">
+		select jd.jdNo, jd.jdOrderDate, jd.jdOrderTime, jd.jdProductQty, jd.jdProductTot, 
+		        jd.jdOrderQty, jd.jdStayDate, jd.jNo, jd.pNo, 
+		        j.jCardOwner, j.jCardNo, j.jEmail, j.jStreetAddr, j.jStreetNMG, 
+		        j.jCity, j.jCountry, j.jState, j.jDate, j.jGuest, p.pName,
+		        trunc(jd.jdOrderDate-sysdate) as jdIfCanCancel, 
+		        UPPER(to_char(j.jDate, 'dy', 'NLS_DATE_LANGUAGE=english')) as jdDy, 
+		        to_char(j.jDate, 'dd', 'NLS_DATE_LANGUAGE=english') as jdDd, 
+		        UPPER(to_char(j.jDate, 'mon', 'NLS_DATE_LANGUAGE=english')) as jdMon
+		from jumun_detail jd inner join jumun j on jd.jNo=j.jNo inner join product p on jd.pNo=p.pNo and j.mNo=#{mNo}
+		order by j.jDate
+	</select>
+	
+	<select id="selectJumunDetailCancelOrderPage" resultType="JumunDetailInvoice" parameterType="_int">
+				select jd.jdNo, jd.jdOrderDate, jd.jdOrderTime, jd.jdProductQty, jd.jdProductTot, 
+		        jd.jdOrderQty,  jd.jdStayDate, jd.jNo, jd.pNo, 
+		        j.jCardOwner, j.jCardNo, j.jEmail, j.jStreetAddr, j.jStreetNMG, 
+		        j.jCity, j.jCountry, j.jState, j.jDate, j.jGuest, p.pName,
+		        trunc(jd.jdOrderDate-sysdate) as jdIfCanCancel, 
+		        UPPER(to_char(j.jDate, 'dy', 'NLS_DATE_LANGUAGE=english')) as jdDy, 
+		        to_char(j.jDate, 'dd', 'NLS_DATE_LANGUAGE=english') as jdDd, 
+		        UPPER(to_char(j.jDate, 'mon', 'NLS_DATE_LANGUAGE=english')) as jdMon
+		from jumun_detail_cancel jd inner join jumun j on jd.jNo=j.jNo inner join product p on jd.pNo= p.pNo and j.mNo=#{mNo}
+		order by j.jDate
+	</select>
+	
+	<insert id="insertJumunDetailCancel" parameterType="JumunDetail">
+		insert into 
+		jumun_detail (jdNo, jdOrderDate, jdCheckout, jdOrderTime, jdPickupPos, jdDropoffPos, 
+					  jdProductQty, jdProductTot, jdOrderQty, jdStayDate, jNo, pNo)
+		values (jumunDetailCancel_SEQ.nextval, TO_DATE(#{jdOrderDate}, 'YYYY-MM-DD HH24:MI:SS'), 
+				#{jdCheckout, jdbcType=DATE}, #{jdOrderTime, jdbcType=VARCHAR},
+				#{jdPickupPos, jdbcType=VARCHAR}, #{jdDropoffPos, jdbcType=VARCHAR}, 
+				#{jdProductQty}, #{jdProductTot}, #{jdOrderQty}, 
+				#{jdStayDate, jdbcType=VARCHAR}, #{jNo}, #{pNo})
+	</insert>
 	<!-- JumunDetail End -->
 	
 </mapper>
