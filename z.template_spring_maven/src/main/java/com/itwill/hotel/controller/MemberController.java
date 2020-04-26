@@ -386,17 +386,11 @@ public class MemberController {
 		} else if (ifSave.equals("off")) {
 			List<JumunDetail> jumunDetailList = jumunService.selectJumunDetailMember(member.getmNo());
 			for (JumunDetail jumunDetail : jumunDetailList) {
-				HashMap hashMap = new HashMap();
-				hashMap.put("jNo", jumunDetail.getjNo());
-				hashMap.put("mNo", member.getmNo());
-				jumunService.deleteJumunDetail(hashMap);
+				jumunService.deleteJumunDetailMember(jumunDetail.getjNo());
 			}
 			List<JumunDetail> jumunDetailCancelList = jumunService.selectJumunDetailCancelMember(member.getmNo());
 			for (JumunDetail jumunDetailCancel : jumunDetailCancelList) {
-				HashMap hashMap = new HashMap();
-				hashMap.put("jNo", jumunDetailCancel.getjNo());
-				hashMap.put("mNo", member.getmNo());
-				jumunService.deleteJumunDetailCancel(hashMap);
+				jumunService.deleteJumunDetailCancel(jumunDetailCancel.getjNo());
 			}
 			int rowCount = (memberService.deleteMember(member.getmId()) + 
 					blogService.deleteBlogMember(member.getmNo()) + 
@@ -515,8 +509,21 @@ public class MemberController {
 		hashMap.put("mNo", member.getmNo());
 		JumunDetail jumunDetail = new JumunDetail();
 		jumunDetail = jumunService.selectJumunDetail(Integer.parseInt(jdNo));
-		jumunService.insertJumunDetailCancel(jumunDetail);
-		jumunService.deleteJumunDetail(hashMap);
+		HashMap hashMap2 = new HashMap();
+		hashMap2.put("jdOrderDate", jumunDetail.getJdOrderDate());
+		hashMap2.put("jdCheckout", jumunDetail.getJdCheckout());
+		hashMap2.put("jdOrderTime", jumunDetail.getJdOrderTime());
+		hashMap2.put("jdPickupPos", jumunDetail.getJdPickupPos());
+		hashMap2.put("jdDropoffPos", jumunDetail.getJdDropoffPos());
+		hashMap2.put("jdProductQty", jumunDetail.getJdProductQty());
+		hashMap2.put("jdProductTot", jumunDetail.getJdProductTot());
+		hashMap2.put("jdOrderQty", jumunDetail.getJdOrderQty());
+		hashMap2.put("jdStayDate", jumunDetail.getJdStayDate());
+		hashMap2.put("jNo", jumunDetail.getjNo());
+		hashMap2.put("pNo", jumunDetail.getpNo());
+		System.out.println(jumunDetail);
+		jumunService.insertJumunDetailCancel(hashMap2);
+		jumunService.deleteJumunDetail(Integer.parseInt(jdNo));
 		List<JumunDetailInvoice> jumunDetailList = jumunService.selectJumunDetailOrderPage(member.getmNo());
 		session.setAttribute("jumunDetailList", jumunDetailList);
 		List<JumunDetailInvoice> jumunDetailCancelList = jumunService.selectJumunDetailCancelOrderPage(member.getmNo());

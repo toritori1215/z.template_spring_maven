@@ -30,9 +30,11 @@ public interface JumunService {
 	
 	public List<JumunDetail> selectJumunDetailCancelMember(int mNo);
 	
-	public int deleteJumunDetail(HashMap hashMap);
+	public int deleteJumunDetail(int jdNo);
 	
-	public int deleteJumunDetailCancel(HashMap hashMap);
+	public int deleteJumunDetailMember(int jNo);
+	
+	public int deleteJumunDetailCancel(int jdNo);
 	
 	public JumunDetailInvoice selectOneJumunDetail(int jdNo);
 	
@@ -42,6 +44,6 @@ public interface JumunService {
 	
 	public List<JumunDetailInvoice> selectJumunDetailCancelOrderPage(int mNo);
 	
-	public int insertJumunDetailCancel(JumunDetail jumunDetail);
+	public int insertJumunDetailCancel(HashMap hashMap);
 	
 }

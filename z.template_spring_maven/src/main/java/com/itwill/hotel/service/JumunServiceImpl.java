@@ -62,18 +62,23 @@ public class JumunServiceImpl implements JumunService {
 	}
 
 	@Override
+	public int deleteJumunDetailMember(int jNo) {
+		return jumunDao.deleteJumunDetailMember(jNo);
+	}
+
+	@Override
 	public List<JumunDetail> selectJumunDetailCancelMember(int mNo) {
 		return jumunDao.selectJumunDetailCancelMember(mNo);
 	}
 
 	@Override
-	public int deleteJumunDetail(HashMap hashMap) {
-		return jumunDao.deleteJumunDetail(hashMap);
+	public int deleteJumunDetail(int jdNo) {
+		return jumunDao.deleteJumunDetail(jdNo);
 	}
 
 	@Override
-	public int deleteJumunDetailCancel(HashMap hashMap) {
-		return jumunDao.deleteJumunDetailCancel(hashMap);
+	public int deleteJumunDetailCancel(int jdNo) {
+		return jumunDao.deleteJumunDetailCancel(jdNo);
 	}
 
 	@Override
@@ -97,8 +102,8 @@ public class JumunServiceImpl implements JumunService {
 	}
 
 	@Override
-	public int insertJumunDetailCancel(JumunDetail jumunDetail) {
-		return jumunDao.insertJumunDetailCancel(jumunDetail);
+	public int insertJumunDetailCancel(HashMap hashMap) {
+		return jumunDao.insertJumunDetailCancel(hashMap);
 	}
 	
 }

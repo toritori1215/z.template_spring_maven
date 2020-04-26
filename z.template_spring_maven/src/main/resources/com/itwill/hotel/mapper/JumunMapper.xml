@@ -78,14 +78,19 @@
 		on j.jNo=jd.jNo and j.mNo=#{mNo}
 	</select>
 	
-	<delete id="deleteJumunDetail" parameterType="java.util.HashMap">
+	<delete id="deleteJumunDetail" parameterType="_int">
 		delete from jumun_detail 
-		where jNo=#{jNo} and mNo=#{mNo}
+		where jdNo=#{jdNo}
 	</delete>
 	
-	<delete id="deleteJumunDetailCancel" parameterType="java.util.HashMap">
+	<delete id="deleteJumunDetailMember" parameterType="_int">
+		delete from jumun_detail
+		where jNo=#{jNo}
+	</delete>
+	
+	<delete id="deleteJumunDetailCancel" parameterType="_int">
 		delete from jumun_detail_cancel
-		where jNo=#{jNo} and mNo=#{mNo}
+		where jNo=#{jNo}
 	</delete>
 		
 	<select id="selectOneJumunDetail" resultType="JumunDetailInvoice" parameterType="_int">
@@ -138,12 +143,13 @@
 		order by j.jDate
 	</select>
 	
-	<insert id="insertJumunDetailCancel" parameterType="JumunDetail">
+	<insert id="insertJumunDetailCancel" parameterType="java.util.HashMap">
 		insert into 
 		jumun_detail_cancel (jdNo, jdOrderDate, jdCheckout, jdOrderTime, jdPickupPos, jdDropoffPos, 
 					  jdProductQty, jdProductTot, jdOrderQty, jdStayDate, jNo, pNo)
-		values (jumun_detail_cancel_SEQ.nextval, #{jdOrderDate}, null, TO_CHAR(#{jdOrderTime},'YYYY-MM-DD'), null, null, 
-				#{jdProductQty}, #{jdProductTot}, #{jdOrderQty}, 0, #{jNo}, #{pNo})
+		values (jumunDetail_SEQ.nextval, TO_DATE(#{jdOrderDate}, 'YYYY-MM-DD HH24:MI:SS'), #{jdCheckout, jdbcType=DATE}, #{jdOrderTime, jdbcType=VARCHAR},
+				#{jdPickupPos, jdbcType=VARCHAR}, #{jdDropoffPos, jdbcType=VARCHAR}, #{jdProductQty},
+				#{jdProductTot}, #{jdOrderQty}, #{jdStayDate, jdbcType=VARCHAR}, #{jNo}, #{pNo})
 	</insert>
 	<!-- JumunDetail End -->
 	

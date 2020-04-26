@@ -67,13 +67,18 @@ public class JumunDaoImpl implements JumunDao {
 	}
 
 	@Override
-	public int deleteJumunDetail(HashMap hashMap) {
-		return jumunMapper.deleteJumunDetail(hashMap);
+	public int deleteJumunDetail(int jdNo) {
+		return jumunMapper.deleteJumunDetail(jdNo);
 	}
 
 	@Override
-	public int deleteJumunDetailCancel(HashMap hashMap) {
-		return jumunMapper.deleteJumunDetailCancel(hashMap);
+	public int deleteJumunDetailMember(int jNo) {
+		return jumunMapper.deleteJumunDetailMember(jNo);
+	}
+
+	@Override
+	public int deleteJumunDetailCancel(int jdNo) {
+		return jumunMapper.deleteJumunDetailCancel(jdNo);
 	}
 
 	@Override
@@ -97,8 +102,8 @@ public class JumunDaoImpl implements JumunDao {
 	}
 
 	@Override
-	public int insertJumunDetailCancel(JumunDetail jumunDetail) {
-		return jumunMapper.insertJumunDetailCancel(jumunDetail);
+	public int insertJumunDetailCancel(HashMap hashMap) {
+		return jumunMapper.insertJumunDetailCancel(hashMap);
 	}
 	
 }
