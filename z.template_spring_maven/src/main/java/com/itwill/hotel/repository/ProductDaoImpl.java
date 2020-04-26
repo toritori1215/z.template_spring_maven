@@ -57,6 +57,16 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
+	public Integer countCartTourQty(HashMap parameterMap) {
+		return productMapper.countCartTourQty(parameterMap);
+	}
+	
+	@Override
+	public Integer countCartOptionQty(int pNo) {
+		return productMapper.countCartOptionQty(pNo);
+	}
+
+	@Override
 	public int updateRate(int pNo) {
 		return productMapper.updateRate(pNo);
 	}

@@ -89,3 +89,10 @@ a.closeAlert.disabled {
   margin: -1rem -1rem -1rem auto;
 }
 
+
+/* Tour booking: 'not enought spots' alert */
+.noSpace {
+	color: red;
+	font-weight: bold;
+	font-size: 13px;
+}

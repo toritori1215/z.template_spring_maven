@@ -24,6 +24,9 @@ public interface ProductMapper {
 	
 	public Integer countBookedTourQty(HashMap parameterMap);
 	
+	public Integer countCartTourQty(HashMap parameterMap);
+	
+	public Integer countCartOptionQty(int pNo);
+	
 	public int updateRate(int pNo);
-
 }

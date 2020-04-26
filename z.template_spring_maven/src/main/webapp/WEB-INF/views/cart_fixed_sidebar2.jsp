@@ -129,7 +129,6 @@
 										<a class="cartItemDelete" href="#" pNo="${cartList[i].pNo}"><i class=" icon-trash"></i></a>
 										<a class="cartItemRefresh" href="#"><i class="icon-ccw-2"></i></a>
 										<input class="cartIndex" type="hidden" value="${i}">
-										<input class="delete_pName" type="hidden" value="${cartList[i].pName}">
 									</td>
 								</tr>
 							</tbody>
@@ -157,7 +156,6 @@
 											<input type="hidden" cNo="${optionList[i][j].cNo}">
 											<input type="hidden" selectDate="${cartList[i].cCheckin.substring(0,10)}">
 											<input type="hidden" selectTime="${cartList[i].cCheckinTime}">
-											<input type="hidden" id="optionQty_${i}${j}" value="${optionList[i][j].pQty}">
 										</td>
 										<td>
 											￦${optionList[i][j].pPrice/10000}만<sub>/person</sub>
@@ -303,40 +301,22 @@
 	$(".cartItemDelete").on("click", function (d) {
 		var $button = $(this);
 		var cNo = $(this).prev().prev().attr("value");
-		var delete_i = $(".cartItemDelete").next().next().attr("value");
-		console.log(delete_i);
-		var delete_pNo = $(".delete_pName").next().next().next().attr("value");
-		console.log(delete_pNo);
+		
+		console.log($(".cartItemDelete").next().next());
+		console.log("삭제한 카트의 인덱스:"+$(".cartItemDelete").next().next().attr("value"));
 		
 		$.ajax({
 			url: "session_check",
 			dataType: "json",
 			success: function(e) {
 				if (e != null) {
-					$fadeButton = $button.parent().parent().parent().next();
-					$fadeButton.fadeOut("slow", function(f) {
-						$.ajax{
-							url : "cart_search_options",
-							data : "foodCategory="+cNo,
-							method : "POST",
-							dataType : "json",
-							success : function(h) {
-								
-							}
-							
-						}
-						
-						/*
+					$button.parent().parent().parent().next().fadeOut("slow", function(f) {
 						var deletedTotal = 0;
 						var index_i = $button.next().next().attr("value");
-						console.log(index_i);
 						for (var index_j = 0; index_j < 3; index_j++) {
 							console.log($("#dropdownSelect_"+index_i+index_j).val());
-							deletedTotal += $("#dropdownSelect_"+index_i+index_j).val() * $("#optionQty_"+index_i+index_j).attr("value");
-							console.log($("#option_"+index_i+index_j).val());
+							$("#dropdownSelect_"+index_i+index_j).val("0");
 						}
-						console.log(deletedTotal);
-						*/
 					});
 					$button.parent().parent().parent().fadeOut("slow", function(g) {
 						$.ajax({
