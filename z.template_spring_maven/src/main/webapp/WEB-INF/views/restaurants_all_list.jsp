@@ -60,16 +60,16 @@
 								
 									<li>
 										<c:choose>
-											<c:when test='${category_Info.foodcategory =="America"}'>
+											<c:when test='${category_Info.foodcategory =="America Food"}'>
 												<a href="restaurants_all_list?category=America"><i class="icon_set_3_restaurant-2"></i>${category_Info.foodcategory}<span>(${category_Info.categoryCnt})</span></a>
 											</c:when>
-											<c:when test='${category_Info.foodcategory =="Chinese"}'>
+											<c:when test='${category_Info.foodcategory =="Chinese Food"}'>
 												<a href="restaurants_all_list?category=Chinese"><i class="icon_set_3_restaurant-4"></i>${category_Info.foodcategory}<span>(${category_Info.categoryCnt})</span></a>
 											</c:when>
-											<c:when test='${category_Info.foodcategory =="Japanese"}'>
+											<c:when test='${category_Info.foodcategory =="Japanese Food"}'>
 												<a href="restaurants_all_list?category=Japanese"><i class="icon_set_3_restaurant-3"></i>${category_Info.foodcategory}<span>(${category_Info.categoryCnt})</span></a>
 											</c:when>
-											<c:when test='${category_Info.foodcategory =="European"}'>
+											<c:when test='${category_Info.foodcategory =="European Food"}'>
 												<a href="restaurants_all_list?category=European"><i class="icon_set_3_restaurant-1"></i>${category_Info.foodcategory}<span>(${category_Info.categoryCnt})</span></a>
 											</c:when>
 
