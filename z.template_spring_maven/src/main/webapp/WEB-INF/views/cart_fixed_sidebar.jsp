@@ -304,12 +304,10 @@
 	$(".cartItemDelete").on("click", function (d) {
 		var $button = $(this);
 		var cNo = $(this).prev().prev().attr("value");
-		var delete_i = $(".cartItemDelete").next().next().attr("value");
-		console.log(delete_i);
-		var delete_pName = $(".cartItemDelete").next().next().next().attr("value");
-		var delete_cCheckin = $(".cartItemDelete").next().next().next().next().attr("value");
-		console.log(delete_pName);
-		console.log(delete_cCheckin);
+		var delete_pName = $button.next().next().next().attr("value");
+		var delete_cCheckin = $button.next().next().next().next().attr("value"); //삭제될 상품의 상품명
+		console.log("delete_pName="+delete_pName);
+		console.log("delete_cCheckin="+delete_cCheckin);
 		
 		$.ajax({
 			url: "session_check",
@@ -324,11 +322,16 @@
 							method : "POST",
 							dataType : "json",
 							success : function(h) {
+								console.log("줄어야할 금액 = "+h);
 								var oTotal_prev = $("#optionTotal").attr("value");
-								var oTotal_new = +oTotal_prev - +h;
+								console.log(oTotal_prev);
+								var oTotal_new = +oTotal_prev - +h/10000;
+								console.log(oTotal_new);
 								$("#optionTotal").attr("value", oTotal_new);
 								var total_prev = $("#totalTotal").attr("value");
-								var total_new = +total_prev - +h;
+								console.log(total_prev);
+								var total_new = +total_prev - +h/10000;
+								console.log(total_new);
 								$("#totalTotal").attr("value", total_new);
 								$("#optionTotal").html("￦"+oTotal_new+".0만");
 								$("#totalTotal").html("￦"+total_new+".0만");

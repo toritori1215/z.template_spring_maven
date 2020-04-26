@@ -31,7 +31,7 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public int productTotalCart(HashMap parameterMap) {
+	public Integer productTotalCart(HashMap parameterMap) {
 		return cartDao.productTotalCart(parameterMap);
 	}
 	

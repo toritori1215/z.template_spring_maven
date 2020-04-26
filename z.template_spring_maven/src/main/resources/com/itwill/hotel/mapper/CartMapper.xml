@@ -25,7 +25,7 @@
 		where mNo=#{mNo} and pNo=#{pNo} and cCheckin = TO_DATE(#{cCheckin}, 'YYYY-MM-DD HH24:MI:SS')
 	</select>
 	
-	<select id="productTotalCart" parameterType="java.util.HashMap" resultType="_int">
+	<select id="productTotalCart" parameterType="java.util.HashMap" resultType="Integer">
 		select cProductTypePay
 		from cart
 		where mNo=#{mNo} and pNo=#{pNo} and cCheckin = TO_DATE(#{cCheckin}, 'YYYY-MM-DD HH24:MI:SS')
@@ -46,7 +46,7 @@
 	
 	<delete id="deleteByMap" parameterType="java.util.HashMap">
 		delete from cart
-		where mNo=#{mNo} and pNo=#{pNo} and cCheckin=#{cCheckin}
+		where mNo=#{mNo} and pNo=#{pNo} and cCheckin = TO_DATE(#{cCheckin}, 'YYYY-MM-DD HH24:MI:SS')
 	</delete>
 	
 	<delete id="deleteOutdatedCart" parameterType="java.util.HashMap">

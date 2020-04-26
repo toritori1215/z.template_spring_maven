@@ -13,7 +13,7 @@ public interface CartDao {
 	
 	public Cart checkCartProduct(Cart cart);
 	
-	public int productTotalCart(HashMap parameterMap);
+	public Integer productTotalCart(HashMap parameterMap);
 	
 	public int insertCart(Cart cart);
 	
