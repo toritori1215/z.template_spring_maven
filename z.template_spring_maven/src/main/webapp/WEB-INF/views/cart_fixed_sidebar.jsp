@@ -404,7 +404,7 @@
 						method : "POST",
 						dataType : "json",
 						success : function(f) {
-							var cartNet = f-cartItemBefore;
+							var cartNet = +f - + cartItemBefore;
 							var cartTotalNew = +cartTotal + +cartNet;
 							$button.parent().prev().prev().html("<strong>￦"+f+".0만</strong>");
 							$button.prev().prev().attr("value", f);

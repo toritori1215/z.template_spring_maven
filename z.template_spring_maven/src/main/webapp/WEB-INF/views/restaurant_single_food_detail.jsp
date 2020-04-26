@@ -960,6 +960,7 @@
 			
 			$('#datePicker').datepicker({
 				//format: "dd/mm/yyyy",
+				minDate:0,
 				format: "yyyy/mm/dd",
 				beforeShowDay: function (date) {
 					//console.log("date::"+date);
@@ -967,7 +968,8 @@
 					let day = date.getDay();
 					//console.log("[day !=2] -->"+[day !c=2]);
 					return day==2 ? false :true;
-				}
+				},
+				startDate: 'today'
 			});
 			$('#datePicker').datepicker("setDate",'today');
 			//console.log("bookState ::=>"+bookState);
