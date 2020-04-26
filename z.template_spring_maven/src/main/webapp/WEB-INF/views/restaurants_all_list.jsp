@@ -224,7 +224,7 @@
 											 
 											<!--  사진이름 처리 -->
 										
-											<img src="${pageContext.request.contextPath}/resources/css/images/restaurant_Product_img/${fileImg[0]}" alt="Image">
+											<img id="imgId${st.index}" src="${pageContext.request.contextPath}/resources/css/images/restaurant_Product_img/${fileImg[0]}" alt="Image">
 											
 											 
 											 <!-- 
@@ -788,17 +788,10 @@
 		function restRequestCallback(result){
 
 			//console.log('result::'+result);
-			//let jsonStringify = JSON.stringify(result);
-			//console.log("jsonStringify::"+jsonStringify);
-			//console.log("result.list.length-->"+result.list.length);
-			//console.log("$('div[mkattr=search]').length -->"+$('div[mkattr="search"]').length);
-			//console.log("json.startRowNum->"+result.startRowNum);
-			//console.log("json.endRowNum->"+result.endRowNum);
-			//console.log("restListPage.startRowNum -->"+${restListPage.startRowNum});
-			//console.log("restListPage.startRowNum -->"+${restListPage.endRowNum});
-			//console.log("currentPageno ==>" + ${currentPageno});
-			//console.log("restListPage2-->"+${restListPage2});
-		
+			let jsonStringify = JSON.stringify(result);
+			console.log("jsonStringify::"+jsonStringify);
+			console.log("result.list.length-->"+result.list.length);
+
 			let showRowAjax;
 			for (var i = 0; i < result.list.length; i++) {
 				//시작 로우 부터 끝로우 까지만 show() 나머지는 hide()!!
@@ -816,6 +809,15 @@
 				}
 				*/
 				//showRowAjax = $('div[valueStatus="'+i+'"]').attr("valueStatus"); =i
+				
+				let img = result.list[i].pimg;
+				let splitImg =img.split('/');
+				console.log(splitImg[0]);
+				let pathimg = '/z.template_spring_maven/resources/css/images/restaurant_Product_img/'+splitImg[0];
+				console.log(pathimg);
+				$('#imgId'+i).attr('src',pathimg);
+				
+				
 				if(result.startRowNum -1<= i
 						&& result.endRowNum -1 >= i){
 					$('div[valueStatus="'+i+'"]').show();
