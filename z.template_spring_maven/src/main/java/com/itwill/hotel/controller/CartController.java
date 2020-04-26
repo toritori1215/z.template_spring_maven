@@ -216,6 +216,11 @@ public class CartController {
 			int mNo = member.getmNo();
 			cartService.deleteCart(Integer.parseInt(cNo));
 			List<Cart> cartList = cartService.selectBymNo(mNo);
+			for (int i = 0; i < cartList.size(); i++) {
+				if (cartList.get(i).getpNo() > 6) {
+					cartList.remove(i);
+				}
+			}
 			session.setAttribute("cartList", cartList);
 			return cartList;
 		} else {
