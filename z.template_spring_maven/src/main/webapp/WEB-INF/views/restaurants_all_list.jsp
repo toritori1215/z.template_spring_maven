@@ -195,7 +195,7 @@
 								<!-- 
 								<a href="all_restaurants_grid.html" class="bt_filters"><i class="icon-th"></i></a>
 								--> 
-								<a href="restautrants_all_list" class="bt_filters"><i class="icon-list"></i></a>
+								<a href="restaurants_all_list" class="bt_filters"><i class="icon-list"></i></a>
 							</div>
 							 
 						</div>
