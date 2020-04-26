@@ -205,7 +205,9 @@ public class RestaurantServiceImpl implements RestaurantService{
 	}
 
 	@Override
-	public boolean all_jumun_Info_Insert(Restaurant_J_DTO jumundto, List<Restaurant_JD_DTO> jd_list) {
+	public Restaurant_J_DTO all_jumun_Info_Insert(Restaurant_J_DTO jumundto, 
+												  List<Restaurant_JD_DTO> jd_list,
+												  int mno) {
 		// TODO Auto-generated method stub
 		boolean transaction_succ = false;
 		int insertJCnt = restaurantdao.insertJumunTable(jumundto);
@@ -213,12 +215,14 @@ public class RestaurantServiceImpl implements RestaurantService{
 		for (Restaurant_JD_DTO restaurant_JD_DTO : jd_list) {
 			insertJDCnt = restaurantdao.insertJumunDetailTable(restaurant_JD_DTO);
 		}
-		
-		
+
 		if(insertJCnt > 0 && insertJDCnt>0) {
 			transaction_succ = true;
 		}
-		return transaction_succ;
+		//////
+		Restaurant_J_DTO j_dto = restaurantdao.selectJumunComplete(mno);
+		/////
+		return j_dto;
 	}
 
 	

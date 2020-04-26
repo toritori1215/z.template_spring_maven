@@ -1,5 +1,7 @@
 package com.itwill.hotel.domain;
 
+import java.util.List;
+
 public class Restaurant_JD_DTO {
 	private Integer jno;
 	private String jdorderdate;
@@ -9,15 +11,15 @@ public class Restaurant_JD_DTO {
 	private Integer jdorderqty;
 	private Integer pno;
 	private Integer pdno;
+	private RestaurantDTO jdItemlist;
 	
 	public Restaurant_JD_DTO() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
 
 	public Restaurant_JD_DTO(Integer jno, String jdorderdate, String jdordertime, Integer jdproductqty,
-			Integer jdproducttot, Integer jdorderqty, Integer pno, Integer pdno) {
+			Integer jdproducttot, Integer jdorderqty, Integer pno, Integer pdno, RestaurantDTO jdItemlist) {
 		super();
 		this.jno = jno;
 		this.jdorderdate = jdorderdate;
@@ -27,6 +29,7 @@ public class Restaurant_JD_DTO {
 		this.jdorderqty = jdorderqty;
 		this.pno = pno;
 		this.pdno = pdno;
+		this.jdItemlist = jdItemlist;
 	}
 
 
@@ -98,15 +101,28 @@ public class Restaurant_JD_DTO {
 	public void setPdno(Integer pdno) {
 		this.pdno = pdno;
 	}
+	
+	
 
+
+
+	public RestaurantDTO getJdItemlist() {
+		return jdItemlist;
+	}
+
+
+	public void setJdItemlist(RestaurantDTO jdItemlist) {
+		this.jdItemlist = jdItemlist;
+	}
 
 
 	@Override
 	public String toString() {
 		return "Restaurant_JD_DTO [jno=" + jno + ", jdorderdate=" + jdorderdate + ", jdordertime=" + jdordertime
 				+ ", jdproductqty=" + jdproductqty + ", jdproducttot=" + jdproducttot + ", jdorderqty=" + jdorderqty
-				+ ", pno=" + pno + ", pdno=" + pdno + "]";
+				+ ", pno=" + pno + ", pdno=" + pdno + ", jdItemlist=" + jdItemlist + "]";
 	}
+
 
 	
 	
