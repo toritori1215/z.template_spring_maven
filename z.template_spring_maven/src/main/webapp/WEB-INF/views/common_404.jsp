@@ -9,13 +9,13 @@
 	<!-- End Header -->
 
 	<section id="hero">
+		
 		<div class="intro_title error">
 			<h1 class="animated fadeInDown">404</h1>
 			<p class="animated fadeInDown">Oops!! Page not found</p>
-			<a href="index.html" class="animated fadeInUp button_intro">Back to home</a> <a href="all_tours_list.html" class="animated fadeInUp button_intro outline">View all tours</a>
-		</div>
-
+			<a href="main" class="animated fadeInUp button_intro">Back to home</a> <a href="tour_list" class="animated fadeInUp button_intro outline">View all tours</a>
 	</section>
+
 	<!-- End hero -->
 
 	<main>
@@ -24,7 +24,7 @@
 			<div class="banner colored add_bottom_30">
 				<h4>Discover our Top tours <span>from $34</span></h4>
 				<p>
-					Lorem ipsum dolor sit amet, vix erat audiam ei. Cum doctus civibus efficiantur in.
+					매력적인 저희의 여행
 				</p>
 				<a href="single_tour.html" class="btn_1 white">Read more</a>
 			</div>
