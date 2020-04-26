@@ -88,10 +88,10 @@
 		where jNo=#{jNo} and mNo=#{mNo}
 	</delete>
 		
-	<select id="selecrOneJumunDetail" resultType="JumunDetailInvoice" parameterType="_int">
+	<select id="selectOneJumunDetail" resultType="JumunDetailInvoice" parameterType="_int">
 		select jd.jdNo, jd.jdOrderDate, jd.jdOrderTime, jd.jdProductQty, jd.jdProductTot, 
 		        jd.jdOrderQty,  jd.jdStayDate, jd.jNo, jd.pNo, 
-		        j.jCardOwner, j.jEmail, j.jStreetAddr, j.jStreetNMG, 
+		        j.jCardOwner, j.jCardNo, j.jEmail, j.jStreetAddr, j.jStreetNMG, 
 		        j.jCity, j.jCountry, j.jState, j.jDate, j.jGuest, p.pName,
 		        trunc(jd.jdOrderDate-sysdate) as jdIfCanCancel, 
 		        UPPER(to_char(j.jDate, 'dy', 'NLS_DATE_LANGUAGE=english')) as jdDy, 
@@ -103,7 +103,7 @@
 	<select id="selectOneJumunDetailCancel" resultType="JumunDetailInvoice" parameterType="_int">
 		select jd.jdNo, jd.jdOrderDate, jd.jdOrderTime, jd.jdProductQty, jd.jdProductTot, 
 		        jd.jdOrderQty,  jd.jdStayDate, jd.jNo, jd.pNo, 
-		        j.jCardOwner, j.jEmail, j.jStreetAddr, j.jStreetNMG, 
+		        j.jCardOwner, j.jCardNo, j.jEmail, j.jStreetAddr, j.jStreetNMG, 
 		        j.jCity, j.jCountry, j.jState, j.jDate, j.jGuest, p.pName,
 		        trunc(jd.jdOrderDate-sysdate) as jdIfCanCancel, 
 		        UPPER(to_char(j.jDate, 'dy', 'NLS_DATE_LANGUAGE=english')) as jdDy, 
@@ -115,7 +115,7 @@
 	<select id="selectJumunDetailOrderPage" resultType="JumunDetailInvoice" parameterType="_int">
 		select jd.jdNo, jd.jdOrderDate, jd.jdOrderTime, jd.jdProductQty, jd.jdProductTot, 
 		        jd.jdOrderQty, jd.jdStayDate, jd.jNo, jd.pNo, 
-		        j.jCardOwner, j.jEmail, j.jStreetAddr, j.jStreetNMG, 
+		        j.jCardOwner, j.jCardNo, j.jEmail, j.jStreetAddr, j.jStreetNMG, 
 		        j.jCity, j.jCountry, j.jState, j.jDate, j.jGuest, p.pName,
 		        trunc(jd.jdOrderDate-sysdate) as jdIfCanCancel, 
 		        UPPER(to_char(j.jDate, 'dy', 'NLS_DATE_LANGUAGE=english')) as jdDy, 
@@ -128,7 +128,7 @@
 	<select id="selectJumunDetailCancelOrderPage" resultType="JumunDetailInvoice" parameterType="_int">
 				select jd.jdNo, jd.jdOrderDate, jd.jdOrderTime, jd.jdProductQty, jd.jdProductTot, 
 		        jd.jdOrderQty,  jd.jdStayDate, jd.jNo, jd.pNo, 
-		        j.jCardOwner, j.jEmail, j.jStreetAddr, j.jStreetNMG, 
+		        j.jCardOwner, j.jCardNo, j.jEmail, j.jStreetAddr, j.jStreetNMG, 
 		        j.jCity, j.jCountry, j.jState, j.jDate, j.jGuest, p.pName,
 		        trunc(jd.jdOrderDate-sysdate) as jdIfCanCancel, 
 		        UPPER(to_char(j.jDate, 'dy', 'NLS_DATE_LANGUAGE=english')) as jdDy, 

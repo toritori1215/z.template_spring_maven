@@ -130,12 +130,6 @@
     								<td class="text-center">${jumunDetail.jdProductQty}</td>
     								<td class="text-right">${jumunDetail.jdProductTot}</td>
     							</tr>
-    							<tr>
-    								<td class="no-line"></td>
-    								<td class="no-line"></td>
-    								<td class="no-line text-center"><strong>Total Price</strong></td>
-    								<td class="no-line text-right">${jumunDetail.jTotPay}</td>
-    							</tr>
     						</tbody>
     					</table>
     				</div>

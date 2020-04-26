@@ -15,6 +15,7 @@ public class JumunDetailInvoice {
 	private int pNo;
 	
 	private String jCardOwner;
+	private String jCardNo;
 	private String jEmail;
 	private String jStreetAddr;
 	private String jStreetNMG;
@@ -36,8 +37,9 @@ public class JumunDetailInvoice {
 
 	public JumunDetailInvoice(int jdNo, String jdOrderDate, String jdOrderTime, Integer jdProductQty,
 			Integer jdProductTot, Integer jdOrderQty, String jdStayDate, int jNo, int pNo, String jCardOwner,
-			String jEmail, String jStreetAddr, String jStreetNMG, String jCity, String jCountry, String jState,
-			String jDate, String jGuest, String pName, String jdIfCanCancel, String jdDy, String jdDd, String jdMon) {
+			String jCardNo, String jEmail, String jStreetAddr, String jStreetNMG, String jCity, String jCountry,
+			String jState, String jDate, String jGuest, String pName, String jdIfCanCancel, String jdDy, String jdDd,
+			String jdMon) {
 		super();
 		this.jdNo = jdNo;
 		this.jdOrderDate = jdOrderDate;
@@ -49,6 +51,7 @@ public class JumunDetailInvoice {
 		this.jNo = jNo;
 		this.pNo = pNo;
 		this.jCardOwner = jCardOwner;
+		this.jCardNo = jCardNo;
 		this.jEmail = jEmail;
 		this.jStreetAddr = jStreetAddr;
 		this.jStreetNMG = jStreetNMG;
@@ -142,6 +145,14 @@ public class JumunDetailInvoice {
 
 	public void setjCardOwner(String jCardOwner) {
 		this.jCardOwner = jCardOwner;
+	}
+
+	public String getjCardNo() {
+		return jCardNo;
+	}
+
+	public void setjCardNo(String jCardNo) {
+		this.jCardNo = jCardNo;
 	}
 
 	public String getjEmail() {
