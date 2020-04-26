@@ -29,6 +29,11 @@ public class CartDaoImpl implements CartDao {
 	public Cart checkCartProduct(Cart cart) {
 		return cartMapper.checkCartProduct(cart);
 	}
+
+	@Override
+	public int productTotalCart(HashMap parameterMap) {
+		return cartMapper.productTotalCart(parameterMap);
+	}
 	
 	@Override
 	public int insertCart(Cart cart) {

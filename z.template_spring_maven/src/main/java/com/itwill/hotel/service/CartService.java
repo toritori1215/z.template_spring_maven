@@ -13,6 +13,8 @@ public interface CartService {
 	
 	public Cart checkCartProduct(Cart cart);
 	
+	public int productTotalCart(HashMap parameterMap);
+	
 	public int insertCart(Cart cart);
 	
 	public int deleteCart(Integer cNo);
