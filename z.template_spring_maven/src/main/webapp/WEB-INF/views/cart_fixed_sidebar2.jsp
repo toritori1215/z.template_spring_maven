@@ -129,6 +129,8 @@
 										<a class="cartItemDelete" href="#" pNo="${cartList[i].pNo}"><i class=" icon-trash"></i></a>
 										<a class="cartItemRefresh" href="#"><i class="icon-ccw-2"></i></a>
 										<input class="cartIndex" type="hidden" value="${i}">
+										<input class="delete_pName" type="hidden" value="${cartList[i].pName}">
+										<input class="delete_cCheckin" type="hidden" value="${cartList[i].cCheckin}">
 									</td>
 								</tr>
 							</tbody>
@@ -156,6 +158,7 @@
 											<input type="hidden" cNo="${optionList[i][j].cNo}">
 											<input type="hidden" selectDate="${cartList[i].cCheckin.substring(0,10)}">
 											<input type="hidden" selectTime="${cartList[i].cCheckinTime}">
+											<input type="hidden" id="optionQty_${i}${j}" value="${optionList[i][j].pQty}">
 										</td>
 										<td>
 											￦${optionList[i][j].pPrice/10000}만<sub>/person</sub>
@@ -301,23 +304,38 @@
 	$(".cartItemDelete").on("click", function (d) {
 		var $button = $(this);
 		var cNo = $(this).prev().prev().attr("value");
-		
-		console.log($(".cartItemDelete").next().next());
-		console.log("삭제한 카트의 인덱스:"+$(".cartItemDelete").next().next().attr("value"));
+		var delete_i = $(".cartItemDelete").next().next().attr("value");
+		console.log(delete_i);
+		var delete_pName = $(".cartItemDelete").next().next().next().attr("value");
+		var delete_cCheckin = $(".cartItemDelete").next().next().next().next().attr("value");
+		console.log(delete_pName);
+		console.log(delete_cCheckin);
 		
 		$.ajax({
 			url: "session_check",
 			dataType: "json",
 			success: function(e) {
 				if (e != null) {
-					$button.parent().parent().parent().next().fadeOut("slow", function(f) {
-						var deletedTotal = 0;
-						var index_i = $button.next().next().attr("value");
-						for (var index_j = 0; index_j < 3; index_j++) {
-							console.log($("#dropdownSelect_"+index_i+index_j).val());
-							$("#dropdownSelect_"+index_i+index_j).val("0");
-						}
+					$fadeButton = $button.parent().parent().parent().next();
+					$fadeButton.fadeOut("slow", function(f) {
+						$.ajax({
+							url : "cart_search_options",
+							data : "foodCategory="+delete_pName+"&cCheckin="+delete_cCheckin,
+							method : "POST",
+							dataType : "json",
+							success : function(h) {
+								var oTotal_prev = $("#optionTotal").attr("value");
+								var oTotal_new = +oTotal_prev - +h;
+								$("#optionTotal").attr("value", oTotal_new);
+								var total_prev = $("#totalTotal").attr("value");
+								var total_new = +total_prev - +h;
+								$("#totalTotal").attr("value", total_new);
+								$("#optionTotal").html("￦"+oTotal_new+".0만");
+								$("#totalTotal").html("￦"+total_new+".0만");
+							}
+						});
 					});
+					
 					$button.parent().parent().parent().fadeOut("slow", function(g) {
 						$.ajax({
 							url : "cart_delete",

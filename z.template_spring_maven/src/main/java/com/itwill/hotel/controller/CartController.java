@@ -254,10 +254,11 @@ public class CartController {
 			paramMap.put("mNo", mNo);
 			paramMap.put("pNo", product.getpNo());
 			paramMap.put("cCheckin", cCheckin);
-			deletedAmount += cartService.productTotalCart(paramMap);
-			cartService.deleteByMap(paramMap);
+			if (cartService.productTotalCart(paramMap) != null) {
+				deletedAmount += cartService.productTotalCart(paramMap);
+				cartService.deleteByMap(paramMap);
+			}
 		}
-		System.out.println(deletedAmount);
 		return deletedAmount;
 	}
 	
