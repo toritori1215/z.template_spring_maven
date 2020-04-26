@@ -281,3 +281,5 @@
 <!-- CUSTOM JS -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/z.SiliconVillage/js/member.js"></script>
 
+<!-- Address Autocomplete with Google API -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4JNh6iELs0fU_OpkHc1sFUzYeR5Mtxk8&libraries=places&callback=initMap"></script>

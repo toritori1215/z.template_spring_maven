@@ -1,6 +1,12 @@
 package com.itwill.hotel.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,11 +17,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.itwill.hotel.domain.Member;
+import com.itwill.hotel.domain.RestaurantCartDTO;
 import com.itwill.hotel.domain.RestaurantDTO;
+import com.itwill.hotel.domain.Restaurant_JD_DTO;
 import com.itwill.hotel.service.RestaurantService;
 import com.itwill.hotel.util.PageInputDto;
 import com.itwill.hotel.util.RestaurantBoardListPageDto;
 import com.itwill.hotel.util.TimeCalculator;
+
+import net.sf.json.JSONArray;
 
 @RestController
 public class RestaurantViewRestController {
@@ -156,14 +167,43 @@ public class RestaurantViewRestController {
 			
 		return cnt;
 	}
-	
-	@RequestMapping(value = "emailCheck")
-	public boolean emailCheck(String email1,String email2) {
-		boolean result = false;
-		if(email1.equals(email2)) {
-			result = true;
+	@RequestMapping(value = "cartUpdateAjax")
+	public String cartUpdateAjax(@RequestParam String json_data,
+								 HttpSession session) {
+		System.out.println("json_data ::" + json_data);
+		//1.member 번호 가져오기
+		Member member = (Member)session.getAttribute("sUser");
+		
+		//2.기존 카트 비우기
+		int deleteCnt = restService.deleteMemberCart(member.getmNo());
+		if(deleteCnt>0) {
+			System.out.println("삭제 성공!!!!");
 		}
-		return result;
+		
+		//JSON 형태의 문자열 List<Map> 파싱
+		List<Map<String,Object>> resultMapArray = new ArrayList<Map<String,Object>>();
+	    resultMapArray = JSONArray.fromObject(json_data);
+	    
+	    List<RestaurantCartDTO> c_list = new ArrayList<RestaurantCartDTO>(); 
+	   
+	    //밑작업(중요) : 카트에서 넘어온 item들의 정보를 리스트 객채로 받아  리스트 주문 상세 dto정보에 Insert
+	    for (Map<String,Object> resultMap : resultMapArray) {
+			Integer pno = Integer.parseInt((String) resultMap.get("pno"));
+			Integer cproductqty = Integer.parseInt((String)resultMap.get("jdproductqty"));
+			Integer cproducttot = Integer.parseInt((String)resultMap.get("jdproducttot"));
+			RestaurantCartDTO cart_dto = new RestaurantCartDTO(member.getmNo(),cproductqty, cproducttot,pno,null);
+			c_list.add(cart_dto);
+		}
+	    int insertCnt=0;
+		for (RestaurantCartDTO restaurantCartDTO : c_list) {
+			insertCnt = restService.insertCartInfo(restaurantCartDTO);
+		}
+		if(insertCnt>0) {
+			System.out.println("카트 초기화 완료!!!");
+		}
+		return insertCnt+"";
 	}
+	
+	
 	
 }

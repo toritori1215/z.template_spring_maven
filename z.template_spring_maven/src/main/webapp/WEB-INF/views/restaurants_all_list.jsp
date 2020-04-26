@@ -473,7 +473,7 @@
 				hide_min_max: true,
 				keyboard: true,
 				min: 0,
-				max: 500000,
+				max: 200000,
 				from: 10000,
 				to: 100000,
 				type: 'double',

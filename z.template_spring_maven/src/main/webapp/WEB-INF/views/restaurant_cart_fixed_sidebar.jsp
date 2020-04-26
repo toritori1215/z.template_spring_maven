@@ -109,6 +109,7 @@
 										</td>
 										<td>
 											<strong class="priceDisplay"> ${cartItem.cproductTypePay}</strong>
+											<input type ="hidden" id="cproductTypePay" value ="${cartItem.cproductTypePay}">
 										</td>
 										<td class="options">
 											<a href="#"><i class=" icon-trash"></i></a>
@@ -323,7 +324,7 @@
 									</div>
 									<hr>
 									Deposit per person<br>
-									￦  ${deposit_cost}
+									￦  ${restaurant_prod.pprice}
 
 									<hr>
 									  ※예약금은 레스토랑 도착 시 
@@ -370,7 +371,7 @@
 											Deposit cost
 										</td>
 										<td class="text-right" id="depositPrice" price_list='price'>
-											${deposit_cost}
+											${restaurant_prod.pprice}
 											
 										</td>
 									</tr>
@@ -413,7 +414,9 @@
 								<!-- 전송 데이터 -->
 								
 								<!-- 웹용 -->
-								<input type="hidden" id="PeoplePerPrice" name="PeoplePerPrice" value="${deposit_cost}">
+								
+								<input type="hidden" id="day" name="day" value="">
+								<input type="hidden" id="PeoplePerPrice" name="PeoplePerPrice" value="${restaurant_prod.pprice}">
 								<!-- 웹용 -->
 								<input type="hidden" name="seatCapacity" id="seatCapacity" value="${restaurant_prod.pavailable}">
 							</form>
@@ -421,7 +424,7 @@
 							
 							
 							<a class="btn_full" id="checkOutBtn" href="restaurant_payment_fixed_sidebar" >BUY NOW</a>
-							<a class="btn_full_outline" href="restaurants_all_list"><i class=" icon-right"></i> CONTINUE SHOPPING</a>
+							<a class="btn_full_outline" id="restaurants_all_list" href="restaurants_all_list"><i class=" icon-right"></i> CONTINUE SHOPPING</a>
 
 						</div>
 						<div class="box_style_4">
@@ -542,6 +545,11 @@
 		
 		//on load Start
 		$(function(){
+			
+			
+			console.log("cproductTypePay :: " +$('#cproductTypePay').val());
+			
+			
 			//예약창 닫혀있을시 reservation_info'는 숨겨져야함 
 			$('.reservation_info').hide();
 			//$('#seatingDiv').hide();
@@ -599,12 +607,32 @@
 				//버리기 아이콘 정의(trash)
 				$('tr:nth-child('+j+') > td.options > a > i').on('click',function(e){
 					$('#'+(j-1)).hide();
-					let lengthSetting = Number(document.getElementById('cartListLength').value);
-					document.getElementById('cartListLength').value = lengthSetting;
+					//let lengthSetting = Number(document.getElementById('cartListLength').value);
+					//document.getElementById('cartListLength').value = lengthSetting;
+					
 					let totPrice = calculTotalPrice();
 					let allFoodSumPrice = calculAllFoodSumPrice();
 					$('#sumPrice').text("￦"+numberWithCommas(totPrice));
 					$('#foodsPriceTd').text("￦"+numberWithCommas(allFoodSumPrice));
+					cartUpdateAjaxRequestFunction();
+					/*
+					requestSettingCartList();
+					let json_data = document.getElementById('itemObjectJSONList').value;
+					console.log(json_data);
+					//let json_Array = JSON.stringify(json_data);
+					$.ajax({
+						url: 'cartUpdateAjax',
+						data : {'json_data':json_data},
+						dataType: "String",
+						async : true,
+						success : function(result){
+							if(result !=null){
+								console.log("카트 업데이트 성공");
+							}
+						}
+						
+					});
+					*/
 					e.preventDefault();
 				});
 			}
@@ -691,14 +719,22 @@
 			$('input.date-pick').datepicker('setDate', 'today');
 
 			$('#datePicker').datepicker().on('changeDate', function(e) {
-				let dayStr = document.getElementById('datePicker').value;
+				//let dayStr = document.getElementById('datePicker').value;
 				//console.log("day::"+ dayStr);
-				let daycustom = dayStr.substring(dayStr.indexOf(',')+1).trim();
+				//let daycustom = dayStr.substring(dayStr.indexOf(',')+1).trim();
 				//console.log('daycustom ::' + daycustom);
 				//요일 변경이 되었을시 input (#datePicker) 값 변경
 				//$('#timePicker').timepicker('setDay',daycustom); timepicker가 클릭되었을시에 setDay값 셋팅으로 바꾸어주어 필요 없어짐
 				$('#timePicker').val('9:00 AM');
-				//$('#timePicker').timepicker('setHour','9');
+				let dateStr = $('#datePicker').datepicker('getDate');
+				console.log(dateStr);
+				$('#day').val(dateStr);
+				let date = $('#day').val();
+				let day= date.substring(0,3);
+				document.getElementById('day').value = day;
+				//let daystr = $('day').val().substring(0,3);
+				//$('day').val(daystr);
+				$('#timePicker').timepicker('setDay',day);
 				//$('#timePicker').timepicker('setMeridian','AM');
 
    			 });
@@ -746,15 +782,15 @@
 				$('table > tbody > tr:nth-child(2) > td:nth-child(2) > input').val('AM');
 				
 				//4.요일 계산 및 timepicker setDay 셋팅
-				let dayStr = document.getElementById('datePicker').value;
+				let dayStr = document.getElementById('day').value;
 
 				//console.log("day::"+ dayStr);
-				let daycustom = dayStr.substring(dayStr.indexOf(',')+1).trim();
+				//let daycustom = dayStr.substring(dayStr.indexOf(',')+1).trim();
 				//console.log('daycustom ::' + daycustom);
 
 				
 				//timepicker에 Day seting
-				$('#timePicker').timepicker('setDay',daycustom);
+				$('#timePicker').timepicker('setDay',dayStr);
 
 			});
 			
@@ -798,69 +834,99 @@
 				// 2.상품 총금액 -> $(#sumPrice)
 				// 3.예약의 경우 -> jdorderdate ,jdordertime, jdorderqty 정보를 전송 {총 7개 데이터를 다뤄야함}
 				e.preventDefault();
-				if(show_reservation_window){
-					console.log("창이 열려있는경우");
-					//deposit가격을 포함시켜야함
-					let totalSeatBookingCnt = document.getElementById('personsCntId').value;
-					let bookingDate = document.getElementById('datePicker').value;
-					let bookingTime = document.getElementById('timePicker').value;
-					//console.log('totalSeatBookingCnt ::' + totalSeatBookingCnt);
-					//console.log('bookingDate ::' + bookingDate);
-					//console.log('bookingTime ::' + bookingTime);
+				let itemlistCheck = itemListCheckFunction();
 					
-					document.getElementById('totalSeatBookingCnt').value = totalSeatBookingCnt;
-					document.getElementById('bookingDate').value = bookingDate;
-					document.getElementById('bookingTime').value = bookingTime;
-					
-					console.log('totalSeatBookingCnt ==>'+ totalSeatBookingCnt);
-					console.log('bookingDate ==>'+ bookingDate);
-					console.log('bookingTime ==>'+ bookingTime);
-					
-					requestSettingCartList();
-					document.getElementById('totalFoodPrice').value = calculAllFoodSumPrice();
-					document.getElementById('totalPrice').value = totalPrice_ChangeNumber();
-					requestCheckout1();
-				}else{
-					console.log("창이 닫혀있는경우");
-					//deposit가격을 포함시키지 말아야함.
-					
-					/* json 객체 만들기 참조
-					let contact = new Object();
-					contact.firstname = "Jesper";
-					contact.surname = "Aaberg";
-					contact.phone = ["555-0100", "555-0120"];
-					console.log(contact);
-					
-					let memberfilter = new Array();
-					memberfilter[0] = "surname";
-					memberfilter[1] = "phone";
-					//memberfilter[2] = "firstname";
-					let jsonText = JSON.stringify(contact, memberfilter, "\t");
-					console.log(jsonText);
-					//결과
-					{
-						"surname": "Aaberg",
-						"phone": [
-							"555-0100",
-							"555-0120"
-						],
-						"firstname": "Jesper"
-					}
-					
-					*/
-					requestSettingCartList();
-					document.getElementById('totalPrice').value = totalPrice_ChangeNumber();
-					document.getElementById('totalFoodPrice').value = calculAllFoodSumPrice();
-					requestCheckout2();
+				if(itemlistCheck){
+					checkOutControllFunction(show_reservation_window);
 				}
+					
 				
-				//e.preventDefault();
 			});
 			
-			
+			$('#restaurants_all_list').on('click',function(e){
+				e.preventDefault();
+				cartUpdateAjaxRequestFunction();
+				location.href ="restaurants_all_list";
+			});
 			
 		});
 		//on load end
+		function itemListCheckFunction(){
+			let isListExist = false;
+			let isVisableArray = $('#listBody > tr').get();
+			$.each(isVisableArray, function(index,elt){
+				isListExist = $(elt).is(":visible");
+				if(isListExist){
+					return false;
+				}
+			});
+			
+			if(isListExist==false){
+				window.alert("아이템 항목이 존재하지 않습니다.");
+			}
+			
+			return isListExist;
+		}
+		
+		function checkOutControllFunction(show_reservation_window){
+			if(show_reservation_window){
+				console.log("창이 열려있는경우");
+				//deposit가격을 포함시켜야함
+				let totalSeatBookingCnt = document.getElementById('personsCntId').value;
+				let bookingDate = document.getElementById('datePicker').value;
+				let bookingTime = document.getElementById('timePicker').value;
+				//console.log('totalSeatBookingCnt ::' + totalSeatBookingCnt);
+				//console.log('bookingDate ::' + bookingDate);
+				//console.log('bookingTime ::' + bookingTime);
+				
+				document.getElementById('totalSeatBookingCnt').value = totalSeatBookingCnt;
+				document.getElementById('bookingDate').value = bookingDate;
+				document.getElementById('bookingTime').value = bookingTime;
+				
+				console.log('totalSeatBookingCnt ==>'+ totalSeatBookingCnt);
+				console.log('bookingDate ==>'+ bookingDate);
+				console.log('bookingTime ==>'+ bookingTime);
+				
+				requestSettingCartList();
+				document.getElementById('totalFoodPrice').value = calculAllFoodSumPrice();
+				document.getElementById('totalPrice').value = totalPrice_ChangeNumber();
+				requestCheckout1();
+			}else{
+				console.log("창이 닫혀있는경우");
+				//deposit가격을 포함시키지 말아야함.
+				
+				/* json 객체 만들기 참조
+				let contact = new Object();
+				contact.firstname = "Jesper";
+				contact.surname = "Aaberg";
+				contact.phone = ["555-0100", "555-0120"];
+				console.log(contact);
+				
+				let memberfilter = new Array();
+				memberfilter[0] = "surname";
+				memberfilter[1] = "phone";
+				//memberfilter[2] = "firstname";
+				let jsonText = JSON.stringify(contact, memberfilter, "\t");
+				console.log(jsonText);
+				//결과
+				{
+					"surname": "Aaberg",
+					"phone": [
+						"555-0100",
+						"555-0120"
+					],
+					"firstname": "Jesper"
+				}
+				
+				*/
+				requestSettingCartList();
+				document.getElementById('totalPrice').value = totalPrice_ChangeNumber();
+				document.getElementById('totalFoodPrice').value = calculAllFoodSumPrice();
+				requestCheckout2();
+			}
+		}
+		
+		
 		
 		function requestCheckout1(){
 			document.f.action = 'restaurant_payment_fixed_sidebar1';
@@ -930,7 +996,24 @@
 			console.log("$(itemObjectJSONList).val()::"+$('#itemObjectJSONList').val());
 		}
 		
-
+		function cartUpdateAjaxRequestFunction(){
+			requestSettingCartList();
+			let json_data = document.getElementById('itemObjectJSONList').value;
+			console.log(json_data);
+			//let json_Array = JSON.stringify(json_data);
+			$.ajax({
+				url: 'cartUpdateAjax',
+				data : {'json_data':json_data},
+				dataType: "String",
+				async : true,
+				success : function(result){
+					if(result !=null){
+						console.log("카트 업데이트 성공");
+					}
+				}
+				
+			});
+		}
 	</script>
 		
 

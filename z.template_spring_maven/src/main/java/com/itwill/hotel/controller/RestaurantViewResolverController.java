@@ -209,7 +209,7 @@ public class RestaurantViewResolverController {
 					int cartSavePriceCnt = restaurantCartDTO.getCproductTypePay();
 					int updateFoodCnt = cartSaveFoodCnt + foodCount;
 					int updatefoodsPrice = cartSavePriceCnt + foodsPrice;
-					HashMap<String, Integer> updateMap = new HashMap<String, Integer>();
+					//HashMap<String, Integer> updateMap = new HashMap<String, Integer>();
 					RestaurantCartDTO updateCartDto = 
 							new RestaurantCartDTO(user_info.getmNo(), updateFoodCnt, updatefoodsPrice, pno, null);
 					int updateCnt = restService.updateCartInfo(updateCartDto);
@@ -257,7 +257,6 @@ public class RestaurantViewResolverController {
 	@RequestMapping("restaurant_single_food_detail")
 	public String single_restaurant_with_gallery(Model model,
 												 HttpSession session,
-
 												 @RequestParam(value="pno",required = false) Integer pno) throws WrongRestaurantDataException {
 		System.out.println("pno ::->" + pno);
 		if(pno==null || pno <= -1) {
@@ -265,8 +264,6 @@ public class RestaurantViewResolverController {
 		}
 		
 
-		
-		
 		RestaurantDTO product = restService.get_Restaurant_Product(pno);
 		RestaurantDTO restaurant_book= restService.get_Restaurant_Product_name_select("BPPP");
 		
@@ -461,7 +458,7 @@ public class RestaurantViewResolverController {
 				System.out.println("삭제 성공");
 			}
 		}
-		
+		model.addAttribute("jd_list",jd_list);
 
 		return "restaurant_confirmation_fixed_sidebar";
 	}
