@@ -22,4 +22,6 @@ public interface ReviewService {
 	
 	public int ifExisted(HashMap hashMap);
 	
+	public int deleteReviewMember(int mNo);
+	
 }

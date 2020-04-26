@@ -57,5 +57,10 @@ public class BlogServiceImpl implements BlogService {
 	public int deleteBlog(HashMap hashMap) {
 		return blogDao.deleteBlog(hashMap);
 	}
+
+	@Override
+	public int deleteBlogMember(int mNo) {
+		return blogDao.deleteBlogMember(mNo);
+	}
 	
 }

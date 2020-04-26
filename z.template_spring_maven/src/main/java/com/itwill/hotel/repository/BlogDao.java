@@ -25,4 +25,6 @@ public interface BlogDao {
 	
 	public int deleteBlog(HashMap hashMap);
 	
+	public int deleteBlogMember(int mNo);
+	
 }

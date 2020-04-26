@@ -19,12 +19,12 @@ $('#collapseMap').on('shown.bs.collapse', function(e){
 				name: 'King Food',
 				location_latitude: 48.873792, 
 				location_longitude: 2.295028,
-				map_image_url: 'img/thumb_map_2.jpg',
+				map_image_url: 'src/main/webapp/resources/img/thumb_map_2.jpg',
 				name_point: 'King Food',
 				description_point: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
 				get_directions_start_address: '',
 				phone: '+3934245255',
-				url_point: 'single_restaurant.html'
+				url_point: 'restaurant_single_food_detail?pno=11'
 			}
 			],
 			'Pizza': [
@@ -32,12 +32,12 @@ $('#collapseMap').on('shown.bs.collapse', function(e){
 				name: 'Bella Napoli',
 				location_latitude: 48.865633, 
 				location_longitude: 2.321236,
-				map_image_url: 'img/thumb_map_2.jpg',
+				map_image_url: 'src/main/webapp/resources/img/thumb_map_2.jpg',
 				name_point: 'Bella Napoli',
 				description_point: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
 				get_directions_start_address: '',
 				phone: '+3934245255',
-				url_point: 'single_restaurant.html'
+				url_point: 'restaurant_single_food_detail'
 			}
 			],
 			'Chinese': [
@@ -45,23 +45,23 @@ $('#collapseMap').on('shown.bs.collapse', function(e){
 				name: 'Dragon Tower',
 				location_latitude: 48.863893, 
 				location_longitude: 2.342348,
-				map_image_url: 'img/thumb_map_2.jpg',
+				map_image_url: 'src/main/webapp/resources/img/thumb_map_2.jpg',
 				name_point: 'Dragon Tower',
 				description_point: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
 				get_directions_start_address: '',
 				phone: '+3934245255',
-				url_point: 'single_restaurant.html'
+				url_point: 'restaurant_single_food_detail'
 			},
 			{
 				name: 'China food ',
 				location_latitude: 48.860642,
 				location_longitude: 2.352245,
-				map_image_url: 'img/thumb_map_2.jpg',
+				map_image_url: 'src/main/webapp/resources/img/thumb_map_2.jpg',
 				name_point: 'China food',
 				description_point: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
 				get_directions_start_address: '',
 				phone: '+3934245255',
-				url_point: 'single_restaurant.html'
+				url_point: 'restaurant_single_food_detail'
 			}
 			],
 			'Fish': [
@@ -69,12 +69,12 @@ $('#collapseMap').on('shown.bs.collapse', function(e){
 				name: 'SeaFood',
 				location_latitude: 48.858370, 
 				location_longitude: 2.294481,
-				map_image_url: 'img/thumb_map_2.jpg',
+				map_image_url: 'src/main/webapp/resources/img/thumb_map_2.jpg',
 				name_point: 'SeaFood',
 				description_point: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
 				get_directions_start_address: '',
 				phone: '+3934245255',
-				url_point: 'single_restaurant.html'
+				url_point: 'restaurant_single_food_detail'
 			}
 			],
 			'Bar': [
@@ -82,12 +82,12 @@ $('#collapseMap').on('shown.bs.collapse', function(e){
 				name: 'Madlene Bar',
 				location_latitude: 48.858370, 
 				location_longitude: 2.294481,
-				map_image_url: 'img/thumb_map_2.jpg',
+				map_image_url: 'src/main/webapp/resources/img/thumb_map_2.jpg',
 				name_point: 'Madlene Bar',
 				description_point: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
 				get_directions_start_address: '',
 				phone: '+3934245255',
-				url_point: 'single_restaurant.html'
+				url_point: 'restaurant_single_food_detail'
 			}
 			],
 			'International': [
@@ -95,23 +95,23 @@ $('#collapseMap').on('shown.bs.collapse', function(e){
 				name: 'Alfredo',
 				location_latitude: 48.860819, 
 				location_longitude: 2.354507,
-				map_image_url: 'img/thumb_map_2.jpg',
+				map_image_url: 'src/main/webapp/resources/img/thumb_map_2.jpg',
 				name_point: 'Alfredo',
 				description_point: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
 				get_directions_start_address: '',
 				phone: '+3934245255',
-				url_point: 'single_restaurant.html'
+				url_point: 'restaurant_single_food_detail'
 			},
 			{
 				name: 'St. Germain',
 				location_latitude: 48.853798,
 				location_longitude: 2.333328,
-				map_image_url: 'img/thumb_map_2.jpg',
+				map_image_url: 'src/main/webapp/resources/img/thumb_map_2.jpg',
 				name_point: 'St. Germain',
 				description_point: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
 				get_directions_start_address: '',
 				phone: '+3934245255',
-				url_point: 'single_restaurant.html'
+				url_point: 'restaurant_single_food_detail'
 			}
 			]
 
@@ -408,7 +408,7 @@ $('#collapseMap').on('shown.bs.collapse', function(e){
 					marker = new google.maps.Marker({
 						position: new google.maps.LatLng(item.location_latitude, item.location_longitude),
 						map: mapObject,
-						icon: 'img/pins/' + key + '.png',
+						icon: 'src/main/webapp/resources/img/pins/' + key + '.png',
 					});
 
 					if ('undefined' === typeof markers[key])

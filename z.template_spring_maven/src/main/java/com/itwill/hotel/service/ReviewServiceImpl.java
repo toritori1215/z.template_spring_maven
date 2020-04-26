@@ -51,4 +51,9 @@ public class ReviewServiceImpl implements ReviewService {
 		return reviewDao.ifExisted(hashMap);
 	}
 
+	@Override
+	public int deleteReviewMember(int mNo) {
+		return reviewDao.deleteReviewMember(mNo);
+	}
+
 }

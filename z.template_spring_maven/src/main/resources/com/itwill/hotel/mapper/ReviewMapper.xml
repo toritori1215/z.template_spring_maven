@@ -52,4 +52,9 @@
 		where pNo=#{pNo} and mNo=#{mNo}
 	</delete>
 	
+	<delete id="deleteReviewMember">
+		delete from review
+		where mNo=#{mNo}
+	</delete>
+	
 </mapper>

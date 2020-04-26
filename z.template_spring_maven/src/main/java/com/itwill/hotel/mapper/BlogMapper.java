@@ -24,5 +24,7 @@ public interface BlogMapper {
 	public int updateBlogImg(HashMap hashMap);
 	
 	public int deleteBlog(HashMap hashMap);
+	
+	public int deleteBlogMember(int mNo);
 
 }

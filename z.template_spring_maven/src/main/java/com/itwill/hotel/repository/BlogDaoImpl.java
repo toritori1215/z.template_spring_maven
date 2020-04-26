@@ -57,5 +57,10 @@ public class BlogDaoImpl implements BlogDao {
 	public int deleteBlog(HashMap hashMap) {
 		return blogMapper.deleteBlog(hashMap);
 	}
+
+	@Override
+	public int deleteBlogMember(int mNo) {
+		return blogMapper.deleteBlogMember(mNo);
+	}
 	
 }
