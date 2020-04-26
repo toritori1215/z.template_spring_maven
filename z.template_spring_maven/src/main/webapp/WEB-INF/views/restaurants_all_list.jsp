@@ -14,7 +14,7 @@
 	
 	<!-- End Header -->
 
-	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/img/restaurant_top.jpg" data-natural-width="1400" data-natural-height="470">
+	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/css/images/restaurant_Product_img/Restaurant.jpg" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
 				<h1>Paris restaurants</h1>
@@ -217,7 +217,7 @@
 									</div>
 									 -->
 									<div class="img_list">
-										<a href="restaurant_single_food_detail?pno=${restListPage.list[st.index].pno}">
+										<a href="restaurant_single_food_detail?pno=${restListPage.list[st.index].pno}" id="pnoId${st.index}">
 											
 											<c:set var="fileImg" 
 											 value="${fn:split(restListPage.list[st.index].pimg,'/')}"/>
@@ -327,7 +327,7 @@
 											
 											<span class="normal_price_list"></span><small>*Per food</small>
 											 											
-											<p><a href="restaurant_single_food_detail?pno=${restListPage.list[st.index].pno}" class="btn_1">Details</a>
+											<p><a href="restaurant_single_food_detail?pno=${restListPage.list[st.index].pno}" id="pnoId2${st.index}" class="btn_1">Details</a>
 											</p>
 										</div>
 	
@@ -817,6 +817,9 @@
 				console.log(pathimg);
 				$('#imgId'+i).attr('src',pathimg);
 				
+				let pnoSetting = 'restaurant_single_food_detail?pno='+ result.list[i].pno;
+				$('#pnoId'+i).attr('href',pnoSetting);
+				$('#pnoId2'+i).attr('href',pnoSetting);
 				
 				if(result.startRowNum -1<= i
 						&& result.endRowNum -1 >= i){
