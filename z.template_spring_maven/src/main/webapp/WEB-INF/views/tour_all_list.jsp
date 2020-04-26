@@ -174,7 +174,7 @@
 					<div class="box_style_2">
 						<i class="icon_set_1_icon-57"></i>
 						<h4>Need <span>Help?</span></h4>
-						<a href="tel://004542344599" class="phone">+45 423 445 99</a>
+						<a href="tel://01071416646" class="phone">+82-10-7141-6646</a>
 						<small>Monday to Friday 9.00am - 7.30pm</small>
 					</div>
 				</aside>
@@ -187,10 +187,10 @@
 								<div class="styled-select-filters">
 									<select name="sort_price" id="sort_price">
 										<option value="" selected>Sort by price</option>
-										<option value="lower">Lowest price</option>
-										<option value="higher">Highest price</option>
-										<option value="lower">Lowest ranking</option>
-										<option value="higher">Highest ranking</option>
+										<option value="ASC" >Lowest price</option>
+										<option value="DESC">Highest price</option>
+										<option value="LOWER">Lowest ranking</option>
+										<option value="HIGHER">Highest ranking</option>
 									</select>
 								</div>
 							</div>

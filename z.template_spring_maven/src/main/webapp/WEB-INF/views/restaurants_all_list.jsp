@@ -28,11 +28,10 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="#">Home</a>
+					<li><a href="main">Home</a>
 					</li>
-					<li><a href="#">Category</a>
-					</li>
-					<li>Page active</li>
+					<li><a href="restaurants_all_list">Restaurant</a>
+					</li>					
 				</ul>
 			</div>
 		</div>
@@ -161,7 +160,7 @@
 					<div class="box_style_2">
 						<i class="icon_set_1_icon-57"></i>
 						<h4>Need <span>Help?</span></h4>
-						<a href="tel://004542344599" class="phone">+45 423 445 99</a>
+						<a href="tel://01071416646" class="phone">+82-10-7141-6646</a>
 						<small>Monday to Friday 9.00am - 7.30pm</small>
 					</div>
 				</aside>
@@ -191,11 +190,14 @@
 									</select>
 								</div>
 							</div>
-							<!-- 
+							
 							<div class="col-md-6 col-sm-4 d-none d-sm-block text-right">
-								<a href="all_restaurants_grid.html" class="bt_filters"><i class="icon-th"></i></a> <a href="#" class="bt_filters"><i class="icon-list"></i></a>
+								<!-- 
+								<a href="all_restaurants_grid.html" class="bt_filters"><i class="icon-th"></i></a>
+								--> 
+								<a href="restautrants_all_list" class="bt_filters"><i class="icon-list"></i></a>
 							</div>
-							 -->
+							 
 						</div>
 					</div>
 					<!--/tools -->
