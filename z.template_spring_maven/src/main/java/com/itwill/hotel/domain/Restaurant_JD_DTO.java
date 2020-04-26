@@ -17,7 +17,6 @@ public class Restaurant_JD_DTO {
 		// TODO Auto-generated constructor stub
 	}
 	
-
 	public Restaurant_JD_DTO(Integer jno, String jdorderdate, String jdordertime, Integer jdproductqty,
 			Integer jdproducttot, Integer jdorderqty, Integer pno, Integer pdno, RestaurantDTO jdItemlist) {
 		super();
@@ -31,6 +30,13 @@ public class Restaurant_JD_DTO {
 		this.pdno = pdno;
 		this.jdItemlist = jdItemlist;
 	}
+
+
+
+
+
+
+
 
 
 
@@ -102,19 +108,14 @@ public class Restaurant_JD_DTO {
 		this.pdno = pdno;
 	}
 	
-	
-
-
 
 	public RestaurantDTO getJdItemlist() {
 		return jdItemlist;
 	}
 
-
 	public void setJdItemlist(RestaurantDTO jdItemlist) {
 		this.jdItemlist = jdItemlist;
 	}
-
 
 	@Override
 	public String toString() {
@@ -122,6 +123,13 @@ public class Restaurant_JD_DTO {
 				+ ", jdproductqty=" + jdproductqty + ", jdproducttot=" + jdproducttot + ", jdorderqty=" + jdorderqty
 				+ ", pno=" + pno + ", pdno=" + pdno + ", jdItemlist=" + jdItemlist + "]";
 	}
+
+
+
+
+
+	
+
 
 
 	

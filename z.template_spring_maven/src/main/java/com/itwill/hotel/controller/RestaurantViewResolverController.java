@@ -398,6 +398,7 @@ public class RestaurantViewResolverController {
 		return "restaurant_payment_fixed_sidebar";
 	}
 	
+	
 	@LoginCheck
 	@RequestMapping(value= "restaurant_confirmation_fixed_sidebar",method= RequestMethod.POST)
 	public String restaurant_confirmation_fixed_sidebar(@RequestParam Integer totalFoodPrice,

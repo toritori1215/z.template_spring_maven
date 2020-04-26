@@ -18,11 +18,11 @@
 		<collection property="restproductList"
 					resultMap="RestaurantDTO"/>
 	</resultMap>
-	<!-- 
-	<resultMap id="jd_dto"
+	
+	<resultMap id="jd_dto_info"
 			   type="com.itwill.hotel.domain.Restaurant_JD_DTO"
 			   autoMapping="true">
-		<collection property="restproductList"
+		<association property="jdItemlist"
 					resultMap="RestaurantDTO"/>
 	</resultMap>
 	
@@ -30,9 +30,9 @@
 	           type="com.itwill.hotel.domain.Restaurant_J_DTO" 
 			   autoMapping="true">
 		<collection property="jd_dto"
-					resultMap="RestaurantDTO"/>
+					resultMap="jd_dto_info"/>
 	</resultMap>
-	 -->
+	
 	
 	
 	
@@ -285,7 +285,18 @@
 
 	</insert>
 	
+	<select id="selectJumunComplete"
+			parameterType="int"
+			resultMap="jumunDto">
+		select * 
+		from jumun j 
+		inner join JUMUN_DETAIL jd 
+		on j.jno=jd.jno 
+		inner join PRODUCT p
+		on jd.pno = p.pno
+		where j.jno= (select max(jno) from jumun j where j.mno = #{mno})
 	
+	</select>
 	
 		<!-- 
 		insert into JUMUN_DETAIL(JNO, JDORDERDATE, JDORDERTIME, JDPRODUCTQTY, JDPRODUCTTOT, JDORDERQTY, PNO ,JDNO)

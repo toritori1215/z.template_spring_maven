@@ -222,6 +222,8 @@ public class RestaurantServiceImpl implements RestaurantService{
 		//////
 		Restaurant_J_DTO j_dto = restaurantdao.selectJumunComplete(mno);
 		/////
+		System.out.println(j_dto);
+		
 		return j_dto;
 	}
 

@@ -237,9 +237,9 @@ public class RestaurantDaoImpl implements RestaurantDao{
 
 
 	@Override
-	public Restaurant_J_DTO selectJumunComplete(int mno) {
+	public List<Restaurant_J_DTO> selectJumunComplete(int mno) {
 		// TODO Auto-generated method stub
-		Restaurant_J_DTO j_dto = restMapper.selectJumunComplete(mno);
+		Restaurant_J_DTO j_dto = (List<Restaurant_J_DTO>) restMapper.selectJumunComplete(mno);
 		return j_dto;
 	}
 
