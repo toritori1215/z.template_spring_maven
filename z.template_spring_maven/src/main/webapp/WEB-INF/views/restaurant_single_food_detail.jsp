@@ -567,7 +567,7 @@
 					<div class="box_style_4">
 						<i class="icon_set_1_icon-90"></i>
 						<h4><span>Book</span> by phone</h4>
-						<a href="tel://004542344599" class="phone">+45 423 445 99</a>
+						<a href="tel://01071416646" class="phone">+82-10-7141-6646</a>
 						<small>Monday to Friday 9.00am - 7.30pm</small>
 					</div>
 
