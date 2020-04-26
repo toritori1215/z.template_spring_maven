@@ -31,4 +31,6 @@ public interface ProductService {
 	
 	public int updateRate(int pNo);
 	
+	public int deleteProduct(int pNo);
+	
 }

@@ -30,4 +30,6 @@ public interface ProductDao {
 	
 	public int updateRate(int pNo);
 	
+	public int deleteProduct(int pNo);
+	
 }

@@ -130,6 +130,7 @@
 										<a class="cartItemRefresh" href="#"><i class="icon-ccw-2"></i></a>
 										<input class="cartIndex" type="hidden" value="${i}">
 										<input class="delete_pName" type="hidden" value="${cartList[i].pName}">
+										<input class="delete_cCheckin" type="hidden" value="${cartList[i].cCheckin}">
 									</td>
 								</tr>
 							</tbody>
@@ -305,8 +306,10 @@
 		var cNo = $(this).prev().prev().attr("value");
 		var delete_i = $(".cartItemDelete").next().next().attr("value");
 		console.log(delete_i);
-		var delete_pNo = $(".delete_pName").next().next().next().attr("value");
-		console.log(delete_pNo);
+		var delete_pName = $(".cartItemDelete").next().next().next().attr("value");
+		var delete_cCheckin = $(".cartItemDelete").next().next().next().next().attr("value");
+		console.log(delete_pName);
+		console.log(delete_cCheckin);
 		
 		$.ajax({
 			url: "session_check",
@@ -315,29 +318,24 @@
 				if (e != null) {
 					$fadeButton = $button.parent().parent().parent().next();
 					$fadeButton.fadeOut("slow", function(f) {
-						$.ajax{
+						$.ajax({
 							url : "cart_search_options",
-							data : "foodCategory="+cNo,
+							data : "foodCategory="+delete_pName+"&cCheckin="+delete_cCheckin,
 							method : "POST",
 							dataType : "json",
 							success : function(h) {
-								
+								var oTotal_prev = $("#optionTotal").attr("value");
+								var oTotal_new = +oTotal_prev - +h;
+								$("#optionTotal").attr("value", oTotal_new);
+								var total_prev = $("#totalTotal").attr("value");
+								var total_new = +total_prev - +h;
+								$("#totalTotal").attr("value", total_new);
+								$("#optionTotal").html("￦"+oTotal_new+".0만");
+								$("#totalTotal").html("￦"+total_new+".0만");
 							}
-							
-						}
-						
-						/*
-						var deletedTotal = 0;
-						var index_i = $button.next().next().attr("value");
-						console.log(index_i);
-						for (var index_j = 0; index_j < 3; index_j++) {
-							console.log($("#dropdownSelect_"+index_i+index_j).val());
-							deletedTotal += $("#dropdownSelect_"+index_i+index_j).val() * $("#optionQty_"+index_i+index_j).attr("value");
-							console.log($("#option_"+index_i+index_j).val());
-						}
-						console.log(deletedTotal);
-						*/
+						});
 					});
+					
 					$button.parent().parent().parent().fadeOut("slow", function(g) {
 						$.ajax({
 							url : "cart_delete",

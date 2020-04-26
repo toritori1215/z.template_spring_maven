@@ -239,21 +239,27 @@ public class CartController {
 		return cProductQty_int*pPrice/10000;
 	}
 	
-	/*
+	
 	@RequestMapping(value = "/cart_search_options")
 	@ResponseBody
 	public int cartSearchOptions (@RequestParam(value="foodCategory") String foodCategory,
+								  @RequestParam(value="cCheckin") String cCheckin,
 								  HttpSession session) {
-		
-		Member member
+		Member member = (Member) session.getAttribute("sUser");
+		int mNo = member.getmNo();
 		List<Product> optionProductList = productService.selectByCategory(foodCategory);
-		List optionList_pNo = new ArrayList();
+		int deletedAmount = 0;
 		for (Product product: optionProductList) {
-			cartService.deleteByMap
+			HashMap paramMap = new HashMap();
+			paramMap.put("mNo", mNo);
+			paramMap.put("pNo", product.getpNo());
+			paramMap.put("cCheckin", cCheckin);
+			deletedAmount += cartService.productTotalCart(paramMap);
+			cartService.deleteByMap(paramMap);
 		}
-		return cProductQty_int*pPrice/10000;
+		System.out.println(deletedAmount);
+		return deletedAmount;
 	}
-	*/
 	
 	@RequestMapping(value = "/session_check")
 	@ResponseBody

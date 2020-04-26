@@ -12,6 +12,8 @@ public interface CartMapper {
 	public Cart selectByCartNo(Integer cNo);
 	
 	public Cart checkCartProduct(Cart cart);
+	
+	public int productTotalCart(HashMap parameterMap);
 
 	public int insertCart(Cart cart);
 	

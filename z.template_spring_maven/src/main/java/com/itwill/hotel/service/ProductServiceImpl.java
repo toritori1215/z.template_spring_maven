@@ -70,5 +70,10 @@ public class ProductServiceImpl implements ProductService {
 	public int updateRate(int pNo) {
 		return productDao.updateRate(pNo);
 	}
+
+	@Override
+	public int deleteProduct(int pNo) {
+		return productDao.deleteProduct(pNo);
+	}
 	
 }
