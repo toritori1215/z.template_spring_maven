@@ -122,11 +122,11 @@
 							<a href="javascript:void(0);" class="show-submenu">Tours<i class="icon-down-open-mini"></i></a>
 							<ul>
 								<li><a href="tour_list">All Tours</a></li>
-								<li><a href="tour_detail?pNo=1">Trekking</a></li>
-								<li><a href="tour_detail?pNo=2">Glacier Walking</a></li>
-								<li><a href="tour_detail?pNo=3">Golf</a></li>
-								<li><a href="tour_detail?pNo=4">Fishing</a></li>
-								<li><a href="tour_detail?pNo=5">Ice Cave</a></li>
+								<li><a href="tour_detail?pNo=43">Trekking</a></li>
+								<li><a href="tour_detail?pNo=44">Glacier Walking</a></li>
+								<li><a href="tour_detail?pNo=45">Golf</a></li>
+								<li><a href="tour_detail?pNo=46">Fishing</a></li>
+								<li><a href="tour_detail?pNo=47">Heli-Skiing</a></li>
 							</ul>
 						</li>
 						<li class="submenu">
