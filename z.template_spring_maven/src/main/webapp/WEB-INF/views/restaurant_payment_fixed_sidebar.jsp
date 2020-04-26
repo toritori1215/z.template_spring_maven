@@ -649,6 +649,36 @@
 				e.preventDefault();
 			});
 			*/
+			
+			///////////////////////////////
+			$.validator.addMethod("cardExp", function(value, element, params) {
+				var minMonth = new Date().getMonth() + 1;
+				var minYear = new Date().getFullYear();
+				var month = parseInt($(params.month).val(), 10);
+				var year = parseInt($(params.year).val(), 10);
+				return (!month || !year || year > minYear || (year === minYear && month >= minMonth));
+			}, 'Please enter a valid expiration date.');
+			
+			$.validator.addMethod("letters", function(value, element) {
+				return this.optional(element) || /^[a-zA-Z ]+$/i.test(value);
+			}, "Please enter alphabets and space only.");
+			
+			$.validator.addMethod("creditCard", function (value, element) {
+				if (/^[0-9\-]+$/i.test(value)) {
+					return true;
+				} else {
+					return false;
+				};
+			}, "Please enter numbers and '-' only.");
+			
+			$.validator.addMethod("phone", function (value, element) {
+				if (/^[0-9\+\-]+$/i.test(value)) {
+					return true;
+				} else {
+					return false;
+				};
+			}, "Please enter numbers, '+', and '-' only.");
+			/////////////////////////////
 			//checkForm
 			$('#checkForm').validate({
 	            rules: {

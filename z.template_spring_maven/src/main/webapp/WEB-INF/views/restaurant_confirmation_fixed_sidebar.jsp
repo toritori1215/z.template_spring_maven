@@ -91,84 +91,44 @@
 									</th>
 								</tr>
 							</thead>
-							<tbody>
-								<tr>
-									<td>
-										<strong>Louvre musuem tickets</strong>
-									</td>
-									<td>
-										2x
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<strong>Date</strong>
-									</td>
-									<td>
-										25 Febraury 2015
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<strong>To</strong>
-									</td>
-									<td>
-										Jhon Doe
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<strong>Payment type</strong>
-									</td>
-									<td>
-										Credit card
-									</td>
-								</tr>
-							</tbody>
+							<c:forEach var="item" items="jd_list" varStatus="st">
+								<tbody>
+									<tr>
+										<td>
+											<strong>Louvre musuem tickets</strong>
+										</td>
+										<td>
+											2x
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<strong>Date</strong>
+										</td>
+										<td>
+											25 Febraury 2015
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<strong>To</strong>
+										</td>
+										<td>
+											Jhon Doe
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<strong>Payment type</strong>
+										</td>
+										<td>
+											Credit card
+										</td>
+									</tr>
+								</tbody>
+							</c:forEach>
 						</table>
-						<table class="table table-striped confirm">
-							<thead>
-								<tr>
-									<th colspan="2">
-										Item 2
-									</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>
-										<strong>Senna river tour</strong>
-									</td>
-									<td>
-										2x
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<strong>Date</strong>
-									</td>
-									<td>
-										27 Febraury 2015
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<strong>To</strong>
-									</td>
-									<td>
-										Jhon Doe
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<strong>Payment type</strong>
-									</td>
-									<td>
-										Credit card
-									</td>
-								</tr>
-							</tbody>
-						</table>
+						
 					</div>
 					<!--End step -->
 				</div>

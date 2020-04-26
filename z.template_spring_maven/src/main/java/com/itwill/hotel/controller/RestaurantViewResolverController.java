@@ -458,7 +458,7 @@ public class RestaurantViewResolverController {
 				System.out.println("삭제 성공");
 			}
 		}
-		
+		model.addAttribute("jd_list",jd_list);
 
 		return "restaurant_confirmation_fixed_sidebar";
 	}
