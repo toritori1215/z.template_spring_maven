@@ -327,7 +327,7 @@
 											
 											<span class="normal_price_list"></span><small>*Per food</small>
 											 											
-											<p><a href="restaurant_single_food_detail?pno=${restListPage.list[st.index].pno}" id="pnoId2${st.index}" class="btn_1">Details</a>
+											<p><a href="restaurant_single_food_detail?pno=${restListPage.list[st.index].pno}" id="ppnoId${st.index}" class="btn_1">Details</a>
 											</p>
 										</div>
 	
@@ -716,6 +716,7 @@
 					async: false,
 					success: function(result){
 						restRequestCallback(result);
+						
 					}
 					
 					
@@ -812,14 +813,19 @@
 				
 				let img = result.list[i].pimg;
 				let splitImg =img.split('/');
-				console.log(splitImg[0]);
+				//console.log(splitImg[0]);
 				let pathimg = '/z.template_spring_maven/resources/css/images/restaurant_Product_img/'+splitImg[0];
-				console.log(pathimg);
+				//console.log(pathimg);
 				$('#imgId'+i).attr('src',pathimg);
 				
-				let pnoSetting = 'restaurant_single_food_detail?pno='+ result.list[i].pno;
+				let pnoNum = result.list[i].pno;
+				console.log('pnoNum ::' + pnoNum);
+				let pnoSetting ='restaurant_single_food_detail?pno='+ result.list[i].pno;
+				console.log('pnoSetting ::' + pnoSetting);
 				$('#pnoId'+i).attr('href',pnoSetting);
-				$('#pnoId2'+i).attr('href',pnoSetting);
+				console.log('pnoSetting2 ::' + pnoSetting);
+				//$('#pnoId2'+i).attr('href',pnoSetting);
+				document.getElementById('ppnoId'+i).setAttribute("href", pnoSetting);
 				
 				if(result.startRowNum -1<= i
 						&& result.endRowNum -1 >= i){
