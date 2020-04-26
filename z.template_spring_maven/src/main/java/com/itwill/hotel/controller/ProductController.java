@@ -2,6 +2,7 @@ package com.itwill.hotel.controller;
 
 import java.sql.Date;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -90,6 +91,7 @@ public class ProductController {
 		*/
 		//model.addAttribute("categoryInfoList", categoryInfoList);		
 		//model.addAttribute("allCount", productService.countByType("tour"));
+		
 		return "tour_all_list";
 	}
 	
@@ -103,6 +105,30 @@ public class ProductController {
 			parameterMap.put("pRate"+rating, rating);
 		}
 		return productService.selectByType(parameterMap);
+	}
+	
+	@RequestMapping(value = "/tour_spaces", produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public int tourSpace(@RequestParam(value="newVal") String newVal,
+						 @RequestParam(value="pNo") String pNo,
+						 @RequestParam(value="selectDate") String selectDate,
+						 @RequestParam(value="pAvailable") String pAvailable) throws ParseException {
+		java.util.Date date = new SimpleDateFormat("yyyy/MMMM/dd", Locale.US).parse(selectDate);
+		String strDate = new SimpleDateFormat("yyyy/MM/dd").format(date);
+		HashMap parameterMap = new HashMap();
+		parameterMap.put("pNo", Integer.parseInt(pNo));
+		parameterMap.put("jdOrderDate", strDate);
+		parameterMap.put("cCheckin", strDate);
+		int newVal_int = Integer.parseInt(newVal);
+		int bookedNo = 0;
+		if (productService.countBookedTourQty(parameterMap) != null) {
+			bookedNo = productService.countBookedTourQty(parameterMap);
+		}
+		int inCartNo = 0;
+		if (productService.countCartTourQty(parameterMap) != null) {
+			inCartNo = productService.countCartTourQty(parameterMap);
+		}
+		return Integer.parseInt(pAvailable) - (newVal_int + bookedNo + inCartNo);
 	}
 	
 	@RequestMapping(value = "/tour_detail")

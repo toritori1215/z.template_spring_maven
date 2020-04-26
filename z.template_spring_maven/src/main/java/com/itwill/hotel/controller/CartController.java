@@ -41,35 +41,68 @@ public class CartController {
 		if (member != null) {
 			int mNo = member.getmNo();
 			List<Cart> cartList = cartService.selectBymNo(mNo);
+			for (int i = 0; i < cartList.size(); i++) {
+				if (cartList.get(i).getpNo() > 6) {
+					cartList.remove(i);
+				}
+			}
 			session.setAttribute("cartList", cartList);
 			
 			if (cartList.size() != 0) {
-				List<HashMap> optionList = new ArrayList();
-				for (Cart cart: cartList) {
-					HashMap optionMap = new HashMap();
-					optionMap.put("foodCategory", cart.getpName());
-					optionMap.put("cCheckin", cart.getcCheckin());
-					optionMap.put("cProductQty", cart.getcProductQty());
-					List<Product> optionItemList = productService.selectByCategory(cart.getpName());
+				List<List> optionList = new ArrayList();
+				for (int i = 0; i < cartList.size(); i++) {
 					List<HashMap> optionInnerList = new ArrayList();
+					List<Product> optionItemList = productService.selectByCategory(cartList.get(i).getpName());
 					for (Product optionItem: optionItemList) {
-						HashMap optionInnerMap = new HashMap();
-						optionInnerMap.put("pDesc", optionItem.getpDesc());
-						optionInnerMap.put("pName", optionItem.getpName());
-						optionInnerMap.put("pPrice", optionItem.getpPrice());
-						optionInnerList.add(optionInnerMap);
+						HashMap optionMap = new HashMap();
+						optionMap.put("cProductQty", cartList.get(i).getcProductQty());
+						optionMap.put("pDesc", optionItem.getpDesc());
+						optionMap.put("pName", optionItem.getpName());
+						optionMap.put("pPrice", optionItem.getpPrice());
+						optionMap.put("pNo", optionItem.getpNo());
+						Integer pQty = productService.countCartOptionQty(optionItem.getpNo());
+						if (pQty == null) {
+							pQty = 0;
+						}
+						optionMap.put("pQty", pQty);
+						
+						Cart tempCart = new Cart();
+						tempCart.setmNo(mNo);
+						tempCart.setpNo(optionItem.getpNo());
+						tempCart.setcCheckin(cartList.get(i).getcCheckin());
+						
+						Cart optionCart = cartService.checkCartProduct(tempCart);
+						if (optionCart != null) {
+							optionMap.put("cNo", optionCart.getcNo());
+						}
+						optionInnerList.add(optionMap);
 					}
-					List<Product> insurance = productService.selectByCategory("Insurance");
+					List<Product> insurance = productService.selectByCategory("insur");
 					HashMap insuranceMap = new HashMap();
-					insuranceMap.put("pDesc", insurance.get(0).getpDesc());
-					insuranceMap.put("pName", insurance.get(0).getpName());
-					insuranceMap.put("pPrice", insurance.get(0).getpPrice());
+					insuranceMap.put("cProductQty", cartList.get(i).getcProductQty());
+					insuranceMap.put("pDesc", insurance.get(i).getpDesc());
+					insuranceMap.put("pName", insurance.get(i).getpName());
+					insuranceMap.put("pPrice", insurance.get(i).getpPrice());
+					insuranceMap.put("pNo", insurance.get(i).getpNo());
+					Integer pQty = productService.countCartOptionQty(insurance.get(i).getpNo());
+					if (pQty == null) {
+						pQty = 0;
+					}
+					insuranceMap.put("pQty", pQty);
+					
+					Cart tempCart = new Cart();
+					tempCart.setmNo(mNo);
+					tempCart.setpNo(insurance.get(0).getpNo());
+					tempCart.setcCheckin(cartList.get(i).getcCheckin());
+					
+					Cart optionCart = cartService.checkCartProduct(tempCart);
+					if (optionCart != null) {
+						insuranceMap.put("cNo", optionCart.getcNo());
+					}
 					optionInnerList.add(insuranceMap);
-					optionMap.put("optionInnerList", optionInnerList);
-					optionList.add(optionMap);
+					optionList.add(optionInnerList);
 				}
 				session.setAttribute("optionList", optionList);
-				
 				List dateList = new ArrayList();
 				for (Cart cart: cartList) {
 					if (cart.getpNo() <= 5) {
@@ -109,6 +142,7 @@ public class CartController {
 							 @RequestParam(value="pPrice") String pPrice,
 							 @RequestParam(value="selectDate") String selectDate,
 							 @RequestParam(value="selectTime") String selectTime,
+							 @RequestParam(value="opt") String opt,
 							 HttpSession session, Model model) throws ParseException {
 		
 		Member member = (Member) session.getAttribute("sUser");
@@ -117,39 +151,66 @@ public class CartController {
 			int mNo = member.getmNo();
 			int newVal_int = Integer.parseInt(newVal);
 			int pNo_int = Integer.parseInt(pNo);
-			int pPrice_int = Integer.parseInt(pPrice);
-			Date date = new SimpleDateFormat("yyyy/MMMM/dd", Locale.US).parse(selectDate);
-			String strDate = new SimpleDateFormat("yyyy/MM/dd").format(date);
-			
-			Cart newCart = new Cart(0, newVal_int, newVal_int*pPrice_int, selectTime, strDate, 
-								 null, null, null, newVal_int, mNo, pNo_int, pPrice_int);
-			Cart cartExist = cartService.checkCartProduct(newCart);
-			
-			if (cartExist != null) {
-				int cNo = cartExist.getcNo();
-				int cOldQty = cartExist.getcProductQty();
-				int cNewQty = cOldQty + newVal_int;
-				HashMap parameterMap = new HashMap();
-				parameterMap.put("cNo", cNo);
-				parameterMap.put("cProductQty", cNewQty);
-				parameterMap.put("cProductTypePay", cNewQty*pPrice_int);
-				parameterMap.put("cOrderCnt", cNewQty);
-				cartService.updateCart(parameterMap);
-			} else {
-				cartService.insertCart(newCart);
+			int pPrice_int =  (int) Double.parseDouble(pPrice);
+			String strDate = "";
+			Cart newCart = new Cart();
+			if (opt.equals("0")) {
+				Date date = new SimpleDateFormat("yyyy/MMMM/dd", Locale.US).parse(selectDate);
+				strDate = new SimpleDateFormat("yyyy/MM/dd").format(date);
+				newCart = new Cart(0, newVal_int, newVal_int*pPrice_int, selectTime, strDate, 
+								   null, null, null, newVal_int, mNo, pNo_int, pPrice_int);
+				Cart cartExist = cartService.checkCartProduct(newCart);
+				if (cartExist != null) {
+					int cNo = cartExist.getcNo();
+					int cOldQty = cartExist.getcProductQty();
+					int cNewQty = cOldQty + newVal_int;
+					
+					HashMap parameterMap = new HashMap();
+					parameterMap.put("cNo", cNo);
+					parameterMap.put("cProductQty", cNewQty);
+					parameterMap.put("cProductTypePay", cNewQty*pPrice_int);
+					parameterMap.put("cOrderCnt", cNewQty);
+					cartService.updateCart(parameterMap);
+				} else {
+					cartService.insertCart(newCart);
+				}
+				List<Cart> cartList = cartService.selectBymNo(mNo);
+				session.setAttribute("cartList", cartList);
+				return "redirect:/cart_services";
+			} else if (opt.equals("1")) {
+				strDate = selectDate;
+				newCart = new Cart(0, newVal_int, newVal_int*pPrice_int, selectTime, strDate, 
+								   null, null, null, newVal_int, mNo, pNo_int, pPrice_int);
+				Cart cartExist = cartService.checkCartProduct(newCart);
+				if (cartExist == null) {
+					cartService.insertCart(newCart);
+				} else if ((cartExist != null) && (newVal_int != 0)) {
+					int cNo = cartExist.getcNo();
+					int cOldQty = cartExist.getcProductQty();
+					int cNewQty = cOldQty + newVal_int;
+					HashMap parameterMap = new HashMap();
+					parameterMap.put("cNo", cNo);
+					parameterMap.put("cProductQty", newVal_int);
+					parameterMap.put("cProductTypePay", newVal_int*pPrice_int);
+					parameterMap.put("cOrderCnt", newVal_int);
+					cartService.updateCart(parameterMap);
+				} else {
+					int cNo = cartExist.getcNo();
+					cartService.deleteCart(cNo);
+				}
 			}
 			List<Cart> cartList = cartService.selectBymNo(mNo);
 			session.setAttribute("cartList", cartList);
 			return "redirect:/cart_services";
 		} else {
-			return "forward:member_login_form";
+			return "redirect:/member_login_form";
 		}
 	}
 	
 	@RequestMapping(value = "/cart_delete", produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public List<Cart> cartDelete (@RequestParam(value="cNo") String cNo,
-						   HttpSession session) {
+						   		  HttpSession session) {
 		Member member = (Member) session.getAttribute("sUser");
 		if (member != null) {
 			int mNo = member.getmNo();
@@ -176,7 +237,23 @@ public class CartController {
 		parameterMap.put("cOrderCnt", cProductQty_int);
 		cartService.updateCart(parameterMap);
 		return cProductQty_int*pPrice/10000;
-	}	
+	}
+	
+	/*
+	@RequestMapping(value = "/cart_search_options")
+	@ResponseBody
+	public int cartSearchOptions (@RequestParam(value="foodCategory") String foodCategory,
+								  HttpSession session) {
+		
+		Member member
+		List<Product> optionProductList = productService.selectByCategory(foodCategory);
+		List optionList_pNo = new ArrayList();
+		for (Product product: optionProductList) {
+			cartService.deleteByMap
+		}
+		return cProductQty_int*pPrice/10000;
+	}
+	*/
 	
 	@RequestMapping(value = "/session_check")
 	@ResponseBody

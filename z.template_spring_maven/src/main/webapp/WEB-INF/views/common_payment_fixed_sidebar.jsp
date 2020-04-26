@@ -753,26 +753,7 @@
 				},
 				// This is to override the label w/ a div
 				errorElement: "div"
-	            //키보드에 의한 검사 해제
-	            //onkeyup : false,
-	            //체크박스나 라디오 버튼 클릭시마다 검사 해제
-	            //onclick : false,
-	            // 포커스가 빠져나올 경우의 검사 해제
-	            //onfocusout : false, 
-	            // 에러 발생시 이벤트를 가로 챔
-	            //showErrors : function(errorMap, errorList) {
-	                //에러메시지 출력
-	                //console.log(errorMap);
-	                //console.log(errorList);
-	                //if(errorList.length) {
-	                    //alert(errorList[0].message);
-	                //}
-	            //}           
 	        });
-			
-			
-			/* Submit form */
-			
 		});
 	</script>
 
