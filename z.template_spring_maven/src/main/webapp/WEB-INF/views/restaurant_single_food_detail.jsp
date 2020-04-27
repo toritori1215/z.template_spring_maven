@@ -12,7 +12,7 @@
 	<link href="${pageContext.request.contextPath}/resources/z.SiliconVillage/css/hbkMy.css" rel="stylesheet">
 	<!-- End Header -->
 
-	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/img/restaurant_top_in.jpg" data-natural-width="1400" data-natural-height="470">
+	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/css/images/restaurant_Product_img/Restaurant.jpg" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-2">
 			<div class="container">
 				<div class="row">
@@ -67,7 +67,7 @@
 				<ul>
 					<li><a href="main">Home</a>
 					</li>
-					<li><a href="restaurants_all_list">Restaurants List</a>
+					<li><a href="restaurants_all_list">Restaurants</a>
 					</li>
 					<li>${restaurantProduct.pname}</li>
 				</ul>

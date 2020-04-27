@@ -21,7 +21,7 @@
 					<div class="progress">
 						<div class="progress-bar"></div>
 					</div>
-					<a href="#0" class="bs-wizard-dot"></a>
+					<a href="#" class="bs-wizard-dot"></a>
 				</div>
 
 				<div class="col-4 bs-wizard-step disabled">
@@ -29,7 +29,7 @@
 					<div class="progress">
 						<div class="progress-bar"></div>
 					</div>
-					<a href="payment_fixed_sidebar.html" class="bs-wizard-dot"></a>
+					<a href="#" class="bs-wizard-dot"></a>
 				</div>
 
 				<div class="col-4 bs-wizard-step disabled">
@@ -37,7 +37,7 @@
 					<div class="progress">
 						<div class="progress-bar"></div>
 					</div>
-					<a href="confirmation.html" class="bs-wizard-dot"></a>
+					<a href="#" class="bs-wizard-dot"></a>
 				</div>
 
 			</div>
@@ -51,11 +51,8 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="#">Home</a>
-					</li>
-					<li><a href="#">Category</a>
-					</li>
-					<li>Page active</li>
+					<li><a href="main">Home</a></li>
+					<li>Restaurant cart</li>
 				</ul>
 			</div>
 		</div>

@@ -28,8 +28,6 @@
 					<li><a href="blog_right_sidebar">Blog List</a>
 					</li>
 					<li>${blog.bTitle}</li>
-					<li><a href="#">${blog.bTitle}</a>
-					</li>
 				</ul>
 			</div>
 		</div>
@@ -60,7 +58,6 @@
 							</c:if>
 							<c:if test="${blog.mNo == sUser.mNo}">
 							<hr>
-							${SessionBlog.bNo}
 							<form id="form1" name="form1" action="blog_right_sidebar" method="post">
 								<h4>Upload profile photo</h4>
 								<!-- Drop Zone -->

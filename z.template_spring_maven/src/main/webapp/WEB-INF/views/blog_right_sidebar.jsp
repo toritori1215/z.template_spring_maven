@@ -23,10 +23,8 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="main">Home</a>
-					</li>
-					<li><a href="#">Blog List</a>
-					</li>
+					<li><a href="main">Home</a></li>
+					<li>Blog List</li>
 				</ul>
 			</div>
 		</div>

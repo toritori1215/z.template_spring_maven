@@ -552,7 +552,7 @@
 			</div>
 			<div class="modal-body" align="center">
 				<div id="addWishlistBody">
-					<a href="restaurant_list" class="btn_1 white" data-dismiss="modal">Restaurants</a>
+					<a href="restaurants_all_list" class="btn_1 white" style="width: 200px">Restaurants</a>
 				</div>
 			</div>
 		</div>
