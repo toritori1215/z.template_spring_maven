@@ -48,6 +48,7 @@
 										<li><i class="icon-calendar-empty"></i>On <span>${blog.bDate}</span>
 										</li>
 										<li><i class="icon-inbox-alt"></i>In <a href="blog_right_sidebar_byType?type=${blog.bCategory}">Top ${blog.bCategory}</a>
+										
 										</li>
 									</ul>
 								</div>
@@ -55,6 +56,7 @@
 							<h2>${blog.bTitle}</h2>
 							<p>${blog.bContent}</p>
 							<input type="button" class="btn_1" value="Read More" onclick="location.href='blog_post_right_sidebar?bNo=${blog.bNo}'"> &nbsp;&nbsp;&nbsp;
+							
 							</form>
 						<hr>
 						</c:forEach>
