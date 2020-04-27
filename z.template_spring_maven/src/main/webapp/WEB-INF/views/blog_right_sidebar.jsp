@@ -25,7 +25,7 @@
 			<div class="container">
 				<ul>
 					<li><a href="main">Home</a></li>
-					<li>Blog List</li>
+					<li><a href="blog_right_sidebar"></a>Blog List</li>
 				</ul>
 			</div>
 		</div>
