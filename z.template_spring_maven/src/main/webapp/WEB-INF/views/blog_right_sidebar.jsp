@@ -13,7 +13,8 @@
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
 				<h1>Blog</h1>
-				<p>블로그를 작성하세요.</p>
+				<p>Share your experiences!!</p>
+			
 			</div>
 		</div>
 	</section>
@@ -23,10 +24,8 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="main">Home</a>
-					</li>
-					<li><a href="#">Blog List</a>
-					</li>
+					<li><a href="main">Home</a></li>
+					<li>Blog List</li>
 				</ul>
 			</div>
 		</div>
@@ -48,6 +47,7 @@
 										<li><i class="icon-calendar-empty"></i>On <span>${blog.bDate}</span>
 										</li>
 										<li><i class="icon-inbox-alt"></i>In <a href="blog_right_sidebar_byType?type=${blog.bCategory}">Top ${blog.bCategory}</a>
+										
 										</li>
 									</ul>
 								</div>
@@ -55,6 +55,7 @@
 							<h2>${blog.bTitle}</h2>
 							<p>${blog.bContent}</p>
 							<input type="button" class="btn_1" value="Read More" onclick="location.href='blog_post_right_sidebar?bNo=${blog.bNo}'"> &nbsp;&nbsp;&nbsp;
+							
 							</form>
 						<hr>
 						</c:forEach>

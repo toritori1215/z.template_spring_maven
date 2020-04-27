@@ -127,6 +127,7 @@
 								<li><a href="tour_detail?pNo=45">Golf</a></li>
 								<li><a href="tour_detail?pNo=46">Fishing</a></li>
 								<li><a href="tour_detail?pNo=47">Heli-Skiing</a></li>
+								<li><a href="tour_detail?pNo=48">SPA</a></li>
 							</ul>
 						</li>
 						<li class="submenu">

@@ -14,11 +14,11 @@
 	
 	<!-- End Header -->
 
-	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/img/restaurant_top.jpg" data-natural-width="1400" data-natural-height="470">
+	<section class="parallax-window" data-parallax="scroll" data-image-src="${pageContext.request.contextPath}/resources/css/images/restaurant_Product_img/Restaurant.jpg" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
 				<h1>Paris restaurants</h1>
-				<p>Ridiculus sociosqu cursus neque cursus curae ante scelerisque vehicula.</p>
+				<p>Best menu you can only see here!!</p>
 			</div>
 		</div>
 	</section>
@@ -28,10 +28,8 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="main">Home</a>
-					</li>
-					<li><a href="restaurants_all_list">Restaurant</a>
-					</li>					
+					<li><a href="main">Home</a></li>
+					<li>Restaurant</li>					
 				</ul>
 			</div>
 		</div>
@@ -219,14 +217,14 @@
 									</div>
 									 -->
 									<div class="img_list">
-										<a href="restaurant_single_food_detail?pno=${restListPage.list[st.index].pno}">
+										<a href="restaurant_single_food_detail?pno=${restListPage.list[st.index].pno}" id="pnoId${st.index}">
 											
 											<c:set var="fileImg" 
 											 value="${fn:split(restListPage.list[st.index].pimg,'/')}"/>
 											 
 											<!--  사진이름 처리 -->
 										
-											<img src="${pageContext.request.contextPath}/resources/css/images/restaurant_Product_img/${fileImg[0]}" alt="Image">
+											<img id="imgId${st.index}" src="${pageContext.request.contextPath}/resources/css/images/restaurant_Product_img/${fileImg[0]}" alt="Image">
 											
 											 
 											 <!-- 
@@ -329,7 +327,7 @@
 											
 											<span class="normal_price_list"></span><small>*Per food</small>
 											 											
-											<p><a href="restaurant_single_food_detail?pno=${restListPage.list[st.index].pno}" class="btn_1">Details</a>
+											<p><a href="restaurant_single_food_detail?pno=${restListPage.list[st.index].pno}" id="ppnoId${st.index}" class="btn_1">Details</a>
 											</p>
 										</div>
 	
@@ -718,6 +716,7 @@
 					async: false,
 					success: function(result){
 						restRequestCallback(result);
+						
 					}
 					
 					
@@ -790,17 +789,10 @@
 		function restRequestCallback(result){
 
 			//console.log('result::'+result);
-			//let jsonStringify = JSON.stringify(result);
-			//console.log("jsonStringify::"+jsonStringify);
-			//console.log("result.list.length-->"+result.list.length);
-			//console.log("$('div[mkattr=search]').length -->"+$('div[mkattr="search"]').length);
-			//console.log("json.startRowNum->"+result.startRowNum);
-			//console.log("json.endRowNum->"+result.endRowNum);
-			//console.log("restListPage.startRowNum -->"+${restListPage.startRowNum});
-			//console.log("restListPage.startRowNum -->"+${restListPage.endRowNum});
-			//console.log("currentPageno ==>" + ${currentPageno});
-			//console.log("restListPage2-->"+${restListPage2});
-		
+			let jsonStringify = JSON.stringify(result);
+			console.log("jsonStringify::"+jsonStringify);
+			console.log("result.list.length-->"+result.list.length);
+
 			let showRowAjax;
 			for (var i = 0; i < result.list.length; i++) {
 				//시작 로우 부터 끝로우 까지만 show() 나머지는 hide()!!
@@ -818,6 +810,23 @@
 				}
 				*/
 				//showRowAjax = $('div[valueStatus="'+i+'"]').attr("valueStatus"); =i
+				
+				let img = result.list[i].pimg;
+				let splitImg =img.split('/');
+				//console.log(splitImg[0]);
+				let pathimg = '/z.template_spring_maven/resources/css/images/restaurant_Product_img/'+splitImg[0];
+				//console.log(pathimg);
+				$('#imgId'+i).attr('src',pathimg);
+				
+				let pnoNum = result.list[i].pno;
+				console.log('pnoNum ::' + pnoNum);
+				let pnoSetting ='restaurant_single_food_detail?pno='+ result.list[i].pno;
+				console.log('pnoSetting ::' + pnoSetting);
+				$('#pnoId'+i).attr('href',pnoSetting);
+				console.log('pnoSetting2 ::' + pnoSetting);
+				//$('#pnoId2'+i).attr('href',pnoSetting);
+				document.getElementById('ppnoId'+i).setAttribute("href", pnoSetting);
+				
 				if(result.startRowNum -1<= i
 						&& result.endRowNum -1 >= i){
 					$('div[valueStatus="'+i+'"]').show();

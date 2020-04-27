@@ -24,7 +24,7 @@
 					<div class="progress">
 						<div class="progress-bar"></div>
 					</div>
-					<a href="cart.html" class="bs-wizard-dot"></a>
+					<a href="restaurant_cart_fixed_sidebar" class="bs-wizard-dot"></a>
 				</div>
 
 				<div class="col-4 bs-wizard-step active">
@@ -32,7 +32,7 @@
 					<div class="progress">
 						<div class="progress-bar"></div>
 					</div>
-					<a href="#" class="bs-wizard-dot"></a>
+					<a href="restaurant_payment_fixed_sidebar2" class="bs-wizard-dot"></a>
 				</div>
 
 				<div class="col-4 bs-wizard-step disabled">
@@ -57,11 +57,9 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="#">Home</a>
-					</li>
-					<li><a href="#">Category</a>
-					</li>
-					<li>Page active</li>
+					<li><a href="main">Home</a></li>
+					<li><a href="restaurant_cart_fixed_sidebar">Restaurant cart</a></li>
+					<li>Restaurant order</li>
 				</ul>
 			</div>
 		</div>

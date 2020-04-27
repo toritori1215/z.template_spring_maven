@@ -384,6 +384,9 @@ public class MemberController {
 				model.addAttribute("DeleteMsg", "계정 비활성화 실패했습니다");
 			}
 		} else if (ifSave.equals("off")) {
+			blogService.deleteBlogMember(member.getmNo());
+			reviewService.deleteReviewMember(member.getmNo());
+			wishlistService.deleteWishlistMember(member.getmNo());
 			List<JumunDetail> jumunDetailList = jumunService.selectJumunDetailMember(member.getmNo());
 			for (JumunDetail jumunDetail : jumunDetailList) {
 				jumunService.deleteJumunDetailMember(jumunDetail.getjNo());
@@ -392,15 +395,10 @@ public class MemberController {
 			for (JumunDetail jumunDetailCancel : jumunDetailCancelList) {
 				jumunService.deleteJumunDetailCancel(jumunDetailCancel.getjNo());
 			}
-			int rowCount = (memberService.deleteMember(member.getmId()) + 
-					blogService.deleteBlogMember(member.getmNo()) + 
-					cartService.deleteCartMember(member.getmNo()) + 
-					wishlistService.deleteWishlistMember(member.getmNo()) + 
-					blogService.deleteBlogMember(member.getmNo()) +
-					reviewService.deleteReviewMember(member.getmNo()) +
-					jumunService.deleteJumunMember(member.getmNo())
-					);
-			if (rowCount == 7) {
+			jumunService.deleteJumunMember(member.getmNo());
+			cartService.deleteCartMember(member.getmNo());
+			int rowCount = memberService.deleteMember(member.getmId());
+			if (rowCount == 1) {
 				model.addAttribute("DeleteMsg", "계정 삭제 성공했습니다");
 				session.invalidate();
 			} else {
