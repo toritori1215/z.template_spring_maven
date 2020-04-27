@@ -18,7 +18,7 @@
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
 				<h1>Paris restaurants</h1>
-				<p>Ridiculus sociosqu cursus neque cursus curae ante scelerisque vehicula.</p>
+				<p>Best menu you can only see here!!</p>
 			</div>
 		</div>
 	</section>

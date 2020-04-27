@@ -13,7 +13,8 @@
 		<div class="parallax-content-1">
 			<div class="animated fadeInDown">
 				<h1>Blog</h1>
-				<p>블로그를 작성하세요.</p>
+				<p>Share your experiences!!</p>
+			
 			</div>
 		</div>
 	</section>
