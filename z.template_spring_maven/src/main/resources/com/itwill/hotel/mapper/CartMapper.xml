@@ -31,6 +31,12 @@
 		where mNo=#{mNo} and pNo=#{pNo} and cCheckin = TO_DATE(#{cCheckin}, 'YYYY-MM-DD HH24:MI:SS')
 	</select>
 	
+	<select id="countItemCart" parameterType="java.util.HashMap" resultType="Integer">
+		select cProductQty
+		from cart
+		where mNo=#{mNo} and pNo=#{pNo} and cCheckin = TO_DATE(#{cCheckin}, 'YYYY-MM-DD HH24:MI:SS')
+	</select>
+	
 	<insert id="insertCart" parameterType="Cart">
 		insert into cart (cNo, cProductQty, cProductTypePay, cCheckinTime, cCheckin, 
 						  cCheckout, cPickupPos, cDropoffPos, cOrderCnt, mNo, pNo) 

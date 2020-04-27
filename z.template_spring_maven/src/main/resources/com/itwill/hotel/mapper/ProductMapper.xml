@@ -90,8 +90,7 @@
 			resultType="java.lang.Integer">
 		select SUM(cProductQty)
 		from cart
-		where pNo = #{pNo}
-		and cCheckin = ANY(TO_DATE(#{cCheckin}))
+		where pNo = #{pNo} and cCheckin = ANY(TO_DATE(#{cCheckin}))
 	</select>
 	
 	<select id="countCartOptionQty"

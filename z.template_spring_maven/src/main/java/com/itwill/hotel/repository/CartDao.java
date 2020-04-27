@@ -15,6 +15,8 @@ public interface CartDao {
 	
 	public Integer productTotalCart(HashMap parameterMap);
 	
+	public Integer countItemCart(HashMap parameterMap);
+	
 	public int insertCart(Cart cart);
 	
 	public int deleteCart(Integer cNo);

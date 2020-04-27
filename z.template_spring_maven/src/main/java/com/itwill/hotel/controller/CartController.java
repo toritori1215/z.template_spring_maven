@@ -40,72 +40,55 @@ public class CartController {
 		Member member = (Member) session.getAttribute("sUser");
 		if (member != null) {
 			int mNo = member.getmNo();
+			// 멤버의 카트에서 투어만 리스트로 뽑아냄
 			List<Cart> cartList = cartService.selectBymNo(mNo);
-			for (int i = 0; i < cartList.size(); i++) {
-				if (cartList.get(i).getpNo() > 6) {
-					cartList.remove(i);
+			
+			List<Cart> tourList = cartList;
+			for (int i = 0; i < tourList.size(); i++) {
+				if ((tourList.get(i).getpNo() < 43) || (tourList.get(i).getpNo() > 48)) {
+					tourList.remove(i);
 				}
 			}
-			session.setAttribute("cartList", cartList);
+			session.setAttribute("tourList", tourList);
 			
-			if (cartList.size() != 0) {
+			// 각 투어별 옵션을 리스트로 뽑아냄 (카트에 담긴 갯수 등 정보도 뽑아냄)
+			if (tourList.size() != 0) {
 				List<List> optionList = new ArrayList();
-				for (int i = 0; i < cartList.size(); i++) {
+				for (int i = 0; i < tourList.size(); i++) {
+					//옵션리스트에 element로 들어갈 inner리스트
 					List<HashMap> optionInnerList = new ArrayList();
-					List<Product> optionItemList = productService.selectByCategory(cartList.get(i).getpName());
+					
+					//상품별 옵션product
+					List<Product> optionItemList = productService.selectByCategory(tourList.get(i).getpName());
 					for (Product optionItem: optionItemList) {
 						HashMap optionMap = new HashMap();
-						optionMap.put("cProductQty", cartList.get(i).getcProductQty());
+						// 드랍다운에 숫자가 어디까지 나올지 결정한다.
+						optionMap.put("cProductQty", tourList.get(i).getcProductQty());
 						optionMap.put("pDesc", optionItem.getpDesc());
 						optionMap.put("pName", optionItem.getpName());
 						optionMap.put("pPrice", optionItem.getpPrice());
 						optionMap.put("pNo", optionItem.getpNo());
-						Integer pQty = productService.countCartOptionQty(optionItem.getpNo());
-						if (pQty == null) {
-							pQty = 0;
-						}
-						optionMap.put("pQty", pQty);
 						
-						Cart tempCart = new Cart();
-						tempCart.setmNo(mNo);
-						tempCart.setpNo(optionItem.getpNo());
-						tempCart.setcCheckin(cartList.get(i).getcCheckin());
 						
-						Cart optionCart = cartService.checkCartProduct(tempCart);
-						if (optionCart != null) {
-							optionMap.put("cNo", optionCart.getcNo());
+						// 만약 옵션이 카트에 담겨있다면 '갯수'정보를 추가로 보여줘야한다.
+						HashMap parameterMap = new HashMap();
+						parameterMap.put("mNo", mNo);
+						parameterMap.put("pNo", optionItem.getpNo());
+						parameterMap.put("cCheckin", tourList.get(i).getcCheckin());
+						Integer cOptionQty = cartService.countItemCart(parameterMap);
+						if (cOptionQty == null) {
+							cOptionQty = 0;
 						}
+						optionMap.put("cOptionQty", cOptionQty);
 						optionInnerList.add(optionMap);
 					}
-					List<Product> insurance = productService.selectByCategory("insur");
-					HashMap insuranceMap = new HashMap();
-					insuranceMap.put("cProductQty", cartList.get(i).getcProductQty());
-					insuranceMap.put("pDesc", insurance.get(i).getpDesc());
-					insuranceMap.put("pName", insurance.get(i).getpName());
-					insuranceMap.put("pPrice", insurance.get(i).getpPrice());
-					insuranceMap.put("pNo", insurance.get(i).getpNo());
-					Integer pQty = productService.countCartOptionQty(insurance.get(i).getpNo());
-					if (pQty == null) {
-						pQty = 0;
-					}
-					insuranceMap.put("pQty", pQty);
-					
-					Cart tempCart = new Cart();
-					tempCart.setmNo(mNo);
-					tempCart.setpNo(insurance.get(0).getpNo());
-					tempCart.setcCheckin(cartList.get(i).getcCheckin());
-					
-					Cart optionCart = cartService.checkCartProduct(tempCart);
-					if (optionCart != null) {
-						insuranceMap.put("cNo", optionCart.getcNo());
-					}
-					optionInnerList.add(insuranceMap);
 					optionList.add(optionInnerList);
 				}
 				session.setAttribute("optionList", optionList);
+				
 				List dateList = new ArrayList();
 				for (Cart cart: cartList) {
-					if (cart.getpNo() <= 5) {
+					if (cart.getpNo() > 42 || cart.getpNo() < 49) {
 						dateList.add(cart.getcCheckin());
 					}
 				}

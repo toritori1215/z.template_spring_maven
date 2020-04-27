@@ -87,30 +87,31 @@
 								</th>
 							</tr>
 						</thead>
-						<c:forEach var="i" begin="0" end="${fn:length(cartList)-1}">
+						
+						<c:forEach var="i" begin="0" end="${fn:length(tourList)-1}">
 						<div>
 							<tbody>
 								<tr>
 									<td>
 										<div class="thumb_cart">
-											<a href="tour_detail?pNo=${cartList[i].pNo}">
-												<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${cartList[i].pName}_cart.jpg" alt="Image">
+											<a href="tour_detail?pNo=${tourList[i].pNo}">
+												<img src="${pageContext.request.contextPath}/resources/z.SiliconVillage/img/${tourList[i].pName}_cart.jpg" alt="Image">
 											</a>
 										</div>
-										&nbsp;<span class="item_cart"><a href="tour_detail?pNo=${cartList[i].pNo}"><strong>${cartList[i].pName}<strong></a></span>
+										&nbsp;<span class="item_cart"><a href="tour_detail?pNo=${tourList[i].pNo}"><strong>${tourList[i].pName}<strong></a></span>
 									</td>
 									<td>
 										<div class="numbers-row2">
-											<input type="text" value="${cartList[i].cProductQty}" id="quantity_1" class="qty2 form-control" name="quantity_1">
+											<input type="text" value="${tourList[i].cProductQty}" id="quantity_1" class="qty2 form-control" name="quantity_1">
 											<div class="inc button_inc2">+</div>
 											<div class="dec button_inc2">-</div>
 										</div>
 									</td>
 									<td>
-										<strong>${cartList[i].cCheckin.substring(0,10)}</strong><br>(${cartList[i].cCheckinTime})
+										<strong>${tourList[i].cCheckin.substring(0,10)}</strong><br>(${tourList[i].cCheckinTime})
 									</td>
 									<td>
-										<strong>￦${cartList[i].cProductTypePay/10000.0}만</strong>
+										<strong>￦${tourList[i].cProductTypePay/10000.0}만</strong>
 									</td>
 									<td>
 										<div id="emptyDiv"></div>
@@ -123,14 +124,14 @@
 											<a></a>
 										</label>
 									</td>
-									<td class="options" id="${cartList[i].cProductQty}">
-										<input class="cNo" type="hidden" value="${cartList[i].cNo}">
-										<input class="cartItemBefore" type="hidden" value="${cartList[i].cProductTypePay/10000.0}">
-										<a class="cartItemDelete" href="#" pNo="${cartList[i].pNo}"><i class=" icon-trash"></i></a>
+									<td class="options" id="${tourList[i].cProductQty}">
+										<input class="cNo" type="hidden" value="${tourList[i].cNo}">
+										<input class="cartItemBefore" type="hidden" value="${tourList[i].cProductTypePay/10000.0}">
+										<a class="cartItemDelete" href="#" pNo="${tourList[i].pNo}"><i class=" icon-trash"></i></a>
 										<a class="cartItemRefresh" href="#"><i class="icon-ccw-2"></i></a>
 										<input class="cartIndex" type="hidden" value="${i}">
-										<input class="delete_pName" type="hidden" value="${cartList[i].pName}">
-										<input class="delete_cCheckin" type="hidden" value="${cartList[i].cCheckin}">
+										<input class="delete_pName" type="hidden" value="${tourList[i].pName}">
+										<input class="delete_cCheckin" type="hidden" value="${tourList[i].cCheckin}">
 									</td>
 								</tr>
 							</tbody>
@@ -146,18 +147,18 @@
 										<td>
 											<select class="form-control" id="dropdownSelect_${i}${j}" pPrice="${optionList[i][j].pPrice/10000}">
 												<c:forEach var="index" begin="0" end="${optionList[i][j].cProductQty}">
-													<c:if test="${index == optionList[i][j].pQty}">
+													<c:if test="${index == optionList[i][j].cOptionQty}">
 														<option id="option_${i}${j}" value="${index}" selected="selected">${index}</option>
 													</c:if>
-													<c:if test="${index != optionList[i][j].pQty}">
+													<c:if test="${index != optionList[i][j].cOptionQty}">
 														<option id="option_${i}${j}" value="${index}">${index}</option>
 													</c:if>
 												</c:forEach>
 											</select>
 											<input type="hidden" pNo="${optionList[i][j].pNo}">
 											<input type="hidden" cNo="${optionList[i][j].cNo}">
-											<input type="hidden" selectDate="${cartList[i].cCheckin.substring(0,10)}">
-											<input type="hidden" selectTime="${cartList[i].cCheckinTime}">
+											<input type="hidden" selectDate="${tourList[i].cCheckin.substring(0,10)}">
+											<input type="hidden" selectTime="${tourList[i].cCheckinTime}">
 											<input type="hidden" id="optionQty_${i}${j}" value="${optionList[i][j].pQty}">
 										</td>
 										<td>
@@ -385,7 +386,7 @@
 	});
 	
 	
-	/* Cart Refresh Item */
+	/* Cart Refresh Item */ 
 	$(".cartItemRefresh").on("click", function (d) {
 		var $button = $(this);
 		var cNo = $button.prev().prev().prev().attr("value");
@@ -440,7 +441,7 @@
 					var ind_j = $button.attr("id")[16];
 					var ind = (ind_i*3)+(ind_j*1);
 					var oPrice = $button.attr("pPrice");
-					var oCount_prev = $("#oCount"+ind).attr("value"); // select한 곳의 원래 count
+					var oCount_prev = $("#oCount"+ind).attr("value");
 					var oCount_new = $(':selected').text()[ind];
 					$("#oCount"+ind).attr("value", oCount_new);
 					var oTotal_prev = $("#optionTotal").attr("value");
