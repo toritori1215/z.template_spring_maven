@@ -67,7 +67,7 @@
 				<ul>
 					<li><a href="main">Home</a>
 					</li>
-					<li><a href="restaurants_all_list">Restaurants List</a>
+					<li><a href="restaurants_all_list">Restaurants</a>
 					</li>
 					<li>${restaurantProduct.pname}</li>
 				</ul>

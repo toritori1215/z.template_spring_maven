@@ -28,10 +28,8 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="main">Home</a>
-					</li>
-					<li><a href="restaurants_all_list">Restaurant</a>
-					</li>					
+					<li><a href="main">Home</a></li>
+					<li>Restaurant</li>					
 				</ul>
 			</div>
 		</div>

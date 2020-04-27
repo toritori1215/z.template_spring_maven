@@ -3,7 +3,7 @@
          $.notify({
              // options
              icon: '',
-             title: "<a href=\"tour_detail?pNo=3\" target=\"_blank\"><h4>Most Popular booking</h4>",
+             title: "<a href=\"tour_detail?pNo=45\" target=\"_blank\"><h4>Most Popular booking</h4>",
              message: "<figure><img src=\"resources/z.SiliconVillage/img/Golf1.jpg\"></figure><p>De Triomphe Golf Tour.</a>"
          }, {
              // settings

@@ -28,8 +28,6 @@
 					<li><a href="blog_right_sidebar">Blog List</a>
 					</li>
 					<li>${blog.bTitle}</li>
-					<li><a href="#">${blog.bTitle}</a>
-					</li>
 				</ul>
 			</div>
 		</div>

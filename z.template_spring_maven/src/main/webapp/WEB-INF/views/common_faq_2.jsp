@@ -22,10 +22,8 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="main">Home</a>
-					</li>
-					<li><a href="#">FAQ</a>
-					</li>
+					<li><a href="main">Home</a></li>
+					<li>FAQ</li>
 				</ul>
 			</div>
 		</div>

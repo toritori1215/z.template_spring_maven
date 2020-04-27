@@ -22,11 +22,8 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="main">Home</a>
-					</li>
-					<li><a href="#">Category</a>
-					</li>
-					<li>Page active</li>
+					<li><a href="main">Home</a></li>
+					<li>Mypage</li>
 				</ul>
 			</div>
 		</div>

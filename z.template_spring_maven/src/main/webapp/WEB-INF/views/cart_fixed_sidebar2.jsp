@@ -52,10 +52,8 @@
 		<div id="position">
 			<div class="container">
 				<ul>
-					<li><a href="main">Home</a>
-					</li>
-					<li>Cart Services</a>
-					</li>
+					<li><a href="main">Home</a></li>
+					<li>Tour Cart</li>
 				</ul>
 			</div>
 		</div>
