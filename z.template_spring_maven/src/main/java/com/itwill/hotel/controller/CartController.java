@@ -197,14 +197,30 @@ public class CartController {
 		Member member = (Member) session.getAttribute("sUser");
 		if (member != null) {
 			int mNo = member.getmNo();
+			
+			//삭제될 카트의 아이템 이름
+			String delete_pName = cartService.selectByCartNo(Integer.parseInt(cNo)).getpName();
 			cartService.deleteCart(Integer.parseInt(cNo));
+			//상품들 중 foodCategory가 delete_pName과 같으면 삭제
 			List<Cart> cartList = cartService.selectBymNo(mNo);
 			for (int i = 0; i < cartList.size(); i++) {
-				if (cartList.get(i).getpNo() > 6) {
-					cartList.remove(i);
+				int pNo = cartList.get(i).getpNo();
+				int option_cNo = cartList.get(i).getcNo();
+				if (productService.selectByNo(pNo).getFoodCategory() == delete_pName) {
+					cartService.deleteCart(option_cNo);
 				}
 			}
-			session.setAttribute("cartList", cartList);
+			
+			List<Cart> cartList_new = cartService.selectBymNo(mNo);
+			List<Cart> tourList_new = cartList_new;
+			
+			for (int i = 0; i < tourList_new.size(); i++) {
+				if ((tourList_new.get(i).getpNo() < 43) || (tourList_new.get(i).getpNo() > 48)) {
+					tourList_new.remove(i);
+				}
+			}
+			session.setAttribute("cartList", cartList_new);
+			session.setAttribute("tourList", tourList_new);
 			return cartList;
 		} else {
 			return null;
